@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E43D35DA-9516-4AF4-9FE6-CCFBB0514FE4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmartWorking.Office.Gui</RootNamespace>
+    <AssemblyName>SmartWorking.Office.Gui</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4, Version=3.0.0.19993, Culture=neutral, PublicKeyToken=1673db7d5906b0ad, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4, Version=3.0.0.19994, Culture=neutral, PublicKeyToken=63eb5c012e0b3c1c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ViewModel\CommandHelper.cs" />
+    <Compile Include="ViewModel\Contractors\UpdateBuildingViewModel.cs" />
+    <Compile Include="ViewModel\DeliveryNotes\UpdateDeliveryNoteViewModel.cs" />
+    <Compile Include="ViewModel\Materials\SelectMaterialViewModel.cs" />
+    <Compile Include="ViewModel\Materials\UpdateMaterialViewModel.cs" />
+    <Compile Include="ViewModel\Recipe\SelectRecipeViewModel.cs" />
+    <Compile Include="ViewModel\Recipe\UpdateRecipeViewModel.cs" />
+    <Compile Include="ViewModel\ViewMode.cs" />
+    <Compile Include="ViewModel\ModalDialogViewModelBase.cs" />
+    <Compile Include="ViewModel\IModalDialogService.cs" />
+    <Compile Include="ViewModel\IModalDialogViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\SelectableViewModelBase.cs" />
+    <Compile Include="ViewModel\SelectedItemChangedEventArg.cs" />
+    <Compile Include="View\Contractors\UpdateBuilding.xaml.cs">
+      <DependentUpon>UpdateBuilding.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeliveryNotes\UpdateDeliveryNote.xaml.cs">
+      <DependentUpon>UpdateDeliveryNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Materials\SelectMaterial.xaml.cs">
+      <DependentUpon>SelectMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Materials\UpdateMaterial.xaml.cs">
+      <DependentUpon>UpdateMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ModalDialogHelper.cs" />
+    <Compile Include="View\ModalDialogService.cs" />
+    <Compile Include="ViewModel\Contractors\UpdateContractorViewModel.cs" />
+    <Compile Include="ViewModel\Contractors\SelectContractorViewModel.cs" />
+    <Compile Include="View\ModalDialogHelperWindow.xaml.cs">
+      <DependentUpon>ModalDialogHelperWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Contractors\UpdateContractor.xaml.cs">
+      <DependentUpon>UpdateContractor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Contractors\SelectContractor.xaml.cs">
+      <DependentUpon>SelectContractor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipes\SelectRecipe.xaml.cs">
+      <DependentUpon>SelectRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Recipes\UpdateRecipe.xaml.cs">
+      <DependentUpon>UpdateRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewModeToTextConverter.cs" />
+    <Page Include="DefaultSkin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Contractors\UpdateBuilding.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DeliveryNotes\UpdateDeliveryNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\Materials\SelectMaterial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Materials\UpdateMaterial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ModalDialogHelperWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Contractors\UpdateContractor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Contractors\SelectContractor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipes\SelectRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Recipes\UpdateRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\SmartWorking.Office.Entities.Contractor.datasource" />
+    <None Include="Properties\DataSources\SmartWorking.Office.Entities.Kontrahenci.datasource" />
+    <None Include="Properties\DataSources\SmartWorking.Office.Entities.Material.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartWorking.Office.Entities\SmartWorking.Office.Entities.csproj">
+      <Project>{461DE786-E812-450C-8575-9133283EE858}</Project>
+      <Name>SmartWorking.Office.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartWorking.Office.Services.Factory.Local\SmartWorking.Office.Services.Factory.Local.csproj">
+      <Project>{ED50F2E1-5142-436A-9E47-64A5E954D7AA}</Project>
+      <Name>SmartWorking.Office.Services.Factory.Local</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartWorking.Office.Services.Interfaces\SmartWorking.Office.Services.Interfaces.csproj">
+      <Project>{B6945818-7C7E-4AA8-9837-2290E7E1E64B}</Project>
+      <Name>SmartWorking.Office.Services.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
