@@ -11,5 +11,6 @@ namespace SmartWorking.Office.Gui.View.Contractors
     {
       InitializeComponent();
     }
+
   }
 }

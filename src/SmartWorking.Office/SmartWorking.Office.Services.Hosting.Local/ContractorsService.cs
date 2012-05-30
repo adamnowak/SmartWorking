@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Services.Interfaces;
@@ -14,10 +13,22 @@ namespace SmartWorking.Office.Services.Hosting.Local
     {
       using (var ctx = new SmartWorkingEntities())
       {
-        return ctx.Contractors.Include("Buildings").ToList();
+        List<Contractor> result = ctx.Contractors.Include("Buildings").ToList();
+
+        //only in local (when WCF is used then Deserialization set ChangeTracker.ChangeTrackingEnabled on true)
+        foreach (Contractor r in result)
+        {
+          r.StartTracking();
+          foreach (Building b in r.Buildings)
+          {
+            b.StartTracking();
+          }
+        }
+        //end only in local 
+
+        return result;
       }
     }
-
 
 
     public void UpdateContractor(Contractor contractorToUpdate)
@@ -29,13 +40,10 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-
-    #endregion
-
     public void Dispose()
     {
-      
     }
 
+    #endregion
   }
 }

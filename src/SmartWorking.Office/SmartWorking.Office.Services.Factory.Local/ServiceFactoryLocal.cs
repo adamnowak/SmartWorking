@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SmartWorking.Office.Services.Hosting.Local;
+﻿using SmartWorking.Office.Services.Hosting.Local;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Services.Factory.Local
 {
   public class ServiceFactoryLocal : IServiceFactory
   {
+    #region IServiceFactory Members
+
     public IContractorsService GetContractorsService()
     {
       return new ContractorsService();
@@ -23,5 +21,7 @@ namespace SmartWorking.Office.Services.Factory.Local
     {
       return new RecipesService();
     }
+
+    #endregion
   }
 }

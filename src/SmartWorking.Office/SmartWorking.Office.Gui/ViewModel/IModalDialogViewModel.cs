@@ -4,8 +4,8 @@ namespace SmartWorking.Office.Gui.ViewModel
 {
   public interface IModalDialogViewModel
   {
-    event EventHandler RequestClose;
     string Title { get; }
-    bool Canceled { get; }
+    bool IsCanceled { get; }
+    event EventHandler RequestClose;
   }
 }

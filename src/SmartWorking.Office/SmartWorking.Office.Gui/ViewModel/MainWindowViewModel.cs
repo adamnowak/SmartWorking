@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View;
@@ -11,12 +10,12 @@ namespace SmartWorking.Office.Gui.ViewModel
   internal class MainWindowViewModel
   {
     private ICommand _createContractorCommand;
-    private ICommand _editContractorCommand;    
     private ICommand _createDeliveryNoteCommand;
     private ICommand _createMaterialCommand;
+    private ICommand _createRecipeCommand;
+    private ICommand _editContractorCommand;
     private ICommand _editMaterialCommand;
     private ICommand _editRecipeCommand;
-    private ICommand _createRecipeCommand;
 
     public MainWindowViewModel() :
       this(new ModalDialogService(), new ServiceFactoryLocal())
@@ -34,6 +33,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     public IServiceFactory ServiceFactory { get; set; }
 
     #region Contractor commands
+
     public ICommand CreateContractorCommand
     {
       get
@@ -63,9 +63,11 @@ namespace SmartWorking.Office.Gui.ViewModel
         ModalDialogService.EditContractor(ModalDialogService, ServiceFactory, selectedContractor);
       }
     }
+
     #endregion //Contractor commands
 
     #region Material commands
+
     public ICommand CreateMaterialCommand
     {
       get
@@ -95,10 +97,11 @@ namespace SmartWorking.Office.Gui.ViewModel
         ModalDialogService.EditMaterial(ModalDialogService, ServiceFactory, selectedMaterial);
       }
     }
+
     #endregion
 
-
     #region DeliveryNote
+
     public ICommand CreateDeliveryNoteCommand
     {
       get
@@ -109,9 +112,11 @@ namespace SmartWorking.Office.Gui.ViewModel
         return _createDeliveryNoteCommand;
       }
     }
+
     #endregion
 
     #region Recipe commands
+
     public ICommand CreateRecipeCommand
     {
       get
@@ -141,6 +146,7 @@ namespace SmartWorking.Office.Gui.ViewModel
         ModalDialogService.EditRecipe(ModalDialogService, ServiceFactory, selectedRecipe);
       }
     }
+
     #endregion
   }
 }

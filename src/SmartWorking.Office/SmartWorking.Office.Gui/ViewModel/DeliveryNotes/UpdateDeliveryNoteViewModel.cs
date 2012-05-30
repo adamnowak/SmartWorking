@@ -2,8 +2,6 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
-using SmartWorking.Office.Gui.View;
-using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
@@ -17,7 +15,18 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     public ViewMode ViewMode { get; set; }
 
+    public override string Title
+    {
+      get
+      {
+        return (ViewMode == ViewMode.Create)
+                 ? "Utwórz nową WZ'tkę."
+                 : "Edytuj WZ'tkę.";
+      }
+    }
+
     #region Building property
+
     /// <summary>
     /// The <see cref="Building" /> property's name.
     /// </summary>
@@ -33,10 +42,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public Building Building
     {
-      get
-      {
-        return _building;
-      }
+      get { return _building; }
 
       set
       {
@@ -50,6 +56,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         RaisePropertyChanged(BuildingPropertyName);
       }
     }
+
     #endregion
 
     #region SelectBuildingCommand
@@ -66,25 +73,48 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
     }
 
+    /// <summary>
+    /// The <see cref="DeliveryNote" /> property's name.
+    /// </summary>
+    public const string DeliveryNotePropertyName = "DeliveryNote";
+
+    private DeliveryNote _deliveryNote;
+
+    /// <summary>
+    /// Gets the DeliveryNote property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public DeliveryNote DeliveryNote
+    {
+      get
+      {
+        return _deliveryNote;
+      }
+
+      set
+      {
+        if (_deliveryNote == value)
+        {
+          return;
+        }
+        _deliveryNote = value;
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged(DeliveryNotePropertyName);
+      }
+    }
+
     private void SelcectContractor()
     {
-      Contractor selectContractor = ModalDialogService.SelectContractor(ModalDialogService, ServiceFactory);      
+      Contractor selectContractor = ModalDialogService.SelectContractor(ModalDialogService, ServiceFactory);
       if (selectContractor != null)
       {
         Building = ModalDialogService.SelectBuilding(ModalDialogService, ServiceFactory, selectContractor);
       }
     }
-    
-    #endregion
 
-    public override string Title
-    {
-      get
-      {
-        return (ViewMode == ViewModel.ViewMode.Create)
-                 ? "Utwórz nową WZ'tkę."
-                 : "Edytuj WZ'tkę.";
-      }
-    }
+    #endregion
   }
 }

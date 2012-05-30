@@ -1,16 +1,14 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
-using SmartWorking.Office.Gui.View;
-using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
- 
   public class UpdateRecipeViewModel : ModalDialogViewModelBase
   {
+    private ICommand _createRecipeCommand;
+
     public UpdateRecipeViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
@@ -18,7 +16,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     public ViewMode ViewMode { get; set; }
 
+    public ICommand CreateRecipeCommand
+    {
+      get
+      {
+        if (_createRecipeCommand == null)
+          _createRecipeCommand = new RelayCommand(UpdateRecipe, CanCreateRecipe);
+        return _createRecipeCommand;
+      }
+    }
+
+    public override string Title
+    {
+      get
+      {
+        return (ViewMode == ViewMode.Create)
+                 ? "Utwórz nową receptę."
+                 : "Edytuj receptę.";
+      }
+    }
+
     #region Recipe property
+
     /// <summary>
     /// The <see cref="Contractor" /> property's name.
     /// </summary>
@@ -34,10 +53,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public Recipe Recipe
     {
-      get
-      {
-        return _recipe;
-      }
+      get { return _recipe; }
 
       set
       {
@@ -51,20 +67,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         RaisePropertyChanged(RecipePropertyName);
       }
     }
+
     #endregion
-
-
-    private ICommand _createRecipeCommand;
-
-    public ICommand CreateRecipeCommand
-    {
-      get
-      {
-        if (_createRecipeCommand == null)
-          _createRecipeCommand = new RelayCommand(UpdateRecipe, CanCreateRecipe);
-        return _createRecipeCommand;
-      }
-    }
 
     private bool CanCreateRecipe()
     {
@@ -77,22 +81,12 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
       if (ViewMode == ViewMode.Create || ViewMode == ViewMode.Update)
       {
-        using (var recipesService = ServiceFactory.GetRecipesService())
+        using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
         {
           recipesService.UpdateRecipe(Recipe);
         }
       }
       CloaseModalDialog();
-    }
-
-    public override string Title
-    {
-      get
-      {
-        return (ViewMode == ViewModel.ViewMode.Create)
-                 ? "Utwórz nową receptę."
-                 : "Edytuj receptę.";
-      }
     }
   }
 }

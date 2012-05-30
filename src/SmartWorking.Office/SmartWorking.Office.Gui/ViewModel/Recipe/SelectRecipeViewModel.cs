@@ -8,13 +8,13 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
 {
   public enum SelectRecipeViewMode
   {
-    SelectRecipe, 
+    SelectRecipe,
     SelectMaterial
   }
 
   public class SelectRecipeViewModel : ModalDialogViewModelBase
   {
-    public SelectableViewModelBase<Recipe> SelectableRecipe { get; private set; }
+    private ICommand _selectRecipeCommand;
 
     public SelectRecipeViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
@@ -23,17 +23,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       LoadRecipes();
     }
 
+    public SelectableViewModelBase<Recipe> SelectableRecipe { get; private set; }
+
     public SelectRecipeViewMode ViewMode { get; set; }
-
-    private void LoadRecipes()
-    {
-      using (var recipesService = ServiceFactory.GetRecipesService())
-      {
-        SelectableRecipe.LoadItems(recipesService.GetRecipes());
-      }
-    }
-
-    private ICommand _selectRecipeCommand;
 
     public ICommand SelectRecipeCommand
     {
@@ -45,19 +37,23 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
     }
 
-    private void SelectRecipe()
-    {
-      CloaseModalDialog();
-    }
-
-    
-
 
     public override string Title
     {
       get { return "Wybierz receptę."; }
     }
 
+    private void LoadRecipes()
+    {
+      using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
+      {
+        SelectableRecipe.LoadItems(recipesService.GetRecipes());
+      }
+    }
 
+    private void SelectRecipe()
+    {
+      CloaseModalDialog();
+    }
   }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
@@ -8,13 +9,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
 {
   public enum SelectMaterialViewMode
   {
-    SelectMaterial, 
+    SelectMaterial,
     SelectBuilding
   }
 
   public class SelectMaterialViewModel : ModalDialogViewModelBase
   {
-    public SelectableViewModelBase<Material> SelectableMaterial { get; private set; }
+    private ICommand _selectMaterialCommand;
+    private ICommand _createMaterialCommand;
 
     public SelectMaterialViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
@@ -23,17 +25,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       LoadMaterials();
     }
 
+    public SelectableViewModelBase<Material> SelectableMaterial { get; private set; }
+
     public SelectMaterialViewMode ViewMode { get; set; }
-
-    private void LoadMaterials()
-    {
-      using (var materialsService = ServiceFactory.GetMaterialsService())
-      {
-        SelectableMaterial.LoadItems(materialsService.GetMaterials());
-      }
-    }
-
-    private ICommand _selectMaterialCommand;
 
     public ICommand SelectMaterialCommand
     {
@@ -45,12 +39,21 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
     }
 
-    private void SelectMaterial()
+    public ICommand CreateMaterialCommand
     {
-      CloaseModalDialog();
+      get
+      {
+        if (_createMaterialCommand == null)
+          _createMaterialCommand = new RelayCommand(CreateMaterial);
+        return _createMaterialCommand;
+      }
     }
 
-    
+    private void CreateMaterial()
+    {
+      ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
+
+    }
 
 
     public override string Title
@@ -58,6 +61,17 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       get { return "Wybierz materiał."; }
     }
 
+    private void LoadMaterials()
+    {
+      using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
+      {
+        SelectableMaterial.LoadItems(materialsService.GetMaterials());
+      }
+    }
 
+    private void SelectMaterial()
+    {
+      CloaseModalDialog();
+    }
   }
 }

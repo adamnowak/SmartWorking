@@ -29,7 +29,7 @@ namespace SmartWorking.Office.Gui.View
       if (window.Content is Control)
       {
         window.Height = ((Control) window.Content).Height;
-        window.Width = ((Control)window.Content).Width;
+        window.Width = ((Control) window.Content).Width;
       }
       // When the ViewModel asks to be closed, 
       // close the window.
@@ -43,7 +43,7 @@ namespace SmartWorking.Office.Gui.View
       window.ShowDialog();
       //var showResult = window.DialogResult;
       //if (showResult.HasValue && showResult.Value)
-      return !viewModel.Canceled;
+      return !viewModel.IsCanceled;
       //return false;
     }
   }

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
-using SmartWorking.Office.Entities;
-using SmartWorking.Office.Gui.ViewModel.Contractors;
-
-namespace SmartWorking.Office.Gui.ViewModel
+﻿namespace SmartWorking.Office.Gui.ViewModel
 {
   //public class CommandHelper
   //{
@@ -20,15 +11,14 @@ namespace SmartWorking.Office.Gui.ViewModel
   //  #region SelectContractorCommand
 
   //  #endregion
-    
-   
-    
+
+
   //  #region CreateContractorCommand
   //   public Contractor Contractor
   //  {
   //    get; set;
   //  }
-    
+
   //  private ICommand _createContractorCommand;
 
 

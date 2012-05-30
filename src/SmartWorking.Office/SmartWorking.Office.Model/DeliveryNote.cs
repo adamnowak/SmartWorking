@@ -8,544 +8,562 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace SmartWorking.Office.Entities
 {
-    [DataContract(IsReference = true)]
-    [KnownType(typeof(Building))]
-    [KnownType(typeof(Car))]
-    [KnownType(typeof(Driver))]
-    [KnownType(typeof(Recipe))]
-    public partial class DeliveryNote: IObjectWithChangeTracker, INotifyPropertyChanged
+  [DataContract(IsReference = true)]
+  [KnownType(typeof (Building))]
+  [KnownType(typeof (Car))]
+  [KnownType(typeof (Driver))]
+  [KnownType(typeof (Recipe))]
+  public class DeliveryNote : IObjectWithChangeTracker, INotifyPropertyChanged
+  {
+    #region Primitive Properties
+
+    private double? _amount;
+    private int? _building_Id;
+    private DateTime? _canceled;
+    private int? _car_Id;
+    private DateTime? _dateDrawing;
+    private DateTime? _dateOfArrival;
+    private string _drawer;
+    private int? _driver_Id;
+    private int _id;
+    private int? _recipe_Id;
+
+    [DataMember]
+    public int Id
     {
-        #region Primitive Properties
-    
-        [DataMember]
-        public int Id
+      get { return _id; }
+      set
+      {
+        if (_id != value)
         {
-            get { return _id; }
-            set
-            {
-                if (_id != value)
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
-                    {
-                        throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
-                    }
-                    _id = value;
-                    OnPropertyChanged("Id");
-                }
-            }
+          if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
+          {
+            throw new InvalidOperationException(
+              "The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
+          }
+          _id = value;
+          OnPropertyChanged("Id");
         }
-        private int _id;
-    
-        [DataMember]
-        public Nullable<int> Building_Id
-        {
-            get { return _building_Id; }
-            set
-            {
-                if (_building_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("Building_Id", _building_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Building != null && Building.Id != value)
-                        {
-                            Building = null;
-                        }
-                    }
-                    _building_Id = value;
-                    OnPropertyChanged("Building_Id");
-                }
-            }
-        }
-        private Nullable<int> _building_Id;
-    
-        [DataMember]
-        public Nullable<int> Recipe_Id
-        {
-            get { return _recipe_Id; }
-            set
-            {
-                if (_recipe_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("Recipe_Id", _recipe_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Recipe != null && Recipe.Id != value)
-                        {
-                            Recipe = null;
-                        }
-                    }
-                    _recipe_Id = value;
-                    OnPropertyChanged("Recipe_Id");
-                }
-            }
-        }
-        private Nullable<int> _recipe_Id;
-    
-        [DataMember]
-        public Nullable<double> Amount
-        {
-            get { return _amount; }
-            set
-            {
-                if (_amount != value)
-                {
-                    _amount = value;
-                    OnPropertyChanged("Amount");
-                }
-            }
-        }
-        private Nullable<double> _amount;
-    
-        [DataMember]
-        public Nullable<int> Driver_Id
-        {
-            get { return _driver_Id; }
-            set
-            {
-                if (_driver_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("Driver_Id", _driver_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Driver != null && Driver.Id != value)
-                        {
-                            Driver = null;
-                        }
-                    }
-                    _driver_Id = value;
-                    OnPropertyChanged("Driver_Id");
-                }
-            }
-        }
-        private Nullable<int> _driver_Id;
-    
-        [DataMember]
-        public Nullable<System.DateTime> DateDrawing
-        {
-            get { return _dateDrawing; }
-            set
-            {
-                if (_dateDrawing != value)
-                {
-                    _dateDrawing = value;
-                    OnPropertyChanged("DateDrawing");
-                }
-            }
-        }
-        private Nullable<System.DateTime> _dateDrawing;
-    
-        [DataMember]
-        public Nullable<System.DateTime> DateOfArrival
-        {
-            get { return _dateOfArrival; }
-            set
-            {
-                if (_dateOfArrival != value)
-                {
-                    _dateOfArrival = value;
-                    OnPropertyChanged("DateOfArrival");
-                }
-            }
-        }
-        private Nullable<System.DateTime> _dateOfArrival;
-    
-        [DataMember]
-        public Nullable<System.DateTime> Canceled
-        {
-            get { return _canceled; }
-            set
-            {
-                if (_canceled != value)
-                {
-                    _canceled = value;
-                    OnPropertyChanged("Canceled");
-                }
-            }
-        }
-        private Nullable<System.DateTime> _canceled;
-    
-        [DataMember]
-        public string Drawer
-        {
-            get { return _drawer; }
-            set
-            {
-                if (_drawer != value)
-                {
-                    _drawer = value;
-                    OnPropertyChanged("Drawer");
-                }
-            }
-        }
-        private string _drawer;
-    
-        [DataMember]
-        public Nullable<int> Car_Id
-        {
-            get { return _car_Id; }
-            set
-            {
-                if (_car_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("Car_Id", _car_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Car != null && Car.Id != value)
-                        {
-                            Car = null;
-                        }
-                    }
-                    _car_Id = value;
-                    OnPropertyChanged("Car_Id");
-                }
-            }
-        }
-        private Nullable<int> _car_Id;
-
-        #endregion
-        #region Navigation Properties
-    
-        [DataMember]
-        public Building Building
-        {
-            get { return _building; }
-            set
-            {
-                if (!ReferenceEquals(_building, value))
-                {
-                    var previousValue = _building;
-                    _building = value;
-                    FixupBuilding(previousValue);
-                    OnNavigationPropertyChanged("Building");
-                }
-            }
-        }
-        private Building _building;
-    
-        [DataMember]
-        public Car Car
-        {
-            get { return _car; }
-            set
-            {
-                if (!ReferenceEquals(_car, value))
-                {
-                    var previousValue = _car;
-                    _car = value;
-                    FixupCar(previousValue);
-                    OnNavigationPropertyChanged("Car");
-                }
-            }
-        }
-        private Car _car;
-    
-        [DataMember]
-        public Driver Driver
-        {
-            get { return _driver; }
-            set
-            {
-                if (!ReferenceEquals(_driver, value))
-                {
-                    var previousValue = _driver;
-                    _driver = value;
-                    FixupDriver(previousValue);
-                    OnNavigationPropertyChanged("Driver");
-                }
-            }
-        }
-        private Driver _driver;
-    
-        [DataMember]
-        public Recipe Recipe
-        {
-            get { return _recipe; }
-            set
-            {
-                if (!ReferenceEquals(_recipe, value))
-                {
-                    var previousValue = _recipe;
-                    _recipe = value;
-                    FixupRecipe(previousValue);
-                    OnNavigationPropertyChanged("Recipe");
-                }
-            }
-        }
-        private Recipe _recipe;
-
-        #endregion
-        #region ChangeTracking
-    
-        protected virtual void OnPropertyChanged(String propertyName)
-        {
-            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
-            {
-                ChangeTracker.State = ObjectState.Modified;
-            }
-            if (_propertyChanged != null)
-            {
-                _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    
-        protected virtual void OnNavigationPropertyChanged(String propertyName)
-        {
-            if (_propertyChanged != null)
-            {
-                _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    
-        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
-        private event PropertyChangedEventHandler _propertyChanged;
-        private ObjectChangeTracker _changeTracker;
-    
-        [DataMember]
-        public ObjectChangeTracker ChangeTracker
-        {
-            get
-            {
-                if (_changeTracker == null)
-                {
-                    _changeTracker = new ObjectChangeTracker();
-                    _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-                }
-                return _changeTracker;
-            }
-            set
-            {
-                if(_changeTracker != null)
-                {
-                    _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
-                }
-                _changeTracker = value;
-                if(_changeTracker != null)
-                {
-                    _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-                }
-            }
-        }
-    
-        private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                ClearNavigationProperties();
-            }
-        }
-    
-        protected bool IsDeserializing { get; private set; }
-    
-        [OnDeserializing]
-        public void OnDeserializingMethod(StreamingContext context)
-        {
-            IsDeserializing = true;
-        }
-    
-        [OnDeserialized]
-        public void OnDeserializedMethod(StreamingContext context)
-        {
-            IsDeserializing = false;
-            ChangeTracker.ChangeTrackingEnabled = true;
-        }
-    
-        protected virtual void ClearNavigationProperties()
-        {
-            Building = null;
-            Car = null;
-            Driver = null;
-            Recipe = null;
-        }
-
-        #endregion
-        #region Association Fixup
-    
-        private void FixupBuilding(Building previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-            {
-                previousValue.DeliveryNotes.Remove(this);
-            }
-    
-            if (Building != null)
-            {
-                if (!Building.DeliveryNotes.Contains(this))
-                {
-                    Building.DeliveryNotes.Add(this);
-                }
-    
-                Building_Id = Building.Id;
-            }
-            else if (!skipKeys)
-            {
-                Building_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Building")
-                    && (ChangeTracker.OriginalValues["Building"] == Building))
-                {
-                    ChangeTracker.OriginalValues.Remove("Building");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Building", previousValue);
-                }
-                if (Building != null && !Building.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Building.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCar(Car previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-            {
-                previousValue.DeliveryNotes.Remove(this);
-            }
-    
-            if (Car != null)
-            {
-                if (!Car.DeliveryNotes.Contains(this))
-                {
-                    Car.DeliveryNotes.Add(this);
-                }
-    
-                Car_Id = Car.Id;
-            }
-            else if (!skipKeys)
-            {
-                Car_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Car")
-                    && (ChangeTracker.OriginalValues["Car"] == Car))
-                {
-                    ChangeTracker.OriginalValues.Remove("Car");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Car", previousValue);
-                }
-                if (Car != null && !Car.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Car.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupDriver(Driver previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-            {
-                previousValue.DeliveryNotes.Remove(this);
-            }
-    
-            if (Driver != null)
-            {
-                if (!Driver.DeliveryNotes.Contains(this))
-                {
-                    Driver.DeliveryNotes.Add(this);
-                }
-    
-                Driver_Id = Driver.Id;
-            }
-            else if (!skipKeys)
-            {
-                Driver_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Driver")
-                    && (ChangeTracker.OriginalValues["Driver"] == Driver))
-                {
-                    ChangeTracker.OriginalValues.Remove("Driver");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Driver", previousValue);
-                }
-                if (Driver != null && !Driver.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Driver.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupRecipe(Recipe previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-            {
-                previousValue.DeliveryNotes.Remove(this);
-            }
-    
-            if (Recipe != null)
-            {
-                if (!Recipe.DeliveryNotes.Contains(this))
-                {
-                    Recipe.DeliveryNotes.Add(this);
-                }
-    
-                Recipe_Id = Recipe.Id;
-            }
-            else if (!skipKeys)
-            {
-                Recipe_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Recipe")
-                    && (ChangeTracker.OriginalValues["Recipe"] == Recipe))
-                {
-                    ChangeTracker.OriginalValues.Remove("Recipe");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Recipe", previousValue);
-                }
-                if (Recipe != null && !Recipe.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Recipe.StartTracking();
-                }
-            }
-        }
-
-        #endregion
+      }
     }
+
+    [DataMember]
+    public int? Building_Id
+    {
+      get { return _building_Id; }
+      set
+      {
+        if (_building_Id != value)
+        {
+          ChangeTracker.RecordOriginalValue("Building_Id", _building_Id);
+          if (!IsDeserializing)
+          {
+            if (Building != null && Building.Id != value)
+            {
+              Building = null;
+            }
+          }
+          _building_Id = value;
+          OnPropertyChanged("Building_Id");
+        }
+      }
+    }
+
+    [DataMember]
+    public int? Recipe_Id
+    {
+      get { return _recipe_Id; }
+      set
+      {
+        if (_recipe_Id != value)
+        {
+          ChangeTracker.RecordOriginalValue("Recipe_Id", _recipe_Id);
+          if (!IsDeserializing)
+          {
+            if (Recipe != null && Recipe.Id != value)
+            {
+              Recipe = null;
+            }
+          }
+          _recipe_Id = value;
+          OnPropertyChanged("Recipe_Id");
+        }
+      }
+    }
+
+    [DataMember]
+    public double? Amount
+    {
+      get { return _amount; }
+      set
+      {
+        if (_amount != value)
+        {
+          _amount = value;
+          OnPropertyChanged("Amount");
+        }
+      }
+    }
+
+    [DataMember]
+    public int? Driver_Id
+    {
+      get { return _driver_Id; }
+      set
+      {
+        if (_driver_Id != value)
+        {
+          ChangeTracker.RecordOriginalValue("Driver_Id", _driver_Id);
+          if (!IsDeserializing)
+          {
+            if (Driver != null && Driver.Id != value)
+            {
+              Driver = null;
+            }
+          }
+          _driver_Id = value;
+          OnPropertyChanged("Driver_Id");
+        }
+      }
+    }
+
+    [DataMember]
+    public DateTime? DateDrawing
+    {
+      get { return _dateDrawing; }
+      set
+      {
+        if (_dateDrawing != value)
+        {
+          _dateDrawing = value;
+          OnPropertyChanged("DateDrawing");
+        }
+      }
+    }
+
+    [DataMember]
+    public DateTime? DateOfArrival
+    {
+      get { return _dateOfArrival; }
+      set
+      {
+        if (_dateOfArrival != value)
+        {
+          _dateOfArrival = value;
+          OnPropertyChanged("DateOfArrival");
+        }
+      }
+    }
+
+    [DataMember]
+    public DateTime? Canceled
+    {
+      get { return _canceled; }
+      set
+      {
+        if (_canceled != value)
+        {
+          _canceled = value;
+          OnPropertyChanged("Canceled");
+        }
+      }
+    }
+
+    [DataMember]
+    public string Drawer
+    {
+      get { return _drawer; }
+      set
+      {
+        if (_drawer != value)
+        {
+          _drawer = value;
+          OnPropertyChanged("Drawer");
+        }
+      }
+    }
+
+    [DataMember]
+    public int? Car_Id
+    {
+      get { return _car_Id; }
+      set
+      {
+        if (_car_Id != value)
+        {
+          ChangeTracker.RecordOriginalValue("Car_Id", _car_Id);
+          if (!IsDeserializing)
+          {
+            if (Car != null && Car.Id != value)
+            {
+              Car = null;
+            }
+          }
+          _car_Id = value;
+          OnPropertyChanged("Car_Id");
+        }
+      }
+    }
+
+    #endregion
+
+    #region Navigation Properties
+
+    private Building _building;
+
+    private Car _car;
+
+    private Driver _driver;
+
+    private Recipe _recipe;
+
+    [DataMember]
+    public Building Building
+    {
+      get { return _building; }
+      set
+      {
+        if (!ReferenceEquals(_building, value))
+        {
+          Building previousValue = _building;
+          _building = value;
+          FixupBuilding(previousValue);
+          OnNavigationPropertyChanged("Building");
+        }
+      }
+    }
+
+    [DataMember]
+    public Car Car
+    {
+      get { return _car; }
+      set
+      {
+        if (!ReferenceEquals(_car, value))
+        {
+          Car previousValue = _car;
+          _car = value;
+          FixupCar(previousValue);
+          OnNavigationPropertyChanged("Car");
+        }
+      }
+    }
+
+    [DataMember]
+    public Driver Driver
+    {
+      get { return _driver; }
+      set
+      {
+        if (!ReferenceEquals(_driver, value))
+        {
+          Driver previousValue = _driver;
+          _driver = value;
+          FixupDriver(previousValue);
+          OnNavigationPropertyChanged("Driver");
+        }
+      }
+    }
+
+    [DataMember]
+    public Recipe Recipe
+    {
+      get { return _recipe; }
+      set
+      {
+        if (!ReferenceEquals(_recipe, value))
+        {
+          Recipe previousValue = _recipe;
+          _recipe = value;
+          FixupRecipe(previousValue);
+          OnNavigationPropertyChanged("Recipe");
+        }
+      }
+    }
+
+    #endregion
+
+    #region ChangeTracking
+
+    private ObjectChangeTracker _changeTracker;
+    protected bool IsDeserializing { get; private set; }
+
+    #region INotifyPropertyChanged Members
+
+    event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+    {
+      add { _propertyChanged += value; }
+      remove { _propertyChanged -= value; }
+    }
+
+    #endregion
+
+    #region IObjectWithChangeTracker Members
+
+    [DataMember]
+    public ObjectChangeTracker ChangeTracker
+    {
+      get
+      {
+        if (_changeTracker == null)
+        {
+          _changeTracker = new ObjectChangeTracker();
+          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
+        }
+        return _changeTracker;
+      }
+      set
+      {
+        if (_changeTracker != null)
+        {
+          _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
+        }
+        _changeTracker = value;
+        if (_changeTracker != null)
+        {
+          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
+        }
+      }
+    }
+
+    #endregion
+
+    protected virtual void OnPropertyChanged(String propertyName)
+    {
+      if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+      {
+        ChangeTracker.State = ObjectState.Modified;
+      }
+      if (_propertyChanged != null)
+      {
+        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
+
+    protected virtual void OnNavigationPropertyChanged(String propertyName)
+    {
+      if (_propertyChanged != null)
+      {
+        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
+
+    private event PropertyChangedEventHandler _propertyChanged;
+
+    private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
+    {
+      if (e.NewState == ObjectState.Deleted)
+      {
+        ClearNavigationProperties();
+      }
+    }
+
+    [OnDeserializing]
+    public void OnDeserializingMethod(StreamingContext context)
+    {
+      IsDeserializing = true;
+    }
+
+    [OnDeserialized]
+    public void OnDeserializedMethod(StreamingContext context)
+    {
+      IsDeserializing = false;
+      ChangeTracker.ChangeTrackingEnabled = true;
+    }
+
+    protected virtual void ClearNavigationProperties()
+    {
+      Building = null;
+      Car = null;
+      Driver = null;
+      Recipe = null;
+    }
+
+    #endregion
+
+    #region Association Fixup
+
+    private void FixupBuilding(Building previousValue, bool skipKeys = false)
+    {
+      if (IsDeserializing)
+      {
+        return;
+      }
+
+      if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+      {
+        previousValue.DeliveryNotes.Remove(this);
+      }
+
+      if (Building != null)
+      {
+        if (!Building.DeliveryNotes.Contains(this))
+        {
+          Building.DeliveryNotes.Add(this);
+        }
+
+        Building_Id = Building.Id;
+      }
+      else if (!skipKeys)
+      {
+        Building_Id = null;
+      }
+
+      if (ChangeTracker.ChangeTrackingEnabled)
+      {
+        if (ChangeTracker.OriginalValues.ContainsKey("Building")
+            && (ChangeTracker.OriginalValues["Building"] == Building))
+        {
+          ChangeTracker.OriginalValues.Remove("Building");
+        }
+        else
+        {
+          ChangeTracker.RecordOriginalValue("Building", previousValue);
+        }
+        if (Building != null && !Building.ChangeTracker.ChangeTrackingEnabled)
+        {
+          Building.StartTracking();
+        }
+      }
+    }
+
+    private void FixupCar(Car previousValue, bool skipKeys = false)
+    {
+      if (IsDeserializing)
+      {
+        return;
+      }
+
+      if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+      {
+        previousValue.DeliveryNotes.Remove(this);
+      }
+
+      if (Car != null)
+      {
+        if (!Car.DeliveryNotes.Contains(this))
+        {
+          Car.DeliveryNotes.Add(this);
+        }
+
+        Car_Id = Car.Id;
+      }
+      else if (!skipKeys)
+      {
+        Car_Id = null;
+      }
+
+      if (ChangeTracker.ChangeTrackingEnabled)
+      {
+        if (ChangeTracker.OriginalValues.ContainsKey("Car")
+            && (ChangeTracker.OriginalValues["Car"] == Car))
+        {
+          ChangeTracker.OriginalValues.Remove("Car");
+        }
+        else
+        {
+          ChangeTracker.RecordOriginalValue("Car", previousValue);
+        }
+        if (Car != null && !Car.ChangeTracker.ChangeTrackingEnabled)
+        {
+          Car.StartTracking();
+        }
+      }
+    }
+
+    private void FixupDriver(Driver previousValue, bool skipKeys = false)
+    {
+      if (IsDeserializing)
+      {
+        return;
+      }
+
+      if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+      {
+        previousValue.DeliveryNotes.Remove(this);
+      }
+
+      if (Driver != null)
+      {
+        if (!Driver.DeliveryNotes.Contains(this))
+        {
+          Driver.DeliveryNotes.Add(this);
+        }
+
+        Driver_Id = Driver.Id;
+      }
+      else if (!skipKeys)
+      {
+        Driver_Id = null;
+      }
+
+      if (ChangeTracker.ChangeTrackingEnabled)
+      {
+        if (ChangeTracker.OriginalValues.ContainsKey("Driver")
+            && (ChangeTracker.OriginalValues["Driver"] == Driver))
+        {
+          ChangeTracker.OriginalValues.Remove("Driver");
+        }
+        else
+        {
+          ChangeTracker.RecordOriginalValue("Driver", previousValue);
+        }
+        if (Driver != null && !Driver.ChangeTracker.ChangeTrackingEnabled)
+        {
+          Driver.StartTracking();
+        }
+      }
+    }
+
+    private void FixupRecipe(Recipe previousValue, bool skipKeys = false)
+    {
+      if (IsDeserializing)
+      {
+        return;
+      }
+
+      if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+      {
+        previousValue.DeliveryNotes.Remove(this);
+      }
+
+      if (Recipe != null)
+      {
+        if (!Recipe.DeliveryNotes.Contains(this))
+        {
+          Recipe.DeliveryNotes.Add(this);
+        }
+
+        Recipe_Id = Recipe.Id;
+      }
+      else if (!skipKeys)
+      {
+        Recipe_Id = null;
+      }
+
+      if (ChangeTracker.ChangeTrackingEnabled)
+      {
+        if (ChangeTracker.OriginalValues.ContainsKey("Recipe")
+            && (ChangeTracker.OriginalValues["Recipe"] == Recipe))
+        {
+          ChangeTracker.OriginalValues.Remove("Recipe");
+        }
+        else
+        {
+          ChangeTracker.RecordOriginalValue("Recipe", previousValue);
+        }
+        if (Recipe != null && !Recipe.ChangeTracker.ChangeTrackingEnabled)
+        {
+          Recipe.StartTracking();
+        }
+      }
+    }
+
+    #endregion
+  }
 }

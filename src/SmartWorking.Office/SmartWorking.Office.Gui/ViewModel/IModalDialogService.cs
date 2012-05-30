@@ -5,22 +5,26 @@ namespace SmartWorking.Office.Gui.ViewModel
 {
   public interface IModalDialogService
   {
-    void CreateContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
-    void EditContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Contractor contractorToEdit);
+    Contractor CreateContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    Contractor EditContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                        Contractor contractorToEdit);
     Contractor SelectContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
-    
-    void CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Contractor contractor);
-    void UpdateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Building building);    
-    Building SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Contractor selectContractor);
-   
-    void CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
-    void CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    Building CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Contractor contractor);
+    Building EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Building building);
+    Building SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                            Contractor selectContractor);
+
+    DeliveryNote CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+
+    Material CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    Material EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Material selectedMaterial);
     Material SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
-    void EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Material selectedMaterial);
+    
 
-    void CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    Recipe CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    Recipe EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Recipe selectedRecipe);
     Recipe SelectRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
-    void EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Recipe selectedRecipe);
+    
   }
 }

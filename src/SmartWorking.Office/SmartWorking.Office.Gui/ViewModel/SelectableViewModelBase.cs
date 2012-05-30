@@ -170,16 +170,16 @@ namespace SmartWorking.Office.Gui.ViewModel
     {
       try
       {
-      int selectedPos = Items.IndexOf(SelectedItem);
-      if (selectedPos > 0 && selectedPos < Items.Count)
-      {
-        SelectedItem = Items.ElementAt(selectedPos - 1);
-      }
+        int selectedPos = Items.IndexOf(SelectedItem);
+        if (selectedPos > 0 && selectedPos < Items.Count)
+        {
+          SelectedItem = Items.ElementAt(selectedPos - 1);
+        }
       }
       catch (Exception exception)
       {
         Messenger.Default.Send(
-         new DialogMessage(exception.Message, null), "exceptionMessage");
+          new DialogMessage(exception.Message, null), "exceptionMessage");
       }
     }
 
@@ -196,7 +196,7 @@ namespace SmartWorking.Office.Gui.ViewModel
       catch (Exception exception)
       {
         Messenger.Default.Send(
-         new DialogMessage(exception.Message, null), "exceptionMessage");
+          new DialogMessage(exception.Message, null), "exceptionMessage");
       }
     }
 

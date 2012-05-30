@@ -1,16 +1,14 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
-using SmartWorking.Office.Gui.View;
-using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
- 
   public class UpdateBuildingViewModel : ModalDialogViewModelBase
   {
+    private ICommand _createOrUpdateBuildingCommand;
+
     public UpdateBuildingViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
@@ -18,7 +16,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     public ViewMode ViewMode { get; set; }
 
+    public ICommand CreateOrUpdateBuildingCommand
+    {
+      get
+      {
+        if (_createOrUpdateBuildingCommand == null)
+          _createOrUpdateBuildingCommand = new RelayCommand(UpdateBuilding, CanCreateBuilding);
+        return _createOrUpdateBuildingCommand;
+      }
+    }
+
+    public override string Title
+    {
+      get
+      {
+        return (ViewMode == ViewMode.Create)
+                 ? "Utwórz nową budowę."
+                 : "Edytuj budowę.";
+      }
+    }
+
     #region Contractor property
+
     /// <summary>
     /// The <see cref="Contractor" /> property's name.
     /// </summary>
@@ -34,10 +53,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public Contractor Contractor
     {
-      get
-      {
-        return _contractor;
-      }
+      get { return _contractor; }
 
       set
       {
@@ -51,10 +67,11 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         RaisePropertyChanged(ContractorPropertyName);
       }
     }
+
     #endregion
 
-
     #region Building property
+
     /// <summary>
     /// The <see cref="Building" /> property's name.
     /// </summary>
@@ -70,10 +87,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public Building Building
     {
-      get
-      {
-        return _building;
-      }
+      get { return _building; }
 
       set
       {
@@ -86,19 +100,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         RaisePropertyChanged(BuildingPropertyName);
       }
     }
+
     #endregion
-
-    private ICommand _createBuildingCommand;
-
-    public ICommand CreateBuildingBuildingCommand
-    {
-      get
-      {
-        if (_createBuildingCommand == null)
-          _createBuildingCommand = new RelayCommand(UpdateBuilding, CanCreateBuilding);
-        return _createBuildingCommand;
-      }
-    }
 
     private bool CanCreateBuilding()
     {
@@ -111,19 +114,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
       if (ViewMode == ViewMode.Create)
       {
-        Contractor.Buildings.Add(Building);  
+        Contractor.Buildings.Add(Building);
       }
       CloaseModalDialog();
-    }
-
-    public override string Title
-    {
-      get
-      {
-        return (ViewMode == ViewModel.ViewMode.Create)
-                 ? "Utwórz nową budowę."
-                 : "Edytuj budowę.";
-      }
     }
   }
 }

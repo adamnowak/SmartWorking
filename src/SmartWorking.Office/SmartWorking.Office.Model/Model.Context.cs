@@ -7,130 +7,130 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.Common;
 using System.Data.EntityClient;
-using System.Data.Metadata.Edm;
-using System.Data.Objects.DataClasses;
 using System.Data.Objects;
-using System.Data;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
 
 namespace SmartWorking.Office.Entities
 {
-    public partial class SmartWorkingEntities : ObjectContext
-    {
-        public const string ConnectionString = "name=SmartWorkingEntities";
-        public const string ContainerName = "SmartWorkingEntities";
-    
-        #region Constructors
-    
-        public SmartWorkingEntities()
-            : base(ConnectionString, ContainerName)
-        {
-            Initialize();
-        }
-    
-        public SmartWorkingEntities(string connectionString)
-            : base(connectionString, ContainerName)
-        {
-            Initialize();
-        }
-    
-        public SmartWorkingEntities(EntityConnection connection)
-            : base(connection, ContainerName)
-        {
-            Initialize();
-        }
-    
-        private void Initialize()
-        {
-            // Creating proxies requires the use of the ProxyDataContractResolver and
-            // may allow lazy loading which can expand the loaded graph during serialization.
-            ContextOptions.ProxyCreationEnabled = false;
-            ObjectMaterialized += new ObjectMaterializedEventHandler(HandleObjectMaterialized);
-        }
-    
-        private void HandleObjectMaterialized(object sender, ObjectMaterializedEventArgs e)
-        {
-            var entity = e.Entity as IObjectWithChangeTracker;
-            if (entity != null)
-            {
-                bool changeTrackingEnabled = entity.ChangeTracker.ChangeTrackingEnabled;
-                try
-                {
-                    entity.MarkAsUnchanged();
-                }
-                finally
-                {
-                    entity.ChangeTracker.ChangeTrackingEnabled = changeTrackingEnabled;
-                }
-                this.StoreReferenceKeyValues(entity);
-            }
-        }
-    
-        #endregion
-    
-        #region ObjectSet Properties
-    
-        public ObjectSet<Building> Buildings
-        {
-            get { return _buildings  ?? (_buildings = CreateObjectSet<Building>("Buildings")); }
-        }
-        private ObjectSet<Building> _buildings;
-    
-        public ObjectSet<Car> Cars
-        {
-            get { return _cars  ?? (_cars = CreateObjectSet<Car>("Cars")); }
-        }
-        private ObjectSet<Car> _cars;
-    
-        public ObjectSet<Contractor> Contractors
-        {
-            get { return _contractors  ?? (_contractors = CreateObjectSet<Contractor>("Contractors")); }
-        }
-        private ObjectSet<Contractor> _contractors;
-    
-        public ObjectSet<DeliveryNote> DeliveryNotes
-        {
-            get { return _deliveryNotes  ?? (_deliveryNotes = CreateObjectSet<DeliveryNote>("DeliveryNotes")); }
-        }
-        private ObjectSet<DeliveryNote> _deliveryNotes;
-    
-        public ObjectSet<Driver> Drivers
-        {
-            get { return _drivers  ?? (_drivers = CreateObjectSet<Driver>("Drivers")); }
-        }
-        private ObjectSet<Driver> _drivers;
-    
-        public ObjectSet<Material> Materials
-        {
-            get { return _materials  ?? (_materials = CreateObjectSet<Material>("Materials")); }
-        }
-        private ObjectSet<Material> _materials;
-    
-        public ObjectSet<MaterialStock> MaterialStocks
-        {
-            get { return _materialStocks  ?? (_materialStocks = CreateObjectSet<MaterialStock>("MaterialStocks")); }
-        }
-        private ObjectSet<MaterialStock> _materialStocks;
-    
-        public ObjectSet<Recipe> Recipes
-        {
-            get { return _recipes  ?? (_recipes = CreateObjectSet<Recipe>("Recipes")); }
-        }
-        private ObjectSet<Recipe> _recipes;
-    
-        public ObjectSet<RecipeSpecification> RecipeSpecifications
-        {
-            get { return _recipeSpecifications  ?? (_recipeSpecifications = CreateObjectSet<RecipeSpecification>("RecipeSpecifications")); }
-        }
-        private ObjectSet<RecipeSpecification> _recipeSpecifications;
+  public class SmartWorkingEntities : ObjectContext
+  {
+    public const string ConnectionString = "name=SmartWorkingEntities";
+    public const string ContainerName = "SmartWorkingEntities";
 
-        #endregion
+    #region Constructors
+
+    public SmartWorkingEntities()
+      : base(ConnectionString, ContainerName)
+    {
+      Initialize();
     }
+
+    public SmartWorkingEntities(string connectionString)
+      : base(connectionString, ContainerName)
+    {
+      Initialize();
+    }
+
+    public SmartWorkingEntities(EntityConnection connection)
+      : base(connection, ContainerName)
+    {
+      Initialize();
+    }
+
+    private void Initialize()
+    {
+      // Creating proxies requires the use of the ProxyDataContractResolver and
+      // may allow lazy loading which can expand the loaded graph during serialization.
+      ContextOptions.ProxyCreationEnabled = false;
+      ObjectMaterialized += HandleObjectMaterialized;
+    }
+
+    private void HandleObjectMaterialized(object sender, ObjectMaterializedEventArgs e)
+    {
+      var entity = e.Entity as IObjectWithChangeTracker;
+      if (entity != null)
+      {
+        bool changeTrackingEnabled = entity.ChangeTracker.ChangeTrackingEnabled;
+        try
+        {
+          entity.MarkAsUnchanged();
+        }
+        finally
+        {
+          entity.ChangeTracker.ChangeTrackingEnabled = changeTrackingEnabled;
+        }
+        this.StoreReferenceKeyValues(entity);
+      }
+    }
+
+    #endregion
+
+    #region ObjectSet Properties
+
+    private ObjectSet<Building> _buildings;
+
+    private ObjectSet<Car> _cars;
+
+    private ObjectSet<Contractor> _contractors;
+
+    private ObjectSet<DeliveryNote> _deliveryNotes;
+
+    private ObjectSet<Driver> _drivers;
+    private ObjectSet<MaterialStock> _materialStocks;
+
+    private ObjectSet<Material> _materials;
+    private ObjectSet<RecipeSpecification> _recipeSpecifications;
+    private ObjectSet<Recipe> _recipes;
+
+    public ObjectSet<Building> Buildings
+    {
+      get { return _buildings ?? (_buildings = CreateObjectSet<Building>("Buildings")); }
+    }
+
+    public ObjectSet<Car> Cars
+    {
+      get { return _cars ?? (_cars = CreateObjectSet<Car>("Cars")); }
+    }
+
+    public ObjectSet<Contractor> Contractors
+    {
+      get { return _contractors ?? (_contractors = CreateObjectSet<Contractor>("Contractors")); }
+    }
+
+    public ObjectSet<DeliveryNote> DeliveryNotes
+    {
+      get { return _deliveryNotes ?? (_deliveryNotes = CreateObjectSet<DeliveryNote>("DeliveryNotes")); }
+    }
+
+    public ObjectSet<Driver> Drivers
+    {
+      get { return _drivers ?? (_drivers = CreateObjectSet<Driver>("Drivers")); }
+    }
+
+    public ObjectSet<Material> Materials
+    {
+      get { return _materials ?? (_materials = CreateObjectSet<Material>("Materials")); }
+    }
+
+    public ObjectSet<MaterialStock> MaterialStocks
+    {
+      get { return _materialStocks ?? (_materialStocks = CreateObjectSet<MaterialStock>("MaterialStocks")); }
+    }
+
+    public ObjectSet<Recipe> Recipes
+    {
+      get { return _recipes ?? (_recipes = CreateObjectSet<Recipe>("Recipes")); }
+    }
+
+    public ObjectSet<RecipeSpecification> RecipeSpecifications
+    {
+      get
+      {
+        return _recipeSpecifications ??
+               (_recipeSpecifications = CreateObjectSet<RecipeSpecification>("RecipeSpecifications"));
+      }
+    }
+
+    #endregion
+  }
 }

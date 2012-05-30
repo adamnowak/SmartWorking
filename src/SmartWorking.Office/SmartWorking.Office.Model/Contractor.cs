@@ -8,261 +8,278 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace SmartWorking.Office.Entities
 {
-    [DataContract(IsReference = true)]
-    [KnownType(typeof(Building))]
-    public partial class Contractor: IObjectWithChangeTracker, INotifyPropertyChanged
+  [DataContract(IsReference = true)]
+  [KnownType(typeof (Building))]
+  public class Contractor : IObjectWithChangeTracker, INotifyPropertyChanged
+  {
+    #region Primitive Properties
+
+    private string _fullName;
+    private int _id;
+    private string _name;
+    private string _phone;
+    private string _surname;
+
+    [DataMember]
+    public int Id
     {
-        #region Primitive Properties
-    
-        [DataMember]
-        public int Id
+      get { return _id; }
+      set
+      {
+        if (_id != value)
         {
-            get { return _id; }
-            set
-            {
-                if (_id != value)
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
-                    {
-                        throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
-                    }
-                    _id = value;
-                    OnPropertyChanged("Id");
-                }
-            }
+          if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
+          {
+            throw new InvalidOperationException(
+              "The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
+          }
+          _id = value;
+          OnPropertyChanged("Id");
         }
-        private int _id;
-    
-        [DataMember]
-        public string FullName
-        {
-            get { return _fullName; }
-            set
-            {
-                if (_fullName != value)
-                {
-                    _fullName = value;
-                    OnPropertyChanged("FullName");
-                }
-            }
-        }
-        private string _fullName;
-    
-        [DataMember]
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    OnPropertyChanged("Name");
-                }
-            }
-        }
-        private string _name;
-    
-        [DataMember]
-        public string Surname
-        {
-            get { return _surname; }
-            set
-            {
-                if (_surname != value)
-                {
-                    _surname = value;
-                    OnPropertyChanged("Surname");
-                }
-            }
-        }
-        private string _surname;
-    
-        [DataMember]
-        public string Phone
-        {
-            get { return _phone; }
-            set
-            {
-                if (_phone != value)
-                {
-                    _phone = value;
-                    OnPropertyChanged("Phone");
-                }
-            }
-        }
-        private string _phone;
-
-        #endregion
-        #region Navigation Properties
-    
-        [DataMember]
-        public TrackableCollection<Building> Buildings
-        {
-            get
-            {
-                if (_buildings == null)
-                {
-                    _buildings = new TrackableCollection<Building>();
-                    _buildings.CollectionChanged += FixupBuildings;
-                }
-                return _buildings;
-            }
-            set
-            {
-                if (!ReferenceEquals(_buildings, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-                    if (_buildings != null)
-                    {
-                        _buildings.CollectionChanged -= FixupBuildings;
-                    }
-                    _buildings = value;
-                    if (_buildings != null)
-                    {
-                        _buildings.CollectionChanged += FixupBuildings;
-                    }
-                    OnNavigationPropertyChanged("Buildings");
-                }
-            }
-        }
-        private TrackableCollection<Building> _buildings;
-
-        #endregion
-        #region ChangeTracking
-    
-        protected virtual void OnPropertyChanged(String propertyName)
-        {
-            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
-            {
-                ChangeTracker.State = ObjectState.Modified;
-            }
-            if (_propertyChanged != null)
-            {
-                _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    
-        protected virtual void OnNavigationPropertyChanged(String propertyName)
-        {
-            if (_propertyChanged != null)
-            {
-                _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    
-        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
-        private event PropertyChangedEventHandler _propertyChanged;
-        private ObjectChangeTracker _changeTracker;
-    
-        [DataMember]
-        public ObjectChangeTracker ChangeTracker
-        {
-            get
-            {
-                if (_changeTracker == null)
-                {
-                    _changeTracker = new ObjectChangeTracker();
-                    _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-                }
-                return _changeTracker;
-            }
-            set
-            {
-                if(_changeTracker != null)
-                {
-                    _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
-                }
-                _changeTracker = value;
-                if(_changeTracker != null)
-                {
-                    _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-                }
-            }
-        }
-    
-        private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                ClearNavigationProperties();
-            }
-        }
-    
-        protected bool IsDeserializing { get; private set; }
-    
-        [OnDeserializing]
-        public void OnDeserializingMethod(StreamingContext context)
-        {
-            IsDeserializing = true;
-        }
-    
-        [OnDeserialized]
-        public void OnDeserializedMethod(StreamingContext context)
-        {
-            IsDeserializing = false;
-            ChangeTracker.ChangeTrackingEnabled = true;
-        }
-    
-        protected virtual void ClearNavigationProperties()
-        {
-            Buildings.Clear();
-        }
-
-        #endregion
-        #region Association Fixup
-    
-        private void FixupBuildings(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Building item in e.NewItems)
-                {
-                    item.Contractor = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Buildings", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Building item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Contractor, this))
-                    {
-                        item.Contractor = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Buildings", item);
-                    }
-                }
-            }
-        }
-
-        #endregion
+      }
     }
+
+    [DataMember]
+    public string FullName
+    {
+      get { return _fullName; }
+      set
+      {
+        if (_fullName != value)
+        {
+          _fullName = value;
+          OnPropertyChanged("FullName");
+        }
+      }
+    }
+
+    [DataMember]
+    public string Name
+    {
+      get { return _name; }
+      set
+      {
+        if (_name != value)
+        {
+          _name = value;
+          OnPropertyChanged("Name");
+        }
+      }
+    }
+
+    [DataMember]
+    public string Surname
+    {
+      get { return _surname; }
+      set
+      {
+        if (_surname != value)
+        {
+          _surname = value;
+          OnPropertyChanged("Surname");
+        }
+      }
+    }
+
+    [DataMember]
+    public string Phone
+    {
+      get { return _phone; }
+      set
+      {
+        if (_phone != value)
+        {
+          _phone = value;
+          OnPropertyChanged("Phone");
+        }
+      }
+    }
+
+    #endregion
+
+    #region Navigation Properties
+
+    private TrackableCollection<Building> _buildings;
+
+    [DataMember]
+    public TrackableCollection<Building> Buildings
+    {
+      get
+      {
+        if (_buildings == null)
+        {
+          _buildings = new TrackableCollection<Building>();
+          _buildings.CollectionChanged += FixupBuildings;
+        }
+        return _buildings;
+      }
+      set
+      {
+        if (!ReferenceEquals(_buildings, value))
+        {
+          if (ChangeTracker.ChangeTrackingEnabled)
+          {
+            throw new InvalidOperationException(
+              "Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+          }
+          if (_buildings != null)
+          {
+            _buildings.CollectionChanged -= FixupBuildings;
+          }
+          _buildings = value;
+          if (_buildings != null)
+          {
+            _buildings.CollectionChanged += FixupBuildings;
+          }
+          OnNavigationPropertyChanged("Buildings");
+        }
+      }
+    }
+
+    #endregion
+
+    #region ChangeTracking
+
+    private ObjectChangeTracker _changeTracker;
+    protected bool IsDeserializing { get; private set; }
+
+    #region INotifyPropertyChanged Members
+
+    event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+    {
+      add { _propertyChanged += value; }
+      remove { _propertyChanged -= value; }
+    }
+
+    #endregion
+
+    #region IObjectWithChangeTracker Members
+
+    [DataMember]
+    public ObjectChangeTracker ChangeTracker
+    {
+      get
+      {
+        if (_changeTracker == null)
+        {
+          _changeTracker = new ObjectChangeTracker();
+          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
+        }
+        return _changeTracker;
+      }
+      set
+      {
+        if (_changeTracker != null)
+        {
+          _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
+        }
+        _changeTracker = value;
+        if (_changeTracker != null)
+        {
+          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
+        }
+      }
+    }
+
+    #endregion
+
+    protected virtual void OnPropertyChanged(String propertyName)
+    {
+      if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+      {
+        ChangeTracker.State = ObjectState.Modified;
+      }
+      if (_propertyChanged != null)
+      {
+        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
+
+    protected virtual void OnNavigationPropertyChanged(String propertyName)
+    {
+      if (_propertyChanged != null)
+      {
+        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
+
+    private event PropertyChangedEventHandler _propertyChanged;
+
+    private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
+    {
+      if (e.NewState == ObjectState.Deleted)
+      {
+        ClearNavigationProperties();
+      }
+    }
+
+    [OnDeserializing]
+    public void OnDeserializingMethod(StreamingContext context)
+    {
+      IsDeserializing = true;
+    }
+
+    [OnDeserialized]
+    public void OnDeserializedMethod(StreamingContext context)
+    {
+      IsDeserializing = false;
+      ChangeTracker.ChangeTrackingEnabled = true;
+    }
+
+    protected virtual void ClearNavigationProperties()
+    {
+      Buildings.Clear();
+    }
+
+    #endregion
+
+    #region Association Fixup
+
+    private void FixupBuildings(object sender, NotifyCollectionChangedEventArgs e)
+    {
+      if (IsDeserializing)
+      {
+        return;
+      }
+
+      if (e.NewItems != null)
+      {
+        foreach (Building item in e.NewItems)
+        {
+          item.Contractor = this;
+          if (ChangeTracker.ChangeTrackingEnabled)
+          {
+            if (!item.ChangeTracker.ChangeTrackingEnabled)
+            {
+              item.StartTracking();
+            }
+            ChangeTracker.RecordAdditionToCollectionProperties("Buildings", item);
+          }
+        }
+      }
+
+      if (e.OldItems != null)
+      {
+        foreach (Building item in e.OldItems)
+        {
+          if (ReferenceEquals(item.Contractor, this))
+          {
+            item.Contractor = null;
+          }
+          if (ChangeTracker.ChangeTrackingEnabled)
+          {
+            ChangeTracker.RecordRemovalFromCollectionProperties("Buildings", item);
+          }
+        }
+      }
+    }
+
+    #endregion
+  }
 }

@@ -1,16 +1,14 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
-using SmartWorking.Office.Gui.View;
-using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
- 
   public class UpdateMaterialViewModel : ModalDialogViewModelBase
   {
+    private ICommand _createOrUpdateMaterialCommand;
+
     public UpdateMaterialViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
@@ -18,7 +16,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     public ViewMode ViewMode { get; set; }
 
+    public ICommand CreateOrUpdateMaterialCommand
+    {
+      get
+      {
+        if (_createOrUpdateMaterialCommand == null)
+          _createOrUpdateMaterialCommand = new RelayCommand(UpdateMaterial, CanUpdateMaterial);
+        return _createOrUpdateMaterialCommand;
+      }
+    }
+
+    public override string Title
+    {
+      get
+      {
+        return (ViewMode == ViewMode.Create)
+                 ? "Utwórz nowy materiał."
+                 : "Edytuj materiał.";
+      }
+    }
+
     #region Material property
+
     /// <summary>
     /// The <see cref="Contractor" /> property's name.
     /// </summary>
@@ -34,10 +53,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public Material Material
     {
-      get
-      {
-        return _material;
-      }
+      get { return _material; }
 
       set
       {
@@ -51,22 +67,10 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         RaisePropertyChanged(MaterialPropertyName);
       }
     }
+
     #endregion
 
-
-    private ICommand _createMaterialCommand;
-
-    public ICommand CreateMaterialCommand
-    {
-      get
-      {
-        if (_createMaterialCommand == null)
-          _createMaterialCommand = new RelayCommand(UpdateMaterial, CanCreateMaterial);
-        return _createMaterialCommand;
-      }
-    }
-
-    private bool CanCreateMaterial()
+    private bool CanUpdateMaterial()
     {
       //TODO: validate
       return true;
@@ -77,22 +81,12 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
       if (ViewMode == ViewMode.Create || ViewMode == ViewMode.Update)
       {
-        using (var materialsService = ServiceFactory.GetMaterialsService())
+        using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
         {
           materialsService.UpdateMaterial(Material);
         }
       }
       CloaseModalDialog();
-    }
-
-    public override string Title
-    {
-      get
-      {
-        return (ViewMode == ViewModel.ViewMode.Create)
-                 ? "Utwórz nowy materiał."
-                 : "Edytuj materiał.";
-      }
     }
   }
 }

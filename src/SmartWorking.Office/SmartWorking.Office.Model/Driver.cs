@@ -8,231 +8,250 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace SmartWorking.Office.Entities
 {
-    [DataContract(IsReference = true)]
-    [KnownType(typeof(DeliveryNote))]
-    public partial class Driver: IObjectWithChangeTracker, INotifyPropertyChanged
+  [DataContract(IsReference = true)]
+  [KnownType(typeof (DeliveryNote))]
+  public class Driver : IObjectWithChangeTracker, INotifyPropertyChanged
+  {
+    #region Primitive Properties
+
+    private int _id;
+
+    private string _name;
+
+    private string _surname;
+
+    [DataMember]
+    public int Id
     {
-        #region Primitive Properties
-    
-        [DataMember]
-        public int Id
+      get { return _id; }
+      set
+      {
+        if (_id != value)
         {
-            get { return _id; }
-            set
-            {
-                if (_id != value)
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
-                    {
-                        throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
-                    }
-                    _id = value;
-                    OnPropertyChanged("Id");
-                }
-            }
+          if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
+          {
+            throw new InvalidOperationException(
+              "The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
+          }
+          _id = value;
+          OnPropertyChanged("Id");
         }
-        private int _id;
-    
-        [DataMember]
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    OnPropertyChanged("Name");
-                }
-            }
-        }
-        private string _name;
-    
-        [DataMember]
-        public string Surname
-        {
-            get { return _surname; }
-            set
-            {
-                if (_surname != value)
-                {
-                    _surname = value;
-                    OnPropertyChanged("Surname");
-                }
-            }
-        }
-        private string _surname;
-
-        #endregion
-        #region Navigation Properties
-    
-        [DataMember]
-        public TrackableCollection<DeliveryNote> DeliveryNotes
-        {
-            get
-            {
-                if (_deliveryNotes == null)
-                {
-                    _deliveryNotes = new TrackableCollection<DeliveryNote>();
-                    _deliveryNotes.CollectionChanged += FixupDeliveryNotes;
-                }
-                return _deliveryNotes;
-            }
-            set
-            {
-                if (!ReferenceEquals(_deliveryNotes, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-                    if (_deliveryNotes != null)
-                    {
-                        _deliveryNotes.CollectionChanged -= FixupDeliveryNotes;
-                    }
-                    _deliveryNotes = value;
-                    if (_deliveryNotes != null)
-                    {
-                        _deliveryNotes.CollectionChanged += FixupDeliveryNotes;
-                    }
-                    OnNavigationPropertyChanged("DeliveryNotes");
-                }
-            }
-        }
-        private TrackableCollection<DeliveryNote> _deliveryNotes;
-
-        #endregion
-        #region ChangeTracking
-    
-        protected virtual void OnPropertyChanged(String propertyName)
-        {
-            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
-            {
-                ChangeTracker.State = ObjectState.Modified;
-            }
-            if (_propertyChanged != null)
-            {
-                _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    
-        protected virtual void OnNavigationPropertyChanged(String propertyName)
-        {
-            if (_propertyChanged != null)
-            {
-                _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    
-        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
-        private event PropertyChangedEventHandler _propertyChanged;
-        private ObjectChangeTracker _changeTracker;
-    
-        [DataMember]
-        public ObjectChangeTracker ChangeTracker
-        {
-            get
-            {
-                if (_changeTracker == null)
-                {
-                    _changeTracker = new ObjectChangeTracker();
-                    _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-                }
-                return _changeTracker;
-            }
-            set
-            {
-                if(_changeTracker != null)
-                {
-                    _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
-                }
-                _changeTracker = value;
-                if(_changeTracker != null)
-                {
-                    _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-                }
-            }
-        }
-    
-        private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                ClearNavigationProperties();
-            }
-        }
-    
-        protected bool IsDeserializing { get; private set; }
-    
-        [OnDeserializing]
-        public void OnDeserializingMethod(StreamingContext context)
-        {
-            IsDeserializing = true;
-        }
-    
-        [OnDeserialized]
-        public void OnDeserializedMethod(StreamingContext context)
-        {
-            IsDeserializing = false;
-            ChangeTracker.ChangeTrackingEnabled = true;
-        }
-    
-        protected virtual void ClearNavigationProperties()
-        {
-            DeliveryNotes.Clear();
-        }
-
-        #endregion
-        #region Association Fixup
-    
-        private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (DeliveryNote item in e.NewItems)
-                {
-                    item.Driver = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("DeliveryNotes", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (DeliveryNote item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Driver, this))
-                    {
-                        item.Driver = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("DeliveryNotes", item);
-                    }
-                }
-            }
-        }
-
-        #endregion
+      }
     }
+
+    [DataMember]
+    public string Name
+    {
+      get { return _name; }
+      set
+      {
+        if (_name != value)
+        {
+          _name = value;
+          OnPropertyChanged("Name");
+        }
+      }
+    }
+
+    [DataMember]
+    public string Surname
+    {
+      get { return _surname; }
+      set
+      {
+        if (_surname != value)
+        {
+          _surname = value;
+          OnPropertyChanged("Surname");
+        }
+      }
+    }
+
+    #endregion
+
+    #region Navigation Properties
+
+    private TrackableCollection<DeliveryNote> _deliveryNotes;
+
+    [DataMember]
+    public TrackableCollection<DeliveryNote> DeliveryNotes
+    {
+      get
+      {
+        if (_deliveryNotes == null)
+        {
+          _deliveryNotes = new TrackableCollection<DeliveryNote>();
+          _deliveryNotes.CollectionChanged += FixupDeliveryNotes;
+        }
+        return _deliveryNotes;
+      }
+      set
+      {
+        if (!ReferenceEquals(_deliveryNotes, value))
+        {
+          if (ChangeTracker.ChangeTrackingEnabled)
+          {
+            throw new InvalidOperationException(
+              "Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+          }
+          if (_deliveryNotes != null)
+          {
+            _deliveryNotes.CollectionChanged -= FixupDeliveryNotes;
+          }
+          _deliveryNotes = value;
+          if (_deliveryNotes != null)
+          {
+            _deliveryNotes.CollectionChanged += FixupDeliveryNotes;
+          }
+          OnNavigationPropertyChanged("DeliveryNotes");
+        }
+      }
+    }
+
+    #endregion
+
+    #region ChangeTracking
+
+    private ObjectChangeTracker _changeTracker;
+    protected bool IsDeserializing { get; private set; }
+
+    #region INotifyPropertyChanged Members
+
+    event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+    {
+      add { _propertyChanged += value; }
+      remove { _propertyChanged -= value; }
+    }
+
+    #endregion
+
+    #region IObjectWithChangeTracker Members
+
+    [DataMember]
+    public ObjectChangeTracker ChangeTracker
+    {
+      get
+      {
+        if (_changeTracker == null)
+        {
+          _changeTracker = new ObjectChangeTracker();
+          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
+        }
+        return _changeTracker;
+      }
+      set
+      {
+        if (_changeTracker != null)
+        {
+          _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
+        }
+        _changeTracker = value;
+        if (_changeTracker != null)
+        {
+          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
+        }
+      }
+    }
+
+    #endregion
+
+    protected virtual void OnPropertyChanged(String propertyName)
+    {
+      if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+      {
+        ChangeTracker.State = ObjectState.Modified;
+      }
+      if (_propertyChanged != null)
+      {
+        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
+
+    protected virtual void OnNavigationPropertyChanged(String propertyName)
+    {
+      if (_propertyChanged != null)
+      {
+        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
+
+    private event PropertyChangedEventHandler _propertyChanged;
+
+    private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
+    {
+      if (e.NewState == ObjectState.Deleted)
+      {
+        ClearNavigationProperties();
+      }
+    }
+
+    [OnDeserializing]
+    public void OnDeserializingMethod(StreamingContext context)
+    {
+      IsDeserializing = true;
+    }
+
+    [OnDeserialized]
+    public void OnDeserializedMethod(StreamingContext context)
+    {
+      IsDeserializing = false;
+      ChangeTracker.ChangeTrackingEnabled = true;
+    }
+
+    protected virtual void ClearNavigationProperties()
+    {
+      DeliveryNotes.Clear();
+    }
+
+    #endregion
+
+    #region Association Fixup
+
+    private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
+    {
+      if (IsDeserializing)
+      {
+        return;
+      }
+
+      if (e.NewItems != null)
+      {
+        foreach (DeliveryNote item in e.NewItems)
+        {
+          item.Driver = this;
+          if (ChangeTracker.ChangeTrackingEnabled)
+          {
+            if (!item.ChangeTracker.ChangeTrackingEnabled)
+            {
+              item.StartTracking();
+            }
+            ChangeTracker.RecordAdditionToCollectionProperties("DeliveryNotes", item);
+          }
+        }
+      }
+
+      if (e.OldItems != null)
+      {
+        foreach (DeliveryNote item in e.OldItems)
+        {
+          if (ReferenceEquals(item.Driver, this))
+          {
+            item.Driver = null;
+          }
+          if (ChangeTracker.ChangeTrackingEnabled)
+          {
+            ChangeTracker.RecordRemovalFromCollectionProperties("DeliveryNotes", item);
+          }
+        }
+      }
+    }
+
+    #endregion
+  }
 }

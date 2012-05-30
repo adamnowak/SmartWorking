@@ -3,62 +3,62 @@
 		<local:MainWindowViewModel />
 	</Window.DataContext>
 	<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <!--Column 1-->
-        <GroupBox Header="Kontrahent">
-            <StackPanel>
-		        <Button Content="Nowy kontrahent" Command="{Binding CreateContractorCommand}" />
-                <Button Content="Edytuj kontrahenta" Command="{Binding EditContractorCommand}" />
-            </StackPanel>
-        </GroupBox>
-        <GroupBox Grid.Row="1" Header="Materiał">
-            <StackPanel>
-                <Button Content="Nowy materiał" Command="{Binding CreateMaterialCommand}" />
-                <Button Content="Edytuj materiał" Command="{Binding EditMaterialCommand}" />
-            </StackPanel>
-        </GroupBox>
-        <GroupBox Grid.Row="2" Header="Recepta">
-            <StackPanel>
-                <Button Content="Nowa recepta" Command="{Binding CreateRecipeCommand}" />
-                <Button Content="Edytuj receptę" Command="{Binding EditRecipeCommand}" />
-            </StackPanel>
-        </GroupBox>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<!--Column 1-->
+		<GroupBox Header="Kontrahent">
+			<StackPanel>
+				<Button Content="Nowy kontrahent" Command="{Binding CreateContractorCommand}" />
+				<Button Content="Edytuj kontrahenta" Command="{Binding EditContractorCommand}" />
+			</StackPanel>
+		</GroupBox>
+		<GroupBox Grid.Row="1" Header="Materiał">
+			<StackPanel>
+				<Button Content="Nowy materiał" Command="{Binding CreateMaterialCommand}" />
+				<Button Content="Edytuj materiał" Command="{Binding EditMaterialCommand}" />
+			</StackPanel>
+		</GroupBox>
+		<GroupBox Grid.Row="2" Header="Recepta">
+			<StackPanel>
+				<Button Content="Nowa recepta" Command="{Binding CreateRecipeCommand}" />
+				<Button Content="Edytuj receptę" Command="{Binding EditRecipeCommand}" />
+			</StackPanel>
+		</GroupBox>
 
-        <!--Column 2-->
-        <Button Grid.Row="1" Grid.Column="1" Content="Utwórz WZ'tkę" Command="{Binding CreateDeliveryNoteCommand}"/>    
-        <GroupBox Grid.Row="2" Grid.Column="1" Header="WZ'tka">
-            <StackPanel>
-                <Button Content="Anuluj WZ'tkę" Command="{Binding CancelDeliveryNoteCommand}" />
-                <Button Content="Ponownie drukuj WZ'tkę" Command="{Binding PrintAgainDeliveryNoteCommand}" />
-            </StackPanel>   
-        </GroupBox>
+		<!--Column 2-->
+		<Button Grid.Row="1" Grid.Column="1" Content="Utwórz WZ'tkę" Command="{Binding CreateDeliveryNoteCommand}" />
+		<GroupBox Grid.Row="2" Grid.Column="1" Header="WZ'tka">
+			<StackPanel>
+				<Button Content="Anuluj WZ'tkę" Command="{Binding CancelDeliveryNoteCommand}" />
+				<Button Content="Ponownie drukuj WZ'tkę" Command="{Binding PrintAgainDeliveryNoteCommand}" />
+			</StackPanel>
+		</GroupBox>
         
-        <!--Column 3-->
-        <GroupBox Grid.Column="2" Header="Samochod">
-            <StackPanel>
-                <Button Content="Nowy samochód" Command="{Binding CreateCarCommand}" />
-                <Button Content="Edytuj samochód" Command="{Binding UpdateCarCommand}" />
-            </StackPanel>
-        </GroupBox>
-        <GroupBox Grid.Column="2" Grid.Row="1" Header="Kierowca">
-            <StackPanel>
-                <Button Content="Nowy kierowca" Command="{Binding CreateDriverCommand}" />
-                <Button Content="Edytuj kierowcę" Command="{Binding UpdateDriverCommand}" />
-            </StackPanel>
-        </GroupBox>
-        <GroupBox Grid.Column="2" Grid.Row="2" Header="Magazyn">
-            <StackPanel>
-                <Button Content="Dodaj do magazynu" Command="{Binding UpdateMaterialStock}" />
-            </StackPanel>
-        </GroupBox>
-    </Grid>
+		<!--Column 3-->
+		<GroupBox Grid.Column="2" Header="Samochod">
+			<StackPanel>
+				<Button Content="Nowy samochód" Command="{Binding CreateCarCommand}" />
+				<Button Content="Edytuj samochód" Command="{Binding UpdateCarCommand}" />
+			</StackPanel>
+		</GroupBox>
+		<GroupBox Grid.Column="2" Grid.Row="1" Header="Kierowca">
+			<StackPanel>
+				<Button Content="Nowy kierowca" Command="{Binding CreateDriverCommand}" />
+				<Button Content="Edytuj kierowcę" Command="{Binding UpdateDriverCommand}" />
+			</StackPanel>
+		</GroupBox>
+		<GroupBox Grid.Column="2" Grid.Row="2" Header="Magazyn">
+			<StackPanel>
+				<Button Content="Dodaj do magazynu" Command="{Binding UpdateMaterialStock}" />
+			</StackPanel>
+		</GroupBox>
+	</Grid>
 </Window>

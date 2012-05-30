@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
-
-using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
   public enum SelectContractorViewMode
   {
-    SelectContractor, 
+    SelectContractor,
     SelectBuilding
   }
 
   public class SelectContractorViewModel : ModalDialogViewModelBase
   {
-    public SelectableViewModelBase<Contractor> SelectableContractor { get; private set; }
+    private ICommand _selectContractorCommand;
+    private ICommand _createContractorCommand;
 
     public SelectContractorViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
@@ -27,25 +24,51 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       LoadContractors();
     }
 
+    public SelectableViewModelBase<Contractor> SelectableContractor { get; private set; }
+
     public SelectContractorViewMode ViewMode { get; set; }
 
-    private void LoadContractors()
-    {
-      using (var contractorService = ServiceFactory.GetContractorsService())
-      {
-        SelectableContractor.LoadItems(contractorService.GetContractors());
-      }
-    }
-
-    private ICommand _selectCommand;
-
-    public ICommand SelectCommand
+    public ICommand SelectContractorCommand
     {
       get
       {
-        if (_selectCommand == null)
-          _selectCommand = new RelayCommand(SelectContractor, CanCreate);
-        return _selectCommand;
+        if (_selectContractorCommand == null)
+          _selectContractorCommand = new RelayCommand(SelectContractor);
+        return _selectContractorCommand;
+      }
+    }
+
+    public ICommand CreateContractorCommand
+    {
+      get
+      {
+        if (_createContractorCommand == null)
+          _createContractorCommand = new RelayCommand(CreateContractor, CanCreateContractor);
+        return _createContractorCommand;
+      }
+    }
+
+    private void CreateContractor()
+    {
+      Contractor newContractor = ModalDialogService.CreateContractor(ModalDialogService, ServiceFactory);
+      if (newContractor != null)
+      {
+        SelectableContractor.Items.Add(newContractor);
+        SelectableContractor.SelectedItem = newContractor;
+        CloaseModalDialog();
+      }
+    }
+
+    public override string Title
+    {
+      get { return "Wybierz kontrahenta."; }
+    }
+
+    private void LoadContractors()
+    {
+      using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
+      {
+        SelectableContractor.LoadItems(contractorService.GetContractors());
       }
     }
 
@@ -54,18 +77,10 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       CloaseModalDialog();
     }
 
-    private bool CanCreate()
+    private bool CanCreateContractor()
     {
       //TODO: validate
       return true;
     }
-
-
-    public override string Title
-    {
-      get { return "Wybierz kontrahenta."; }
-    }
-
-
   }
 }

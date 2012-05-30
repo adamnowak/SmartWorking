@@ -1,15 +1,16 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
-using SmartWorking.Office.Gui.View;
-using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
   public class UpdateContractorViewModel : ModalDialogViewModelBase
   {
+    private ICommand _createBuildingCommand;
+    private ICommand _deleteBuildingCommand;
+    private ICommand _updateBuildingCommand;
+
     public UpdateContractorViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
@@ -17,7 +18,49 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     public ViewMode ViewMode { get; set; }
 
+    public ICommand CreateBuildingCommand
+    {
+      get
+      {
+        if (_createBuildingCommand == null)
+          _createBuildingCommand = new RelayCommand(CreateBuilding);
+        return _createBuildingCommand;
+      }
+    }
+
+
+    public ICommand UpdateBuildingCommand
+    {
+      get
+      {
+        if (_updateBuildingCommand == null)
+          _updateBuildingCommand = new RelayCommand(UpdateBuilding, () => { return SelectedBuilding != null; });
+        return _updateBuildingCommand;
+      }
+    }
+
+    public ICommand DeleteBuildingCommand
+    {
+      get
+      {
+        if (_deleteBuildingCommand == null)
+          _deleteBuildingCommand = new RelayCommand(DeleteBuilding, () => { return SelectedBuilding != null; });
+        return _deleteBuildingCommand;
+      }
+    }
+
+    public override string Title
+    {
+      get
+      {
+        return (ViewMode == ViewMode.Create)
+                 ? "Utwórz nowego kontrahenta."
+                 : "Edytuj kontrahenta.";
+      }
+    }
+
     #region Contractor property
+
     /// <summary>
     /// The <see cref="Contractor" /> property's name.
     /// </summary>
@@ -33,10 +76,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public Contractor Contractor
     {
-      get
-      {
-        return _contractor;
-      }
+      get { return _contractor; }
 
       set
       {
@@ -50,10 +90,11 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         RaisePropertyChanged(ContractorPropertyName);
       }
     }
+
     #endregion
 
-
     #region SelectedBuilding property
+
     /// <summary>
     /// The <see cref="SelectedBuilding" /> property's name.
     /// </summary>
@@ -69,10 +110,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public Building SelectedBuilding
     {
-      get
-      {
-        return _selectedBuilding;
-      }
+      get { return _selectedBuilding; }
 
       set
       {
@@ -87,18 +125,20 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         RaisePropertyChanged(SelectedBuildingPropertyName);
       }
     }
-    #endregion
-    
-    #region CreateContractorConmmand
-    private ICommand _createContractorCommand;
 
-    public ICommand CreateContractorCommand
+    #endregion
+
+    #region CreateOrUpdateContractorConmmand
+
+    private ICommand _createOrUpdateContractorCommand;
+
+    public ICommand CreateOrUpdateContractorCommand
     {
       get
       {
-        if (_createContractorCommand == null)
-          _createContractorCommand = new RelayCommand(CreateContractor, CanCreateContractor);
-        return _createContractorCommand;
+        if (_createOrUpdateContractorCommand == null)
+          _createOrUpdateContractorCommand = new RelayCommand(UpdateContractor, CanCreateContractor);
+        return _createOrUpdateContractorCommand;
       }
     }
 
@@ -108,81 +148,33 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       return true;
     }
 
-    private void CreateContractor()
+    private void UpdateContractor()
     {
       if (ViewMode == ViewMode.Create || ViewMode == ViewMode.Update)
       {
-        using (var contractorService = ServiceFactory.GetContractorsService())
+        using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
         {
           contractorService.UpdateContractor(Contractor);
         }
       }
       CloaseModalDialog();
     }
+
     #endregion
-
-    private ICommand _createBuildingCommand;
-
-    public ICommand CreateBuildingCommand
-    {
-      get
-      {
-        if (_createBuildingCommand == null)
-          _createBuildingCommand = new RelayCommand(CreateBuilding);
-        return _createBuildingCommand;
-      }
-    }
-
-    
 
     private void CreateBuilding()
     {
       ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory, Contractor);
     }
 
-
-    private ICommand _updateBuildingCommand;
-
-    public ICommand UpdateBuildingCommand
-    {
-      get
-      {
-        if (_updateBuildingCommand == null)
-          _updateBuildingCommand = new RelayCommand(UpdateBuilding, () => { return SelectedBuilding != null; });
-        return _updateBuildingCommand;
-      }
-    }
-
     private void UpdateBuilding()
     {
-      ModalDialogService.UpdateBuilding(ModalDialogService, ServiceFactory, SelectedBuilding);
-    }
-
-    private ICommand _deleteBuildingCommand;
-
-    public ICommand DeleteBuildingCommand
-    {
-      get
-      {
-        if (_deleteBuildingCommand == null)
-          _deleteBuildingCommand = new RelayCommand(DeleteBuilding, () => { return SelectedBuilding != null; });
-        return _deleteBuildingCommand;
-      }
+      ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory, SelectedBuilding);
     }
 
     private void DeleteBuilding()
     {
       //TODO:
-    }
-
-    public override string Title
-    {
-      get
-      {
-        return (ViewMode == ViewModel.ViewMode.Create)
-                 ? "Utwórz nowego kontrahenta."
-                 : "Edytuj kontrahenta.";
-      }
     }
   }
 }

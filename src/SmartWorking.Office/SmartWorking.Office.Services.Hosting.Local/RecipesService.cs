@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -9,11 +7,22 @@ namespace SmartWorking.Office.Services.Hosting.Local
 {
   public class RecipesService : IRecipesService
   {
+    #region IRecipesService Members
+
     public List<Recipe> GetRecipes()
     {
       using (var ctx = new SmartWorkingEntities())
       {
-        return ctx.Recipes.ToList();
+        List<Recipe> result = ctx.Recipes.ToList();
+
+        //only in local (when WCF is used then Deserialization set ChangeTracker.ChangeTrackingEnabled on true)
+        foreach (Recipe r in result)
+        {
+          r.StartTracking();
+        }
+        //end only in local 
+
+        return result;
       }
     }
 
@@ -28,7 +37,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
 
     public void Dispose()
     {
-      
     }
+
+    #endregion
   }
 }

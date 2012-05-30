@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 using SmartWorking.Office.Gui.ViewModel;
 
@@ -10,11 +7,13 @@ namespace SmartWorking.Office.Gui.View
 {
   public class ViewModeToTextConverter : IValueConverter
   {
+    #region IValueConverter Members
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       if (value is ViewMode)
       {
-        switch ((ViewMode)value)
+        switch ((ViewMode) value)
         {
           case ViewMode.Create:
             return "Utwórz";
@@ -31,5 +30,7 @@ namespace SmartWorking.Office.Gui.View
     {
       throw new NotImplementedException();
     }
+
+    #endregion
   }
 }

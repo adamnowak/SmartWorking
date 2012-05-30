@@ -8,13 +8,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
   public abstract class ModalDialogViewModelBase : ViewModelBase, IModalDialogViewModel
   {
+    private ICommand _cancelCommand;
+
     public ModalDialogViewModelBase(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       ModalDialogService = modalDialogService;
       ServiceFactory = serviceFactory;
+      IsCanceled = true;
     }
 
     public IServiceFactory ServiceFactory { get; set; }
+
+    public ICommand CancelCommand
+    {
+      get
+      {
+        if (_cancelCommand == null)
+          _cancelCommand = new RelayCommand(Cancel);
+        return _cancelCommand;
+      }
+    }
+
+    public IModalDialogService ModalDialogService { get; private set; }
 
     //private CommandHelper _commandHelper;
 
@@ -33,11 +48,13 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     public event EventHandler RequestClose;
 
     public abstract string Title { get; }
+    public bool IsCanceled { get; private set; }
 
     #endregion
 
-    public void CloaseModalDialog()
+    public void CloaseModalDialog(bool isCanceled = false)
     {
+      IsCanceled = isCanceled;
       OnRequestClose();
     }
 
@@ -48,27 +65,10 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         handler(this, EventArgs.Empty);
     }
 
-    public bool Canceled { get; private set; }
-
-    private ICommand _cancelCommand;
-
-    public ICommand CancelCommand
-    {
-      get
-      {
-        if (_cancelCommand == null)
-          _cancelCommand = new RelayCommand(Cancel);
-        return _cancelCommand;
-      }
-    }
-
     private void Cancel()
     {
-      Canceled = true;
-      CloaseModalDialog();
+      CloaseModalDialog(true);
     }
-
-    public IModalDialogService ModalDialogService { get; private set; }
 
     internal void DoRaisePropertyChanged(string propertyName)
     {
