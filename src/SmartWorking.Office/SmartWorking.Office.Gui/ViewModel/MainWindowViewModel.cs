@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View;
+using SmartWorking.Office.Services.Factory.IIS;
 using SmartWorking.Office.Services.Factory.Local;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -18,7 +19,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     private ICommand _editRecipeCommand;
 
     public MainWindowViewModel() :
-      this(new ModalDialogService(), new ServiceFactoryLocal())
+      this(new ModalDialogService(), new ServiceFactoryIIS())
     {
       //TODO: improve, should be IoC      
     }

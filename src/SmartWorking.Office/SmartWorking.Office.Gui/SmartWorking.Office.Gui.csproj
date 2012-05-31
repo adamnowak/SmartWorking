@@ -186,7 +186,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\DataSources\SmartWorking.Office.Entities.Contractor.datasource" />
     <None Include="Properties\DataSources\SmartWorking.Office.Entities.Kontrahenci.datasource" />
     <None Include="Properties\DataSources\SmartWorking.Office.Entities.Material.datasource" />
@@ -200,6 +202,10 @@
     <ProjectReference Include="..\SmartWorking.Office.Entities\SmartWorking.Office.Entities.csproj">
       <Project>{461DE786-E812-450C-8575-9133283EE858}</Project>
       <Name>SmartWorking.Office.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartWorking.Office.Services.Factory.IIS\SmartWorking.Office.Services.Factory.IIS.csproj">
+      <Project>{14081C14-0821-448F-886F-ABD83B8E7237}</Project>
+      <Name>SmartWorking.Office.Services.Factory.IIS</Name>
     </ProjectReference>
     <ProjectReference Include="..\SmartWorking.Office.Services.Factory.Local\SmartWorking.Office.Services.Factory.Local.csproj">
       <Project>{ED50F2E1-5142-436A-9E47-64A5E954D7AA}</Project>

@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="SmartWorking.Office.Services.Hosting.IIS.MaterialsService" Factory="" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SmartWorking.Office.Services.Hosting.Local.MaterialsService, SmartWorking.Office.Services.Hosting.Local"  %>
