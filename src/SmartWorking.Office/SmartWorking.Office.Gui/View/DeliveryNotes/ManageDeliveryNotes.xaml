@@ -15,8 +15,8 @@
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 				<StackPanel>
-					<Shared:DescriptionButton Image="{StaticResource NewImageSource}" Command="{Binding CreateContractorCommand}">Dodaj</Shared:DescriptionButton>
-					<Shared:DescriptionButton Comment="Anuluj WZ">Anuluj</Shared:DescriptionButton>
+                    <Shared:DescriptionButton Command="{Binding CreateDeliveryNoteCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
+                    <Shared:DescriptionButton Command="{Binding CancelDeliveryNoteCommand}" Image="{StaticResource CancelDNImageSource}" Comment="Anuluj WZ">Anuluj</Shared:DescriptionButton>
 				</StackPanel>
 				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableContractor}" ItemsSource="{Binding Items}">
 					<DataGrid.Columns>
@@ -30,8 +30,6 @@
 				</DataGrid>
 			</Grid>
 		</GroupBox>
-           
-       
 
 		<!--Buttons-->
 		<StackPanel Grid.Row="2" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
@@ -39,35 +37,5 @@
 		</StackPanel>
 
 	</Grid>
-	<!--<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" MinHeight="200" />
-			<RowDefinition Height="2" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-		<DataGrid SelectionMode="Single" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableMaterial}" ItemsSource="{Binding Items}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" IsReadOnly="True">
-			<DataGrid.Columns>
-				
-				<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
-				
-				<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
-				<DataGridTextColumn Header="Skrót" Binding="{Binding InternalName}" />
-			</DataGrid.Columns>
-		</DataGrid>
 	
-		<Border Grid.Row="1" Grid.ColumnSpan="2" />
-		<Grid Grid.Row="2">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
-			<StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left">
-				<Button Content="Utwórz material" Command="{Binding CreateMaterialCommand}" />
-			</StackPanel>
-			<StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-				<Button Content="Wybierz" Command="{Binding SelectMaterialCommand}" />
-				<Button Content="Anuluj" Command="{Binding CancelCommand}" />
-			</StackPanel>
-		</Grid>
-	</Grid>-->
 </UserControl>

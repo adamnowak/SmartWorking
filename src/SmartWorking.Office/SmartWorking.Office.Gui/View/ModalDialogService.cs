@@ -25,7 +25,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateContractorViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = new Contractor();
-      viewModel.ViewMode = DialogMode.Create;
+      viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateContractor>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -39,7 +39,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateContractorViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = contractorToEdit;
-      viewModel.ViewMode = DialogMode.Update;
+      viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateContractor>.ShowDialog(viewModel);
       return viewModel.Contractor;
     }
@@ -58,7 +58,7 @@ namespace SmartWorking.Office.Gui.View
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = contractor;
       viewModel.Building = new Building();
-      viewModel.ViewMode = DialogMode.Create;
+      viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -73,7 +73,7 @@ namespace SmartWorking.Office.Gui.View
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = building.Contractor;
       viewModel.Building = building;
-      viewModel.ViewMode = DialogMode.Update;
+      viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
       return viewModel.Building;
     }
@@ -81,7 +81,7 @@ namespace SmartWorking.Office.Gui.View
     public DeliveryNote CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateDeliveryNoteViewModel(modalDialogService, serviceFactory);
-      viewModel.ViewMode = DialogMode.Create;
+      viewModel.DialogMode = DialogMode.Create;
       viewModel.DeliveryNote = new DeliveryNote();
       ModalDialogHelper<UpdateDeliveryNote>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
@@ -103,7 +103,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateMaterialViewModel(modalDialogService, serviceFactory);
       viewModel.Material = new Material();
-      viewModel.ViewMode = DialogMode.Create;
+      viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateMaterial>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -117,7 +117,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateMaterialViewModel(modalDialogService, serviceFactory);
       viewModel.Material = selectedMaterial;
-      viewModel.ViewMode = DialogMode.Update;
+      viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateMaterial>.ShowDialog(viewModel);
       return viewModel.Material;
     }
@@ -133,7 +133,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateRecipeViewModel(modalDialogService, serviceFactory);
       viewModel.Recipe = new Recipe();
-      viewModel.ViewMode = DialogMode.Create;
+      viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateRecipe>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -147,7 +147,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateRecipeViewModel(modalDialogService, serviceFactory);
       viewModel.Recipe = selectedRecipe;
-      viewModel.ViewMode = DialogMode.Update;
+      viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateRecipe>.ShowDialog(viewModel);
       return viewModel.Recipe;
     }
@@ -192,7 +192,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
       viewModel.Driver = new Driver();
-      viewModel.ViewMode = DialogMode.Create;
+      viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateDriver>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -206,7 +206,7 @@ namespace SmartWorking.Office.Gui.View
     {
        var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
        viewModel.Driver = selectedDriver;
-      viewModel.ViewMode = DialogMode.Update;
+       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateDriver>.ShowDialog(viewModel);
       return viewModel.Driver;
     }

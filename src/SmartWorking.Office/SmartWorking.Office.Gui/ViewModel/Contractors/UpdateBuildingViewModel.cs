@@ -15,7 +15,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
     }
 
-    public DialogMode ViewMode { get; set; }
+    public DialogMode DialogMode { get; set; }
 
     public ICommand CreateOrUpdatBuildingCommand
     {
@@ -31,7 +31,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
       get
       {
-        return (ViewMode == DialogMode.Create)
+        return (DialogMode == DialogMode.Create)
                  ? "Utwórz nową budowę."
                  : "Edytuj budowę.";
       }
@@ -120,14 +120,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       
       using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
       {
-        if (ViewMode == DialogMode.Create)
+        if (DialogMode == DialogMode.Create)
         {
           if (Building.Id > 0)
             throw new Exception("Building has wrong Id (>0).");
           Building.Contractor_Id = Contractor.Id;
           contractorService.AddBuildingToContractor(Contractor, Building);
         }
-        else if (ViewMode == DialogMode.Update)
+        else if (DialogMode == DialogMode.Update)
         {
           if (Building.Id <= 0)
             throw new Exception("Building has wrong Id (<=0).");

@@ -1,5 +1,11 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Diagnostics;
+using System.Windows.Controls;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using PdfSharp.Drawing;
+using PdfSharp.Drawing.Layout;
+using PdfSharp.Pdf;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -12,13 +18,13 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
     }
 
-    public DialogMode ViewMode { get; set; }
+    public DialogMode DialogMode { get; set; }
 
     public override string Title
     {
       get
       {
-        return (ViewMode == DialogMode.Create)
+        return (DialogMode == DialogMode.Create)
                  ? "Utwórz nową WZ'tkę."
                  : "Edytuj WZ'tkę.";
       }
@@ -110,6 +116,25 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       //}
     }
 
+
+    private void PrintPDF()
+    {
+      string filename = "d:\\adamnowak\\private\\Sylwek\\temp\\pdf\\" + DateTime.Now.ToString(); 
+      string text = "Adam Nowak";
+      PdfDocument document = new PdfDocument();
+
+      PdfPage page = document.AddPage();
+      XGraphics gfx = XGraphics.FromPdfPage(page);
+      XFont font = new XFont("Times New Roman", 10, XFontStyle.Bold);
+      XTextFormatter tf = new XTextFormatter(gfx);
+
+      XRect rect = new XRect(40, 100, 250, 232);
+      gfx.DrawRectangle(XBrushes.SeaShell, rect);
+      tf.DrawString(text, font, XBrushes.Black, rect, XStringFormats.TopLeft);
+      
+      document.Save(filename);
+      Process.Start(filename);
+    }
     #endregion
   }
 }

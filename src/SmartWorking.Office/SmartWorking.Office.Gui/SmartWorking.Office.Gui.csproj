@@ -82,6 +82,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp-WPF">
+      <HintPath>..\..\..\contrib\PdfSharp\bin\PdfSharp-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting-WPF">
+      <HintPath>..\..\..\contrib\PdfSharp\bin\PdfSharp.Charting-WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -350,6 +356,9 @@
     <Resource Include="Media\Raport.png" />
     <Resource Include="Media\Save.png" />
     <Resource Include="Media\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\CancelDN.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />

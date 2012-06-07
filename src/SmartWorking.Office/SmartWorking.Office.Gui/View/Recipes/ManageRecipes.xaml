@@ -23,9 +23,9 @@
 						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
 					<StackPanel>
-						<Shared:DescriptionButton Image="{StaticResource NewImageSource}" Command="{Binding CreateContractorCommand}">Dodaj</Shared:DescriptionButton>
-						<Shared:DescriptionButton Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-						<Shared:DescriptionButton Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding CreateRecipeCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding EditRecipeCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding DeleteRecipeCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
 					</StackPanel>
 					<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableContractor}" ItemsSource="{Binding Items}">
 						<DataGrid.Columns>
@@ -55,9 +55,9 @@
 							<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
 						</Grid.ColumnDefinitions>
 						<StackPanel Grid.Column="1">
-							<Shared:DescriptionButton Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
-							<Shared:DescriptionButton Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-							<Shared:DescriptionButton Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
+                            <Shared:DescriptionButton Command="{Binding CreateMaterialCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
+                            <Shared:DescriptionButton Command="{Binding EditMaterialCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+                            <Shared:DescriptionButton Command="{Binding DeleteMaterialCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
 						</StackPanel>
 						<DataGrid Grid.Row="1" SelectedItem="{Binding SelectedBuilding}" ItemsSource="{Binding SelectableContractor.SelectedItem.Buildings}">
 							<DataGrid.Columns>

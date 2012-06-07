@@ -11,7 +11,7 @@
 		<!--Contractor grid-->
 		<GroupBox Header="Kontrahent" Grid.Row="1">
 			<StackPanel Style="{StaticResource dialogMainPanel}">
-				<Grid>
+                <Grid DataContext="{Binding Contractor}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition />
@@ -33,12 +33,12 @@
 					<Label Content="Telefon:" Grid.Row="4" />
 
 					<!--End Debug only-->
-					<TextBox Text="{Binding Contractor.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+					<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 					<!--Debug only-->
-					<TextBox Text="{Binding Contractor.FullName}" Grid.Row="1" Grid.Column="1" />
-					<TextBox Text="{Binding Contractor.Name}" Grid.Row="2" Grid.Column="1" />
-					<TextBox Text="{Binding Contractor.Surname}" Grid.Row="3" Grid.Column="1" />
-					<TextBox Text="{Binding Contractor.Phone}" Grid.Row="4" Grid.Column="1" />
+					<TextBox Text="{Binding FullName}" Grid.Row="1" Grid.Column="1" />
+					<TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" />
+					<TextBox Text="{Binding Surname}" Grid.Row="3" Grid.Column="1" />
+					<TextBox Text="{Binding Phone}" Grid.Row="4" Grid.Column="1" />
 				</Grid>
 			</StackPanel>
 		</GroupBox>

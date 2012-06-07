@@ -15,7 +15,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     {
     }
 
-    public DialogMode ViewMode { get; set; }
+    public DialogMode DialogMode { get; set; }
 
     public ICommand CreateRecipeCommand
     {
@@ -31,7 +31,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     {
       get
       {
-        return (ViewMode == DialogMode.Create)
+        return (DialogMode == DialogMode.Create)
                  ? "Utwórz nową receptę."
                  : "Edytuj receptę.";
       }
@@ -80,7 +80,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
 
     private void UpdateRecipe()
     {
-      if (ViewMode == DialogMode.Create || ViewMode == DialogMode.Update)
+      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
       {
         using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
         {

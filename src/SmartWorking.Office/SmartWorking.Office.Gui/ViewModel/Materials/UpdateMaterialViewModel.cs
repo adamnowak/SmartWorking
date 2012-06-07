@@ -5,17 +5,37 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
+  /// <summary>
+  /// View model for <see cref="UpdateMaterial"/> dialog. 
+  /// </summary>
   public class UpdateMaterialViewModel : ModalDialogViewModelBase
   {
     private ICommand _createOrUpdateMaterialCommand;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateMaterialViewModel"/> class.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
     public UpdateMaterialViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
     }
 
-    public DialogMode ViewMode { get; set; }
+    /// <summary>
+    /// Gets or sets the dialog mode.
+    /// </summary>
+    /// <value>
+    /// The dialog mode.
+    /// </value>
+    public DialogMode DialogMode { get; set; }
 
+    /// <summary>
+    /// Gets the create or update material command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog for creating or editing Material.
+    /// </remarks>
     public ICommand CreateOrUpdateMaterialCommand
     {
       get
@@ -26,28 +46,31 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
     }
 
+    /// <summary>
+    /// Gets the title of modal dialog.
+    /// </summary>
     public override string Title
     {
       get
       {
-        return (ViewMode == DialogMode.Create)
+        return (DialogMode == DialogMode.Create)
                  ? "Utwórz nowy materiał."
                  : "Edytuj materiał.";
       }
     }
 
-    #region Material property
+    #region Material
 
     /// <summary>
-    /// The <see cref="Contractor" /> property's name.
+    /// The <see cref="Material" /> property's name.
     /// </summary>
     public const string MaterialPropertyName = "Material";
 
     private Material _material;
 
     /// <summary>
-    /// Gets the Contractor property.
-    /// TODO Update documentation:
+    /// Gets the Material property.
+    /// Material which will be created or updated.
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
@@ -70,6 +93,12 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     #endregion
 
+    /// <summary>
+    /// Determines whether <see cref="CreateOrUpdateMaterialCommand"/> can be execute.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if <see cref="CreateOrUpdateMaterialCommand"/> can be execute; otherwise, <c>false</c>.
+    /// </returns>
     private bool CanUpdateMaterial()
     {
       //TODO: validate
@@ -77,13 +106,16 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     }
 
 
+    /// <summary>
+    /// Creates or updates the material in the system.
+    /// </summary>
     private void UpdateMaterial()
     {
-      if (ViewMode == DialogMode.Create || ViewMode == DialogMode.Update)
+      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
       {
-        using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
+        using (IMaterialsService service = ServiceFactory.GetMaterialsService())
         {
-          materialsService.UpdateMaterial(Material);
+          service.UpdateMaterial(Material);
         }
       }
       CloseModalDialog();

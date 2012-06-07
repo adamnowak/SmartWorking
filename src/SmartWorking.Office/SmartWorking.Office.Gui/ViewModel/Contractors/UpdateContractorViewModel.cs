@@ -26,7 +26,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// <value>
     /// The view mode.
     /// </value>
-    public DialogMode ViewMode { get; set; }
+    public DialogMode DialogMode { get; set; }
 
     
 
@@ -37,7 +37,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
       get
       {
-        return (ViewMode == DialogMode.Create)
+        return (DialogMode == DialogMode.Create)
                  ? "Utwórz nowego kontrahenta."
                  : "Edytuj kontrahenta.";
       }
@@ -114,7 +114,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     private void UpdateContractor()
     {
-      if (ViewMode == DialogMode.Create || ViewMode == DialogMode.Update)
+      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
       {
         using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
         {

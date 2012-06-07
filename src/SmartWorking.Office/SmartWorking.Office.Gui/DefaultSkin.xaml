@@ -19,6 +19,8 @@
 	<BitmapImage x:Key="SaveImageSource" UriSource="Media/Save.png" />
 	<BitmapImage x:Key="SearchImageSource" UriSource="Media/Search.png" />
 
+    <BitmapImage x:Key="CancelDNImageSource" UriSource="Media/CancelDN.png" />
+    
 	<System:Double x:Key="dialogMainPanelWidth">470</System:Double>
 	<GridLength x:Key="dialogButtonPanelWidthGridLength">180</GridLength>
     
@@ -124,7 +126,31 @@
 		</Setter>
 	</Style>
 
-	<!--PanelLabel class-->
+    <Style x:Key="SelectDescriptionButton" TargetType="Shared:DescriptionButton" BasedOn="{StaticResource {x:Type Shared:DescriptionButton}}">  
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Shared:DescriptionButton}">
+                    <Button HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Command="{TemplateBinding Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            
+                            <!--<Border  BorderBrush="Black" BorderThickness="1" Margin="2" Padding="1">-->
+                                <Image Source="{TemplateBinding Image}" Stretch="Fill" Width="46" />
+                            <!--</Border>-->
+                            <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="{TemplateBinding Content}" FontSize="21.333" Foreground="#FF1C3840" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
+                            <!--<TextBlock TextWrapping="Wrap" Text="{TemplateBinding Comment}" FontSize="16" Grid.Row="1" Grid.Column="1" />-->
+                        </Grid>
+                    </Button>
+   
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--PanelLabel class-->
 	<Style TargetType="Shared:PanelLabel">
 		<Setter Property="Template">
 			<Setter.Value>

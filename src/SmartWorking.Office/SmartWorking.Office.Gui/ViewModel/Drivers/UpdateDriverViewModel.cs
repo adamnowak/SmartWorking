@@ -7,74 +7,62 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Drivers
 {
+  /// <summary>
+  /// View model for <see cref="UpdateDriver"/> dialog. 
+  /// </summary>
   public class UpdateDriverViewModel : ModalDialogViewModelBase
   {
-    private ICommand _createOrUpdateMaterialCommand;
+    private ICommand _createOrUpdateDriverCommand;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateDriverViewModel"/> class.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
     public UpdateDriverViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
     }
 
-    public DialogMode ViewMode { get; set; }
+    /// <summary>
+    /// Gets or sets the dialog mode.
+    /// </summary>
+    /// <value>
+    /// The dialog mode.
+    /// </value>
+    public DialogMode DialogMode { get; set; }
 
-    public ICommand CreateOrUpdateMaterialCommand
+    /// <summary>
+    /// Gets the create or update driver command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog for creating or editing Driver.
+    /// </remarks>
+    public ICommand CreateOrUpdateDriverCommand
     {
       get
       {
-        if (_createOrUpdateMaterialCommand == null)
-          _createOrUpdateMaterialCommand = new RelayCommand(UpdateMaterial, CanUpdateMaterial);
-        return _createOrUpdateMaterialCommand;
+        if (_createOrUpdateDriverCommand == null)
+          _createOrUpdateDriverCommand = new RelayCommand(UpdateDriver, CanUpdateDriver);
+        return _createOrUpdateDriverCommand;
       }
     }
 
+    /// <summary>
+    /// Gets the title of modal dialog.
+    /// </summary>
     public override string Title
     {
       get
       {
-        return (ViewMode == DialogMode.Create)
-                 ? "Utwórz nowy materiał."
-                 : "Edytuj materiał.";
+        return (DialogMode == DialogMode.Create)
+                 ? "Utwórz nowego kierowcę."
+                 : "Edytuj kierowcę.";
       }
     }
-
-    #region Material property
-
-    /// <summary>
-    /// The <see cref="Contractor" /> property's name.
-    /// </summary>
-    public const string MaterialPropertyName = "Material";
-
-    private Material _material;
-
-    /// <summary>
-    /// Gets the Contractor property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public Material Material
-    {
-      get { return _material; }
-
-      set
-      {
-        if (_material == value)
-        {
-          return;
-        }
-        _material = value;
-
-        // Update bindings, no broadcast
-        RaisePropertyChanged(MaterialPropertyName);
-      }
-    }
-
-   
-
-    #endregion
 
     #region Driver
+
     /// <summary>
     /// The <see cref="Driver" /> property's name.
     /// </summary>
@@ -84,16 +72,13 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
 
     /// <summary>
     /// Gets the Driver property.
-    /// TODO Update documentation:
+    /// Driver which will be created or updated.
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
     public Driver Driver
     {
-      get
-      {
-        return _driver;
-      }
+      get { return _driver; }
 
       set
       {
@@ -107,23 +92,32 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
         RaisePropertyChanged(DriverPropertyName);
       }
     }
-    #endregion 
-    
 
-    private bool CanUpdateMaterial()
+    #endregion
+
+    /// <summary>
+    /// Determines whether <see cref="CreateOrUpdateDriverCommand"/> can be execute.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if <see cref="CreateOrUpdateDriverCommand"/> can be execute; otherwise, <c>false</c>.
+    /// </returns>
+    private bool CanUpdateDriver()
     {
       //TODO: validate
       return true;
     }
 
 
-    private void UpdateMaterial()
+    /// <summary>
+    /// Creates or updates the driver in the system.
+    /// </summary>
+    private void UpdateDriver()
     {
-      if (ViewMode == DialogMode.Create || ViewMode == DialogMode.Update)
+      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
       {
-        using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
+        using (IDriversService service = ServiceFactory.GetDriversService())
         {
-          materialsService.UpdateMaterial(Material);
+          service.UpdateDriver(Driver);
         }
       }
       CloseModalDialog();

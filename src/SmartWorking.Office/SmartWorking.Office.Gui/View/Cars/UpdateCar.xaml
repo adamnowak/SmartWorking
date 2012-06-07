@@ -12,7 +12,7 @@
 		<!--Contractor grid-->
 		<GroupBox Header="Samochody" Grid.Row="1">
 			<StackPanel Style="{StaticResource dialogMainPanel}">
-				<Grid>
+				<Grid DataContext="{Binding Car}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition />
