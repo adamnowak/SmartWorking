@@ -11,6 +11,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// Gets the title of modal dialog.
     /// </summary>
     string Title { get; }
+
     /// <summary>
     /// Gets a value indicating whether main operation on dialog was canceled.
     /// </summary>
@@ -18,6 +19,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// 	<c>true</c> if  main operation on dialog was canceled; otherwise, <c>false</c>.
     /// </value>
     bool IsCanceled { get; }
+
     /// <summary>
     /// Raise when request about close dialog occurs.
     /// </summary>

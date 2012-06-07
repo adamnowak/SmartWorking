@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace SmartWorking.Office.Gui.ViewModel
 {
@@ -138,7 +134,6 @@ namespace SmartWorking.Office.Gui.ViewModel
         SelectedItemChanged(sender, e);
       }
     }
-
 
 
     /// <summary>

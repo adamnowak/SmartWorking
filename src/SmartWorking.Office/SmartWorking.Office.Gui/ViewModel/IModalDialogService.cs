@@ -76,6 +76,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     void ManageDeliveryNotes(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+
     #endregion
 
     #region Material
@@ -103,7 +104,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-     void ManageMaterials(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    void ManageMaterials(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     #endregion
 

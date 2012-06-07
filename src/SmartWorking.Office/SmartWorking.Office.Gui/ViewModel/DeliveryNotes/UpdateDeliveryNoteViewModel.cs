@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Services.Interfaces;
@@ -61,6 +60,12 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     #region SelectBuildingCommand
 
+    /// <summary>
+    /// The <see cref="DeliveryNote" /> property's name.
+    /// </summary>
+    public const string DeliveryNotePropertyName = "DeliveryNote";
+
+    private DeliveryNote _deliveryNote;
     private ICommand _selectBuildingCommand;
 
     public ICommand SelectBuildingCommand
@@ -74,13 +79,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     }
 
     /// <summary>
-    /// The <see cref="DeliveryNote" /> property's name.
-    /// </summary>
-    public const string DeliveryNotePropertyName = "DeliveryNote";
-
-    private DeliveryNote _deliveryNote;
-
-    /// <summary>
     /// Gets the DeliveryNote property.
     /// TODO Update documentation:
     /// Changes to that property's value raise the PropertyChanged event. 
@@ -88,10 +86,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public DeliveryNote DeliveryNote
     {
-      get
-      {
-        return _deliveryNote;
-      }
+      get { return _deliveryNote; }
 
       set
       {

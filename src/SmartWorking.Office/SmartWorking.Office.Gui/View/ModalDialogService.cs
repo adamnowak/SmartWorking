@@ -1,7 +1,9 @@
 ﻿using System;
 using SmartWorking.Office.Entities;
+using SmartWorking.Office.Gui.View.Cars;
 using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
+using SmartWorking.Office.Gui.View.Drivers;
 using SmartWorking.Office.Gui.View.Materials;
 using SmartWorking.Office.Gui.View.Recipes;
 using SmartWorking.Office.Gui.ViewModel;
@@ -12,7 +14,6 @@ using SmartWorking.Office.Gui.ViewModel.Drivers;
 using SmartWorking.Office.Gui.ViewModel.Materials;
 using SmartWorking.Office.Gui.ViewModel.Recipes;
 using SmartWorking.Office.Services.Interfaces;
-
 
 namespace SmartWorking.Office.Gui.View
 {
@@ -30,11 +31,11 @@ namespace SmartWorking.Office.Gui.View
       {
         return viewModel.Contractor;
       }
-      return null;      
+      return null;
     }
 
     public Contractor EditContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                               Contractor contractorToEdit)
+                                     Contractor contractorToEdit)
     {
       var viewModel = new UpdateContractorViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = contractorToEdit;
@@ -46,12 +47,13 @@ namespace SmartWorking.Office.Gui.View
     public void ManageContractors(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Selecting;;
-      ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);      
+      viewModel.DialogMode = DialogMode.Selecting;
+      ;
+      ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
     }
 
     public Building CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                               Contractor contractor)
+                                   Contractor contractor)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = contractor;
@@ -62,10 +64,11 @@ namespace SmartWorking.Office.Gui.View
       {
         return viewModel.Building;
       }
-      return null; 
+      return null;
     }
 
-    public Building EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Building building)
+    public Building EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                 Building building)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = building.Contractor;
@@ -85,14 +88,15 @@ namespace SmartWorking.Office.Gui.View
       {
         return viewModel.DeliveryNote;
       }
-      return null; 
+      return null;
     }
 
     public void ManageDeliveryNotes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageDeliveryNotesViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Selecting; ;
-      ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);  
+      viewModel.DialogMode = DialogMode.Selecting;
+      ;
+      ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);
     }
 
     public Material CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -109,7 +113,7 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public Material EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                             Material selectedMaterial)
+                                 Material selectedMaterial)
     {
       var viewModel = new UpdateMaterialViewModel(modalDialogService, serviceFactory);
       viewModel.Material = selectedMaterial;
@@ -138,7 +142,8 @@ namespace SmartWorking.Office.Gui.View
       return null;
     }
 
-    public Recipe EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Recipe selectedRecipe)
+    public Recipe EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                             Recipe selectedRecipe)
     {
       var viewModel = new UpdateRecipeViewModel(modalDialogService, serviceFactory);
       viewModel.Recipe = selectedRecipe;
@@ -168,7 +173,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new ManageCarsViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Selecting;
-      ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
+      ModalDialogHelper<ManageCars>.ShowDialog(viewModel);
     }
 
     public Driver CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -176,7 +181,8 @@ namespace SmartWorking.Office.Gui.View
       throw new NotImplementedException();
     }
 
-    public Driver EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Driver selectedDriver)
+    public Driver EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                             Driver selectedDriver)
     {
       throw new NotImplementedException();
     }
@@ -185,7 +191,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new ManageDriversViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Selecting;
-      ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
+      ModalDialogHelper<ManageDrivers>.ShowDialog(viewModel);
     }
 
     #endregion

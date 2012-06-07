@@ -85,109 +85,108 @@
 		</StackPanel>
 	</Grid>-->
 
-    <Grid>
+	<Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <Shared:PanelLabel Image="{StaticResource DeliveryNoteImageSource}" HeaderStyle="{StaticResource LabelH1}" >WZ'ka</Shared:PanelLabel>
-        <!--Contractor grid-->
-        <GroupBox Header="WZ'tka" Grid.Row="1">
-
-
-            <Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition Height="2" />
+			<RowDefinition Height="50" />
+			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<GroupBox Header="Budowa">
-			<StackPanel>
-				<Button Content="Wybierz budowę" Command="{Binding SelectBuildingCommand}" />
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition />
-						<ColumnDefinition />
-					</Grid.ColumnDefinitions>
-					
-					<Grid DataContext="{Binding Building.Contractor}">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" />
-							<ColumnDefinition />
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-						</Grid.RowDefinitions>
-
-						<TextBlock Text="Pełna nazwa:" />
-						<TextBlock Text="Nazwisko:" Grid.Row="1" />
-						<TextBlock Text="Imię:" Grid.Row="2" />
-						<TextBlock Text="Telefon:" Grid.Row="3" />
-
-						<TextBox Text="{Binding FullName}" MinWidth="150" Grid.Column="1" />
-						<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
-						<TextBox Text="{Binding Surname}" Grid.Row="2" Grid.Column="1" />
-						<TextBox Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" />
-					</Grid>
-
-				
-					<Grid DataContext="{Binding Building}" Grid.Column="1">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" />
-							<ColumnDefinition />
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-							<RowDefinition Height="Auto" />
-						</Grid.RowDefinitions>
-
-						<TextBlock Text="Miasto:" />
-						<TextBlock Text="Ulica:" Grid.Row="1" />
-						<TextBlock Text="Numer domu:" Grid.Row="2" />
+		<Shared:PanelLabel Image="{StaticResource DeliveryNoteImageSource}" HeaderStyle="{StaticResource LabelH1}">WZ'ka</Shared:PanelLabel>
+		<!--Contractor grid-->
+		<GroupBox Header="WZ'tka" Grid.Row="1">
 
 
-						<TextBox Text="{Binding City}" MinWidth="150" Grid.Column="1" />
-						<TextBox Text="{Binding Street}" Grid.Row="1" Grid.Column="1" />
-						<TextBox Text="{Binding HouseNo}" Grid.Row="2" Grid.Column="1" />
-					</Grid>
-				</Grid>
-			</StackPanel>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition Height="2" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+
+				<GroupBox Header="Budowa">
+					<StackPanel>
+						<Button Content="Wybierz budowę" Command="{Binding SelectBuildingCommand}" />
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<Grid DataContext="{Binding Building.Contractor}">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition />
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
+
+								<TextBlock Text="Pełna nazwa:" />
+								<TextBlock Text="Nazwisko:" Grid.Row="1" />
+								<TextBlock Text="Imię:" Grid.Row="2" />
+								<TextBlock Text="Telefon:" Grid.Row="3" />
+
+								<TextBox Text="{Binding FullName}" MinWidth="150" Grid.Column="1" />
+								<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
+								<TextBox Text="{Binding Surname}" Grid.Row="2" Grid.Column="1" />
+								<TextBox Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" />
+							</Grid>
+
+
+							<Grid DataContext="{Binding Building}" Grid.Column="1">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition />
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
+
+								<TextBlock Text="Miasto:" />
+								<TextBlock Text="Ulica:" Grid.Row="1" />
+								<TextBlock Text="Numer domu:" Grid.Row="2" />
+
+
+								<TextBox Text="{Binding City}" MinWidth="150" Grid.Column="1" />
+								<TextBox Text="{Binding Street}" Grid.Row="1" Grid.Column="1" />
+								<TextBox Text="{Binding HouseNo}" Grid.Row="2" Grid.Column="1" />
+							</Grid>
+						</Grid>
+					</StackPanel>
+				</GroupBox>
+				<GroupBox Grid.Row="1" Header="Recepta">
+					<StackPanel>
+						<Button Content="Wybierz receptę" Command="{Binding CreateRecipeCommand}" />
+
+					</StackPanel>
+				</GroupBox>
+				<GroupBox Grid.Row="2" Header="Dostawa">
+					<StackPanel>
+						<Button Content="Wybierz samochód" Command="{Binding CreateCarCommand}" />
+						<Button Content="Wybierz kierowcę" Command="{Binding CreateDriverCommand}" />
+						<DatePicker Text="Wybierz datę dostawy"></DatePicker>
+					</StackPanel>
+				</GroupBox>
+
+
+			</Grid>
+
+
 		</GroupBox>
-		<GroupBox Grid.Row="1" Header="Recepta">
-			<StackPanel>
-				<Button Content="Wybierz receptę" Command="{Binding CreateRecipeCommand}" />
 
-			</StackPanel>
-		</GroupBox>
-		<GroupBox Grid.Row="2" Header="Dostawa">
-			<StackPanel>
-				<Button Content="Wybierz samochód" Command="{Binding CreateCarCommand}" />
-				<Button Content="Wybierz kierowcę" Command="{Binding CreateDriverCommand}" />
-				<DatePicker Text="Wybierz datę dostawy"></DatePicker>
-			</StackPanel>
-		</GroupBox>
-	
-		
+		<!--Buttons-->
+		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+			<Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Drukuj" Comment="Zapisz i wydrukuj" Command="{Binding CreateOrUpdateContractorCommand}" />
+			<Shared:DescriptionButton Image="{StaticResource CancelImageSource}" Content="Anuluj" Comment="Zamknij okno" Command="{Binding CancelCommand}" />
+		</StackPanel>
 	</Grid>
-
-
-
-        </GroupBox>
-
-        <!--Buttons-->
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Drukuj" Comment="Zapisz i wydrukuj" Command="{Binding CreateOrUpdateContractorCommand}" />
-            <Shared:DescriptionButton Image="{StaticResource CancelImageSource}" Content="Anuluj" Comment="Zamknij okno" Command="{Binding CancelCommand}" />
-        </StackPanel>
-    </Grid>
 </UserControl>

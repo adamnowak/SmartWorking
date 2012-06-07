@@ -42,8 +42,7 @@ namespace SmartWorking.Office.Gui.View
       viewModel.RequestClose += handler;
       window.ShowDialog();
 
-     
-      
+
       //var showResult = window.DialogResult;
       //if (showResult.HasValue && showResult.Value));
       return !viewModel.IsCanceled;

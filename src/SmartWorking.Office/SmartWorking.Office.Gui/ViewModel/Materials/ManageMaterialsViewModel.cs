@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
@@ -7,11 +6,10 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Materials
 {
-
   public class ManageMaterialsViewModel : ModalDialogViewModelBase
   {
-    private ICommand _selectMaterialCommand;
     private ICommand _createMaterialCommand;
+    private ICommand _selectMaterialCommand;
 
     public ManageMaterialsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
@@ -44,16 +42,15 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
     }
 
-    private void CreateMaterial()
-    {
-      ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
-
-    }
-
 
     public override string Title
     {
       get { return "Wybierz materiał."; }
+    }
+
+    private void CreateMaterial()
+    {
+      ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
     }
 
     private void LoadMaterials()

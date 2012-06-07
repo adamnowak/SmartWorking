@@ -34,54 +34,54 @@
 		</StackPanel>
 	</Grid>-->
 
-    <Grid>
+	<Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
 
-        <Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource LabelH1}" >Budowa</Shared:PanelLabel>
-        <!--Contractor grid-->
-        <GroupBox Header="Budowa" Grid.Row="1">
-            <StackPanel  Style="{StaticResource dialogMainPanel}" >
-                <Grid  >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+		<Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource LabelH1}">Budowa</Shared:PanelLabel>
+		<!--Contractor grid-->
+		<GroupBox Header="Budowa" Grid.Row="1">
+			<StackPanel Style="{StaticResource dialogMainPanel}">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
   
-                    <!--Debug only-->
-                    <Label Content="Id:" Grid.Row="0"/>
-                    <!--End Debug only-->
-                    <Label Content="Miasto:" Grid.Row="1"/>
-                    <Label Content="Ulica:" Grid.Row="2" />
-                    <Label Content="Numer domu:" Grid.Row="3" />
+					<!--Debug only-->
+					<Label Content="Id:" Grid.Row="0" />
+					<!--End Debug only-->
+					<Label Content="Miasto:" Grid.Row="1" />
+					<Label Content="Ulica:" Grid.Row="2" />
+					<Label Content="Numer domu:" Grid.Row="3" />
 
 
-                    <!--End Debug only-->
-                    <TextBox Text="{Binding Building.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
-                    <!--Debug only-->
-                    <TextBox Text="{Binding Building.City}" Grid.Row="1" Grid.Column="1" />
-                    <TextBox Text="{Binding Building.Street}" Grid.Row="2" Grid.Column="1" />
-                    <TextBox Text="{Binding Building.HouseNo}" Grid.Row="3" Grid.Column="1" />
+					<!--End Debug only-->
+					<TextBox Text="{Binding Building.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+					<!--Debug only-->
+					<TextBox Text="{Binding Building.City}" Grid.Row="1" Grid.Column="1" />
+					<TextBox Text="{Binding Building.Street}" Grid.Row="2" Grid.Column="1" />
+					<TextBox Text="{Binding Building.HouseNo}" Grid.Row="3" Grid.Column="1" />
 
-                </Grid>
-            </StackPanel>
-        </GroupBox>
+				</Grid>
+			</StackPanel>
+		</GroupBox>
 
-        <!--Buttons-->
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Zapisz" Comment="Zatwierdz zmiany" Command="{Binding CreateOrUpdateContractorCommand}" />
-            <Shared:DescriptionButton Image="{StaticResource CancelImageSource}" Content="Anuluj" Comment="Zamknij okno" Command="{Binding CancelCommand}" />
-        </StackPanel>
-    </Grid>
+		<!--Buttons-->
+		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+			<Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Zapisz" Comment="Zatwierdz zmiany" Command="{Binding CreateOrUpdateContractorCommand}" />
+			<Shared:DescriptionButton Image="{StaticResource CancelImageSource}" Content="Anuluj" Comment="Zamknij okno" Command="{Binding CancelCommand}" />
+		</StackPanel>
+	</Grid>
 </UserControl>

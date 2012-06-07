@@ -6,11 +6,10 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
 {
-
   public class ManageDeliveryNotesViewModel : ModalDialogViewModelBase
   {
-    private ICommand _selectMaterialCommand;
     private ICommand _createMaterialCommand;
+    private ICommand _selectMaterialCommand;
 
     public ManageDeliveryNotesViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
@@ -43,16 +42,15 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
     }
 
-    private void CreateMaterial()
-    {
-      ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
-
-    }
-
 
     public override string Title
     {
       get { return "Wybierz materiał."; }
+    }
+
+    private void CreateMaterial()
+    {
+      ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
     }
 
     private void LoadMaterials()

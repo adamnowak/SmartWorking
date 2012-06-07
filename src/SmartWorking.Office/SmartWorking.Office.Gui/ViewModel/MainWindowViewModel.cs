@@ -2,12 +2,12 @@
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View;
+using SmartWorking.Office.Services.Factory.Local;
+using SmartWorking.Office.Services.Interfaces;
 #if IIS_USED
 using SmartWorking.Office.Services.Factory.IIS;
 #else
-using SmartWorking.Office.Services.Factory.Local;
 #endif
-using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel
 {
@@ -16,12 +16,12 @@ namespace SmartWorking.Office.Gui.ViewModel
   /// </summary>
   internal class MainWindowViewModel
   {
+    private ICommand _manageCarsCommand;
     private ICommand _manageContractorsCommand;
     private ICommand _manageDeliveryNotesCommand;
+    private ICommand _manageDriversCommand;
     private ICommand _manageMaterialsCommand;
     private ICommand _manageRecipesCommand;
-    private ICommand _manageCarsCommand;
-    private ICommand _manageDriversCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/>. 
@@ -31,7 +31,7 @@ namespace SmartWorking.Office.Gui.ViewModel
 #if IIS_USED
       new ServiceFactoryIIS()
 #else
- new ServiceFactoryLocal()
+           new ServiceFactoryLocal()
 #endif
       )
     {
@@ -56,6 +56,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// The modal dialog service.
     /// </value>
     public IModalDialogService ModalDialogService { get; set; }
+
     /// <summary>
     /// Gets or sets the service factory.
     /// </summary>
@@ -73,7 +74,8 @@ namespace SmartWorking.Office.Gui.ViewModel
       get
       {
         if (_manageDeliveryNotesCommand == null)
-          _manageDeliveryNotesCommand = new RelayCommand(() => ModalDialogService.ManageDeliveryNotes(ModalDialogService, ServiceFactory));
+          _manageDeliveryNotesCommand =
+            new RelayCommand(() => ModalDialogService.ManageDeliveryNotes(ModalDialogService, ServiceFactory));
         return _manageDeliveryNotesCommand;
       }
     }
@@ -87,7 +89,8 @@ namespace SmartWorking.Office.Gui.ViewModel
       get
       {
         if (_manageContractorsCommand == null)
-          _manageContractorsCommand = new RelayCommand(() => ModalDialogService.ManageContractors(ModalDialogService, ServiceFactory));
+          _manageContractorsCommand =
+            new RelayCommand(() => ModalDialogService.ManageContractors(ModalDialogService, ServiceFactory));
         return _manageContractorsCommand;
       }
     }
@@ -101,7 +104,8 @@ namespace SmartWorking.Office.Gui.ViewModel
       get
       {
         if (_manageMaterialsCommand == null)
-          _manageMaterialsCommand = new RelayCommand(() => ModalDialogService.ManageMaterials(ModalDialogService, ServiceFactory));
+          _manageMaterialsCommand =
+            new RelayCommand(() => ModalDialogService.ManageMaterials(ModalDialogService, ServiceFactory));
         return _manageMaterialsCommand;
       }
     }
@@ -115,7 +119,8 @@ namespace SmartWorking.Office.Gui.ViewModel
       get
       {
         if (_manageRecipesCommand == null)
-          _manageRecipesCommand = new RelayCommand(() => ModalDialogService.ManageRecipes(ModalDialogService, ServiceFactory));
+          _manageRecipesCommand =
+            new RelayCommand(() => ModalDialogService.ManageRecipes(ModalDialogService, ServiceFactory));
         return _manageRecipesCommand;
       }
     }
@@ -143,7 +148,8 @@ namespace SmartWorking.Office.Gui.ViewModel
       get
       {
         if (_manageDriversCommand == null)
-          _manageDriversCommand = new RelayCommand(() => ModalDialogService.ManageDrivers(ModalDialogService, ServiceFactory));
+          _manageDriversCommand =
+            new RelayCommand(() => ModalDialogService.ManageDrivers(ModalDialogService, ServiceFactory));
         return _manageDriversCommand;
       }
     }
