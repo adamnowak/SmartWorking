@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace SmartWorking.Office.Gui.View.DeliveryNotes
+namespace SmartWorking.Office.Gui.View.Materials
 {
   /// <summary>
   /// Interaction logic for UpdateCar.xaml

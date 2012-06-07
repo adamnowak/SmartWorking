@@ -98,7 +98,7 @@
                     <Button HorizontalContentAlignment="Stretch" Command="{TemplateBinding Command}">
                         <Grid Height="62" HorizontalAlignment="Stretch">
                             <Grid.RowDefinitions>
-                                <RowDefinition />
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>

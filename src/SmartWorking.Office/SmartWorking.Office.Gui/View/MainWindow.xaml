@@ -4,13 +4,13 @@
 	</Window.DataContext>
     <Grid>
         <StackPanel Style="{StaticResource mainPanel}">
-            <Shared:DescriptionButton Image="{DynamicResource DeliveryNoteImageSource}" Comment="Tworzymy nową lub anulujemy już istniejącą WZ'tkę">Zarządzanie WZ'tkami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Command="{Binding ManageDeliveryNotesCommand}" Image="{DynamicResource DeliveryNoteImageSource}" Comment="Tworzymy nową lub anulujemy już istniejącą WZ'tkę">Zarządzanie WZ'tkami</Shared:DescriptionButton>
             <Shared:DescriptionButton Command="{Binding ManageContractorsCommand}" Image="{DynamicResource ContractorImageSource}" Comment="Dopisz lub zmodyfikuj dane o kontrahencie">Zarządzanie kontrahentami</Shared:DescriptionButton>
-            <Shared:DescriptionButton Image="{DynamicResource MaterialImageSource}" Comment="Utwórz lub edytuj dane o materiałach">Zarządzanie materiałami</Shared:DescriptionButton>
-            <Shared:DescriptionButton Image="{DynamicResource RecipeImageSource}" Comment="Utwórz lub zmodyfikuj receptę">Zarządzanie receptami</Shared:DescriptionButton>
-            <Shared:DescriptionButton Image="{DynamicResource DriverImageSource}" Comment="Zarządzaj kierowcami">Zarządzanie kierowcami</Shared:DescriptionButton>
-            <Shared:DescriptionButton Image="{DynamicResource CarImageSource}" Comment="Zarządzaj swoimi samochodami">Zarządzanie samochodami</Shared:DescriptionButton>
-            <Shared:DescriptionButton Image="{DynamicResource MaterialStockImageSource}" Comment="Wprowadz dane o dostawie towaru do magazynu">Zarządzanie magazynem</Shared:DescriptionButton>
+            <Shared:DescriptionButton Command="{Binding ManageMaterialsCommand}" Image="{DynamicResource MaterialImageSource}" Comment="Utwórz lub edytuj dane o materiałach">Zarządzanie materiałami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Command="{Binding ManageRecipesCommand}" Image="{DynamicResource RecipeImageSource}" Comment="Utwórz lub zmodyfikuj receptę">Zarządzanie receptami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Command="{Binding ManageDriversCommand}" Image="{DynamicResource DriverImageSource}" Comment="Zarządzaj kierowcami">Zarządzanie kierowcami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Command="{Binding ManageCarsCommand}" Image="{DynamicResource CarImageSource}" Comment="Zarządzaj swoimi samochodami">Zarządzanie samochodami</Shared:DescriptionButton>
+            <Shared:DescriptionButton IsEnabled="False" Command="{Binding ManageMaterialStocksCommand}" Image="{DynamicResource MaterialStockImageSource}" Comment="Wprowadz dane o dostawie towaru do magazynu">Zarządzanie magazynem</Shared:DescriptionButton>
         </StackPanel>
     </Grid>
 	<!--<Grid>

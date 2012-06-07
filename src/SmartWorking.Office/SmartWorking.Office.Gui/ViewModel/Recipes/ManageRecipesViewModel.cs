@@ -1,23 +1,22 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
-namespace SmartWorking.Office.Gui.ViewModel.Materials
+namespace SmartWorking.Office.Gui.ViewModel.Recipes
 {
-  public class SelectRecipeViewModel : ModalDialogViewModelBase
+  public class ManageRecipesViewModel : ModalDialogViewModelBase
   {
     private ICommand _selectRecipeCommand;
 
-    public SelectRecipeViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public ManageRecipesViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableRecipe = new SelectableViewModelBase<Recipe>();
+      SelectableRecipe = new SelectableViewModelBase<Entities.Recipe>();
       LoadRecipes();
     }
 
-    public SelectableViewModelBase<Recipe> SelectableRecipe { get; private set; }
+    public SelectableViewModelBase<Entities.Recipe> SelectableRecipe { get; private set; }
 
     public DialogMode DialogMode { get; set; }
 

@@ -107,12 +107,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Cars\ManageCarsViewModel.cs" />
+    <Compile Include="ViewModel\Cars\UpdateCarViewModel.cs" />
     <Compile Include="ViewModel\Contractors\UpdateBuildingViewModel.cs" />
+    <Compile Include="ViewModel\DeliveryNotes\ManageDeliveryNotesViewModel.cs" />
     <Compile Include="ViewModel\DeliveryNotes\UpdateDeliveryNoteViewModel.cs" />
+    <Compile Include="ViewModel\Drivers\ManageDriversViewModel.cs" />
+    <Compile Include="ViewModel\Drivers\UpdateDriverViewModel.cs" />
     <Compile Include="ViewModel\Materials\ManageMaterialsViewModel.cs" />
     <Compile Include="ViewModel\Materials\UpdateMaterialViewModel.cs" />
-    <Compile Include="ViewModel\Recipe\ManageRecipesViewModel.cs" />
-    <Compile Include="ViewModel\Recipe\UpdateRecipeViewModel.cs" />
+    <Compile Include="ViewModel\Recipes\ManageRecipesViewModel.cs" />
+    <Compile Include="ViewModel\Recipes\UpdateRecipeViewModel.cs" />
     <Compile Include="ViewModel\DialogMode.cs" />
     <Compile Include="ViewModel\ModalDialogViewModelBase.cs" />
     <Compile Include="ViewModel\IModalDialogService.cs" />

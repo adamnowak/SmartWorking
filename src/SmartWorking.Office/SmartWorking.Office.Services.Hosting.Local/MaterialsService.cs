@@ -26,8 +26,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
       {
         List<Material> result =
           (string.IsNullOrWhiteSpace(materialNameFilter))
-            ? ctx.Materials.Include("MaterialStock").ToList()
-            : ctx.Materials.Include("MaterialStock").Where(x => x.Name.StartsWith(materialNameFilter)).ToList();
+            ? ctx.Materials.Include("MaterialStocks").ToList()
+            : ctx.Materials.Include("MaterialStocks").Where(x => x.Name.StartsWith(materialNameFilter)).ToList();
         return result;
       }
     }

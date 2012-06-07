@@ -20,6 +20,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     private ICommand _manageDeliveryNotesCommand;
     private ICommand _manageMaterialsCommand;
     private ICommand _manageRecipesCommand;
+    private ICommand _manageCarsCommand;
+    private ICommand _manageDriversCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/>. 
@@ -115,6 +117,34 @@ namespace SmartWorking.Office.Gui.ViewModel
         if (_manageRecipesCommand == null)
           _manageRecipesCommand = new RelayCommand(() => ModalDialogService.ManageRecipes(ModalDialogService, ServiceFactory));
         return _manageRecipesCommand;
+      }
+    }
+
+    /// <summary>
+    /// Gets the manage <see cref="Car"/> command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="Car"/> objects.</remarks>
+    public ICommand ManageCarsCommand
+    {
+      get
+      {
+        if (_manageCarsCommand == null)
+          _manageCarsCommand = new RelayCommand(() => ModalDialogService.ManageCars(ModalDialogService, ServiceFactory));
+        return _manageCarsCommand;
+      }
+    }
+
+    /// <summary>
+    /// Gets the manage <see cref="Driver"/> command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="Driver"/> objects.</remarks>
+    public ICommand ManageDriversCommand
+    {
+      get
+      {
+        if (_manageDriversCommand == null)
+          _manageDriversCommand = new RelayCommand(() => ModalDialogService.ManageDrivers(ModalDialogService, ServiceFactory));
+        return _manageDriversCommand;
       }
     }
   }

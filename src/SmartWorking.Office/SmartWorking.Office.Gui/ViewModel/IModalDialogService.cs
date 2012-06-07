@@ -134,5 +134,61 @@ namespace SmartWorking.Office.Gui.ViewModel
     void ManageRecipes(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     #endregion
+
+    #region Car
+
+    /// <summary>
+    /// Opens dialog for creating the car.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <returns></returns>
+    Car CreateCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+
+    /// <summary>
+    /// Opens dialog for editing the car.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <param name="selectedRecipe">The car to edit.</param>
+    /// <returns></returns>
+    Car EditCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Car selectedCar);
+
+    /// <summary>
+    /// Opens dialog for managing the cars.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    void ManageCars(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+
+    #endregion
+
+    #region Driver
+
+    /// <summary>
+    /// Opens dialog for creating the driver.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <returns></returns>
+    Driver CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+
+    /// <summary>
+    /// Opens dialog for editing the driver.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <param name="selectedRecipe">The driver to edit.</param>
+    /// <returns></returns>
+    Driver EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Driver selectedDriver);
+
+    /// <summary>
+    /// Opens dialog for managing the driver.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    void ManageDrivers(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+
+    #endregion
   }
 }

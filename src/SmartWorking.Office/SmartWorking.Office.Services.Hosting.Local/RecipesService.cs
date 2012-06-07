@@ -25,8 +25,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
       using (var ctx = new SmartWorkingEntities())
       {
         List<Recipe> result = (string.IsNullOrWhiteSpace(recipesFilter))
-                                ? ctx.Recipes.Include("RecipeSpecification.Material").ToList()
-                                : ctx.Recipes.Include("RecipeSpecification.Material").Where(
+                                ? ctx.Recipes.Include("RecipeSpecifications.Material").ToList()
+                                : ctx.Recipes.Include("RecipeSpecifications.Material").Where(
                                   x => x.Name.StartsWith(recipesFilter)).ToList();
         return result;
       }

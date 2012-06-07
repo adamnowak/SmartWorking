@@ -2,11 +2,15 @@
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
-
+using SmartWorking.Office.Gui.View.Materials;
 using SmartWorking.Office.Gui.View.Recipes;
 using SmartWorking.Office.Gui.ViewModel;
+using SmartWorking.Office.Gui.ViewModel.Cars;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
+using SmartWorking.Office.Gui.ViewModel.DeliveryNotes;
+using SmartWorking.Office.Gui.ViewModel.Drivers;
 using SmartWorking.Office.Gui.ViewModel.Materials;
+using SmartWorking.Office.Gui.ViewModel.Recipes;
 using SmartWorking.Office.Services.Interfaces;
 
 
@@ -86,9 +90,9 @@ namespace SmartWorking.Office.Gui.View
 
     public void ManageDeliveryNotes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
-      //var viewModel = new ManageDeliveryNotesViewModel(modalDialogService, serviceFactory);
-      //viewModel.DialogMode = DialogMode.Selecting; ;
-      //ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);  
+      var viewModel = new ManageDeliveryNotesViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Selecting; ;
+      ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);  
     }
 
     public Material CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -118,7 +122,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new ManageMaterialsViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Selecting;
-      ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);
+      ModalDialogHelper<ManageMaterials>.ShowDialog(viewModel);
     }
 
     public Recipe CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -145,12 +149,44 @@ namespace SmartWorking.Office.Gui.View
 
     public void ManageRecipes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
-      var viewModel = new SelectRecipeViewModel(modalDialogService, serviceFactory);
+      var viewModel = new ManageRecipesViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Selecting;
       ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
     }
 
-    
+    public Car CreateCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Car EditCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Car selectedCar)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void ManageCars(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageCarsViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Selecting;
+      ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
+    }
+
+    public Driver CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Driver EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Driver selectedDriver)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void ManageDrivers(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageDriversViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Selecting;
+      ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
+    }
 
     #endregion
   }
