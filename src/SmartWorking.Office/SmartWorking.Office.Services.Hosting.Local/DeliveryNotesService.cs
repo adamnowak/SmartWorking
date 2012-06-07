@@ -16,19 +16,48 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </summary>
     public void Dispose()
     {
-      throw new NotImplementedException();
+      
     }
 
+
     /// <summary>
-    /// Gets the <see cref="DeliveryNote"/> filtered be <paramref name="deliveryNotesFilter"/>.
+    /// Gets the <see cref="DeliveryNote"/> filtered be <paramref name="buildingContainsThisString"/> and <paramref name="showCanceledDeliveryNotes"/>.
     /// </summary>
-    /// <param name="deliveryNotesFilter">The delivery notes filter.</param>
+    /// <param name="buildingContainsThisString">Used to filtering result. Loaded <see cref="DeliveryNote"/> object will contain this string.</param>
+    /// <param name="showCanceledDeliveryNotes">if set to <c>true</c> then loaded <see cref="DeliveryNote"/> object  will contain <see cref="DeliveryNote"/> which are deactivated; otherwise not.</param>
     /// <returns>
-    /// List of <see cref="DeliveryNote"/> filtered by <paramref name="deliveryNotesFilter"/>.
+    /// List of <see cref="DeliveryNote"/> filtered by <paramref name="buildingContainsThisString"/> and <paramref name="showCanceledDeliveryNotes"/>.
     /// </returns>
-    public List<Car> GetIDeliveryNotes(string deliveryNotesFilter)
+    public List<DeliveryNote> GetIDeliveryNotes(string buildingContainsThisString, bool showCanceledDeliveryNotes)
     {
-      throw new NotImplementedException();
+      using (var ctx = new SmartWorkingEntities())
+      {
+        List<DeliveryNote> result;
+          if (string.IsNullOrWhiteSpace(buildingContainsThisString))
+          {
+            if (showCanceledDeliveryNotes)
+            {
+              result = ctx.DeliveryNotes.Include("Building").ToList();
+            }
+            else
+            {
+              result = ctx.DeliveryNotes.Include("Building").Where(x => x.Canceled != DateTime.MinValue).ToList();
+            }
+          }
+          else
+          {
+            if (showCanceledDeliveryNotes)
+            {
+              result = ctx.DeliveryNotes.Include("Building").Where(x => (x.Building.City+ " " + x.Building.Street).Contains(buildingContainsThisString)).ToList();
+            }
+            else
+            {
+              result = ctx.DeliveryNotes.Include("Building").Where(x => x.Canceled != DateTime.MinValue && (x.Building.City + " " + x.Building.Street).Contains(buildingContainsThisString)).ToList();
+            }
+            
+          }
+        return result;
+      }
     }
 
     /// <summary>

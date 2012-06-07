@@ -14,11 +14,11 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     public ManageDriversViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableMaterial = new SelectableViewModelBase<Material>();
-      LoadMaterials();
+      SelectableDriver = new SelectableViewModelBase<Driver>();
+      LoadDrivers();
     }
 
-    public SelectableViewModelBase<Material> SelectableMaterial { get; private set; }
+    public SelectableViewModelBase<Driver> SelectableDriver { get; private set; }
 
     public DialogMode DialogMode { get; set; }
 
@@ -53,11 +53,11 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
       ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
     }
 
-    private void LoadMaterials()
+    private void LoadDrivers()
     {
-      using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
+      using (IDriversService materialsService = ServiceFactory.GetDriversService())
       {
-        SelectableMaterial.LoadItems(materialsService.GetMaterials(string.Empty));
+        SelectableDriver.LoadItems(materialsService.GetDrivers(string.Empty));
       }
     }
 

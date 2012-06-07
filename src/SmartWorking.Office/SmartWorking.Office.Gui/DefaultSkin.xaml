@@ -60,13 +60,19 @@
 	</Style>
 
 	<Style TargetType="Label">
-		<Setter Property="FontSize" Value="16" />
+		<Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
 	</Style>
 
 	<Style TargetType="TextBox">
 		<Setter Property="Margin" Value="3" />
 		<Setter Property="Padding" Value="1" />
-	</Style>
+        <Style.Triggers>
+            <Trigger Property="IsReadOnly" Value="True">
+                <Setter Property="Background" Value="#FFEFEFEF"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
 	<!--Keys-->
 	<Style x:Key="mainPanel" TargetType="StackPanel">
@@ -126,21 +132,23 @@
 		</Setter>
 	</Style>
 
-    <Style x:Key="SelectDescriptionButton" TargetType="Shared:DescriptionButton" BasedOn="{StaticResource {x:Type Shared:DescriptionButton}}">  
+    <Style x:Key="SelectDescriptionButton" TargetType="Shared:DescriptionButton" BasedOn="{StaticResource {x:Type Shared:DescriptionButton}}">
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Height" Value="100"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Shared:DescriptionButton}">
                     <Button HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Command="{TemplateBinding Command}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="50" />
+                                <RowDefinition Height="46" />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             
                             <!--<Border  BorderBrush="Black" BorderThickness="1" Margin="2" Padding="1">-->
                                 <Image Source="{TemplateBinding Image}" Stretch="Fill" Width="46" />
                             <!--</Border>-->
-                            <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="{TemplateBinding Content}" FontSize="21.333" Foreground="#FF1C3840" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
+                            <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="{TemplateBinding Content}" FontSize="16" Foreground="#FF1C3840" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
                             <!--<TextBlock TextWrapping="Wrap" Text="{TemplateBinding Comment}" FontSize="16" Grid.Row="1" Grid.Column="1" />-->
                         </Grid>
                     </Button>

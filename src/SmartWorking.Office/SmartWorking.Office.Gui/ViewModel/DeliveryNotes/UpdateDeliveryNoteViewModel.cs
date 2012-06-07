@@ -13,6 +13,11 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
   public class UpdateDeliveryNoteViewModel : ModalDialogViewModelBase
   {
+    private ICommand _selectBuildingCommand;    
+    private ICommand _selectRecipeCommand;
+    private ICommand _selectDriverCommand;
+    private ICommand _selectCarCommand;
+
     public UpdateDeliveryNoteViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
@@ -29,6 +34,40 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
                  : "Edytuj WZ'tkę.";
       }
     }
+
+    #region DeliveryNote property
+
+    /// <summary>
+    /// The <see cref="DeliveryNote" /> property's name.
+    /// </summary>
+    public const string DeliveryNotePropertyName = "DeliveryNote";
+
+    private DeliveryNote _deliveryNote;
+
+    /// <summary>
+    /// Gets the Contractor property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public DeliveryNote DeliveryNote
+    {
+      get { return _deliveryNote; }
+
+      set
+      {
+        if (_deliveryNote == value)
+        {
+          return;
+        }
+        _deliveryNote = value;
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged(DeliveryNotePropertyName);
+      }
+    }
+
+    #endregion
 
     #region Building property
 
@@ -64,60 +103,185 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     #endregion
 
-    #region SelectBuildingCommand
+    #region Recipe property
 
     /// <summary>
-    /// The <see cref="DeliveryNote" /> property's name.
+    /// The <see cref="Recipe" /> property's name.
     /// </summary>
-    public const string DeliveryNotePropertyName = "DeliveryNote";
+    public const string RecipePropertyName = "Recipe";
 
-    private DeliveryNote _deliveryNote;
-    private ICommand _selectBuildingCommand;
+    private Recipe _recipe;
 
+    /// <summary>
+    /// Gets the Contractor property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public Recipe Recipe
+    {
+      get { return _recipe; }
+
+      set
+      {
+        if (_recipe == value)
+        {
+          return;
+        }
+        _recipe = value;
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged(RecipePropertyName);
+      }
+    }
+
+    #endregion
+
+    #region Driver property
+
+    /// <summary>
+    /// The <see cref="Driver" /> property's name.
+    /// </summary>
+    public const string DriverPropertyName = "Driver";
+
+    private Driver _driver;
+
+    /// <summary>
+    /// Gets the Contractor property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public Driver Driver
+    {
+      get { return _driver; }
+
+      set
+      {
+        if (_driver == value)
+        {
+          return;
+        }
+        _driver = value;
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged(DriverPropertyName);
+      }
+    }
+
+    #endregion
+
+    #region Car property
+
+    /// <summary>
+    /// The <see cref="Car" /> property's name.
+    /// </summary>
+    public const string CarPropertyName = "Car";
+
+    private Car _car;
+    
+
+    /// <summary>
+    /// Gets the Contractor property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public Car Car
+    {
+      get { return _car; }
+
+      set
+      {
+        if (_car == value)
+        {
+          return;
+        }
+        _car = value;
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged(CarPropertyName);
+      }
+    }
+
+    #endregion
+
+    #region SelectBuildingCommand
+    /// <summary>
+    /// Gets the select building command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to selecting building.
+    /// </remarks>
     public ICommand SelectBuildingCommand
     {
       get
       {
         if (_selectBuildingCommand == null)
-          _selectBuildingCommand = new RelayCommand(SelcectContractor);
+          _selectBuildingCommand = new RelayCommand(SelectBuilding);
         return _selectBuildingCommand;
       }
     }
 
-    /// <summary>
-    /// Gets the DeliveryNote property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public DeliveryNote DeliveryNote
+    private void SelectBuilding()
     {
-      get { return _deliveryNote; }
+      Building = ModalDialogService.SelectBuilding(ModalDialogService, ServiceFactory);      
+    }
+    #endregion
 
-      set
+    #region SelectRecipeCommand
+    public ICommand SelectRecipeCommand
+    {
+      get
       {
-        if (_deliveryNote == value)
-        {
-          return;
-        }
-        _deliveryNote = value;
-
-        // Update bindings, no broadcast
-        RaisePropertyChanged(DeliveryNotePropertyName);
+        if (_selectRecipeCommand == null)
+          _selectRecipeCommand = new RelayCommand(SelectRecipe);
+        return _selectRecipeCommand;
       }
     }
 
-    private void SelcectContractor()
+    private void SelectRecipe()
     {
-      //Contractor selectContractor = ModalDialogService.ManageContractors(ModalDialogService, ServiceFactory);
-      //if (selectContractor != null)
-      //{
-      //  Building = ModalDialogService.SelectBuilding(ModalDialogService, ServiceFactory, selectContractor);
-      //}
+      Recipe = ModalDialogService.SelectRecipe(ModalDialogService, ServiceFactory); 
+    }
+    #endregion
+
+    #region SelectDriverCommand
+    public ICommand SelectDriverCommand
+    {
+      get
+      {
+        if (_selectDriverCommand == null)
+          _selectDriverCommand = new RelayCommand(SelectDriver);
+        return _selectDriverCommand;
+      }
     }
 
+    private void SelectDriver()
+    {
+      Driver = ModalDialogService.SelectDriver(ModalDialogService, ServiceFactory); 
+    }
+    #endregion
 
-    private void PrintPDF()
+    #region SelectCarCommand
+    public ICommand SelectCarCommand
+    {
+      get
+      {
+        if (_selectCarCommand == null)
+          _selectCarCommand = new RelayCommand(SelectCar);
+        return _selectCarCommand;
+      }
+    }
+
+    private void SelectCar()
+    {
+      Car = ModalDialogService.SelectCar(ModalDialogService, ServiceFactory); 
+    }
+    #endregion
+
+    #region PrintDeliveryNote
+    private void PrintDeliveryNote()
     {
       string filename = "d:\\adamnowak\\private\\Sylwek\\temp\\pdf\\" + DateTime.Now.ToString(); 
       string text = "Adam Nowak";

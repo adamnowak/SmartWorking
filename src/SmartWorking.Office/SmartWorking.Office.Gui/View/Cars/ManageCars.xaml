@@ -26,7 +26,7 @@
 						<!--End Debug only-->
                         <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
                         <DataGridTextColumn Header="Skrót" Binding="{Binding InternalName}" />
-                        <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Numer rejestracyjny" Binding="{Binding RegistrationNumber}" />
 					</DataGrid.Columns>
 				</DataGrid>
 			</Grid>

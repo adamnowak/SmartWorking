@@ -24,8 +24,9 @@
 						<!--Debug only-->
 						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
 						<!--End Debug only-->
-						<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
-						<DataGridTextColumn Header="Skrót" Binding="{Binding InternalName}" />
+						<DataGridTextColumn Header="Imię" Binding="{Binding Name}" />
+						<DataGridTextColumn Header="Nazwisko" Binding="{Binding Surname}" />
+                        <DataGridTextColumn Header="Numer telefonu" Binding="{Binding Phone}" />
 
 					</DataGrid.Columns>
 				</DataGrid>

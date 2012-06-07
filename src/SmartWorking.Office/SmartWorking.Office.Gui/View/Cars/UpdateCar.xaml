@@ -22,7 +22,6 @@
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 
 					<!--Debug only-->
@@ -30,13 +29,14 @@
 					<!--End Debug only-->
 					<Label Content="Nazwa:" Grid.Row="1" />
 					<Label Content="Skrót:" Grid.Row="2" />
-
+                    <Label Content="Numer rejestracyjny:" Grid.Row="3" />
 
 					<!--End Debug only-->
 					<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 					<!--Debug only-->
 					<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
 					<TextBox Text="{Binding InternalName}" Grid.Row="2" Grid.Column="1" />
+                    <TextBox Text="{Binding InternalNRegistrationNumberame}" Grid.Row="3" Grid.Column="1" />
 
 				</Grid>
 			</StackPanel>

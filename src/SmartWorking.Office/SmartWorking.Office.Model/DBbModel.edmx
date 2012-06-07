@@ -64,6 +64,8 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RegistrationNumber" Type="nchar" MaxLength="10" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="InternalName" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Contractors">
           <Key>
@@ -97,6 +99,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Materials">
           <Key>
@@ -293,6 +296,8 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="RegistrationNumber" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="DeliveryNotes" Relationship="SmartWorkingModel.FK_DeliveryNotes_Cars" FromRole="Car" ToRole="DeliveryNote" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InternalName" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Contractor">
           <Key>
@@ -332,6 +337,7 @@
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Surname" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DeliveryNotes" Relationship="SmartWorkingModel.FK_DeliveryNotes_Drivers" FromRole="Driver" ToRole="DeliveryNote" />
+          <Property Type="String" Name="Phone" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -489,6 +495,8 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="SmartWorkingModel.Car">
               <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="InternalName" ColumnName="InternalName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -524,6 +532,7 @@
           <EntitySetMapping Name="Drivers">
             <EntityTypeMapping TypeName="SmartWorkingModel.Driver">
               <MappingFragment StoreEntitySet="Drivers">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -593,7 +602,7 @@
         <EntityTypeShape EntityType="SmartWorkingModel.Car" Width="1.5" PointX="6.625" PointY="6.625" Height="1.595683593749996" />
         <EntityTypeShape EntityType="SmartWorkingModel.Contractor" Width="1.5" PointX="0.625" PointY="6.25" Height="2.172587890624996" />
         <EntityTypeShape EntityType="SmartWorkingModel.DeliveryNote" Width="1.5" PointX="3" PointY="3.875" Height="3.7109993489583246" />
-        <EntityTypeShape EntityType="SmartWorkingModel.Driver" Width="1.5" PointX="3.25" PointY="9" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Driver" Width="1.5" PointX="3.25" PointY="9" Height="1.9802864583333317" />
         <EntityTypeShape EntityType="SmartWorkingModel.Material" Width="1.5" PointX="7.375" PointY="0.5" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="SmartWorkingModel.MaterialStock" Width="1.5" PointX="10" PointY="1.875" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SmartWorkingModel.Recipe" Width="1.5" PointX="5" PointY="0.75" Height="1.9802864583333388" />

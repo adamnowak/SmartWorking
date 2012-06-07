@@ -45,7 +45,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="contractor">The contractor.</param>
-    /// <returns></returns>
+    /// <returns>Created Building.</returns>
     Building CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
                             Contractor contractor);
 
@@ -55,8 +55,16 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="building">The building.</param>
-    /// <returns></returns>
+    /// <returns>Edited Building.</returns>
     Building EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Building building);
+
+    /// <summary>
+    /// Opens dialog for managing Contractor and user can chose Building.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>    
+    /// <returns>Selected Building.</returns>
+    Building SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     #endregion
 
@@ -106,6 +114,13 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     void ManageMaterials(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
+    /// <summary>
+    /// Opens dialog for managing the material to chose one.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <returns></returns>
+    Material SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     #endregion
 
     #region Recipe
@@ -134,6 +149,13 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     void ManageRecipes(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
+    /// <summary>
+    /// Opens dialog for managing the recipes to chose one.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <returns></returns>
+    Recipe SelectRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     #endregion
 
     #region Car
@@ -162,6 +184,13 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     void ManageCars(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
+    /// <summary>
+    /// Opens dialog for managing the cars to chose one.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <returns></returns>
+    Car SelectCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     #endregion
 
     #region Driver
@@ -190,6 +219,13 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     void ManageDrivers(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
+    /// <summary>
+    /// Opens dialog for managing the drivers to chose one.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <returns></returns>
+    Driver SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     #endregion
   }
 }

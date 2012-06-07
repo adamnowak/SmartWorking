@@ -47,8 +47,7 @@ namespace SmartWorking.Office.Gui.View
     public void ManageContractors(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Selecting;
-      ;
+      viewModel.DialogMode = DialogMode.Managing;
       ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
     }
 
@@ -78,6 +77,18 @@ namespace SmartWorking.Office.Gui.View
       return viewModel.Building;
     }
 
+    public Building SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.SelectingSubItem;
+      ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.SelectedBuilding;
+      }
+      return null;
+    }
+
     public DeliveryNote CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateDeliveryNoteViewModel(modalDialogService, serviceFactory);
@@ -94,7 +105,7 @@ namespace SmartWorking.Office.Gui.View
     public void ManageDeliveryNotes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageDeliveryNotesViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Selecting;
+      viewModel.DialogMode = DialogMode.Managing;
       ;
       ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);
     }
@@ -125,8 +136,20 @@ namespace SmartWorking.Office.Gui.View
     public void ManageMaterials(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageMaterialsViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Managing;
+      ModalDialogHelper<ManageMaterials>.ShowDialog(viewModel);
+    }
+
+    public Material SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageMaterialsViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Selecting;
       ModalDialogHelper<ManageMaterials>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.SelectableMaterial.SelectedItem;
+      }
+      return null;
     }
 
     public Recipe CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -155,8 +178,20 @@ namespace SmartWorking.Office.Gui.View
     public void ManageRecipes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageRecipesViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Managing;
+      ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
+    }
+
+    public Recipe SelectRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageRecipesViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Selecting;
       ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.SelectableRecipe.SelectedItem;
+      }
+      return null;
     }
 
     public Car CreateCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -184,8 +219,20 @@ namespace SmartWorking.Office.Gui.View
     public void ManageCars(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageCarsViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Managing;
+      ModalDialogHelper<ManageCars>.ShowDialog(viewModel);
+    }
+
+    public Car SelectCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageCarsViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Selecting;
       ModalDialogHelper<ManageCars>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.SelectableCar.SelectedItem;
+      }
+      return null;
     }
 
     public Driver CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -214,8 +261,20 @@ namespace SmartWorking.Office.Gui.View
     public void ManageDrivers(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageDriversViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Managing;
+      ModalDialogHelper<ManageDrivers>.ShowDialog(viewModel);
+    }
+
+    public Driver SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageDriversViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Selecting;
       ModalDialogHelper<ManageDrivers>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.SelectableDriver.SelectedItem;
+      }
+      return null;
     }
 
     #endregion

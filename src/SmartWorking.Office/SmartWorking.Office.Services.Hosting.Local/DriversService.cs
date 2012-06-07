@@ -16,7 +16,6 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </summary>
     public void Dispose()
     {
-      throw new NotImplementedException();
     }
 
     /// <summary>
@@ -28,7 +27,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </returns>
     public List<Driver> GetDrivers(string driversFilter)
     {
-      throw new NotImplementedException();
+      using (var ctx = new SmartWorkingEntities())
+      {
+        List<Driver> result =
+          (string.IsNullOrWhiteSpace(driversFilter))
+            ? ctx.Drivers.ToList()
+            : ctx.Drivers.Where(x => x.Name.StartsWith(driversFilter)).ToList();
+        return result;
+      }
     }
 
     /// <summary>

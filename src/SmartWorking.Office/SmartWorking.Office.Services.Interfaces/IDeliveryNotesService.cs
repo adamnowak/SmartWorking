@@ -12,14 +12,15 @@ namespace SmartWorking.Office.Services.Interfaces
   public interface IDeliveryNotesService : IDisposable
   {
     /// <summary>
-    /// Gets the <see cref="DeliveryNote"/> filtered be <paramref name="deliveryNotesFilter"/>.
+    /// Gets the <see cref="DeliveryNote"/> filtered be <paramref name="buildingContainsThisString"/> and <paramref name="showCanceledDeliveryNotes"/>.
     /// </summary>
-    /// <param name="deliveryNotesFilter">The delivery notes filter.</param>
+    /// <param name="buildingContainsThisString">Used to filtering result. Loaded <see cref="DeliveryNote"/> object will contain this string.</param>
+    /// <param name="showCanceledDeliveryNotes">if set to <c>true</c> then loaded <see cref="DeliveryNote"/> object  will contain <see cref="DeliveryNote"/> which are deactivated; otherwise not.</param>        
     /// <returns>
-    /// List of <see cref="DeliveryNote"/> filtered by <paramref name="deliveryNotesFilter"/>.
+    /// List of <see cref="DeliveryNote"/> filtered by <paramref name="buildingContainsThisString"/> and <paramref name="showCanceledDeliveryNotes"/>.
     /// </returns>
     [OperationContract]
-    List<Car> GetIDeliveryNotes(string deliveryNotesFilter);
+    List<DeliveryNote> GetIDeliveryNotes(string buildingContainsThisString, bool showCanceledDeliveryNotes);
 
     /// <summary>
     /// Updates the <see cref="DeliveryNote"/>.

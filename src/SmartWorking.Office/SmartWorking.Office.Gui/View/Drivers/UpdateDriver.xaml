@@ -22,22 +22,22 @@
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
 					</Grid.RowDefinitions>
 
 					<!--Debug only-->
 					<Label Content="Id:" Grid.Row="0" />
 					<!--End Debug only-->
-					<Label Content="Nazwa:" Grid.Row="1" />
-					<Label Content="Skrót:" Grid.Row="2" />
+					<Label Content="Imię:" Grid.Row="1" />
+					<Label Content="Nazwisko:" Grid.Row="2" />
+                    <Label Content="Numer Telefonu:" Grid.Row="3" />
 
 
 					<!--End Debug only-->
 					<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 					<!--Debug only-->
 					<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
-					<TextBox Text="{Binding InternalName}" Grid.Row="2" Grid.Column="1" />
-
+					<TextBox Text="{Binding Surname}" Grid.Row="2" Grid.Column="1" />
+                    <TextBox Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" />
 				</Grid>
 			</StackPanel>
 		</GroupBox>

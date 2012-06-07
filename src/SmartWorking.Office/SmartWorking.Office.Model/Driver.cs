@@ -36,6 +36,12 @@ namespace SmartWorking.Office.Entities
             get;
             set;
         }
+    
+        public string Phone
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

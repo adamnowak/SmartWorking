@@ -6,6 +6,10 @@
   public enum DialogMode
   {
     /// <summary>
+    /// Managing items
+    /// </summary>
+    Managing,
+    /// <summary>
     /// Create new item
     /// </summary>
     Create,

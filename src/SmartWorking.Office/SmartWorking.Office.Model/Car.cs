@@ -30,6 +30,18 @@ namespace SmartWorking.Office.Entities
             get;
             set;
         }
+    
+        public string Name
+        {
+            get;
+            set;
+        }
+    
+        public string InternalName
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
