@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
@@ -203,9 +204,17 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void LoadContractors()
     {
+      Contractor selectedItem = SelectableContractor.SelectedItem;
       using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
       {
         SelectableContractor.LoadItems(contractorService.GetContractors(string.Empty));
+      }
+      if (selectedItem != null)
+      {
+        Contractor selectionFromItems =
+          SelectableContractor.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+        if (selectionFromItems != null)
+          SelectableContractor.SelectedItem = selectionFromItems;
       }
     }
 

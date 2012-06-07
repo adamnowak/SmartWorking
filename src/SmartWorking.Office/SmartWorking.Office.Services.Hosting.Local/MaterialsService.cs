@@ -38,10 +38,28 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="material">The material which will be updated.</param>
     public void UpdateMaterial(Material material)
     {
-      using (var ctx = new SmartWorkingEntities())
+      using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
-        ctx.Materials.ApplyCurrentValues(material);
-        ctx.SaveChanges();
+        Material existingObject = context.Materials.Where(x => x.Id == material.Id).FirstOrDefault();
+
+        //no record of this item in the DB, item being passed in has a PK
+        if (existingObject == null && material.Id > 0)
+        {
+          //log
+          return;
+        }
+        //Item has no PK value, must be new
+        else if (material.Id <= 0)
+        {
+          context.Materials.AddObject(material);
+        }
+        //Item was retrieved, and the item passed has a valid ID, do an update
+        else
+        {
+          context.Materials.ApplyCurrentValues(material);
+        }
+
+        context.SaveChanges();
       }
     }
 

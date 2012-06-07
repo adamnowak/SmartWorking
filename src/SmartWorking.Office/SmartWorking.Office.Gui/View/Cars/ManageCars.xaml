@@ -15,18 +15,18 @@
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 				<StackPanel>
-					<Shared:DescriptionButton Image="{StaticResource NewImageSource}" Command="{Binding CreateContractorCommand}">Dodaj</Shared:DescriptionButton>
-					<Shared:DescriptionButton Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-					<Shared:DescriptionButton Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
+                    <Shared:DescriptionButton Command="{Binding CreateCarCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
+                    <Shared:DescriptionButton Command="{Binding EditCarCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+                    <Shared:DescriptionButton Command="{Binding DeleteCarCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
 				</StackPanel>
-				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableContractor}" ItemsSource="{Binding Items}">
+				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableCar}" ItemsSource="{Binding Items}">
 					<DataGrid.Columns>
 						<!--Debug only-->
 						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
 						<!--End Debug only-->
-						<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
-						<DataGridTextColumn Header="Skrót" Binding="{Binding InternalName}" />
-
+                        <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Skrót" Binding="{Binding InternalName}" />
+                        <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
 					</DataGrid.Columns>
 				</DataGrid>
 			</Grid>

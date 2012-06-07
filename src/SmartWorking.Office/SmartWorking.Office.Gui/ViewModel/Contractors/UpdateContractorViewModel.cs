@@ -10,10 +10,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
   /// </summary>
   public class UpdateContractorViewModel : ModalDialogViewModelBase
   {
-    private ICommand _createBuildingCommand;
-    private ICommand _deleteBuildingCommand;
-    private ICommand _updateBuildingCommand;
-
     /// <summary>
     /// Initializes a new instance of the <see cref="UpdateContractorViewModel"/> class.
     /// </summary>

@@ -147,7 +147,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateRecipeViewModel(modalDialogService, serviceFactory);
       viewModel.Recipe = selectedRecipe;
-      viewModel.ViewMode = DialogMode.Create;
+      viewModel.ViewMode = DialogMode.Update;
       ModalDialogHelper<UpdateRecipe>.ShowDialog(viewModel);
       return viewModel.Recipe;
     }
@@ -161,12 +161,24 @@ namespace SmartWorking.Office.Gui.View
 
     public Car CreateCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
-      throw new NotImplementedException();
+      var viewModel = new UpdateCarViewModel(modalDialogService, serviceFactory);
+      viewModel.Car = new Car();
+      viewModel.DialogMode = DialogMode.Create;
+      ModalDialogHelper<UpdateCar>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.Car;
+      }
+      return null;
     }
 
     public Car EditCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Car selectedCar)
     {
-      throw new NotImplementedException();
+      var viewModel = new UpdateCarViewModel(modalDialogService, serviceFactory);
+      viewModel.Car = selectedCar;
+      viewModel.DialogMode = DialogMode.Update;
+      ModalDialogHelper<UpdateCar>.ShowDialog(viewModel);
+      return viewModel.Car;
     }
 
     public void ManageCars(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -178,13 +190,25 @@ namespace SmartWorking.Office.Gui.View
 
     public Driver CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
-      throw new NotImplementedException();
+      var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
+      viewModel.Driver = new Driver();
+      viewModel.ViewMode = DialogMode.Create;
+      ModalDialogHelper<UpdateDriver>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.Driver;
+      }
+      return null;
     }
 
     public Driver EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
                              Driver selectedDriver)
     {
-      throw new NotImplementedException();
+       var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
+       viewModel.Driver = selectedDriver;
+      viewModel.ViewMode = DialogMode.Update;
+      ModalDialogHelper<UpdateDriver>.ShowDialog(viewModel);
+      return viewModel.Driver;
     }
 
     public void ManageDrivers(IModalDialogService modalDialogService, IServiceFactory serviceFactory)

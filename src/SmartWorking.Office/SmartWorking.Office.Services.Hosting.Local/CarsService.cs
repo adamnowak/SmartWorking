@@ -16,7 +16,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </summary>
     public void Dispose()
     {
-      throw new NotImplementedException();
+
     }
 
     /// <summary>
@@ -28,7 +28,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </returns>
     public List<Car> GetCars(string carsFilter)
     {
-      throw new NotImplementedException();
+      using (var ctx = new SmartWorkingEntities())
+      {
+        List<Car> result =
+          (string.IsNullOrWhiteSpace(carsFilter))
+            ? ctx.Cars.ToList()
+            : ctx.Cars.Where(x => x.RegistrationNumber.StartsWith(carsFilter)).ToList();
+        return result;
+      }
     }
 
     /// <summary>
@@ -37,7 +44,29 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="car">The car which will be updated.</param>
     public void UpdateCar(Car car)
     {
-      throw new NotImplementedException();
+      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      {
+        Car existingObject = context.Cars.Where(x => x.Id == car.Id).FirstOrDefault();
+
+        //no record of this item in the DB, item being passed in has a PK
+        if (existingObject == null && car.Id > 0)
+        {
+          //log
+          return;
+        }
+        //Item has no PK value, must be new
+        else if (car.Id <= 0)
+        {
+          context.Cars.AddObject(car);
+        }
+        //Item was retrieved, and the item passed has a valid ID, do an update
+        else
+        {
+          context.Cars.ApplyCurrentValues(car);
+        }
+
+        context.SaveChanges();
+      }
     }
 
     /// <summary>

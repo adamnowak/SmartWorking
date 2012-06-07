@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
@@ -69,7 +70,45 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
       }
     }
 
+   
+
     #endregion
+
+    #region Driver
+    /// <summary>
+    /// The <see cref="Driver" /> property's name.
+    /// </summary>
+    public const string DriverPropertyName = "Driver";
+
+    private Driver _driver;
+
+    /// <summary>
+    /// Gets the Driver property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public Driver Driver
+    {
+      get
+      {
+        return _driver;
+      }
+
+      set
+      {
+        if (_driver == value)
+        {
+          return;
+        }
+        _driver = value;
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged(DriverPropertyName);
+      }
+    }
+    #endregion 
+    
 
     private bool CanUpdateMaterial()
     {

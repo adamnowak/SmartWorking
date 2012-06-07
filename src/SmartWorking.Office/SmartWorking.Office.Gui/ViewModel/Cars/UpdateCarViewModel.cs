@@ -6,85 +6,117 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Cars
 {
+  /// <summary>
+  /// View model for <see cref="UpdateCar"/> dialog. 
+  /// </summary>
   public class UpdateCarViewModel : ModalDialogViewModelBase
   {
-    private ICommand _createOrUpdateMaterialCommand;
+    private ICommand _createOrUpdateCarCommand;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateCarViewModel"/> class.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
     public UpdateCarViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
     }
 
-    public DialogMode ViewMode { get; set; }
+    /// <summary>
+    /// Gets or sets the dialog mode.
+    /// </summary>
+    /// <value>
+    /// The dialog mode.
+    /// </value>
+    public DialogMode DialogMode { get; set; }
 
-    public ICommand CreateOrUpdateMaterialCommand
+    /// <summary>
+    /// Gets the create or update car command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog for creating or editing Car.
+    /// </remarks>
+    public ICommand CreateOrUpdateCarCommand
     {
       get
       {
-        if (_createOrUpdateMaterialCommand == null)
-          _createOrUpdateMaterialCommand = new RelayCommand(UpdateMaterial, CanUpdateMaterial);
-        return _createOrUpdateMaterialCommand;
+        if (_createOrUpdateCarCommand == null)
+          _createOrUpdateCarCommand = new RelayCommand(UpdateCar, CanUpdateCar);
+        return _createOrUpdateCarCommand;
       }
     }
 
+    /// <summary>
+    /// Gets the title of modal dialog.
+    /// </summary>
     public override string Title
     {
       get
       {
-        return (ViewMode == DialogMode.Create)
-                 ? "Utwórz nowy materiał."
-                 : "Edytuj materiał.";
+        return (DialogMode == DialogMode.Create)
+                 ? "Utwórz nowy samochód."
+                 : "Edytuj samochód.";
       }
     }
 
-    #region Material property
+    #region Car
 
     /// <summary>
-    /// The <see cref="Contractor" /> property's name.
+    /// The <see cref="Car" /> property's name.
     /// </summary>
-    public const string MaterialPropertyName = "Material";
+    public const string CarPropertyName = "Car";
 
-    private Material _material;
+    private Car _car;
 
     /// <summary>
-    /// Gets the Contractor property.
-    /// TODO Update documentation:
+    /// Gets the Car property.
+    /// Car which will be created or updated.
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Material Material
+    public Car Car
     {
-      get { return _material; }
+      get { return _car; }
 
       set
       {
-        if (_material == value)
+        if (_car == value)
         {
           return;
         }
-        _material = value;
+        _car = value;
 
         // Update bindings, no broadcast
-        RaisePropertyChanged(MaterialPropertyName);
+        RaisePropertyChanged(CarPropertyName);
       }
     }
 
     #endregion
 
-    private bool CanUpdateMaterial()
+    /// <summary>
+    /// Determines whether <see cref="CreateOrUpdateCarCommand"/> can be execute.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if <see cref="CreateOrUpdateCarCommand"/> can be execute; otherwise, <c>false</c>.
+    /// </returns>
+    private bool CanUpdateCar()
     {
       //TODO: validate
       return true;
     }
 
 
-    private void UpdateMaterial()
+    /// <summary>
+    /// Creates or updates the car in the system.
+    /// </summary>
+    private void UpdateCar()
     {
-      if (ViewMode == DialogMode.Create || ViewMode == DialogMode.Update)
+      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
       {
-        using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
+        using (ICarsService service = ServiceFactory.GetCarsService())
         {
-          materialsService.UpdateMaterial(Material);
+          service.UpdateCar(Car);
         }
       }
       CloseModalDialog();

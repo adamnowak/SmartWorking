@@ -1,69 +1,120 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Linq;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
+using SmartWorking.Office.Gui.View.Cars;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Cars
 {
+  /// <summary>
+  ///  View model for <see cref="ManageCars"/> dialog. 
+  /// </summary>
   public class ManageCarsViewModel : ModalDialogViewModelBase
   {
-    private ICommand _createMaterialCommand;
-    private ICommand _selectMaterialCommand;
+    private ICommand _createCarCommand;
+    private ICommand _editCarCommand;
+    private ICommand _deleteCarCommand;
+
 
     public ManageCarsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableMaterial = new SelectableViewModelBase<Material>();
-      LoadMaterials();
+      SelectableCar = new SelectableViewModelBase<Car>();
+      LoadCars();
     }
 
-    public SelectableViewModelBase<Material> SelectableMaterial { get; private set; }
+    public SelectableViewModelBase<Car> SelectableCar { get; private set; }
 
     public DialogMode DialogMode { get; set; }
 
-    public ICommand SelectMaterialCommand
+    public ICommand CreateCarCommand
     {
       get
       {
-        if (_selectMaterialCommand == null)
-          _selectMaterialCommand = new RelayCommand(SelectMaterial);
-        return _selectMaterialCommand;
+        if (_createCarCommand == null)
+          _createCarCommand = new RelayCommand(CreateCar);
+        return _createCarCommand;
       }
     }
 
-    public ICommand CreateMaterialCommand
+    public ICommand EditCarCommand
     {
       get
       {
-        if (_createMaterialCommand == null)
-          _createMaterialCommand = new RelayCommand(CreateMaterial);
-        return _createMaterialCommand;
+        if (_editCarCommand == null)
+          _editCarCommand = new RelayCommand(EditCar, CanEditCar);
+        return _editCarCommand;
       }
+    }
+
+    private bool CanEditCar()
+    {
+      return SelectableCar != null && SelectableCar.SelectedItem != null;
+    }
+
+    private void EditCar()
+    {
+      ModalDialogService.EditCar(ModalDialogService, ServiceFactory, SelectableCar.SelectedItem);
+      LoadCars();
+    }
+
+    public ICommand DeleteCarCommand
+    {
+      get
+      {
+        if (_deleteCarCommand == null)
+          _deleteCarCommand = new RelayCommand(DeleteCar, CanDeleteCar);
+        return _deleteCarCommand;
+      }
+    }
+
+    private bool CanDeleteCar()
+    {
+      if (SelectableCar != null && SelectableCar.SelectedItem != null)
+      {
+        //TODO: if car is not used in any DeliveryNots then true
+      }
+      return false;
+    }
+
+    private void DeleteCar()
+    {
+      //TODO:
+      LoadCars();
     }
 
 
     public override string Title
     {
-      get { return "Wybierz materiał."; }
+      get { return "Wybierz samochód."; }
     }
 
-    private void CreateMaterial()
+    private void CreateCar()
     {
-      ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
+      ModalDialogService.CreateCar(ModalDialogService, ServiceFactory);
+      LoadCars();
     }
 
-    private void LoadMaterials()
+    private void LoadCars()
     {
-      using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
+      Car selectedItem = SelectableCar.SelectedItem;
+      using (ICarsService service = ServiceFactory.GetCarsService())
       {
-        SelectableMaterial.LoadItems(materialsService.GetMaterials(string.Empty));
+        SelectableCar.LoadItems(service.GetCars(string.Empty));
       }
+      if (selectedItem != null)
+      {
+        Car selectionFromItems =
+          SelectableCar.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+        if (selectionFromItems != null)
+          SelectableCar.SelectedItem = selectionFromItems;
+      }
+      
     }
 
-    private void SelectMaterial()
-    {
-      CloseModalDialog();
-    }
+    
   }
 }

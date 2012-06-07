@@ -44,7 +44,7 @@
 
 		<!--Buttons-->
 		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-			<Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Zapisz" Comment="Zatwierdz zmiany" Command="{Binding CreateOrUpdateContractorCommand}" />
+            <Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Zapisz" Comment="Zatwierdz zmiany" Command="{Binding CreateOrUpdateCarCommand}" />
 			<Shared:DescriptionButton Image="{StaticResource CancelImageSource}" Content="Anuluj" Comment="Zamknij okno" Command="{Binding CancelCommand}" />
 		</StackPanel>
 	</Grid>
