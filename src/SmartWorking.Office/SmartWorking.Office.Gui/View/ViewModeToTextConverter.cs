@@ -11,15 +11,17 @@ namespace SmartWorking.Office.Gui.View
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-      if (value is ViewMode)
+      if (value is DialogMode)
       {
-        switch ((ViewMode) value)
+        switch ((DialogMode) value)
         {
-          case ViewMode.Create:
+          case DialogMode.Create:
             return "Utwórz";
-          case ViewMode.Update:
+          case DialogMode.Update:
             return "Zapisz";
-          case ViewMode.Selecte:
+          case DialogMode.Selecting:
+            return "Wybierz";
+          case DialogMode.SelectingSubItem:
             return "Wybierz";
         }
       }

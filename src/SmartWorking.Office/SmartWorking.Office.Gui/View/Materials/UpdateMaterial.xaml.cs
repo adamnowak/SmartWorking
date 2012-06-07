@@ -1,9 +1,9 @@
 ﻿using System.Windows.Controls;
 
-namespace SmartWorking.Office.Gui.View.Materials
+namespace SmartWorking.Office.Gui.View.DeliveryNotes
 {
   /// <summary>
-  /// Interaction logic for UpdateMaterial.xaml
+  /// Interaction logic for UpdateCar.xaml
   /// </summary>
   public partial class UpdateMaterial : UserControl
   {

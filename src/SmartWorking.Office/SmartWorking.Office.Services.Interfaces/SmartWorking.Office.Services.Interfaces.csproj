@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SmartWorking.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -41,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDeliveryNotesService.cs" />
+    <Compile Include="IDriversService.cs" />
+    <Compile Include="ICarsService.cs" />
     <Compile Include="IRecipesService.cs" />
     <Compile Include="IServiceFactory.cs" />
     <Compile Include="IContractorsService.cs" />
@@ -52,6 +61,9 @@
       <Project>{461DE786-E812-450C-8575-9133283EE858}</Project>
       <Name>SmartWorking.Office.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SmartWorking.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

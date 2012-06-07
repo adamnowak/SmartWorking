@@ -5,17 +5,60 @@ using SmartWorking.Office.Entities;
 
 namespace SmartWorking.Office.Services.Interfaces
 {
-  // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+  /// <summary>
+  /// Service provides functionality to operate on Recipe.
+  /// </summary>
   [ServiceContract]
   public interface IRecipesService : IDisposable
   {
+    /// <summary>
+    /// Gets the recipes filtered be <paramref name="recipesFilter"/>.
+    /// </summary>
+    /// <param name="recipesFilter">The recipes filter.</param>
+    /// <returns>List of Recipe filtered by <paramref name="recipesFilter"/>. Recipe contains list of Material contains to this Recipe.</returns>
     [OperationContract]
-    List<Recipe> GetRecipes();
+    List<Recipe> GetRecipes(string recipesFilter);
 
+    /// <summary>
+    /// Updates the recipe.
+    /// </summary>
+    /// <param name="recipe">The recipe which will be updated.</param>
     [OperationContract]
-    void UpdateRecipe(Recipe recipeToUpdate);
+    void UpdateRecipe(Recipe recipe);
 
+    /// <summary>
+    /// Deletes the recipe.
+    /// </summary>
+    /// <param name="recipe">The recipe which will be deleted.</param>
+    /// <remarks>Only recipe which is not used can be deleted.</remarks>
+    [OperationContract]
+    void DeleteRecipe(Recipe recipe);
 
-    // TODO: Add your service operations here
+    /// <summary>
+    /// Adds the material to recipe.
+    /// </summary>
+    /// <param name="recipe">The recipe to which material will be added.</param>
+    /// <param name="material">The material which will be added.</param>
+    /// <param name="amountOfMaterial">The amount of material which is included in recipe.</param>
+    [OperationContract]
+    void AddMaterialToRecipe(Recipe recipe, Material material, float amountOfMaterial);
+
+    /// <summary>
+    /// Updates the amount material in recipe.
+    /// </summary>
+    /// <param name="recipe">The recipe.</param>
+    /// <param name="material">The material.</param>
+    /// <param name="amountOfMaterial">The amount of material which will be updated.</param>
+    /// <remarks>Only amount of material will be updated.</remarks>
+    [OperationContract]
+    void UpdateMaterialInRecipe(Recipe recipe, Material material, float amountOfMaterial);
+
+    /// <summary>
+    /// Deletes the material from recipe.
+    /// </summary>
+    /// <param name="recipe">The recipe from which material will be deleted..</param>
+    /// <param name="material">The material which will be deleted from recipe.</param>
+    [OperationContract]
+    void DeleteMaterialFromRecipe(Recipe recipe, Material material);
   }
 }

@@ -30,6 +30,43 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugIISLocal|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugIISLocal\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;IIS_USED</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugIISSomee|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugIISSomee\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;IIS_USED</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocalSomee|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugLocalSomee\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SmartWorking.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,17 +80,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SmartWorking.Office.Model\Model.Context.cs">
-      <Link>Model.Context.cs</Link>
+    <Compile Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModel.Context.cs">
+      <Link>SmartWorkingOfficeModel.Context.cs</Link>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="..\SmartWorking.Office.Model\Model.Context.Extensions.cs">
-      <Link>Model.Context.Extensions.cs</Link>
-      <DependentUpon>Model.Context.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="ContractorsService.cs" />
+    <Compile Include="CarsService.cs" />
+    <Compile Include="DeliveryNotesService.cs" />
+    <Compile Include="DriversService.cs" />
     <Compile Include="RecipesService.cs" />
     <Compile Include="MaterialsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,13 +109,13 @@
       <Link>DBbModel.edmx</Link>
       <CustomToolNamespace>SmartWorking.Office.Entities</CustomToolNamespace>
     </EntityDeploy>
-    <None Include="..\SmartWorking.Office.Model\Model.Context.tt">
-      <Link>Model.Context.tt</Link>
+    <None Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModel.Context.tt">
+      <Link>SmartWorkingOfficeModel.Context.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-      <CustomToolNamespace>SmartWorking.Office.Entities</CustomToolNamespace>
+      <LastGenOutput>SmartWorkingOfficeModel.Context.cs</LastGenOutput>
     </None>
     <None Include="app.config" />
+    <None Include="SmartWorking.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -27,8 +27,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     public const string SelecteItemPropertyName = "SelectedItem";
 
     private ObservableCollection<T> _items;
-    private ICommand _nextItemCommand;
-    private ICommand _previouseItemCommand;
+
     private T _selectedItem;
 
     /// <summary>
@@ -86,7 +85,7 @@ namespace SmartWorking.Office.Gui.ViewModel
         T oldValue = _selectedItem;
         _selectedItem = value;
 
-        OnSelectedItemChanged(this, new SelectedItemChangedEventArg<T>(oldValue, _selectedItem));
+        OnSelectedItemChanged(this, new SelectedItemChangedEventArgs<T>(oldValue, _selectedItem));
 
         // Update bindings and broadcast change using GalaSoft.MvvmLight.Messenging
         RaisePropertyChanged(SelecteItemPropertyName, oldValue, value, true);
@@ -94,38 +93,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     }
 
     /// <summary>
-    /// Gets the previous item command.
+    /// Ensures the selected item.
     /// </summary>
-    /// <remarks>
-    /// Sets <see cref="SelectedItem"/> to previous element in <see cref="Items"/> list.
-    /// </remarks>
-    public ICommand PreviousItemCommand
-    {
-      get
-      {
-        if (_previouseItemCommand == null)
-          _previouseItemCommand = new RelayCommand(SetPreviouseItem,
-                                                   () => !Equals(SelectedItem, Items.FirstOrDefault()));
-        return _previouseItemCommand;
-      }
-    }
-
-    /// <summary>
-    /// Gets the next item command.
-    /// </summary>
-    /// <remarks>
-    /// Sets <see cref="SelectedItem"/> to next element in <see cref="Items"/> list.
-    /// </remarks>
-    public ICommand NextItemCommand
-    {
-      get
-      {
-        if (_nextItemCommand == null)
-          _nextItemCommand = new RelayCommand(SetNextItem, () => !Equals(SelectedItem, Items.LastOrDefault()));
-        return _nextItemCommand;
-      }
-    }
-
     private void EnsureSelectedItem()
     {
       if (_items != null)
@@ -142,6 +111,11 @@ namespace SmartWorking.Office.Gui.ViewModel
         SelectedItem = default(T);
     }
 
+    /// <summary>
+    /// Handles the CollectionChanged event of the _items control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.Collections.Specialized.NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
     private void _items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
       EnsureSelectedItem();
@@ -150,14 +124,14 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <summary>
     /// Occurs when <see cref="SelectedItem"/> was changed.
     /// </summary>
-    public event EventHandler<SelectedItemChangedEventArg<T>> SelectedItemChanged;
+    public event EventHandler<SelectedItemChangedEventArgs<T>> SelectedItemChanged;
 
     /// <summary>
-    /// Called when [selected item changed].
+    /// Called when selected item changed.
     /// </summary>
     /// <param name="sender">The sender.</param>
     /// <param name="e">The e.</param>
-    protected virtual void OnSelectedItemChanged(object sender, SelectedItemChangedEventArg<T> e)
+    protected virtual void OnSelectedItemChanged(object sender, SelectedItemChangedEventArgs<T> e)
     {
       if (SelectedItemChanged != null)
       {
@@ -166,39 +140,6 @@ namespace SmartWorking.Office.Gui.ViewModel
     }
 
 
-    private void SetPreviouseItem()
-    {
-      try
-      {
-        int selectedPos = Items.IndexOf(SelectedItem);
-        if (selectedPos > 0 && selectedPos < Items.Count)
-        {
-          SelectedItem = Items.ElementAt(selectedPos - 1);
-        }
-      }
-      catch (Exception exception)
-      {
-        Messenger.Default.Send(
-          new DialogMessage(exception.Message, null), "exceptionMessage");
-      }
-    }
-
-    private void SetNextItem()
-    {
-      try
-      {
-        int selectedPos = Items.IndexOf(SelectedItem);
-        if (selectedPos >= 0 && selectedPos < Items.Count - 1)
-        {
-          SelectedItem = Items.ElementAt(selectedPos + 1);
-        }
-      }
-      catch (Exception exception)
-      {
-        Messenger.Default.Send(
-          new DialogMessage(exception.Message, null), "exceptionMessage");
-      }
-    }
 
     /// <summary>
     /// Clears the list of items and adds those provided as a parameter.

@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SmartWorking.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,8 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Model.Context.tt" />
-    <None Include="Model.tt" />
+    <None Include="SmartWorking.pfx" />
+    <None Include="SmartWorkingOfficeModel.Context.tt" />
+    <None Include="SmartWorkingOfficeModel.tt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

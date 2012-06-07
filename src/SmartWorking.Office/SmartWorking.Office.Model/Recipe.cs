@@ -8,327 +8,149 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Runtime.Serialization;
 
 namespace SmartWorking.Office.Entities
 {
-  [DataContract(IsReference = true)]
-  [KnownType(typeof (DeliveryNote))]
-  [KnownType(typeof (RecipeSpecification))]
-  public class Recipe : IObjectWithChangeTracker, INotifyPropertyChanged
-  {
-    #region Primitive Properties
-
-    private int _id;
-    private string _internalName;
-
-    private string _name;
-
-    [DataMember]
-    public int Id
+    public partial class Recipe
     {
-      get { return _id; }
-      set
-      {
-        if (_id != value)
+        #region Primitive Properties
+    
+        public virtual int Id
         {
-          if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
-          {
-            throw new InvalidOperationException(
-              "The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
-          }
-          _id = value;
-          OnPropertyChanged("Id");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public string Name
-    {
-      get { return _name; }
-      set
-      {
-        if (_name != value)
+    
+        public virtual string Name
         {
-          _name = value;
-          OnPropertyChanged("Name");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public string InternalName
-    {
-      get { return _internalName; }
-      set
-      {
-        if (_internalName != value)
+    
+        public virtual string InternalName
         {
-          _internalName = value;
-          OnPropertyChanged("InternalName");
+            get;
+            set;
         }
-      }
-    }
 
-    #endregion
-
-    #region Navigation Properties
-
-    private TrackableCollection<DeliveryNote> _deliveryNotes;
-
-    private TrackableCollection<RecipeSpecification> _recipeSpecifications;
-
-    [DataMember]
-    public TrackableCollection<DeliveryNote> DeliveryNotes
-    {
-      get
-      {
-        if (_deliveryNotes == null)
+        #endregion
+        #region Navigation Properties
+    
+        public virtual ICollection<DeliveryNote> DeliveryNotes
         {
-          _deliveryNotes = new TrackableCollection<DeliveryNote>();
-          _deliveryNotes.CollectionChanged += FixupDeliveryNotes;
-        }
-        return _deliveryNotes;
-      }
-      set
-      {
-        if (!ReferenceEquals(_deliveryNotes, value))
-        {
-          if (ChangeTracker.ChangeTrackingEnabled)
-          {
-            throw new InvalidOperationException(
-              "Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-          }
-          if (_deliveryNotes != null)
-          {
-            _deliveryNotes.CollectionChanged -= FixupDeliveryNotes;
-          }
-          _deliveryNotes = value;
-          if (_deliveryNotes != null)
-          {
-            _deliveryNotes.CollectionChanged += FixupDeliveryNotes;
-          }
-          OnNavigationPropertyChanged("DeliveryNotes");
-        }
-      }
-    }
-
-    [DataMember]
-    public TrackableCollection<RecipeSpecification> RecipeSpecifications
-    {
-      get
-      {
-        if (_recipeSpecifications == null)
-        {
-          _recipeSpecifications = new TrackableCollection<RecipeSpecification>();
-          _recipeSpecifications.CollectionChanged += FixupRecipeSpecifications;
-        }
-        return _recipeSpecifications;
-      }
-      set
-      {
-        if (!ReferenceEquals(_recipeSpecifications, value))
-        {
-          if (ChangeTracker.ChangeTrackingEnabled)
-          {
-            throw new InvalidOperationException(
-              "Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-          }
-          if (_recipeSpecifications != null)
-          {
-            _recipeSpecifications.CollectionChanged -= FixupRecipeSpecifications;
-          }
-          _recipeSpecifications = value;
-          if (_recipeSpecifications != null)
-          {
-            _recipeSpecifications.CollectionChanged += FixupRecipeSpecifications;
-          }
-          OnNavigationPropertyChanged("RecipeSpecifications");
-        }
-      }
-    }
-
-    #endregion
-
-    #region ChangeTracking
-
-    private ObjectChangeTracker _changeTracker;
-    protected bool IsDeserializing { get; private set; }
-
-    #region INotifyPropertyChanged Members
-
-    event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
-    {
-      add { _propertyChanged += value; }
-      remove { _propertyChanged -= value; }
-    }
-
-    #endregion
-
-    #region IObjectWithChangeTracker Members
-
-    [DataMember]
-    public ObjectChangeTracker ChangeTracker
-    {
-      get
-      {
-        if (_changeTracker == null)
-        {
-          _changeTracker = new ObjectChangeTracker();
-          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-        }
-        return _changeTracker;
-      }
-      set
-      {
-        if (_changeTracker != null)
-        {
-          _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
-        }
-        _changeTracker = value;
-        if (_changeTracker != null)
-        {
-          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-        }
-      }
-    }
-
-    #endregion
-
-    protected virtual void OnPropertyChanged(String propertyName)
-    {
-      if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
-      {
-        ChangeTracker.State = ObjectState.Modified;
-      }
-      if (_propertyChanged != null)
-      {
-        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    protected virtual void OnNavigationPropertyChanged(String propertyName)
-    {
-      if (_propertyChanged != null)
-      {
-        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    private event PropertyChangedEventHandler _propertyChanged;
-
-    private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
-    {
-      if (e.NewState == ObjectState.Deleted)
-      {
-        ClearNavigationProperties();
-      }
-    }
-
-    [OnDeserializing]
-    public void OnDeserializingMethod(StreamingContext context)
-    {
-      IsDeserializing = true;
-    }
-
-    [OnDeserialized]
-    public void OnDeserializedMethod(StreamingContext context)
-    {
-      IsDeserializing = false;
-      ChangeTracker.ChangeTrackingEnabled = true;
-    }
-
-    protected virtual void ClearNavigationProperties()
-    {
-      DeliveryNotes.Clear();
-      RecipeSpecifications.Clear();
-    }
-
-    #endregion
-
-    #region Association Fixup
-
-    private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
-    {
-      if (IsDeserializing)
-      {
-        return;
-      }
-
-      if (e.NewItems != null)
-      {
-        foreach (DeliveryNote item in e.NewItems)
-        {
-          item.Recipe = this;
-          if (ChangeTracker.ChangeTrackingEnabled)
-          {
-            if (!item.ChangeTracker.ChangeTrackingEnabled)
+            get
             {
-              item.StartTracking();
+                if (_deliveryNotes == null)
+                {
+                    var newCollection = new FixupCollection<DeliveryNote>();
+                    newCollection.CollectionChanged += FixupDeliveryNotes;
+                    _deliveryNotes = newCollection;
+                }
+                return _deliveryNotes;
             }
-            ChangeTracker.RecordAdditionToCollectionProperties("DeliveryNotes", item);
-          }
-        }
-      }
-
-      if (e.OldItems != null)
-      {
-        foreach (DeliveryNote item in e.OldItems)
-        {
-          if (ReferenceEquals(item.Recipe, this))
-          {
-            item.Recipe = null;
-          }
-          if (ChangeTracker.ChangeTrackingEnabled)
-          {
-            ChangeTracker.RecordRemovalFromCollectionProperties("DeliveryNotes", item);
-          }
-        }
-      }
-    }
-
-    private void FixupRecipeSpecifications(object sender, NotifyCollectionChangedEventArgs e)
-    {
-      if (IsDeserializing)
-      {
-        return;
-      }
-
-      if (e.NewItems != null)
-      {
-        foreach (RecipeSpecification item in e.NewItems)
-        {
-          item.Recipe = this;
-          if (ChangeTracker.ChangeTrackingEnabled)
-          {
-            if (!item.ChangeTracker.ChangeTrackingEnabled)
+            set
             {
-              item.StartTracking();
+                if (!ReferenceEquals(_deliveryNotes, value))
+                {
+                    var previousValue = _deliveryNotes as FixupCollection<DeliveryNote>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupDeliveryNotes;
+                    }
+                    _deliveryNotes = value;
+                    var newValue = value as FixupCollection<DeliveryNote>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupDeliveryNotes;
+                    }
+                }
             }
-            ChangeTracker.RecordAdditionToCollectionProperties("RecipeSpecifications", item);
-          }
         }
-      }
-
-      if (e.OldItems != null)
-      {
-        foreach (RecipeSpecification item in e.OldItems)
+        private ICollection<DeliveryNote> _deliveryNotes;
+    
+        public virtual ICollection<RecipeSpecification> RecipeSpecifications
         {
-          if (ReferenceEquals(item.Recipe, this))
-          {
-            item.Recipe = null;
-          }
-          if (ChangeTracker.ChangeTrackingEnabled)
-          {
-            ChangeTracker.RecordRemovalFromCollectionProperties("RecipeSpecifications", item);
-          }
+            get
+            {
+                if (_recipeSpecifications == null)
+                {
+                    var newCollection = new FixupCollection<RecipeSpecification>();
+                    newCollection.CollectionChanged += FixupRecipeSpecifications;
+                    _recipeSpecifications = newCollection;
+                }
+                return _recipeSpecifications;
+            }
+            set
+            {
+                if (!ReferenceEquals(_recipeSpecifications, value))
+                {
+                    var previousValue = _recipeSpecifications as FixupCollection<RecipeSpecification>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupRecipeSpecifications;
+                    }
+                    _recipeSpecifications = value;
+                    var newValue = value as FixupCollection<RecipeSpecification>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupRecipeSpecifications;
+                    }
+                }
+            }
         }
-      }
-    }
+        private ICollection<RecipeSpecification> _recipeSpecifications;
 
-    #endregion
-  }
+        #endregion
+        #region Association Fixup
+    
+        private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (DeliveryNote item in e.NewItems)
+                {
+                    item.Recipe = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (DeliveryNote item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Recipe, this))
+                    {
+                        item.Recipe = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupRecipeSpecifications(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (RecipeSpecification item in e.NewItems)
+                {
+                    item.Recipe = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (RecipeSpecification item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Recipe, this))
+                    {
+                        item.Recipe = null;
+                    }
+                }
+            }
+        }
+
+        #endregion
+    }
 }

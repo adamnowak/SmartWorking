@@ -1,10 +1,26 @@
 ﻿namespace SmartWorking.Office.Services.Interfaces
 {
-  // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+  /// <summary>
+  /// Factory for services.
+  /// </summary>
   public interface IServiceFactory
   {
+    /// <summary>
+    /// Gets the contractors service.
+    /// </summary>
+    /// <returns>Service provides operations on contractors.</returns>
     IContractorsService GetContractorsService();
+
+    /// <summary>
+    /// Gets the materials service.
+    /// </summary>
+    /// <returns>Service provides operations on materials.</returns>
     IMaterialsService GetMaterialsService();
+
+    /// <summary>
+    /// Gets the recipes service.
+    /// </summary>
+    /// <returns>Service provides operations on recipes.</returns>
     IRecipesService GetRecipesService();
   }
 }

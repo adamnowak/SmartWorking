@@ -1,8 +1,19 @@
-﻿<Window x:Class="SmartWorking.Office.Gui.View.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:SmartWorking.Office.Gui.ViewModel" Title="Smart working (office)" Height="350" Width="525">
+﻿<Window x:Class="SmartWorking.Office.Gui.View.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:SmartWorking.Office.Gui.ViewModel" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" Title="Smart working (office)" >
 	<Window.DataContext>
 		<local:MainWindowViewModel />
 	</Window.DataContext>
-	<Grid>
+    <Grid>
+        <StackPanel Style="{StaticResource mainPanel}">
+            <Shared:DescriptionButton Image="{DynamicResource DeliveryNoteImageSource}" Comment="Tworzymy nową lub anulujemy już istniejącą WZ'tkę">Zarządzanie WZ'tkami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Command="{Binding ManageContractorsCommand}" Image="{DynamicResource ContractorImageSource}" Comment="Dopisz lub zmodyfikuj dane o kontrahencie">Zarządzanie kontrahentami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Image="{DynamicResource MaterialImageSource}" Comment="Utwórz lub edytuj dane o materiałach">Zarządzanie materiałami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Image="{DynamicResource RecipeImageSource}" Comment="Utwórz lub zmodyfikuj receptę">Zarządzanie receptami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Image="{DynamicResource DriverImageSource}" Comment="Zarządzaj kierowcami">Zarządzanie kierowcami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Image="{DynamicResource CarImageSource}" Comment="Zarządzaj swoimi samochodami">Zarządzanie samochodami</Shared:DescriptionButton>
+            <Shared:DescriptionButton Image="{DynamicResource MaterialStockImageSource}" Comment="Wprowadz dane o dostawie towaru do magazynu">Zarządzanie magazynem</Shared:DescriptionButton>
+        </StackPanel>
+    </Grid>
+	<!--<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition />
 			<RowDefinition />
@@ -13,7 +24,7 @@
 			<ColumnDefinition />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
-		<!--Column 1-->
+		Column 1
 		<GroupBox Header="Kontrahent">
 			<StackPanel>
 				<Button Content="Nowy kontrahent" Command="{Binding CreateContractorCommand}" />
@@ -33,7 +44,7 @@
 			</StackPanel>
 		</GroupBox>
 
-		<!--Column 2-->
+		Column 2
 		<Button Grid.Row="1" Grid.Column="1" Content="Utwórz WZ'tkę" Command="{Binding CreateDeliveryNoteCommand}" />
 		<GroupBox Grid.Row="2" Grid.Column="1" Header="WZ'tka">
 			<StackPanel>
@@ -42,7 +53,7 @@
 			</StackPanel>
 		</GroupBox>
         
-		<!--Column 3-->
+		Column 3
 		<GroupBox Grid.Column="2" Header="Samochod">
 			<StackPanel>
 				<Button Content="Nowy samochód" Command="{Binding CreateCarCommand}" />
@@ -60,5 +71,5 @@
 				<Button Content="Dodaj do magazynu" Command="{Binding UpdateMaterialStock}" />
 			</StackPanel>
 		</GroupBox>
-	</Grid>
+	</Grid>-->
 </Window>

@@ -3,11 +3,11 @@
 namespace SmartWorking.Office.Gui.View.Recipes
 {
   /// <summary>
-  /// Interaction logic for SelectRecipe.xaml
+  /// Interaction logic for ManageRecipes.xaml
   /// </summary>
-  public partial class SelectRecipe : UserControl
+  public partial class ManageRecipes : UserControl
   {
-    public SelectRecipe()
+    public ManageRecipes()
     {
       InitializeComponent();
     }

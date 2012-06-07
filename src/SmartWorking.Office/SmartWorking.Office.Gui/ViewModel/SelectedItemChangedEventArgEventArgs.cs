@@ -5,15 +5,15 @@ namespace SmartWorking.Office.Gui.ViewModel
   /// <summary>
   /// Event argument used for <see cref="SelectableViewModelBase{T}.SelectedItemChanged"/> event.
   /// </summary>
-  /// <typeparam name="T"></typeparam>
-  public class SelectedItemChangedEventArg<T> : EventArgs
+  /// <typeparam name="T">Type of item which is passed in this instance.</typeparam>
+  public class SelectedItemChangedEventArgs<T> : EventArgs
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="SelectedItemChangedEventArg&lt;T&gt;"/> class.
+    /// Initializes a new instance of the <see cref="SelectedItemChangedEventArgs{T}"/> class.
     /// </summary>
     /// <param name="oldValue">The old value.</param>
     /// <param name="newValue">The new value.</param>
-    public SelectedItemChangedEventArg(T oldValue, T newValue)
+    public SelectedItemChangedEventArgs(T oldValue, T newValue)
     {
       OldValue = oldValue;
       NewValue = newValue;

@@ -8,562 +8,317 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Runtime.Serialization;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace SmartWorking.Office.Entities
 {
-  [DataContract(IsReference = true)]
-  [KnownType(typeof (Building))]
-  [KnownType(typeof (Car))]
-  [KnownType(typeof (Driver))]
-  [KnownType(typeof (Recipe))]
-  public class DeliveryNote : IObjectWithChangeTracker, INotifyPropertyChanged
-  {
-    #region Primitive Properties
-
-    private double? _amount;
-    private int? _building_Id;
-    private DateTime? _canceled;
-    private int? _car_Id;
-    private DateTime? _dateDrawing;
-    private DateTime? _dateOfArrival;
-    private string _drawer;
-    private int? _driver_Id;
-    private int _id;
-    private int? _recipe_Id;
-
-    [DataMember]
-    public int Id
+    public partial class DeliveryNote
     {
-      get { return _id; }
-      set
-      {
-        if (_id != value)
+        #region Primitive Properties
+    
+        public virtual int Id
         {
-          if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
-          {
-            throw new InvalidOperationException(
-              "The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
-          }
-          _id = value;
-          OnPropertyChanged("Id");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public int? Building_Id
-    {
-      get { return _building_Id; }
-      set
-      {
-        if (_building_Id != value)
+    
+        public virtual Nullable<int> Building_Id
         {
-          ChangeTracker.RecordOriginalValue("Building_Id", _building_Id);
-          if (!IsDeserializing)
-          {
-            if (Building != null && Building.Id != value)
+            get { return _building_Id; }
+            set
             {
-              Building = null;
+                try
+                {
+                    _settingFK = true;
+                    if (_building_Id != value)
+                    {
+                        if (Building != null && Building.Id != value)
+                        {
+                            Building = null;
+                        }
+                        _building_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
             }
-          }
-          _building_Id = value;
-          OnPropertyChanged("Building_Id");
         }
-      }
-    }
-
-    [DataMember]
-    public int? Recipe_Id
-    {
-      get { return _recipe_Id; }
-      set
-      {
-        if (_recipe_Id != value)
+        private Nullable<int> _building_Id;
+    
+        public virtual Nullable<int> Recipe_Id
         {
-          ChangeTracker.RecordOriginalValue("Recipe_Id", _recipe_Id);
-          if (!IsDeserializing)
-          {
-            if (Recipe != null && Recipe.Id != value)
+            get { return _recipe_Id; }
+            set
             {
-              Recipe = null;
+                try
+                {
+                    _settingFK = true;
+                    if (_recipe_Id != value)
+                    {
+                        if (Recipe != null && Recipe.Id != value)
+                        {
+                            Recipe = null;
+                        }
+                        _recipe_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
             }
-          }
-          _recipe_Id = value;
-          OnPropertyChanged("Recipe_Id");
         }
-      }
-    }
-
-    [DataMember]
-    public double? Amount
-    {
-      get { return _amount; }
-      set
-      {
-        if (_amount != value)
+        private Nullable<int> _recipe_Id;
+    
+        public virtual Nullable<double> Amount
         {
-          _amount = value;
-          OnPropertyChanged("Amount");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public int? Driver_Id
-    {
-      get { return _driver_Id; }
-      set
-      {
-        if (_driver_Id != value)
+    
+        public virtual Nullable<int> Driver_Id
         {
-          ChangeTracker.RecordOriginalValue("Driver_Id", _driver_Id);
-          if (!IsDeserializing)
-          {
-            if (Driver != null && Driver.Id != value)
+            get { return _driver_Id; }
+            set
             {
-              Driver = null;
+                try
+                {
+                    _settingFK = true;
+                    if (_driver_Id != value)
+                    {
+                        if (Driver != null && Driver.Id != value)
+                        {
+                            Driver = null;
+                        }
+                        _driver_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
             }
-          }
-          _driver_Id = value;
-          OnPropertyChanged("Driver_Id");
         }
-      }
-    }
-
-    [DataMember]
-    public DateTime? DateDrawing
-    {
-      get { return _dateDrawing; }
-      set
-      {
-        if (_dateDrawing != value)
+        private Nullable<int> _driver_Id;
+    
+        public virtual Nullable<System.DateTime> DateDrawing
         {
-          _dateDrawing = value;
-          OnPropertyChanged("DateDrawing");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public DateTime? DateOfArrival
-    {
-      get { return _dateOfArrival; }
-      set
-      {
-        if (_dateOfArrival != value)
+    
+        public virtual Nullable<System.DateTime> DateOfArrival
         {
-          _dateOfArrival = value;
-          OnPropertyChanged("DateOfArrival");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public DateTime? Canceled
-    {
-      get { return _canceled; }
-      set
-      {
-        if (_canceled != value)
+    
+        public virtual Nullable<System.DateTime> Canceled
         {
-          _canceled = value;
-          OnPropertyChanged("Canceled");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public string Drawer
-    {
-      get { return _drawer; }
-      set
-      {
-        if (_drawer != value)
+    
+        public virtual string Drawer
         {
-          _drawer = value;
-          OnPropertyChanged("Drawer");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public int? Car_Id
-    {
-      get { return _car_Id; }
-      set
-      {
-        if (_car_Id != value)
+    
+        public virtual Nullable<int> Car_Id
         {
-          ChangeTracker.RecordOriginalValue("Car_Id", _car_Id);
-          if (!IsDeserializing)
-          {
-            if (Car != null && Car.Id != value)
+            get { return _car_Id; }
+            set
             {
-              Car = null;
+                try
+                {
+                    _settingFK = true;
+                    if (_car_Id != value)
+                    {
+                        if (Car != null && Car.Id != value)
+                        {
+                            Car = null;
+                        }
+                        _car_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
             }
-          }
-          _car_Id = value;
-          OnPropertyChanged("Car_Id");
         }
-      }
+        private Nullable<int> _car_Id;
+
+        #endregion
+        #region Navigation Properties
+    
+        public virtual Building Building
+        {
+            get { return _building; }
+            set
+            {
+                if (!ReferenceEquals(_building, value))
+                {
+                    var previousValue = _building;
+                    _building = value;
+                    FixupBuilding(previousValue);
+                }
+            }
+        }
+        private Building _building;
+    
+        public virtual Car Car
+        {
+            get { return _car; }
+            set
+            {
+                if (!ReferenceEquals(_car, value))
+                {
+                    var previousValue = _car;
+                    _car = value;
+                    FixupCar(previousValue);
+                }
+            }
+        }
+        private Car _car;
+    
+        public virtual Driver Driver
+        {
+            get { return _driver; }
+            set
+            {
+                if (!ReferenceEquals(_driver, value))
+                {
+                    var previousValue = _driver;
+                    _driver = value;
+                    FixupDriver(previousValue);
+                }
+            }
+        }
+        private Driver _driver;
+    
+        public virtual Recipe Recipe
+        {
+            get { return _recipe; }
+            set
+            {
+                if (!ReferenceEquals(_recipe, value))
+                {
+                    var previousValue = _recipe;
+                    _recipe = value;
+                    FixupRecipe(previousValue);
+                }
+            }
+        }
+        private Recipe _recipe;
+
+        #endregion
+        #region Association Fixup
+    
+        private bool _settingFK = false;
+    
+        private void FixupBuilding(Building previousValue)
+        {
+            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+            {
+                previousValue.DeliveryNotes.Remove(this);
+            }
+    
+            if (Building != null)
+            {
+                if (!Building.DeliveryNotes.Contains(this))
+                {
+                    Building.DeliveryNotes.Add(this);
+                }
+                if (Building_Id != Building.Id)
+                {
+                    Building_Id = Building.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Building_Id = null;
+            }
+        }
+    
+        private void FixupCar(Car previousValue)
+        {
+            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+            {
+                previousValue.DeliveryNotes.Remove(this);
+            }
+    
+            if (Car != null)
+            {
+                if (!Car.DeliveryNotes.Contains(this))
+                {
+                    Car.DeliveryNotes.Add(this);
+                }
+                if (Car_Id != Car.Id)
+                {
+                    Car_Id = Car.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Car_Id = null;
+            }
+        }
+    
+        private void FixupDriver(Driver previousValue)
+        {
+            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+            {
+                previousValue.DeliveryNotes.Remove(this);
+            }
+    
+            if (Driver != null)
+            {
+                if (!Driver.DeliveryNotes.Contains(this))
+                {
+                    Driver.DeliveryNotes.Add(this);
+                }
+                if (Driver_Id != Driver.Id)
+                {
+                    Driver_Id = Driver.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Driver_Id = null;
+            }
+        }
+    
+        private void FixupRecipe(Recipe previousValue)
+        {
+            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+            {
+                previousValue.DeliveryNotes.Remove(this);
+            }
+    
+            if (Recipe != null)
+            {
+                if (!Recipe.DeliveryNotes.Contains(this))
+                {
+                    Recipe.DeliveryNotes.Add(this);
+                }
+                if (Recipe_Id != Recipe.Id)
+                {
+                    Recipe_Id = Recipe.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Recipe_Id = null;
+            }
+        }
+
+        #endregion
     }
-
-    #endregion
-
-    #region Navigation Properties
-
-    private Building _building;
-
-    private Car _car;
-
-    private Driver _driver;
-
-    private Recipe _recipe;
-
-    [DataMember]
-    public Building Building
-    {
-      get { return _building; }
-      set
-      {
-        if (!ReferenceEquals(_building, value))
-        {
-          Building previousValue = _building;
-          _building = value;
-          FixupBuilding(previousValue);
-          OnNavigationPropertyChanged("Building");
-        }
-      }
-    }
-
-    [DataMember]
-    public Car Car
-    {
-      get { return _car; }
-      set
-      {
-        if (!ReferenceEquals(_car, value))
-        {
-          Car previousValue = _car;
-          _car = value;
-          FixupCar(previousValue);
-          OnNavigationPropertyChanged("Car");
-        }
-      }
-    }
-
-    [DataMember]
-    public Driver Driver
-    {
-      get { return _driver; }
-      set
-      {
-        if (!ReferenceEquals(_driver, value))
-        {
-          Driver previousValue = _driver;
-          _driver = value;
-          FixupDriver(previousValue);
-          OnNavigationPropertyChanged("Driver");
-        }
-      }
-    }
-
-    [DataMember]
-    public Recipe Recipe
-    {
-      get { return _recipe; }
-      set
-      {
-        if (!ReferenceEquals(_recipe, value))
-        {
-          Recipe previousValue = _recipe;
-          _recipe = value;
-          FixupRecipe(previousValue);
-          OnNavigationPropertyChanged("Recipe");
-        }
-      }
-    }
-
-    #endregion
-
-    #region ChangeTracking
-
-    private ObjectChangeTracker _changeTracker;
-    protected bool IsDeserializing { get; private set; }
-
-    #region INotifyPropertyChanged Members
-
-    event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
-    {
-      add { _propertyChanged += value; }
-      remove { _propertyChanged -= value; }
-    }
-
-    #endregion
-
-    #region IObjectWithChangeTracker Members
-
-    [DataMember]
-    public ObjectChangeTracker ChangeTracker
-    {
-      get
-      {
-        if (_changeTracker == null)
-        {
-          _changeTracker = new ObjectChangeTracker();
-          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-        }
-        return _changeTracker;
-      }
-      set
-      {
-        if (_changeTracker != null)
-        {
-          _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
-        }
-        _changeTracker = value;
-        if (_changeTracker != null)
-        {
-          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-        }
-      }
-    }
-
-    #endregion
-
-    protected virtual void OnPropertyChanged(String propertyName)
-    {
-      if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
-      {
-        ChangeTracker.State = ObjectState.Modified;
-      }
-      if (_propertyChanged != null)
-      {
-        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    protected virtual void OnNavigationPropertyChanged(String propertyName)
-    {
-      if (_propertyChanged != null)
-      {
-        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    private event PropertyChangedEventHandler _propertyChanged;
-
-    private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
-    {
-      if (e.NewState == ObjectState.Deleted)
-      {
-        ClearNavigationProperties();
-      }
-    }
-
-    [OnDeserializing]
-    public void OnDeserializingMethod(StreamingContext context)
-    {
-      IsDeserializing = true;
-    }
-
-    [OnDeserialized]
-    public void OnDeserializedMethod(StreamingContext context)
-    {
-      IsDeserializing = false;
-      ChangeTracker.ChangeTrackingEnabled = true;
-    }
-
-    protected virtual void ClearNavigationProperties()
-    {
-      Building = null;
-      Car = null;
-      Driver = null;
-      Recipe = null;
-    }
-
-    #endregion
-
-    #region Association Fixup
-
-    private void FixupBuilding(Building previousValue, bool skipKeys = false)
-    {
-      if (IsDeserializing)
-      {
-        return;
-      }
-
-      if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-      {
-        previousValue.DeliveryNotes.Remove(this);
-      }
-
-      if (Building != null)
-      {
-        if (!Building.DeliveryNotes.Contains(this))
-        {
-          Building.DeliveryNotes.Add(this);
-        }
-
-        Building_Id = Building.Id;
-      }
-      else if (!skipKeys)
-      {
-        Building_Id = null;
-      }
-
-      if (ChangeTracker.ChangeTrackingEnabled)
-      {
-        if (ChangeTracker.OriginalValues.ContainsKey("Building")
-            && (ChangeTracker.OriginalValues["Building"] == Building))
-        {
-          ChangeTracker.OriginalValues.Remove("Building");
-        }
-        else
-        {
-          ChangeTracker.RecordOriginalValue("Building", previousValue);
-        }
-        if (Building != null && !Building.ChangeTracker.ChangeTrackingEnabled)
-        {
-          Building.StartTracking();
-        }
-      }
-    }
-
-    private void FixupCar(Car previousValue, bool skipKeys = false)
-    {
-      if (IsDeserializing)
-      {
-        return;
-      }
-
-      if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-      {
-        previousValue.DeliveryNotes.Remove(this);
-      }
-
-      if (Car != null)
-      {
-        if (!Car.DeliveryNotes.Contains(this))
-        {
-          Car.DeliveryNotes.Add(this);
-        }
-
-        Car_Id = Car.Id;
-      }
-      else if (!skipKeys)
-      {
-        Car_Id = null;
-      }
-
-      if (ChangeTracker.ChangeTrackingEnabled)
-      {
-        if (ChangeTracker.OriginalValues.ContainsKey("Car")
-            && (ChangeTracker.OriginalValues["Car"] == Car))
-        {
-          ChangeTracker.OriginalValues.Remove("Car");
-        }
-        else
-        {
-          ChangeTracker.RecordOriginalValue("Car", previousValue);
-        }
-        if (Car != null && !Car.ChangeTracker.ChangeTrackingEnabled)
-        {
-          Car.StartTracking();
-        }
-      }
-    }
-
-    private void FixupDriver(Driver previousValue, bool skipKeys = false)
-    {
-      if (IsDeserializing)
-      {
-        return;
-      }
-
-      if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-      {
-        previousValue.DeliveryNotes.Remove(this);
-      }
-
-      if (Driver != null)
-      {
-        if (!Driver.DeliveryNotes.Contains(this))
-        {
-          Driver.DeliveryNotes.Add(this);
-        }
-
-        Driver_Id = Driver.Id;
-      }
-      else if (!skipKeys)
-      {
-        Driver_Id = null;
-      }
-
-      if (ChangeTracker.ChangeTrackingEnabled)
-      {
-        if (ChangeTracker.OriginalValues.ContainsKey("Driver")
-            && (ChangeTracker.OriginalValues["Driver"] == Driver))
-        {
-          ChangeTracker.OriginalValues.Remove("Driver");
-        }
-        else
-        {
-          ChangeTracker.RecordOriginalValue("Driver", previousValue);
-        }
-        if (Driver != null && !Driver.ChangeTracker.ChangeTrackingEnabled)
-        {
-          Driver.StartTracking();
-        }
-      }
-    }
-
-    private void FixupRecipe(Recipe previousValue, bool skipKeys = false)
-    {
-      if (IsDeserializing)
-      {
-        return;
-      }
-
-      if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-      {
-        previousValue.DeliveryNotes.Remove(this);
-      }
-
-      if (Recipe != null)
-      {
-        if (!Recipe.DeliveryNotes.Contains(this))
-        {
-          Recipe.DeliveryNotes.Add(this);
-        }
-
-        Recipe_Id = Recipe.Id;
-      }
-      else if (!skipKeys)
-      {
-        Recipe_Id = null;
-      }
-
-      if (ChangeTracker.ChangeTrackingEnabled)
-      {
-        if (ChangeTracker.OriginalValues.ContainsKey("Recipe")
-            && (ChangeTracker.OriginalValues["Recipe"] == Recipe))
-        {
-          ChangeTracker.OriginalValues.Remove("Recipe");
-        }
-        else
-        {
-          ChangeTracker.RecordOriginalValue("Recipe", previousValue);
-        }
-        if (Recipe != null && !Recipe.ChangeTracker.ChangeTrackingEnabled)
-        {
-          Recipe.StartTracking();
-        }
-      }
-    }
-
-    #endregion
-  }
 }

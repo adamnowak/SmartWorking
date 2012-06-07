@@ -8,242 +8,101 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Runtime.Serialization;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace SmartWorking.Office.Entities
 {
-  [DataContract(IsReference = true)]
-  [KnownType(typeof (Material))]
-  public class MaterialStock : IObjectWithChangeTracker, INotifyPropertyChanged
-  {
-    #region Primitive Properties
-
-    private double? _amount;
-    private int _id;
-
-    private int? _material_Id;
-
-    [DataMember]
-    public int Id
+    public partial class MaterialStock
     {
-      get { return _id; }
-      set
-      {
-        if (_id != value)
+        #region Primitive Properties
+    
+        public virtual int Id
         {
-          if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
-          {
-            throw new InvalidOperationException(
-              "The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
-          }
-          _id = value;
-          OnPropertyChanged("Id");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public int? Material_Id
-    {
-      get { return _material_Id; }
-      set
-      {
-        if (_material_Id != value)
+    
+        public virtual Nullable<int> Material_Id
         {
-          ChangeTracker.RecordOriginalValue("Material_Id", _material_Id);
-          if (!IsDeserializing)
-          {
-            if (Material != null && Material.Id != value)
+            get { return _material_Id; }
+            set
             {
-              Material = null;
+                try
+                {
+                    _settingFK = true;
+                    if (_material_Id != value)
+                    {
+                        if (Material != null && Material.Id != value)
+                        {
+                            Material = null;
+                        }
+                        _material_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
             }
-          }
-          _material_Id = value;
-          OnPropertyChanged("Material_Id");
         }
-      }
-    }
-
-    [DataMember]
-    public double? Amount
-    {
-      get { return _amount; }
-      set
-      {
-        if (_amount != value)
+        private Nullable<int> _material_Id;
+    
+        public virtual Nullable<double> Amount
         {
-          _amount = value;
-          OnPropertyChanged("Amount");
+            get;
+            set;
         }
-      }
-    }
 
-    #endregion
-
-    #region Navigation Properties
-
-    private Material _material;
-
-    [DataMember]
-    public Material Material
-    {
-      get { return _material; }
-      set
-      {
-        if (!ReferenceEquals(_material, value))
+        #endregion
+        #region Navigation Properties
+    
+        public virtual Material Material
         {
-          Material previousValue = _material;
-          _material = value;
-          FixupMaterial(previousValue);
-          OnNavigationPropertyChanged("Material");
+            get { return _material; }
+            set
+            {
+                if (!ReferenceEquals(_material, value))
+                {
+                    var previousValue = _material;
+                    _material = value;
+                    FixupMaterial(previousValue);
+                }
+            }
         }
-      }
-    }
+        private Material _material;
 
-    #endregion
-
-    #region ChangeTracking
-
-    private ObjectChangeTracker _changeTracker;
-    protected bool IsDeserializing { get; private set; }
-
-    #region INotifyPropertyChanged Members
-
-    event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
-    {
-      add { _propertyChanged += value; }
-      remove { _propertyChanged -= value; }
-    }
-
-    #endregion
-
-    #region IObjectWithChangeTracker Members
-
-    [DataMember]
-    public ObjectChangeTracker ChangeTracker
-    {
-      get
-      {
-        if (_changeTracker == null)
+        #endregion
+        #region Association Fixup
+    
+        private bool _settingFK = false;
+    
+        private void FixupMaterial(Material previousValue)
         {
-          _changeTracker = new ObjectChangeTracker();
-          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-        }
-        return _changeTracker;
-      }
-      set
-      {
-        if (_changeTracker != null)
-        {
-          _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
-        }
-        _changeTracker = value;
-        if (_changeTracker != null)
-        {
-          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-        }
-      }
-    }
-
-    #endregion
-
-    protected virtual void OnPropertyChanged(String propertyName)
-    {
-      if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
-      {
-        ChangeTracker.State = ObjectState.Modified;
-      }
-      if (_propertyChanged != null)
-      {
-        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    protected virtual void OnNavigationPropertyChanged(String propertyName)
-    {
-      if (_propertyChanged != null)
-      {
-        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    private event PropertyChangedEventHandler _propertyChanged;
-
-    private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
-    {
-      if (e.NewState == ObjectState.Deleted)
-      {
-        ClearNavigationProperties();
-      }
-    }
-
-    [OnDeserializing]
-    public void OnDeserializingMethod(StreamingContext context)
-    {
-      IsDeserializing = true;
-    }
-
-    [OnDeserialized]
-    public void OnDeserializedMethod(StreamingContext context)
-    {
-      IsDeserializing = false;
-      ChangeTracker.ChangeTrackingEnabled = true;
-    }
-
-    protected virtual void ClearNavigationProperties()
-    {
-      Material = null;
-    }
-
-    #endregion
-
-    #region Association Fixup
-
-    private void FixupMaterial(Material previousValue, bool skipKeys = false)
-    {
-      if (IsDeserializing)
-      {
-        return;
-      }
-
-      if (previousValue != null && previousValue.MaterialStocks.Contains(this))
-      {
-        previousValue.MaterialStocks.Remove(this);
-      }
-
-      if (Material != null)
-      {
-        if (!Material.MaterialStocks.Contains(this))
-        {
-          Material.MaterialStocks.Add(this);
+            if (previousValue != null && previousValue.MaterialStocks.Contains(this))
+            {
+                previousValue.MaterialStocks.Remove(this);
+            }
+    
+            if (Material != null)
+            {
+                if (!Material.MaterialStocks.Contains(this))
+                {
+                    Material.MaterialStocks.Add(this);
+                }
+                if (Material_Id != Material.Id)
+                {
+                    Material_Id = Material.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Material_Id = null;
+            }
         }
 
-        Material_Id = Material.Id;
-      }
-      else if (!skipKeys)
-      {
-        Material_Id = null;
-      }
-
-      if (ChangeTracker.ChangeTrackingEnabled)
-      {
-        if (ChangeTracker.OriginalValues.ContainsKey("Material")
-            && (ChangeTracker.OriginalValues["Material"] == Material))
-        {
-          ChangeTracker.OriginalValues.Remove("Material");
-        }
-        else
-        {
-          ChangeTracker.RecordOriginalValue("Material", previousValue);
-        }
-        if (Material != null && !Material.ChangeTracker.ChangeTrackingEnabled)
-        {
-          Material.StartTracking();
-        }
-      }
+        #endregion
     }
-
-    #endregion
-  }
 }

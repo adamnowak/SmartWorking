@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SmartWorking.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,54 +49,55 @@
   <ItemGroup>
     <Compile Include="..\SmartWorking.Office.Model\Building.cs">
       <Link>Building.cs</Link>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\Car.cs">
       <Link>Car.cs</Link>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\Contractor.cs">
       <Link>Contractor.cs</Link>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\DeliveryNote.cs">
       <Link>DeliveryNote.cs</Link>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\Driver.cs">
       <Link>Driver.cs</Link>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\Material.cs">
       <Link>Material.cs</Link>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\MaterialStock.cs">
       <Link>MaterialStock.cs</Link>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="..\SmartWorking.Office.Model\Model.cs">
-      <Link>Model.cs</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\Recipe.cs">
       <Link>Recipe.cs</Link>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\RecipeSpecification.cs">
       <Link>RecipeSpecification.cs</Link>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModel.cs">
+      <Link>SmartWorkingOfficeModel.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\SmartWorking.Office.Model\Model.tt">
-      <Link>Model.tt</Link>
+    <None Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModel.tt">
+      <Link>SmartWorkingOfficeModel.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.cs</LastGenOutput>
+      <LastGenOutput>SmartWorkingOfficeModel.cs</LastGenOutput>
     </None>
+    <None Include="SmartWorking.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

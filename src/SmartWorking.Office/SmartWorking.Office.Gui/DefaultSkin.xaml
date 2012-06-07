@@ -1,8 +1,146 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<Style TargetType="TextBlock">
-		<Setter Property="Margin" Value="3" />
-	</Style>
-	<Style TargetType="Button">
-		<Setter Property="Margin" Value="3" />
-	</Style>
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <BitmapImage x:Key="BuildingImageSource" UriSource="Media/Building.png" />
+    <BitmapImage x:Key="CarImageSource" UriSource="Media/Car.png" />
+    <BitmapImage x:Key="ContractorImageSource" UriSource="Media/Contractor.png" />
+    <BitmapImage x:Key="DeliveryNoteImageSource" UriSource="Media/DeliveryNote.png" />
+    <BitmapImage x:Key="DriverImageSource" UriSource="Media/Driver.png" />
+    <BitmapImage x:Key="MaterialImageSource" UriSource="Media/Material.png" />
+    <BitmapImage x:Key="MaterialStockImageSource" UriSource="Media/MaterialStock.png" />
+    <BitmapImage x:Key="RecipeImageSource" UriSource="Media/Recipe.png" />
+    
+    <BitmapImage x:Key="CancelImageSource" UriSource="Media/Cancel.png" />
+    <BitmapImage x:Key="NewImageSource" UriSource="Media/New.png" />
+    <BitmapImage x:Key="UpdateImageSource" UriSource="Media/Update.png" />
+    <BitmapImage x:Key="DeleteImageSource" UriSource="Media/Delete.png" />
+    <BitmapImage x:Key="ChoseImageSource" UriSource="Media/Chose.png" />
+
+    <BitmapImage x:Key="HelpImageSource" UriSource="Media/Help.png" />
+    <BitmapImage x:Key="RaportImageSource" UriSource="Media/Raport.png" />
+    <BitmapImage x:Key="SaveImageSource" UriSource="Media/Save.png" />
+    <BitmapImage x:Key="SearchImageSource" UriSource="Media/Search.png" />
+
+    <System:Double x:Key="dialogMainPanelWidth" >470</System:Double>
+    <GridLength x:Key="dialogButtonPanelWidthGridLength" >180</GridLength>
+    
+    <!--Custom-->
+    <Style TargetType="Window">
+        <Setter Property="Height" Value="600" />
+        <Setter Property="Width" Value="800" />
+    </Style>
+    
+    <Style TargetType="TextBlock">
+        <Setter Property="Margin" Value="3" />
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="Margin" Value="3" />
+    </Style>
+
+    <Style TargetType="DataGrid">
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="CanUserResizeRows" Value="False" />
+        <Setter Property="RowHeight" Value="30" />
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="CanUserDeleteRows" Value="False" />
+        <Setter Property="CanUserReorderColumns" Value="False" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="IsReadOnly" Value="True" />        
+    </Style>
+
+    <Style TargetType="DataGridRow">
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <Style TargetType="GroupBox">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Margin" Value="2" />
+    </Style>
+    
+    <Style TargetType="Label" >
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+    
+    <Style TargetType="TextBox">
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="Padding" Value="1" />
+    </Style>
+
+    <!--Keys-->
+    <Style x:Key="mainPanel" TargetType="StackPanel">
+        <Setter Property="Height" Value="550" />
+        <Setter Property="Width" Value="{StaticResource dialogMainPanelWidth}" />
+    </Style>
+
+    <Style x:Key="dialogMainPanel" TargetType="StackPanel">
+        <Setter Property="Height" Value="450" />
+        <Setter Property="Width" Value="450" />
+    </Style>
+    
+    <Style x:Key="LabelH1" TargetType="Label">
+        <Setter Property="FontSize" Value="24" />
+    </Style>
+
+    <Style x:Key="LabelH2" TargetType="Label">
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <!--DescriptionButton class-->
+    <Style  TargetType="Shared:DescriptionButton"  >
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Height" Value="70" />
+        <Setter Property="Opacity" Value="0.6"/>
+        <Setter Property="Margin" Value="3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Shared:DescriptionButton}">
+                    <Button HorizontalContentAlignment="Stretch" Command="{TemplateBinding Command}">
+                        <Grid Height="62" HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="5" Padding="1">
+                                <Image Source="{TemplateBinding Image}" Stretch="Fill" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+                            </Border>
+                            <TextBlock TextWrapping="Wrap" Text="{TemplateBinding Content}" FontSize="21.333" Foreground="#FF1C3840" VerticalAlignment="Top" 
+                                       Grid.Column="1"/>
+                            <TextBlock TextWrapping="Wrap" Text="{TemplateBinding Comment}" FontSize="16" 
+                                         Grid.Row="1"  Grid.Column="1"/>
+                        </Grid>
+                    </Button>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="BorderThickness" Value="6" />
+                            <Setter Property="Opacity" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--PanelLabel class-->
+    <Style  TargetType="Shared:PanelLabel"  >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Shared:PanelLabel}">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="2" Padding="1">
+                            <!--{Binding Path=Height, RelativeSource={RelativeSource Self}}-->
+                            <Image Source="{TemplateBinding Image}" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Stretch="Fill" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+                        </Border>
+                        <Label VerticalContentAlignment="Center" Style="{TemplateBinding HeaderStyle}" Content="{TemplateBinding Content}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

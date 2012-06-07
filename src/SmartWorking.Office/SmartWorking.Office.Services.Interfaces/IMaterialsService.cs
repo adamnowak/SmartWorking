@@ -5,14 +5,41 @@ using SmartWorking.Office.Entities;
 
 namespace SmartWorking.Office.Services.Interfaces
 {
-  // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IMaterialsService" in both code and config file together.
+  /// <summary>
+  /// Service provides functionality to operate on Material.
+  /// </summary>
   [ServiceContract]
   public interface IMaterialsService : IDisposable
   {
+    /// <summary>
+    /// Gets the materials filtered by <paramref name="materialNameFilter"/>.
+    /// </summary>
+    /// <param name="materialNameFilter">The material name filter.</param>
+    /// <returns>List of material filtered by <paramref name="materialNameFilter"/>. The result has the information about material in stock.</returns>
     [OperationContract]
-    List<Material> GetMaterials();
+    List<Material> GetMaterials(string materialNameFilter);
 
+    /// <summary>
+    /// Updates the material.
+    /// </summary>
+    /// <param name="material">The material which will be updated.</param>
     [OperationContract]
-    void UpdateMaterial(Material materialToUpdate);
+    void UpdateMaterial(Material material);
+
+    /// <summary>
+    /// Deletes the material.
+    /// </summary>
+    /// <param name="material">The material which will be deleted.</param>
+    /// <remarks>Information about material in stock will be also deleted.</remarks>
+    [OperationContract]
+    void DeleteMaterial(Material material);
+
+    /// <summary>
+    /// Updates the information about material in stock.
+    /// </summary>
+    /// <param name="material">The material for which the information about stock will be updated.</param>
+    /// <param name="amountMaterialInStock">The new material in stock.</param>
+    [OperationContract]
+    void UpdateMaterialInStock(Material material, float amountMaterialInStock);
   }
 }

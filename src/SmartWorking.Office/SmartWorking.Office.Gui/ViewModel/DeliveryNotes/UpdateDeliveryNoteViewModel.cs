@@ -13,13 +13,13 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
     }
 
-    public ViewMode ViewMode { get; set; }
+    public DialogMode ViewMode { get; set; }
 
     public override string Title
     {
       get
       {
-        return (ViewMode == ViewMode.Create)
+        return (ViewMode == DialogMode.Create)
                  ? "Utwórz nową WZ'tkę."
                  : "Edytuj WZ'tkę.";
       }
@@ -108,11 +108,11 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void SelcectContractor()
     {
-      Contractor selectContractor = ModalDialogService.SelectContractor(ModalDialogService, ServiceFactory);
-      if (selectContractor != null)
-      {
-        Building = ModalDialogService.SelectBuilding(ModalDialogService, ServiceFactory, selectContractor);
-      }
+      //Contractor selectContractor = ModalDialogService.ManageContractors(ModalDialogService, ServiceFactory);
+      //if (selectContractor != null)
+      //{
+      //  Building = ModalDialogService.SelectBuilding(ModalDialogService, ServiceFactory, selectContractor);
+      //}
     }
 
     #endregion

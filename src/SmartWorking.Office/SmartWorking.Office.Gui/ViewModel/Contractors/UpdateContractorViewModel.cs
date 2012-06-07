@@ -5,19 +5,37 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
+  /// <summary>
+  /// View model for <see cref="UpdateContractor"/> dialog. 
+  /// </summary>
   public class UpdateContractorViewModel : ModalDialogViewModelBase
   {
     private ICommand _createBuildingCommand;
     private ICommand _deleteBuildingCommand;
     private ICommand _updateBuildingCommand;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateContractorViewModel"/> class.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
     public UpdateContractorViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
     }
 
-    public ViewMode ViewMode { get; set; }
+    /// <summary>
+    /// Gets or sets the view mode.
+    /// </summary>
+    /// <value>
+    /// The view mode.
+    /// </value>
+    public DialogMode ViewMode { get; set; }
 
+    /// <summary>
+    /// Gets the create building command.
+    /// </summary>
+    /// <remarks>This command display dialog where You can create new Building for Contractor.</remarks>
     public ICommand CreateBuildingCommand
     {
       get
@@ -29,6 +47,10 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     }
 
 
+    /// <summary>
+    /// Gets the update building command.
+    /// </summary>
+    /// <remarks>This command display dialog where You can update fields of <see cref="SelectedBuilding"/>.</remarks>
     public ICommand UpdateBuildingCommand
     {
       get
@@ -39,6 +61,10 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
     }
 
+    /// <summary>
+    /// Gets the delete building command.
+    /// </summary>
+    /// <remarks>Deletes <see cref="SelectedBuilding"/>.</remarks>
     public ICommand DeleteBuildingCommand
     {
       get
@@ -49,11 +75,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
     }
 
+    /// <summary>
+    /// Gets the title of dialog.
+    /// </summary>
     public override string Title
     {
       get
       {
-        return (ViewMode == ViewMode.Create)
+        return (ViewMode == DialogMode.Create)
                  ? "Utwórz nowego kontrahenta."
                  : "Edytuj kontrahenta.";
       }
@@ -70,7 +99,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     /// <summary>
     /// Gets the Contractor property.
-    /// TODO Update documentation:
+    /// This instance of <see cref="UpdateContractorViewModel"/> provides operation for this Contractor. 
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
@@ -104,7 +133,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     /// <summary>
     /// Gets the SelectedBuilding property.
-    /// TODO Update documentation:
+    /// Building which is selected. All operation on Building are invokes on this object.
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
@@ -132,46 +161,68 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private ICommand _createOrUpdateContractorCommand;
 
+    /// <summary>
+    /// Gets the create or update contractor command.
+    /// </summary>
+    /// <remarks>This command opens dialog where Contractor can be created or updated.</remarks>
     public ICommand CreateOrUpdateContractorCommand
     {
       get
       {
         if (_createOrUpdateContractorCommand == null)
-          _createOrUpdateContractorCommand = new RelayCommand(UpdateContractor, CanCreateContractor);
+          _createOrUpdateContractorCommand = new RelayCommand(UpdateContractor, CanCreateOrUpdateContractor);
         return _createOrUpdateContractorCommand;
       }
     }
 
-    private bool CanCreateContractor()
+    /// <summary>
+    /// Validates current fields of Contractor.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if current fields of Contractor is validate; otherwise, <c>false</c>.
+    /// </returns>
+    private bool CanCreateOrUpdateContractor()
     {
       //TODO: validate
       return true;
     }
 
+    /// <summary>
+    /// Updates the Contractor in the system.
+    /// </summary>
     private void UpdateContractor()
     {
-      if (ViewMode == ViewMode.Create || ViewMode == ViewMode.Update)
+      if (ViewMode == DialogMode.Create || ViewMode == DialogMode.Update)
       {
         using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
         {
           contractorService.UpdateContractor(Contractor);
         }
       }
-      CloaseModalDialog();
+      CloseModalDialog();
     }
 
     #endregion
 
+    /// <summary>
+    /// Displays dialog to create new building.
+    /// </summary>
     private void CreateBuilding()
     {
       ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory, Contractor);
     }
 
+    /// <summary>
+    /// Displays dialog to update <see cref="SelectedBuilding"/>.
+    /// </summary>
     private void UpdateBuilding()
     {
       ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory, SelectedBuilding);
     }
 
+    /// <summary>
+    /// Deletes the <see cref="SelectedBuilding"/>.
+    /// </summary>
     private void DeleteBuilding()
     {
       //TODO:

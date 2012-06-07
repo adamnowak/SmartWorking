@@ -8,250 +8,95 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Runtime.Serialization;
 
 namespace SmartWorking.Office.Entities
 {
-  [DataContract(IsReference = true)]
-  [KnownType(typeof (DeliveryNote))]
-  public class Driver : IObjectWithChangeTracker, INotifyPropertyChanged
-  {
-    #region Primitive Properties
-
-    private int _id;
-
-    private string _name;
-
-    private string _surname;
-
-    [DataMember]
-    public int Id
+    public partial class Driver
     {
-      get { return _id; }
-      set
-      {
-        if (_id != value)
+        #region Primitive Properties
+    
+        public virtual int Id
         {
-          if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
-          {
-            throw new InvalidOperationException(
-              "The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
-          }
-          _id = value;
-          OnPropertyChanged("Id");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public string Name
-    {
-      get { return _name; }
-      set
-      {
-        if (_name != value)
+    
+        public virtual string Name
         {
-          _name = value;
-          OnPropertyChanged("Name");
+            get;
+            set;
         }
-      }
-    }
-
-    [DataMember]
-    public string Surname
-    {
-      get { return _surname; }
-      set
-      {
-        if (_surname != value)
+    
+        public virtual string Surname
         {
-          _surname = value;
-          OnPropertyChanged("Surname");
+            get;
+            set;
         }
-      }
-    }
 
-    #endregion
-
-    #region Navigation Properties
-
-    private TrackableCollection<DeliveryNote> _deliveryNotes;
-
-    [DataMember]
-    public TrackableCollection<DeliveryNote> DeliveryNotes
-    {
-      get
-      {
-        if (_deliveryNotes == null)
+        #endregion
+        #region Navigation Properties
+    
+        public virtual ICollection<DeliveryNote> DeliveryNotes
         {
-          _deliveryNotes = new TrackableCollection<DeliveryNote>();
-          _deliveryNotes.CollectionChanged += FixupDeliveryNotes;
-        }
-        return _deliveryNotes;
-      }
-      set
-      {
-        if (!ReferenceEquals(_deliveryNotes, value))
-        {
-          if (ChangeTracker.ChangeTrackingEnabled)
-          {
-            throw new InvalidOperationException(
-              "Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-          }
-          if (_deliveryNotes != null)
-          {
-            _deliveryNotes.CollectionChanged -= FixupDeliveryNotes;
-          }
-          _deliveryNotes = value;
-          if (_deliveryNotes != null)
-          {
-            _deliveryNotes.CollectionChanged += FixupDeliveryNotes;
-          }
-          OnNavigationPropertyChanged("DeliveryNotes");
-        }
-      }
-    }
-
-    #endregion
-
-    #region ChangeTracking
-
-    private ObjectChangeTracker _changeTracker;
-    protected bool IsDeserializing { get; private set; }
-
-    #region INotifyPropertyChanged Members
-
-    event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
-    {
-      add { _propertyChanged += value; }
-      remove { _propertyChanged -= value; }
-    }
-
-    #endregion
-
-    #region IObjectWithChangeTracker Members
-
-    [DataMember]
-    public ObjectChangeTracker ChangeTracker
-    {
-      get
-      {
-        if (_changeTracker == null)
-        {
-          _changeTracker = new ObjectChangeTracker();
-          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-        }
-        return _changeTracker;
-      }
-      set
-      {
-        if (_changeTracker != null)
-        {
-          _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
-        }
-        _changeTracker = value;
-        if (_changeTracker != null)
-        {
-          _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
-        }
-      }
-    }
-
-    #endregion
-
-    protected virtual void OnPropertyChanged(String propertyName)
-    {
-      if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
-      {
-        ChangeTracker.State = ObjectState.Modified;
-      }
-      if (_propertyChanged != null)
-      {
-        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    protected virtual void OnNavigationPropertyChanged(String propertyName)
-    {
-      if (_propertyChanged != null)
-      {
-        _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    private event PropertyChangedEventHandler _propertyChanged;
-
-    private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
-    {
-      if (e.NewState == ObjectState.Deleted)
-      {
-        ClearNavigationProperties();
-      }
-    }
-
-    [OnDeserializing]
-    public void OnDeserializingMethod(StreamingContext context)
-    {
-      IsDeserializing = true;
-    }
-
-    [OnDeserialized]
-    public void OnDeserializedMethod(StreamingContext context)
-    {
-      IsDeserializing = false;
-      ChangeTracker.ChangeTrackingEnabled = true;
-    }
-
-    protected virtual void ClearNavigationProperties()
-    {
-      DeliveryNotes.Clear();
-    }
-
-    #endregion
-
-    #region Association Fixup
-
-    private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
-    {
-      if (IsDeserializing)
-      {
-        return;
-      }
-
-      if (e.NewItems != null)
-      {
-        foreach (DeliveryNote item in e.NewItems)
-        {
-          item.Driver = this;
-          if (ChangeTracker.ChangeTrackingEnabled)
-          {
-            if (!item.ChangeTracker.ChangeTrackingEnabled)
+            get
             {
-              item.StartTracking();
+                if (_deliveryNotes == null)
+                {
+                    var newCollection = new FixupCollection<DeliveryNote>();
+                    newCollection.CollectionChanged += FixupDeliveryNotes;
+                    _deliveryNotes = newCollection;
+                }
+                return _deliveryNotes;
             }
-            ChangeTracker.RecordAdditionToCollectionProperties("DeliveryNotes", item);
-          }
+            set
+            {
+                if (!ReferenceEquals(_deliveryNotes, value))
+                {
+                    var previousValue = _deliveryNotes as FixupCollection<DeliveryNote>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupDeliveryNotes;
+                    }
+                    _deliveryNotes = value;
+                    var newValue = value as FixupCollection<DeliveryNote>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupDeliveryNotes;
+                    }
+                }
+            }
         }
-      }
+        private ICollection<DeliveryNote> _deliveryNotes;
 
-      if (e.OldItems != null)
-      {
-        foreach (DeliveryNote item in e.OldItems)
+        #endregion
+        #region Association Fixup
+    
+        private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
         {
-          if (ReferenceEquals(item.Driver, this))
-          {
-            item.Driver = null;
-          }
-          if (ChangeTracker.ChangeTrackingEnabled)
-          {
-            ChangeTracker.RecordRemovalFromCollectionProperties("DeliveryNotes", item);
-          }
+            if (e.NewItems != null)
+            {
+                foreach (DeliveryNote item in e.NewItems)
+                {
+                    item.Driver = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (DeliveryNote item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Driver, this))
+                    {
+                        item.Driver = null;
+                    }
+                }
+            }
         }
-      }
-    }
 
-    #endregion
-  }
+        #endregion
+    }
 }

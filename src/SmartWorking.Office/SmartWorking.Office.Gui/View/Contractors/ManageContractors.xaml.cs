@@ -3,11 +3,11 @@
 namespace SmartWorking.Office.Gui.View.Contractors
 {
   /// <summary>
-  /// Interaction logic for SelectContractor.xaml
+  /// Interaction logic for ManageContractors.xaml
   /// </summary>
-  public partial class SelectContractor : UserControl
+  public partial class ManageContractors : UserControl
   {
-    public SelectContractor()
+    public ManageContractors()
     {
       InitializeComponent();
     }

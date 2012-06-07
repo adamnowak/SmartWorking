@@ -7,18 +7,13 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Materials
 {
-  public enum SelectMaterialViewMode
-  {
-    SelectMaterial,
-    SelectBuilding
-  }
 
-  public class SelectMaterialViewModel : ModalDialogViewModelBase
+  public class ManageMaterialsViewModel : ModalDialogViewModelBase
   {
     private ICommand _selectMaterialCommand;
     private ICommand _createMaterialCommand;
 
-    public SelectMaterialViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public ManageMaterialsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
       SelectableMaterial = new SelectableViewModelBase<Material>();
@@ -27,7 +22,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
 
     public SelectableViewModelBase<Material> SelectableMaterial { get; private set; }
 
-    public SelectMaterialViewMode ViewMode { get; set; }
+    public DialogMode DialogMode { get; set; }
 
     public ICommand SelectMaterialCommand
     {
@@ -65,13 +60,13 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     {
       using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
       {
-        SelectableMaterial.LoadItems(materialsService.GetMaterials());
+        SelectableMaterial.LoadItems(materialsService.GetMaterials(string.Empty));
       }
     }
 
     private void SelectMaterial()
     {
-      CloaseModalDialog();
+      CloseModalDialog();
     }
   }
 }

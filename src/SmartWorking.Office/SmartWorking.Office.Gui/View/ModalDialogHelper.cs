@@ -25,12 +25,12 @@ namespace SmartWorking.Office.Gui.View
       helper.Owner = Process.GetCurrentProcess().MainWindowHandle;
       window.Content = new TWindow();
       window.DataContext = viewModel;
-      window.Title = viewModel.Title;
-      if (window.Content is Control)
-      {
-        window.Height = ((Control) window.Content).Height;
-        window.Width = ((Control) window.Content).Width;
-      }
+      window.Title = "Smart Working  (office) - " + viewModel.Title;
+      //if (window.Content is Control)
+      //{
+      //  window.Height = ((Control) window.Content).Height;
+      //  window.Width = ((Control) window.Content).Width;
+      //}
       // When the ViewModel asks to be closed, 
       // close the window.
       EventHandler handler = null;
@@ -41,8 +41,11 @@ namespace SmartWorking.Office.Gui.View
                   };
       viewModel.RequestClose += handler;
       window.ShowDialog();
+
+     
+      
       //var showResult = window.DialogResult;
-      //if (showResult.HasValue && showResult.Value)
+      //if (showResult.HasValue && showResult.Value));
       return !viewModel.IsCanceled;
       //return false;
     }

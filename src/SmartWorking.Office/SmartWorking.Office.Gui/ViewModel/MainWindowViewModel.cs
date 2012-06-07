@@ -2,152 +2,120 @@
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View;
+#if IIS_USED
 using SmartWorking.Office.Services.Factory.IIS;
+#else
 using SmartWorking.Office.Services.Factory.Local;
+#endif
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel
 {
+  /// <summary>
+  /// View model for <see cref="MainWindow"/> window. 
+  /// </summary>
   internal class MainWindowViewModel
   {
-    private ICommand _createContractorCommand;
-    private ICommand _createDeliveryNoteCommand;
-    private ICommand _createMaterialCommand;
-    private ICommand _createRecipeCommand;
-    private ICommand _editContractorCommand;
-    private ICommand _editMaterialCommand;
-    private ICommand _editRecipeCommand;
+    private ICommand _manageContractorsCommand;
+    private ICommand _manageDeliveryNotesCommand;
+    private ICommand _manageMaterialsCommand;
+    private ICommand _manageRecipesCommand;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MainWindowViewModel"/>. 
+    /// </summary>
     public MainWindowViewModel() :
-      this(new ModalDialogService(), new ServiceFactoryIIS())
+      this(new ModalDialogService(),
+#if IIS_USED
+      new ServiceFactoryIIS()
+#else
+ new ServiceFactoryLocal()
+#endif
+      )
     {
       //TODO: improve, should be IoC      
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
     public MainWindowViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       ModalDialogService = modalDialogService;
       ServiceFactory = serviceFactory;
     }
 
+    /// <summary>
+    /// Gets or sets the modal dialog service.
+    /// </summary>
+    /// <value>
+    /// The modal dialog service.
+    /// </value>
     public IModalDialogService ModalDialogService { get; set; }
+    /// <summary>
+    /// Gets or sets the service factory.
+    /// </summary>
+    /// <value>
+    /// The service factory.
+    /// </value>
     public IServiceFactory ServiceFactory { get; set; }
 
-    #region Contractor commands
-
-    public ICommand CreateContractorCommand
+    /// <summary>
+    /// Gets the manage <see cref="DeliveryNote"/> command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="DeliveryNote"/> objects.</remarks>
+    public ICommand ManageDeliveryNotesCommand
     {
       get
       {
-        if (_createContractorCommand == null)
-          _createContractorCommand = new RelayCommand(
-            () => ModalDialogService.CreateContractor(ModalDialogService, ServiceFactory));
-        return _createContractorCommand;
+        if (_manageDeliveryNotesCommand == null)
+          _manageDeliveryNotesCommand = new RelayCommand(() => ModalDialogService.ManageDeliveryNotes(ModalDialogService, ServiceFactory));
+        return _manageDeliveryNotesCommand;
       }
     }
 
-    public ICommand EditContractorCommand
+    /// <summary>
+    /// Gets the manage <see cref="Contractor"/> command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="Contractor"/> objects.</remarks>
+    public ICommand ManageContractorsCommand
     {
       get
       {
-        if (_editContractorCommand == null)
-          _editContractorCommand = new RelayCommand(EditContractor);
-        return _editContractorCommand;
+        if (_manageContractorsCommand == null)
+          _manageContractorsCommand = new RelayCommand(() => ModalDialogService.ManageContractors(ModalDialogService, ServiceFactory));
+        return _manageContractorsCommand;
       }
     }
 
-    private void EditContractor()
-    {
-      Contractor selectedContractor = ModalDialogService.SelectContractor(ModalDialogService, ServiceFactory);
-      if (selectedContractor != null)
-      {
-        ModalDialogService.EditContractor(ModalDialogService, ServiceFactory, selectedContractor);
-      }
-    }
-
-    #endregion //Contractor commands
-
-    #region Material commands
-
-    public ICommand CreateMaterialCommand
+    /// <summary>
+    /// Gets the manage <see cref="Material"/> command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="Material"/> objects.</remarks>
+    public ICommand ManageMaterialsCommand
     {
       get
       {
-        if (_createMaterialCommand == null)
-          _createMaterialCommand = new RelayCommand(
-            () => ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory));
-        return _createMaterialCommand;
+        if (_manageMaterialsCommand == null)
+          _manageMaterialsCommand = new RelayCommand(() => ModalDialogService.ManageMaterials(ModalDialogService, ServiceFactory));
+        return _manageMaterialsCommand;
       }
     }
 
-    public ICommand EditMaterialCommand
+    /// <summary>
+    /// Gets the manage <see cref="Recipe"/> command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="Recipe"/> objects.</remarks>
+    public ICommand ManageRecipesCommand
     {
       get
       {
-        if (_editMaterialCommand == null)
-          _editMaterialCommand = new RelayCommand(EditMaterial);
-        return _editMaterialCommand;
+        if (_manageRecipesCommand == null)
+          _manageRecipesCommand = new RelayCommand(() => ModalDialogService.ManageRecipes(ModalDialogService, ServiceFactory));
+        return _manageRecipesCommand;
       }
     }
-
-    private void EditMaterial()
-    {
-      Material selectedMaterial = ModalDialogService.SelectMaterial(ModalDialogService, ServiceFactory);
-      if (selectedMaterial != null)
-      {
-        ModalDialogService.EditMaterial(ModalDialogService, ServiceFactory, selectedMaterial);
-      }
-    }
-
-    #endregion
-
-    #region DeliveryNote
-
-    public ICommand CreateDeliveryNoteCommand
-    {
-      get
-      {
-        if (_createDeliveryNoteCommand == null)
-          _createDeliveryNoteCommand = new RelayCommand(
-            () => ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory));
-        return _createDeliveryNoteCommand;
-      }
-    }
-
-    #endregion
-
-    #region Recipe commands
-
-    public ICommand CreateRecipeCommand
-    {
-      get
-      {
-        if (_createRecipeCommand == null)
-          _createRecipeCommand = new RelayCommand(
-            () => ModalDialogService.CreateRecipe(ModalDialogService, ServiceFactory));
-        return _createRecipeCommand;
-      }
-    }
-
-    public ICommand EditRecipeCommand
-    {
-      get
-      {
-        if (_editRecipeCommand == null)
-          _editRecipeCommand = new RelayCommand(EditRecipe);
-        return _editRecipeCommand;
-      }
-    }
-
-    private void EditRecipe()
-    {
-      Recipe selectedRecipe = ModalDialogService.SelectRecipe(ModalDialogService, ServiceFactory);
-      if (selectedRecipe != null)
-      {
-        ModalDialogService.EditRecipe(ModalDialogService, ServiceFactory, selectedRecipe);
-      }
-    }
-
-    #endregion
   }
 }

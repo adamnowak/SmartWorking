@@ -583,72 +583,55 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="DBbModel">
-        <EntityTypeShape EntityType="SmartWorkingModel.Building" Width="1.5" PointX="0.75" PointY="1.125" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="SmartWorkingModel.Car" Width="1.5" PointX="0.75" PointY="12.25" Height="1.595683593749996" />
-        <EntityTypeShape EntityType="SmartWorkingModel.Contractor" Width="1.5" PointX="1.5" PointY="9.25" Height="2.172587890624996" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Building" Width="1.5" PointX="0.75" PointY="0.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Car" Width="1.5" PointX="6.625" PointY="6.625" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Contractor" Width="1.5" PointX="0.625" PointY="6.25" Height="2.172587890624996" />
         <EntityTypeShape EntityType="SmartWorkingModel.DeliveryNote" Width="1.5" PointX="3" PointY="3.875" Height="3.7109993489583246" />
-        <EntityTypeShape EntityType="SmartWorkingModel.Driver" Width="1.5" PointX="0.75" PointY="14.625" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="SmartWorkingModel.Material" Width="1.5" PointX="3.75" PointY="0.75" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="SmartWorkingModel.MaterialStock" Width="1.5" PointX="6" PointY="1.25" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="SmartWorkingModel.Recipe" Width="1.5" PointX="0.75" PointY="4.75" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="SmartWorkingModel.RecipeSpecification" Width="1.5" PointX="6" PointY="4.625" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Driver" Width="1.5" PointX="3.25" PointY="9" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Material" Width="1.5" PointX="7.375" PointY="0.5" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="SmartWorkingModel.MaterialStock" Width="1.5" PointX="10" PointY="1.875" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Recipe" Width="1.5" PointX="5" PointY="0.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="SmartWorkingModel.RecipeSpecification" Width="1.5" PointX="7.375" PointY="3.25" Height="2.1725878906250102" />
         <AssociationConnector Association="SmartWorkingModel.FK_Buildings_Contractors" >
-          <ConnectorPoint PointX="2.5937505" PointY="9.25" />
-          <ConnectorPoint PointX="2.5937505" PointY="2.3074446614583337" />
-          <ConnectorPoint PointX="2.25" PointY="2.3074446614583337" />
+          <ConnectorPoint PointX="1.4375" PointY="6.25" />
+          <ConnectorPoint PointX="1.4375" PointY="2.8648893229166674" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Buildings" >
-          <ConnectorPoint PointX="2.25" PointY="3.1413378906250031" />
-          <ConnectorPoint PointX="2.5104171666666666" PointY="3.1413378906250027" />
-          <ConnectorPoint PointX="2.6770838333333336" PointY="3.1413378906250031" />
-          <ConnectorPoint PointX="3.34375" PointY="3.1413378906250031" />
+          <ConnectorPoint PointX="2.25" PointY="0.59375" />
+          <ConnectorPoint PointX="3.34375" PointY="0.59375" />
           <ConnectorPoint PointX="3.34375" PointY="3.875" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Cars" >
-          <ConnectorPoint PointX="2.25" PointY="13.047841796874998" />
-          <ConnectorPoint PointX="3.3072891666666666" PointY="13.047841796874998" />
-          <ConnectorPoint PointX="3.4739558333333336" PointY="13.047841796874998" />
-          <ConnectorPoint PointX="3.78125" PointY="13.047841796874998" />
-          <ConnectorPoint PointX="3.78125" PointY="7.5859993489583246" />
+          <ConnectorPoint PointX="6.625" PointY="7.1054996744791623" />
+          <ConnectorPoint PointX="4.5" PointY="7.1054996744791623" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Drivers" >
-          <ConnectorPoint PointX="2.25" PointY="15.518992513020834" />
-          <ConnectorPoint PointX="3.3906225" PointY="15.518992513020834" />
-          <ConnectorPoint PointX="3.3906225" PointY="7.5859993489583246" />
+          <ConnectorPoint PointX="3.875" PointY="9" />
+          <ConnectorPoint PointX="3.875" PointY="7.5859993489583246" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Recipes" >
-          <ConnectorPoint PointX="2.25" PointY="5.7401432291666694" />
-          <ConnectorPoint PointX="2.5104171666666666" PointY="5.7401432291666685" />
-          <ConnectorPoint PointX="2.6770838333333336" PointY="5.7401432291666694" />
-          <ConnectorPoint PointX="3" PointY="5.7401432291666694" />
+          <ConnectorPoint PointX="5.75" PointY="2.7302864583333388" />
+          <ConnectorPoint PointX="5.75" PointY="5.7304996744791623" />
+          <ConnectorPoint PointX="4.5" PointY="5.7304996744791623" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_MaterialStocks_Materails" >
-          <ConnectorPoint PointX="5.25" PointY="1.9901432291666694" />
-          <ConnectorPoint PointX="6" PointY="1.9901432291666694" />
+          <ConnectorPoint PointX="8.875" PointY="2.1776432291666694" />
+          <ConnectorPoint PointX="10" PointY="2.1776432291666694" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_RecipeSpecifications_Materials" >
-          <ConnectorPoint PointX="5.25" PointY="2.7302864583333388" />
-          <ConnectorPoint PointX="5.625" PointY="3.1052864583333388" />
-          <ConnectorPoint PointX="5.625" PointY="5.7112939453125051" />
-          <ConnectorPoint PointX="6" PointY="5.7112939453125051" />
+          <ConnectorPoint PointX="8.125" PointY="2.4802864583333388" />
+          <ConnectorPoint PointX="8.125" PointY="3.25" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_RecipeSpecifications_Recipes" >
-          <ConnectorPoint PointX="2.25" PointY="5.2138196145833415" />
-          <ConnectorPoint PointX="2.5104171666666666" PointY="5.2138196145833406" />
-          <ConnectorPoint PointX="2.6770838333333336" PointY="5.2138196145833415" />
-          <ConnectorPoint PointX="2.75" PointY="5.2138196145833415" />
-          <ConnectorPoint PointX="2.75" PointY="3.625" />
-          <ConnectorPoint PointX="3.2604166666666665" PointY="3.6249999999999996" />
-          <ConnectorPoint PointX="3.4270833333333335" PointY="3.625" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="3.6249999999999996" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="3.625" />
-          <ConnectorPoint PointX="6.75" PointY="3.625" />
-          <ConnectorPoint PointX="6.75" PointY="4.625" />
+          <ConnectorPoint PointX="6.1562525" PointY="2.7302864583333388" />
+          <ConnectorPoint PointX="6.1562525" PointY="4.3362939453125051" />
+          <ConnectorPoint PointX="7.375" PointY="4.3362939453125051" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

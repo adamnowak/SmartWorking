@@ -1,12 +1,14 @@
-﻿using SmartWorking.Office.Entities;
+﻿using System;
+using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
-using SmartWorking.Office.Gui.View.Materials;
+
 using SmartWorking.Office.Gui.View.Recipes;
 using SmartWorking.Office.Gui.ViewModel;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.Gui.ViewModel.Materials;
 using SmartWorking.Office.Services.Interfaces;
+
 
 namespace SmartWorking.Office.Gui.View
 {
@@ -18,7 +20,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateContractorViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = new Contractor();
-      viewModel.ViewMode = ViewMode.Create;
+      viewModel.ViewMode = DialogMode.Create;
       ModalDialogHelper<UpdateContractor>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -32,21 +34,16 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateContractorViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = contractorToEdit;
-      viewModel.ViewMode = ViewMode.Update;
+      viewModel.ViewMode = DialogMode.Update;
       ModalDialogHelper<UpdateContractor>.ShowDialog(viewModel);
       return viewModel.Contractor;
     }
 
-    public Contractor SelectContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public void ManageContractors(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
-      var viewModel = new SelectContractorViewModel(modalDialogService, serviceFactory);
-      viewModel.ViewMode = SelectContractorViewMode.SelectContractor;
-      ModalDialogHelper<SelectContractor>.ShowDialog(viewModel);
-      if (!viewModel.IsCanceled)
-      {
-        return viewModel.SelectableContractor.SelectedItem;
-      }
-      return null;
+      var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Selecting;;
+      ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);      
     }
 
     public Building CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
@@ -55,7 +52,7 @@ namespace SmartWorking.Office.Gui.View
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = contractor;
       viewModel.Building = new Building();
-      viewModel.ViewMode = ViewMode.Create;
+      viewModel.ViewMode = DialogMode.Create;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -69,30 +66,15 @@ namespace SmartWorking.Office.Gui.View
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = building.Contractor;
       viewModel.Building = building;
-      viewModel.ViewMode = ViewMode.Update;
+      viewModel.ViewMode = DialogMode.Update;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
       return viewModel.Building;
-    }
-
-
-    public Building SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                   Contractor selectContractor)
-    {
-      var viewModel = new UpdateContractorViewModel(modalDialogService, serviceFactory);
-      viewModel.Contractor = selectContractor;
-      viewModel.ViewMode = ViewMode.Selecte;
-      ModalDialogHelper<UpdateContractor>.ShowDialog(viewModel);
-      if (!viewModel.IsCanceled)
-      {
-        return viewModel.SelectedBuilding;
-      }
-      return null;
     }
 
     public DeliveryNote CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateDeliveryNoteViewModel(modalDialogService, serviceFactory);
-      viewModel.ViewMode = ViewMode.Create;
+      viewModel.ViewMode = DialogMode.Create;
       viewModel.DeliveryNote = new DeliveryNote();
       ModalDialogHelper<UpdateDeliveryNote>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
@@ -102,11 +84,18 @@ namespace SmartWorking.Office.Gui.View
       return null; 
     }
 
+    public void ManageDeliveryNotes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      //var viewModel = new ManageDeliveryNotesViewModel(modalDialogService, serviceFactory);
+      //viewModel.DialogMode = DialogMode.Selecting; ;
+      //ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);  
+    }
+
     public Material CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateMaterialViewModel(modalDialogService, serviceFactory);
       viewModel.Material = new Material();
-      viewModel.ViewMode = ViewMode.Create;
+      viewModel.ViewMode = DialogMode.Create;
       ModalDialogHelper<UpdateMaterial>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -120,28 +109,23 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateMaterialViewModel(modalDialogService, serviceFactory);
       viewModel.Material = selectedMaterial;
-      viewModel.ViewMode = ViewMode.Update;
+      viewModel.ViewMode = DialogMode.Update;
       ModalDialogHelper<UpdateMaterial>.ShowDialog(viewModel);
       return viewModel.Material;
     }
 
-    public Material SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public void ManageMaterials(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
-      var viewModel = new SelectMaterialViewModel(modalDialogService, serviceFactory);
-      viewModel.ViewMode = SelectMaterialViewMode.SelectMaterial;
-      ModalDialogHelper<SelectMaterial>.ShowDialog(viewModel);
-      if (!viewModel.IsCanceled)
-      {
-        return viewModel.SelectableMaterial.SelectedItem;
-      }
-      return null;
+      var viewModel = new ManageMaterialsViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Selecting;
+      ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);
     }
 
     public Recipe CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateRecipeViewModel(modalDialogService, serviceFactory);
       viewModel.Recipe = new Recipe();
-      viewModel.ViewMode = ViewMode.Create;
+      viewModel.ViewMode = DialogMode.Create;
       ModalDialogHelper<UpdateRecipe>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -154,21 +138,16 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateRecipeViewModel(modalDialogService, serviceFactory);
       viewModel.Recipe = selectedRecipe;
-      viewModel.ViewMode = ViewMode.Create;
+      viewModel.ViewMode = DialogMode.Create;
       ModalDialogHelper<UpdateRecipe>.ShowDialog(viewModel);
       return viewModel.Recipe;
     }
 
-    public Recipe SelectRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public void ManageRecipes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new SelectRecipeViewModel(modalDialogService, serviceFactory);
-      viewModel.ViewMode = SelectRecipeViewMode.SelectRecipe;
-      ModalDialogHelper<SelectRecipe>.ShowDialog(viewModel);
-      if (!viewModel.IsCanceled)
-      {
-        return viewModel.SelectableRecipe.SelectedItem;
-      }
-      return null;
+      viewModel.DialogMode = DialogMode.Selecting;
+      ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
     }
 
     

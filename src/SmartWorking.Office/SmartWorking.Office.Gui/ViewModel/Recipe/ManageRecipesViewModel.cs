@@ -6,12 +6,6 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Materials
 {
-  public enum SelectRecipeViewMode
-  {
-    SelectRecipe,
-    SelectMaterial
-  }
-
   public class SelectRecipeViewModel : ModalDialogViewModelBase
   {
     private ICommand _selectRecipeCommand;
@@ -25,7 +19,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
 
     public SelectableViewModelBase<Recipe> SelectableRecipe { get; private set; }
 
-    public SelectRecipeViewMode ViewMode { get; set; }
+    public DialogMode DialogMode { get; set; }
 
     public ICommand SelectRecipeCommand
     {
@@ -47,13 +41,13 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     {
       using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
       {
-        SelectableRecipe.LoadItems(recipesService.GetRecipes());
+        SelectableRecipe.LoadItems(recipesService.GetRecipes(string.Empty));
       }
     }
 
     private void SelectRecipe()
     {
-      CloaseModalDialog();
+      CloseModalDialog();
     }
   }
 }

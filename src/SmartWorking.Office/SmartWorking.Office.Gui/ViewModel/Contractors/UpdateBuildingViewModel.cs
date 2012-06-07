@@ -14,7 +14,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
     }
 
-    public ViewMode ViewMode { get; set; }
+    public DialogMode ViewMode { get; set; }
 
     public ICommand CreateOrUpdateBuildingCommand
     {
@@ -30,7 +30,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     {
       get
       {
-        return (ViewMode == ViewMode.Create)
+        return (ViewMode == DialogMode.Create)
                  ? "Utwórz nową budowę."
                  : "Edytuj budowę.";
       }
@@ -112,11 +112,11 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void UpdateBuilding()
     {
-      if (ViewMode == ViewMode.Create)
+      if (ViewMode == DialogMode.Create)
       {
         Contractor.Buildings.Add(Building);
       }
-      CloaseModalDialog();
+      CloseModalDialog();
     }
   }
 }
