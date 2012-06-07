@@ -34,7 +34,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>SmartWorking.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -60,7 +61,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SmartWorking.pfx" />
+    <None Include="..\SmartWorking.pfx">
+      <Link>SmartWorking.pfx</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

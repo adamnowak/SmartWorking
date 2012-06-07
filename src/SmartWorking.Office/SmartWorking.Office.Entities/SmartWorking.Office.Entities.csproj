@@ -34,7 +34,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>SmartWorking.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -97,7 +98,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SmartWorkingOfficeModel.cs</LastGenOutput>
     </None>
-    <None Include="SmartWorking.pfx" />
+    <None Include="..\SmartWorking.pfx">
+      <Link>SmartWorking.pfx</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

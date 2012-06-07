@@ -70,7 +70,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>SmartWorking.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4, Version=3.0.0.19993, Culture=neutral, PublicKeyToken=1673db7d5906b0ad, processorArchitecture=MSIL">
@@ -259,6 +260,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="..\SmartWorking.pfx">
+      <Link>SmartWorking.pfx</Link>
+    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
       <TransformOnBuild>true</TransformOnBuild>
@@ -291,7 +295,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="SmartWorking.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartWorking.Office.Entities\SmartWorking.Office.Entities.csproj">
