@@ -19,19 +19,19 @@ namespace SmartWorking.Office.Entities
     {
         #region Primitive Properties
     
-        public virtual int Id
+        public int Id
         {
             get;
             set;
         }
     
-        public virtual string Name
+        public string Name
         {
             get;
             set;
         }
     
-        public virtual string InternalName
+        public string InternalName
         {
             get;
             set;
@@ -40,7 +40,7 @@ namespace SmartWorking.Office.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<DeliveryNote> DeliveryNotes
+        public ICollection<DeliveryNote> DeliveryNotes
         {
             get
             {
@@ -72,7 +72,7 @@ namespace SmartWorking.Office.Entities
         }
         private ICollection<DeliveryNote> _deliveryNotes;
     
-        public virtual ICollection<RecipeSpecification> RecipeSpecifications
+        public ICollection<RecipeSpecification> RecipeSpecifications
         {
             get
             {

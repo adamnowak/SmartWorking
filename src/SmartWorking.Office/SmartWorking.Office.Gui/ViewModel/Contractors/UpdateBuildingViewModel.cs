@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Services.Interfaces;
@@ -16,12 +17,12 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     public DialogMode ViewMode { get; set; }
 
-    public ICommand CreateOrUpdateBuildingCommand
+    public ICommand CreateOrUpdatBuildingCommand
     {
       get
       {
         if (_createOrUpdateBuildingCommand == null)
-          _createOrUpdateBuildingCommand = new RelayCommand(UpdateBuilding, CanCreateBuilding);
+          _createOrUpdateBuildingCommand = new RelayCommand(CreateOrUpdatBuilding, CanCreateOrUpdatBuilding);
         return _createOrUpdateBuildingCommand;
       }
     }
@@ -103,18 +104,37 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     #endregion
 
-    private bool CanCreateBuilding()
+    private bool CanCreateOrUpdatBuilding()
     {
+      if (Contractor == null || Building == null)
+        return false;
       //TODO: validate
       return true;
     }
 
 
-    private void UpdateBuilding()
+    private void CreateOrUpdatBuilding()
     {
-      if (ViewMode == DialogMode.Create)
+      if (Contractor == null || Building == null)
+        throw new Exception(); //TODO:
+      
+      using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
       {
-        Contractor.Buildings.Add(Building);
+        if (ViewMode == DialogMode.Create)
+        {
+          if (Building.Id > 0)
+            throw new Exception("Building has wrong Id (>0).");
+          Building.Contractor_Id = Contractor.Id;
+          contractorService.AddBuildingToContractor(Contractor, Building);
+        }
+        else if (ViewMode == DialogMode.Update)
+        {
+          if (Building.Id <= 0)
+            throw new Exception("Building has wrong Id (<=0).");
+          if (Contractor.Id != Building.Contractor_Id)
+            throw new Exception("Building has to belong to Contractor.");
+          contractorService.UpdateBuilding(Building);
+        }
       }
       CloseModalDialog();
     }

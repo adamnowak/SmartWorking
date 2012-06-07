@@ -19,13 +19,13 @@ namespace SmartWorking.Office.Entities
     {
         #region Primitive Properties
     
-        public virtual int Id
+        public int Id
         {
             get;
             set;
         }
     
-        public virtual string RegistrationNumber
+        public string RegistrationNumber
         {
             get;
             set;
@@ -34,7 +34,7 @@ namespace SmartWorking.Office.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<DeliveryNote> DeliveryNotes
+        public ICollection<DeliveryNote> DeliveryNotes
         {
             get
             {

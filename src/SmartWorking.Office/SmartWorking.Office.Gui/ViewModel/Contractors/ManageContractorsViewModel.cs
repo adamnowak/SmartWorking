@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Contractors;
@@ -13,6 +14,11 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
   {
     private ICommand _createContractorCommand;
     private ICommand _selectContractorCommand;
+    private ICommand _editContractorCommand;
+    private ICommand _deleteContractorCommand;
+    private ICommand _createBuildingCommand;
+    private ICommand _editBuildingCommand;
+    private ICommand _deleteBuildingCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ManageContractorsViewModel"/> class.
@@ -31,19 +37,161 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public SelectableViewModelBase<Contractor> SelectableContractor { get; private set; }
 
-    
+    public Building SelectedBuilding { get; set; }
 
     /// <summary>
     /// Gets the create contractor command.
     /// </summary>
+    /// <remarks>Opens dialog to creating <see cref="Contractor"/>.</remarks>
     public ICommand CreateContractorCommand
     {
       get
       {
         if (_createContractorCommand == null)
-          _createContractorCommand = new RelayCommand(() => ModalDialogService.CreateContractor(ModalDialogService, ServiceFactory));
+          _createContractorCommand = new RelayCommand(CreateContractor);
         return _createContractorCommand;
       }
+    }
+
+    private void CreateContractor()
+    {
+      ModalDialogService.CreateContractor(ModalDialogService, ServiceFactory);
+      LoadContractors();
+    }
+
+    /// <summary>
+    /// Gets the edit contractor command.
+    /// </summary>
+    /// <remarks>Opens dialog to editing <see cref="Contractor"/>.</remarks>
+    public ICommand EditContractorCommand
+    {
+      get
+      {
+        if (_editContractorCommand == null)
+          _editContractorCommand = new RelayCommand(
+            EditContractor, 
+            () => SelectableContractor != null && SelectableContractor.SelectedItem != null);
+        return _editContractorCommand;
+      }
+    }
+
+    private void EditContractor()
+    {
+      ModalDialogService.EditContractor(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem);
+      LoadContractors();
+    }
+
+    /// <summary>
+    /// Gets the delete contractor command.
+    /// </summary>
+    /// <remarks>
+    /// Deletes <see cref="Contractor"/> if user confirmed action. 
+    /// Command cannot be execute if any Building of this Contractor is connected with any <see cref="DeliveryNote"/>.
+    /// </remarks>
+    public ICommand DeleteContractorCommand
+    {
+      get
+      {
+        if (_deleteContractorCommand == null)
+          _deleteContractorCommand = new RelayCommand(DeleteContractor,
+            CanDeleteContractor);
+        return _deleteContractorCommand;
+      }
+    }
+
+    private void DeleteContractor()
+    {
+      //TODO: 
+      //MessageBox with question
+      //if yes deletes all building of this contractor and this contractor
+    }
+
+    private bool CanDeleteContractor()
+    {
+      if (SelectableContractor != null && SelectableContractor.SelectedItem != null)
+      {
+        //TODO: return true if all building of this contractor can be deleted.
+      }
+      return false;
+    }
+
+
+
+    /// <summary>
+    /// Gets the create building command.
+    /// </summary>
+    /// <remarks>Opens dialog to creating <see cref="Building"/>.</remarks>
+    public ICommand CreateBuildingCommand
+    {
+      get
+      {
+        if (_createBuildingCommand == null)
+          _createBuildingCommand = new RelayCommand(CreateBuilding,
+            () => SelectableContractor != null && SelectableContractor.SelectedItem != null);
+        return _createBuildingCommand;
+      }
+    }
+
+    private void CreateBuilding()
+    {
+      ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem);
+      LoadContractors();
+    }
+
+    /// <summary>
+    /// Gets the edit building command.
+    /// </summary>
+    /// <remarks>Opens dialog to editing <see cref="Building"/>.</remarks>
+    public ICommand EditBuildingCommand
+    {
+      get
+      {
+        if (_editBuildingCommand == null)
+          _editBuildingCommand = new RelayCommand(
+            EditBuilding,
+            () => SelectableContractor != null && SelectableContractor.SelectedItem != null && SelectedBuilding != null);
+        return _editBuildingCommand;
+      }
+    }
+
+    private void EditBuilding()
+    {
+      ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory, SelectedBuilding);
+      LoadContractors();
+    }
+
+    /// <summary>
+    /// Gets the delete building command.
+    /// </summary>
+    /// <remarks>
+    /// Deletes <see cref="Building"/> if user confirmed action. 
+    /// Command cannot be execute if any <see cref="DeliveryNote"/> exists for this Building.
+    /// </remarks>
+    public ICommand DeleteBuildingCommand
+    {
+      get
+      {
+        if (_deleteBuildingCommand == null)
+          _deleteBuildingCommand = new RelayCommand(DeleteBuilding,
+            CanDeleteBuilding);
+        return _deleteBuildingCommand;
+      }
+    }
+
+    private void DeleteBuilding()
+    {
+      //TODO: 
+      //MessageBox with question
+      //if any <see cref="DeliveryNote"/> exists for this Building.
+    }
+
+    private bool CanDeleteBuilding()
+    {
+      if (SelectableContractor != null && SelectableContractor.SelectedItem != null && SelectedBuilding != null)
+      {
+        //TODO: return true if building of this contractor can be deleted.
+      }
+      return false;
     }
 
     public override string Title

@@ -19,13 +19,13 @@ namespace SmartWorking.Office.Entities
     {
         #region Primitive Properties
     
-        public virtual int Id
+        public int Id
         {
             get;
             set;
         }
     
-        public virtual Nullable<int> Material_Id
+        public Nullable<int> Material_Id
         {
             get { return _material_Id; }
             set
@@ -50,7 +50,7 @@ namespace SmartWorking.Office.Entities
         }
         private Nullable<int> _material_Id;
     
-        public virtual Nullable<double> Amount
+        public Nullable<double> Amount
         {
             get;
             set;
@@ -59,7 +59,7 @@ namespace SmartWorking.Office.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual Material Material
+        public Material Material
         {
             get { return _material; }
             set

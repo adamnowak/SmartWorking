@@ -20,12 +20,12 @@ namespace SmartWorking.Office.Services.Interfaces
     List<Contractor> GetContractors(string contractorNameFilter);
 
     /// <summary>
-    /// Updates the contractor.
+    /// Creates or updates the contractor.
     /// </summary>
     /// <param name="contractor">The contractor who will be updated.</param>
     /// <remarks>Only fields of Contractor object will be updated. Associated object e.g. Buildings have to be updated separately.</remarks>
     [OperationContract]
-    void UpdateContractor(Contractor contractor);
+    void CreateOrUpdateContractor(Contractor contractor);
 
     /// <summary>
     /// Deletes the contractor.

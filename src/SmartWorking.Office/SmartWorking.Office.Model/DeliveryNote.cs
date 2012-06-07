@@ -19,13 +19,13 @@ namespace SmartWorking.Office.Entities
     {
         #region Primitive Properties
     
-        public virtual int Id
+        public int Id
         {
             get;
             set;
         }
     
-        public virtual Nullable<int> Building_Id
+        public Nullable<int> Building_Id
         {
             get { return _building_Id; }
             set
@@ -50,7 +50,7 @@ namespace SmartWorking.Office.Entities
         }
         private Nullable<int> _building_Id;
     
-        public virtual Nullable<int> Recipe_Id
+        public Nullable<int> Recipe_Id
         {
             get { return _recipe_Id; }
             set
@@ -75,13 +75,13 @@ namespace SmartWorking.Office.Entities
         }
         private Nullable<int> _recipe_Id;
     
-        public virtual Nullable<double> Amount
+        public Nullable<double> Amount
         {
             get;
             set;
         }
     
-        public virtual Nullable<int> Driver_Id
+        public Nullable<int> Driver_Id
         {
             get { return _driver_Id; }
             set
@@ -106,31 +106,31 @@ namespace SmartWorking.Office.Entities
         }
         private Nullable<int> _driver_Id;
     
-        public virtual Nullable<System.DateTime> DateDrawing
+        public Nullable<System.DateTime> DateDrawing
         {
             get;
             set;
         }
     
-        public virtual Nullable<System.DateTime> DateOfArrival
+        public Nullable<System.DateTime> DateOfArrival
         {
             get;
             set;
         }
     
-        public virtual Nullable<System.DateTime> Canceled
+        public Nullable<System.DateTime> Canceled
         {
             get;
             set;
         }
     
-        public virtual string Drawer
+        public string Drawer
         {
             get;
             set;
         }
     
-        public virtual Nullable<int> Car_Id
+        public Nullable<int> Car_Id
         {
             get { return _car_Id; }
             set
@@ -158,7 +158,7 @@ namespace SmartWorking.Office.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual Building Building
+        public Building Building
         {
             get { return _building; }
             set
@@ -173,7 +173,7 @@ namespace SmartWorking.Office.Entities
         }
         private Building _building;
     
-        public virtual Car Car
+        public Car Car
         {
             get { return _car; }
             set
@@ -188,7 +188,7 @@ namespace SmartWorking.Office.Entities
         }
         private Car _car;
     
-        public virtual Driver Driver
+        public Driver Driver
         {
             get { return _driver; }
             set
@@ -203,7 +203,7 @@ namespace SmartWorking.Office.Entities
         }
         private Driver _driver;
     
-        public virtual Recipe Recipe
+        public Recipe Recipe
         {
             get { return _recipe; }
             set

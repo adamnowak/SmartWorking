@@ -32,48 +32,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </value>
     public DialogMode ViewMode { get; set; }
 
-    /// <summary>
-    /// Gets the create building command.
-    /// </summary>
-    /// <remarks>This command display dialog where You can create new Building for Contractor.</remarks>
-    public ICommand CreateBuildingCommand
-    {
-      get
-      {
-        if (_createBuildingCommand == null)
-          _createBuildingCommand = new RelayCommand(CreateBuilding);
-        return _createBuildingCommand;
-      }
-    }
-
-
-    /// <summary>
-    /// Gets the update building command.
-    /// </summary>
-    /// <remarks>This command display dialog where You can update fields of <see cref="SelectedBuilding"/>.</remarks>
-    public ICommand UpdateBuildingCommand
-    {
-      get
-      {
-        if (_updateBuildingCommand == null)
-          _updateBuildingCommand = new RelayCommand(UpdateBuilding, () => { return SelectedBuilding != null; });
-        return _updateBuildingCommand;
-      }
-    }
-
-    /// <summary>
-    /// Gets the delete building command.
-    /// </summary>
-    /// <remarks>Deletes <see cref="SelectedBuilding"/>.</remarks>
-    public ICommand DeleteBuildingCommand
-    {
-      get
-      {
-        if (_deleteBuildingCommand == null)
-          _deleteBuildingCommand = new RelayCommand(DeleteBuilding, () => { return SelectedBuilding != null; });
-        return _deleteBuildingCommand;
-      }
-    }
+    
 
     /// <summary>
     /// Gets the title of dialog.
@@ -122,40 +81,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     #endregion
 
-    #region SelectedBuilding property
-
-    /// <summary>
-    /// The <see cref="SelectedBuilding" /> property's name.
-    /// </summary>
-    public const string SelectedBuildingPropertyName = "SelectedBuilding";
-
-    private Building _selectedBuilding;
-
-    /// <summary>
-    /// Gets the SelectedBuilding property.
-    /// Building which is selected. All operation on Building are invokes on this object.
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public Building SelectedBuilding
-    {
-      get { return _selectedBuilding; }
-
-      set
-      {
-        if (_selectedBuilding == value)
-        {
-          return;
-        }
-
-        _selectedBuilding = value;
-
-        // Update bindings, no broadcast
-        RaisePropertyChanged(SelectedBuildingPropertyName);
-      }
-    }
-
-    #endregion
+   
 
     #region CreateOrUpdateContractorConmmand
 
@@ -196,7 +122,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       {
         using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
         {
-          contractorService.UpdateContractor(Contractor);
+          contractorService.CreateOrUpdateContractor(Contractor);
         }
       }
       CloseModalDialog();
@@ -204,28 +130,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     #endregion
 
-    /// <summary>
-    /// Displays dialog to create new building.
-    /// </summary>
-    private void CreateBuilding()
-    {
-      ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory, Contractor);
-    }
-
-    /// <summary>
-    /// Displays dialog to update <see cref="SelectedBuilding"/>.
-    /// </summary>
-    private void UpdateBuilding()
-    {
-      ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory, SelectedBuilding);
-    }
-
-    /// <summary>
-    /// Deletes the <see cref="SelectedBuilding"/>.
-    /// </summary>
-    private void DeleteBuilding()
-    {
-      //TODO:
-    }
+    
   }
 }

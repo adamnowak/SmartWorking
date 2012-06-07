@@ -751,7 +751,7 @@ void EndNamespace(string namespaceName)
         PopIndent();
 #>
 }
-<#+
+<#+  
     }
 }
 
@@ -765,7 +765,7 @@ bool IsReadWriteAccessibleProperty(EdmMember member)
 
 string PropertyVirtualModifier(string accessibility)
 {
-    return accessibility + (accessibility != "private" ? " virtual" : "");
+    return accessibility; //AN: we don't need proxy (we working on clear POCO)     + (accessibility != "private" ? " virtual" : "");
 }
 
 void WriteCustomObservableCollection()

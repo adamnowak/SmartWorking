@@ -36,12 +36,30 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the contractor.
     /// </summary>
     /// <param name="contractor">The contractor who will be updated.</param>
-    public void UpdateContractor(Contractor contractor)
+    public void CreateOrUpdateContractor(Contractor contractor)
     {
-      using (var ctx = new SmartWorkingEntities())
+      using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
-        ctx.Contractors.ApplyCurrentValues(contractor);
-        ctx.SaveChanges();
+        Contractor existingObject = context.Contractors.Where(x => x.Id == contractor.Id).FirstOrDefault();
+
+        //no record of this item in the DB, item being passed in has a PK
+        if (existingObject == null && contractor.Id > 0)
+        {
+          //log
+          return;
+        }
+        //Item has no PK value, must be new
+        else if (contractor.Id <= 0)
+        {
+          context.Contractors.AddObject(contractor);
+        }
+        //Item was retrieved, and the item passed has a valid ID, do an update
+        else
+        {
+          context.Contractors.ApplyCurrentValues(contractor);
+        }
+
+        context.SaveChanges();
       }
     }
 
@@ -61,7 +79,34 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="building">The building which will be added to <paramref name="contractor"/>.</param>
     public void AddBuildingToContractor(Contractor contractor, Building building)
     {
-      throw new NotImplementedException();
+      if (building.Contractor_Id != contractor.Id)
+        //TODO: building have to contain to contractor
+        return;
+
+      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      {
+        Contractor existingObject = context.Contractors.Include("Buildings").Where(x => x.Id == contractor.Id).FirstOrDefault();
+        
+
+        //no record of this item in the DB, item being passed in has a PK
+        if (existingObject == null)
+        {
+          //log //TODO: contractor have to be in database before
+          return;
+        }
+        //Item has no PK value, must be new
+        else if (building.Id <= 0)
+        {
+          context.Buildings.AddObject(building);
+        }
+        //Item was retrieved, and the item passed has a valid ID, do an update
+        else
+        {
+          context.Buildings.ApplyCurrentValues(building);
+        }
+
+        context.SaveChanges();
+      }
     }
 
     /// <summary>
@@ -70,7 +115,23 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="building">The building which will be updated.</param>
     public void UpdateBuilding(Building building)
     {
-      throw new NotImplementedException();
+      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      {
+        Building existingObject = context.Buildings.Where(x => x.Id == building.Id).FirstOrDefault();
+
+        //no record of this item in the DB, item being passed in has a PK
+        if (existingObject == null)
+        {
+          //TODO: Fault: Building has to exists in database;
+          return;
+        }
+        else
+        {
+          context.Buildings.ApplyCurrentValues(building);
+        }
+
+        context.SaveChanges();
+      }
     }
 
     /// <summary>

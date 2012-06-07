@@ -19,13 +19,13 @@ namespace SmartWorking.Office.Entities
     {
         #region Primitive Properties
     
-        public virtual int Id
+        public int Id
         {
             get;
             set;
         }
     
-        public virtual int Contractor_Id
+        public int Contractor_Id
         {
             get { return _contractor_Id; }
             set
@@ -42,19 +42,19 @@ namespace SmartWorking.Office.Entities
         }
         private int _contractor_Id;
     
-        public virtual string City
+        public string City
         {
             get;
             set;
         }
     
-        public virtual string Street
+        public string Street
         {
             get;
             set;
         }
     
-        public virtual string HouseNo
+        public string HouseNo
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SmartWorking.Office.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual Contractor Contractor
+        public Contractor Contractor
         {
             get { return _contractor; }
             set
@@ -78,7 +78,7 @@ namespace SmartWorking.Office.Entities
         }
         private Contractor _contractor;
     
-        public virtual ICollection<DeliveryNote> DeliveryNotes
+        public ICollection<DeliveryNote> DeliveryNotes
         {
             get
             {
