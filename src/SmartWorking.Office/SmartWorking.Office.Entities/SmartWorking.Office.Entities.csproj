@@ -80,8 +80,8 @@
       <Link>Recipe.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="..\SmartWorking.Office.Model\RecipeSpecification.cs">
-      <Link>RecipeSpecification.cs</Link>
+    <Compile Include="..\SmartWorking.Office.Model\RecipeComponent.cs">
+      <Link>RecipeComponent.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModel.cs">

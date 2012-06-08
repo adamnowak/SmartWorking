@@ -13,8 +13,8 @@
           <EntitySet Name="Drivers" EntityType="SmartWorkingModel.Store.Drivers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Materials" EntityType="SmartWorkingModel.Store.Materials" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MaterialStocks" EntityType="SmartWorkingModel.Store.MaterialStocks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecipeComponents" EntityType="SmartWorkingModel.Store.RecipeComponents" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Recipes" EntityType="SmartWorkingModel.Store.Recipes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RecipeSpecifications" EntityType="SmartWorkingModel.Store.RecipeSpecifications" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Buildings_Contractors" Association="SmartWorkingModel.Store.FK_Buildings_Contractors">
             <End Role="Contractors" EntitySet="Contractors" />
             <End Role="Buildings" EntitySet="Buildings" />
@@ -39,13 +39,13 @@
             <End Role="Materials" EntitySet="Materials" />
             <End Role="MaterialStocks" EntitySet="MaterialStocks" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeSpecifications_Materials" Association="SmartWorkingModel.Store.FK_RecipeSpecifications_Materials">
+          <AssociationSet Name="FK_RecipeComponents_Materials" Association="SmartWorkingModel.Store.FK_RecipeComponents_Materials">
             <End Role="Materials" EntitySet="Materials" />
-            <End Role="RecipeSpecifications" EntitySet="RecipeSpecifications" />
+            <End Role="RecipeComponents" EntitySet="RecipeComponents" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeSpecifications_Recipes" Association="SmartWorkingModel.Store.FK_RecipeSpecifications_Recipes">
+          <AssociationSet Name="FK_RecipeComponents_Recipes" Association="SmartWorkingModel.Store.FK_RecipeComponents_Recipes">
             <End Role="Recipes" EntitySet="Recipes" />
-            <End Role="RecipeSpecifications" EntitySet="RecipeSpecifications" />
+            <End Role="RecipeComponents" EntitySet="RecipeComponents" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Buildings">
@@ -54,28 +54,28 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Contractor_Id" Type="int" Nullable="false" />
-          <Property Name="City" Type="varchar" MaxLength="50" />
-          <Property Name="Street" Type="varchar" MaxLength="50" />
-          <Property Name="HouseNo" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="70" />
+          <Property Name="Street" Type="nvarchar" MaxLength="70" />
+          <Property Name="HouseNo" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Cars">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="RegistrationNumber" Type="nchar" MaxLength="10" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="InternalName" Type="varchar" MaxLength="10" />
+          <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="InternalName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Contractors">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="varchar" MaxLength="50" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Surname" Type="varchar" MaxLength="50" />
-          <Property Name="Phone" Type="nchar" MaxLength="9" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="70" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="DeliveryNotes">
           <Key>
@@ -89,7 +89,7 @@
           <Property Name="DateDrawing" Type="datetime" />
           <Property Name="DateOfArrival" Type="datetime" />
           <Property Name="Canceled" Type="datetime" />
-          <Property Name="Drawer" Type="varchar" MaxLength="50" />
+          <Property Name="Drawer" Type="nvarchar" MaxLength="50" />
           <Property Name="Car_Id" Type="int" />
         </EntityType>
         <EntityType Name="Drivers">
@@ -97,17 +97,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Surname" Type="varchar" MaxLength="50" />
-          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Materials">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" MaxLength="150" />
-          <Property Name="InternalName" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="InternalName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MaterialStocks">
           <Key>
@@ -117,15 +117,7 @@
           <Property Name="Material_Id" Type="int" />
           <Property Name="Amount" Type="float" />
         </EntityType>
-        <EntityType Name="Recipes">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="InternalName" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="RecipeSpecifications">
+        <EntityType Name="RecipeComponents">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -133,6 +125,14 @@
           <Property Name="Material_Id" Type="int" />
           <Property Name="Recipe_Id" Type="int" />
           <Property Name="Amount" Type="float" />
+        </EntityType>
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" />
+          <Property Name="InternalName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Buildings_Contractors">
           <End Role="Contractors" Type="SmartWorkingModel.Store.Contractors" Multiplicity="1" />
@@ -206,26 +206,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecipeSpecifications_Materials">
+        <Association Name="FK_RecipeComponents_Materials">
           <End Role="Materials" Type="SmartWorkingModel.Store.Materials" Multiplicity="0..1" />
-          <End Role="RecipeSpecifications" Type="SmartWorkingModel.Store.RecipeSpecifications" Multiplicity="*" />
+          <End Role="RecipeComponents" Type="SmartWorkingModel.Store.RecipeComponents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Materials">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="RecipeSpecifications">
+            <Dependent Role="RecipeComponents">
               <PropertyRef Name="Material_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecipeSpecifications_Recipes">
+        <Association Name="FK_RecipeComponents_Recipes">
           <End Role="Recipes" Type="SmartWorkingModel.Store.Recipes" Multiplicity="0..1" />
-          <End Role="RecipeSpecifications" Type="SmartWorkingModel.Store.RecipeSpecifications" Multiplicity="*" />
+          <End Role="RecipeComponents" Type="SmartWorkingModel.Store.RecipeComponents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recipes">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="RecipeSpecifications">
+            <Dependent Role="RecipeComponents">
               <PropertyRef Name="Recipe_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -243,7 +243,6 @@
           <EntitySet Name="Materials" EntityType="SmartWorkingModel.Material" />
           <EntitySet Name="MaterialStocks" EntityType="SmartWorkingModel.MaterialStock" />
           <EntitySet Name="Recipes" EntityType="SmartWorkingModel.Recipe" />
-          <EntitySet Name="RecipeSpecifications" EntityType="SmartWorkingModel.RecipeSpecification" />
           <AssociationSet Name="FK_Buildings_Contractors" Association="SmartWorkingModel.FK_Buildings_Contractors">
             <End Role="Contractor" EntitySet="Contractors" />
             <End Role="Building" EntitySet="Buildings" />
@@ -268,15 +267,16 @@
             <End Role="Material" EntitySet="Materials" />
             <End Role="MaterialStock" EntitySet="MaterialStocks" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeSpecifications_Materials" Association="SmartWorkingModel.FK_RecipeSpecifications_Materials">
+          <EntitySet Name="RecipeComponents" EntityType="SmartWorkingModel.RecipeComponent" />
+          <AssociationSet Name="FK_RecipeComponents_Materials" Association="SmartWorkingModel.FK_RecipeComponents_Materials">
             <End Role="Material" EntitySet="Materials" />
-            <End Role="RecipeSpecification" EntitySet="RecipeSpecifications" />
+            <End Role="RecipeComponent" EntitySet="RecipeComponents" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipeSpecifications_Recipes" Association="SmartWorkingModel.FK_RecipeSpecifications_Recipes">
+          <AssociationSet Name="FK_RecipeComponents_Recipes" Association="SmartWorkingModel.FK_RecipeComponents_Recipes">
             <End Role="Recipe" EntitySet="Recipes" />
-            <End Role="RecipeSpecification" EntitySet="RecipeSpecifications" />
+            <End Role="RecipeComponent" EntitySet="RecipeComponents" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Building">
           <Key>
             <PropertyRef Name="Id" />
@@ -347,7 +347,7 @@
           <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="InternalName" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MaterialStocks" Relationship="SmartWorkingModel.FK_MaterialStocks_Materails" FromRole="Material" ToRole="MaterialStock" />
-          <NavigationProperty Name="RecipeSpecifications" Relationship="SmartWorkingModel.FK_RecipeSpecifications_Materials" FromRole="Material" ToRole="RecipeSpecification" />
+          <NavigationProperty Name="RecipeComponents" Relationship="SmartWorkingModel.FK_RecipeComponents_Materials" FromRole="Material" ToRole="RecipeComponent" />
         </EntityType>
         <EntityType Name="MaterialStock">
           <Key>
@@ -366,18 +366,7 @@
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="InternalName" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DeliveryNotes" Relationship="SmartWorkingModel.FK_DeliveryNotes_Recipes" FromRole="Recipe" ToRole="DeliveryNote" />
-          <NavigationProperty Name="RecipeSpecifications" Relationship="SmartWorkingModel.FK_RecipeSpecifications_Recipes" FromRole="Recipe" ToRole="RecipeSpecification" />
-        </EntityType>
-        <EntityType Name="RecipeSpecification">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Material_Id" />
-          <Property Type="Int32" Name="Recipe_Id" />
-          <Property Type="Double" Name="Amount" />
-          <NavigationProperty Name="Material" Relationship="SmartWorkingModel.FK_RecipeSpecifications_Materials" FromRole="RecipeSpecification" ToRole="Material" />
-          <NavigationProperty Name="Recipe" Relationship="SmartWorkingModel.FK_RecipeSpecifications_Recipes" FromRole="RecipeSpecification" ToRole="Recipe" />
+          <NavigationProperty Name="RecipeComponents" Relationship="SmartWorkingModel.FK_RecipeComponents_Recipes" FromRole="Recipe" ToRole="RecipeComponent" />
         </EntityType>
         <Association Name="FK_Buildings_Contractors">
           <End Type="SmartWorkingModel.Contractor" Role="Contractor" Multiplicity="1" />
@@ -451,26 +440,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecipeSpecifications_Materials">
+        <EntityType Name="RecipeComponent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Material_Id" />
+          <Property Type="Int32" Name="Recipe_Id" />
+          <Property Type="Double" Name="Amount" />
+          <NavigationProperty Name="Material" Relationship="SmartWorkingModel.FK_RecipeComponents_Materials" FromRole="RecipeComponent" ToRole="Material" />
+          <NavigationProperty Name="Recipe" Relationship="SmartWorkingModel.FK_RecipeComponents_Recipes" FromRole="RecipeComponent" ToRole="Recipe" />
+        </EntityType>
+        <Association Name="FK_RecipeComponents_Materials">
           <End Type="SmartWorkingModel.Material" Role="Material" Multiplicity="0..1" />
-          <End Type="SmartWorkingModel.RecipeSpecification" Role="RecipeSpecification" Multiplicity="*" />
+          <End Type="SmartWorkingModel.RecipeComponent" Role="RecipeComponent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="RecipeSpecification">
+            <Dependent Role="RecipeComponent">
               <PropertyRef Name="Material_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecipeSpecifications_Recipes">
+        <Association Name="FK_RecipeComponents_Recipes">
           <End Type="SmartWorkingModel.Recipe" Role="Recipe" Multiplicity="0..1" />
-          <End Type="SmartWorkingModel.RecipeSpecification" Role="RecipeSpecification" Multiplicity="*" />
+          <End Type="SmartWorkingModel.RecipeComponent" Role="RecipeComponent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Recipe">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="RecipeSpecification">
+            <Dependent Role="RecipeComponent">
               <PropertyRef Name="Recipe_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -566,9 +566,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RecipeSpecifications">
-            <EntityTypeMapping TypeName="SmartWorkingModel.RecipeSpecification">
-              <MappingFragment StoreEntitySet="RecipeSpecifications">
+          <EntitySetMapping Name="RecipeComponents">
+            <EntityTypeMapping TypeName="SmartWorkingModel.RecipeComponent">
+              <MappingFragment StoreEntitySet="RecipeComponents">
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Recipe_Id" ColumnName="Recipe_Id" />
                 <ScalarProperty Name="Material_Id" ColumnName="Material_Id" />
@@ -606,7 +606,6 @@
         <EntityTypeShape EntityType="SmartWorkingModel.Material" Width="1.5" PointX="7.375" PointY="0.5" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="SmartWorkingModel.MaterialStock" Width="1.5" PointX="10" PointY="1.875" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SmartWorkingModel.Recipe" Width="1.5" PointX="5" PointY="0.75" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="SmartWorkingModel.RecipeSpecification" Width="1.5" PointX="7.375" PointY="3.25" Height="2.1725878906250102" />
         <AssociationConnector Association="SmartWorkingModel.FK_Buildings_Contractors" >
           <ConnectorPoint PointX="1.4375" PointY="6.25" />
           <ConnectorPoint PointX="1.4375" PointY="2.8648893229166674" />
@@ -625,24 +624,24 @@
           <ConnectorPoint PointX="3.875" PointY="7.5859993489583246" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Recipes" >
-          <ConnectorPoint PointX="5.75" PointY="2.7302864583333388" />
-          <ConnectorPoint PointX="5.75" PointY="5.7304996744791623" />
-          <ConnectorPoint PointX="4.5" PointY="5.7304996744791623" />
+          <ConnectorPoint PointX="5.75" PointY="2.7302864583333335" />
+          <ConnectorPoint PointX="5.75" PointY="5.4902498372395812" />
+          <ConnectorPoint PointX="4.5" PointY="5.4902498372395812" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_MaterialStocks_Materails" >
-          <ConnectorPoint PointX="8.875" PointY="2.1776432291666694" />
-          <ConnectorPoint PointX="10" PointY="2.1776432291666694" />
+          <ConnectorPoint PointX="8.875" PointY="2.1776432291666667" />
+          <ConnectorPoint PointX="10" PointY="2.1776432291666667" />
         </AssociationConnector>
-        <AssociationConnector Association="SmartWorkingModel.FK_RecipeSpecifications_Materials" >
-          <ConnectorPoint PointX="8.125" PointY="2.4802864583333388" />
-          <ConnectorPoint PointX="8.125" PointY="3.25" />
+        <EntityTypeShape EntityType="SmartWorkingModel.RecipeComponent" Width="1.5" PointX="7.125" PointY="3.125" Height="2.1725878906250031" />
+        <AssociationConnector Association="SmartWorkingModel.FK_RecipeComponents_Materials" >
+          <ConnectorPoint PointX="8" PointY="2.4802864583333335" />
+          <ConnectorPoint PointX="8" PointY="3.125" />
         </AssociationConnector>
-        <AssociationConnector Association="SmartWorkingModel.FK_RecipeSpecifications_Recipes" >
-          <ConnectorPoint PointX="6.1562525" PointY="2.7302864583333388" />
-          <ConnectorPoint PointX="6.1562525" PointY="4.3362939453125051" />
-          <ConnectorPoint PointX="7.375" PointY="4.3362939453125051" />
+        <AssociationConnector Association="SmartWorkingModel.FK_RecipeComponents_Recipes" >
+          <ConnectorPoint PointX="6.5" PointY="2.7302864583333335" />
+          <ConnectorPoint PointX="7.125" PointY="3.125" />
         </AssociationConnector>
-      </Diagram>
+        </Diagram>
     </Diagrams>
   </Designer>
 </edmx:Edmx>

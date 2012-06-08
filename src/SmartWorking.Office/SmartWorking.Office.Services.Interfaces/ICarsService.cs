@@ -19,6 +19,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of Car filtered by <paramref name="carsFilter"/>. 
     /// </returns>
     [OperationContract]
+    //[ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     List<Car> GetCars(string carsFilter);
 
     /// <summary>
@@ -26,6 +28,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </summary>
     /// <param name="car">The car which will be updated.</param>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void UpdateCar(Car car);
 
     /// <summary>
@@ -36,6 +40,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// Only car which is not used can be deleted.
     /// </remarks>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void DeleteCar(Car car);
   }
 }

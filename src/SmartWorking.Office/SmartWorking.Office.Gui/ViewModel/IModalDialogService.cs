@@ -156,6 +156,24 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
     Recipe SelectRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+
+    /// <summary>
+    /// Opens dialog for creating the recipe component.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <returns></returns>
+    RecipeComponent CreateRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+
+    /// <summary>
+    /// Opens dialog for editing the recipe component.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <param name="selectedRecipeComponent">The selected recipe component.</param>
+    /// <returns></returns>
+    RecipeComponent EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponent selectedRecipeComponent);
+    
     #endregion
 
     #region Car

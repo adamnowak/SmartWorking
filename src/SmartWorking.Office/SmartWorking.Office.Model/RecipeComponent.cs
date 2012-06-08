@@ -15,7 +15,7 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.Entities
 {
-    public partial class RecipeSpecification
+    public partial class RecipeComponent
     {
         #region Primitive Properties
     
@@ -121,16 +121,16 @@ namespace SmartWorking.Office.Entities
     
         private void FixupMaterial(Material previousValue)
         {
-            if (previousValue != null && previousValue.RecipeSpecifications.Contains(this))
+            if (previousValue != null && previousValue.RecipeComponents.Contains(this))
             {
-                previousValue.RecipeSpecifications.Remove(this);
+                previousValue.RecipeComponents.Remove(this);
             }
     
             if (Material != null)
             {
-                if (!Material.RecipeSpecifications.Contains(this))
+                if (!Material.RecipeComponents.Contains(this))
                 {
-                    Material.RecipeSpecifications.Add(this);
+                    Material.RecipeComponents.Add(this);
                 }
                 if (Material_Id != Material.Id)
                 {
@@ -145,16 +145,16 @@ namespace SmartWorking.Office.Entities
     
         private void FixupRecipe(Recipe previousValue)
         {
-            if (previousValue != null && previousValue.RecipeSpecifications.Contains(this))
+            if (previousValue != null && previousValue.RecipeComponents.Contains(this))
             {
-                previousValue.RecipeSpecifications.Remove(this);
+                previousValue.RecipeComponents.Remove(this);
             }
     
             if (Recipe != null)
             {
-                if (!Recipe.RecipeSpecifications.Contains(this))
+                if (!Recipe.RecipeComponents.Contains(this))
                 {
-                    Recipe.RecipeSpecifications.Add(this);
+                    Recipe.RecipeComponents.Add(this);
                 }
                 if (Recipe_Id != Recipe.Id)
                 {

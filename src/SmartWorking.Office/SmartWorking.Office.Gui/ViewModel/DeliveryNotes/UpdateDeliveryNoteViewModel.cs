@@ -7,10 +7,14 @@ using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
 using SmartWorking.Office.Entities;
+using SmartWorking.Office.Gui.View.DeliveryNotes;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
+  /// <summary>
+  ///  View model for <see cref="UpdateDeliveryNote"/> dialog. 
+  /// </summary>
   public class UpdateDeliveryNoteViewModel : ModalDialogViewModelBase
   {
     private ICommand _selectBuildingCommand;    
@@ -18,13 +22,27 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     private ICommand _selectDriverCommand;
     private ICommand _selectCarCommand;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateDeliveryNoteViewModel"/> class.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
     public UpdateDeliveryNoteViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
     }
 
+    /// <summary>
+    /// Gets or sets the dialog mode.
+    /// </summary>
+    /// <value>
+    /// The dialog mode.
+    /// </value>
     public DialogMode DialogMode { get; set; }
 
+    /// <summary>
+    /// Gets the title of modal dialog.
+    /// </summary>
     public override string Title
     {
       get

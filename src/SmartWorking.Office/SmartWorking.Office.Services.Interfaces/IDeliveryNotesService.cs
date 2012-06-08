@@ -20,6 +20,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of <see cref="DeliveryNote"/> filtered by <paramref name="buildingContainsThisString"/> and <paramref name="showCanceledDeliveryNotes"/>.
     /// </returns>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     List<DeliveryNote> GetIDeliveryNotes(string buildingContainsThisString, bool showCanceledDeliveryNotes);
 
     /// <summary>
@@ -27,6 +29,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be updated.</param>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void UpdateDeliveryNote(DeliveryNote deliveryNote);
 
     /// <summary>
@@ -37,6 +41,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <see cref="DeliveryNote"/> cannot be deleted.
     /// </remarks>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void CanceledDeliveryNote(DeliveryNote deliveryNote);
   }
 }

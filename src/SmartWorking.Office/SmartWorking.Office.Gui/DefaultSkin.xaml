@@ -21,7 +21,8 @@
 
     <BitmapImage x:Key="CancelDNImageSource" UriSource="Media/CancelDN.png" />
     
-	<System:Double x:Key="dialogMainPanelWidth">470</System:Double>
+    
+    <!--Width (GridLength) for button panel-->
 	<GridLength x:Key="dialogButtonPanelWidthGridLength">180</GridLength>
     
 	<!--Custom-->
@@ -32,11 +33,17 @@
 
 	<Style TargetType="TextBlock">
 		<Setter Property="Margin" Value="3" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalAlignment" Value="Center" />
 	</Style>
 
 	<Style TargetType="Button">
 		<Setter Property="Margin" Value="3" />
 	</Style>
+    
+    <Style TargetType="DatePicker">
+        <Setter Property="Margin" Value="3" />
+    </Style>
 
 	<Style TargetType="DataGrid">
 		<Setter Property="SelectionMode" Value="Single" />
@@ -59,10 +66,7 @@
 		<Setter Property="Margin" Value="2" />
 	</Style>
 
-	<Style TargetType="Label">
-		<Setter Property="FontSize" Value="14" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-	</Style>
+	
 
 	<Style TargetType="TextBox">
 		<Setter Property="Margin" Value="3" />
@@ -75,21 +79,30 @@
     </Style>
 
 	<!--Keys-->
+    <!--Panel with button on MainWindow-->
 	<Style x:Key="mainPanel" TargetType="StackPanel">
 		<Setter Property="Height" Value="550" />
-		<Setter Property="Width" Value="{StaticResource dialogMainPanelWidth}" />
+		<Setter Property="Width" Value="550" />
 	</Style>
 
-	<Style x:Key="dialogMainPanel" TargetType="StackPanel">
+    <!--Main Panel for update dialogs which are not at size of window-->
+	<Style x:Key="updateDialogMainPanel" TargetType="StackPanel">
 		<Setter Property="Height" Value="450" />
-		<Setter Property="Width" Value="450" />
+        <Setter Property="Width" Value="500" />
 	</Style>
 
-	<Style x:Key="LabelH1" TargetType="Label">
+    <!--Main Panel for manage dialogs which are not at size of window-->
+    <Style x:Key="manageDialogMainPanel" TargetType="GroupBox" BasedOn="{StaticResource {x:Type GroupBox}}">
+        <Setter Property="Height" Value="450" />
+        <Setter Property="Width" Value="540" />
+    </Style>
+
+    
+    <Style x:Key="TextBlockH1" TargetType="TextBlock">
 		<Setter Property="FontSize" Value="24" />
 	</Style>
 
-	<Style x:Key="LabelH2" TargetType="Label">
+	<Style x:Key="TextBlockH2" TargetType="TextBlock">
 		<Setter Property="FontSize" Value="18" />
 	</Style>
 
@@ -168,7 +181,7 @@
 							<!--{Binding Path=Height, RelativeSource={RelativeSource Self}}-->
 							<Image Source="{TemplateBinding Image}" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
 						</Border>
-						<Label VerticalContentAlignment="Center" Style="{TemplateBinding HeaderStyle}" Content="{TemplateBinding Content}" />
+						<TextBlock  Style="{TemplateBinding HeaderStyle}" Text="{TemplateBinding Content}" />
 					</StackPanel>
 				</ControlTemplate>
 			</Setter.Value>

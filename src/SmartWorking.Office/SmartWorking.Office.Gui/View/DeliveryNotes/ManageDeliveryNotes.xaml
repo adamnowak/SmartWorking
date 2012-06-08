@@ -5,10 +5,10 @@
 			<RowDefinition Height="*" MinHeight="200" />
 			<RowDefinition Height="75" />
 		</Grid.RowDefinitions>
-		<Shared:PanelLabel Image="{StaticResource DeliveryNoteImageSource}" HeaderStyle="{StaticResource LabelH1}">WZ'tki</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource DeliveryNoteImageSource}" HeaderStyle="{StaticResource TextBlockH1}">WZ'tki</Shared:PanelLabel>
 
 
-		<GroupBox Header="WZ'tki" Grid.Row="1"><!--Width="{StaticResource dialogMainPanelWidth}"-->
+		<GroupBox Header="WZ'tki" Grid.Row="1">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />

@@ -8,10 +8,10 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource LabelH1}">Budowa</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Budowa</Shared:PanelLabel>
 		<!--Contractor grid-->
 		<GroupBox Header="Budowa" Grid.Row="1">
-			<StackPanel Style="{StaticResource dialogMainPanel}">
+			<StackPanel Style="{StaticResource updateDialogMainPanel}">
                 <Grid DataContext="{Binding Building}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
@@ -26,11 +26,11 @@
 					</Grid.RowDefinitions>
   
 					<!--Debug only-->
-					<Label Content="Id:" Grid.Row="0" />
+                    <TextBlock Text="Id:" Grid.Row="0" />
 					<!--End Debug only-->
-					<Label Content="Miasto:" Grid.Row="1" />
-					<Label Content="Ulica:" Grid.Row="2" />
-					<Label Content="Numer domu:" Grid.Row="3" />
+                    <TextBlock Text="Miasto:" Grid.Row="1" />
+                    <TextBlock Text="Ulica:" Grid.Row="2" />
+                    <TextBlock Text="Numer domu:" Grid.Row="3" />
 
 
 					<!--End Debug only-->

@@ -6,9 +6,9 @@
   public enum DialogMode
   {
     /// <summary>
-    /// Managing items
+    /// Manage items
     /// </summary>
-    Managing,
+    Manage,
     /// <summary>
     /// Create new item
     /// </summary>
@@ -18,13 +18,13 @@
     /// </summary>
     Update,
     /// <summary>
-    /// Selecting item
+    /// Chose item
     /// </summary>
-    Selecting,
+    Chose,
     /// <summary>
-    /// Selecting sub item
+    /// Chose sub item
     /// </summary>
     /// <remarks>E.G. selecting Building on Contractor dialog.</remarks>
-    SelectingSubItem
+    ChoseSubItem
   }
 }

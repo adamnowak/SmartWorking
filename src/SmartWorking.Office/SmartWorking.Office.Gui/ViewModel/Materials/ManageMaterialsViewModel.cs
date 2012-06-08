@@ -2,15 +2,21 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
+using SmartWorking.Office.Gui.View.Materials;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Materials
 {
+  /// <summary>
+  ///  View model for <see cref="ManageMaterials"/> dialog. 
+  /// </summary>
   public class ManageMaterialsViewModel : ModalDialogViewModelBase
   {
     private ICommand _createMaterialCommand;
-    private ICommand _selectMaterialCommand;
+    private ICommand _editMaterialCommand;
+    private ICommand _deleteMaterialCommand;
+    private ICommand _choseMaterialCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ManageMaterialsViewModel"/> class.
@@ -37,21 +43,27 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// </value>
     public DialogMode DialogMode { get; set; }
 
-    public ICommand SelectMaterialCommand
+    public ICommand ChoseMaterialCommand
     {
       get
       {
-        if (_selectMaterialCommand == null)
-          _selectMaterialCommand = new RelayCommand(SelectMaterial);
-        return _selectMaterialCommand;
+        if (_choseMaterialCommand == null)
+          _choseMaterialCommand = new RelayCommand(ChoseMaterial);
+        return _choseMaterialCommand;
       }
     }
 
-    private void SelectMaterial()
+    private void ChoseMaterial()
     {
       CloseModalDialog();
     }
 
+    /// <summary>
+    /// Gets the create material command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to creating material.
+    /// </remarks>
     public ICommand CreateMaterialCommand
     {
       get
@@ -62,9 +74,87 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
     }
 
+    /// <summary>
+    /// Gets the edit material command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to editing material.
+    /// </remarks>
+    public ICommand EditMaterialCommand
+    {
+      get
+      {
+        if (_editMaterialCommand == null)
+          _editMaterialCommand = new RelayCommand(EditMaterial, CanEditMaterial);
+        return _editMaterialCommand;
+      }
+    }
+
+    /// <summary>
+    /// Gets the delete material command.
+    /// </summary>
+    public ICommand DeleteMaterialCommand
+    {
+      get
+      {
+        if (_deleteMaterialCommand == null)
+          _deleteMaterialCommand = new RelayCommand(DeleteMaterial, CanDeleteMaterial);
+        return _deleteMaterialCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance [can edit material].
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if this instance [can edit material]; otherwise, <c>false</c>.
+    /// </returns>
+    private bool CanEditMaterial()
+    {
+      return SelectableMaterial != null && SelectableMaterial.SelectedItem != null;
+    }
+
+    /// <summary>
+    /// Edits the material.
+    /// </summary>
+    private void EditMaterial()
+    {
+      ModalDialogService.EditMaterial(ModalDialogService, ServiceFactory, SelectableMaterial.SelectedItem);
+      LoadMaterials();
+    }
+
+    /// <summary>
+    /// Determines whether this material (SelectableMaterial.SelectedItem) can be deleted.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if this material doesn't belong to any delivery notes; otherwise, <c>false</c>.
+    /// </returns>
+    private bool CanDeleteMaterial()
+    {
+      if (SelectableMaterial != null && SelectableMaterial.SelectedItem != null)
+      {
+        //TODO: if material is not used in any DeliveryNots then true
+      }
+      return false;
+    }
+
+    /// <summary>
+    /// Deletes the material.
+    /// </summary>
+    private void DeleteMaterial()
+    {
+      //TODO:
+      LoadMaterials();
+    }
+
+
+    /// <summary>
+    /// Opens dialog to create new material.
+    /// </summary>
     private void CreateMaterial()
     {
       ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
+      LoadMaterials();
     }
 
     /// <summary>

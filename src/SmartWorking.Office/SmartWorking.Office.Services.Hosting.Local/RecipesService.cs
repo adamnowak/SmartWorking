@@ -38,10 +38,28 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="recipe">The recipe to update.</param>
     public void UpdateRecipe(Recipe recipe)
     {
-      using (var ctx = new SmartWorkingEntities())
+      using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
-        ctx.Recipes.ApplyCurrentValues(recipe);
-        ctx.SaveChanges();
+        Recipe existingObject = context.Recipes.Where(x => x.Id == recipe.Id).FirstOrDefault();
+
+        //no record of this item in the DB, item being passed in has a PK
+        if (existingObject == null && recipe.Id > 0)
+        {
+          //TODO:
+          return;
+        }
+        //Item has no PK value, must be new
+        else if (recipe.Id <= 0)
+        {
+          context.Recipes.AddObject(recipe);
+        }
+        //Item was retrieved, and the item passed has a valid ID, do an update
+        else
+        {
+          context.Recipes.ApplyCurrentValues(recipe);
+        }
+
+        context.SaveChanges();
       }
     }
 

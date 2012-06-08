@@ -47,7 +47,7 @@ namespace SmartWorking.Office.Gui.View
     public void ManageContractors(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Managing;
+      viewModel.DialogMode = DialogMode.Manage;
       ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
     }
 
@@ -80,7 +80,7 @@ namespace SmartWorking.Office.Gui.View
     public Building SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.SelectingSubItem;
+      viewModel.DialogMode = DialogMode.ChoseSubItem;
       ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -105,7 +105,7 @@ namespace SmartWorking.Office.Gui.View
     public void ManageDeliveryNotes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageDeliveryNotesViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Managing;
+      viewModel.DialogMode = DialogMode.Manage;
       ;
       ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);
     }
@@ -136,14 +136,14 @@ namespace SmartWorking.Office.Gui.View
     public void ManageMaterials(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageMaterialsViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Managing;
+      viewModel.DialogMode = DialogMode.Manage;
       ModalDialogHelper<ManageMaterials>.ShowDialog(viewModel);
     }
 
     public Material SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageMaterialsViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Selecting;
+      viewModel.DialogMode = DialogMode.Chose;
       ModalDialogHelper<ManageMaterials>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -178,20 +178,57 @@ namespace SmartWorking.Office.Gui.View
     public void ManageRecipes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageRecipesViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Managing;
+      viewModel.DialogMode = DialogMode.Manage;
       ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
     }
 
     public Recipe SelectRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageRecipesViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Selecting;
+      viewModel.DialogMode = DialogMode.Chose;
       ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
         return viewModel.SelectableRecipe.SelectedItem;
       }
       return null;
+    }
+
+    /// <summary>
+    /// Opens dialog for creating the recipe component.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <returns></returns>
+    public RecipeComponent CreateRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      return null;
+      //var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
+      //viewModel.RecipeComponent = new RecipeComponent();
+      //viewModel.DialogMode = DialogMode.Create;
+      //ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
+      //if (!viewModel.IsCanceled)
+      //{
+      //  return viewModel.RecipeComponent;
+      //}
+      //return null;
+    }
+
+    /// <summary>
+    /// Opens dialog for editing the recipe component.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <param name="selectedRecipeComponent">The selected recipe component.</param>
+    /// <returns></returns>
+    public RecipeComponent EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponent selectedRecipeComponent)
+    {
+      return null;
+      //var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
+      //viewModel.RecipeComponent = selectedRecipeComponent;
+      //viewModel.DialogMode = DialogMode.Update;
+      //ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
+      //return viewModel.RecipeComponent;
     }
 
     public Car CreateCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -219,14 +256,14 @@ namespace SmartWorking.Office.Gui.View
     public void ManageCars(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageCarsViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Managing;
+      viewModel.DialogMode = DialogMode.Manage;
       ModalDialogHelper<ManageCars>.ShowDialog(viewModel);
     }
 
     public Car SelectCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageCarsViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Selecting;
+      viewModel.DialogMode = DialogMode.Chose;
       ModalDialogHelper<ManageCars>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -261,14 +298,14 @@ namespace SmartWorking.Office.Gui.View
     public void ManageDrivers(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageDriversViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Managing;
+      viewModel.DialogMode = DialogMode.Manage;
       ModalDialogHelper<ManageDrivers>.ShowDialog(viewModel);
     }
 
     public Driver SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageDriversViewModel(modalDialogService, serviceFactory);
-      viewModel.DialogMode = DialogMode.Selecting;
+      viewModel.DialogMode = DialogMode.Chose;
       ModalDialogHelper<ManageDrivers>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {

@@ -17,6 +17,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="materialNameFilter">The material name filter.</param>
     /// <returns>List of material filtered by <paramref name="materialNameFilter"/>. The result has the information about material in stock.</returns>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     List<Material> GetMaterials(string materialNameFilter);
 
     /// <summary>
@@ -24,6 +26,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </summary>
     /// <param name="material">The material which will be updated.</param>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void UpdateMaterial(Material material);
 
     /// <summary>
@@ -32,6 +36,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="material">The material which will be deleted.</param>
     /// <remarks>Information about material in stock will be also deleted.</remarks>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void DeleteMaterial(Material material);
 
     /// <summary>
@@ -40,6 +46,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="material">The material for which the information about stock will be updated.</param>
     /// <param name="amountMaterialInStock">The new material in stock.</param>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void UpdateMaterialInStock(Material material, float amountMaterialInStock);
   }
 }

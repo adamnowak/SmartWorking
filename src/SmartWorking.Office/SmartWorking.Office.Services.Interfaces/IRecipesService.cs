@@ -17,6 +17,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="recipesFilter">The recipes filter.</param>
     /// <returns>List of Recipe filtered by <paramref name="recipesFilter"/>. Recipe contains list of Material contains to this Recipe.</returns>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     List<Recipe> GetRecipes(string recipesFilter);
 
     /// <summary>
@@ -24,6 +26,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </summary>
     /// <param name="recipe">The recipe which will be updated.</param>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void UpdateRecipe(Recipe recipe);
 
     /// <summary>
@@ -32,6 +36,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="recipe">The recipe which will be deleted.</param>
     /// <remarks>Only recipe which is not used can be deleted.</remarks>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void DeleteRecipe(Recipe recipe);
 
     /// <summary>
@@ -41,6 +47,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="material">The material which will be added.</param>
     /// <param name="amountOfMaterial">The amount of material which is included in recipe.</param>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void AddMaterialToRecipe(Recipe recipe, Material material, float amountOfMaterial);
 
     /// <summary>
@@ -51,6 +59,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="amountOfMaterial">The amount of material which will be updated.</param>
     /// <remarks>Only amount of material will be updated.</remarks>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void UpdateMaterialInRecipe(Recipe recipe, Material material, float amountOfMaterial);
 
     /// <summary>
@@ -59,6 +69,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="recipe">The recipe from which material will be deleted..</param>
     /// <param name="material">The material which will be deleted from recipe.</param>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void DeleteMaterialFromRecipe(Recipe recipe, Material material);
   }
 }

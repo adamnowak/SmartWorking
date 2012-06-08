@@ -8,10 +8,10 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Shared:PanelLabel Image="{StaticResource DriverImageSource}" HeaderStyle="{StaticResource LabelH1}">Kierowca</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource DriverImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kierowca</Shared:PanelLabel>
 		<!--Contractor grid-->
 		<GroupBox Header="Kierowca" Grid.Row="1">
-			<StackPanel Style="{StaticResource dialogMainPanel}">
+			<StackPanel Style="{StaticResource updateDialogMainPanel}">
                 <Grid DataContext="{Binding Driver}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
@@ -25,11 +25,11 @@
 					</Grid.RowDefinitions>
 
 					<!--Debug only-->
-					<Label Content="Id:" Grid.Row="0" />
+                    <TextBlock Text="Id:" Grid.Row="0" />
 					<!--End Debug only-->
-					<Label Content="Imię:" Grid.Row="1" />
-					<Label Content="Nazwisko:" Grid.Row="2" />
-                    <Label Content="Numer Telefonu:" Grid.Row="3" />
+                    <TextBlock Text="Imię:" Grid.Row="1" />
+                    <TextBlock Text="Nazwisko:" Grid.Row="2" />
+                    <TextBlock Text="Numer Telefonu:" Grid.Row="3" />
 
 
 					<!--End Debug only-->

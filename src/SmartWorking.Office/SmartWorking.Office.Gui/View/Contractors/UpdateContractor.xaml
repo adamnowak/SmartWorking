@@ -7,10 +7,10 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Shared:PanelLabel Image="{StaticResource ContractorImageSource}" HeaderStyle="{StaticResource LabelH1}">Kontrahent</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource ContractorImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kontrahent</Shared:PanelLabel>
 		<!--Contractor grid-->
 		<GroupBox Header="Kontrahent" Grid.Row="1">
-			<StackPanel Style="{StaticResource dialogMainPanel}">
+			<StackPanel Style="{StaticResource updateDialogMainPanel}">
                 <Grid DataContext="{Binding Contractor}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
@@ -25,19 +25,19 @@
 					</Grid.RowDefinitions>
 
 					<!--Debug only-->
-					<Label Content="Id:" Grid.Row="0" />
+                    <TextBlock Text="Id:" Grid.Row="0" />
 					<!--End Debug only-->
-					<Label Content="Pełna nazwa:" Grid.Row="1" />
-					<Label Content="Nazwisko:" Grid.Row="2" />
-					<Label Content="Imię:" Grid.Row="3" />
-					<Label Content="Telefon:" Grid.Row="4" />
+                    <TextBlock Text="Pełna nazwa:" Grid.Row="1" />
+                    <TextBlock Text="Imię:" Grid.Row="2" />
+                    <TextBlock Text="Nazwisko:" Grid.Row="3" />
+                    <TextBlock Text="Telefon:" Grid.Row="4" />
 
 					<!--End Debug only-->
 					<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 					<!--Debug only-->
 					<TextBox Text="{Binding FullName}" Grid.Row="1" Grid.Column="1" />
 					<TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" />
-					<TextBox Text="{Binding Surname}" Grid.Row="3" Grid.Column="1" />
+                    <TextBox Text="{Binding Surname}" Grid.Row="3" Grid.Column="1" />
 					<TextBox Text="{Binding Phone}" Grid.Row="4" Grid.Column="1" />
 				</Grid>
 			</StackPanel>

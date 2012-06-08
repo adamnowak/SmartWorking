@@ -9,10 +9,10 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Shared:PanelLabel Image="{StaticResource RecipeImageSource}" HeaderStyle="{StaticResource LabelH1}">Recepta</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource RecipeImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Recepta</Shared:PanelLabel>
 		<!--Contractor grid-->
 		<GroupBox Header="Recepta" Grid.Row="1">
-			<StackPanel Style="{StaticResource dialogMainPanel}">
+			<StackPanel Style="{StaticResource updateDialogMainPanel}">
                 <Grid DataContext="{Binding Recipe}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
@@ -27,10 +27,10 @@
 					</Grid.RowDefinitions>
 
 					<!--Debug only-->
-					<Label Content="Id:" Grid.Row="0" />
+                    <TextBlock Text="Id:" Grid.Row="0" />
 					<!--End Debug only-->
-					<Label Content="Nazwa:" Grid.Row="1" />
-					<Label Content="Skrót:" Grid.Row="2" />
+                    <TextBlock Text="Nazwa:" Grid.Row="1" />
+                    <TextBlock Text="Skrót:" Grid.Row="2" />
 
 
 					<!--End Debug only-->

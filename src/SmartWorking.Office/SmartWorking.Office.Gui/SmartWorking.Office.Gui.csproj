@@ -178,6 +178,7 @@
       <DependentUpon>UpdateRecipe.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Shared\DescriptionButton.cs" />
+    <Compile Include="View\Shared\Converters\ComparingMultiConverter.cs" />
     <Compile Include="View\Shared\PanelLabel.cs" />
     <Compile Include="View\ViewModeToTextConverter.cs" />
     <Page Include="DefaultSkin.xaml">

@@ -20,6 +20,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     private ICommand _createBuildingCommand;
     private ICommand _editBuildingCommand;
     private ICommand _deleteBuildingCommand;
+    private ICommand _choseBuildingCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ManageContractorsViewModel"/> class.
@@ -59,6 +60,45 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       ModalDialogService.CreateContractor(ModalDialogService, ServiceFactory);
       LoadContractors();
     }
+
+    #region ChoseBuildingCommand
+    /// <summary>
+    /// Gets the chose building command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="Contractor"/> object where user can chose Building.</remarks>
+    public ICommand ChoseBuildingCommand
+    {
+      get
+      {
+        if (_choseBuildingCommand == null)
+          _choseBuildingCommand = new RelayCommand(ChoseBuilding, CanChoseBuilding);
+        return _choseBuildingCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether <see cref="ChoseBuildingCommand"/> can be executed.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if <see cref="ChoseBuildingCommand"/> can be executed; otherwise, <c>false</c>.
+    /// </returns>
+    private bool CanChoseBuilding()
+    {
+      return SelectedBuilding != null;
+    }
+
+    /// <summary>
+    /// Executes  <see cref="ChoseBuildingCommand"/>.
+    /// </summary>
+    /// <remarks>
+    /// Closes modal dialog.
+    /// </remarks>
+    private void ChoseBuilding()
+    {
+      CloseModalDialog();
+    }
+    #endregion
+
 
     /// <summary>
     /// Gets the edit contractor command.

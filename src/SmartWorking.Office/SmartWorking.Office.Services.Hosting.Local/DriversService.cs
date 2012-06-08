@@ -38,12 +38,34 @@ namespace SmartWorking.Office.Services.Hosting.Local
     }
 
     /// <summary>
-    /// Updates the car.
+    /// Updates the driver.
     /// </summary>
     /// <param name="driver">The driver which will be updated.</param>
     public void UpdateDriver(Driver driver)
     {
-      throw new NotImplementedException();
+      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      {
+        Driver existingObject = context.Drivers.Where(x => x.Id == driver.Id).FirstOrDefault();
+
+        //no record of this item in the DB, item being passed in has a PK
+        if (existingObject == null && driver.Id > 0)
+        {
+          //TODO:
+          return;
+        }
+        //Item has no PK value, must be new
+        else if (driver.Id <= 0)
+        {
+          context.Drivers.AddObject(driver);
+        }
+        //Item was retrieved, and the item passed has a valid ID, do an update
+        else
+        {
+          context.Drivers.ApplyCurrentValues(driver);
+        }
+
+        context.SaveChanges();
+      }
     }
 
     /// <summary>

@@ -40,7 +40,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplyCyclicDataContractSerializerOperationBehavior.cs" />
+    <Compile Include="ApplyDataContractResolverAttribute.cs" />
+    <Compile Include="CyclicReferencesAwareAttribute.cs" />
+    <Compile Include="CyclicReferencesAwareAttributeImporter.cs" />
+    <Compile Include="CyclicReferencesAwareContractBehavior.cs" />
     <Compile Include="IDeliveryNotesService.cs" />
     <Compile Include="IDriversService.cs" />
     <Compile Include="ICarsService.cs" />
@@ -56,6 +64,7 @@
     <Compile Include="IContractorsService.cs" />
     <Compile Include="IMaterialsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProxyDataContractResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartWorking.Office.Entities\SmartWorking.Office.Entities.csproj">

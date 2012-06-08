@@ -1,5 +1,7 @@
-﻿<UserControl x:Class="SmartWorking.Office.Gui.View.Recipes.ManageRecipes" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
-
+﻿<UserControl x:Class="SmartWorking.Office.Gui.View.Recipes.ManageRecipes" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:ViewModel="clr-namespace:SmartWorking.Office.Gui.ViewModel" xmlns:Converters="clr-namespace:SmartWorking.Office.Gui.View.Shared.Converters" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
+    </UserControl.Resources>
 
 	<Grid>
 		<Grid.RowDefinitions>
@@ -7,7 +9,7 @@
 			<RowDefinition Height="*" MinHeight="200" />
 			<RowDefinition Height="75" />
 		</Grid.RowDefinitions>
-		<Shared:PanelLabel Image="{StaticResource RecipeImageSource}" HeaderStyle="{StaticResource LabelH1}">Recepty</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource RecipeImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Recepty</Shared:PanelLabel>
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
 
@@ -26,8 +28,20 @@
                         <Shared:DescriptionButton Command="{Binding CreateRecipeCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
                         <Shared:DescriptionButton Command="{Binding EditRecipeCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
                         <Shared:DescriptionButton Command="{Binding DeleteRecipeCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
-					</StackPanel>
-					<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableContractor}" ItemsSource="{Binding Items}">
+                        <Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseRecipeCommand}" Image="{StaticResource ChoseImageSource}">
+                            <Shared:DescriptionButton.Visibility>
+                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Path="DialogMode" />
+                                        <Binding Source="{x:Static ViewModel:DialogMode.Chose}" />
+                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </Shared:DescriptionButton.Visibility>
+                        </Shared:DescriptionButton>
+                    </StackPanel>
+                    <DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableRecipe}" ItemsSource="{Binding Items}">
 						<DataGrid.Columns>
 							<!--Debug only-->
 							<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
@@ -45,7 +59,7 @@
 						<RowDefinition Height="40" />
 						<RowDefinition />
 					</Grid.RowDefinitions>
-					<Shared:PanelLabel Image="{StaticResource MaterialImageSource}" HeaderStyle="{StaticResource LabelH2}">
+					<Shared:PanelLabel Image="{StaticResource MaterialImageSource}" HeaderStyle="{StaticResource TextBlockH2}">
 						Materiały wybranej recepty
 					</Shared:PanelLabel>
 
@@ -59,7 +73,7 @@
                             <Shared:DescriptionButton Command="{Binding EditMaterialCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
                             <Shared:DescriptionButton Command="{Binding DeleteMaterialCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
 						</StackPanel>
-						<DataGrid Grid.Row="1" SelectedItem="{Binding SelectedBuilding}" ItemsSource="{Binding SelectableContractor.SelectedItem.Buildings}">
+                        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedMaterial}" ItemsSource="{Binding SelectableRecipe.SelectedItem.Materials}">
 							<DataGrid.Columns>
 								<!--Debug only-->
 								<DataGridTextColumn Header="Id" Binding="{Binding Id}" />

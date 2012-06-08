@@ -19,6 +19,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of Drivers filtered by <paramref name="driversFilter"/>.
     /// </returns>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     List<Driver> GetDrivers(string driversFilter);
 
     /// <summary>
@@ -26,6 +28,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </summary>
     /// <param name="driver">The driver which will be updated.</param>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void UpdateDriver(Driver driver);
 
     /// <summary>
@@ -36,6 +40,8 @@ namespace SmartWorking.Office.Services.Interfaces
     /// Only driver which is not used can be deleted.
     /// </remarks>
     [OperationContract]
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
     void DeleteDriver(Driver driver);
   }
 }

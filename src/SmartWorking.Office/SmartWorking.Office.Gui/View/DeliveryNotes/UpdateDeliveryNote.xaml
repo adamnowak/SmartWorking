@@ -9,7 +9,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Shared:PanelLabel Image="{StaticResource DeliveryNoteImageSource}" HeaderStyle="{StaticResource LabelH1}">WZ'ka</Shared:PanelLabel>
+        <Shared:PanelLabel Image="{StaticResource DeliveryNoteImageSource}" HeaderStyle="{StaticResource TextBlockH1}">WZ'ka</Shared:PanelLabel>
         <!--Contractor grid-->
         <GroupBox Header="WZ'tka" Grid.Row="1">
             <Grid>
@@ -22,7 +22,7 @@
                 </Grid.RowDefinitions>
 
 
-                <GroupBox Header="Budowa">
+                <GroupBox Header="Budowa" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120" />
@@ -50,10 +50,10 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
-                                    <Label Content="Pełna nazwa:" />
-                                    <Label Content="Nazwisko:" Grid.Row="1" />
-                                    <Label Content="Imię:" Grid.Row="2" />
-                                    <Label Content="Telefon:" Grid.Row="3" />
+                                    <TextBlock Text="Pełna nazwa:" />
+                                    <TextBlock Text="Nazwisko:" Grid.Row="1" />
+                                    <TextBlock Text="Imię:" Grid.Row="2" />
+                                    <TextBlock Text="Telefon:" Grid.Row="3" />
 
                                     <TextBox Text="{Binding FullName}" MinWidth="150" Grid.Column="1" IsReadOnly="True" />
                                     <TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" IsReadOnly="True" />
@@ -73,9 +73,9 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
-                                    <Label Content="Miasto:" />
-                                    <Label Content="Ulica:" Grid.Row="1" />
-                                    <Label Content="Numer domu:" Grid.Row="2" />
+                                    <TextBlock Text="Miasto:" />
+                                    <TextBlock Text="Ulica:" Grid.Row="1" />
+                                    <TextBlock Text="Numer domu:" Grid.Row="2" />
 
 
                                     <TextBox Text="{Binding City}" MinWidth="150" Grid.Column="1" IsReadOnly="True" />
@@ -94,7 +94,7 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <GroupBox  Header="Recepta">
+                    <GroupBox  Header="Recepta" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="110" />
@@ -102,7 +102,7 @@
                             </Grid.ColumnDefinitions>
                             <Shared:DescriptionButton Image="{StaticResource RecipeImageSource}" Content="Wybierz recepta" Style="{StaticResource SelectDescriptionButton}" Command="{Binding SelectRecipeCommand}"  />
                             <StackPanel Grid.Column="1" >
-                                <Grid DataContext="{Binding Building.Contractor}">
+                                <Grid DataContext="{Binding Recipe}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
@@ -112,9 +112,9 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Label Content="Nazwa:" />
-                                    <Label Content="Skrót:" Grid.Row="1" />
-                                    <Label Content="Ilość [m³]:" Grid.Row="2" />
+                                    <TextBlock Text="Nazwa:" />
+                                    <TextBlock Text="Skrót:" Grid.Row="1" />
+                                    <TextBlock Text="Ilość [m³]:" Grid.Row="2" />
 
                                     <TextBox Text="{Binding Name}" MinWidth="150" Grid.Column="1" IsReadOnly="True" />
                                     <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="True" />
@@ -124,7 +124,7 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Grid.Column="1" Header="Kierowca">
+                    <GroupBox Grid.Column="1" Header="Kierowca" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="110" />
@@ -132,7 +132,7 @@
                             </Grid.ColumnDefinitions>
                             <Shared:DescriptionButton Image="{StaticResource DriverImageSource}" Content="Wybierz kierowcę" Style="{StaticResource SelectDescriptionButton}" Command="{Binding SelectDriverCommand}"  />
                             <StackPanel Grid.Column="1" >
-                                <Grid DataContext="{Binding Building.Contractor}">
+                                <Grid DataContext="{Binding Driver}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
@@ -143,9 +143,9 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Label Content="Imię:" />
-                                    <Label Content="Nazwisko:" Grid.Row="1" />
-                                    <Label Content="Telefon:" Grid.Row="2" />
+                                    <TextBlock Text="Imię:" />
+                                    <TextBlock Text="Nazwisko:" Grid.Row="1" />
+                                    <TextBlock Text="Telefon:" Grid.Row="2" />
                                   
                                     <TextBox Text="{Binding Name}"  Grid.Column="1" IsReadOnly="True" />
                                     <TextBox Text="{Binding Surname}" Grid.Row="1" Grid.Column="1" IsReadOnly="True" />
@@ -169,7 +169,7 @@
                             </Grid.ColumnDefinitions>
                             <Shared:DescriptionButton Image="{StaticResource CarImageSource}" Content="Wybierz samochód" Style="{StaticResource SelectDescriptionButton}" Command="{Binding SelectCarCommand}"  />
                             <StackPanel Grid.Column="1" >
-                                <Grid DataContext="{Binding Building.Contractor}">
+                                <Grid DataContext="{Binding Car}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition  />
@@ -180,13 +180,13 @@
                                         <RowDefinition Height="Auto" />
                                         
                                     </Grid.RowDefinitions>
-                                    <Label Content="Nazwa:" />
-                                    <Label Content="Skrót:" Grid.Row="1" />
-                                    <Label Content="Numer:" Grid.Row="2" />
+                                    <TextBlock Text="Nazwa:" />
+                                    <TextBlock Text="Skrót:" Grid.Row="1" />
+                                    <TextBlock Text="Numer:" Grid.Row="2" />
                                    
-                                    <TextBox Text="{Binding FullName}" MinWidth="150" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Surname}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                    <TextBox Text="{Binding Name}" MinWidth="150" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                    <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                    <TextBox Text="{Binding RegistrationNumber}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
                                   
                                 </Grid>
                             </StackPanel>
@@ -205,11 +205,11 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Label Content="Data wystawienia:" />
-                                    <Label Content="Data dostawy:" Grid.Row="1" />
+                                <TextBlock Text="Data wystawienia:" />
+                                <TextBlock Text="Data dostawy:" Grid.Row="1" />
 
-                                    <DatePicker Grid.Column="1"/>
-                                    <DatePicker Grid.Row="1"  Grid.Column="1"/>
+                                <DatePicker DataContext="{Binding DateDrawing}" Grid.Column="1" />
+                                <DatePicker DataContext="{Binding DateOfArrival}" Grid.Row="1"  Grid.Column="1"/>
                                 </Grid>
                             </StackPanel>
 

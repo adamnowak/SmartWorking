@@ -28,8 +28,9 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </returns>
     public List<Car> GetCars(string carsFilter)
     {
+      //return new List<Car>() { new Car() };
       using (var ctx = new SmartWorkingEntities())
-      {
+      {        
         List<Car> result =
           (string.IsNullOrWhiteSpace(carsFilter))
             ? ctx.Cars.ToList()
@@ -51,7 +52,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
         //no record of this item in the DB, item being passed in has a PK
         if (existingObject == null && car.Id > 0)
         {
-          //log
+          //TODO:
           return;
         }
         //Item has no PK value, must be new

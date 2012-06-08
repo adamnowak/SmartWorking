@@ -8,10 +8,10 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Shared:PanelLabel Image="{StaticResource MaterialImageSource}" HeaderStyle="{StaticResource LabelH1}">Materiał</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource MaterialImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Materiał</Shared:PanelLabel>
 		<!--Contractor grid-->
 		<GroupBox Header="Materiał" Grid.Row="1">
-			<StackPanel Style="{StaticResource dialogMainPanel}">
+			<StackPanel Style="{StaticResource updateDialogMainPanel}">
                 <Grid DataContext="{Binding Material}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
@@ -26,10 +26,10 @@
 					</Grid.RowDefinitions>
 
 					<!--Debug only-->
-					<Label Content="Id:" Grid.Row="0" />
+                    <TextBlock Text="Id:" Grid.Row="0" />
 					<!--End Debug only-->
-					<Label Content="Nazwa:" Grid.Row="1" />
-					<Label Content="Skrót:" Grid.Row="2" />
+                    <TextBlock Text="Nazwa:" Grid.Row="1" />
+                    <TextBlock Text="Skrót:" Grid.Row="2" />
 
 
 					<!--End Debug only-->

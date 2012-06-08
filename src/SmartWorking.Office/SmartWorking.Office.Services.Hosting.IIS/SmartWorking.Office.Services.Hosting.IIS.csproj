@@ -99,6 +99,7 @@
     <Content Include="CarsService.svc" />
     <Content Include="RecipesService.svc" />
     <Content Include="MaterialsService.svc" />
+    <Content Include="TestPage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
       <TransformOnBuild>true</TransformOnBuild>
@@ -114,14 +115,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestPage.aspx.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPage.aspx.designer.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SmartWorking.Office.Entities\SmartWorking.Office.Entities.csproj">
+      <Project>{461DE786-E812-450C-8575-9133283EE858}</Project>
+      <Name>SmartWorking.Office.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SmartWorking.Office.Services.Hosting.Local\SmartWorking.Office.Services.Hosting.Local.csproj">
       <Project>{E5B33342-BD5F-4916-942D-63F342045C7C}</Project>
       <Name>SmartWorking.Office.Services.Hosting.Local</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartWorking.Office.Services.Interfaces\SmartWorking.Office.Services.Interfaces.csproj">
+      <Project>{B6945818-7C7E-4AA8-9837-2290E7E1E64B}</Project>
+      <Name>SmartWorking.Office.Services.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

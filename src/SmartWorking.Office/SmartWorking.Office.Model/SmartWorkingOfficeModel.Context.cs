@@ -90,11 +90,11 @@ namespace SmartWorking.Office.Entities
         }
         private ObjectSet<Recipe> _recipes;
     
-        public ObjectSet<RecipeSpecification> RecipeSpecifications
+        public ObjectSet<RecipeComponent> RecipeComponents
         {
-            get { return _recipeSpecifications  ?? (_recipeSpecifications = CreateObjectSet<RecipeSpecification>("RecipeSpecifications")); }
+            get { return _recipeComponents  ?? (_recipeComponents = CreateObjectSet<RecipeComponent>("RecipeComponents")); }
         }
-        private ObjectSet<RecipeSpecification> _recipeSpecifications;
+        private ObjectSet<RecipeComponent> _recipeComponents;
 
         #endregion
     }

@@ -19,9 +19,9 @@ namespace SmartWorking.Office.Gui.View
             return "Utwórz";
           case DialogMode.Update:
             return "Zapisz";
-          case DialogMode.Selecting:
+          case DialogMode.Chose:
             return "Wybierz";
-          case DialogMode.SelectingSubItem:
+          case DialogMode.ChoseSubItem:
             return "Wybierz";
         }
       }

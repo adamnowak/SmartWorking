@@ -72,37 +72,37 @@ namespace SmartWorking.Office.Entities
         }
         private ICollection<MaterialStock> _materialStocks;
     
-        public ICollection<RecipeSpecification> RecipeSpecifications
+        public ICollection<RecipeComponent> RecipeComponents
         {
             get
             {
-                if (_recipeSpecifications == null)
+                if (_recipeComponents == null)
                 {
-                    var newCollection = new FixupCollection<RecipeSpecification>();
-                    newCollection.CollectionChanged += FixupRecipeSpecifications;
-                    _recipeSpecifications = newCollection;
+                    var newCollection = new FixupCollection<RecipeComponent>();
+                    newCollection.CollectionChanged += FixupRecipeComponents;
+                    _recipeComponents = newCollection;
                 }
-                return _recipeSpecifications;
+                return _recipeComponents;
             }
             set
             {
-                if (!ReferenceEquals(_recipeSpecifications, value))
+                if (!ReferenceEquals(_recipeComponents, value))
                 {
-                    var previousValue = _recipeSpecifications as FixupCollection<RecipeSpecification>;
+                    var previousValue = _recipeComponents as FixupCollection<RecipeComponent>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupRecipeSpecifications;
+                        previousValue.CollectionChanged -= FixupRecipeComponents;
                     }
-                    _recipeSpecifications = value;
-                    var newValue = value as FixupCollection<RecipeSpecification>;
+                    _recipeComponents = value;
+                    var newValue = value as FixupCollection<RecipeComponent>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupRecipeSpecifications;
+                        newValue.CollectionChanged += FixupRecipeComponents;
                     }
                 }
             }
         }
-        private ICollection<RecipeSpecification> _recipeSpecifications;
+        private ICollection<RecipeComponent> _recipeComponents;
 
         #endregion
         #region Association Fixup
@@ -129,11 +129,11 @@ namespace SmartWorking.Office.Entities
             }
         }
     
-        private void FixupRecipeSpecifications(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupRecipeComponents(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (RecipeSpecification item in e.NewItems)
+                foreach (RecipeComponent item in e.NewItems)
                 {
                     item.Material = this;
                 }
@@ -141,7 +141,7 @@ namespace SmartWorking.Office.Entities
     
             if (e.OldItems != null)
             {
-                foreach (RecipeSpecification item in e.OldItems)
+                foreach (RecipeComponent item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Material, this))
                     {

@@ -13,6 +13,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
   /// </summary>
   public class ManageCarsViewModel : ModalDialogViewModelBase
   {
+    private ICommand _choseCarCommand;
     private ICommand _createCarCommand;
     private ICommand _deleteCarCommand;
     private ICommand _editCarCommand;
@@ -41,6 +42,15 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// The dialog mode.
     /// </value>
     public DialogMode DialogMode { get; set; }
+
+
+    /// <summary>
+    /// Gets the title of modal dialog.
+    /// </summary>
+    public override string Title
+    {
+      get { return "Wybierz samochód."; }
+    }
 
     /// <summary>
     /// Gets the create car command.
@@ -85,14 +95,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
           _deleteCarCommand = new RelayCommand(DeleteCar, CanDeleteCar);
         return _deleteCarCommand;
       }
-    }
-
-    /// <summary>
-    /// Gets the title of modal dialog.
-    /// </summary>
-    public override string Title
-    {
-      get { return "Wybierz samochód."; }
     }
 
     /// <summary>
@@ -167,5 +169,45 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
           SelectableCar.SelectedItem = selectionFromItems;
       }
     }
+
+    #region ChoseCarCommand
+
+    /// <summary>
+    /// Gets the chose car command.
+    /// </summary>
+    /// <remarks>Opens dialog to chose Car.</remarks>
+    public ICommand ChoseCarCommand
+    {
+      get
+      {
+        if (_choseCarCommand == null)
+          _choseCarCommand = new RelayCommand(ChoseCar, CanChoseCar);
+        return _choseCarCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether <see cref="ChoseCarCommand"/> can be executed.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if <see cref="ChoseCarCommand"/> can be executed; otherwise, <c>false</c>.
+    /// </returns>
+    private bool CanChoseCar()
+    {
+      return SelectableCar.SelectedItem != null;
+    }
+
+    /// <summary>
+    /// Executes  <see cref="ChoseCarCommand"/>.
+    /// </summary>
+    /// <remarks>
+    /// Closes modal dialog.
+    /// </remarks>
+    private void ChoseCar()
+    {
+      CloseModalDialog();
+    }
+
+    #endregion
   }
 }

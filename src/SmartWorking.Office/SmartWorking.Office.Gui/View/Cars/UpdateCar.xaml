@@ -8,10 +8,10 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Shared:PanelLabel Image="{StaticResource CarImageSource}" HeaderStyle="{StaticResource LabelH1}">Samochody</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource CarImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Samochody</Shared:PanelLabel>
 		<!--Contractor grid-->
 		<GroupBox Header="Samochody" Grid.Row="1">
-			<StackPanel Style="{StaticResource dialogMainPanel}">
+			<StackPanel Style="{StaticResource updateDialogMainPanel}">
 				<Grid DataContext="{Binding Car}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
@@ -25,18 +25,18 @@
 					</Grid.RowDefinitions>
 
 					<!--Debug only-->
-					<Label Content="Id:" Grid.Row="0" />
+                    <TextBlock Text="Id:" Grid.Row="0" />
 					<!--End Debug only-->
-					<Label Content="Nazwa:" Grid.Row="1" />
-					<Label Content="Skrót:" Grid.Row="2" />
-                    <Label Content="Numer rejestracyjny:" Grid.Row="3" />
+                    <TextBlock Text="Nazwa:" Grid.Row="1" />
+                    <TextBlock Text="Skrót:" Grid.Row="2" />
+                    <TextBlock Text="Numer rejestracyjny:" Grid.Row="3" />
 
 					<!--End Debug only-->
 					<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 					<!--Debug only-->
 					<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
 					<TextBox Text="{Binding InternalName}" Grid.Row="2" Grid.Column="1" />
-                    <TextBox Text="{Binding InternalNRegistrationNumberame}" Grid.Row="3" Grid.Column="1" />
+                    <TextBox Text="{Binding RegistrationNumber}" Grid.Row="3" Grid.Column="1" />
 
 				</Grid>
 			</StackPanel>
