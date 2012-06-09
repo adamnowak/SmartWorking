@@ -14,6 +14,7 @@ using SmartWorking.Office.Gui.ViewModel.Drivers;
 using SmartWorking.Office.Gui.ViewModel.Materials;
 using SmartWorking.Office.Gui.ViewModel.Recipes;
 using SmartWorking.Office.Services.Interfaces;
+using UpdateCar = SmartWorking.Office.Gui.View.Cars.UpdateCar;
 
 namespace SmartWorking.Office.Gui.View
 {
@@ -199,19 +200,20 @@ namespace SmartWorking.Office.Gui.View
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
+    /// <param name="recipe">The recipe for which the <see cref="RecipeComponent"/>s will be added.</param>
     /// <returns></returns>
-    public RecipeComponent CreateRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-    {
+    public RecipeComponent CreateRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Recipe recipe)
+    {      
+      var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
+      viewModel.RecipeComponent = new RecipeComponent();
+      viewModel.RecipeComponent.Recipe_Id = recipe.Id;
+      viewModel.DialogMode = DialogMode.Create;
+      ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.RecipeComponent;
+      }
       return null;
-      //var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
-      //viewModel.RecipeComponent = new RecipeComponent();
-      //viewModel.DialogMode = DialogMode.Create;
-      //ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
-      //if (!viewModel.IsCanceled)
-      //{
-      //  return viewModel.RecipeComponent;
-      //}
-      //return null;
     }
 
     /// <summary>
@@ -223,12 +225,11 @@ namespace SmartWorking.Office.Gui.View
     /// <returns></returns>
     public RecipeComponent EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponent selectedRecipeComponent)
     {
-      return null;
-      //var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
-      //viewModel.RecipeComponent = selectedRecipeComponent;
-      //viewModel.DialogMode = DialogMode.Update;
-      //ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
-      //return viewModel.RecipeComponent;
+      var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
+      viewModel.RecipeComponent = selectedRecipeComponent;
+      viewModel.DialogMode = DialogMode.Update;
+      ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
+      return viewModel.RecipeComponent;
     }
 
     public Car CreateCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory)

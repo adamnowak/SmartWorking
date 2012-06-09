@@ -7,6 +7,7 @@
 	<BitmapImage x:Key="MaterialImageSource" UriSource="Media/Material.png" />
 	<BitmapImage x:Key="MaterialStockImageSource" UriSource="Media/MaterialStock.png" />
 	<BitmapImage x:Key="RecipeImageSource" UriSource="Media/Recipe.png" />
+    <BitmapImage x:Key="RecipeComponentImageSource" UriSource="Media/RecipeComponent.png" />
 
 	<BitmapImage x:Key="CancelImageSource" UriSource="Media/Cancel.png" />
 	<BitmapImage x:Key="NewImageSource" UriSource="Media/New.png" />

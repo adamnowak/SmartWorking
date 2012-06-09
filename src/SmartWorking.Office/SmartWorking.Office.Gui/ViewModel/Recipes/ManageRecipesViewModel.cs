@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Recipes;
@@ -42,7 +43,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// <summary>
     /// The <see cref="SelectedRecipeComponent" /> property's name.
     /// </summary>
-    public const string SelectedMaterialPropertyName = "SelectedRecipeComponent";
+    public const string SelectedRecipeComponentPropertyName = "SelectedRecipeComponent";
 
     private RecipeComponent _recipeComponent;
     
@@ -69,7 +70,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
         _recipeComponent = value;
 
         // Update bindings, no broadcast
-        RaisePropertyChanged(SelectedMaterialPropertyName);
+        RaisePropertyChanged(SelectedRecipeComponentPropertyName);
       }
     }
     #endregion
@@ -254,10 +255,12 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       get
       {
         if (_createRecipeComponentCommand == null)
-          _createRecipeComponentCommand = new RelayCommand(CreateRecipeComponent);
+          _createRecipeComponentCommand = new RelayCommand(CreateRecipeComponent, CanCreateRecipeComponent);
         return _createRecipeComponentCommand;
       }
     }
+
+    
 
     /// <summary>
     /// Gets the edit recipeComponent command.
@@ -332,13 +335,23 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       LoadRecipes();
     }
 
+    /// <summary>
+    /// Determines whether <see cref="CreateRecipeComponentCommand"/> can be execute.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if  <see cref="CreateRecipeComponentCommand"/> can be execute; otherwise, <c>false</c>.
+    /// </returns>
+    private bool CanCreateRecipeComponent()
+    {
+      return SelectableRecipe != null && SelectableRecipe.SelectedItem != null;
+    }
 
     /// <summary>
     /// Opens dialog to create new recipeComponent.
     /// </summary>
     private void CreateRecipeComponent()
     {
-      ModalDialogService.CreateRecipeComponent(ModalDialogService, ServiceFactory);
+      ModalDialogService.CreateRecipeComponent(ModalDialogService, ServiceFactory, SelectableRecipe.SelectedItem);
       LoadRecipes();
     }
   }

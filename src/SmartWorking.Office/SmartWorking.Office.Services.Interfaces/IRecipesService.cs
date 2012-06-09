@@ -40,37 +40,28 @@ namespace SmartWorking.Office.Services.Interfaces
     [CyclicReferencesAware(true)]
     void DeleteRecipe(Recipe recipe);
 
-    /// <summary>
-    /// Adds the material to recipe.
-    /// </summary>
-    /// <param name="recipe">The recipe to which material will be added.</param>
-    /// <param name="material">The material which will be added.</param>
-    /// <param name="amountOfMaterial">The amount of material which is included in recipe.</param>
-    [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
-    void AddMaterialToRecipe(Recipe recipe, Material material, float amountOfMaterial);
 
     /// <summary>
     /// Updates the amount material in recipe.
     /// </summary>
     /// <param name="recipe">The recipe.</param>
-    /// <param name="material">The material.</param>
-    /// <param name="amountOfMaterial">The amount of material which will be updated.</param>
-    /// <remarks>Only amount of material will be updated.</remarks>
+    /// <param name="recipeComponent">The recipe component.</param>
+    /// <remarks>
+    /// Only amount of material will be updated.
+    /// </remarks>
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
-    void UpdateMaterialInRecipe(Recipe recipe, Material material, float amountOfMaterial);
+    void UpdateRecipeComponent(RecipeComponent recipeComponent);
 
     /// <summary>
     /// Deletes the material from recipe.
     /// </summary>
     /// <param name="recipe">The recipe from which material will be deleted..</param>
-    /// <param name="material">The material which will be deleted from recipe.</param>
+    /// <param name="recipeComponent">The recipe component.</param>
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
-    void DeleteMaterialFromRecipe(Recipe recipe, Material material);
+    void DeleteRecipeComponent(RecipeComponent recipeComponent);
   }
 }

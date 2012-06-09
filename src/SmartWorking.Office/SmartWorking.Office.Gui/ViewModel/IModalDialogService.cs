@@ -162,8 +162,9 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
+    /// <param name="recipe">The recipe for which the <see cref="RecipeComponent"/>s will be added.</param>
     /// <returns></returns>
-    RecipeComponent CreateRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    RecipeComponent CreateRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Recipe recipe);
 
     /// <summary>
     /// Opens dialog for editing the recipe component.

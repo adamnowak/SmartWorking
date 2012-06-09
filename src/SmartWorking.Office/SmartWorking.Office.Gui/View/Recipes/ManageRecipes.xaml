@@ -69,17 +69,17 @@
 							<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
 						</Grid.ColumnDefinitions>
 						<StackPanel Grid.Column="1">
-                            <Shared:DescriptionButton Command="{Binding CreateMaterialCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
-                            <Shared:DescriptionButton Command="{Binding EditMaterialCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-                            <Shared:DescriptionButton Command="{Binding DeleteMaterialCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
+                            <Shared:DescriptionButton Command="{Binding CreateRecipeComponentCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
+                            <Shared:DescriptionButton Command="{Binding EditRecipeComponentCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+                            <Shared:DescriptionButton Command="{Binding DeleteRecipeComponentCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
 						</StackPanel>
-                        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedMaterial}" ItemsSource="{Binding SelectableRecipe.SelectedItem.Materials}">
+                        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedRecipeComponent}" ItemsSource="{Binding SelectableRecipe.SelectedItem.RecipeComponents}">
 							<DataGrid.Columns>
 								<!--Debug only-->
 								<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
 								<!--End Debug only-->
-								<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
-								<DataGridTextColumn Header="Skrót" Binding="{Binding InternalName}" />
+								<DataGridTextColumn Header="Nazwa" Binding="{Binding Material.Name}" />
+                                <DataGridTextColumn Header="Skrót" Binding="{Binding Material.InternalName}" />
 							</DataGrid.Columns>
 						</DataGrid>
 					</Grid>

@@ -1,9 +1,10 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
+using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.Services.Interfaces;
 
-namespace SmartWorking.Office.Gui.ViewModel.Contractors
+namespace SmartWorking.Office.Gui.ViewModel.Materials
 {
   /// <summary>
   /// View model for <see cref="UpdateMaterial"/> dialog. 

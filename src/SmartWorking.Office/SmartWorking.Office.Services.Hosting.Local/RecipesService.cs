@@ -25,8 +25,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
       using (var ctx = new SmartWorkingEntities())
       {
         List<Recipe> result = (string.IsNullOrWhiteSpace(recipesFilter))
-                                ? ctx.Recipes.Include("RecipeSpecifications.Material").ToList()
-                                : ctx.Recipes.Include("RecipeSpecifications.Material").Where(
+                                ? ctx.Recipes.Include("RecipeComponents.Material").ToList()
+                                : ctx.Recipes.Include("RecipeComponents.Material").Where(
                                   x => x.Name.StartsWith(recipesFilter)).ToList();
         return result;
       }
@@ -73,36 +73,45 @@ namespace SmartWorking.Office.Services.Hosting.Local
     }
 
     /// <summary>
-    /// Adds the material to recipe.
-    /// </summary>
-    /// <param name="recipe">The recipe to which material will be added.</param>
-    /// <param name="material">The material which will be added.</param>
-    /// <param name="amountOfMaterial">The amount of material which is included in recipe.</param>
-    public void AddMaterialToRecipe(Recipe recipe, Material material, float amountOfMaterial)
-    {
-      throw new NotImplementedException();
-    }
-
-    /// <summary>
     /// Updates the amount material in recipe.
     /// </summary>
-    /// <param name="recipe">The recipe.</param>
-    /// <param name="material">The material.</param>
-    /// <param name="amountOfMaterial">The amount of material which will be updated.</param>
-    public void UpdateMaterialInRecipe(Recipe recipe, Material material, float amountOfMaterial)
+    /// <param name="recipeComponent">The recipe component.</param>
+    public void UpdateRecipeComponent(RecipeComponent recipeComponent)
     {
-      throw new NotImplementedException();
+      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      {
+        RecipeComponent existingObject = context.RecipeComponents.Where(x => x.Id == recipeComponent.Id).FirstOrDefault();
+
+        //no record of this item in the DB, item being passed in has a PK
+        if (existingObject == null && recipeComponent.Id > 0)
+        {
+          //TODO:
+          return;
+        }
+        //Item has no PK value, must be new
+        else if (recipeComponent.Id <= 0)
+        {
+          context.RecipeComponents.AddObject(recipeComponent);
+        }
+        //Item was retrieved, and the item passed has a valid ID, do an update
+        else
+        {
+          context.RecipeComponents.ApplyCurrentValues(recipeComponent);
+        }
+
+        context.SaveChanges();
+      }
     }
 
     /// <summary>
     /// Deletes the material from recipe.
     /// </summary>
-    /// <param name="recipe">The recipe from which material will be deleted..</param>
-    /// <param name="material">The material which will be deleted from recipe.</param>
-    public void DeleteMaterialFromRecipe(Recipe recipe, Material material)
+    /// <param name="recipeComponent">The recipe component.</param>
+    public void DeleteRecipeComponent(RecipeComponent recipeComponent)
     {
       throw new NotImplementedException();
     }
+
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
