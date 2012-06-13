@@ -90,6 +90,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CopyWithOutReferencesHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

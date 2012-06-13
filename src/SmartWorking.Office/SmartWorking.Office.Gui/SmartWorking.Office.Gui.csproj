@@ -181,6 +181,7 @@
     <Compile Include="View\Recipes\UpdateRecipe.xaml.cs">
       <DependentUpon>UpdateRecipe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Shared\DataGridCommands.cs" />
     <Compile Include="View\Shared\DescriptionButton.cs" />
     <Compile Include="View\Shared\Converters\ComparingMultiConverter.cs" />
     <Compile Include="View\Shared\PanelLabel.cs" />

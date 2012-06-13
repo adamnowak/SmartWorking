@@ -89,14 +89,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
           return;
         }
         //Item has no PK value, must be new
-        else if (recipeComponent.Id <= 0)
+        if (recipeComponent.Id <= 0)
         {
-          context.RecipeComponents.AddObject(recipeComponent);
+          context.RecipeComponents.AddObject(recipeComponent.CopyWithOutReferences());
         }
         //Item was retrieved, and the item passed has a valid ID, do an update
         else
         {
-          context.RecipeComponents.ApplyCurrentValues(recipeComponent);
+          context.RecipeComponents.ApplyCurrentValues(recipeComponent.CopyWithOutReferences());
         }
 
         context.SaveChanges();

@@ -107,7 +107,6 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new ManageDeliveryNotesViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Manage;
-      ;
       ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);
     }
 
@@ -206,7 +205,7 @@ namespace SmartWorking.Office.Gui.View
     {      
       var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
       viewModel.RecipeComponent = new RecipeComponent();
-      viewModel.RecipeComponent.Recipe_Id = recipe.Id;
+      viewModel.RecipeComponent.Recipe = recipe;
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)

@@ -21,6 +21,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     private ICommand _selectRecipeCommand;
     private ICommand _selectDriverCommand;
     private ICommand _selectCarCommand;
+    private ICommand _createAndPrintDeliveryNoteCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="UpdateDeliveryNoteViewModel"/> class.
@@ -199,6 +200,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     private Car _car;
     
 
+
     /// <summary>
     /// Gets the Contractor property.
     /// TODO Update documentation:
@@ -264,6 +266,62 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     }
     #endregion
 
+    #region CreateAndPrintDeliveryNoteCommand
+    public ICommand CreateAndPrintDeliveryNoteCommand
+    {
+      get
+      {
+        if (_createAndPrintDeliveryNoteCommand == null)
+          _createAndPrintDeliveryNoteCommand = new RelayCommand(CreateAndPrintDeliveryNote, CanCreateAndPrintDeliveryNote);
+        return _createAndPrintDeliveryNoteCommand;
+      }
+    }
+
+    private bool CanCreateAndPrintDeliveryNote()
+    {
+      return Building != null && Car != null && Driver != null && Recipe != null;
+    }
+
+    private void CreateAndPrintDeliveryNote()
+    {
+      if (Building == null)
+      {
+        throw new SmartWorkingException("Building is not defined.");
+      }
+      if (Car == null)
+      {
+        throw new SmartWorkingException("Car is not defined.");
+      }
+      if (Driver == null)
+      {
+        throw new SmartWorkingException("Driver is not defined.");
+      }
+      if (Recipe == null)
+      {
+        throw new SmartWorkingException("Recipe is not defined.");
+      }
+      if (DeliveryNote == null)
+      {
+        throw new SmartWorkingException("DeliveryNote is not initialized.");
+      }
+
+      DeliveryNote.Building = Building;
+      DeliveryNote.Car = Car;
+      DeliveryNote.Driver = Driver;
+      DeliveryNote.Recipe = Recipe;
+
+      using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
+      {
+        service.UpdateDeliveryNote(DeliveryNote);
+      }
+
+      PrintDeliveryNote(DeliveryNote);
+
+      CloseModalDialog();
+    }
+    #endregion
+
+
     #region SelectDriverCommand
     public ICommand SelectDriverCommand
     {
@@ -299,10 +357,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     #endregion
 
     #region PrintDeliveryNote
-    private void PrintDeliveryNote()
+    private void PrintDeliveryNote(DeliveryNote deliveryNote)
     {
-      string filename = "d:\\adamnowak\\private\\Sylwek\\temp\\pdf\\" + DateTime.Now.ToString(); 
-      string text = "Adam Nowak";
+      //http://read.pudn.com/downloads116/sourcecode/editor/490275/PDFsharp/PdfSharp/PdfSharp.Pdf.Printing/PdfFilePrinter.cs__.htm
+      if (deliveryNote.Building == null)
+      {
+        throw new SmartWorkingException("Building is not defined.");
+      }
+      if (deliveryNote.Car == null)
+      {
+        throw new SmartWorkingException("Car is not defined.");
+      }
+      if (deliveryNote.Driver == null)
+      {
+        throw new SmartWorkingException("Driver is not defined.");
+      }
+      if (deliveryNote.Recipe == null)
+      {
+        throw new SmartWorkingException("Recipe is not defined.");
+      }
+      string filename = string.Format("d:\\adamnowak\\private\\Sylwek\\temp\\pdf\\WZ_{0}_{1:yyyy-MM-dd_hh-mm-ss-tt}.pdf", deliveryNote.Id, DateTime.Now);
+
+      string text = Building.City + ", " + Building.Street;
       PdfDocument document = new PdfDocument();
 
       PdfPage page = document.AddPage();
@@ -318,5 +394,13 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       Process.Start(filename);
     }
     #endregion
+  }
+
+  public class SmartWorkingException : Exception
+  {
+    public SmartWorkingException(string message)
+      : base(message)
+    {
+    }
   }
 }

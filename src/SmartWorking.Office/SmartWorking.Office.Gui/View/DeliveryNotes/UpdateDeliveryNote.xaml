@@ -224,7 +224,7 @@
 
         <!--Buttons-->
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Drukuj" Comment="Zapisz i wydrukuj" Command="{Binding CreateOrUpdateContractorCommand}" />
+            <Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Drukuj" Comment="Zapisz i wydrukuj" Command="{Binding CreateAndPrintDeliveryNoteCommand}" />
             <Shared:DescriptionButton Image="{StaticResource CancelImageSource}" Content="Anuluj" Comment="Zamknij okno" Command="{Binding CancelCommand}" />
         </StackPanel>
     </Grid>
