@@ -227,7 +227,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </returns>
     private bool CanChoseRecipe()
     {
-      return SelectableRecipe.SelectedItem != null;
+      return SelectableRecipe.SelectedItem != null && DialogMode == DialogMode.Chose;
     }
 
     /// <summary>

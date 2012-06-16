@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using PdfSharp.Drawing;
@@ -10,7 +9,7 @@ using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
 using SmartWorking.Office.Services.Interfaces;
 
-namespace SmartWorking.Office.Gui.ViewModel.Contractors
+namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
 {
   /// <summary>
   ///  View model for <see cref="UpdateDeliveryNote"/> dialog. 
@@ -382,11 +381,15 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       PdfDocument document = new PdfDocument();
 
       PdfPage page = document.AddPage();
+      page.Orientation = PdfSharp.PageOrientation.Landscape;
+      page.Size = PdfSharp.PageSize.Letter;
+      page.Rotate = 0;
+
       XGraphics gfx = XGraphics.FromPdfPage(page);
       XFont font = new XFont("Times New Roman", 10, XFontStyle.Bold);
       XTextFormatter tf = new XTextFormatter(gfx);
 
-      XRect rect = new XRect(40, 100, 250, 232);
+      XRect rect = new XRect(10, 100, 250, 232);
       gfx.DrawRectangle(XBrushes.SeaShell, rect);
       tf.DrawString(text, font, XBrushes.Black, rect, XStringFormats.TopLeft);
       

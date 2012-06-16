@@ -1,7 +1,5 @@
-﻿<UserControl x:Class="SmartWorking.Office.Gui.View.Recipes.UpdateRecipeComponent" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" mc:Ignorable="d" Height="600" Width="800">
-
+﻿<UserControl x:Class="SmartWorking.Office.Gui.View.Recipes.UpdateRecipeComponent" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
 	<Grid>
-
 		<Grid.RowDefinitions>
 			<RowDefinition Height="50" />
 			<RowDefinition Height="*" />
@@ -9,15 +7,15 @@
 		</Grid.RowDefinitions>
 
         <Shared:PanelLabel Image="{StaticResource RecipeComponentImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Element recepty</Shared:PanelLabel>
-		<!--Contractor grid-->
-		<GroupBox Header="Element recepty" Grid.Row="1">
-			<StackPanel Style="{StaticResource updateDialogMainPanel}">
+		
+        <!--Contractor grid-->
+        <GroupBox Header="Element recepty" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="110" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Shared:DescriptionButton Image="{StaticResource MaterialImageSource}" Content="Wybierz material" Style="{StaticResource SelectDescriptionButton}" Command="{Binding SelectMaterialCommand}"  />
+                    <Shared:DescriptionButton Image="{StaticResource MaterialImageSource}"  Content="Wybierz material" Style="{StaticResource SelectDescriptionButton}" Command="{Binding SelectMaterialCommand}"  />
                     <Grid  Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -46,7 +44,6 @@
 
                     </Grid>
                 </Grid>
-            </StackPanel>
 		</GroupBox>
 
 		<!--Buttons-->

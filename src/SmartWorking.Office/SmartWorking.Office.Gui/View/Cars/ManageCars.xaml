@@ -8,6 +8,7 @@
 			<RowDefinition Height="*" MinHeight="200" />
 			<RowDefinition Height="75" />
 		</Grid.RowDefinitions>
+        
 		<Shared:PanelLabel Image="{StaticResource CarImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Samochody</Shared:PanelLabel>
 
 
@@ -21,7 +22,7 @@
                     <Shared:DescriptionButton Command="{Binding CreateCarCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
                     <Shared:DescriptionButton Command="{Binding EditCarCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
                     <Shared:DescriptionButton Command="{Binding DeleteCarCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
-                    <Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseCarCommand}" Image="{StaticResource ChoseImageSource}">
+                    <Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseCarCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
                         <Shared:DescriptionButton.Visibility>
                             <MultiBinding Converter="{StaticResource comparingMultiConverter}">
                                 <MultiBinding.Bindings>
@@ -35,7 +36,7 @@
                     </Shared:DescriptionButton>
 				</StackPanel>
 				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableCar}" ItemsSource="{Binding Items}"
-                          Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding ChoseCarCommand}">
+                          Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 					<DataGrid.Columns>
 						<!--Debug only-->
 						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
@@ -51,40 +52,10 @@
        
 
 		<!--Buttons-->
-		<StackPanel Grid.Row="2" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
 			<Shared:DescriptionButton Image="{StaticResource CancelImageSource}" Content="Anuluj" Comment="Zamknij okno" Command="{Binding CancelCommand}" />
 		</StackPanel>
 
 	</Grid>
-	<!--<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" MinHeight="200" />
-			<RowDefinition Height="2" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-		<DataGrid SelectionMode="Single" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableMaterial}" ItemsSource="{Binding Items}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" IsReadOnly="True">
-			<DataGrid.Columns>
-				
-				<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
-				
-				<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
-				<DataGridTextColumn Header="Skrót" Binding="{Binding InternalName}" />
-			</DataGrid.Columns>
-		</DataGrid>
 	
-		<Border Grid.Row="1" Grid.ColumnSpan="2" />
-		<Grid Grid.Row="2">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
-			<StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left">
-				<Button Content="Utwórz material" Command="{Binding CreateMaterialCommand}" />
-			</StackPanel>
-			<StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-				<Button Content="Wybierz" Command="{Binding SelectMaterialCommand}" />
-				<Button Content="Anuluj" Command="{Binding CancelCommand}" />
-			</StackPanel>
-		</Grid>
-	</Grid>-->
 </UserControl>

@@ -21,7 +21,7 @@
                     <Shared:DescriptionButton Command="{Binding CreateMaterialCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
                     <Shared:DescriptionButton Command="{Binding EditMaterialCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
                     <Shared:DescriptionButton Command="{Binding DeleteMaterialCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
-                    <Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseMaterialCommand}" Image="{StaticResource ChoseImageSource}">
+                    <Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseMaterialCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
                         <Shared:DescriptionButton.Visibility>
                             <MultiBinding Converter="{StaticResource comparingMultiConverter}">
                                 <MultiBinding.Bindings>
@@ -34,7 +34,8 @@
                         </Shared:DescriptionButton.Visibility>
                     </Shared:DescriptionButton>
 				</StackPanel>
-				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableMaterial}" ItemsSource="{Binding Items}">
+				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableMaterial}" ItemsSource="{Binding Items}"
+                          Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 					<DataGrid.Columns>
 						<!--Debug only-->
 						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />

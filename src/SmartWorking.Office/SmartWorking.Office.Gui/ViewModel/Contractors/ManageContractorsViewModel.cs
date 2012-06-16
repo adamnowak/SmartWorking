@@ -14,7 +14,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
   public class ManageContractorsViewModel : ModalDialogViewModelBase
   {
     private ICommand _createContractorCommand;
-    private ICommand _selectContractorCommand;
     private ICommand _editContractorCommand;
     private ICommand _deleteContractorCommand;
     private ICommand _createBuildingCommand;
@@ -35,10 +34,24 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     }
 
     /// <summary>
+    /// Gets or sets the dialog mode.
+    /// </summary>
+    /// <value>
+    /// The dialog mode.
+    /// </value>
+    public DialogMode DialogMode { get; set; }
+
+    /// <summary>
     /// Gets the selectable contractor. List of contractors and one which is selected.
     /// </summary>
     public SelectableViewModelBase<Contractor> SelectableContractor { get; private set; }
 
+    /// <summary>
+    /// Gets or sets the selected building.
+    /// </summary>
+    /// <value>
+    /// The selected building.
+    /// </value>
     public Building SelectedBuilding { get; set; }
 
     /// <summary>
@@ -55,6 +68,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
     }
 
+    /// <summary>
+    /// Creates the contractor.
+    /// </summary>
     private void CreateContractor()
     {
       ModalDialogService.CreateContractor(ModalDialogService, ServiceFactory);
@@ -84,7 +100,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </returns>
     private bool CanChoseBuilding()
     {
-      return SelectedBuilding != null;
+      return SelectedBuilding != null && DialogMode == DialogMode.ChoseSubItem;
     }
 
     /// <summary>
@@ -257,43 +273,5 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
           SelectableContractor.SelectedItem = selectionFromItems;
       }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /// <summary>
-    /// Gets or sets the dialog mode.
-    /// </summary>
-    /// <value>
-    /// The dialog mode.
-    /// </value>
-    public DialogMode DialogMode { get; set; }
-
-    public ICommand SelectContractorCommand
-    {
-      get
-      {
-        if (_selectContractorCommand == null)
-          _selectContractorCommand = new RelayCommand(SelectContractor);
-        return _selectContractorCommand;
-      }
-    }
-    private void SelectContractor()
-    {
-      CloseModalDialog();
-    }
-
-
-
   }
 }

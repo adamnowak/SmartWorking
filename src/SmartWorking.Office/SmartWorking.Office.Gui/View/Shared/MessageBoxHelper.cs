@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using SmartWorking.Office.Gui.ViewModel;
 
-namespace SmartWorking.Office.Gui.View
+namespace SmartWorking.Office.Gui.View.Shared
 {
   /// <summary>
   /// Provides methods for displaying modal dialogs from the View Model.
   /// </summary>
   /// <typeparam name="TWindow">The type of the modal window.</typeparam>
-  public class ModalDialogHelper<TWindow>
+  public class MessageBoxHelper<TWindow>
     where TWindow : Control, new()
   {
     /// <summary>
@@ -18,9 +19,9 @@ namespace SmartWorking.Office.Gui.View
     /// </summary>
     /// <param name="viewModel">The view model which will be assigned to the dialog.</param>
     /// <returns>True if OK was clicked; otherwise false. Null means unspecified value.</returns>
-    public static bool ShowDialog(IModalDialogViewModel viewModel)
+    public static MessageBoxResult ShowDialog(IMessageBoxViewModel viewModel)
     {
-      var window = new ModalDialogHelperWindow();
+      var window = new MessageBoxHelperWindow();
       var helper = new WindowInteropHelper(window);
       helper.Owner = Process.GetCurrentProcess().MainWindowHandle;
       window.Content = new TWindow();
@@ -43,11 +44,7 @@ namespace SmartWorking.Office.Gui.View
       viewModel.RequestClose += handler;
       window.ShowDialog();
 
-
-      //var showResult = window.DialogResult;
-      //if (showResult.HasValue && showResult.Value));
-      return !viewModel.IsCanceled;
-      //return false;
+      return viewModel.Result;
     }
   }
 }

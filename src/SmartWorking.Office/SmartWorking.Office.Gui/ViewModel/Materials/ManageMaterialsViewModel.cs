@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
@@ -48,9 +49,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       get
       {
         if (_choseMaterialCommand == null)
-          _choseMaterialCommand = new RelayCommand(ChoseMaterial);
+          _choseMaterialCommand = new RelayCommand(ChoseMaterial, CanChoseMaterial);
         return _choseMaterialCommand;
       }
+    }
+
+    private bool CanChoseMaterial()
+    {
+      return SelectableMaterial != null && SelectableMaterial.SelectedItem != null && DialogMode == DialogMode.Chose;
     }
 
     private void ChoseMaterial()

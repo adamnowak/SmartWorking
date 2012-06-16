@@ -116,6 +116,9 @@
     <Compile Include="ViewModel\Cars\ManageCarsViewModel.cs" />
     <Compile Include="ViewModel\Cars\UpdateCarViewModel.cs" />
     <Compile Include="ViewModel\Contractors\UpdateBuildingViewModel.cs" />
+    <Compile Include="ViewModel\IDialogViewModel.cs" />
+    <Compile Include="ViewModel\IMessageBoxViewModel.cs" />
+    <Compile Include="ViewModel\ModalDialogViewModelBase.cs" />
     <Compile Include="ViewModel\DeliveryNotes\ManageDeliveryNotesViewModel.cs" />
     <Compile Include="ViewModel\DeliveryNotes\UpdateDeliveryNoteViewModel.cs" />
     <Compile Include="ViewModel\Drivers\ManageDriversViewModel.cs" />
@@ -126,7 +129,7 @@
     <Compile Include="ViewModel\Recipes\UpdateRecipeComponentViewModel.cs" />
     <Compile Include="ViewModel\Recipes\UpdateRecipeViewModel.cs" />
     <Compile Include="ViewModel\DialogMode.cs" />
-    <Compile Include="ViewModel\ModalDialogViewModelBase.cs" />
+    <Compile Include="ViewModel\DialogViewModelBase.cs" />
     <Compile Include="ViewModel\IModalDialogService.cs" />
     <Compile Include="ViewModel\IModalDialogViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -184,7 +187,14 @@
     <Compile Include="View\Shared\DataGridCommands.cs" />
     <Compile Include="View\Shared\DescriptionButton.cs" />
     <Compile Include="View\Shared\Converters\ComparingMultiConverter.cs" />
+    <Compile Include="View\Shared\MessageBoxHelper.cs" />
+    <Compile Include="View\Shared\MessageBoxWindow.xaml.cs">
+      <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Shared\PanelLabel.cs" />
+    <Compile Include="View\Shared\MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewModeToTextConverter.cs" />
     <Page Include="DefaultSkin.xaml">
       <SubType>Designer</SubType>
@@ -261,6 +271,14 @@
     <Page Include="View\Recipes\UpdateRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shared\MessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Shared\MessageBoxWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

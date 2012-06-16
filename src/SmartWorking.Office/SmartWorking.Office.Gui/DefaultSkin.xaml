@@ -25,14 +25,26 @@
     
     <!--Width (GridLength) for button panel-->
 	<GridLength x:Key="dialogButtonPanelWidthGridLength">180</GridLength>
-    
-	<!--Custom-->
-	<Style TargetType="Window">
-		<Setter Property="Height" Value="600" />
-		<Setter Property="Width" Value="800" />
+
+    <!--Custom-->
+    <Style x:Key="styleMainWindow" TargetType="Window">
+        <Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="WindowStyle" Value="ToolWindow" />
+        <Setter Property="Width" Value="1000" />
+        <Setter Property="Height" Value="700" />        
+    </Style>
+
+    <Style x:Key="styleDialogWindow" TargetType="Window" BasedOn="{StaticResource styleMainWindow}">    	
 	</Style>
 
-	<Style TargetType="TextBlock">
+    <Style x:Key="styleMessageBoxWindow" TargetType="Window">
+        <Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="WindowStyle" Value="ToolWindow" />
+        <Setter Property="Width" Value="500" />
+        <Setter Property="Height" Value="300" />
+    </Style>
+    
+    <Style TargetType="TextBlock">
 		<Setter Property="Margin" Value="3" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -83,18 +95,18 @@
     <!--Panel with button on MainWindow-->
 	<Style x:Key="mainPanel" TargetType="StackPanel">
 		<Setter Property="Height" Value="550" />
-		<Setter Property="Width" Value="550" />
+		<Setter Property="Width" Value="480" />
 	</Style>
 
     <!--Main Panel for update dialogs which are not at size of window-->
-	<Style x:Key="updateDialogMainPanel" TargetType="StackPanel">
-		<Setter Property="Height" Value="450" />
+    <Style x:Key="updateDialogMainPanel" TargetType="GroupBox" BasedOn="{StaticResource {x:Type GroupBox}}">
+		<Setter Property="Height" Value="420" />
         <Setter Property="Width" Value="500" />
 	</Style>
 
     <!--Main Panel for manage dialogs which are not at size of window-->
     <Style x:Key="manageDialogMainPanel" TargetType="GroupBox" BasedOn="{StaticResource {x:Type GroupBox}}">
-        <Setter Property="Height" Value="450" />
+        <Setter Property="Height" Value="420" />
         <Setter Property="Width" Value="540" />
     </Style>
 
@@ -149,6 +161,7 @@
     <Style x:Key="SelectDescriptionButton" TargetType="Shared:DescriptionButton" BasedOn="{StaticResource {x:Type Shared:DescriptionButton}}">
         <Setter Property="Margin" Value="1"/>
         <Setter Property="Height" Value="100"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Shared:DescriptionButton}">

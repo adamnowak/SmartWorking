@@ -194,7 +194,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// </returns>
     private bool CanChoseCar()
     {
-      return SelectableCar.SelectedItem != null;
+      return SelectableCar.SelectedItem != null && DialogMode == DialogMode.Chose;
     }
 
     /// <summary>

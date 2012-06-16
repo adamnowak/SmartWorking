@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Cars;
 using SmartWorking.Office.Gui.View.Contractors;
@@ -6,6 +7,7 @@ using SmartWorking.Office.Gui.View.DeliveryNotes;
 using SmartWorking.Office.Gui.View.Drivers;
 using SmartWorking.Office.Gui.View.Materials;
 using SmartWorking.Office.Gui.View.Recipes;
+using SmartWorking.Office.Gui.View.Shared;
 using SmartWorking.Office.Gui.ViewModel;
 using SmartWorking.Office.Gui.ViewModel.Cars;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
@@ -14,6 +16,7 @@ using SmartWorking.Office.Gui.ViewModel.Drivers;
 using SmartWorking.Office.Gui.ViewModel.Materials;
 using SmartWorking.Office.Gui.ViewModel.Recipes;
 using SmartWorking.Office.Services.Interfaces;
+using MessageBox = SmartWorking.Office.Gui.View.Shared.MessageBox;
 using UpdateCar = SmartWorking.Office.Gui.View.Cars.UpdateCar;
 
 namespace SmartWorking.Office.Gui.View
@@ -315,5 +318,249 @@ namespace SmartWorking.Office.Gui.View
     }
 
     #endregion
+
+    #region MessageBox
+    /// <summary>
+    /// Shows the message box.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <param name="icon">The icon.</param>
+    /// <param name="caption">The caption.</param>
+    /// <param name="message">The message.</param>
+    /// <param name="button">The button.</param>
+    /// <param name="info">The info.</param>
+    /// <returns>Result depends button which was pressed.</returns>
+    public MessageBoxResult ShowMessageBox(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+      MessageBoxImage icon, string caption, string message, MessageBoxButton button, string info)
+    {
+      var viewModel = new MessageBoxViewModel(modalDialogService, serviceFactory, icon, caption, message, button, info);
+      return MessageBoxHelper<MessageBox>.ShowDialog(viewModel);
+    }
+
+    #endregion
+  }
+
+  public class MessageBoxViewModel : DialogViewModelBase, IMessageBoxViewModel
+  {
+    public MessageBoxViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory, 
+      MessageBoxImage icon, string caption, string message, MessageBoxButton button, string info)
+      : base(modalDialogService, serviceFactory)
+    {
+      Icon = icon;
+      Caption = caption;
+      Message = message;
+      Button = button;
+      Info = info;
+    }
+
+    public override string Title
+    {
+      get { return Caption; }
+    }
+
+    #region Icon
+    /// <summary>
+    /// The <see cref="Icon" /> property's name.
+    /// </summary>
+    public const string IconPropertyName = "Icon";
+
+    private MessageBoxImage _messageBoxImage;
+
+    /// <summary>
+    /// Gets the Icon property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public MessageBoxImage Icon
+    {
+      get
+      {
+        return _messageBoxImage;
+      }
+
+      private set
+      {
+        if (_messageBoxImage == value)
+        {
+          return;
+        }
+        _messageBoxImage = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(IconPropertyName);
+      }
+    }
+    #endregion //Icon
+
+    #region Caption
+    /// <summary>
+    /// The <see cref="Caption" /> property's name.
+    /// </summary>
+    public const string CaptionPropertyName = "Caption";
+
+    private string _caption;
+
+    /// <summary>
+    /// Gets the Caption property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public string Caption
+    {
+      get
+      {
+        return _caption;
+      }
+
+      private set
+      {
+        if (_caption == value)
+        {
+          return;
+        }
+        _caption = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(CaptionPropertyName);
+      }
+    }
+    #endregion //Caption
+
+    #region Message
+    /// <summary>
+    /// The <see cref="Message" /> property's name.
+    /// </summary>
+    public const string MessagePropertyName = "Message";
+
+    private string _message;
+
+    /// <summary>
+    /// Gets the Message property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public string Message
+    {
+      get
+      {
+        return _message;
+      }
+
+      private set
+      {
+        if (_message == value)
+        {
+          return;
+        }
+        _message = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(MessagePropertyName);
+      }
+    }
+    #endregion //Message
+
+    #region Button
+    /// <summary>
+    /// The <see cref="Button" /> property's name.
+    /// </summary>
+    public const string ButtonPropertyName = "Button";
+
+    private MessageBoxButton _button;
+
+    /// <summary>
+    /// Gets the Button property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public MessageBoxButton Button
+    {
+      get
+      {
+        return _button;
+      }
+
+      private set
+      {
+        if (_button == value)
+        {
+          return;
+        }
+        _button = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(ButtonPropertyName);
+      }
+    }
+    #endregion //Button
+
+    #region Info
+    /// <summary>
+    /// The <see cref="Info" /> property's name.
+    /// </summary>
+    public const string InfoPropertyName = "Info";
+
+    private string _info;
+
+    /// <summary>
+    /// Gets the Info property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public string Info
+    {
+      get
+      {
+        return _info;
+      }
+
+      private set
+      {
+        if (_info == value)
+        {
+          return;
+        }
+        _info = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(InfoPropertyName);
+      }
+    }
+    #endregion //Info
+
+    #region Result
+    /// <summary>
+    /// The <see cref="Result" /> property's name.
+    /// </summary>
+    public const string ResultPropertyName = "Result";
+
+    private MessageBoxResult _messageBoxResult;
+
+    /// <summary>
+    /// Gets the Result property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public MessageBoxResult Result
+    {
+      get
+      {
+        return _messageBoxResult;
+      }
+
+      set
+      {
+        if (_messageBoxResult == value)
+        {
+          return;
+        }
+        _messageBoxResult = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(ResultPropertyName);
+      }
+    }
+    #endregion //Result
   }
 }

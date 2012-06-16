@@ -194,7 +194,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     /// </returns>
     private bool CanChoseDriver()
     {
-      return SelectableDriver.SelectedItem != null;
+      return SelectableDriver.SelectedItem != null && DialogMode == DialogMode.Chose;
     }
 
     /// <summary>
