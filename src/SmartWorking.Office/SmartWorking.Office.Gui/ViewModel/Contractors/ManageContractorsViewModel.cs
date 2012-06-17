@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
@@ -20,6 +21,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     private ICommand _editBuildingCommand;
     private ICommand _deleteBuildingCommand;
     private ICommand _choseBuildingCommand;
+    private ICommand _createDeliveryNoteCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ManageContractorsViewModel"/> class.
@@ -115,7 +117,47 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     }
     #endregion
 
+    #region CreateDeliveryNoteCommand
+    /// <summary>
+    /// Gets the create delivery note command.
+    /// </summary>
+    /// <remarks>Opens dialog to create <see cref="DeliveryNote"/> object.</remarks>
+    public ICommand CreateDeliveryNoteCommand
+    {
+      get
+      {
+        if (_createDeliveryNoteCommand == null)
+          _createDeliveryNoteCommand = new RelayCommand(CreateDeliveryNote, CanCreateDeliveryNote);
+        return _createDeliveryNoteCommand;
+      }
+    }
 
+    /// <summary>
+    /// Determines whether <see cref="CreateDeliveryNoteCommand"/> can be executed.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if <see cref="CreateDeliveryNoteCommand"/> can be executed; otherwise, <c>false</c>.
+    /// </returns>
+    private bool CanCreateDeliveryNote()
+    {
+      return SelectableContractor.SelectedItem != null && SelectedBuilding != null && DialogMode != DialogMode.ChoseSubItem;
+    }
+
+    /// <summary>
+    /// Executes  <see cref="ChoseBuildingCommand"/>.
+    /// </summary>
+    /// <remarks>
+    /// Closes modal dialog.
+    /// </remarks>
+    private void CreateDeliveryNote()
+    {
+      Building building = SelectedBuilding.CopyWithOutReferences();
+      Contractor contractor = SelectableContractor.SelectedItem.CopyWithOutReferences();
+      building.Contractor = contractor;
+      ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory, building);
+    }
+    #endregion
+    
     /// <summary>
     /// Gets the edit contractor command.
     /// </summary>
@@ -260,17 +302,37 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void LoadContractors()
     {
-      Contractor selectedItem = SelectableContractor.SelectedItem;
-      using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
+      string errorCaption = "Pobranie danych o kontrahentach!";
+      try
       {
-        SelectableContractor.LoadItems(contractorService.GetContractors(string.Empty));
+        Contractor selectedItem = SelectableContractor.SelectedItem;
+        using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
+        {
+          SelectableContractor.LoadItems(contractorService.GetContractors(string.Empty));
+        }
+        if (selectedItem != null)
+        {
+          Contractor selectionFromItems =
+            SelectableContractor.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+          if (selectionFromItems != null)
+            SelectableContractor.SelectedItem = selectionFromItems;
+        }
       }
-      if (selectedItem != null)
+      catch (FaultException<ExceptionDetail> f)
       {
-        Contractor selectionFromItems =
-          SelectableContractor.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
-        if (selectionFromItems != null)
-          SelectableContractor.SelectedItem = selectionFromItems;
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
   }

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace SmartWorking.Office.Gui.ViewModel
+namespace SmartWorking.Office.Gui.ViewModel.Shared.MessageBox
 {
   /// <summary>
   /// Interface for message box view model.

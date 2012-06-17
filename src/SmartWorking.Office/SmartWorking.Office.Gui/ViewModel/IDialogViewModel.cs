@@ -21,6 +21,14 @@ namespace SmartWorking.Office.Gui.ViewModel
     bool IsCanceled { get; }
 
     /// <summary>
+    /// Gets a value indicating whether this <see cref="DialogViewModelBase"/> is closing.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if closing; otherwise, <c>false</c>.
+    /// </value>
+    bool Closing { get; }
+   
+    /// <summary>
     /// Raise when request about close dialog occurs.
     /// </summary>
     event EventHandler RequestClose;

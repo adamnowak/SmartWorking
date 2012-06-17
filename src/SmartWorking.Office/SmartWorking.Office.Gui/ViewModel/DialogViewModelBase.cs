@@ -72,6 +72,14 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// </value>
     public bool IsCanceled { get; private set; }
 
+
+    /// <summary>
+    /// Gets a value indicating whether this <see cref="DialogViewModelBase"/> is closing.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if closing; otherwise, <c>false</c>.
+    /// </value>
+    public bool Closing { get; private set; }
     #endregion
 
     /// <summary>
@@ -82,6 +90,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     {
       IsCanceled = isCanceled;
       OnRequestClose();
+      Closing = true;
     }
 
     /// <summary>
@@ -97,7 +106,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <summary>
     /// Close dialog and set <see cref="IsCanceled"/> to <c>true</c>.
     /// </summary>
-    private void Cancel()
+    protected void Cancel()
     {
       CloseModalDialog(true);
     }
@@ -106,9 +115,9 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// Does the raise property changed.
     /// </summary>
     /// <param name="propertyName">Name of the property.</param>
-    internal void DoRaisePropertyChanged(string propertyName)
-    {
-      RaisePropertyChanged(propertyName);
-    }
+    //internal void DoRaisePropertyChanged(string propertyName)
+    //{
+    //  RaisePropertyChanged(propertyName);
+    //}
   }
 }

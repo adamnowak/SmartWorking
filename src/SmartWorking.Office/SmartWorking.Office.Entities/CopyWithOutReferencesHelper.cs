@@ -23,7 +23,8 @@ namespace SmartWorking.Office.Entities
       result.Canceled = deliveryNote.Canceled;
       result.DateDrawing = deliveryNote.DateDrawing;
       result.DateOfArrival = deliveryNote.DateOfArrival;
-      result.Drawer = deliveryNote.Drawer;      
+      result.Drawer = deliveryNote.Drawer;
+      result.Id = deliveryNote.Id;  
       return result;
     }
 
@@ -35,8 +36,36 @@ namespace SmartWorking.Office.Entities
       if (recipeComponent.Recipe != null)
         result.Recipe_Id = recipeComponent.Recipe.Id;
       result.Amount = recipeComponent.Amount;
+      result.Id = recipeComponent.Id;
       return result;
     }
-    
+
+    public static Building CopyWithOutReferences(this Building building)
+    {
+      Building result = new Building();
+      if (building.Contractor != null)
+        result.Contractor_Id = building.Contractor.Id;
+
+      result.City = building.City;
+      result.HouseNo = building.HouseNo;
+      result.Street = building.Street;
+
+      result.Id = building.Id;
+      return result;
+    }
+
+    public static Contractor CopyWithOutReferences(this Contractor contractor)
+    {
+      Contractor result = new Contractor();
+
+      result.FullName = contractor.FullName;
+
+      result.Name = contractor.Name;
+      result.Phone = contractor.Phone;
+      result.Surname = contractor.Surname;
+
+      result.Id = contractor.Id;
+      return result;
+    }
   }
 }

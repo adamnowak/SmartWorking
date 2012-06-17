@@ -80,6 +80,15 @@ namespace SmartWorking.Office.Gui.ViewModel
     DeliveryNote CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
+    /// Opens dialog for creating delivery note for <paramref name="building"/>.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
+    /// <param name="building">The building.</param>
+    /// <returns></returns>
+    DeliveryNote CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Building building);
+
+    /// <summary>
     /// Opens dialog for managing the delivery notes.
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>

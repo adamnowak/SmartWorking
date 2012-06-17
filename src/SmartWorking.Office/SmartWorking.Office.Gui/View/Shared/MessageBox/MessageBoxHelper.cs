@@ -4,8 +4,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using SmartWorking.Office.Gui.ViewModel;
+using SmartWorking.Office.Gui.ViewModel.Shared.MessageBox;
 
-namespace SmartWorking.Office.Gui.View.Shared
+namespace SmartWorking.Office.Gui.View.Shared.MessageBox
 {
   /// <summary>
   /// Provides methods for displaying modal dialogs from the View Model.

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace SmartWorking.Office.Gui.View.Shared
+namespace SmartWorking.Office.Gui.View.Shared.MessageBox
 {
   /// <summary>
   /// Interaction logic for ModalDialogHelperWindow.xaml

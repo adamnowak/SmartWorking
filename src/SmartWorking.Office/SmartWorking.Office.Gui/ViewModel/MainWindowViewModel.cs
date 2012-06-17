@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View;
@@ -23,6 +25,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     private ICommand _manageDriversCommand;
     private ICommand _manageMaterialsCommand;
     private ICommand _manageRecipesCommand;
+    private ICommand _manageMaterialStocksCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/>. 
@@ -153,6 +156,29 @@ namespace SmartWorking.Office.Gui.ViewModel
             new RelayCommand(() => ModalDialogService.ManageDrivers(ModalDialogService, ServiceFactory));
         return _manageDriversCommand;
       }
+    }
+
+    /// <summary>
+    /// Gets the manage <see cref="MaterialStock"/> command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="MaterialStock"/> objects.</remarks>
+    public ICommand ManageMaterialStocksCommand
+    {
+      get
+      {
+        if (_manageMaterialStocksCommand == null)
+          _manageMaterialStocksCommand =
+            new RelayCommand(ManageMaterialStocks);
+        return _manageMaterialStocksCommand;
+      }
+    }
+
+    private void ManageMaterialStocks()
+    {
+      MessageBoxResult messageBoxResult = ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory,
+                                        MessageBoxImage.Warning, "caption", "message", MessageBoxButton.OKCancel,
+                                        string.Empty);
+      
     }
   }
 }

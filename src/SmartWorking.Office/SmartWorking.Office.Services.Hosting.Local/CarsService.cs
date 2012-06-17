@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Services.Hosting.Local
 {
+  
   /// <summary>
   /// Implementation of <see cref="ICarsService"/>.
   /// </summary>
@@ -28,15 +30,24 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </returns>
     public List<Car> GetCars(string carsFilter)
     {
-      //return new List<Car>() { new Car() };
-      using (var ctx = new SmartWorkingEntities())
-      {        
-        List<Car> result =
-          (string.IsNullOrWhiteSpace(carsFilter))
-            ? ctx.Cars.ToList()
-            : ctx.Cars.Where(x => x.RegistrationNumber.StartsWith(carsFilter)).ToList();
-        return result;
+      try
+      {
+        throw new Exception("test", new Exception("innerTest"));
+        //return new List<Car>() { new Car() };
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<Car> result =
+            (string.IsNullOrWhiteSpace(carsFilter))
+              ? ctx.Cars.ToList()
+              : ctx.Cars.Where(x => x.RegistrationNumber.StartsWith(carsFilter)).ToList();
+          return result;
+        }
       }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+      
     }
 
     /// <summary>

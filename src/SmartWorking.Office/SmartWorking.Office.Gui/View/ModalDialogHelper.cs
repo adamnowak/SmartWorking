@@ -41,7 +41,9 @@ namespace SmartWorking.Office.Gui.View
                     window.Close();
                   };
       viewModel.RequestClose += handler;
-      window.ShowDialog();
+      viewModel.Initialize();      
+      if (!viewModel.Closing)
+        window.ShowDialog();
 
 
       //var showResult = window.DialogResult;

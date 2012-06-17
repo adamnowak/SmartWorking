@@ -20,7 +20,7 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </returns>
     [OperationContract]
     //[ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
+    [CyclicReferencesAware(true)]    
     List<Car> GetCars(string carsFilter);
 
     /// <summary>

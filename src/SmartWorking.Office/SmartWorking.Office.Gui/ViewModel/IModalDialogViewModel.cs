@@ -5,5 +5,9 @@
   /// </summary>
   public interface IModalDialogViewModel : IDialogViewModel
   {
+    /// <summary>
+    /// Initializes view model properties.
+    /// </summary>
+    void Initialize();
   }
 }

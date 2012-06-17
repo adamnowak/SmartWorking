@@ -21,7 +21,7 @@
 			<Shared:DescriptionButton Command="{Binding ManageCarsCommand}" Image="{DynamicResource CarImageSource}" Comment="Zarządzaj swoimi samochodami">
 				Zarządzanie samochodami
 			</Shared:DescriptionButton>
-			<Shared:DescriptionButton IsEnabled="False" Command="{Binding ManageMaterialStocksCommand}" Image="{DynamicResource MaterialStockImageSource}" Comment="Wprowadz dane o dostawie towaru do magazynu">
+			<Shared:DescriptionButton Command="{Binding ManageMaterialStocksCommand}" Image="{DynamicResource MaterialStockImageSource}" Comment="Wprowadz dane o dostawie towaru do magazynu">
 				Zarządzanie magazynem
 			</Shared:DescriptionButton>
 		</StackPanel>

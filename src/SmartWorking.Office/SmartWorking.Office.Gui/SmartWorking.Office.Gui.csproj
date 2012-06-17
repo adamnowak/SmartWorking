@@ -117,7 +117,7 @@
     <Compile Include="ViewModel\Cars\UpdateCarViewModel.cs" />
     <Compile Include="ViewModel\Contractors\UpdateBuildingViewModel.cs" />
     <Compile Include="ViewModel\IDialogViewModel.cs" />
-    <Compile Include="ViewModel\IMessageBoxViewModel.cs" />
+    <Compile Include="ViewModel\Shared\MessageBox\IMessageBoxViewModel.cs" />
     <Compile Include="ViewModel\ModalDialogViewModelBase.cs" />
     <Compile Include="ViewModel\DeliveryNotes\ManageDeliveryNotesViewModel.cs" />
     <Compile Include="ViewModel\DeliveryNotes\UpdateDeliveryNoteViewModel.cs" />
@@ -162,6 +162,7 @@
     <Compile Include="View\Materials\UpdateMaterial.xaml.cs">
       <DependentUpon>UpdateMaterial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Shared\MessageBox\MessageBoxViewModel.cs" />
     <Compile Include="View\ModalDialogHelper.cs" />
     <Compile Include="View\ModalDialogService.cs" />
     <Compile Include="ViewModel\Contractors\UpdateContractorViewModel.cs" />
@@ -187,12 +188,14 @@
     <Compile Include="View\Shared\DataGridCommands.cs" />
     <Compile Include="View\Shared\DescriptionButton.cs" />
     <Compile Include="View\Shared\Converters\ComparingMultiConverter.cs" />
-    <Compile Include="View\Shared\MessageBoxHelper.cs" />
-    <Compile Include="View\Shared\MessageBoxWindow.xaml.cs">
+    <Compile Include="View\Shared\MessageBox\InfoVisibilityConverter.cs" />
+    <Compile Include="View\Shared\MessageBox\MessageBoxHelper.cs" />
+    <Compile Include="View\Shared\MessageBox\MessageBoxImageConverter.cs" />
+    <Compile Include="View\Shared\MessageBox\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Shared\PanelLabel.cs" />
-    <Compile Include="View\Shared\MessageBox.xaml.cs">
+    <Compile Include="View\Shared\MessageBox\MessageBox.xaml.cs">
       <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewModeToTextConverter.cs" />
@@ -272,11 +275,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Shared\MessageBox.xaml">
+    <Page Include="View\Shared\MessageBox\MessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Shared\MessageBoxWindow.xaml">
+    <Page Include="View\Shared\MessageBox\MessageBoxWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -390,6 +393,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\RecipeComponent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\No.PNG" />
+    <Resource Include="Media\Ok.PNG" />
+    <Resource Include="Media\Yes.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\AppIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Error.png" />
+    <Resource Include="Media\Info.png" />
+    <Resource Include="Media\Question.png" />
+    <Resource Include="Media\Warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />

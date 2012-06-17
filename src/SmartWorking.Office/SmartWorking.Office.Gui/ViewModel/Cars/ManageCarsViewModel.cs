@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.ServiceModel;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
@@ -26,7 +29,15 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     public ManageCarsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableCar = new SelectableViewModelBase<Car>();
+      SelectableCar = new SelectableViewModelBase<Car>();      
+    }
+
+    /// <summary>
+    /// Initializes view model properties.
+    /// </summary>
+    public override void Initialize()
+    {
+      base.Initialize();
       LoadCars();
     }
 
@@ -156,17 +167,36 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// </summary>
     private void LoadCars()
     {
-      Car selectedItem = SelectableCar.SelectedItem;
-      using (ICarsService service = ServiceFactory.GetCarsService())
+      string errorCaption = "Pobranie danych o samochodach!";
+      try
       {
-        SelectableCar.LoadItems(service.GetCars(string.Empty));
+        Car selectedItem = SelectableCar.SelectedItem;
+        using (ICarsService service = ServiceFactory.GetCarsService())
+        {
+          SelectableCar.LoadItems(service.GetCars(string.Empty));
+        }
+        if (selectedItem != null)
+        {
+          Car selectionFromItems =
+            SelectableCar.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+          if (selectionFromItems != null)
+            SelectableCar.SelectedItem = selectionFromItems;
+        }
       }
-      if (selectedItem != null)
+      catch (FaultException<ExceptionDetail> f)
       {
-        Car selectionFromItems =
-          SelectableCar.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
-        if (selectionFromItems != null)
-          SelectableCar.SelectedItem = selectionFromItems;
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 

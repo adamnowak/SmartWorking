@@ -9,7 +9,7 @@ using SmartWorking.Office.Services.Interfaces;
 namespace SmartWorking.Office.Gui.ViewModel.Recipes
 {
   /// <summary>
-  ///  View model for <see cref="ManageRecipes"/> dialog. 
+  /// View model for <see cref="ManageRecipes"/> dialog. 
   /// </summary>
   public class ManageRecipesViewModel : ModalDialogViewModelBase
   {
