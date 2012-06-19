@@ -304,10 +304,10 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         throw new SmartWorkingException("DeliveryNote is not initialized.");
       }
 
-      DeliveryNote.Building = Building;
-      DeliveryNote.Car = Car;
-      DeliveryNote.Driver = Driver;
-      DeliveryNote.Recipe = Recipe;
+      DeliveryNote.Building_Id = Building.Id;
+      DeliveryNote.Car_Id = Car.Id;
+      DeliveryNote.Driver_Id = Driver.Id;
+      DeliveryNote.Recipe_Id = Recipe.Id;
 
       using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
       {

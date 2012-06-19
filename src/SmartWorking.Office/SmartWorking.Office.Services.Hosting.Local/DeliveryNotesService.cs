@@ -69,8 +69,6 @@ namespace SmartWorking.Office.Services.Hosting.Local
       using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
         DeliveryNote existingObject = context.DeliveryNotes.Where(x => x.Id == deliveryNote.Id).FirstOrDefault();
-        
-        context.Drivers.Where(x => x.Id == deliveryNote.Driver.Id).FirstOrDefault();
 
         //no record of this item in the DB, item being passed in has a PK
         if (existingObject == null && deliveryNote.Id > 0)
@@ -78,7 +76,6 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //log
           return;
         }
-
         
         //Item has no PK value, must be new);
         if (deliveryNote.Id <= 0)
@@ -91,7 +88,6 @@ namespace SmartWorking.Office.Services.Hosting.Local
           context.DeliveryNotes.ApplyCurrentValues(deliveryNote.CopyWithOutReferences());
         }
 
-        context.DetectChanges();
         context.SaveChanges();
       }
     }

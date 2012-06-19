@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 using SmartWorking.Office.Entities;
 
 namespace SmartWorking.Office.Services.Interfaces
@@ -12,17 +13,19 @@ namespace SmartWorking.Office.Services.Interfaces
   public interface IDeliveryNotesService : IDisposable
   {
     /// <summary>
-    /// Gets the <see cref="DeliveryNote"/> filtered be <paramref name="buildingContainsThisString"/> and <paramref name="showCanceledDeliveryNotes"/>.
+    /// Gets the <see cref="DeliveryNote"/> filtered be <paramref name="filter"/> and <paramref name="showCanceled"/>.
     /// </summary>
-    /// <param name="buildingContainsThisString">Used to filtering result. Loaded <see cref="DeliveryNote"/> object will contain this string.</param>
-    /// <param name="showCanceledDeliveryNotes">if set to <c>true</c> then loaded <see cref="DeliveryNote"/> object  will contain <see cref="DeliveryNote"/> which are deactivated; otherwise not.</param>        
+    /// <param name="filter">Used to filtering result. Loaded <see cref="DeliveryNote"/> object will contain this string.</param>
+    /// <param name="showCanceled">if set to <c>true</c> then loaded <see cref="DeliveryNote"/> object  will contain <see cref="DeliveryNote"/> which are deactivated; otherwise not.</param>        
     /// <returns>
-    /// List of <see cref="DeliveryNote"/> filtered by <paramref name="buildingContainsThisString"/> and <paramref name="showCanceledDeliveryNotes"/>.
+    /// List of <see cref="DeliveryNote"/> filtered by <paramref name="filter"/> and <paramref name="showCanceled"/>.
     /// </returns>
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
-    List<DeliveryNote> GetIDeliveryNotes(string buildingContainsThisString, bool showCanceledDeliveryNotes);
+    [WebInvoke(Method = "GET", UriTemplate = "/GetIDeliveryNotes/?filter={filter}&showCanceled={showCanceled}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    List<DeliveryNote> GetIDeliveryNotes(string filter, bool showCanceled);
 
     /// <summary>
     /// Updates the <see cref="DeliveryNote"/>.
@@ -31,6 +34,9 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "POST", UriTemplate = "/UpdateDeliveryNote",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void UpdateDeliveryNote(DeliveryNote deliveryNote);
 
     /// <summary>
@@ -43,6 +49,9 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "POST", UriTemplate = "/CanceledDeliveryNote",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void CanceledDeliveryNote(DeliveryNote deliveryNote);
   }
 }

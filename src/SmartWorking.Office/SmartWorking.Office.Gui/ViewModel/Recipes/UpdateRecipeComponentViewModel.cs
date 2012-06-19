@@ -130,6 +130,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
 
     #endregion
 
+
     /// <summary>
     /// Determines whether <see cref="CreateOrUpdateRecipeComponentCommand"/> can be execute.
     /// </summary>
@@ -149,7 +150,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     private void UpdateRecipeComponent()
     {
       if (RecipeComponent != null)
-        RecipeComponent.Material = Material;
+        RecipeComponent.Material_Id = Material.Id;
       if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
       {
         using (IRecipesService service = ServiceFactory.GetRecipesService())

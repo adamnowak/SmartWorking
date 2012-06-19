@@ -32,7 +32,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     {
       try
       {
-        throw new Exception("test", new Exception("innerTest"));
+        //throw new Exception("test", new Exception("innerTest"));
         //return new List<Car>() { new Car() };
         using (var ctx = new SmartWorkingEntities())
         {

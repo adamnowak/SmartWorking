@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 using SmartWorking.Office.Entities;
 
 namespace SmartWorking.Office.Services.Interfaces
@@ -12,14 +13,16 @@ namespace SmartWorking.Office.Services.Interfaces
   public interface IRecipesService : IDisposable
   {
     /// <summary>
-    /// Gets the recipes filtered be <paramref name="recipesFilter"/>.
+    /// Gets the recipes filtered be <paramref name="filter"/>.
     /// </summary>
-    /// <param name="recipesFilter">The recipes filter.</param>
-    /// <returns>List of Recipe filtered by <paramref name="recipesFilter"/>. Recipe contains list of Material contains to this Recipe.</returns>
+    /// <param name="filter">The recipes filter.</param>
+    /// <returns>List of Recipe filtered by <paramref name="filter"/>. Recipe contains list of Material contains to this Recipe.</returns>
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
-    List<Recipe> GetRecipes(string recipesFilter);
+    [WebInvoke(Method = "GET", UriTemplate = "/GetRecipes/?filter={filter}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    List<Recipe> GetRecipes(string filter);
 
     /// <summary>
     /// Updates the recipe.
@@ -28,6 +31,9 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipe",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void UpdateRecipe(Recipe recipe);
 
     /// <summary>
@@ -38,6 +44,9 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteRecipe",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteRecipe(Recipe recipe);
 
 
@@ -52,16 +61,21 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipeComponent",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void UpdateRecipeComponent(RecipeComponent recipeComponent);
 
     /// <summary>
     /// Deletes the material from recipe.
     /// </summary>
-    /// <param name="recipe">The recipe from which material will be deleted..</param>
     /// <param name="recipeComponent">The recipe component.</param>
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteRecipeComponent",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteRecipeComponent(RecipeComponent recipeComponent);
   }
 }

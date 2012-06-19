@@ -61,8 +61,9 @@ namespace SmartWorking.Office.Gui.View
                                    Contractor contractor)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
-      viewModel.Contractor = contractor;
+      //viewModel.Contractor = contractor;
       viewModel.Building = new Building();
+      viewModel.Building.Contractor_Id = contractor.Id;
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
@@ -76,8 +77,8 @@ namespace SmartWorking.Office.Gui.View
                                  Building building)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
-      viewModel.Contractor = building.Contractor;
-      viewModel.Building = building;
+      //viewModel.Contractor = building.Contractor;
+      viewModel.Building = building.CopyWithOutReferences();      
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
       return viewModel.Building;
@@ -90,7 +91,8 @@ namespace SmartWorking.Office.Gui.View
       ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        return viewModel.SelectedBuilding;
+        Building result = viewModel.SelectedBuilding.CopyWithOutReferences();
+        return result;
       }
       return null;
     }
@@ -224,7 +226,7 @@ namespace SmartWorking.Office.Gui.View
     {      
       var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
       viewModel.RecipeComponent = new RecipeComponent();
-      viewModel.RecipeComponent.Recipe = recipe;
+      viewModel.RecipeComponent.Recipe_Id = recipe.Id;
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
@@ -244,7 +246,8 @@ namespace SmartWorking.Office.Gui.View
     public RecipeComponent EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponent selectedRecipeComponent)
     {
       var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
-      viewModel.RecipeComponent = selectedRecipeComponent;
+      viewModel.RecipeComponent = selectedRecipeComponent.CopyWithOutReferences();
+      viewModel.Material = selectedRecipeComponent.Material;//todo: check if not CopyWithOutReferences needed
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
       return viewModel.RecipeComponent;

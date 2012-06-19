@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 using SmartWorking.Office.Entities;
 
 namespace SmartWorking.Office.Services.Interfaces
@@ -12,16 +13,19 @@ namespace SmartWorking.Office.Services.Interfaces
   public interface ICarsService : IDisposable
   {
     /// <summary>
-    /// Gets the cars filtered be <paramref name="carsFilter"/>.
+    /// Gets the cars filtered be <paramref name="filter"/>.
     /// </summary>
-    /// <param name="carsFilter">The cars filter used to result filtering.</param>
+    /// <param name="filter">The cars filter used to result filtering.</param>
     /// <returns>
-    /// List of Car filtered by <paramref name="carsFilter"/>. 
+    /// List of Car filtered by <paramref name="filter"/>. 
     /// </returns>
+    /// http://localhost:60322/CarsService.svc/json/GetCars/?filter=
     [OperationContract]
-    //[ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]    
-    List<Car> GetCars(string carsFilter);
+    [ApplyDataContractResolver]
+    [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "GET", UriTemplate = "/GetCars/?filter={filter}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    List<Car> GetCars(string filter);
 
     /// <summary>
     /// Updates the car.
@@ -30,6 +34,9 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "POST", UriTemplate = "/UpdateCar",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void UpdateCar(Car car);
 
     /// <summary>
@@ -42,6 +49,9 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteCar",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteCar(Car car);
   }
 }

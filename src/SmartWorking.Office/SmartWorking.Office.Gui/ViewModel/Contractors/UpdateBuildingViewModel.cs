@@ -58,39 +58,39 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
     }
 
-    #region Contractor property
+    //#region Contractor property
 
-    /// <summary>
-    /// The <see cref="Contractor" /> property's name.
-    /// </summary>
-    public const string ContractorPropertyName = "Contractor";
+    ///// <summary>
+    ///// The <see cref="Contractor" /> property's name.
+    ///// </summary>
+    //public const string ContractorPropertyName = "Contractor";
 
-    private Contractor _contractor;
+    //private Contractor _contractor;
 
-    /// <summary>
-    /// Gets the Contractor property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public Contractor Contractor
-    {
-      get { return _contractor; }
+    ///// <summary>
+    ///// Gets the Contractor property.
+    ///// TODO Update documentation:
+    ///// Changes to that property's value raise the PropertyChanged event. 
+    ///// This property's value is broadcasted by the Messenger's default instance when it changes.
+    ///// </summary>
+    //public Contractor Contractor
+    //{
+    //  get { return _contractor; }
 
-      set
-      {
-        if (_contractor == value)
-        {
-          return;
-        }
-        _contractor = value;
+    //  set
+    //  {
+    //    if (_contractor == value)
+    //    {
+    //      return;
+    //    }
+    //    _contractor = value;
 
-        // Update bindings, no broadcast
-        RaisePropertyChanged(ContractorPropertyName);
-      }
-    }
+    //    // Update bindings, no broadcast
+    //    RaisePropertyChanged(ContractorPropertyName);
+    //  }
+    //}
 
-    #endregion
+    //#endregion
 
     #region Building property
 
@@ -127,7 +127,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private bool CanCreateOrUpdatBuilding()
     {
-      if (Contractor == null || Building == null)
+      if ( Building == null)
         return false;
       //TODO: validate
       return true;
@@ -136,7 +136,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void CreateOrUpdatBuilding()
     {
-      if (Contractor == null || Building == null)
+      if (Building == null)
         throw new Exception(); //TODO:
       
       using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
@@ -145,17 +145,16 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         {
           if (Building.Id > 0)
             throw new Exception("Building has wrong Id (>0).");
-          Building.Contractor_Id = Contractor.Id;
-          contractorService.AddBuildingToContractor(Contractor, Building);
         }
         else if (DialogMode == DialogMode.Update)
         {
           if (Building.Id <= 0)
             throw new Exception("Building has wrong Id (<=0).");
-          if (Contractor.Id != Building.Contractor_Id)
-            throw new Exception("Building has to belong to Contractor.");
-          contractorService.UpdateBuilding(Building);
+          
         }
+        if (Building.Contractor_Id <= 0)
+          throw new Exception("Building has to belong to Contractor.");
+        contractorService.UpdateBuilding(Building);
       }
       CloseModalDialog();
     }

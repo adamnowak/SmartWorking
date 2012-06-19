@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 using SmartWorking.Office.Entities;
 
 namespace SmartWorking.Office.Services.Interfaces
@@ -12,14 +13,18 @@ namespace SmartWorking.Office.Services.Interfaces
   public interface IMaterialsService : IDisposable
   {
     /// <summary>
-    /// Gets the materials filtered by <paramref name="materialNameFilter"/>.
+    /// Gets the materials filtered by <paramref name="filter"/>.
     /// </summary>
-    /// <param name="materialNameFilter">The material name filter.</param>
-    /// <returns>List of material filtered by <paramref name="materialNameFilter"/>. The result has the information about material in stock.</returns>
+    /// <param name="filter">The filter.</param>
+    /// <returns>
+    /// List of material filtered by <paramref name="filter"/>. The result has the information about material in stock.
+    /// </returns>
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
-    List<Material> GetMaterials(string materialNameFilter);
+    [WebInvoke(Method = "GET", UriTemplate = "/GetMaterials?filter={filter}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    List<Material> GetMaterials(string filter);
 
     /// <summary>
     /// Updates the material.
@@ -28,6 +33,9 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "POST", UriTemplate = "/UpdateMaterial",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void UpdateMaterial(Material material);
 
     /// <summary>
@@ -38,6 +46,9 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteMaterial",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteMaterial(Material material);
 
     /// <summary>
@@ -48,6 +59,9 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [ApplyDataContractResolver]
     [CyclicReferencesAware(true)]
+    [WebInvoke(Method = "POST", UriTemplate = "/UpdateMaterialInStock", 
+      RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, 
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
     void UpdateMaterialInStock(Material material, float amountMaterialInStock);
   }
 }

@@ -15,7 +15,8 @@
         <Shared:PanelLabel Image="{Binding Icon, Converter={StaticResource messageBoxImageConverter}}" HeaderStyle="{StaticResource TextBlockH1}" Content="{Binding Caption}"/> 
 		
         <!--Contractor grid-->
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="5" Grid.Row="1" Text="{Binding Message}"/>
+        <TextBlock VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextAlignment="Center"
+                TextWrapping="Wrap" Margin="5" Grid.Row="1" Text="{Binding Message}"/>
 
 		<!--Buttons-->
 		<StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
