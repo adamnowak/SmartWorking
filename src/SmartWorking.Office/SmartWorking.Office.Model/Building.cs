@@ -15,21 +15,14 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.Entities
 {
-    public partial class Building
+    public partial class Building : BuildingPrimitive
     {
         #region Primitive Properties
-    
-        public int Id
-        {
-            get;
-            set;
-        }
-    
-        public int Contractor_Id
-        {
+    		public override int Contractor_Id
+    		{
             get { return _contractor_Id; }
             set
-            {
+            {        
                 if (_contractor_Id != value)
                 {
                     if (Contractor != null && Contractor.Id != value)
@@ -39,26 +32,9 @@ namespace SmartWorking.Office.Entities
                     _contractor_Id = value;
                 }
             }
-        }
-        private int _contractor_Id;
+    		}
+    		private int _contractor_Id;    
     
-        public string City
-        {
-            get;
-            set;
-        }
-    
-        public string Street
-        {
-            get;
-            set;
-        }
-    
-        public string HouseNo
-        {
-            get;
-            set;
-        }
 
         #endregion
         #region Navigation Properties

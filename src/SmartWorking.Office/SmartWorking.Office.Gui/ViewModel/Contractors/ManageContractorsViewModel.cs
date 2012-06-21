@@ -5,6 +5,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Contractors;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
@@ -31,7 +32,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     public ManageContractorsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableContractor = new SelectableViewModelBase<Contractor>();
+      SelectableContractor = new SelectableViewModelBase<ContractorAndBuildingsPackage>();
       LoadContractors();
     }
 
@@ -46,7 +47,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// <summary>
     /// Gets the selectable contractor. List of contractors and one which is selected.
     /// </summary>
-    public SelectableViewModelBase<Contractor> SelectableContractor { get; private set; }
+    public SelectableViewModelBase<ContractorAndBuildingsPackage> SelectableContractor { get; private set; }
 
     /// <summary>
     /// Gets or sets the selected building.
@@ -54,7 +55,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// <value>
     /// The selected building.
     /// </value>
-    public Building SelectedBuilding { get; set; }
+    public BuildingPrimitive SelectedBuilding { get; set; }
 
     /// <summary>
     /// Gets the create contractor command.
@@ -151,9 +152,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </remarks>
     private void CreateDeliveryNote()
     {
-      Building building = SelectedBuilding.CopyWithOutReferences();
-      Contractor contractor = SelectableContractor.SelectedItem.CopyWithOutReferences();
-      building.Contractor = contractor;
+      BuildingPrimitive building = SelectedBuilding;
+      ContractorPrimitive contractor = SelectableContractor.SelectedItem.Contractor;
+      //todo: pass to CreateDeliveryNote building and contractor or create new package
       ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory, building);
     }
     #endregion
@@ -176,7 +177,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void EditContractor()
     {
-      ModalDialogService.EditContractor(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem);
+      ModalDialogService.EditContractor(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem.Contractor);
       LoadContractors();
     }
 
@@ -233,7 +234,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void CreateBuilding()
     {
-      ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem);
+      ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem.Contractor);
       LoadContractors();
     }
 
@@ -305,15 +306,15 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       string errorCaption = "Pobranie danych o kontrahentach!";
       try
       {
-        Contractor selectedItem = SelectableContractor.SelectedItem;
+        ContractorAndBuildingsPackage selectedItem = SelectableContractor.SelectedItem;
         using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
         {
-          SelectableContractor.LoadItems(contractorService.GetContractors(string.Empty));
+          SelectableContractor.LoadItems(contractorService.GetContractorAndBuildingsPackage(string.Empty));
         }
-        if (selectedItem != null)
+        if (selectedItem != null && selectedItem.Contractor != null)
         {
-          Contractor selectionFromItems =
-            SelectableContractor.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+          ContractorAndBuildingsPackage selectionFromItems =
+            SelectableContractor.Items.Where(x => x.Contractor.Id == selectedItem.Contractor.Id).FirstOrDefault();
           if (selectionFromItems != null)
             SelectableContractor.SelectedItem = selectionFromItems;
         }

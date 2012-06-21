@@ -18,23 +18,19 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="filter">The recipes filter.</param>
     /// <returns>List of Recipe filtered by <paramref name="filter"/>. Recipe contains list of Material contains to this Recipe.</returns>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "GET", UriTemplate = "/GetRecipes/?filter={filter}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<Recipe> GetRecipes(string filter);
+    List<RecipePrimitive> GetRecipes(string filter);
 
     /// <summary>
     /// Updates the recipe.
     /// </summary>
     /// <param name="recipe">The recipe which will be updated.</param>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipe",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateRecipe(Recipe recipe);
+    void UpdateRecipe(RecipePrimitive recipe);
 
     /// <summary>
     /// Deletes the recipe.
@@ -42,12 +38,10 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="recipe">The recipe which will be deleted.</param>
     /// <remarks>Only recipe which is not used can be deleted.</remarks>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteRecipe",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void DeleteRecipe(Recipe recipe);
+    void DeleteRecipe(RecipePrimitive recipe);
 
 
     /// <summary>
@@ -59,23 +53,19 @@ namespace SmartWorking.Office.Services.Interfaces
     /// Only amount of material will be updated.
     /// </remarks>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipeComponent",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateRecipeComponent(RecipeComponent recipeComponent);
+    void UpdateRecipeComponent(RecipeComponentPrimitive recipeComponent);
 
     /// <summary>
     /// Deletes the material from recipe.
     /// </summary>
     /// <param name="recipeComponent">The recipe component.</param>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteRecipeComponent",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void DeleteRecipeComponent(RecipeComponent recipeComponent);
+    void DeleteRecipeComponent(RecipeComponentPrimitive recipeComponent);
   }
 }

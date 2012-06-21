@@ -20,23 +20,19 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of material filtered by <paramref name="filter"/>. The result has the information about material in stock.
     /// </returns>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "GET", UriTemplate = "/GetMaterials?filter={filter}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<Material> GetMaterials(string filter);
+    List<MaterialPrimitive> GetMaterials(string filter);
 
     /// <summary>
     /// Updates the material.
     /// </summary>
     /// <param name="material">The material which will be updated.</param>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateMaterial",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateMaterial(Material material);
+    void UpdateMaterial(MaterialPrimitive material);
 
     /// <summary>
     /// Deletes the material.
@@ -44,12 +40,10 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="material">The material which will be deleted.</param>
     /// <remarks>Information about material in stock will be also deleted.</remarks>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteMaterial",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void DeleteMaterial(Material material);
+    void DeleteMaterial(MaterialPrimitive material);
 
     /// <summary>
     /// Updates the information about material in stock.
@@ -57,11 +51,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="material">The material for which the information about stock will be updated.</param>
     /// <param name="amountMaterialInStock">The new material in stock.</param>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
-    [WebInvoke(Method = "POST", UriTemplate = "/UpdateMaterialInStock", 
+    [WebInvoke(Method = "POST", UriTemplate = "/UpdateMaterialStock", 
       RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, 
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateMaterialInStock(Material material, float amountMaterialInStock);
+    void UpdateMaterialStock(MaterialStockPrimitive materialStockPrimitive);
   }
 }

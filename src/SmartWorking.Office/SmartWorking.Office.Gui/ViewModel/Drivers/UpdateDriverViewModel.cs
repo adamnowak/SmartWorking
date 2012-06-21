@@ -68,7 +68,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     /// </summary>
     public const string DriverPropertyName = "Driver";
 
-    private Driver _driver;
+    private DriverPrimitive _driver;
 
     /// <summary>
     /// Gets the Driver property.
@@ -76,7 +76,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Driver Driver
+    public DriverPrimitive Driver
     {
       get { return _driver; }
 

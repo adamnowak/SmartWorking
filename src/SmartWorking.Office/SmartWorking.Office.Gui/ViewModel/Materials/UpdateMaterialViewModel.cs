@@ -67,7 +67,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// </summary>
     public const string MaterialPropertyName = "Material";
 
-    private Material _material;
+    private MaterialPrimitive _material;
 
     /// <summary>
     /// Gets the Material property.
@@ -75,7 +75,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Material Material
+    public MaterialPrimitive Material
     {
       get { return _material; }
 

@@ -341,9 +341,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SmartWorking.Office.Entities\SmartWorking.Office.Entities.csproj">
-      <Project>{461DE786-E812-450C-8575-9133283EE858}</Project>
-      <Name>SmartWorking.Office.Entities</Name>
+    <ProjectReference Include="..\SmartWorking.Office.PrimitiveEntities\SmartWorking.Office.PrimitiveEntities.csproj">
+      <Project>{75E10916-6E7E-4042-9B5A-BE53BAC74992}</Project>
+      <Name>SmartWorking.Office.PrimitiveEntities</Name>
     </ProjectReference>
     <ProjectReference Condition="'$(Configuration)' == 'DebugIISLocal' OR '$(Configuration)' == 'DebugIISSomee'" Include="..\SmartWorking.Office.Services.Factory.IIS\SmartWorking.Office.Services.Factory.IIS.csproj">
       <Project>{14081C14-0821-448F-886F-ABD83B8E7237}</Project>

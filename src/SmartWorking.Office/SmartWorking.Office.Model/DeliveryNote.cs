@@ -15,21 +15,14 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.Entities
 {
-    public partial class DeliveryNote
+    public partial class DeliveryNote : DeliveryNotePrimitive
     {
         #region Primitive Properties
-    
-        public int Id
-        {
-            get;
-            set;
-        }
-    
-        public Nullable<int> Building_Id
-        {
+    		public override Nullable<int> Building_Id
+    		{
             get { return _building_Id; }
             set
-            {
+            {        
                 try
                 {
                     _settingFK = true;
@@ -47,14 +40,14 @@ namespace SmartWorking.Office.Entities
                     _settingFK = false;
                 }
             }
-        }
-        private Nullable<int> _building_Id;
+    		}
+    		private Nullable<int> _building_Id;    
     
-        public Nullable<int> Recipe_Id
-        {
+    		public override Nullable<int> Recipe_Id
+    		{
             get { return _recipe_Id; }
             set
-            {
+            {        
                 try
                 {
                     _settingFK = true;
@@ -72,20 +65,14 @@ namespace SmartWorking.Office.Entities
                     _settingFK = false;
                 }
             }
-        }
-        private Nullable<int> _recipe_Id;
+    		}
+    		private Nullable<int> _recipe_Id;    
     
-        public Nullable<double> Amount
-        {
-            get;
-            set;
-        }
-    
-        public Nullable<int> Driver_Id
-        {
+    		public override Nullable<int> Driver_Id
+    		{
             get { return _driver_Id; }
             set
-            {
+            {        
                 try
                 {
                     _settingFK = true;
@@ -103,38 +90,14 @@ namespace SmartWorking.Office.Entities
                     _settingFK = false;
                 }
             }
-        }
-        private Nullable<int> _driver_Id;
+    		}
+    		private Nullable<int> _driver_Id;    
     
-        public Nullable<System.DateTime> DateDrawing
-        {
-            get;
-            set;
-        }
-    
-        public Nullable<System.DateTime> DateOfArrival
-        {
-            get;
-            set;
-        }
-    
-        public Nullable<System.DateTime> Canceled
-        {
-            get;
-            set;
-        }
-    
-        public string Drawer
-        {
-            get;
-            set;
-        }
-    
-        public Nullable<int> Car_Id
-        {
+    		public override Nullable<int> Car_Id
+    		{
             get { return _car_Id; }
             set
-            {
+            {        
                 try
                 {
                     _settingFK = true;
@@ -152,8 +115,9 @@ namespace SmartWorking.Office.Entities
                     _settingFK = false;
                 }
             }
-        }
-        private Nullable<int> _car_Id;
+    		}
+    		private Nullable<int> _car_Id;    
+    
 
         #endregion
         #region Navigation Properties

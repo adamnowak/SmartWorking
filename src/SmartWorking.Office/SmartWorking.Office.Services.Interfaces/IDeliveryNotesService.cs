@@ -21,23 +21,19 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of <see cref="DeliveryNote"/> filtered by <paramref name="filter"/> and <paramref name="showCanceled"/>.
     /// </returns>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "GET", UriTemplate = "/GetIDeliveryNotes/?filter={filter}&showCanceled={showCanceled}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<DeliveryNote> GetIDeliveryNotes(string filter, bool showCanceled);
+    List<DeliveryNotePrimitive> GetIDeliveryNotes(string filter, bool showCanceled);
 
     /// <summary>
     /// Updates the <see cref="DeliveryNote"/>.
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be updated.</param>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateDeliveryNote",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateDeliveryNote(DeliveryNote deliveryNote);
+    void UpdateDeliveryNote(DeliveryNotePrimitive deliveryNote);
 
     /// <summary>
     /// Deletes the <see cref="DeliveryNote"/>.
@@ -47,11 +43,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <see cref="DeliveryNote"/> cannot be deleted.
     /// </remarks>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "POST", UriTemplate = "/CanceledDeliveryNote",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void CanceledDeliveryNote(DeliveryNote deliveryNote);
+    void CanceledDeliveryNote(DeliveryNotePrimitive deliveryNote);
   }
 }

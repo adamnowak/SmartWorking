@@ -69,7 +69,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     public const string RecipeComponentPropertyName = "RecipeComponent";
 
-    private RecipeComponent _recipeComponent;    
+    private RecipeComponentPrimitive _recipeComponent;    
 
     /// <summary>
     /// Gets the RecipeComponent property.
@@ -77,7 +77,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public RecipeComponent RecipeComponent
+    public RecipeComponentPrimitive RecipeComponent
     {
       get { return _recipeComponent; }
 
@@ -103,7 +103,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     public const string MaterialPropertyName = "Material";
 
-    private Material _material;
+    private MaterialPrimitive _material;
 
     /// <summary>
     /// Gets the Material property.
@@ -111,7 +111,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Material Material
+    public MaterialPrimitive Material
     {
       get { return _material; }
 

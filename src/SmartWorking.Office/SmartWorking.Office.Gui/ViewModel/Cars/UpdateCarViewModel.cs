@@ -67,7 +67,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// </summary>
     public const string CarPropertyName = "Car";
 
-    private Car _car;
+    private CarPrimitive _car;
 
     /// <summary>
     /// Gets the Car property.
@@ -75,7 +75,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Car Car
+    public CarPrimitive Car
     {
       get { return _car; }
 

@@ -64,7 +64,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     public const string RecipePropertyName = "Recipe";
 
-    private Recipe _recipe;
+    private RecipePrimitive _recipe;
 
     /// <summary>
     /// Gets the Contractor property.
@@ -72,7 +72,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Recipe Recipe
+    public RecipePrimitive Recipe
     {
       get { return _recipe; }
 

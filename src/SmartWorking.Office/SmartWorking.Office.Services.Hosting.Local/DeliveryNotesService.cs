@@ -28,7 +28,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of <see cref="DeliveryNote"/> filtered by <paramref name="buildingContainsThisString"/> and <paramref name="showCanceledDeliveryNotes"/>.
     /// </returns>
-    public List<DeliveryNote> GetIDeliveryNotes(string buildingContainsThisString, bool showCanceledDeliveryNotes)
+    public List<DeliveryNotePrimitive> GetIDeliveryNotes(string buildingContainsThisString, bool showCanceledDeliveryNotes)
     {
       using (var ctx = new SmartWorkingEntities())
       {
@@ -56,7 +56,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
             }
             
           }
-        return result;
+        return result.Select(x => x.GetPrimitive()).ToList();
       }
     }
 
@@ -64,10 +64,12 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the <see cref="DeliveryNote"/>.
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be updated.</param>
-    public void UpdateDeliveryNote(DeliveryNote deliveryNote)
+    public void UpdateDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
     {
       using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
+        DeliveryNote deliveryNote = deliveryNotePrimitive.GetEntity();
+
         DeliveryNote existingObject = context.DeliveryNotes.Where(x => x.Id == deliveryNote.Id).FirstOrDefault();
 
         //no record of this item in the DB, item being passed in has a PK
@@ -80,12 +82,12 @@ namespace SmartWorking.Office.Services.Hosting.Local
         //Item has no PK value, must be new);
         if (deliveryNote.Id <= 0)
         {
-          context.DeliveryNotes.AddObject(deliveryNote.CopyWithOutReferences());
+          context.DeliveryNotes.AddObject(deliveryNote);
         }
         //Item was retrieved, and the item passed has a valid ID, do an update
         else
         {
-          context.DeliveryNotes.ApplyCurrentValues(deliveryNote.CopyWithOutReferences());
+          context.DeliveryNotes.ApplyCurrentValues(deliveryNote);
         }
 
         context.SaveChanges();
@@ -96,7 +98,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Deletes the <see cref="DeliveryNote"/>.
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be canceled.</param>
-    public void CanceledDeliveryNote(DeliveryNote deliveryNote)
+    public void CanceledDeliveryNote(DeliveryNotePrimitive deliveryNote)
     {
       throw new NotImplementedException();
     }

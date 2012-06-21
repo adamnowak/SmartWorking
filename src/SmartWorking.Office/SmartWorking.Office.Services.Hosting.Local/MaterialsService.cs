@@ -20,7 +20,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of material filtered by <paramref name="materialNameFilter"/>. The result has the information about material in stock.
     /// </returns>
-    public List<Material> GetMaterials(string materialNameFilter)
+    public List<MaterialPrimitive> GetMaterials(string materialNameFilter)
     {
       using (var ctx = new SmartWorkingEntities())
       {
@@ -28,7 +28,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           (string.IsNullOrWhiteSpace(materialNameFilter))
             ? ctx.Materials.Include("MaterialStocks").ToList()
             : ctx.Materials.Include("MaterialStocks").Where(x => x.Name.StartsWith(materialNameFilter)).ToList();
-        return result;
+        return result.Select(x => x.GetPrimitive()).ToList(); ;
       }
     }
 
@@ -36,10 +36,12 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the material.
     /// </summary>
     /// <param name="material">The material which will be updated.</param>
-    public void UpdateMaterial(Material material)
+    public void UpdateMaterial(MaterialPrimitive materialPrimitive)
     {
       using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
+        Material material = materialPrimitive.GetEntity();
+
         Material existingObject = context.Materials.Where(x => x.Id == material.Id).FirstOrDefault();
 
         //no record of this item in the DB, item being passed in has a PK
@@ -67,7 +69,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Deletes the material.
     /// </summary>
     /// <param name="material">The material which will be deleted.</param>
-    public void DeleteMaterial(Material material)
+    public void DeleteMaterial(MaterialPrimitive materialPrimitive)
     {
       throw new NotImplementedException();
     }
@@ -75,9 +77,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <summary>
     /// Updates the information about material in stock.
     /// </summary>
-    /// <param name="material">The material for which the information about stock will be updated.</param>
-    /// <param name="amountMaterialInStock">The new material in stock.</param>
-    public void UpdateMaterialInStock(Material material, float amountMaterialInStock)
+    /// <param name="materialStockPrimitive">The material stock primitive.</param>
+    public void UpdateMaterialStock(MaterialStockPrimitive materialStockPrimitive)
     {
       throw new NotImplementedException();
     }

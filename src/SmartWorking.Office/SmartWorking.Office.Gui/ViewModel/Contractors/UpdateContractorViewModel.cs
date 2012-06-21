@@ -50,7 +50,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public const string ContractorPropertyName = "Contractor";
 
-    private Contractor _contractor;
+    private ContractorPrimitive _contractor;
 
     /// <summary>
     /// Gets the Contractor property.
@@ -58,7 +58,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Contractor Contractor
+    public ContractorPrimitive Contractor
     {
       get { return _contractor; }
 

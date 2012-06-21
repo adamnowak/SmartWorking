@@ -604,7 +604,7 @@
         <EntityTypeShape EntityType="SmartWorkingModel.DeliveryNote" Width="1.5" PointX="3" PointY="0.5" Height="3.7109993489583246" />
         <EntityTypeShape EntityType="SmartWorkingModel.Driver" Width="1.5" PointX="5.25" PointY="4.125" Height="1.9802864583333317" />
         <EntityTypeShape EntityType="SmartWorkingModel.Material" Width="1.5" PointX="9.75" PointY="0.5" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="SmartWorkingModel.MaterialStock" Width="1.5" PointX="9.75" PointY="3.25" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="SmartWorkingModel.MaterialStock" Width="1.5" PointX="9.75" PointY="3.25" Height="1.7879850260416665" />
         <EntityTypeShape EntityType="SmartWorkingModel.Recipe" Width="1.5" PointX="5.125" PointY="0.5" Height="1.9802864583333388" />
         <AssociationConnector Association="SmartWorkingModel.FK_Buildings_Contractors" >
           <ConnectorPoint PointX="1.5" PointY="3.625" />

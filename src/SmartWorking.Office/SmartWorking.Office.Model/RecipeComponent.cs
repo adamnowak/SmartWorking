@@ -15,21 +15,14 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.Entities
 {
-    public partial class RecipeComponent
+    public partial class RecipeComponent : RecipeComponentPrimitive
     {
         #region Primitive Properties
-    
-        public int Id
-        {
-            get;
-            set;
-        }
-    
-        public Nullable<int> Material_Id
-        {
+    		public override Nullable<int> Material_Id
+    		{
             get { return _material_Id; }
             set
-            {
+            {        
                 try
                 {
                     _settingFK = true;
@@ -47,14 +40,14 @@ namespace SmartWorking.Office.Entities
                     _settingFK = false;
                 }
             }
-        }
-        private Nullable<int> _material_Id;
+    		}
+    		private Nullable<int> _material_Id;    
     
-        public Nullable<int> Recipe_Id
-        {
+    		public override Nullable<int> Recipe_Id
+    		{
             get { return _recipe_Id; }
             set
-            {
+            {        
                 try
                 {
                     _settingFK = true;
@@ -72,14 +65,9 @@ namespace SmartWorking.Office.Entities
                     _settingFK = false;
                 }
             }
-        }
-        private Nullable<int> _recipe_Id;
+    		}
+    		private Nullable<int> _recipe_Id;    
     
-        public Nullable<double> Amount
-        {
-            get;
-            set;
-        }
 
         #endregion
         #region Navigation Properties

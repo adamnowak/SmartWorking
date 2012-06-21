@@ -15,35 +15,8 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.Entities
 {
-    public partial class Car
+    public partial class Car : CarPrimitive
     {
-        #region Primitive Properties
-    
-        public int Id
-        {
-            get;
-            set;
-        }
-    
-        public string RegistrationNumber
-        {
-            get;
-            set;
-        }
-    
-        public string Name
-        {
-            get;
-            set;
-        }
-    
-        public string InternalName
-        {
-            get;
-            set;
-        }
-
-        #endregion
         #region Navigation Properties
     
         public ICollection<DeliveryNote> DeliveryNotes

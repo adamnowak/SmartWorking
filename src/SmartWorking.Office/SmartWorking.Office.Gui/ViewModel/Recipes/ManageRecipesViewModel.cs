@@ -30,14 +30,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     public ManageRecipesViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableRecipe = new SelectableViewModelBase<Recipe>();
+      SelectableRecipe = new SelectableViewModelBase<RecipePrimitive>();
       LoadRecipes();
     }
 
     /// <summary>
     /// Gets the selectable recipe.
     /// </summary>
-    public SelectableViewModelBase<Recipe> SelectableRecipe { get; private set; }
+    public SelectableViewModelBase<RecipePrimitive> SelectableRecipe { get; private set; }
 
     #region SelectedRecipeComponent
     /// <summary>
@@ -45,7 +45,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     public const string SelectedRecipeComponentPropertyName = "SelectedRecipeComponent";
 
-    private RecipeComponent _recipeComponent;
+    private RecipeComponentPrimitive _recipeComponent;
     
 
     /// <summary>
@@ -54,7 +54,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public RecipeComponent SelectedRecipeComponent
+    public RecipeComponentPrimitive SelectedRecipeComponent
     {
       get
       {

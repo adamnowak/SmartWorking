@@ -99,7 +99,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     public const string BuildingPropertyName = "Building";
 
-    private Building _building;
+    private BuildingPrimitive _building;
 
     /// <summary>
     /// Gets the Building property.
@@ -107,7 +107,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Building Building
+    public BuildingPrimitive Building
     {
       get { return _building; }
 

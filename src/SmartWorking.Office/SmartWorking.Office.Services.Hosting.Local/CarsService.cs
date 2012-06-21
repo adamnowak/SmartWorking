@@ -13,13 +13,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
   /// </summary>
   public class CarsService : ICarsService
   {
-    /// <summary>
-    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-    /// </summary>
-    public void Dispose()
-    {
 
-    }
 
     /// <summary>
     /// Gets the cars filtered be <paramref name="carsFilter"/>.
@@ -28,19 +22,17 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of Car filtered by <paramref name="carsFilter"/>.
     /// </returns>
-    public List<Car> GetCars(string carsFilter)
+    public List<CarPrimitive> GetCars(string carsFilter)
     {
       try
       {
-        //throw new Exception("test", new Exception("innerTest"));
-        //return new List<Car>() { new Car() };
         using (var ctx = new SmartWorkingEntities())
         {
           List<Car> result =
             (string.IsNullOrWhiteSpace(carsFilter))
               ? ctx.Cars.ToList()
               : ctx.Cars.Where(x => x.RegistrationNumber.StartsWith(carsFilter)).ToList();
-          return result;
+          return result.Select(x => x.GetPrimitive()).ToList(); ;
         }
       }
       catch (Exception e)
@@ -51,14 +43,15 @@ namespace SmartWorking.Office.Services.Hosting.Local
     }
 
     /// <summary>
-    /// Updates the car.
+    /// Updates the car.oo
     /// </summary>
-    /// <param name="car">The car which will be updated.</param>
-    public void UpdateCar(Car car)
+    /// <param name="carPrimitive">The car primitive.</param>
+    public void UpdateCar(CarPrimitive carPrimitive)
     {
       using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
-        Car existingObject = context.Cars.Where(x => x.Id == car.Id).FirstOrDefault();
+        Car car = carPrimitive.GetEntity();
+        Car existingObject = context.Cars.Where(x => x.Id == car.Id).FirstOrDefault();        
 
         //no record of this item in the DB, item being passed in has a PK
         if (existingObject == null && car.Id > 0)
@@ -84,10 +77,18 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <summary>
     /// Deletes the car.
     /// </summary>
-    /// <param name="car">The car which will be deleted.</param>
-    public void DeleteCar(Car car)
+    /// <param name="carPrimitive">The car primitive.</param>
+    public void DeleteCar(CarPrimitive carPrimitive)
     {
       throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public void Dispose()
+    {
+
     }
   }
 }

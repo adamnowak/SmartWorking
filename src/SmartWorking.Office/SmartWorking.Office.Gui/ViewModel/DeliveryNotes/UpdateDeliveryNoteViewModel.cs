@@ -60,7 +60,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// </summary>
     public const string DeliveryNotePropertyName = "DeliveryNote";
 
-    private DeliveryNote _deliveryNote;
+    private DeliveryNotePrimitive _deliveryNote;
 
     /// <summary>
     /// Gets the Contractor property.
@@ -68,7 +68,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public DeliveryNote DeliveryNote
+    public DeliveryNotePrimitive DeliveryNote
     {
       get { return _deliveryNote; }
 
@@ -94,7 +94,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// </summary>
     public const string BuildingPropertyName = "Building";
 
-    private Building _building;
+    private BuildingPrimitive _building;
 
     /// <summary>
     /// Gets the Contractor property.
@@ -102,7 +102,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Building Building
+    public BuildingPrimitive Building
     {
       get { return _building; }
 
@@ -128,7 +128,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// </summary>
     public const string RecipePropertyName = "Recipe";
 
-    private Recipe _recipe;
+    private RecipePrimitive _recipe;
 
     /// <summary>
     /// Gets the Contractor property.
@@ -136,7 +136,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Recipe Recipe
+    public RecipePrimitive Recipe
     {
       get { return _recipe; }
 
@@ -162,7 +162,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// </summary>
     public const string DriverPropertyName = "Driver";
 
-    private Driver _driver;
+    private DriverPrimitive _driver;
 
     /// <summary>
     /// Gets the Contractor property.
@@ -170,7 +170,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Driver Driver
+    public DriverPrimitive Driver
     {
       get { return _driver; }
 
@@ -196,7 +196,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// </summary>
     public const string CarPropertyName = "Car";
 
-    private Car _car;
+    private CarPrimitive _car;
     
 
 
@@ -206,7 +206,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public Car Car
+    public CarPrimitive Car
     {
       get { return _car; }
 
@@ -356,25 +356,25 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     #endregion
 
     #region PrintDeliveryNote
-    private void PrintDeliveryNote(DeliveryNote deliveryNote)
+    private void PrintDeliveryNote(DeliveryNotePrimitive deliveryNote)
     {
       //http://read.pudn.com/downloads116/sourcecode/editor/490275/PDFsharp/PdfSharp/PdfSharp.Pdf.Printing/PdfFilePrinter.cs__.htm
-      if (deliveryNote.Building == null)
-      {
-        throw new SmartWorkingException("Building is not defined.");
-      }
-      if (deliveryNote.Car == null)
-      {
-        throw new SmartWorkingException("Car is not defined.");
-      }
-      if (deliveryNote.Driver == null)
-      {
-        throw new SmartWorkingException("Driver is not defined.");
-      }
-      if (deliveryNote.Recipe == null)
-      {
-        throw new SmartWorkingException("Recipe is not defined.");
-      }
+      //if (deliveryNote.Building == null)
+      //{
+      //  throw new SmartWorkingException("Building is not defined.");
+      //}
+      //if (deliveryNote.Car == null)
+      //{
+      //  throw new SmartWorkingException("Car is not defined.");
+      //}
+      //if (deliveryNote.Driver == null)
+      //{
+      //  throw new SmartWorkingException("Driver is not defined.");
+      //}
+      //if (deliveryNote.Recipe == null)
+      //{
+      //  throw new SmartWorkingException("Recipe is not defined.");
+      //}
       string filename = string.Format("d:\\adamnowak\\private\\Sylwek\\temp\\pdf\\WZ_{0}_{1:yyyy-MM-dd_hh-mm-ss-tt}.pdf", deliveryNote.Id, DateTime.Now);
 
       string text = Building.City + ", " + Building.Street;

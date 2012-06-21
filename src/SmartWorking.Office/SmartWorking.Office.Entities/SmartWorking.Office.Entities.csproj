@@ -68,6 +68,18 @@
       <Link>Driver.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\GetEntityHelper.cs">
+      <Link>GetEntityHelper.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetEntityHelper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\GetPrimitiveHelper.cs">
+      <Link>GetPrimitiveHelper.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetPrimitiveHelper.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\SmartWorking.Office.Model\Material.cs">
       <Link>Material.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
@@ -90,10 +102,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CopyWithOutReferencesHelper.cs" />
+    <Compile Include="GetPackageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\SmartWorking.Office.Model\GetEntityHelper.tt">
+      <Link>GetEntityHelper.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GetEntityHelper.cs</LastGenOutput>
+    </None>
+    <None Include="..\SmartWorking.Office.Model\GetPrimitiveHelper.tt">
+      <Link>GetPrimitiveHelper.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GetPrimitiveHelper.cs</LastGenOutput>
+    </None>
     <None Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModel.tt">
       <Link>SmartWorkingOfficeModel.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -106,6 +128,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartWorking.Office.PrimitiveEntities\SmartWorking.Office.PrimitiveEntities.csproj">
+      <Project>{75E10916-6E7E-4042-9B5A-BE53BAC74992}</Project>
+      <Name>SmartWorking.Office.PrimitiveEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

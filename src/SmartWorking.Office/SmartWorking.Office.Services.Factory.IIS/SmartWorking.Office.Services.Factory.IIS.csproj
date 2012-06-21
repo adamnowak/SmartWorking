@@ -52,9 +52,9 @@
     <Compile Include="ServiceFactoryIIS.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SmartWorking.Office.Entities\SmartWorking.Office.Entities.csproj">
-      <Project>{461DE786-E812-450C-8575-9133283EE858}</Project>
-      <Name>SmartWorking.Office.Entities</Name>
+    <ProjectReference Include="..\SmartWorking.Office.PrimitiveEntities\SmartWorking.Office.PrimitiveEntities.csproj">
+      <Project>{75E10916-6E7E-4042-9B5A-BE53BAC74992}</Project>
+      <Name>SmartWorking.Office.PrimitiveEntities</Name>
     </ProjectReference>
     <ProjectReference Include="..\SmartWorking.Office.Services.Interfaces\SmartWorking.Office.Services.Interfaces.csproj">
       <Project>{B6945818-7C7E-4AA8-9837-2290E7E1E64B}</Project>

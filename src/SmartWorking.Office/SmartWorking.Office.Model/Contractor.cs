@@ -15,41 +15,8 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.Entities
 {
-    public partial class Contractor
+    public partial class Contractor : ContractorPrimitive
     {
-        #region Primitive Properties
-    
-        public int Id
-        {
-            get;
-            set;
-        }
-    
-        public string FullName
-        {
-            get;
-            set;
-        }
-    
-        public string Name
-        {
-            get;
-            set;
-        }
-    
-        public string Surname
-        {
-            get;
-            set;
-        }
-    
-        public string Phone
-        {
-            get;
-            set;
-        }
-
-        #endregion
         #region Navigation Properties
     
         public ICollection<Building> Buildings

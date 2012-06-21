@@ -100,9 +100,9 @@ namespace SmartWorking.Office.Gui.ViewModel
     }
 
     /// <summary>
-    /// Gets the manage <see cref="Material"/> command.
+    /// Gets the manage <see cref="MaterialPrimitive"/> command.
     /// </summary>
-    /// <remarks>Opens dialog to manage <see cref="Material"/> objects.</remarks>
+    /// <remarks>Opens dialog to manage <see cref="MaterialPrimitive"/> objects.</remarks>
     public ICommand ManageMaterialsCommand
     {
       get
@@ -176,8 +176,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     private void ManageMaterialStocks()
     {
       MessageBoxResult messageBoxResult = ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory,
-                                        MessageBoxImage.Warning, "caption", "message", MessageBoxButton.OKCancel,
-                                        string.Empty);
+                                        MessageBoxImage.Warning, "Ten przycisk wymaga pracy:)", "Funkcja nie jest jeszcze zaimplementowane. Czeka na swoją kolej. Jeśli masz ochote... zrób to:)", MessageBoxButton.OKCancel,
+                                        "Testowałem własności MessageBox'a (wyskakującego małego okienka).");
       
     }
   }

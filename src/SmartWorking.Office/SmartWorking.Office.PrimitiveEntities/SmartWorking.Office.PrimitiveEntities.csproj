@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75E10916-6E7E-4042-9B5A-BE53BAC74992}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmartWorking.Office.PrimitiveEntities</RootNamespace>
+    <AssemblyName>SmartWorking.Office.PrimitiveEntities</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SmartWorking.Office.Model\BuildingPrimitive.cs">
+      <Link>BuildingPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\CarPrimitive.cs">
+      <Link>CarPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\ContractorPrimitive.cs">
+      <Link>ContractorPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\DeliveryNotePrimitive.cs">
+      <Link>DeliveryNotePrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\DriverPrimitive.cs">
+      <Link>DriverPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\MaterialPrimitive.cs">
+      <Link>MaterialPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\MaterialStockPrimitive.cs">
+      <Link>MaterialStockPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\RecipeComponentPrimitive.cs">
+      <Link>RecipeComponentPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\RecipePrimitive.cs">
+      <Link>RecipePrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModelPrimitive.cs">
+      <Link>SmartWorkingOfficeModelPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ContractorAndBuildingsPackage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModelPrimitive.tt">
+      <Link>SmartWorkingOfficeModelPrimitive.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SmartWorkingOfficeModelPrimitive.cs</LastGenOutput>
+      <CustomToolNamespace>SmartWorking.Office.Entities</CustomToolNamespace>
+    </None>
+    <None Include="..\SmartWorking.pfx">
+      <Link>SmartWorking.pfx</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

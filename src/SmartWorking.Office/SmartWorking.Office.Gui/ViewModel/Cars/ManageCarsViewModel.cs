@@ -29,7 +29,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     public ManageCarsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableCar = new SelectableViewModelBase<Car>();      
+      SelectableCar = new SelectableViewModelBase<CarPrimitive>();      
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// <summary>
     /// Gets the selectable car.
     /// </summary>
-    public SelectableViewModelBase<Car> SelectableCar { get; private set; }
+    public SelectableViewModelBase<CarPrimitive> SelectableCar { get; private set; }
 
     /// <summary>
     /// Gets or sets the dialog mode.
@@ -170,14 +170,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
       string errorCaption = "Pobranie danych o samochodach!";
       try
       {
-        Car selectedItem = SelectableCar.SelectedItem;
+        CarPrimitive selectedItem = SelectableCar.SelectedItem;
         using (ICarsService service = ServiceFactory.GetCarsService())
         {
           SelectableCar.LoadItems(service.GetCars(string.Empty));
         }
         if (selectedItem != null)
         {
-          Car selectionFromItems =
+          CarPrimitive selectionFromItems =
             SelectableCar.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
           if (selectionFromItems != null)
             SelectableCar.SelectedItem = selectionFromItems;

@@ -17,7 +17,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns>Contractor which will be created. If user cancel creating operation then <c>null</c>.</returns>
-    Contractor CreateContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    ContractorPrimitive CreateContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for editing the contractor.
@@ -26,8 +26,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="contractorToEdit">The contractor to edit.</param>
     /// <returns></returns>
-    Contractor EditContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                              Contractor contractorToEdit);
+    ContractorPrimitive EditContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                              ContractorPrimitive contractorToEdit);
 
     /// <summary>
     /// Opens dialog for managing the contractors.
@@ -47,8 +47,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="contractor">The contractor.</param>
     /// <returns>Created Building.</returns>
-    Building CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                            Contractor contractor);
+    BuildingPrimitive CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                            ContractorPrimitive contractor);
 
     /// <summary>
     /// Opens dialog for editing building.
@@ -57,7 +57,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="building">The building.</param>
     /// <returns>Edited Building.</returns>
-    Building EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Building building);
+    BuildingPrimitive EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory, BuildingPrimitive building);
 
     /// <summary>
     /// Opens dialog for managing Contractor and user can chose Building.
@@ -65,7 +65,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>    
     /// <returns>Selected Building.</returns>
-    Building SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    BuildingPrimitive SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     #endregion
 
@@ -77,7 +77,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    DeliveryNote CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    DeliveryNotePrimitive CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for creating delivery note for <paramref name="building"/>.
@@ -86,7 +86,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="building">The building.</param>
     /// <returns></returns>
-    DeliveryNote CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Building building);
+    DeliveryNotePrimitive CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory, BuildingPrimitive building);
 
     /// <summary>
     /// Opens dialog for managing the delivery notes.
@@ -105,7 +105,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    Material CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    MaterialPrimitive CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for editing the material.
@@ -114,8 +114,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="selectedMaterial">The selected material.</param>
     /// <returns></returns>
-    Material EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                          Material selectedMaterial);
+    MaterialPrimitive EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                          MaterialPrimitive selectedMaterial);
 
     /// <summary>
     /// Opens dialog for managing the materials.
@@ -130,7 +130,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    Material SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    MaterialPrimitive SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     #endregion
 
     #region Recipe
@@ -141,7 +141,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    Recipe CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    RecipePrimitive CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for editing the recipe.
@@ -150,7 +150,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="selectedRecipe">The selected recipe.</param>
     /// <returns></returns>
-    Recipe EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Recipe selectedRecipe);
+    RecipePrimitive EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipePrimitive selectedRecipe);
 
     /// <summary>
     /// Opens dialog for managing the recipes.
@@ -165,7 +165,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    Recipe SelectRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    RecipePrimitive SelectRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for creating the recipe component.
@@ -174,7 +174,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="recipe">The recipe for which the <see cref="RecipeComponent"/>s will be added.</param>
     /// <returns></returns>
-    RecipeComponent CreateRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Recipe recipe);
+    RecipeComponentPrimitive CreateRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipePrimitive recipe);
 
     /// <summary>
     /// Opens dialog for editing the recipe component.
@@ -183,7 +183,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="selectedRecipeComponent">The selected recipe component.</param>
     /// <returns></returns>
-    RecipeComponent EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponent selectedRecipeComponent);
+    RecipeComponentPrimitive EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponentPrimitive selectedRecipeComponent);
     
     #endregion
 
@@ -195,7 +195,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    Car CreateCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    CarPrimitive CreateCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for editing the car.
@@ -204,7 +204,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="selectedRecipe">The car to edit.</param>
     /// <returns></returns>
-    Car EditCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Car selectedCar);
+    CarPrimitive EditCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory, CarPrimitive selectedCar);
 
     /// <summary>
     /// Opens dialog for managing the cars.
@@ -219,7 +219,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    Car SelectCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    CarPrimitive SelectCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     #endregion
 
     #region Driver
@@ -230,7 +230,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    Driver CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    DriverPrimitive CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for editing the driver.
@@ -239,7 +239,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="selectedRecipe">The driver to edit.</param>
     /// <returns></returns>
-    Driver EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory, Driver selectedDriver);
+    DriverPrimitive EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory, DriverPrimitive selectedDriver);
 
     /// <summary>
     /// Opens dialog for managing the driver.
@@ -254,7 +254,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    Driver SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    DriverPrimitive SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     #endregion    
 
     #region MessageBox

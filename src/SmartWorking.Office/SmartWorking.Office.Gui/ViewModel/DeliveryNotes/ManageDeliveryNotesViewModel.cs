@@ -22,7 +22,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     public ManageDeliveryNotesViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableDeliveryNote = new SelectableViewModelBase<DeliveryNote>();
+      SelectableDeliveryNote = new SelectableViewModelBase<DeliveryNotePrimitive>();
       ShowCanceledDeliveryNotes = true;
       LoadDeliveryNotes(string.Empty, ShowCanceledDeliveryNotes);
     }
@@ -75,7 +75,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// <summary>
     /// Gets the selectable car.
     /// </summary>
-    public SelectableViewModelBase<DeliveryNote> SelectableDeliveryNote { get; private set; }
+    public SelectableViewModelBase<DeliveryNotePrimitive> SelectableDeliveryNote { get; private set; }
 
 
     /// <summary>
@@ -145,14 +145,14 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// </remarks>
     private void LoadDeliveryNotes(string buildingContains, bool showDeactivedDeliveryNotes)
     {
-      DeliveryNote selectedItem = SelectableDeliveryNote.SelectedItem;
+      DeliveryNotePrimitive selectedItem = SelectableDeliveryNote.SelectedItem;
       using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
       {
         SelectableDeliveryNote.LoadItems(service.GetIDeliveryNotes(buildingContains, showDeactivedDeliveryNotes));
       }
       if (selectedItem != null)
       {
-        DeliveryNote selectionFromItems =
+        DeliveryNotePrimitive selectionFromItems =
           SelectableDeliveryNote.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
         if (selectionFromItems != null)
           SelectableDeliveryNote.SelectedItem = selectionFromItems;

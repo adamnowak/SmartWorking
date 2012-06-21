@@ -26,14 +26,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     public ManageDriversViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableDriver = new SelectableViewModelBase<Driver>();
+      SelectableDriver = new SelectableViewModelBase<DriverPrimitive>();
       LoadDrivers();
     }
 
     /// <summary>
     /// Gets the selectable driver.
     /// </summary>
-    public SelectableViewModelBase<Driver> SelectableDriver { get; private set; }
+    public SelectableViewModelBase<DriverPrimitive> SelectableDriver { get; private set; }
 
     /// <summary>
     /// Gets or sets the dialog mode.
@@ -156,14 +156,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     /// </summary>
     private void LoadDrivers()
     {
-      Driver selectedItem = SelectableDriver.SelectedItem;
+      DriverPrimitive selectedItem = SelectableDriver.SelectedItem;
       using (IDriversService service = ServiceFactory.GetDriversService())
       {
         SelectableDriver.LoadItems(service.GetDrivers(string.Empty));
       }
       if (selectedItem != null)
       {
-        Driver selectionFromItems =
+        DriverPrimitive selectionFromItems =
           SelectableDriver.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
         if (selectionFromItems != null)
           SelectableDriver.SelectedItem = selectionFromItems;

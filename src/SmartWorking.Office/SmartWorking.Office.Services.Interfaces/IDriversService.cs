@@ -20,23 +20,19 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of Drivers filtered by <paramref name="filter"/>.
     /// </returns>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "GET", UriTemplate = "/GetDrivers/?filter={filter}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<Driver> GetDrivers(string filter);
+    List<DriverPrimitive> GetDrivers(string filter);
 
     /// <summary>
     /// Updates the car.
     /// </summary>
     /// <param name="driver">The driver which will be updated.</param>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateDriver",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateDriver(Driver driver);
+    void UpdateDriver(DriverPrimitive driver);
 
     /// <summary>
     /// Deletes the recipe.
@@ -46,11 +42,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// Only driver which is not used can be deleted.
     /// </remarks>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteDriver",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void DeleteDriver(Driver driver);
+    void DeleteDriver(DriverPrimitive driver);
   }
 }

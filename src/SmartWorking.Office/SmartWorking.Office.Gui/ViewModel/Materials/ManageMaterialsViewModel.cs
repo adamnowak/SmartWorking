@@ -27,14 +27,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     public ManageMaterialsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableMaterial = new SelectableViewModelBase<Material>();
+      SelectableMaterial = new SelectableViewModelBase<MaterialPrimitive>();
       LoadMaterials();
     }
 
     /// <summary>
     /// Gets the selectable material.
     /// </summary>
-    public SelectableViewModelBase<Material> SelectableMaterial { get; private set; }
+    public SelectableViewModelBase<MaterialPrimitive> SelectableMaterial { get; private set; }
 
     /// <summary>
     /// Gets or sets the dialog mode.
@@ -178,14 +178,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// </summary>
     private void LoadMaterials()
     {
-      Material selectedItem = SelectableMaterial.SelectedItem;
+      MaterialPrimitive selectedItem = SelectableMaterial.SelectedItem;
       using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
       {
         SelectableMaterial.LoadItems(materialsService.GetMaterials(string.Empty));
       }
       if (selectedItem != null)
       {
-        Material selectionFromItems =
+        MaterialPrimitive selectionFromItems =
           SelectableMaterial.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
         if (selectionFromItems != null)
           SelectableMaterial.SelectedItem = selectionFromItems;

@@ -15,29 +15,8 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.Entities
 {
-    public partial class Material
+    public partial class Material : MaterialPrimitive
     {
-        #region Primitive Properties
-    
-        public int Id
-        {
-            get;
-            set;
-        }
-    
-        public string Name
-        {
-            get;
-            set;
-        }
-    
-        public string InternalName
-        {
-            get;
-            set;
-        }
-
-        #endregion
         #region Navigation Properties
     
         public ICollection<MaterialStock> MaterialStocks

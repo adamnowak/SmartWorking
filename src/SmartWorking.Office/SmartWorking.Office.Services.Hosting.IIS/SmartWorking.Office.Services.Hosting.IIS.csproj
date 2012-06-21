@@ -127,9 +127,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SmartWorking.Office.Entities\SmartWorking.Office.Entities.csproj">
-      <Project>{461DE786-E812-450C-8575-9133283EE858}</Project>
-      <Name>SmartWorking.Office.Entities</Name>
+    <ProjectReference Include="..\SmartWorking.Office.PrimitiveEntities\SmartWorking.Office.PrimitiveEntities.csproj">
+      <Project>{75E10916-6E7E-4042-9B5A-BE53BAC74992}</Project>
+      <Name>SmartWorking.Office.PrimitiveEntities</Name>
     </ProjectReference>
     <ProjectReference Include="..\SmartWorking.Office.Services.Hosting.Local\SmartWorking.Office.Services.Hosting.Local.csproj">
       <Project>{E5B33342-BD5F-4916-942D-63F342045C7C}</Project>

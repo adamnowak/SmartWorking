@@ -10,7 +10,8 @@
 //
 //*********************************************************
 #>
-<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ template language="C#" debug="true" hostspecific="true"#>
+
 <#@ include file="EF.Utility.CS.ttinclude"#><#@  
  output extension=".cs"#><#
 
@@ -34,11 +35,12 @@ EndNamespace(namespaceName);
 // Emit Entity Types
 foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
 {
+	
     fileManager.StartNewFile(entity.Name + ".cs");
     BeginNamespace(namespaceName, code);
     bool entityHasNullableFKs = entity.NavigationProperties.Any(np => np.GetDependentProperties().Any(p=>ef.IsNullable(p)));
 #>
-<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#><#=code.StringBefore(" : ", code.Escape(entity.BaseType))#>
+<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#><#=code.StringBefore(" : ", code.Escape(entity) + "Primitive")#>
 {
 <#
     region.Begin("Primitive Properties");
@@ -49,19 +51,14 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
         bool isDefaultValueDefinedInModel = (edmProperty.DefaultValue != null);
         bool generateAutomaticProperty = false;
 
-
-
-#>
-
-    <#=PropertyVirtualModifier(Accessibility.ForProperty(edmProperty))#> <#=code.Escape(edmProperty.TypeUsage)#> <#=code.Escape(edmProperty)#>
-    {
-<#
         if (isForeignKey)
         {
 #>
+		<#=PropertyVirtualModifier(Accessibility.ForProperty(edmProperty))#> override <#=code.Escape(edmProperty.TypeUsage)#> <#=code.Escape(edmProperty)#>
+		{
         <#=code.SpaceAfter(Accessibility.ForGetter(edmProperty))#>get { return <#=code.FieldName(edmProperty)#>; }
         <#=code.SpaceAfter(Accessibility.ForSetter(edmProperty))#>set
-        {
+        {        
 <#
             if (entityHasNullableFKs)
             {
@@ -141,30 +138,9 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
             }
 #>
         }
-<#
-        }
-        else if (isDefaultValueDefinedInModel)
-        {
-#>
-        <#=code.SpaceAfter(Accessibility.ForGetter(edmProperty))#>get { return <#=code.FieldName(edmProperty)#>; }
-        <#=code.SpaceAfter(Accessibility.ForSetter(edmProperty))#>set { <#=code.FieldName(edmProperty)#> = value; }
-<#
-        }
-        else
-        {
-            generateAutomaticProperty = true;
-#>
-        <#=code.SpaceAfter(Accessibility.ForGetter(edmProperty))#>get;
-        <#=code.SpaceAfter(Accessibility.ForSetter(edmProperty))#>set;
-<#
-        }
-#>
-    }
-<#
-        if (!generateAutomaticProperty)
-        {
-#>
-    private <#=code.Escape(edmProperty.TypeUsage)#> <#=code.FieldName(edmProperty)#><#=code.StringBefore(" = ", code.CreateLiteral(edmProperty.DefaultValue))#>;
+		}
+		private <#=code.Escape(edmProperty.TypeUsage)#> <#=code.FieldName(edmProperty)#><#=code.StringBefore(" = ", code.CreateLiteral(edmProperty.DefaultValue))#>;    
+
 <#
         }
     }

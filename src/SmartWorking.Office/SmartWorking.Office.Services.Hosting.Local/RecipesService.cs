@@ -20,7 +20,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of Recipe filtered by <paramref name="recipesFilter"/>. Recipe contains list of Material contains to this Recipe.
     /// </returns>
-    public List<Recipe> GetRecipes(string recipesFilter)
+    public List<RecipePrimitive> GetRecipes(string recipesFilter)
     {
       using (var ctx = new SmartWorkingEntities())
       {
@@ -28,18 +28,20 @@ namespace SmartWorking.Office.Services.Hosting.Local
                                 ? ctx.Recipes.Include("RecipeComponents.Material").ToList()
                                 : ctx.Recipes.Include("RecipeComponents.Material").Where(
                                   x => x.Name.StartsWith(recipesFilter)).ToList();
-        return result;
+        return result.Select(x => x.GetPrimitive()).ToList();
       }
     }
 
     /// <summary>
     /// Updates the recipe.
     /// </summary>
-    /// <param name="recipe">The recipe to update.</param>
-    public void UpdateRecipe(Recipe recipe)
+    /// <param name="recipePrimitive">The recipe primitive.</param>
+    public void UpdateRecipe(RecipePrimitive recipePrimitive)
     {
       using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
+        Recipe recipe = recipePrimitive.GetEntity();
+           
         Recipe existingObject = context.Recipes.Where(x => x.Id == recipe.Id).FirstOrDefault();
 
         //no record of this item in the DB, item being passed in has a PK
@@ -67,7 +69,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Deletes the recipe.
     /// </summary>
     /// <param name="recipe">The recipe which will be deleted.</param>
-    public void DeleteRecipe(Recipe recipe)
+    public void DeleteRecipe(RecipePrimitive recipePrimitive)
     {
       throw new NotImplementedException();
     }
@@ -75,11 +77,13 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <summary>
     /// Updates the amount material in recipe.
     /// </summary>
-    /// <param name="recipeComponent">The recipe component.</param>
-    public void UpdateRecipeComponent(RecipeComponent recipeComponent)
+    /// <param name="recipeComponentPrimitive">The recipe component primitive.</param>
+    public void UpdateRecipeComponent(RecipeComponentPrimitive recipeComponentPrimitive)
     {
       using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
+        RecipeComponent recipeComponent = recipeComponentPrimitive.GetEntity();
+
         RecipeComponent existingObject = context.RecipeComponents.Where(x => x.Id == recipeComponent.Id).FirstOrDefault();
 
         //no record of this item in the DB, item being passed in has a PK
@@ -91,12 +95,12 @@ namespace SmartWorking.Office.Services.Hosting.Local
         //Item has no PK value, must be new
         if (recipeComponent.Id <= 0)
         {
-          context.RecipeComponents.AddObject(recipeComponent.CopyWithOutReferences());
+          context.RecipeComponents.AddObject(recipeComponent);
         }
         //Item was retrieved, and the item passed has a valid ID, do an update
         else
         {
-          context.RecipeComponents.ApplyCurrentValues(recipeComponent.CopyWithOutReferences());
+          context.RecipeComponents.ApplyCurrentValues(recipeComponent);
         }
 
         context.SaveChanges();
@@ -106,8 +110,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <summary>
     /// Deletes the material from recipe.
     /// </summary>
-    /// <param name="recipeComponent">The recipe component.</param>
-    public void DeleteRecipeComponent(RecipeComponent recipeComponent)
+    /// <param name="recipeComponentPrimitive">The recipe component primitive.</param>
+    public void DeleteRecipeComponent(RecipeComponentPrimitive recipeComponentPrimitive)
     {
       throw new NotImplementedException();
     }

@@ -21,23 +21,19 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </returns>
     /// http://localhost:60322/CarsService.svc/json/GetCars/?filter=
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "GET", UriTemplate = "/GetCars/?filter={filter}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<Car> GetCars(string filter);
+    List<CarPrimitive> GetCars(string filter);
 
     /// <summary>
     /// Updates the car.
     /// </summary>
     /// <param name="car">The car which will be updated.</param>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateCar",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateCar(Car car);
+    void UpdateCar(CarPrimitive car);
 
     /// <summary>
     /// Deletes the car.
@@ -47,11 +43,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// Only car which is not used can be deleted.
     /// </remarks>
     [OperationContract]
-    [ApplyDataContractResolver]
-    [CyclicReferencesAware(true)]
     [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteCar",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void DeleteCar(Car car);
+    void DeleteCar(CarPrimitive car);
   }
 }

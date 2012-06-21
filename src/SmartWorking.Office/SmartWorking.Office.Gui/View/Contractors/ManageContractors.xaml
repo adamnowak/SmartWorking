@@ -29,12 +29,12 @@
 					<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableContractor}" ItemsSource="{Binding Items}">
 						<DataGrid.Columns>
 							<!--Debug only-->
-							<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+							<DataGridTextColumn Header="Id" Binding="{Binding Contractor.Id}" />
 							<!--End Debug only-->
-							<DataGridTextColumn Header="Pelna nazwa" Binding="{Binding FullName}" />
-							<DataGridTextColumn Header="Nazwisko" Binding="{Binding Name}" />
-							<DataGridTextColumn Header="Imie" Binding="{Binding Surname}" />
-							<DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" />
+                            <DataGridTextColumn Header="Pelna nazwa" Binding="{Binding Contractor.FullName}" />
+                            <DataGridTextColumn Header="Nazwisko" Binding="{Binding Contractor.Name}" />
+                            <DataGridTextColumn Header="Imie" Binding="{Binding Contractor.Surname}" />
+                            <DataGridTextColumn Header="Telefon" Binding="{Binding Contractor.Phone}" />
 						</DataGrid.Columns>
 					</DataGrid>
 				</Grid>

@@ -14,7 +14,7 @@ namespace SmartWorking.Office.Services.Hosting.IIS
     protected void Page_Load(object sender, EventArgs e)
     {
       CarsService cars = new CarsService();
-      List<Car> result = cars.GetCars(string.Empty);
+      List<CarPrimitive> result = cars.GetCars(string.Empty);
     }
   }
 }

@@ -25,7 +25,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of Drivers filtered by <paramref name="driversFilter"/>.
     /// </returns>
-    public List<Driver> GetDrivers(string driversFilter)
+    public List<DriverPrimitive> GetDrivers(string driversFilter)
     {
       using (var ctx = new SmartWorkingEntities())
       {
@@ -33,7 +33,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           (string.IsNullOrWhiteSpace(driversFilter))
             ? ctx.Drivers.ToList()
             : ctx.Drivers.Where(x => x.Name.StartsWith(driversFilter)).ToList();
-        return result;
+        return result.Select(x => x.GetPrimitive()).ToList(); ;
       }
     }
 
@@ -41,10 +41,12 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the driver.
     /// </summary>
     /// <param name="driver">The driver which will be updated.</param>
-    public void UpdateDriver(Driver driver)
+    public void UpdateDriver(DriverPrimitive driverPrimitive)
     {
       using (SmartWorkingEntities context = new SmartWorkingEntities())
       {
+        Driver driver = driverPrimitive.GetEntity();
+
         Driver existingObject = context.Drivers.Where(x => x.Id == driver.Id).FirstOrDefault();
 
         //no record of this item in the DB, item being passed in has a PK
@@ -72,7 +74,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Deletes the recipe.
     /// </summary>
     /// <param name="driver">The driver which will be deleted.</param>
-    public void DeleteDriver(Driver driver)
+    public void DeleteDriver(DriverPrimitive driverPrimitive)
     {
       throw new NotImplementedException();
     }
