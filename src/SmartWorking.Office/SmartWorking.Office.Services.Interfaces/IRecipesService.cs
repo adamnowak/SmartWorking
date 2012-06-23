@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using SmartWorking.Office.Entities;
+using SmartWorking.Office.PrimitiveEntities;
 
 namespace SmartWorking.Office.Services.Interfaces
 {
@@ -21,6 +22,18 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "GET", UriTemplate = "/GetRecipes/?filter={filter}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
     List<RecipePrimitive> GetRecipes(string filter);
+
+    /// <summary>
+    /// Gets the <see cref="RecipePackage"/> list filtered by <paramref name="filter"/>.
+    /// </summary>
+    /// <param name="filter">The contractor name filter.</param>
+    /// <returns>
+    /// List of contractors filtered by <paramref name="filter"/>. 
+    /// </returns>
+    [OperationContract]
+    [WebInvoke(Method = "GET", UriTemplate = "/GetRecipesPackage/?filter={filter}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    List<RecipePackage> GetRecipesPackage(string filter);
 
     /// <summary>
     /// Updates the recipe.

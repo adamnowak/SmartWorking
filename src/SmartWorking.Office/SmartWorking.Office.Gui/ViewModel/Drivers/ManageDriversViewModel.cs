@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
+using SmartWorking.Office.Gui.View;
 using SmartWorking.Office.Gui.View.Drivers;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.Services.Interfaces;
@@ -113,8 +116,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     /// </summary>
     private void EditDriver()
     {
-      ModalDialogService.EditDriver(ModalDialogService, ServiceFactory, SelectableDriver.SelectedItem);
-      LoadDrivers();
+      string errorCaption = "Edycja danych o kierowcy!";
+      try
+      {
+        ModalDialogService.EditDriver(ModalDialogService, ServiceFactory, SelectableDriver.SelectedItem);
+        LoadDrivers();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -137,8 +160,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     /// </summary>
     private void DeleteDriver()
     {
-      //TODO:
-      LoadDrivers();
+      string errorCaption = "Usuwanie danych o kierowcy!";
+      try
+      {
+        //TODO:
+        LoadDrivers();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
 
@@ -147,8 +190,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     /// </summary>
     private void CreateDriver()
     {
-      ModalDialogService.CreateDriver(ModalDialogService, ServiceFactory);
-      LoadDrivers();
+      string errorCaption = "Tworzenie danych o kierowcy!";
+      try
+      {
+        ModalDialogService.CreateDriver(ModalDialogService, ServiceFactory);
+        LoadDrivers();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -156,17 +219,37 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     /// </summary>
     private void LoadDrivers()
     {
-      DriverPrimitive selectedItem = SelectableDriver.SelectedItem;
-      using (IDriversService service = ServiceFactory.GetDriversService())
+      string errorCaption = "Wczytywanie danych o kierowcach!";
+      try
       {
-        SelectableDriver.LoadItems(service.GetDrivers(string.Empty));
+        DriverPrimitive selectedItem = SelectableDriver.SelectedItem;
+        using (IDriversService service = ServiceFactory.GetDriversService())
+        {
+          SelectableDriver.LoadItems(service.GetDrivers(string.Empty));
+        }
+        if (selectedItem != null)
+        {
+          DriverPrimitive selectionFromItems =
+            SelectableDriver.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+          if (selectionFromItems != null)
+            SelectableDriver.SelectedItem = selectionFromItems;
+        }
       }
-      if (selectedItem != null)
+      catch (FaultException<ExceptionDetail> f)
       {
-        DriverPrimitive selectionFromItems =
-          SelectableDriver.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
-        if (selectionFromItems != null)
-          SelectableDriver.SelectedItem = selectionFromItems;
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Recipes;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Recipes
@@ -30,23 +32,23 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     public ManageRecipesViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableRecipe = new SelectableViewModelBase<RecipePrimitive>();
-      LoadRecipes();
+      SelectableRecipe = new SelectableViewModelBase<RecipePackage>();
+      LoadRecipePackages();
     }
 
     /// <summary>
     /// Gets the selectable recipe.
     /// </summary>
-    public SelectableViewModelBase<RecipePrimitive> SelectableRecipe { get; private set; }
+    public SelectableViewModelBase<RecipePackage> SelectableRecipe { get; private set; }
 
-    #region SelectedRecipeComponent
+    #region SelectedRecipeComponentAndMaterialPackage
     /// <summary>
-    /// The <see cref="SelectedRecipeComponent" /> property's name.
+    /// The <see cref="SelectedRecipeComponentAndMaterialPackage" /> property's name.
     /// </summary>
-    public const string SelectedRecipeComponentPropertyName = "SelectedRecipeComponent";
+    public const string SelectedRecipeComponentPropertyName = "SelectedRecipeComponentAndMaterialPackage";
 
-    private RecipeComponentPrimitive _recipeComponent;
-    
+    private RecipeComponentAndMaterialPackage _selectedRecipeComponentAndMaterialPackage;
+
 
     /// <summary>
     /// Gets the SelectedRecipeComponent property.
@@ -54,27 +56,27 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public RecipeComponentPrimitive SelectedRecipeComponent
+    public RecipeComponentAndMaterialPackage SelectedRecipeComponentAndMaterialPackage
     {
       get
       {
-        return _recipeComponent;
+        return _selectedRecipeComponentAndMaterialPackage;
       }
 
       set
       {
-        if (_recipeComponent == value)
+        if (_selectedRecipeComponentAndMaterialPackage == value)
         {
           return;
         }
-        _recipeComponent = value;
+        _selectedRecipeComponentAndMaterialPackage = value;
 
         // Update bindings, no broadcast
         RaisePropertyChanged(SelectedRecipeComponentPropertyName);
       }
     }
     #endregion
-    
+
     /// <summary>
     /// Gets or sets the dialog mode.
     /// </summary>
@@ -97,11 +99,31 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// <summary>
     /// Loads the recipes.
     /// </summary>
-    private void LoadRecipes()
+    private void LoadRecipePackages()
     {
-      using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
+      string errorCaption = "Pobieranie danych o receptach!";
+      try
       {
-        SelectableRecipe.LoadItems(recipesService.GetRecipes(string.Empty));
+        using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
+        {
+          SelectableRecipe.LoadItems(recipesService.GetRecipesPackage(string.Empty));
+        }
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 
@@ -166,8 +188,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     private void EditRecipe()
     {
-      ModalDialogService.EditRecipe(ModalDialogService, ServiceFactory, SelectableRecipe.SelectedItem);
-      LoadRecipes();
+      string errorCaption = "Edycja recepty!";
+      try
+      {
+        ModalDialogService.EditRecipe(ModalDialogService, ServiceFactory, SelectableRecipe.SelectedItem.Recipe);
+        LoadRecipePackages();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -190,8 +232,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     private void DeleteRecipe()
     {
-      //TODO:
-      LoadRecipes();
+      string errorCaption = "Usuwanie recepty!";
+      try
+      {
+        //TODO:
+        LoadRecipePackages();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
 
@@ -200,8 +262,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     private void CreateRecipe()
     {
-      ModalDialogService.CreateRecipe(ModalDialogService, ServiceFactory);
-      LoadRecipes();
+      string errorCaption = "Tworzenie recepty!";
+      try
+      {
+        ModalDialogService.CreateRecipe(ModalDialogService, ServiceFactory);
+        LoadRecipePackages();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     #region ChoseRecipeCommand
@@ -238,7 +320,27 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </remarks>
     private void ChoseRecipe()
     {
-      CloseModalDialog();
+      string errorCaption = "Wybranie recepty!";
+      try
+      {
+        CloseModalDialog();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
 
@@ -260,7 +362,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       }
     }
 
-    
+
 
     /// <summary>
     /// Gets the edit recipeComponent command.
@@ -299,7 +401,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </returns>
     private bool CanEditRecipeComponent()
     {
-      return SelectableRecipe != null && SelectableRecipe.SelectedItem != null && SelectedRecipeComponent != null;
+      return SelectableRecipe != null && SelectableRecipe.SelectedItem != null && SelectedRecipeComponentAndMaterialPackage != null;
     }
 
     /// <summary>
@@ -307,8 +409,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     private void EditRecipeComponent()
     {
-      ModalDialogService.EditRecipeComponent(ModalDialogService, ServiceFactory, SelectedRecipeComponent);
-      LoadRecipes();
+      string errorCaption = "Edycja recepty!";
+      try
+      {
+        ModalDialogService.EditRecipeComponent(ModalDialogService, ServiceFactory, SelectedRecipeComponentAndMaterialPackage);
+        LoadRecipePackages();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -319,7 +441,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </returns>
     private bool CanDeleteRecipeComponent()
     {
-      if (SelectableRecipe != null && SelectableRecipe.SelectedItem != null && SelectedRecipeComponent != null)
+      if (SelectableRecipe != null && SelectableRecipe.SelectedItem != null && SelectedRecipeComponentAndMaterialPackage != null)
       {
         //TODO: if recipe is not used in any DeliveryNots then true
       }
@@ -331,8 +453,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     private void DeleteRecipeComponent()
     {
-      //TODO:
-      LoadRecipes();
+      string errorCaption = "Usunięcie recepty!";
+      try
+      {
+        //TODO:
+        LoadRecipePackages();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -351,8 +493,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     private void CreateRecipeComponent()
     {
-      ModalDialogService.CreateRecipeComponent(ModalDialogService, ServiceFactory, SelectableRecipe.SelectedItem);
-      LoadRecipes();
+      ModalDialogService.CreateRecipeComponent(ModalDialogService, ServiceFactory, SelectableRecipe.SelectedItem.Recipe);
+      LoadRecipePackages();
     }
   }
 }

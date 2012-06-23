@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.ServiceModel;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
@@ -7,7 +9,7 @@ using SmartWorking.Office.Services.Interfaces;
 namespace SmartWorking.Office.Gui.ViewModel.Materials
 {
   /// <summary>
-  /// View model for <see cref="UpdateMaterial"/> dialog. 
+  /// View model for <see cref="CreateOrUpdateMaterial"/> dialog. 
   /// </summary>
   public class UpdateMaterialViewModel : ModalDialogViewModelBase
   {
@@ -42,7 +44,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       get
       {
         if (_createOrUpdateMaterialCommand == null)
-          _createOrUpdateMaterialCommand = new RelayCommand(UpdateMaterial, CanUpdateMaterial);
+          _createOrUpdateMaterialCommand = new RelayCommand(CreateOrUpdateMaterial, CanCreateOrUpdateMaterial);
         return _createOrUpdateMaterialCommand;
       }
     }
@@ -100,7 +102,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// <returns>
     ///   <c>true</c> if <see cref="CreateOrUpdateMaterialCommand"/> can be execute; otherwise, <c>false</c>.
     /// </returns>
-    private bool CanUpdateMaterial()
+    private bool CanCreateOrUpdateMaterial()
     {
       //TODO: validate
       return true;
@@ -110,16 +112,36 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// <summary>
     /// Creates or updates the material in the system.
     /// </summary>
-    private void UpdateMaterial()
+    private void CreateOrUpdateMaterial()
     {
-      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
+      string errorCaption = "Zatwierdzanie danych o materiale!";
+      try
       {
-        using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+        if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
         {
-          service.UpdateMaterial(Material);
+          using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+          {
+            service.UpdateMaterial(Material);
+          }
         }
+        CloseModalDialog();
       }
-      CloseModalDialog();
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
   }
 }

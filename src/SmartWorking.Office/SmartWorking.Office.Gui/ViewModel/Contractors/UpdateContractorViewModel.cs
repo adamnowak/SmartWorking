@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.ServiceModel;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Services.Interfaces;
@@ -6,7 +8,7 @@ using SmartWorking.Office.Services.Interfaces;
 namespace SmartWorking.Office.Gui.ViewModel.Contractors
 {
   /// <summary>
-  /// View model for <see cref="UpdateContractor"/> dialog. 
+  /// View model for <see cref="CreateOrUpdateContractor"/> dialog. 
   /// </summary>
   public class UpdateContractorViewModel : ModalDialogViewModelBase
   {
@@ -28,7 +30,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </value>
     public DialogMode DialogMode { get; set; }
 
-    
+
 
     /// <summary>
     /// Gets the title of dialog.
@@ -77,7 +79,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     #endregion
 
-   
+
 
     #region CreateOrUpdateContractorConmmand
 
@@ -92,7 +94,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       get
       {
         if (_createOrUpdateContractorCommand == null)
-          _createOrUpdateContractorCommand = new RelayCommand(UpdateContractor, CanCreateOrUpdateContractor);
+          _createOrUpdateContractorCommand = new RelayCommand(CreateOrUpdateContractor, CanCreateOrUpdateContractor);
         return _createOrUpdateContractorCommand;
       }
     }
@@ -112,20 +114,40 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// <summary>
     /// Updates the Contractor in the system.
     /// </summary>
-    private void UpdateContractor()
+    private void CreateOrUpdateContractor()
     {
-      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
+      string errorCaption = "Zatwierdzenie danych o kontrahencie!";
+      try
       {
-        using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
+        if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
         {
-          contractorService.CreateOrUpdateContractor(Contractor);
+          using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
+          {
+            contractorService.CreateOrUpdateContractor(Contractor);
+          }
         }
+        CloseModalDialog();
       }
-      CloseModalDialog();
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     #endregion
 
-    
+
   }
 }

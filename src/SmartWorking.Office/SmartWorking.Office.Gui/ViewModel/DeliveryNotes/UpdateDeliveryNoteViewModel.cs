@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using PdfSharp.Drawing;
@@ -7,6 +9,7 @@ using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
@@ -16,7 +19,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
   /// </summary>
   public class UpdateDeliveryNoteViewModel : ModalDialogViewModelBase
   {
-    private ICommand _selectBuildingCommand;    
+    private ICommand _selectBuildingCommand;
     private ICommand _selectRecipeCommand;
     private ICommand _selectDriverCommand;
     private ICommand _selectCarCommand;
@@ -53,14 +56,14 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
     }
 
-    #region DeliveryNote property
+    #region DeliveryNotePackage property
 
     /// <summary>
-    /// The <see cref="DeliveryNote" /> property's name.
+    /// The <see cref="DeliveryNotePackage" /> property's name.
     /// </summary>
-    public const string DeliveryNotePropertyName = "DeliveryNote";
+    public const string DeliveryNotePropertyName = "DeliveryNotePackage";
 
-    private DeliveryNotePrimitive _deliveryNote;
+    private DeliveryNotePackage _deliveryNotePackage;
 
     /// <summary>
     /// Gets the Contractor property.
@@ -68,158 +71,27 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public DeliveryNotePrimitive DeliveryNote
+    public DeliveryNotePackage DeliveryNotePackage
     {
-      get { return _deliveryNote; }
+      get
+      {
+        if (_deliveryNotePackage == null)
+        {
+          _deliveryNotePackage = new DeliveryNotePackage();
+        }
+        return _deliveryNotePackage;
+      }
 
       set
       {
-        if (_deliveryNote == value)
+        if (_deliveryNotePackage == value)
         {
           return;
         }
-        _deliveryNote = value;
+        _deliveryNotePackage = value;
 
         // Update bindings, no broadcast
         RaisePropertyChanged(DeliveryNotePropertyName);
-      }
-    }
-
-    #endregion
-
-    #region Building property
-
-    /// <summary>
-    /// The <see cref="Building" /> property's name.
-    /// </summary>
-    public const string BuildingPropertyName = "Building";
-
-    private BuildingPrimitive _building;
-
-    /// <summary>
-    /// Gets the Contractor property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public BuildingPrimitive Building
-    {
-      get { return _building; }
-
-      set
-      {
-        if (_building == value)
-        {
-          return;
-        }
-        _building = value;
-
-        // Update bindings, no broadcast
-        RaisePropertyChanged(BuildingPropertyName);
-      }
-    }
-
-    #endregion
-
-    #region Recipe property
-
-    /// <summary>
-    /// The <see cref="Recipe" /> property's name.
-    /// </summary>
-    public const string RecipePropertyName = "Recipe";
-
-    private RecipePrimitive _recipe;
-
-    /// <summary>
-    /// Gets the Contractor property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public RecipePrimitive Recipe
-    {
-      get { return _recipe; }
-
-      set
-      {
-        if (_recipe == value)
-        {
-          return;
-        }
-        _recipe = value;
-
-        // Update bindings, no broadcast
-        RaisePropertyChanged(RecipePropertyName);
-      }
-    }
-
-    #endregion
-
-    #region Driver property
-
-    /// <summary>
-    /// The <see cref="Driver" /> property's name.
-    /// </summary>
-    public const string DriverPropertyName = "Driver";
-
-    private DriverPrimitive _driver;
-
-    /// <summary>
-    /// Gets the Contractor property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public DriverPrimitive Driver
-    {
-      get { return _driver; }
-
-      set
-      {
-        if (_driver == value)
-        {
-          return;
-        }
-        _driver = value;
-
-        // Update bindings, no broadcast
-        RaisePropertyChanged(DriverPropertyName);
-      }
-    }
-
-    #endregion
-
-    #region Car property
-
-    /// <summary>
-    /// The <see cref="Car" /> property's name.
-    /// </summary>
-    public const string CarPropertyName = "Car";
-
-    private CarPrimitive _car;
-    
-
-
-    /// <summary>
-    /// Gets the Contractor property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public CarPrimitive Car
-    {
-      get { return _car; }
-
-      set
-      {
-        if (_car == value)
-        {
-          return;
-        }
-        _car = value;
-
-        // Update bindings, no broadcast
-        RaisePropertyChanged(CarPropertyName);
       }
     }
 
@@ -244,7 +116,28 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
 
     private void SelectBuilding()
     {
-      Building = ModalDialogService.SelectBuilding(ModalDialogService, ServiceFactory);      
+      string errorCaption = "Wybieranie WZ'tki!";
+      try
+      {
+        DeliveryNotePackage.BuildingAndContractor = ModalDialogService.SelectBuildingAndContractorPackage(ModalDialogService, ServiceFactory);
+        RaisePropertyChanged("DeliveryNotePackage");
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
 
@@ -261,7 +154,28 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
 
     private void SelectRecipe()
     {
-      Recipe = ModalDialogService.SelectRecipe(ModalDialogService, ServiceFactory); 
+      string errorCaption = "Wybieranie recepty!";
+      try
+      {
+        DeliveryNotePackage.Recipe = ModalDialogService.SelectRecipe(ModalDialogService, ServiceFactory);
+        RaisePropertyChanged("DeliveryNotePackage");
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
 
@@ -278,45 +192,64 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
 
     private bool CanCreateAndPrintDeliveryNote()
     {
-      return Building != null && Car != null && Driver != null && Recipe != null;
+      return DeliveryNotePackage.BuildingAndContractor != null && DeliveryNotePackage.BuildingAndContractor.Building != null && 
+        DeliveryNotePackage.BuildingAndContractor.Contractor != null &&
+        DeliveryNotePackage.Car != null && DeliveryNotePackage.Driver != null && DeliveryNotePackage.Recipe != null;
     }
 
     private void CreateAndPrintDeliveryNote()
     {
-      if (Building == null)
+      string errorCaption = "Zatwierdzanie i drukowanie WZ'tki!";
+      try
       {
-        throw new SmartWorkingException("Building is not defined.");
-      }
-      if (Car == null)
-      {
-        throw new SmartWorkingException("Car is not defined.");
-      }
-      if (Driver == null)
-      {
-        throw new SmartWorkingException("Driver is not defined.");
-      }
-      if (Recipe == null)
-      {
-        throw new SmartWorkingException("Recipe is not defined.");
-      }
-      if (DeliveryNote == null)
-      {
-        throw new SmartWorkingException("DeliveryNote is not initialized.");
-      }
+        if (DeliveryNotePackage == null)
+        {
+          throw new SmartWorkingException("DeliveryNotePackage is not initialized.");
+        }
+        if (DeliveryNotePackage.BuildingAndContractor == null)
+        {
+          throw new SmartWorkingException("Building and contractor is not defined.");
+        }
+        if (DeliveryNotePackage.Car == null)
+        {
+          throw new SmartWorkingException("Car is not defined.");
+        }
+        if (DeliveryNotePackage.Driver == null)
+        {
+          throw new SmartWorkingException("Driver is not defined.");
+        }
+        if (DeliveryNotePackage.Recipe == null)
+        {
+          throw new SmartWorkingException("Recipe is not defined.");
+        }
+       
 
-      DeliveryNote.Building_Id = Building.Id;
-      DeliveryNote.Car_Id = Car.Id;
-      DeliveryNote.Driver_Id = Driver.Id;
-      DeliveryNote.Recipe_Id = Recipe.Id;
+        using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
+        {
+          //todo: set *_Id
+          service.UpdateDeliveryNote(DeliveryNotePackage.GetDeliveryNotePrimitiveWithReference());
+        }
 
-      using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
-      {
-        service.UpdateDeliveryNote(DeliveryNote);
+        PrintDeliveryNote(DeliveryNotePackage);
+
+        CloseModalDialog();
       }
+      catch (FaultException<ExceptionDetail> f)
+      {
 
-      PrintDeliveryNote(DeliveryNote);
-
-      CloseModalDialog();
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
 
@@ -334,7 +267,28 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
 
     private void SelectDriver()
     {
-      Driver = ModalDialogService.SelectDriver(ModalDialogService, ServiceFactory); 
+      string errorCaption = "Wybranie kierowcy!";
+      try
+      {
+        DeliveryNotePackage.Driver = ModalDialogService.SelectDriver(ModalDialogService, ServiceFactory);
+        RaisePropertyChanged("DeliveryNotePackage");
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
 
@@ -351,50 +305,55 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
 
     private void SelectCar()
     {
-      Car = ModalDialogService.SelectCar(ModalDialogService, ServiceFactory); 
+      string errorCaption = "Wybranie samochodu!";
+      try
+      {
+        DeliveryNotePackage.Car = ModalDialogService.SelectCar(ModalDialogService, ServiceFactory);
+        RaisePropertyChanged("DeliveryNotePackage");
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
 
     #region PrintDeliveryNote
-    private void PrintDeliveryNote(DeliveryNotePrimitive deliveryNote)
+    private void PrintDeliveryNote(DeliveryNotePackage deliveryNotePackage)
     {
-      //http://read.pudn.com/downloads116/sourcecode/editor/490275/PDFsharp/PdfSharp/PdfSharp.Pdf.Printing/PdfFilePrinter.cs__.htm
-      //if (deliveryNote.Building == null)
-      //{
-      //  throw new SmartWorkingException("Building is not defined.");
-      //}
-      //if (deliveryNote.Car == null)
-      //{
-      //  throw new SmartWorkingException("Car is not defined.");
-      //}
-      //if (deliveryNote.Driver == null)
-      //{
-      //  throw new SmartWorkingException("Driver is not defined.");
-      //}
-      //if (deliveryNote.Recipe == null)
-      //{
-      //  throw new SmartWorkingException("Recipe is not defined.");
-      //}
-      string filename = string.Format("d:\\adamnowak\\private\\Sylwek\\temp\\pdf\\WZ_{0}_{1:yyyy-MM-dd_hh-mm-ss-tt}.pdf", deliveryNote.Id, DateTime.Now);
+      string errorCaption = "Drukowanie WZ'tki!";
+      try
+      {
+        PrinterHelper.PrintDeliveryNote(deliveryNotePackage);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
 
-      string text = Building.City + ", " + Building.Street;
-      PdfDocument document = new PdfDocument();
-
-      PdfPage page = document.AddPage();
-      page.Orientation = PdfSharp.PageOrientation.Landscape;
-      page.Size = PdfSharp.PageSize.Letter;
-      page.Rotate = 0;
-
-      XGraphics gfx = XGraphics.FromPdfPage(page);
-      XFont font = new XFont("Times New Roman", 10, XFontStyle.Bold);
-      XTextFormatter tf = new XTextFormatter(gfx);
-
-      XRect rect = new XRect(10, 100, 250, 232);
-      gfx.DrawRectangle(XBrushes.SeaShell, rect);
-      tf.DrawString(text, font, XBrushes.Black, rect, XStringFormats.TopLeft);
-      
-      document.Save(filename);
-      Process.Start(filename);
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
   }

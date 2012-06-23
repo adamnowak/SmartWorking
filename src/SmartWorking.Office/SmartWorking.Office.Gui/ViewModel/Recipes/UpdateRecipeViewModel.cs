@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.ServiceModel;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
@@ -43,7 +45,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
         return _createOrUpdateRecipeCommand;
       }
     }
-    
+
     /// <summary>
     /// Gets the title of modal dialog.
     /// </summary>
@@ -109,14 +111,34 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     private void CreateOrUpdateRecipe()
     {
-      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
+      string errorCaption = "Zatwierdzenie danych o recepcie!";
+      try
       {
-        using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
+        if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
         {
-          recipesService.UpdateRecipe(Recipe);
+          using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
+          {
+            recipesService.UpdateRecipe(Recipe);
+          }
         }
+        CloseModalDialog();
       }
-      CloseModalDialog();
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
   }
 }

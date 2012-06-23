@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -22,13 +23,20 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </returns>
     public List<MaterialPrimitive> GetMaterials(string materialNameFilter)
     {
-      using (var ctx = new SmartWorkingEntities())
+      try
       {
-        List<Material> result =
-          (string.IsNullOrWhiteSpace(materialNameFilter))
-            ? ctx.Materials.Include("MaterialStocks").ToList()
-            : ctx.Materials.Include("MaterialStocks").Where(x => x.Name.StartsWith(materialNameFilter)).ToList();
-        return result.Select(x => x.GetPrimitive()).ToList(); ;
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<Material> result =
+            (string.IsNullOrWhiteSpace(materialNameFilter))
+              ? ctx.Materials.Include("MaterialStocks").ToList()
+              : ctx.Materials.Include("MaterialStocks").Where(x => x.Name.StartsWith(materialNameFilter)).ToList();
+          return result.Select(x => x.GetPrimitive()).ToList(); ;
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
 
@@ -38,30 +46,37 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="material">The material which will be updated.</param>
     public void UpdateMaterial(MaterialPrimitive materialPrimitive)
     {
-      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      try
       {
-        Material material = materialPrimitive.GetEntity();
-
-        Material existingObject = context.Materials.Where(x => x.Id == material.Id).FirstOrDefault();
-
-        //no record of this item in the DB, item being passed in has a PK
-        if (existingObject == null && material.Id > 0)
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
         {
-          //log
-          return;
-        }
-        //Item has no PK value, must be new
-        else if (material.Id <= 0)
-        {
-          context.Materials.AddObject(material);
-        }
-        //Item was retrieved, and the item passed has a valid ID, do an update
-        else
-        {
-          context.Materials.ApplyCurrentValues(material);
-        }
+          Material material = materialPrimitive.GetEntity();
 
-        context.SaveChanges();
+          Material existingObject = context.Materials.Where(x => x.Id == material.Id).FirstOrDefault();
+
+          //no record of this item in the DB, item being passed in has a PK
+          if (existingObject == null && material.Id > 0)
+          {
+            //log
+            return;
+          }
+          //Item has no PK value, must be new
+          else if (material.Id <= 0)
+          {
+            context.Materials.AddObject(material);
+          }
+          //Item was retrieved, and the item passed has a valid ID, do an update
+          else
+          {
+            context.Materials.ApplyCurrentValues(material);
+          }
+
+          context.SaveChanges();
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
 
@@ -71,7 +86,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="material">The material which will be deleted.</param>
     public void DeleteMaterial(MaterialPrimitive materialPrimitive)
     {
-      throw new NotImplementedException();
+      try
+      {
+        throw new NotImplementedException();
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
     }
 
     /// <summary>
@@ -80,7 +102,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="materialStockPrimitive">The material stock primitive.</param>
     public void UpdateMaterialStock(MaterialStockPrimitive materialStockPrimitive)
     {
-      throw new NotImplementedException();
+      try
+      {
+        throw new NotImplementedException();
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
     }
 
     /// <summary>

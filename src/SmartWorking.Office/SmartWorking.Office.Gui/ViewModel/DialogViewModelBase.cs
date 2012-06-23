@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -108,16 +109,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// </summary>
     protected void Cancel()
     {
-      CloseModalDialog(true);
+        CloseModalDialog(true);
+      
     }
-
-    /// <summary>
-    /// Does the raise property changed.
-    /// </summary>
-    /// <param name="propertyName">Name of the property.</param>
-    //internal void DoRaisePropertyChanged(string propertyName)
-    //{
-    //  RaisePropertyChanged(propertyName);
-    //}
   }
 }

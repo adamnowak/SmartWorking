@@ -15,18 +15,21 @@
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 				<StackPanel>
-                    <Shared:DescriptionButton Command="{Binding CreateDeliveryNoteCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
-                    <Shared:DescriptionButton Command="{Binding CancelDeliveryNoteCommand}" Image="{StaticResource CancelDNImageSource}" Comment="Anuluj WZ">Anuluj</Shared:DescriptionButton>
+                    <Shared:DescriptionButton Command="{Binding CreateDeliveryNoteCommand}" Image="{StaticResource NewImageSource}" Comment="I drukuj">Dodaj</Shared:DescriptionButton>
+                    <Shared:DescriptionButton Command="{Binding PrintDeliveryNoteCommand}" Image="{StaticResource PrintDNImageSource}" >Drukuj</Shared:DescriptionButton>
+                    <Shared:DescriptionButton Command="{Binding CancelDeliveryNoteCommand}" Image="{StaticResource CancelDNImageSource}" Comment="Anuluj WZ">Anuluj</Shared:DescriptionButton>                    
 				</StackPanel>
                 <DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableDeliveryNote}" ItemsSource="{Binding Items}">
 					<DataGrid.Columns>
 						<!--Debug only-->
-						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                        <DataGridTextColumn Header="Id" Binding="{Binding DeliveryNote.Id}" />
 						<!--End Debug only-->
 						<DataGridTextColumn Header="Data utworzenia" Binding="{Binding DateDrawing}" />
 						<DataGridTextColumn Header="Data dostarczenia" Binding="{Binding DateOfArrival}" />
-                        <DataGridTextColumn Header="Miasto" Binding="{Binding Building.City}" />
-                        <DataGridTextColumn Header="Ulica" Binding="{Binding Building.Street}" />
+                        <DataGridTextColumn Header="Imie" Binding="{Binding BuildingAndContractor.Contractor.Name}" />
+                        <DataGridTextColumn Header="Nazwisko" Binding="{Binding BuildingAndContractor.Contractor.Surname}" />
+                        <DataGridTextColumn Header="Miasto" Binding="{Binding BuildingAndContractor.Building.City}" />
+                        <DataGridTextColumn Header="Ulica" Binding="{Binding BuildingAndContractor.Building.Street}" />
 
 					</DataGrid.Columns>
 				</DataGrid>

@@ -7,14 +7,12 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Services.Hosting.Local
 {
-  
+
   /// <summary>
   /// Implementation of <see cref="ICarsService"/>.
   /// </summary>
   public class CarsService : ICarsService
   {
-
-
     /// <summary>
     /// Gets the cars filtered be <paramref name="carsFilter"/>.
     /// </summary>
@@ -39,7 +37,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
       {
         throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
-      
+
     }
 
     /// <summary>
@@ -48,29 +46,36 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="carPrimitive">The car primitive.</param>
     public void UpdateCar(CarPrimitive carPrimitive)
     {
-      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      try
       {
-        Car car = carPrimitive.GetEntity();
-        Car existingObject = context.Cars.Where(x => x.Id == car.Id).FirstOrDefault();        
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Car car = carPrimitive.GetEntity();
+          Car existingObject = context.Cars.Where(x => x.Id == car.Id).FirstOrDefault();
 
-        //no record of this item in the DB, item being passed in has a PK
-        if (existingObject == null && car.Id > 0)
-        {
-          //TODO:
-          return;
-        }
-        //Item has no PK value, must be new
-        else if (car.Id <= 0)
-        {
-          context.Cars.AddObject(car);
-        }
-        //Item was retrieved, and the item passed has a valid ID, do an update
-        else
-        {
-          context.Cars.ApplyCurrentValues(car);
-        }
+          //no record of this item in the DB, item being passed in has a PK
+          if (existingObject == null && car.Id > 0)
+          {
+            //TODO:
+            return;
+          }
+            //Item has no PK value, must be new
+          else if (car.Id <= 0)
+          {
+            context.Cars.AddObject(car);
+          }
+            //Item was retrieved, and the item passed has a valid ID, do an update
+          else
+          {
+            context.Cars.ApplyCurrentValues(car);
+          }
 
-        context.SaveChanges();
+          context.SaveChanges();
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
 
@@ -80,7 +85,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="carPrimitive">The car primitive.</param>
     public void DeleteCar(CarPrimitive carPrimitive)
     {
-      throw new NotImplementedException();
+      try
+      {
+        throw new NotImplementedException();
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
     }
 
     /// <summary>

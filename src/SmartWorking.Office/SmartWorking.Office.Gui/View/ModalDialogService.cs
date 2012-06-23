@@ -17,6 +17,7 @@ using SmartWorking.Office.Gui.ViewModel.Drivers;
 using SmartWorking.Office.Gui.ViewModel.Materials;
 using SmartWorking.Office.Gui.ViewModel.Recipes;
 using SmartWorking.Office.Gui.ViewModel.Shared.MessageBox;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using MessageBox = SmartWorking.Office.Gui.View.Shared.MessageBox.MessageBox;
 using UpdateCar = SmartWorking.Office.Gui.View.Cars.UpdateCar;
@@ -84,42 +85,47 @@ namespace SmartWorking.Office.Gui.View
       return viewModel.Building;
     }
 
-    public BuildingPrimitive SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public BuildingAndContractorPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.ChoseSubItem;
       ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        BuildingPrimitive result = viewModel.SelectedBuilding;
+        BuildingAndContractorPackage result = new BuildingAndContractorPackage();
+        result.Building = viewModel.SelectedBuilding;
+        result.Contractor = viewModel.SelectableContractor.SelectedItem.Contractor;
         return result;
       }
       return null;
     }
 
-    public DeliveryNotePrimitive CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public DeliveryNotePackage CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateDeliveryNoteViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Create;
-      viewModel.DeliveryNote = new DeliveryNotePrimitive();
+      viewModel.DeliveryNotePackage = new DeliveryNotePackage();
+      viewModel.DeliveryNotePackage.DeliveryNote = new DeliveryNotePrimitive();
       ModalDialogHelper<UpdateDeliveryNote>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        return viewModel.DeliveryNote;
+        return viewModel.DeliveryNotePackage;
       }
       return null;
     }
 
-    public DeliveryNotePrimitive CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory, BuildingPrimitive building)
+    public DeliveryNotePackage CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory, 
+      BuildingAndContractorPackage buildingAndContractorPackage)
     {
       var viewModel = new UpdateDeliveryNoteViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Create;
-      viewModel.DeliveryNote = new DeliveryNotePrimitive();
-      viewModel.Building = building;
+      viewModel.DeliveryNotePackage = new DeliveryNotePackage();
+      viewModel.DeliveryNotePackage.DeliveryNote = new DeliveryNotePrimitive();
+      viewModel.DeliveryNotePackage.BuildingAndContractor = buildingAndContractorPackage;
       ModalDialogHelper<UpdateDeliveryNote>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        return viewModel.DeliveryNote;
+        return viewModel.DeliveryNotePackage;
       }
       return null;
     }
@@ -210,7 +216,7 @@ namespace SmartWorking.Office.Gui.View
       ModalDialogHelper<ManageRecipes>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        return viewModel.SelectableRecipe.SelectedItem;
+        return viewModel.SelectableRecipe.SelectedItem.Recipe;
       }
       return null;
     }
@@ -241,13 +247,13 @@ namespace SmartWorking.Office.Gui.View
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    /// <param name="selectedRecipeComponent">The selected recipe component.</param>
+    /// <param name="recipeComponentAndMaterialPackage">The selected recipe component.</param>
     /// <returns></returns>
-    public RecipeComponentPrimitive EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponentPrimitive selectedRecipeComponent)
+    public RecipeComponentPrimitive EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage)
     {
       var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
-      viewModel.RecipeComponent = selectedRecipeComponent;
-      //viewModel.Material = selectedRecipeComponent.Material;//todo: check if not CopyWithOutReferences needed
+      viewModel.RecipeComponent = recipeComponentAndMaterialPackage.RecipeComponent;
+      viewModel.Material = recipeComponentAndMaterialPackage.Material;
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
       return viewModel.RecipeComponent;

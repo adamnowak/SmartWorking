@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
@@ -8,7 +9,7 @@ using SmartWorking.Office.Services.Interfaces;
 namespace SmartWorking.Office.Gui.ViewModel.Recipes
 {
   /// <summary>
-  /// View model for <see cref="UpdateRecipeComponent"/> dialog. 
+  /// View model for <see cref="CreateOrUpdateRecipeComponent"/> dialog. 
   /// </summary>
   public class UpdateRecipeComponentViewModel : ModalDialogViewModelBase
   {
@@ -44,7 +45,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       get
       {
         if (_createOrUpdateRecipeComponentCommand == null)
-          _createOrUpdateRecipeComponentCommand = new RelayCommand(UpdateRecipeComponent, CanUpdateRecipeComponent);
+          _createOrUpdateRecipeComponentCommand = new RelayCommand(CreateOrUpdateRecipeComponent, CanCreateOrUpdateRecipeComponent);
         return _createOrUpdateRecipeComponentCommand;
       }
     }
@@ -69,7 +70,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// </summary>
     public const string RecipeComponentPropertyName = "RecipeComponent";
 
-    private RecipeComponentPrimitive _recipeComponent;    
+    private RecipeComponentPrimitive _recipeComponent;
 
     /// <summary>
     /// Gets the RecipeComponent property.
@@ -137,7 +138,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// <returns>
     ///   <c>true</c> if <see cref="CreateOrUpdateRecipeComponentCommand"/> can be execute; otherwise, <c>false</c>.
     /// </returns>
-    private bool CanUpdateRecipeComponent()
+    private bool CanCreateOrUpdateRecipeComponent()
     {
       //TODO: validate
       return true;
@@ -147,18 +148,38 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// <summary>
     /// Creates or updates the material in the system.
     /// </summary>
-    private void UpdateRecipeComponent()
+    private void CreateOrUpdateRecipeComponent()
     {
-      if (RecipeComponent != null)
-        RecipeComponent.Material_Id = Material.Id;
-      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
+      string errorCaption = "Zatwierdzenie zmian w danych recepty!";
+      try
       {
-        using (IRecipesService service = ServiceFactory.GetRecipesService())
+        if (RecipeComponent != null)
+          RecipeComponent.Material_Id = Material.Id;
+        if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
         {
-          service.UpdateRecipeComponent(RecipeComponent);
+          using (IRecipesService service = ServiceFactory.GetRecipesService())
+          {
+            service.UpdateRecipeComponent(RecipeComponent);
+          }
         }
+        CloseModalDialog();
       }
-      CloseModalDialog();
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     #region SelectMaterialCommand
@@ -190,8 +211,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// Executes the <see cref="SelectMaterialCommand"/>.
     /// </summary>
     private void SelectMaterial()
-    {      
-      Material = ModalDialogService.SelectMaterial(ModalDialogService, ServiceFactory);      
+    {
+      string errorCaption = "Wybranie materiału!";
+      try
+      {
+        Material = ModalDialogService.SelectMaterial(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
   }

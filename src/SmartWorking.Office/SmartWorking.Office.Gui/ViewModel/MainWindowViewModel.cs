@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
@@ -17,7 +18,7 @@ namespace SmartWorking.Office.Gui.ViewModel
   /// <summary>
   /// View model for <see cref="MainWindow"/> window. 
   /// </summary>
-  internal class MainWindowViewModel
+  public class MainWindowViewModel : WindowViewModelBase
   {
     private ICommand _manageCarsCommand;
     private ICommand _manageContractorsCommand;
@@ -47,7 +48,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public MainWindowViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public MainWindowViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory) 
+      : base(modalDialogService, serviceFactory)
     {
       ModalDialogService = modalDialogService;
       ServiceFactory = serviceFactory;
@@ -60,6 +62,11 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// The modal dialog service.
     /// </value>
     public IModalDialogService ModalDialogService { get; set; }
+
+    public override string Title
+    {
+      get { return "SmartWorking (office)"; }
+    }
 
     /// <summary>
     /// Gets or sets the service factory.
@@ -79,8 +86,33 @@ namespace SmartWorking.Office.Gui.ViewModel
       {
         if (_manageDeliveryNotesCommand == null)
           _manageDeliveryNotesCommand =
-            new RelayCommand(() => ModalDialogService.ManageDeliveryNotes(ModalDialogService, ServiceFactory));
+            new RelayCommand(ManageDeliveryNotes);
         return _manageDeliveryNotesCommand;
+      }
+    }
+
+    private void ManageDeliveryNotes()
+    {
+      string errorCaption = "Zarządzanie WZ'tkami!";
+      try
+      {
+      ModalDialogService.ManageDeliveryNotes(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 
@@ -94,8 +126,29 @@ namespace SmartWorking.Office.Gui.ViewModel
       {
         if (_manageContractorsCommand == null)
           _manageContractorsCommand =
-            new RelayCommand(() => ModalDialogService.ManageContractors(ModalDialogService, ServiceFactory));
+            new RelayCommand(ManageContractors);
         return _manageContractorsCommand;
+      }
+    }
+
+    private void ManageContractors()
+    {
+      string errorCaption = "Zarządzanie kontrahentami!";
+      try
+      {
+        ModalDialogService.ManageContractors(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);     
       }
     }
 
@@ -109,8 +162,33 @@ namespace SmartWorking.Office.Gui.ViewModel
       {
         if (_manageMaterialsCommand == null)
           _manageMaterialsCommand =
-            new RelayCommand(() => ModalDialogService.ManageMaterials(ModalDialogService, ServiceFactory));
+            new RelayCommand(ManageMaterials);
         return _manageMaterialsCommand;
+      }
+    }
+
+    private void ManageMaterials()
+    {
+      string errorCaption = "Zarządzanie materiałami!";
+      try
+      {
+        ModalDialogService.ManageMaterials(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 
@@ -124,8 +202,33 @@ namespace SmartWorking.Office.Gui.ViewModel
       {
         if (_manageRecipesCommand == null)
           _manageRecipesCommand =
-            new RelayCommand(() => ModalDialogService.ManageRecipes(ModalDialogService, ServiceFactory));
+            new RelayCommand(ManageRecipes);
         return _manageRecipesCommand;
+      }
+    }
+
+    private void ManageRecipes()
+    {
+      string errorCaption = "Zarządzanie receptami!";
+      try
+      {
+        ModalDialogService.ManageRecipes(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 
@@ -138,8 +241,33 @@ namespace SmartWorking.Office.Gui.ViewModel
       get
       {
         if (_manageCarsCommand == null)
-          _manageCarsCommand = new RelayCommand(() => ModalDialogService.ManageCars(ModalDialogService, ServiceFactory));
+          _manageCarsCommand = new RelayCommand(ManageCars);
         return _manageCarsCommand;
+      }
+    }
+
+    private void ManageCars()
+    {
+      string errorCaption = "Zarządzanie samochodami!";
+      try
+      {
+      ModalDialogService.ManageCars(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 
@@ -153,8 +281,33 @@ namespace SmartWorking.Office.Gui.ViewModel
       {
         if (_manageDriversCommand == null)
           _manageDriversCommand =
-            new RelayCommand(() => ModalDialogService.ManageDrivers(ModalDialogService, ServiceFactory));
+            new RelayCommand(ManageDrivers);
         return _manageDriversCommand;
+      }
+    }
+
+    private void ManageDrivers()
+    {
+      string errorCaption = "Zarządzanie kierowcami!";
+      try
+      {
+        ModalDialogService.ManageDrivers(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 
@@ -175,9 +328,29 @@ namespace SmartWorking.Office.Gui.ViewModel
 
     private void ManageMaterialStocks()
     {
-      MessageBoxResult messageBoxResult = ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory,
+      string errorCaption = "Zarządzaniem stanem magazynu!";
+      try
+      {
+       MessageBoxResult messageBoxResult = ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory,
                                         MessageBoxImage.Warning, "Ten przycisk wymaga pracy:)", "Funkcja nie jest jeszcze zaimplementowane. Czeka na swoją kolej. Jeśli masz ochote... zrób to:)", MessageBoxButton.OKCancel,
                                         "Testowałem własności MessageBox'a (wyskakującego małego okienka).");
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
       
     }
   }

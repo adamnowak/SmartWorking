@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.ServiceModel;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
@@ -7,7 +9,7 @@ using SmartWorking.Office.Services.Interfaces;
 namespace SmartWorking.Office.Gui.ViewModel.Cars
 {
   /// <summary>
-  /// View model for <see cref="UpdateCar"/> dialog. 
+  /// View model for <see cref="CreateOrUpdateCar"/> dialog. 
   /// </summary>
   public class UpdateCarViewModel : ModalDialogViewModelBase
   {
@@ -42,7 +44,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
       get
       {
         if (_createOrUpdateCarCommand == null)
-          _createOrUpdateCarCommand = new RelayCommand(UpdateCar, CanUpdateCar);
+          _createOrUpdateCarCommand = new RelayCommand(CreateOrUpdateCar, CanCreateOrUpdateCar);
         return _createOrUpdateCarCommand;
       }
     }
@@ -100,7 +102,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// <returns>
     ///   <c>true</c> if <see cref="CreateOrUpdateCarCommand"/> can be execute; otherwise, <c>false</c>.
     /// </returns>
-    private bool CanUpdateCar()
+    private bool CanCreateOrUpdateCar()
     {
       //TODO: validate
       return true;
@@ -110,16 +112,35 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// <summary>
     /// Creates or updates the car in the system.
     /// </summary>
-    private void UpdateCar()
+    private void CreateOrUpdateCar()
     {
-      if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
+      string errorCaption = "Tworzenie danych o samochodzie!";
+      try
       {
-        using (ICarsService service = ServiceFactory.GetCarsService())
+        if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
         {
-          service.UpdateCar(Car);
+          using (ICarsService service = ServiceFactory.GetCarsService())
+          {
+            service.UpdateCar(Car);
+          }
         }
+        CloseModalDialog();
       }
-      CloseModalDialog();
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
   }
 }

@@ -29,7 +29,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     public ManageCarsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableCar = new SelectableViewModelBase<CarPrimitive>();      
+      SelectableCar = new SelectableViewModelBase<CarPrimitive>();
     }
 
     /// <summary>
@@ -37,8 +37,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// </summary>
     public override void Initialize()
     {
-      base.Initialize();
-      LoadCars();
+        base.Initialize();
+        LoadCars();
     }
 
     /// <summary>
@@ -124,8 +124,27 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// </summary>
     private void EditCar()
     {
-      ModalDialogService.EditCar(ModalDialogService, ServiceFactory, SelectableCar.SelectedItem);
-      LoadCars();
+      string errorCaption = "Edycja danych o samochodzie!";
+      try
+      {
+        ModalDialogService.EditCar(ModalDialogService, ServiceFactory, SelectableCar.SelectedItem);
+        LoadCars();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -148,8 +167,27 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// </summary>
     private void DeleteCar()
     {
-      //TODO:
-      LoadCars();
+      string errorCaption = "Uwuwanie samochodachu!";
+      try
+      {
+        //TODO:
+        LoadCars();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
 
@@ -158,8 +196,27 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
     /// </summary>
     private void CreateCar()
     {
-      ModalDialogService.CreateCar(ModalDialogService, ServiceFactory);
-      LoadCars();
+      string errorCaption = "Tworzenie samochodu!";
+      try
+      {
+        ModalDialogService.CreateCar(ModalDialogService, ServiceFactory);
+        LoadCars();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>

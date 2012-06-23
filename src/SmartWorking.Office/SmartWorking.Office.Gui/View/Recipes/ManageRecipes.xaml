@@ -45,10 +45,10 @@
                               Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 						<DataGrid.Columns>
 							<!--Debug only-->
-							<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+							<DataGridTextColumn Header="Id" Binding="{Binding Recipe.Id}" />
 							<!--End Debug only-->
-							<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
-							<DataGridTextColumn Header="Skrót" Binding="{Binding InternalName}" />
+                            <DataGridTextColumn Header="Nazwa" Binding="{Binding Recipe.Name}" />
+                            <DataGridTextColumn Header="Skrót" Binding="{Binding Recipe.InternalName}" />
 						</DataGrid.Columns>
 					</DataGrid>
 				</Grid>
@@ -74,14 +74,15 @@
                             <Shared:DescriptionButton Command="{Binding EditRecipeComponentCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
                             <Shared:DescriptionButton Command="{Binding DeleteRecipeComponentCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
 						</StackPanel>
-                        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedRecipeComponent}" ItemsSource="{Binding SelectableRecipe.SelectedItem.RecipeComponents}">
+                        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedRecipeComponentAndMaterialPackage}" ItemsSource="{Binding SelectableRecipe.SelectedItem.RecipeComponentAndMaterialList}">
 							<DataGrid.Columns>
 								<!--Debug only-->
-								<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                                <DataGridTextColumn Header="Id" Binding="{Binding RecipeComponent.Id}" />
 								<!--End Debug only-->
 								<DataGridTextColumn Header="Nazwa" Binding="{Binding Material.Name}" />
                                 <DataGridTextColumn Header="Skrót" Binding="{Binding Material.InternalName}" />
-							</DataGrid.Columns>
+                                <DataGridTextColumn Header="Ilość" Binding="{Binding RecipeComponent.Amount}" />
+                            </DataGrid.Columns>
 						</DataGrid>
 					</Grid>
 				</Grid>

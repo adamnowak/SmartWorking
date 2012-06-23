@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
@@ -23,13 +24,20 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </returns>
     public List<ContractorPrimitive> GetContractors(string contractorNameFilter)
     {
-      using (var ctx = new SmartWorkingEntities())
+      try
       {
-        List<Contractor> result =
-          (string.IsNullOrWhiteSpace(contractorNameFilter))
-            ? ctx.Contractors.ToList()
-            : ctx.Contractors.Where(x => x.Name.StartsWith(contractorNameFilter)).ToList();
-        return result.Select(x => x.GetPrimitive()).ToList();
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<Contractor> result =
+            (string.IsNullOrWhiteSpace(contractorNameFilter))
+              ? ctx.Contractors.ToList()
+              : ctx.Contractors.Where(x => x.Name.StartsWith(contractorNameFilter)).ToList();
+          return result.Select(x => x.GetPrimitive()).ToList();
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
 
@@ -42,13 +50,20 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </returns>
     public List<ContractorAndBuildingsPackage> GetContractorAndBuildingsPackage(string filter)
     {
-      using (var ctx = new SmartWorkingEntities())
+      try
       {
-        List<Contractor> result =
-          (string.IsNullOrWhiteSpace(filter))
-            ? ctx.Contractors.Include("Buildings").ToList()
-            : ctx.Contractors.Include("Buildings").Where(x => x.Name.StartsWith(filter)).ToList();
-        return result.Select(x => x.GetContractorAndBuildingsPackage()).ToList();
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<Contractor> result =
+            (string.IsNullOrWhiteSpace(filter))
+              ? ctx.Contractors.Include("Buildings").ToList()
+              : ctx.Contractors.Include("Buildings").Where(x => x.Name.StartsWith(filter)).ToList();
+          return result.Select(x => x.GetContractorAndBuildingsPackage()).ToList();
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
 
@@ -58,30 +73,37 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="contractorPrimitive">The contractor primitive.</param>
     public void CreateOrUpdateContractor(ContractorPrimitive contractorPrimitive)
     {
-      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      try
       {
-        Contractor contractor = contractorPrimitive.GetEntity();
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Contractor contractor = contractorPrimitive.GetEntity();
 
-        Contractor existingObject = context.Contractors.Where(x => x.Id == contractor.Id).FirstOrDefault();
-                
-        //no record of this item in the DB, item being passed in has a PK
-        if (existingObject == null && contractor.Id > 0)
-        {
-          //log
-          return;
-        }
-        //Item has no PK value, must be new
-        else if (contractor.Id <= 0)
-        {
-          context.Contractors.AddObject(contractor);
-        }
-        //Item was retrieved, and the item passed has a valid ID, do an update
-        else
-        {
-          context.Contractors.ApplyCurrentValues(contractor);
-        }
+          Contractor existingObject = context.Contractors.Where(x => x.Id == contractor.Id).FirstOrDefault();
 
-        context.SaveChanges();
+          //no record of this item in the DB, item being passed in has a PK
+          if (existingObject == null && contractor.Id > 0)
+          {
+            //log
+            return;
+          }
+          //Item has no PK value, must be new
+          else if (contractor.Id <= 0)
+          {
+            context.Contractors.AddObject(contractor);
+          }
+          //Item was retrieved, and the item passed has a valid ID, do an update
+          else
+          {
+            context.Contractors.ApplyCurrentValues(contractor);
+          }
+
+          context.SaveChanges();
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
 
@@ -91,7 +113,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="contractorPrimitive">The contractor primitive.</param>
     public void DeleteContractor(ContractorPrimitive contractorPrimitive)
     {
-      throw new NotImplementedException();
+      try
+      {
+        throw new NotImplementedException();
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
     }
 
     /// <summary>
@@ -100,30 +129,37 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="buildingPrimitive">The building primitive.</param>
     public void UpdateBuilding(BuildingPrimitive buildingPrimitive)
     {
-      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      try
       {
-        Building building = buildingPrimitive.GetEntity();
-        Building existingObject = context.Buildings.Where(x => x.Id == building.Id).FirstOrDefault();
-        
-
-        //no record of this item in the DB, item being passed in has a PK
-        if (existingObject == null && building.Id > 0)
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
         {
-          //log //TODO: contractor have to be in database before
-          return;
-        }
+          Building building = buildingPrimitive.GetEntity();
+          Building existingObject = context.Buildings.Where(x => x.Id == building.Id).FirstOrDefault();
+
+
+          //no record of this item in the DB, item being passed in has a PK
+          if (existingObject == null && building.Id > 0)
+          {
+            //log //TODO: contractor have to be in database before
+            return;
+          }
           //Item has no PK value, must be new
-        else if (building.Id <= 0)
-        {
-          context.Buildings.AddObject(building);
-        }
+          else if (building.Id <= 0)
+          {
+            context.Buildings.AddObject(building);
+          }
           //Item was retrieved, and the item passed has a valid ID, do an update
-        else
-        {
-          context.Buildings.ApplyCurrentValues(building);
-        }
+          else
+          {
+            context.Buildings.ApplyCurrentValues(building);
+          }
 
-        context.SaveChanges();
+          context.SaveChanges();
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
 
@@ -133,7 +169,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="building">The building which will be deleted.</param>
     public void DeleteBuilding(BuildingPrimitive buildingPrimitive)
     {
-      throw new NotImplementedException();
+      try
+      {
+        throw new NotImplementedException();
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
     }
 
     /// <summary>

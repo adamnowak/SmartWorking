@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
@@ -14,6 +16,10 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
   /// </summary>
   public class ManageDeliveryNotesViewModel : ModalDialogViewModelBase
   {
+    private ICommand _createDeliveryNoteCommand;
+    private ICommand _cancelDeliveryNoteCommand;
+    private ICommand _printDeliveryNoteCommand;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ManageDeliveryNotesViewModel"/> class.
     /// </summary>
@@ -22,7 +28,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     public ManageDeliveryNotesViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableDeliveryNote = new SelectableViewModelBase<DeliveryNotePrimitive>();
+      SelectableDeliveryNote = new SelectableViewModelBase<DeliveryNotePackage>();
       ShowCanceledDeliveryNotes = true;
       LoadDeliveryNotes(string.Empty, ShowCanceledDeliveryNotes);
     }
@@ -34,8 +40,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     public const string ShowCanceledDeliveryNotesPropertyName = "ShowCanceledDeliveryNotes";
 
     private bool _showCanceledDeliveryNotes;
-    private ICommand _createDeliveryNoteCommand;
-    private ICommand _cancelDeliveryNoteCommand;
+
 
     /// <summary>
     /// Gets the ShowCanceledDeliveryNotes property.
@@ -75,7 +80,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// <summary>
     /// Gets the selectable car.
     /// </summary>
-    public SelectableViewModelBase<DeliveryNotePrimitive> SelectableDeliveryNote { get; private set; }
+    public SelectableViewModelBase<DeliveryNotePackage> SelectableDeliveryNote { get; private set; }
 
 
     /// <summary>
@@ -99,7 +104,26 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
 
     private void CancelDeliveryNote()
     {
-      //TODO:
+      string errorCaption = "Anulowanie WZ'tki!";
+      try
+      {
+        //TODO:
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     private bool CanCancelDeliveryNote()
@@ -131,7 +155,27 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// </summary>
     private void CreateDeliveryNote()
     {
-      ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory);
+      string errorCaption = "Tworzenie WZ'tki!";
+      try
+      {
+        ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
 
@@ -145,20 +189,91 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// </remarks>
     private void LoadDeliveryNotes(string buildingContains, bool showDeactivedDeliveryNotes)
     {
-      DeliveryNotePrimitive selectedItem = SelectableDeliveryNote.SelectedItem;
-      using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
+      string errorCaption = "Wczytywanie danych o WZ'tkach!";
+      try
       {
-        SelectableDeliveryNote.LoadItems(service.GetIDeliveryNotes(buildingContains, showDeactivedDeliveryNotes));
+        DeliveryNotePackage selectedItem = SelectableDeliveryNote.SelectedItem;
+        using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
+        {
+          SelectableDeliveryNote.LoadItems(service.GetDeliveryNotePackages(buildingContains, showDeactivedDeliveryNotes));
+        }
+        if (selectedItem != null)
+        {
+          DeliveryNotePackage selectionFromItems =
+            SelectableDeliveryNote.Items.Where(x => x.DeliveryNote.Id == selectedItem.DeliveryNote.Id).FirstOrDefault();
+          if (selectionFromItems != null)
+            SelectableDeliveryNote.SelectedItem = selectionFromItems;
+        }
       }
-      if (selectedItem != null)
+      catch (FaultException<ExceptionDetail> f)
       {
-        DeliveryNotePrimitive selectionFromItems =
-          SelectableDeliveryNote.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
-        if (selectionFromItems != null)
-          SelectableDeliveryNote.SelectedItem = selectionFromItems;
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 
+
+    #region PrintDeliveryNoteCommand
+    /// <summary>
+    /// Gets the create delivery note command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to creating delivery note.
+    /// </remarks>
+    public ICommand PrintDeliveryNoteCommand
+    {
+      get
+      {
+        if (_printDeliveryNoteCommand == null)
+          _printDeliveryNoteCommand = new RelayCommand(PrintDeliveryNote, CanPrintDeliveryNote);
+        return _printDeliveryNoteCommand;
+      }
+    }
+
+    private bool CanPrintDeliveryNote()
+    {
+      return SelectableDeliveryNote.SelectedItem != null && SelectableDeliveryNote.SelectedItem.DeliveryNote != null;
+    }
+
+    /// <summary>
+    /// Execution of <see cref="CreateDeliveryNoteCommand"/>.
+    /// </summary>
+    private void PrintDeliveryNote()
+    {
+      string errorCaption = "Drukowanie WZ'tki!";
+      try
+      {
+        PrinterHelper.PrintDeliveryNote(SelectableDeliveryNote.SelectedItem);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+    #endregion
     
   }
 }

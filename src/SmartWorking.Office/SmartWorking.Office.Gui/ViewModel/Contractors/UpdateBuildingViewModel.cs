@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
@@ -127,7 +128,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private bool CanCreateOrUpdatBuilding()
     {
-      if ( Building == null)
+      if (Building == null)
         return false;
       //TODO: validate
       return true;
@@ -136,27 +137,47 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void CreateOrUpdatBuilding()
     {
-      if (Building == null)
-        throw new Exception(); //TODO:
-      
-      using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
+      string errorCaption = "Zatwierdzenie danych o budowie!";
+      try
       {
-        if (DialogMode == DialogMode.Create)
+        if (Building == null)
+          throw new Exception(); //TODO:
+
+        using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
         {
-          if (Building.Id > 0)
-            throw new Exception("Building has wrong Id (>0).");
+          if (DialogMode == DialogMode.Create)
+          {
+            if (Building.Id > 0)
+              throw new Exception("Building has wrong Id (>0).");
+          }
+          else if (DialogMode == DialogMode.Update)
+          {
+            if (Building.Id <= 0)
+              throw new Exception("Building has wrong Id (<=0).");
+
+          }
+          if (Building.Contractor_Id <= 0)
+            throw new Exception("Building has to belong to Contractor.");
+          contractorService.UpdateBuilding(Building);
         }
-        else if (DialogMode == DialogMode.Update)
-        {
-          if (Building.Id <= 0)
-            throw new Exception("Building has wrong Id (<=0).");
-          
-        }
-        if (Building.Contractor_Id <= 0)
-          throw new Exception("Building has to belong to Contractor.");
-        contractorService.UpdateBuilding(Building);
+        CloseModalDialog();
       }
-      CloseModalDialog();
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
   }
 }

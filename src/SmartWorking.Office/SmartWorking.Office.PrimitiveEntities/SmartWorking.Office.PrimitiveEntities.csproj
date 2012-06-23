@@ -84,6 +84,11 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="ContractorAndBuildingsPackage.cs" />
+    <Compile Include="BuildingAndContractorPackage.cs" />
+    <Compile Include="DeliveryNotePackage.cs" />
+    <Compile Include="GetEntityWithReferenceHelper.cs" />
+    <Compile Include="RecipePackage.cs" />
+    <Compile Include="RecipeComponentAndMaterialPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

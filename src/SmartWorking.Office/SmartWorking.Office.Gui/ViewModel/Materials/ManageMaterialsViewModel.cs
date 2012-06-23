@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Entities;
@@ -61,7 +62,27 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
 
     private void ChoseMaterial()
     {
-      CloseModalDialog();
+      string errorCaption = "Wybieranie materiału!";
+      try
+      {
+        CloseModalDialog();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -125,8 +146,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// </summary>
     private void EditMaterial()
     {
-      ModalDialogService.EditMaterial(ModalDialogService, ServiceFactory, SelectableMaterial.SelectedItem);
-      LoadMaterials();
+      string errorCaption = "Edycja materiału!";
+      try
+      {
+        ModalDialogService.EditMaterial(ModalDialogService, ServiceFactory, SelectableMaterial.SelectedItem);
+        LoadMaterials();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -149,8 +190,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// </summary>
     private void DeleteMaterial()
     {
-      //TODO:
-      LoadMaterials();
+      string errorCaption = "Usuwanie materiału!";
+      try
+      {
+        //TODO:
+        LoadMaterials();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
 
@@ -159,8 +220,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// </summary>
     private void CreateMaterial()
     {
-      ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
-      LoadMaterials();
+      string errorCaption = "Tworzenie materiału!";
+      try
+      {
+        ModalDialogService.CreateMaterial(ModalDialogService, ServiceFactory);
+        LoadMaterials();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -171,28 +252,48 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       get { return "Wybierz materiał."; }
     }
 
-    
+
 
     /// <summary>
     /// Loads the materials.
     /// </summary>
     private void LoadMaterials()
     {
-      MaterialPrimitive selectedItem = SelectableMaterial.SelectedItem;
-      using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
+      string errorCaption = "Pobieranie danych o materiałach!";
+      try
       {
-        SelectableMaterial.LoadItems(materialsService.GetMaterials(string.Empty));
+        MaterialPrimitive selectedItem = SelectableMaterial.SelectedItem;
+        using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
+        {
+          SelectableMaterial.LoadItems(materialsService.GetMaterials(string.Empty));
+        }
+        if (selectedItem != null)
+        {
+          MaterialPrimitive selectionFromItems =
+            SelectableMaterial.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+          if (selectionFromItems != null)
+            SelectableMaterial.SelectedItem = selectionFromItems;
+        }
       }
-      if (selectedItem != null)
+      catch (FaultException<ExceptionDetail> f)
       {
-        MaterialPrimitive selectionFromItems =
-          SelectableMaterial.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
-        if (selectionFromItems != null)
-          SelectableMaterial.SelectedItem = selectionFromItems;
+
+        ShowError(errorCaption, f);
+        Cancel();
       }
-      
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+
     }
 
-    
+
   }
 }

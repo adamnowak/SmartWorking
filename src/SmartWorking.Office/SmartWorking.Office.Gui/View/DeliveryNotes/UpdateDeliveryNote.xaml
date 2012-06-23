@@ -18,7 +18,7 @@
                 </Grid.RowDefinitions>
 
                 <GroupBox Header="Budowa" >
-                    <Grid>
+                    <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120" />
                             <ColumnDefinition />
@@ -33,7 +33,7 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
 
-                                <Grid DataContext="{Binding Building.Contractor}">
+                                <Grid DataContext="{Binding DeliveryNotePackage.BuildingAndContractor.Contractor}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
@@ -57,7 +57,7 @@
                                 </Grid>
 
 
-                                <Grid DataContext="{Binding Building}" Grid.Column="1">
+                                <Grid DataContext="{Binding  DeliveryNotePackage.BuildingAndContractor.Building}" Grid.Column="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
@@ -97,7 +97,7 @@
                             </Grid.ColumnDefinitions>
                             <Shared:DescriptionButton Image="{StaticResource RecipeImageSource}" Content="Wybierz recepta" Style="{StaticResource SelectDescriptionButton}" Command="{Binding SelectRecipeCommand}"  />
                             <StackPanel Grid.Column="1" >
-                                <Grid DataContext="{Binding Recipe}">
+                                <Grid >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
@@ -111,9 +111,9 @@
                                     <TextBlock Text="Skrót:" Grid.Row="1" />
                                     <TextBlock Text="Ilość [m³]:" Grid.Row="2" />
 
-                                    <TextBox Text="{Binding Name}" MinWidth="150" Grid.Column="1" IsReadOnly="True" />
-                                    <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Amount}" Grid.Row="2" Grid.Column="2" />
+                                    <TextBox Text="{Binding DeliveryNotePackage.Recipe.Name}" MinWidth="150" Grid.Column="1" IsReadOnly="True" />
+                                    <TextBox Text="{Binding DeliveryNotePackage.Recipe.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="True" />
+                                    <TextBox Text="{Binding DeliveryNotePackage.DeliveryNote.Amount}" Grid.Row="2" Grid.Column="2" />
                                 </Grid>
                             </StackPanel>
                         </Grid>
@@ -127,7 +127,7 @@
                             </Grid.ColumnDefinitions>
                             <Shared:DescriptionButton Image="{StaticResource DriverImageSource}" Content="Wybierz kierowcę" Style="{StaticResource SelectDescriptionButton}" Command="{Binding SelectDriverCommand}"  />
                             <StackPanel Grid.Column="1" >
-                                <Grid DataContext="{Binding Driver}">
+                                <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
@@ -141,10 +141,10 @@
                                     <TextBlock Text="Imię:" />
                                     <TextBlock Text="Nazwisko:" Grid.Row="1" />
                                     <TextBlock Text="Telefon:" Grid.Row="2" />
-                                  
-                                    <TextBox Text="{Binding Name}"  Grid.Column="1" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Surname}" Grid.Row="1" Grid.Column="1" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Phone}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+
+                                    <TextBox Text="{Binding DeliveryNotePackage.Driver.Name}"  Grid.Column="1" IsReadOnly="True" />
+                                    <TextBox Text="{Binding DeliveryNotePackage.Driver.Surname}" Grid.Row="1" Grid.Column="1" IsReadOnly="True" />
+                                    <TextBox Text="{Binding DeliveryNotePackage.Driver.Phone}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
                                 </Grid>
                             </StackPanel>
                         </Grid>
@@ -164,7 +164,7 @@
                             </Grid.ColumnDefinitions>
                             <Shared:DescriptionButton Image="{StaticResource CarImageSource}" Content="Wybierz samochód" Style="{StaticResource SelectDescriptionButton}" Command="{Binding SelectCarCommand}"  />
                             <StackPanel Grid.Column="1" >
-                                <Grid DataContext="{Binding Car}">
+                                <Grid >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition  />
@@ -178,10 +178,10 @@
                                     <TextBlock Text="Nazwa:" />
                                     <TextBlock Text="Skrót:" Grid.Row="1" />
                                     <TextBlock Text="Numer:" Grid.Row="2" />
-                                   
-                                    <TextBox Text="{Binding Name}" MinWidth="150" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding RegistrationNumber}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+
+                                    <TextBox Text="{Binding DeliveryNotePackage.Car.Name}" MinWidth="150" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                    <TextBox Text="{Binding DeliveryNotePackage.Car.InternalName}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                    <TextBox Text="{Binding DeliveryNotePackage.Car.RegistrationNumber}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
                                   
                                 </Grid>
                             </StackPanel>
@@ -191,7 +191,7 @@
                     <GroupBox Grid.Column="1" Header="Daty">
                         
                             <StackPanel >
-                                <Grid DataContext="{Binding Building.Contractor}">
+                                <Grid >
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
@@ -200,11 +200,11 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                <TextBlock Text="Data wystawienia:" />
-                                <TextBlock Text="Data dostawy:" Grid.Row="1" />
+                                    <TextBlock Text="Data wystawienia:" />
+                                    <TextBlock Text="Data dostawy:" Grid.Row="1" />
 
-                                <DatePicker DataContext="{Binding DateDrawing}" Grid.Column="1" />
-                                <DatePicker DataContext="{Binding DateOfArrival}" Grid.Row="1"  Grid.Column="1"/>
+                                    <DatePicker DataContext="{Binding DeliveryNotePackage.DeliveryNote.DateDrawing}" Grid.Column="1" />
+                                    <DatePicker DataContext="{Binding DeliveryNotePackage.DeliveryNote.DateOfArrival}" Grid.Row="1"  Grid.Column="1"/>
                                 </Grid>
                             </StackPanel>
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using SmartWorking.Office.Entities;
+using SmartWorking.Office.PrimitiveEntities;
 
 namespace SmartWorking.Office.Services.Interfaces
 {
@@ -21,9 +22,22 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of <see cref="DeliveryNote"/> filtered by <paramref name="filter"/> and <paramref name="showCanceled"/>.
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetIDeliveryNotes/?filter={filter}&showCanceled={showCanceled}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetDeliveryNotes/?filter={filter}&getCanceled={getCanceled}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<DeliveryNotePrimitive> GetIDeliveryNotes(string filter, bool showCanceled);
+    List<DeliveryNotePrimitive> GetDeliveryNotes(string filter, bool getCanceled);
+
+    /// <summary>
+    /// Gets the <see cref="DeliveryNote"/> filtered be <paramref name="filter"/> and <paramref name="showCanceled"/>.
+    /// </summary>
+    /// <param name="filter">Used to filtering result. Loaded <see cref="DeliveryNote"/> object will contain this string.</param>
+    /// <param name="getCanceled">if set to <c>true</c> [get canceled].</param>
+    /// <returns>
+    /// List of <see cref="DeliveryNote"/> filtered by <paramref name="filter"/> and <paramref name="showCanceled"/>.
+    /// </returns>
+    [OperationContract]
+    [WebInvoke(Method = "GET", UriTemplate = "/GetDeliveryNotePackages/?filter={filter}&getCanceled={getCanceled}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    List<DeliveryNotePackage> GetDeliveryNotePackages(string filter, bool getCanceled);
 
     /// <summary>
     /// Updates the <see cref="DeliveryNote"/>.

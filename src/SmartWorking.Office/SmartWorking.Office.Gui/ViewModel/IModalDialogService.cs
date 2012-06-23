@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using SmartWorking.Office.Entities;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel
@@ -65,11 +66,11 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>    
     /// <returns>Selected Building.</returns>
-    BuildingPrimitive SelectBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    BuildingAndContractorPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     #endregion
 
-    #region DeliveryNote
+    #region DeliveryNotePackage
 
     /// <summary>
     /// Opens dialog for creating delivery note.
@@ -77,16 +78,16 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    DeliveryNotePrimitive CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    DeliveryNotePackage CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for creating delivery note for <paramref name="building"/>.
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    /// <param name="building">The building.</param>
+    /// <param name="buildingAndContractorPackage">The building and contractor package.</param>
     /// <returns></returns>
-    DeliveryNotePrimitive CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory, BuildingPrimitive building);
+    DeliveryNotePackage CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory, BuildingAndContractorPackage buildingAndContractorPackage);
 
     /// <summary>
     /// Opens dialog for managing the delivery notes.
@@ -183,7 +184,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="selectedRecipeComponent">The selected recipe component.</param>
     /// <returns></returns>
-    RecipeComponentPrimitive EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponentPrimitive selectedRecipeComponent);
+    RecipeComponentPrimitive EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponentAndMaterialPackage selectedRecipeComponent);
     
     #endregion
 

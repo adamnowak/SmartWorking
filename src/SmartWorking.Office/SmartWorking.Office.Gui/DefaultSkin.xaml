@@ -22,6 +22,7 @@
 	<BitmapImage x:Key="SearchImageSource" UriSource="Media/Search.png" />
 
     <BitmapImage x:Key="CancelDNImageSource" UriSource="Media/CancelDN.png" />
+    <BitmapImage x:Key="PrintDNImageSource" UriSource="Media/Print.png" />
 
     <BitmapImage x:Key="OkImageSource" UriSource="Media/Ok.png" />
     <BitmapImage x:Key="YesImageSource" UriSource="Media/Yes.png" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -12,13 +13,6 @@ namespace SmartWorking.Office.Services.Hosting.Local
   public class DriversService : IDriversService
   {
     /// <summary>
-    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-    /// </summary>
-    public void Dispose()
-    {
-    }
-
-    /// <summary>
     /// Gets the drivers filtered be <paramref name="driversFilter"/>.
     /// </summary>
     /// <param name="driversFilter">The drivers filter used to result filtering.</param>
@@ -27,13 +21,20 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// </returns>
     public List<DriverPrimitive> GetDrivers(string driversFilter)
     {
-      using (var ctx = new SmartWorkingEntities())
+      try
       {
-        List<Driver> result =
-          (string.IsNullOrWhiteSpace(driversFilter))
-            ? ctx.Drivers.ToList()
-            : ctx.Drivers.Where(x => x.Name.StartsWith(driversFilter)).ToList();
-        return result.Select(x => x.GetPrimitive()).ToList(); ;
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<Driver> result =
+            (string.IsNullOrWhiteSpace(driversFilter))
+              ? ctx.Drivers.ToList()
+              : ctx.Drivers.Where(x => x.Name.StartsWith(driversFilter)).ToList();
+          return result.Select(x => x.GetPrimitive()).ToList(); ;
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
 
@@ -43,30 +44,37 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="driver">The driver which will be updated.</param>
     public void UpdateDriver(DriverPrimitive driverPrimitive)
     {
-      using (SmartWorkingEntities context = new SmartWorkingEntities())
+      try
       {
-        Driver driver = driverPrimitive.GetEntity();
-
-        Driver existingObject = context.Drivers.Where(x => x.Id == driver.Id).FirstOrDefault();
-
-        //no record of this item in the DB, item being passed in has a PK
-        if (existingObject == null && driver.Id > 0)
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
         {
-          //TODO:
-          return;
-        }
-        //Item has no PK value, must be new
-        else if (driver.Id <= 0)
-        {
-          context.Drivers.AddObject(driver);
-        }
-        //Item was retrieved, and the item passed has a valid ID, do an update
-        else
-        {
-          context.Drivers.ApplyCurrentValues(driver);
-        }
+          Driver driver = driverPrimitive.GetEntity();
 
-        context.SaveChanges();
+          Driver existingObject = context.Drivers.Where(x => x.Id == driver.Id).FirstOrDefault();
+
+          //no record of this item in the DB, item being passed in has a PK
+          if (existingObject == null && driver.Id > 0)
+          {
+            //TODO:
+            return;
+          }
+          //Item has no PK value, must be new
+          else if (driver.Id <= 0)
+          {
+            context.Drivers.AddObject(driver);
+          }
+          //Item was retrieved, and the item passed has a valid ID, do an update
+          else
+          {
+            context.Drivers.ApplyCurrentValues(driver);
+          }
+
+          context.SaveChanges();
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
 
@@ -76,7 +84,21 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <param name="driver">The driver which will be deleted.</param>
     public void DeleteDriver(DriverPrimitive driverPrimitive)
     {
-      throw new NotImplementedException();
+      try
+      {
+        throw new NotImplementedException();
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public void Dispose()
+    {
     }
   }
 }

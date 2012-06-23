@@ -76,8 +76,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     private void CreateContractor()
     {
-      ModalDialogService.CreateContractor(ModalDialogService, ServiceFactory);
-      LoadContractors();
+      string errorCaption = "Tworzenie danych o kontrahencie!";
+      try
+      {
+        ModalDialogService.CreateContractor(ModalDialogService, ServiceFactory);
+        LoadContractors();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     #region ChoseBuildingCommand
@@ -114,7 +134,27 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </remarks>
     private void ChoseBuilding()
     {
-      CloseModalDialog();
+      string errorCaption = "Wybieranie budowli!";
+      try
+      {
+        CloseModalDialog();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
 
@@ -152,13 +192,33 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </remarks>
     private void CreateDeliveryNote()
     {
-      BuildingPrimitive building = SelectedBuilding;
-      ContractorPrimitive contractor = SelectableContractor.SelectedItem.Contractor;
-      //todo: pass to CreateDeliveryNote building and contractor or create new package
-      ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory, building);
+      string errorCaption = "Tworzenie WZ'tki!";
+      try
+      {
+        BuildingAndContractorPackage buildingAndContractorPackage  = new BuildingAndContractorPackage();
+        buildingAndContractorPackage.Building = SelectedBuilding;
+        buildingAndContractorPackage.Contractor = SelectableContractor.SelectedItem.Contractor;
+        ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory, buildingAndContractorPackage);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
     #endregion
-    
+
     /// <summary>
     /// Gets the edit contractor command.
     /// </summary>
@@ -169,7 +229,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       {
         if (_editContractorCommand == null)
           _editContractorCommand = new RelayCommand(
-            EditContractor, 
+            EditContractor,
             () => SelectableContractor != null && SelectableContractor.SelectedItem != null);
         return _editContractorCommand;
       }
@@ -177,8 +237,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void EditContractor()
     {
-      ModalDialogService.EditContractor(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem.Contractor);
-      LoadContractors();
+      string errorCaption = "Edycja danych o kontrahencie!";
+      try
+      {
+        ModalDialogService.EditContractor(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem.Contractor);
+        LoadContractors();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -201,9 +281,30 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void DeleteContractor()
     {
-      //TODO: 
-      //MessageBox with question
-      //if yes deletes all building of this contractor and this contractor
+      string errorCaption = "Usuwanie danych o kontrahencie!";
+      try
+      {
+
+        //TODO: 
+        //MessageBox with question
+        //if yes deletes all building of this contractor and this contractor
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     private bool CanDeleteContractor()
@@ -234,8 +335,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void CreateBuilding()
     {
-      ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem.Contractor);
-      LoadContractors();
+      string errorCaption = "Tworzenie danych o budowie!";
+      try
+      {
+        ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory, SelectableContractor.SelectedItem.Contractor);
+        LoadContractors();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -256,8 +377,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void EditBuilding()
     {
-      ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory, SelectedBuilding);
-      LoadContractors();
+      string errorCaption = "Edycj danych o budowie!";
+      try
+      {
+        ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory, SelectedBuilding);
+        LoadContractors();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     /// <summary>
@@ -280,9 +421,29 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void DeleteBuilding()
     {
-      //TODO: 
-      //MessageBox with question
-      //if any <see cref="DeliveryNote"/> exists for this Building.
+      string errorCaption = "Uduwanie danych o budowie!";
+      try
+      {
+        //TODO: 
+        //MessageBox with question
+        //if any <see cref="DeliveryNotePackage"/> exists for this Building.
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
 
     private bool CanDeleteBuilding()
@@ -299,7 +460,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       get { return "Wybierz kontrahenta."; }
     }
 
-    
+
 
     private void LoadContractors()
     {
