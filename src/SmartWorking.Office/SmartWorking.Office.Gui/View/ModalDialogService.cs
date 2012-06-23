@@ -106,6 +106,8 @@ namespace SmartWorking.Office.Gui.View
       viewModel.DialogMode = DialogMode.Create;
       viewModel.DeliveryNotePackage = new DeliveryNotePackage();
       viewModel.DeliveryNotePackage.DeliveryNote = new DeliveryNotePrimitive();
+      viewModel.DeliveryNotePackage.DeliveryNote.DateDrawing = DateTime.Now;
+      viewModel.DeliveryNotePackage.DeliveryNote.DateOfArrival = DateTime.Now;
       ModalDialogHelper<UpdateDeliveryNote>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
@@ -121,6 +123,8 @@ namespace SmartWorking.Office.Gui.View
       viewModel.DialogMode = DialogMode.Create;
       viewModel.DeliveryNotePackage = new DeliveryNotePackage();
       viewModel.DeliveryNotePackage.DeliveryNote = new DeliveryNotePrimitive();
+      viewModel.DeliveryNotePackage.DeliveryNote.DateDrawing = DateTime.Now;
+      viewModel.DeliveryNotePackage.DeliveryNote.DateOfArrival = DateTime.Now;
       viewModel.DeliveryNotePackage.BuildingAndContractor = buildingAndContractorPackage;
       ModalDialogHelper<UpdateDeliveryNote>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)

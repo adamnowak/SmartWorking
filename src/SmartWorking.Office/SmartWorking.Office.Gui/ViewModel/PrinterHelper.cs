@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing.Printing;
 using System.IO;
 using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
@@ -15,9 +16,6 @@ namespace SmartWorking.Office.Gui.ViewModel
   {
     public static void PrintDeliveryNote(DeliveryNotePackage deliveryNotePackage)
     {
-      string errorCaption = "Drukowanie WZ'tki!";
-
-      //http://read.pudn.com/downloads116/sourcecode/editor/490275/PDFsharp/PdfSharp/PdfSharp.Pdf.Printing/PdfFilePrinter.cs__.htm
       if (deliveryNotePackage.BuildingAndContractor == null)
       {
         throw new SmartWorkingException("Building and contractor is not defined.");
@@ -54,35 +52,109 @@ namespace SmartWorking.Office.Gui.ViewModel
                                      string.Format("WZ_{0}_{1:yyyy-MM-dd_hh-mm-ss-tt}.pdf",
                                                    deliveryNotePackage.DeliveryNote.Id, DateTime.Now));
 
-      PdfDocument document = new PdfDocument();
-
-      
+      PdfDocument document = new PdfDocument();      
       PdfPage page = document.AddPage();
-      page.Orientation = PdfSharp.PageOrientation.Landscape;
-      page.Size = PdfSharp.PageSize.Letter;
-      page.Rotate = 0;
+      XGraphics gfx = XGraphics.FromPdfPage(page);      
 
-      XGraphics gfx = XGraphics.FromPdfPage(page);
-      XFont font = new XFont("Times New Roman", 10, XFontStyle.Bold);
-      XTextFormatter tf = new XTextFormatter(gfx);
+      //DeliveryNote top
+      ComposeDeliveryNoteOnPage(deliveryNotePackage, gfx, 0);
 
-      string text = "todo: " + deliveryNotePackage.BuildingAndContractor.Building.City + ", " +
-                    deliveryNotePackage.BuildingAndContractor.Building.Street;
-      XRect rect = new XRect(10, 100, 250, 232);
-      //gfx.DrawRectangle(XBrushes.SeaShell, rect);
-      tf.DrawString(text, font, XBrushes.Black, rect, XStringFormats.TopLeft);
+      PrintSection(gfx, "...............................................................................................................................................................................................................",
+                   string.Empty,
+                   new XPoint(0, 400), 500, 0, 12, 12, 12);
+
+      //DeliveryNote bottom
+      ComposeDeliveryNoteOnPage(deliveryNotePackage, gfx, 400);
 
       document.Save(filename);
-      //Process.Start(filename);
-      //PdfReader.Open(filename, PdfDocumentOpenMode.ReadOnly);
-      //PdfReader.
       Print(filename);
     }
 
+    private static void ComposeDeliveryNoteOnPage(DeliveryNotePackage deliveryNotePackage, XGraphics gfx, double shiftY)
+    {
+      //DeliveryNote
+      PrintSection(gfx, "WZ: " + deliveryNotePackage.DeliveryNote.Id.ToString(), string.Empty, new XPoint(250, 30 + shiftY));
+      
+      //Contractor
+      string contracotrInfo =
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.FullName)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Contractor.FullName + Environment.NewLine) +
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Name)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Contractor.Name + Environment.NewLine) +
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Surname)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Contractor.Surname + Environment.NewLine);
+      PrintSection(gfx, "Kontrahent:", contracotrInfo, new XPoint(30, 70 + shiftY));
+        
+      //Building
+      string buildingInfo =
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Building.City)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Building.City + Environment.NewLine) +
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Building.Street)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Building.Street + Environment.NewLine) +
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Building.HouseNo)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Building.HouseNo + Environment.NewLine);
+      PrintSection(gfx, "Budowa:", buildingInfo, new XPoint(30, 140 + shiftY));
+
+      //Date drawing
+      PrintSection(gfx, "Data wystawienia: ",
+                        ((deliveryNotePackage.DeliveryNote.DateDrawing.HasValue) ?
+                                                                                   deliveryNotePackage.DeliveryNote.DateDrawing.Value.ToShortDateString()
+                           : string.Empty),
+                   new XPoint(300, 60 + shiftY));
+
+      //Date of arrival
+      PrintSection(gfx, "Data dostarczenia: ", 
+                        ((deliveryNotePackage.DeliveryNote.DateOfArrival.HasValue) ?
+                                                                                     deliveryNotePackage.DeliveryNote.DateOfArrival.Value.ToShortDateString() 
+                           : string.Empty),
+                  new XPoint(300, 110 + shiftY));
+
+      //Recipe
+      string recipeInfo =
+        ((string.IsNullOrEmpty(deliveryNotePackage.Recipe.Name))
+           ? string.Empty
+           : deliveryNotePackage.Recipe.Name + Environment.NewLine) +
+        ((string.IsNullOrEmpty(deliveryNotePackage.Recipe.InternalName))
+           ? string.Empty
+           : deliveryNotePackage.Recipe.InternalName + Environment.NewLine)+
+        ((string.IsNullOrEmpty(deliveryNotePackage.DeliveryNote.Amount.ToString()))
+           ? string.Empty
+           : deliveryNotePackage.DeliveryNote.Amount + Environment.NewLine);
+
+      PrintSection(gfx, "Recepta:", recipeInfo, new XPoint(200, 180 + shiftY));
+
+      //Car
+      PrintSection(gfx, "Samochod: ",
+                   ((string.IsNullOrEmpty(deliveryNotePackage.Car.Name))
+                      ? string.Empty
+                      : deliveryNotePackage.Car.Name + Environment.NewLine) +
+                   ((string.IsNullOrEmpty(deliveryNotePackage.Car.RegistrationNumber))
+                      ? string.Empty
+                      : deliveryNotePackage.Car.RegistrationNumber + Environment.NewLine),
+                   new XPoint(30, 270 + shiftY));
+
+      //Driver
+      PrintSection(gfx, "Kierowca: ",
+                   ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Name)) ? string.Empty : deliveryNotePackage.Driver.Name + Environment.NewLine) +
+                   ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Surname)) ? string.Empty  : deliveryNotePackage.Driver.Surname + Environment.NewLine) +
+                   ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Phone)) ? string.Empty : deliveryNotePackage.Driver.Phone + Environment.NewLine),
+                   new XPoint(200, 270 + shiftY));
+
+      //Sign
+      PrintSection(gfx, "Wystawiający: ", Environment.NewLine + "................................", new XPoint(400, 310 + shiftY));
+    }
+
+    private static void PrintSection(XGraphics gfx, string header, string text, XPoint point)
+    {
+      PrintSection(gfx, header, text, point, 200, 100, 16, 10, 20);
+    }
+
+    private static void PrintSection(XGraphics gfx, string header, string text, XPoint point, double width, double height, double headerFontSize, double textFontSize, double headerHeight)
+    {
+      XFont fontHeader = new XFont("Times New Roman", headerFontSize, XFontStyle.Bold);
+      XFont fontText = new XFont("Times New Roman", textFontSize, XFontStyle.Bold);
+      XTextFormatter tf = new XTextFormatter(gfx);
+      tf.DrawString(header, fontHeader, XBrushes.Black, new XRect(point.X, point.Y, width, height));
+      tf.DrawString(text, fontText, XBrushes.Black, new XRect(point.X + 5, point.Y + headerHeight, width, height));
+    }
 
     public static void Print(string filename)
     {
-
+      //!!!!!!!!!!MIGRADOC
       // Reuse the renderer from the preview
       //DocumentRenderer renderer = this.pagePreview.Renderer;
       //if (renderer != null)
@@ -100,20 +172,45 @@ namespace SmartWorking.Office.Gui.ViewModel
       //  printDocument.Print();
       //}
 
+      //!!!!!!!!PDFSHART - PDFFILEPRINTER 
+      //PrinterSettings settings = new PrinterSettings();
+      //PdfFilePrinter.AdobeReaderPath = @"c:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe";
+      //PdfFilePrinter.DefaultPrinterName = settings.PrinterName;
+      //PdfFilePrinter printer = new PdfFilePrinter(filename);
+      //printer.Print(500);
 
-      PdfFilePrinter.AdobeReaderPath = @"c:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe";      
-      PdfFilePrinter.DefaultPrinterName = "PDF995";
-      PdfFilePrinter printer = new PdfFilePrinter(filename);
+      //!!!!!!!!!!!!SYSTEM - open file - like double click on file 
+      Process.Start(filename);
 
-      try
-      {
-        printer.Print();
-      }
-      catch (Exception ex)
-      {
-        throw new NotImplementedException();
-      }
+//!!!!!!!!!!! COMMAND LINE
+//c:\>"C:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe" /p /h d:\adamnowak\
+//private\Sylwek\SmartWorking\bin\gui\Debug\pdf\WZ_3_2012-06-23_03-16-42-PM.pdf
 
+//c:\>"C:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe" /n /t d:\adamnowak\
+//private\Sylwek\SmartWorking\bin\gui\Debug\pdf\WZ_3_2012-06-23_03-16-42-PM.pdf "W
+//yslij do programu OneNote 2010"
+
+//c:\>"C:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe" /n /h /t d:\adamnow
+//ak\private\Sylwek\SmartWorking\bin\gui\Debug\pdf\WZ_3_2012-06-23_03-16-42-PM.pdf
+// "Wyslij do programu OneNote 2010"
+
+//c:\>"C:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe" /n /h /t d:\adamnow
+//ak\private\Sylwek\SmartWorking\bin\gui\Debug\pdf\WZ_3_2012-06-23_03-16-42-PM.pdf
+// "Wyslij do programu OneNote 2010"
+
+//c:\>"C:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe" /n /h /t d:\adamnow
+//ak\private\Sylwek\SmartWorking\bin\gui\Debug\pdf\WZ_3_2012-06-23_03-16-42-PM.pdf
+// "Wyslij do programu OneNote 2010"
+
+//c:\>"C:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe" /n /h /t d:\adamnow
+//ak\private\Sylwek\SmartWorking\bin\gui\Debug\pdf\WZ_3_2012-06-23_03-16-42-PM.pdf
+// "Wyslij do programu OneNote 2010"
+
+//c:\>"C:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe" /h
+
+//c:\>"C:\Program Files\Adobe\Reader 10.0\Reader\AcroRd32.exe" /n /h /t d:\adamnow
+//ak\private\Sylwek\SmartWorking\bin\gui\Debug\pdf\WZ_3_2012-06-23_03-16-42-PM.pdf
+// "Wyslij do programu OneNote 2010"
     }
   }
 }

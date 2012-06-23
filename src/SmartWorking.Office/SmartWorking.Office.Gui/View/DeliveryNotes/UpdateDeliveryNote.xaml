@@ -203,8 +203,8 @@
                                     <TextBlock Text="Data wystawienia:" />
                                     <TextBlock Text="Data dostawy:" Grid.Row="1" />
 
-                                    <DatePicker DataContext="{Binding DeliveryNotePackage.DeliveryNote.DateDrawing}" Grid.Column="1" />
-                                    <DatePicker DataContext="{Binding DeliveryNotePackage.DeliveryNote.DateOfArrival}" Grid.Row="1"  Grid.Column="1"/>
+                                    <DatePicker SelectedDate="{Binding DeliveryNotePackage.DeliveryNote.DateDrawing}" Grid.Column="1" />
+                                    <DatePicker SelectedDate="{Binding DeliveryNotePackage.DeliveryNote.DateOfArrival}" Grid.Row="1"  Grid.Column="1"/>
                                 </Grid>
                             </StackPanel>
 
