@@ -42,7 +42,7 @@ namespace SmartWorking.Office.Gui.View
                     window.Close();
                   };
       viewModel.RequestClose += handler;
-      viewModel.Initialize();      
+      viewModel.Initialize();
       if (!viewModel.Closing)
         window.ShowDialog();
 

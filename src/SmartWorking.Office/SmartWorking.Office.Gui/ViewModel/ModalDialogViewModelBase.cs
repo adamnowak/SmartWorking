@@ -1,9 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
 using System.Windows;
-using System.Windows.Input;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel
@@ -13,7 +10,6 @@ namespace SmartWorking.Office.Gui.ViewModel
     public WindowViewModelBase(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      
     }
 
     /// <summary>
@@ -74,7 +70,7 @@ namespace SmartWorking.Office.Gui.ViewModel
   /// <summary>
   /// Base class for View Model in MVVM pattern (using MVVMLight). Implements <see cref="IModalDialogViewModel"/> interface.
   /// </summary>
-  public abstract class ModalDialogViewModelBase: WindowViewModelBase, IModalDialogViewModel
+  public abstract class ModalDialogViewModelBase : WindowViewModelBase, IModalDialogViewModel
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="DialogViewModelBase"/> class.
@@ -84,16 +80,17 @@ namespace SmartWorking.Office.Gui.ViewModel
     protected ModalDialogViewModelBase(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      
     }
+
+    #region IModalDialogViewModel Members
 
     /// <summary>
     /// Initializes view model properties.
     /// </summary>
     public virtual void Initialize()
-    {      
+    {
     }
 
-    
+    #endregion
   }
 }

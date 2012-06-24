@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing.Printing;
 using System.IO;
+using System.Reflection;
 using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
-using PdfSharp.Pdf.Printing;
 using SmartWorking.Office.Gui.ViewModel.DeliveryNotes;
 using SmartWorking.Office.PrimitiveEntities;
 
@@ -41,25 +39,26 @@ namespace SmartWorking.Office.Gui.ViewModel
         throw new SmartWorkingException("Recipe is not defined.");
       }
 
-      string path =  Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "pdf");
+      string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "pdf");
 
       if (!Directory.Exists(path))
       {
-        System.IO.Directory.CreateDirectory(path);
+        Directory.CreateDirectory(path);
       }
 
       string filename = Path.Combine(path,
                                      string.Format("WZ_{0}_{1:yyyy-MM-dd_hh-mm-ss-tt}.pdf",
                                                    deliveryNotePackage.DeliveryNote.Id, DateTime.Now));
 
-      PdfDocument document = new PdfDocument();      
+      var document = new PdfDocument();
       PdfPage page = document.AddPage();
-      XGraphics gfx = XGraphics.FromPdfPage(page);      
+      XGraphics gfx = XGraphics.FromPdfPage(page);
 
       //DeliveryNote top
       ComposeDeliveryNoteOnPage(deliveryNotePackage, gfx, 0);
 
-      PrintSection(gfx, "...............................................................................................................................................................................................................",
+      PrintSection(gfx,
+                   "...............................................................................................................................................................................................................",
                    string.Empty,
                    new XPoint(0, 400), 500, 0, 12, 12, 12);
 
@@ -73,35 +72,47 @@ namespace SmartWorking.Office.Gui.ViewModel
     private static void ComposeDeliveryNoteOnPage(DeliveryNotePackage deliveryNotePackage, XGraphics gfx, double shiftY)
     {
       //DeliveryNote
-      PrintSection(gfx, "WZ: " + deliveryNotePackage.DeliveryNote.Id.ToString(), string.Empty, new XPoint(250, 30 + shiftY));
-      
+      PrintSection(gfx, "WZ: " + deliveryNotePackage.DeliveryNote.Id, string.Empty, new XPoint(250, 30 + shiftY));
+
       //Contractor
       string contracotrInfo =
-        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.FullName)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Contractor.FullName + Environment.NewLine) +
-        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Name)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Contractor.Name + Environment.NewLine) +
-        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Surname)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Contractor.Surname + Environment.NewLine);
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.FullName))
+           ? string.Empty
+           : deliveryNotePackage.BuildingAndContractor.Contractor.FullName + Environment.NewLine) +
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Name))
+           ? string.Empty
+           : deliveryNotePackage.BuildingAndContractor.Contractor.Name + Environment.NewLine) +
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Surname))
+           ? string.Empty
+           : deliveryNotePackage.BuildingAndContractor.Contractor.Surname + Environment.NewLine);
       PrintSection(gfx, "Kontrahent:", contracotrInfo, new XPoint(30, 70 + shiftY));
-        
+
       //Building
       string buildingInfo =
-        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Building.City)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Building.City + Environment.NewLine) +
-        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Building.Street)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Building.Street + Environment.NewLine) +
-        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Building.HouseNo)) ? string.Empty : deliveryNotePackage.BuildingAndContractor.Building.HouseNo + Environment.NewLine);
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Building.City))
+           ? string.Empty
+           : deliveryNotePackage.BuildingAndContractor.Building.City + Environment.NewLine) +
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Building.Street))
+           ? string.Empty
+           : deliveryNotePackage.BuildingAndContractor.Building.Street + Environment.NewLine) +
+        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Building.HouseNo))
+           ? string.Empty
+           : deliveryNotePackage.BuildingAndContractor.Building.HouseNo + Environment.NewLine);
       PrintSection(gfx, "Budowa:", buildingInfo, new XPoint(30, 140 + shiftY));
 
       //Date drawing
       PrintSection(gfx, "Data wystawienia: ",
-                        ((deliveryNotePackage.DeliveryNote.DateDrawing.HasValue) ?
-                                                                                   deliveryNotePackage.DeliveryNote.DateDrawing.Value.ToShortDateString()
-                           : string.Empty),
+                   ((deliveryNotePackage.DeliveryNote.DateDrawing.HasValue)
+                      ? deliveryNotePackage.DeliveryNote.DateDrawing.Value.ToShortDateString()
+                      : string.Empty),
                    new XPoint(300, 60 + shiftY));
 
       //Date of arrival
-      PrintSection(gfx, "Data dostarczenia: ", 
-                        ((deliveryNotePackage.DeliveryNote.DateOfArrival.HasValue) ?
-                                                                                     deliveryNotePackage.DeliveryNote.DateOfArrival.Value.ToShortDateString() 
-                           : string.Empty),
-                  new XPoint(300, 110 + shiftY));
+      PrintSection(gfx, "Data dostarczenia: ",
+                   ((deliveryNotePackage.DeliveryNote.DateOfArrival.HasValue)
+                      ? deliveryNotePackage.DeliveryNote.DateOfArrival.Value.ToShortDateString()
+                      : string.Empty),
+                   new XPoint(300, 110 + shiftY));
 
       //Recipe
       string recipeInfo =
@@ -110,7 +121,7 @@ namespace SmartWorking.Office.Gui.ViewModel
            : deliveryNotePackage.Recipe.Name + Environment.NewLine) +
         ((string.IsNullOrEmpty(deliveryNotePackage.Recipe.InternalName))
            ? string.Empty
-           : deliveryNotePackage.Recipe.InternalName + Environment.NewLine)+
+           : deliveryNotePackage.Recipe.InternalName + Environment.NewLine) +
         ((string.IsNullOrEmpty(deliveryNotePackage.DeliveryNote.Amount.ToString()))
            ? string.Empty
            : deliveryNotePackage.DeliveryNote.Amount + Environment.NewLine);
@@ -129,13 +140,20 @@ namespace SmartWorking.Office.Gui.ViewModel
 
       //Driver
       PrintSection(gfx, "Kierowca: ",
-                   ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Name)) ? string.Empty : deliveryNotePackage.Driver.Name + Environment.NewLine) +
-                   ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Surname)) ? string.Empty  : deliveryNotePackage.Driver.Surname + Environment.NewLine) +
-                   ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Phone)) ? string.Empty : deliveryNotePackage.Driver.Phone + Environment.NewLine),
+                   ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Name))
+                      ? string.Empty
+                      : deliveryNotePackage.Driver.Name + Environment.NewLine) +
+                   ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Surname))
+                      ? string.Empty
+                      : deliveryNotePackage.Driver.Surname + Environment.NewLine) +
+                   ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Phone))
+                      ? string.Empty
+                      : deliveryNotePackage.Driver.Phone + Environment.NewLine),
                    new XPoint(200, 270 + shiftY));
 
       //Sign
-      PrintSection(gfx, "Wystawiający: ", Environment.NewLine + "................................", new XPoint(400, 310 + shiftY));
+      PrintSection(gfx, "Wystawiający: ", Environment.NewLine + "................................",
+                   new XPoint(400, 310 + shiftY));
     }
 
     private static void PrintSection(XGraphics gfx, string header, string text, XPoint point)
@@ -143,11 +161,12 @@ namespace SmartWorking.Office.Gui.ViewModel
       PrintSection(gfx, header, text, point, 200, 100, 16, 10, 20);
     }
 
-    private static void PrintSection(XGraphics gfx, string header, string text, XPoint point, double width, double height, double headerFontSize, double textFontSize, double headerHeight)
+    private static void PrintSection(XGraphics gfx, string header, string text, XPoint point, double width,
+                                     double height, double headerFontSize, double textFontSize, double headerHeight)
     {
-      XFont fontHeader = new XFont("Times New Roman", headerFontSize, XFontStyle.Bold);
-      XFont fontText = new XFont("Times New Roman", textFontSize, XFontStyle.Bold);
-      XTextFormatter tf = new XTextFormatter(gfx);
+      var fontHeader = new XFont("Times New Roman", headerFontSize, XFontStyle.Bold);
+      var fontText = new XFont("Times New Roman", textFontSize, XFontStyle.Bold);
+      var tf = new XTextFormatter(gfx);
       tf.DrawString(header, fontHeader, XBrushes.Black, new XRect(point.X, point.Y, width, height));
       tf.DrawString(text, fontText, XBrushes.Black, new XRect(point.X + 5, point.Y + headerHeight, width, height));
     }

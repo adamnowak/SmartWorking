@@ -1,43 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace SmartWorking.Office.Gui.View.Shared.MessageBox
 {
-  class MessageBoxImageConverter : IValueConverter
+  internal class MessageBoxImageConverter : IValueConverter
   {
+    #region IValueConverter Members
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       switch (value is MessageBoxImage ? (MessageBoxImage) value : MessageBoxImage.None)
       {
         case MessageBoxImage.Error:
-          return (BitmapImage)Application.Current.FindResource("ErrorImageSource");
+          return Application.Current.FindResource("ErrorImageSource");
         case MessageBoxImage.Question:
-          return (BitmapImage)Application.Current.FindResource("QuestionImageSource");
+          return Application.Current.FindResource("QuestionImageSource");
         case MessageBoxImage.Warning:
-          return (BitmapImage)Application.Current.FindResource("WarningImageSource");
+          return Application.Current.FindResource("WarningImageSource");
       }
-      return (BitmapImage)Application.Current.FindResource("InformationImageSource");
+      return Application.Current.FindResource("InformationImageSource");
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
       throw new NotImplementedException();
     }
+
+    #endregion
   }
 
-  class ButtonVisibilityConverter : IValueConverter
+  internal class ButtonVisibilityConverter : IValueConverter
   {
+    #region IValueConverter Members
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       string sParameter = (parameter is string ? (string) parameter : string.Empty);
-      switch (value is MessageBoxButton ? (MessageBoxButton)value : MessageBoxButton.OK)
+      switch (value is MessageBoxButton ? (MessageBoxButton) value : MessageBoxButton.OK)
       {
         case MessageBoxButton.OK:
           {
@@ -71,5 +72,7 @@ namespace SmartWorking.Office.Gui.View.Shared.MessageBox
     {
       throw new NotImplementedException();
     }
+
+    #endregion
   }
 }

@@ -8,34 +8,34 @@
 
 		<Shared:PanelLabel Image="{StaticResource MaterialImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Materiał</Shared:PanelLabel>
 		
-        <!--Contractor grid-->
-        <GroupBox Header="Materiał" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
-                <Grid DataContext="{Binding Material}">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto" />
-						<ColumnDefinition />
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-					</Grid.RowDefinitions>
+		<!--Contractor grid-->
+		<GroupBox Header="Materiał" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
+			<Grid DataContext="{Binding Material}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
 
-					<!--Debug only-->
-                    <TextBlock Text="Id:" Grid.Row="0" />
-					<!--End Debug only-->
-                    <TextBlock Text="Nazwa:" Grid.Row="1" />
-                    <TextBlock Text="Skrót:" Grid.Row="2" />
+				<!--Debug only-->
+				<TextBlock Text="Id:" Grid.Row="0" />
+				<!--End Debug only-->
+				<TextBlock Text="Nazwa:" Grid.Row="1" />
+				<TextBlock Text="Skrót:" Grid.Row="2" />
 
 
-					<!--End Debug only-->
-					<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
-					<!--Debug only-->
-					<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
-					<TextBox Text="{Binding InternalName}" Grid.Row="2" Grid.Column="1" />
-				</Grid>
+				<!--End Debug only-->
+				<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+				<!--Debug only-->
+				<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
+				<TextBox Text="{Binding InternalName}" Grid.Row="2" Grid.Column="1" />
+			</Grid>
 		</GroupBox>
 
 		<!--Buttons-->

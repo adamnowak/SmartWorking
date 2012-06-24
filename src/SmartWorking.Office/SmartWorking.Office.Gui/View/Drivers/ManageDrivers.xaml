@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="SmartWorking.Office.Gui.View.Drivers.ManageDrivers" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:ViewModel="clr-namespace:SmartWorking.Office.Gui.ViewModel" xmlns:Converters="clr-namespace:SmartWorking.Office.Gui.View.Shared.Converters" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
-    </UserControl.Resources>    
-    <Grid>
+	<UserControl.Resources>
+		<Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
+	</UserControl.Resources>
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="50" />
 			<RowDefinition Height="*" MinHeight="200" />
@@ -11,38 +11,37 @@
 		<Shared:PanelLabel Image="{StaticResource DriverImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kierowcy</Shared:PanelLabel>
 
 
-        <GroupBox Header="Kierowcy" Grid.Row="1" Style="{StaticResource manageDialogMainPanel}">
+		<GroupBox Header="Kierowcy" Grid.Row="1" Style="{StaticResource manageDialogMainPanel}">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 				<StackPanel>
-                    <Shared:DescriptionButton Command="{Binding CreateDriverCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
-                    <Shared:DescriptionButton Command="{Binding EditDriverCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-                    <Shared:DescriptionButton Command="{Binding DeleteDriverCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
-                    <Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseDriverCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
-                        <Shared:DescriptionButton.Visibility>
-                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                <MultiBinding.Bindings>
-                                    <Binding Path="DialogMode" />
-                                    <Binding Source="{x:Static ViewModel:DialogMode.Chose}" />
-                                    <Binding Source="{x:Static Visibility.Visible}" />
-                                    <Binding Source="{x:Static Visibility.Collapsed}" />
-                                </MultiBinding.Bindings>
-                            </MultiBinding>
-                        </Shared:DescriptionButton.Visibility>
-                    </Shared:DescriptionButton>
-                </StackPanel>
-				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableDriver}" ItemsSource="{Binding Items}"
-                           Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
+					<Shared:DescriptionButton Command="{Binding CreateDriverCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
+					<Shared:DescriptionButton Command="{Binding EditDriverCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+					<Shared:DescriptionButton Command="{Binding DeleteDriverCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
+					<Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseDriverCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
+						<Shared:DescriptionButton.Visibility>
+							<MultiBinding Converter="{StaticResource comparingMultiConverter}">
+								<MultiBinding.Bindings>
+									<Binding Path="DialogMode" />
+									<Binding Source="{x:Static ViewModel:DialogMode.Chose}" />
+									<Binding Source="{x:Static Visibility.Visible}" />
+									<Binding Source="{x:Static Visibility.Collapsed}" />
+								</MultiBinding.Bindings>
+							</MultiBinding>
+						</Shared:DescriptionButton.Visibility>
+					</Shared:DescriptionButton>
+				</StackPanel>
+				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableDriver}" ItemsSource="{Binding Items}" Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 					<DataGrid.Columns>
 						<!--Debug only-->
 						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
 						<!--End Debug only-->
 						<DataGridTextColumn Header="Imię" Binding="{Binding Name}" />
 						<DataGridTextColumn Header="Nazwisko" Binding="{Binding Surname}" />
-                        <DataGridTextColumn Header="Numer telefonu" Binding="{Binding Phone}" />
+						<DataGridTextColumn Header="Numer telefonu" Binding="{Binding Phone}" />
 
 					</DataGrid.Columns>
 				</DataGrid>

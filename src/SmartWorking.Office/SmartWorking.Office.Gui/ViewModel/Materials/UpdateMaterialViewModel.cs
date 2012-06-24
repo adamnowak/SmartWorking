@@ -2,8 +2,6 @@
 using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using SmartWorking.Office.Entities;
-using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -129,7 +127,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }

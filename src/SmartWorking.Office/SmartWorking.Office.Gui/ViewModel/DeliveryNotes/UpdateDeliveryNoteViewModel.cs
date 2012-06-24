@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
 using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using PdfSharp.Drawing;
-using PdfSharp.Drawing.Layout;
-using PdfSharp.Pdf;
-using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
@@ -19,11 +13,11 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
   /// </summary>
   public class UpdateDeliveryNoteViewModel : ModalDialogViewModelBase
   {
-    private ICommand _selectBuildingCommand;
-    private ICommand _selectRecipeCommand;
-    private ICommand _selectDriverCommand;
-    private ICommand _selectCarCommand;
     private ICommand _createAndPrintDeliveryNoteCommand;
+    private ICommand _selectBuildingCommand;
+    private ICommand _selectCarCommand;
+    private ICommand _selectDriverCommand;
+    private ICommand _selectRecipeCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="UpdateDeliveryNoteViewModel"/> class.
@@ -98,6 +92,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     #endregion
 
     #region SelectBuildingCommand
+
     /// <summary>
     /// Gets the select building command.
     /// </summary>
@@ -119,12 +114,12 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       string errorCaption = "Wybieranie WZ'tki!";
       try
       {
-        DeliveryNotePackage.BuildingAndContractor = ModalDialogService.SelectBuildingAndContractorPackage(ModalDialogService, ServiceFactory);
+        DeliveryNotePackage.BuildingAndContractor =
+          ModalDialogService.SelectBuildingAndContractorPackage(ModalDialogService, ServiceFactory);
         RaisePropertyChanged("DeliveryNotePackage");
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -139,9 +134,11 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         Cancel();
       }
     }
+
     #endregion
 
     #region SelectRecipeCommand
+
     public ICommand SelectRecipeCommand
     {
       get
@@ -162,7 +159,6 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -177,24 +173,28 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         Cancel();
       }
     }
+
     #endregion
 
     #region CreateAndPrintDeliveryNoteCommand
+
     public ICommand CreateAndPrintDeliveryNoteCommand
     {
       get
       {
         if (_createAndPrintDeliveryNoteCommand == null)
-          _createAndPrintDeliveryNoteCommand = new RelayCommand(CreateAndPrintDeliveryNote, CanCreateAndPrintDeliveryNote);
+          _createAndPrintDeliveryNoteCommand = new RelayCommand(CreateAndPrintDeliveryNote,
+                                                                CanCreateAndPrintDeliveryNote);
         return _createAndPrintDeliveryNoteCommand;
       }
     }
 
     private bool CanCreateAndPrintDeliveryNote()
     {
-      return DeliveryNotePackage.BuildingAndContractor != null && DeliveryNotePackage.BuildingAndContractor.Building != null && 
-        DeliveryNotePackage.BuildingAndContractor.Contractor != null &&
-        DeliveryNotePackage.Car != null && DeliveryNotePackage.Driver != null && DeliveryNotePackage.Recipe != null;
+      return DeliveryNotePackage.BuildingAndContractor != null &&
+             DeliveryNotePackage.BuildingAndContractor.Building != null &&
+             DeliveryNotePackage.BuildingAndContractor.Contractor != null &&
+             DeliveryNotePackage.Car != null && DeliveryNotePackage.Driver != null && DeliveryNotePackage.Recipe != null;
     }
 
     private void CreateAndPrintDeliveryNote()
@@ -222,10 +222,10 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         {
           throw new SmartWorkingException("Recipe is not defined.");
         }
-       
+
 
         using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
-        {          
+        {
           int deliveryNoteId = service.UpdateDeliveryNote(DeliveryNotePackage.GetDeliveryNotePrimitiveWithReference());
           DeliveryNotePackage.DeliveryNote.Id = deliveryNoteId;
         }
@@ -236,7 +236,6 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -251,10 +250,11 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         Cancel();
       }
     }
+
     #endregion
 
-
     #region SelectDriverCommand
+
     public ICommand SelectDriverCommand
     {
       get
@@ -275,7 +275,6 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -290,9 +289,11 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         Cancel();
       }
     }
+
     #endregion
 
     #region SelectCarCommand
+
     public ICommand SelectCarCommand
     {
       get
@@ -313,7 +314,6 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -328,9 +328,11 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         Cancel();
       }
     }
+
     #endregion
 
     #region PrintDeliveryNote
+
     private void PrintDeliveryNote(DeliveryNotePackage deliveryNotePackage)
     {
       string errorCaption = "Drukowanie WZ'tki!";
@@ -340,7 +342,6 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -355,6 +356,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         Cancel();
       }
     }
+
     #endregion
   }
 

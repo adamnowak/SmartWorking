@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Windows;
-using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Cars;
 using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
 using SmartWorking.Office.Gui.View.Drivers;
 using SmartWorking.Office.Gui.View.Materials;
 using SmartWorking.Office.Gui.View.Recipes;
-using SmartWorking.Office.Gui.View.Shared;
 using SmartWorking.Office.Gui.View.Shared.MessageBox;
 using SmartWorking.Office.Gui.ViewModel;
 using SmartWorking.Office.Gui.ViewModel.Cars;
@@ -20,7 +18,6 @@ using SmartWorking.Office.Gui.ViewModel.Shared.MessageBox;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using MessageBox = SmartWorking.Office.Gui.View.Shared.MessageBox.MessageBox;
-using UpdateCar = SmartWorking.Office.Gui.View.Cars.UpdateCar;
 
 namespace SmartWorking.Office.Gui.View
 {
@@ -42,7 +39,7 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public ContractorPrimitive EditContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                     ContractorPrimitive contractorToEdit)
+                                              ContractorPrimitive contractorToEdit)
     {
       var viewModel = new UpdateContractorViewModel(modalDialogService, serviceFactory);
       viewModel.Contractor = contractorToEdit;
@@ -59,7 +56,7 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public BuildingPrimitive CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                   ContractorPrimitive contractor)
+                                            ContractorPrimitive contractor)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       //viewModel.Contractor = contractor;
@@ -75,24 +72,25 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public BuildingPrimitive EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                 BuildingPrimitive building)
+                                          BuildingPrimitive building)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       //viewModel.Contractor = building.Contractor;
-      viewModel.Building = building;      
+      viewModel.Building = building;
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
       return viewModel.Building;
     }
 
-    public BuildingAndContractorPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public BuildingAndContractorPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService,
+                                                                           IServiceFactory serviceFactory)
     {
       var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.ChoseSubItem;
       ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        BuildingAndContractorPackage result = new BuildingAndContractorPackage();
+        var result = new BuildingAndContractorPackage();
         result.Building = viewModel.SelectedBuilding;
         result.Contractor = viewModel.SelectableContractor.SelectedItem.Contractor;
         return result;
@@ -116,8 +114,8 @@ namespace SmartWorking.Office.Gui.View
       return null;
     }
 
-    public DeliveryNotePackage CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory, 
-      BuildingAndContractorPackage buildingAndContractorPackage)
+    public DeliveryNotePackage CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                                  BuildingAndContractorPackage buildingAndContractorPackage)
     {
       var viewModel = new UpdateDeliveryNoteViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Create;
@@ -155,7 +153,7 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public MaterialPrimitive EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                 MaterialPrimitive selectedMaterial)
+                                          MaterialPrimitive selectedMaterial)
     {
       var viewModel = new UpdateMaterialViewModel(modalDialogService, serviceFactory);
       viewModel.Material = selectedMaterial;
@@ -197,7 +195,7 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public RecipePrimitive EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                             RecipePrimitive selectedRecipe)
+                                      RecipePrimitive selectedRecipe)
     {
       var viewModel = new UpdateRecipeViewModel(modalDialogService, serviceFactory);
       viewModel.Recipe = selectedRecipe;
@@ -232,8 +230,9 @@ namespace SmartWorking.Office.Gui.View
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="recipe">The recipe for which the <see cref="RecipeComponent"/>s will be added.</param>
     /// <returns></returns>
-    public RecipeComponentPrimitive CreateRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipePrimitive recipe)
-    {      
+    public RecipeComponentPrimitive CreateRecipeComponent(IModalDialogService modalDialogService,
+                                                          IServiceFactory serviceFactory, RecipePrimitive recipe)
+    {
       var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
       viewModel.RecipeComponent = new RecipeComponentPrimitive();
       viewModel.RecipeComponent.Recipe_Id = recipe.Id;
@@ -253,7 +252,10 @@ namespace SmartWorking.Office.Gui.View
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="recipeComponentAndMaterialPackage">The selected recipe component.</param>
     /// <returns></returns>
-    public RecipeComponentPrimitive EditRecipeComponent(IModalDialogService modalDialogService, IServiceFactory serviceFactory, RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage)
+    public RecipeComponentPrimitive EditRecipeComponent(IModalDialogService modalDialogService,
+                                                        IServiceFactory serviceFactory,
+                                                        RecipeComponentAndMaterialPackage
+                                                          recipeComponentAndMaterialPackage)
     {
       var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
       viewModel.RecipeComponent = recipeComponentAndMaterialPackage.RecipeComponent;
@@ -276,7 +278,8 @@ namespace SmartWorking.Office.Gui.View
       return null;
     }
 
-    public CarPrimitive EditCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory, CarPrimitive selectedCar)
+    public CarPrimitive EditCar(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                CarPrimitive selectedCar)
     {
       var viewModel = new UpdateCarViewModel(modalDialogService, serviceFactory);
       viewModel.Car = selectedCar;
@@ -318,11 +321,11 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public DriverPrimitive EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                             DriverPrimitive selectedDriver)
+                                      DriverPrimitive selectedDriver)
     {
-       var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
-       viewModel.Driver = selectedDriver;
-       viewModel.DialogMode = DialogMode.Update;
+      var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
+      viewModel.Driver = selectedDriver;
+      viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateDriver>.ShowDialog(viewModel);
       return viewModel.Driver;
     }
@@ -349,6 +352,7 @@ namespace SmartWorking.Office.Gui.View
     #endregion
 
     #region MessageBox
+
     /// <summary>
     /// Shows the message box.
     /// </summary>
@@ -361,7 +365,8 @@ namespace SmartWorking.Office.Gui.View
     /// <param name="info">The info.</param>
     /// <returns>Result depends button which was pressed.</returns>
     public MessageBoxResult ShowMessageBox(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-      MessageBoxImage icon, string caption, string message, MessageBoxButton button, string info)
+                                           MessageBoxImage icon, string caption, string message, MessageBoxButton button,
+                                           string info)
     {
       var viewModel = new MessageBoxViewModel(modalDialogService, serviceFactory, icon, caption, message, button, info);
       return MessageBoxHelper<MessageBox>.ShowDialog(viewModel);

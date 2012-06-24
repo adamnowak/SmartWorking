@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.ServiceModel;
-using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Cars;
-using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -31,15 +28,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
       : base(modalDialogService, serviceFactory)
     {
       SelectableCar = new SelectableViewModelBase<CarPrimitive>();
-    }
-
-    /// <summary>
-    /// Initializes view model properties.
-    /// </summary>
-    public override void Initialize()
-    {
-        base.Initialize();
-        LoadCars();
     }
 
     /// <summary>
@@ -107,6 +95,15 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
           _deleteCarCommand = new RelayCommand(DeleteCar, CanDeleteCar);
         return _deleteCarCommand;
       }
+    }
+
+    /// <summary>
+    /// Initializes view model properties.
+    /// </summary>
+    public override void Initialize()
+    {
+      base.Initialize();
+      LoadCars();
     }
 
     /// <summary>

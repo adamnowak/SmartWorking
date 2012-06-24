@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
-using SmartWorking.Office.Gui.ViewModel;
 using SmartWorking.Office.Gui.ViewModel.Shared.MessageBox;
 
 namespace SmartWorking.Office.Gui.View.Shared.MessageBox
@@ -28,7 +27,7 @@ namespace SmartWorking.Office.Gui.View.Shared.MessageBox
       window.Content = new TWindow();
       window.DataContext = viewModel;
       window.Title = "Smart Working  (office) - " + viewModel.Title;
-      
+
       //if (window.Content is Control)
       //{
       //  window.Height = ((Control) window.Content).Height;

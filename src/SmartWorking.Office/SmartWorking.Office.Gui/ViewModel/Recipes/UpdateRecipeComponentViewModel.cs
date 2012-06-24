@@ -2,8 +2,6 @@
 using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using SmartWorking.Office.Entities;
-using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -46,7 +44,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       get
       {
         if (_createOrUpdateRecipeComponentCommand == null)
-          _createOrUpdateRecipeComponentCommand = new RelayCommand(CreateOrUpdateRecipeComponent, CanCreateOrUpdateRecipeComponent);
+          _createOrUpdateRecipeComponentCommand = new RelayCommand(CreateOrUpdateRecipeComponent,
+                                                                   CanCreateOrUpdateRecipeComponent);
         return _createOrUpdateRecipeComponentCommand;
       }
     }
@@ -132,7 +131,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
 
     #endregion
 
-
     /// <summary>
     /// Determines whether <see cref="CreateOrUpdateRecipeComponentCommand"/> can be execute.
     /// </summary>
@@ -167,7 +165,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -184,6 +181,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     }
 
     #region SelectMaterialCommand
+
     /// <summary>
     /// Gets the select material command.
     /// </summary>
@@ -220,7 +218,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -235,6 +232,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
         Cancel();
       }
     }
+
     #endregion
   }
 }

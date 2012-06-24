@@ -2,7 +2,6 @@
 using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
@@ -60,6 +59,39 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
     }
 
+    #region Building property
+
+    /// <summary>
+    /// The <see cref="Building" /> property's name.
+    /// </summary>
+    public const string BuildingPropertyName = "Building";
+
+    private BuildingPrimitive _building;
+
+    /// <summary>
+    /// Gets the Building property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public BuildingPrimitive Building
+    {
+      get { return _building; }
+
+      set
+      {
+        if (_building == value)
+        {
+          return;
+        }
+        _building = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(BuildingPropertyName);
+      }
+    }
+
+    #endregion
+
     //#region Contractor property
 
     ///// <summary>
@@ -94,39 +126,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     //#endregion
 
-    #region Building property
-
-    /// <summary>
-    /// The <see cref="Building" /> property's name.
-    /// </summary>
-    public const string BuildingPropertyName = "Building";
-
-    private BuildingPrimitive _building;
-
-    /// <summary>
-    /// Gets the Building property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public BuildingPrimitive Building
-    {
-      get { return _building; }
-
-      set
-      {
-        if (_building == value)
-        {
-          return;
-        }
-        _building = value;
-        // Update bindings, no broadcast
-        RaisePropertyChanged(BuildingPropertyName);
-      }
-    }
-
-    #endregion
-
     private bool CanCreateOrUpdatBuilding()
     {
       if (Building == null)
@@ -155,7 +154,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
           {
             if (Building.Id <= 0)
               throw new Exception("Building has wrong Id (<=0).");
-
           }
           if (Building.Contractor_Id <= 0)
             throw new Exception("Building has to belong to Contractor.");
@@ -165,7 +163,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }

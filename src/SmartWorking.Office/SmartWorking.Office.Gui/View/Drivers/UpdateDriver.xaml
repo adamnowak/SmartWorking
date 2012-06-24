@@ -8,35 +8,35 @@
 
 		<Shared:PanelLabel Image="{StaticResource DriverImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kierowca</Shared:PanelLabel>
 		
-        <!--Contractor grid-->
-        <GroupBox Header="Kierowca" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
-                <Grid DataContext="{Binding Driver}">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto" />
-						<ColumnDefinition />
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-					</Grid.RowDefinitions>
+		<!--Contractor grid-->
+		<GroupBox Header="Kierowca" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
+			<Grid DataContext="{Binding Driver}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
 
-					<!--Debug only-->
-                    <TextBlock Text="Id:" Grid.Row="0" />
-					<!--End Debug only-->
-                    <TextBlock Text="Imię:" Grid.Row="1" />
-                    <TextBlock Text="Nazwisko:" Grid.Row="2" />
-                    <TextBlock Text="Numer Telefonu:" Grid.Row="3" />
+				<!--Debug only-->
+				<TextBlock Text="Id:" Grid.Row="0" />
+				<!--End Debug only-->
+				<TextBlock Text="Imię:" Grid.Row="1" />
+				<TextBlock Text="Nazwisko:" Grid.Row="2" />
+				<TextBlock Text="Numer Telefonu:" Grid.Row="3" />
 
 
-					<!--End Debug only-->
-					<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
-					<!--Debug only-->
-					<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
-					<TextBox Text="{Binding Surname}" Grid.Row="2" Grid.Column="1" />
-                    <TextBox Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" />
-				</Grid>
+				<!--End Debug only-->
+				<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+				<!--Debug only-->
+				<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
+				<TextBox Text="{Binding Surname}" Grid.Row="2" Grid.Column="1" />
+				<TextBox Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" />
+			</Grid>
 		</GroupBox>
 
 		<!--Buttons-->

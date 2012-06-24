@@ -3,9 +3,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
-using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -16,8 +14,8 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
   /// </summary>
   public class ManageDeliveryNotesViewModel : ModalDialogViewModelBase
   {
-    private ICommand _createDeliveryNoteCommand;
     private ICommand _cancelDeliveryNoteCommand;
+    private ICommand _createDeliveryNoteCommand;
     private ICommand _printDeliveryNoteCommand;
 
     /// <summary>
@@ -34,6 +32,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     }
 
     #region ShowCanceledDeliveryNotes
+
     /// <summary>
     /// The <see cref="ShowCanceledDeliveryNotes" /> property's name.
     /// </summary>
@@ -50,10 +49,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     /// </summary>
     public bool ShowCanceledDeliveryNotes
     {
-      get
-      {
-        return _showCanceledDeliveryNotes;
-      }
+      get { return _showCanceledDeliveryNotes; }
 
       set
       {
@@ -67,6 +63,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         RaisePropertyChanged(ShowCanceledDeliveryNotesPropertyName);
       }
     }
+
     #endregion
 
     /// <summary>
@@ -92,6 +89,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     }
 
     #region CancelDeliveryNoteCommand
+
     public ICommand CancelDeliveryNoteCommand
     {
       get
@@ -133,9 +131,11 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     {
       return SelectableDeliveryNote.SelectedItem != null && SelectableDeliveryNote.SelectedItem.DeliveryNote != null;
     }
+
     #endregion
 
     #region CreateDeliveryNoteCommand
+
     /// <summary>
     /// Gets the create delivery note command.
     /// </summary>
@@ -164,7 +164,6 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -179,6 +178,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         Cancel();
       }
     }
+
     #endregion
 
     /// <summary>
@@ -209,7 +209,6 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -225,8 +224,8 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
     }
 
-
     #region PrintDeliveryNoteCommand
+
     /// <summary>
     /// Gets the create delivery note command.
     /// </summary>
@@ -260,7 +259,6 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -275,7 +273,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         Cancel();
       }
     }
+
     #endregion
-    
   }
 }

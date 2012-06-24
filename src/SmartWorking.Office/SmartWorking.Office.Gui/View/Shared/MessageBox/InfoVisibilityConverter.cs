@@ -5,8 +5,10 @@ using System.Windows.Data;
 
 namespace SmartWorking.Office.Gui.View.Shared.MessageBox
 {
-  class InfoVisibilityConverter : IValueConverter
+  internal class InfoVisibilityConverter : IValueConverter
   {
+    #region IValueConverter Members
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       bool shouldBeShown = (value is string) ? !string.IsNullOrEmpty((string) value) : false;
@@ -17,5 +19,7 @@ namespace SmartWorking.Office.Gui.View.Shared.MessageBox
     {
       throw new NotImplementedException();
     }
+
+    #endregion
   }
 }

@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="SmartWorking.Office.Gui.View.Recipes.ManageRecipes" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:ViewModel="clr-namespace:SmartWorking.Office.Gui.ViewModel" xmlns:Converters="clr-namespace:SmartWorking.Office.Gui.View.Shared.Converters" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
-    </UserControl.Resources>
+	<UserControl.Resources>
+		<Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
+	</UserControl.Resources>
 
 	<Grid>
 		<Grid.RowDefinitions>
@@ -25,30 +25,29 @@
 						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
 					<StackPanel>
-                        <Shared:DescriptionButton Command="{Binding CreateRecipeCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
-                        <Shared:DescriptionButton Command="{Binding EditRecipeCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-                        <Shared:DescriptionButton Command="{Binding DeleteRecipeCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
-                        <Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseRecipeCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
-                            <Shared:DescriptionButton.Visibility>
-                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                    <MultiBinding.Bindings>
-                                        <Binding Path="DialogMode" />
-                                        <Binding Source="{x:Static ViewModel:DialogMode.Chose}" />
-                                        <Binding Source="{x:Static Visibility.Visible}" />
-                                        <Binding Source="{x:Static Visibility.Collapsed}" />
-                                    </MultiBinding.Bindings>
-                                </MultiBinding>
-                            </Shared:DescriptionButton.Visibility>
-                        </Shared:DescriptionButton>
-                    </StackPanel>
-                    <DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableRecipe}" ItemsSource="{Binding Items}"
-                              Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
+						<Shared:DescriptionButton Command="{Binding CreateRecipeCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
+						<Shared:DescriptionButton Command="{Binding EditRecipeCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+						<Shared:DescriptionButton Command="{Binding DeleteRecipeCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
+						<Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseRecipeCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
+							<Shared:DescriptionButton.Visibility>
+								<MultiBinding Converter="{StaticResource comparingMultiConverter}">
+									<MultiBinding.Bindings>
+										<Binding Path="DialogMode" />
+										<Binding Source="{x:Static ViewModel:DialogMode.Chose}" />
+										<Binding Source="{x:Static Visibility.Visible}" />
+										<Binding Source="{x:Static Visibility.Collapsed}" />
+									</MultiBinding.Bindings>
+								</MultiBinding>
+							</Shared:DescriptionButton.Visibility>
+						</Shared:DescriptionButton>
+					</StackPanel>
+					<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableRecipe}" ItemsSource="{Binding Items}" Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 						<DataGrid.Columns>
 							<!--Debug only-->
 							<DataGridTextColumn Header="Id" Binding="{Binding Recipe.Id}" />
 							<!--End Debug only-->
-                            <DataGridTextColumn Header="Nazwa" Binding="{Binding Recipe.Name}" />
-                            <DataGridTextColumn Header="Skrót" Binding="{Binding Recipe.InternalName}" />
+							<DataGridTextColumn Header="Nazwa" Binding="{Binding Recipe.Name}" />
+							<DataGridTextColumn Header="Skrót" Binding="{Binding Recipe.InternalName}" />
 						</DataGrid.Columns>
 					</DataGrid>
 				</Grid>
@@ -70,19 +69,19 @@
 							<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
 						</Grid.ColumnDefinitions>
 						<StackPanel Grid.Column="1">
-                            <Shared:DescriptionButton Command="{Binding CreateRecipeComponentCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
-                            <Shared:DescriptionButton Command="{Binding EditRecipeComponentCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-                            <Shared:DescriptionButton Command="{Binding DeleteRecipeComponentCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
+							<Shared:DescriptionButton Command="{Binding CreateRecipeComponentCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
+							<Shared:DescriptionButton Command="{Binding EditRecipeComponentCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+							<Shared:DescriptionButton Command="{Binding DeleteRecipeComponentCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
 						</StackPanel>
-                        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedRecipeComponentAndMaterialPackage}" ItemsSource="{Binding SelectableRecipe.SelectedItem.RecipeComponentAndMaterialList}">
+						<DataGrid Grid.Row="1" SelectedItem="{Binding SelectedRecipeComponentAndMaterialPackage}" ItemsSource="{Binding SelectableRecipe.SelectedItem.RecipeComponentAndMaterialList}">
 							<DataGrid.Columns>
 								<!--Debug only-->
-                                <DataGridTextColumn Header="Id" Binding="{Binding RecipeComponent.Id}" />
+								<DataGridTextColumn Header="Id" Binding="{Binding RecipeComponent.Id}" />
 								<!--End Debug only-->
 								<DataGridTextColumn Header="Nazwa" Binding="{Binding Material.Name}" />
-                                <DataGridTextColumn Header="Skrót" Binding="{Binding Material.InternalName}" />
-                                <DataGridTextColumn Header="Ilość" Binding="{Binding RecipeComponent.Amount}" />
-                            </DataGrid.Columns>
+								<DataGridTextColumn Header="Skrót" Binding="{Binding Material.InternalName}" />
+								<DataGridTextColumn Header="Ilość" Binding="{Binding RecipeComponent.Amount}" />
+							</DataGrid.Columns>
 						</DataGrid>
 					</Grid>
 				</Grid>

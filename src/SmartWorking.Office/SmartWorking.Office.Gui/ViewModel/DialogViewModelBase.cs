@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -53,7 +52,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// </summary>
     public IModalDialogService ModalDialogService { get; protected set; }
 
-    #region IModalDialogViewModel Members
+    #region IDialogViewModel Members
 
     /// <summary>
     /// Raise when request about close dialog occurs.
@@ -81,6 +80,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     ///   <c>true</c> if closing; otherwise, <c>false</c>.
     /// </value>
     public bool Closing { get; private set; }
+
     #endregion
 
     /// <summary>
@@ -109,8 +109,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// </summary>
     protected void Cancel()
     {
-        CloseModalDialog(true);
-      
+      CloseModalDialog(true);
     }
   }
 }

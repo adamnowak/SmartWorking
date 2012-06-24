@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="SmartWorking.Office.Gui.View.Materials.ManageMaterials" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:ViewModel="clr-namespace:SmartWorking.Office.Gui.ViewModel" xmlns:Converters="clr-namespace:SmartWorking.Office.Gui.View.Shared.Converters" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
-    </UserControl.Resources>
-    <Grid>
+	<UserControl.Resources>
+		<Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
+	</UserControl.Resources>
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="50" />
 			<RowDefinition Height="*" MinHeight="200" />
@@ -11,31 +11,30 @@
 		<Shared:PanelLabel Image="{StaticResource MaterialImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Materiały</Shared:PanelLabel>
 
 
-        <GroupBox Header="Materiały" Grid.Row="1" Style="{StaticResource manageDialogMainPanel}">
+		<GroupBox Header="Materiały" Grid.Row="1" Style="{StaticResource manageDialogMainPanel}">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 				<StackPanel>
-                    <Shared:DescriptionButton Command="{Binding CreateMaterialCommand}" Image="{StaticResource NewImageSource}" >Dodaj</Shared:DescriptionButton>
-                    <Shared:DescriptionButton Command="{Binding EditMaterialCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-                    <Shared:DescriptionButton Command="{Binding DeleteMaterialCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
-                    <Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseMaterialCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
-                        <Shared:DescriptionButton.Visibility>
-                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                <MultiBinding.Bindings>
-                                    <Binding Path="DialogMode" />
-                                    <Binding Source="{x:Static ViewModel:DialogMode.Chose}" />
-                                    <Binding Source="{x:Static Visibility.Visible}" />
-                                    <Binding Source="{x:Static Visibility.Collapsed}" />
-                                </MultiBinding.Bindings>
-                            </MultiBinding>
-                        </Shared:DescriptionButton.Visibility>
-                    </Shared:DescriptionButton>
+					<Shared:DescriptionButton Command="{Binding CreateMaterialCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
+					<Shared:DescriptionButton Command="{Binding EditMaterialCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+					<Shared:DescriptionButton Command="{Binding DeleteMaterialCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
+					<Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseMaterialCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
+						<Shared:DescriptionButton.Visibility>
+							<MultiBinding Converter="{StaticResource comparingMultiConverter}">
+								<MultiBinding.Bindings>
+									<Binding Path="DialogMode" />
+									<Binding Source="{x:Static ViewModel:DialogMode.Chose}" />
+									<Binding Source="{x:Static Visibility.Visible}" />
+									<Binding Source="{x:Static Visibility.Collapsed}" />
+								</MultiBinding.Bindings>
+							</MultiBinding>
+						</Shared:DescriptionButton.Visibility>
+					</Shared:DescriptionButton>
 				</StackPanel>
-				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableMaterial}" ItemsSource="{Binding Items}"
-                          Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
+				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableMaterial}" ItemsSource="{Binding Items}" Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 					<DataGrid.Columns>
 						<!--Debug only-->
 						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />

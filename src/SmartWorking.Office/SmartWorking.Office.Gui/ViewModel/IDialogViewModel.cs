@@ -27,7 +27,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     ///   <c>true</c> if closing; otherwise, <c>false</c>.
     /// </value>
     bool Closing { get; }
-   
+
     /// <summary>
     /// Raise when request about close dialog occurs.
     /// </summary>

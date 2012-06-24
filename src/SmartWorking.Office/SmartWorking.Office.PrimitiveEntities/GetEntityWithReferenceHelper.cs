@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SmartWorking.Office.PrimitiveEntities;
 
-namespace SmartWorking.Office.Entities
+
+namespace SmartWorking.Office.PrimitiveEntities
 {
   public static class GetEntityWithReferenceHelper
   {

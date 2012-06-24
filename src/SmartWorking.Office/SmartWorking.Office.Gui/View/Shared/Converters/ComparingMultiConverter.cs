@@ -10,6 +10,8 @@ namespace SmartWorking.Office.Gui.View.Shared.Converters
   /// </summary>  
   public class ComparingMultiConverter : IMultiValueConverter
   {
+    #region IMultiValueConverter Members
+
     /// <summary>
     /// Compare two first element in values array and return values[2] if the elements are equal; otherwise values[3].
     /// </summary>
@@ -46,5 +48,7 @@ namespace SmartWorking.Office.Gui.View.Shared.Converters
     {
       throw new NotImplementedException();
     }
+
+    #endregion
   }
 }

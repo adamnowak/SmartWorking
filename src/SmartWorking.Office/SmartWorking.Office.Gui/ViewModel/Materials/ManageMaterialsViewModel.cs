@@ -3,9 +3,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View.Materials;
-using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -16,10 +14,10 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
   /// </summary>
   public class ManageMaterialsViewModel : ModalDialogViewModelBase
   {
-    private ICommand _createMaterialCommand;
-    private ICommand _editMaterialCommand;
-    private ICommand _deleteMaterialCommand;
     private ICommand _choseMaterialCommand;
+    private ICommand _createMaterialCommand;
+    private ICommand _deleteMaterialCommand;
+    private ICommand _editMaterialCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ManageMaterialsViewModel"/> class.
@@ -53,36 +51,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
         if (_choseMaterialCommand == null)
           _choseMaterialCommand = new RelayCommand(ChoseMaterial, CanChoseMaterial);
         return _choseMaterialCommand;
-      }
-    }
-
-    private bool CanChoseMaterial()
-    {
-      return SelectableMaterial != null && SelectableMaterial.SelectedItem != null && DialogMode == DialogMode.Chose;
-    }
-
-    private void ChoseMaterial()
-    {
-      string errorCaption = "Wybieranie materiału!";
-      try
-      {
-        CloseModalDialog();
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
       }
     }
 
@@ -132,6 +100,43 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     }
 
     /// <summary>
+    /// Gets the title of modal dialog.
+    /// </summary>
+    public override string Title
+    {
+      get { return "Wybierz materiał."; }
+    }
+
+    private bool CanChoseMaterial()
+    {
+      return SelectableMaterial != null && SelectableMaterial.SelectedItem != null && DialogMode == DialogMode.Chose;
+    }
+
+    private void ChoseMaterial()
+    {
+      string errorCaption = "Wybieranie materiału!";
+      try
+      {
+        CloseModalDialog();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+
+    /// <summary>
     /// Determines whether this instance [can edit material].
     /// </summary>
     /// <returns>
@@ -155,7 +160,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -199,7 +203,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -229,7 +232,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -244,15 +246,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
         Cancel();
       }
     }
-
-    /// <summary>
-    /// Gets the title of modal dialog.
-    /// </summary>
-    public override string Title
-    {
-      get { return "Wybierz materiał."; }
-    }
-
 
 
     /// <summary>
@@ -278,7 +271,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
       catch (FaultException<ExceptionDetail> f)
       {
-
         ShowError(errorCaption, f);
         Cancel();
       }
@@ -292,9 +284,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
         ShowError(errorCaption, e);
         Cancel();
       }
-
     }
-
-
   }
 }
