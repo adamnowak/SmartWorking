@@ -4,12 +4,11 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Gui.View;
-using SmartWorking.Office.Services.Factory.Local;
 using SmartWorking.Office.Services.Interfaces;
 #if IIS_USED
 using SmartWorking.Office.Services.Factory.IIS;
 #else
-
+using SmartWorking.Office.Services.Factory.Local;
 #endif
 
 namespace SmartWorking.Office.Gui.ViewModel

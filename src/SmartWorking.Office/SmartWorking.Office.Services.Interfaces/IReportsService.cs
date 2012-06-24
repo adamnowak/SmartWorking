@@ -19,8 +19,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="filter">The recipes filter.</param>
     /// <returns>List of Recipe filtered by <paramref name="filter"/>. Recipe contains list of Material contains to this Recipe.</returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetCarsAndDriversReport/?startTime={startTime}#endTime={endTime}",
-          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    [WebInvoke(Method = "POST", UriTemplate = "/GetCarsAndDriversReport/?startTime={startTime}#endTime={endTime}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+          BodyStyle = WebMessageBodyStyle.Wrapped)]
     ReportPackage<CarPrimitive, DriverPrimitive> GetCarsAndDriversReport(DateTime startTime, DateTime endTime); 
   }
 }
