@@ -1,32 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.PrimitiveEntities.Reports;
 
-namespace SmartWorking.Office.Gui.View.Shared.Converters
+namespace SmartWorking.Office.Gui.View.Shared.Converters.Reports
 {
-  public class ReportPackageToColumnsConverter :IValueConverter
+  public abstract class ReportPackageToColumnsConverter<TRowElement, TColumnElement> 
+    : IValueConverter
+    where TRowElement : IPrimitive
+    where TColumnElement : IPrimitive
   {
+    protected abstract string GetHeaderXDescription();
+
+    protected abstract string GetColumnName(TColumnElement columnElement);
+
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       var columns = new ObservableCollection<DataGridColumn>();
-      ReportPackage<DriverPrimitive, CarPrimitive> reportPackage = value as ReportPackage<DriverPrimitive, CarPrimitive>;      
+      ReportPackage<TRowElement, TColumnElement> reportPackage = value as ReportPackage<TRowElement, TColumnElement>;      
       if (reportPackage != null)
       {
         Binding bindingHeaderX = new Binding { Path = new PropertyPath("HeaderX") };
-        DataGridTextColumn columnHeaderX = new DataGridTextColumn { Header = "Kierowcy\\Samochody", Binding = bindingHeaderX };
+        DataGridTextColumn columnHeaderX = new DataGridTextColumn { Header = GetHeaderXDescription(), Binding = bindingHeaderX };
         columns.Add(columnHeaderX);
         foreach (var columnElement in reportPackage.ColumntElements)
         {
           Binding binding = new Binding { Path = new PropertyPath("Column_" + columnElement.Id) };
-          DataGridTextColumn column = new DataGridTextColumn { Header = columnElement.Name, Binding = binding };
+          DataGridTextColumn column = new DataGridTextColumn { Header = GetColumnName(columnElement), Binding = binding };
           columns.Add(column);          
         }
         Binding bindingSume = new Binding { Path = new PropertyPath("Sume") };

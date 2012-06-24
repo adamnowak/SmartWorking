@@ -202,8 +202,12 @@
       <DependentUpon>DriversCarsReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Shared\Converters\DateTimeToShortDateConverter.cs" />
-    <Compile Include="View\Shared\Converters\ReportPackageToColumnsConverter.cs" />
-    <Compile Include="View\Shared\Converters\RowValuesToItemsSourceConverter.cs" />
+    <Compile Include="View\Shared\Converters\Reports\DriverCarReport\DriverCarReportPackageToColumnsConverter.cs" />
+    <Compile Include="View\Shared\Converters\Reports\DriverCarReport\DriverCarRowValueDynamicWrapper.cs" />
+    <Compile Include="View\Shared\Converters\Reports\ReportPackageToColumnsConverter.cs" />
+    <Compile Include="View\Shared\Converters\Reports\RowValueDynamicWrapperBase.cs" />
+    <Compile Include="View\Shared\Converters\Reports\DriverCarReport\DriverCarRowValuesToItemsSourceConverter.cs" />
+    <Compile Include="View\Shared\Converters\Reports\RowValuesToItemsSourceConverterBase.cs" />
     <Compile Include="View\Shared\DataGridExtension.cs" />
     <Compile Include="View\Shared\TwoImagePanelLabel.cs" />
     <Compile Include="View\Shared\TwoImageDescriptionButton.cs" />
