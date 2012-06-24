@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Services.Factory.IIS
@@ -42,6 +43,13 @@ namespace SmartWorking.Office.Services.Factory.IIS
   /// <see cref="IClientChannel"/> for <see cref="IDriversService"/> service.
   /// </summary>
   internal interface IDriversServiceChannel : IDriversService, IClientChannel
+  {
+  }
+
+  /// <summary>
+  /// <see cref="IClientChannel"/> for <see cref="IReportsService"/> service.
+  /// </summary>
+  internal interface IReportsServiceChannel : IReportsService, IClientChannel
   {
   }
 
@@ -129,6 +137,20 @@ namespace SmartWorking.Office.Services.Factory.IIS
       IDriversServiceChannel service = channelFactory.CreateChannel();
       return service;
     }
+
+    /// <summary>
+    /// Gets the reports service.
+    /// </summary>
+    /// <returns>
+    /// Service provides operations to create reports.
+    /// </returns>
+    public IReportsService GetReportsService()
+    {
+      var channelFactory = new ChannelFactory<IReportsServiceChannel>("*");
+      IReportsServiceChannel service = channelFactory.CreateChannel();
+      return service;
+    }
+
     #endregion
   }
 }

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IReportsService.cs" />
     <Compile Include="IDeliveryNotesService.cs" />
     <Compile Include="IDriversService.cs" />
     <Compile Include="ICarsService.cs" />

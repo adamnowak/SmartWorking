@@ -1,4 +1,5 @@
-﻿using SmartWorking.Office.Services.Hosting.Local;
+﻿using System;
+using SmartWorking.Office.Services.Hosting.Local;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Services.Factory.Local
@@ -75,6 +76,18 @@ namespace SmartWorking.Office.Services.Factory.Local
     {
       return new DriversService();
     }
+
+    /// <summary>
+    /// Gets the reports service.
+    /// </summary>
+    /// <returns>
+    /// Service provides operations to create reports.
+    /// </returns>
+    public IReportsService GetReportsService()
+    {
+      return new ReportsService();
+    }
+
     #endregion
   }
 }

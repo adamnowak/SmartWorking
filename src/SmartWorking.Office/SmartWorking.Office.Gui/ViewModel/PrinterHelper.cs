@@ -51,6 +51,8 @@ namespace SmartWorking.Office.Gui.ViewModel
                                                    deliveryNotePackage.DeliveryNote.Id, DateTime.Now));
 
       var document = new PdfDocument();
+
+      
       PdfPage page = document.AddPage();
       XGraphics gfx = XGraphics.FromPdfPage(page);
 
@@ -118,18 +120,18 @@ namespace SmartWorking.Office.Gui.ViewModel
       string recipeInfo =
         ((string.IsNullOrEmpty(deliveryNotePackage.Recipe.Name))
            ? string.Empty
-           : deliveryNotePackage.Recipe.Name + Environment.NewLine) +
+           : "Nazwa: " + deliveryNotePackage.Recipe.Name) +
         ((string.IsNullOrEmpty(deliveryNotePackage.Recipe.InternalName))
            ? string.Empty
-           : deliveryNotePackage.Recipe.InternalName + Environment.NewLine) +
+           : " (" + deliveryNotePackage.Recipe.InternalName + ")") +
         ((string.IsNullOrEmpty(deliveryNotePackage.DeliveryNote.Amount.ToString()))
            ? string.Empty
-           : deliveryNotePackage.DeliveryNote.Amount + Environment.NewLine);
+           : Environment.NewLine + "Ilość: " + deliveryNotePackage.DeliveryNote.Amount + "m3" + Environment.NewLine);
 
       PrintSection(gfx, "Recepta:", recipeInfo, new XPoint(200, 180 + shiftY));
 
       //Car
-      PrintSection(gfx, "Samochod: ",
+      PrintSection(gfx, "Samochód: ",
                    ((string.IsNullOrEmpty(deliveryNotePackage.Car.Name))
                       ? string.Empty
                       : deliveryNotePackage.Car.Name + Environment.NewLine) +
@@ -148,7 +150,7 @@ namespace SmartWorking.Office.Gui.ViewModel
                       : deliveryNotePackage.Driver.Surname + Environment.NewLine) +
                    ((string.IsNullOrEmpty(deliveryNotePackage.Driver.Phone))
                       ? string.Empty
-                      : deliveryNotePackage.Driver.Phone + Environment.NewLine),
+                      : "Tel: " + deliveryNotePackage.Driver.Phone + Environment.NewLine),
                    new XPoint(200, 270 + shiftY));
 
       //Sign
@@ -164,8 +166,9 @@ namespace SmartWorking.Office.Gui.ViewModel
     private static void PrintSection(XGraphics gfx, string header, string text, XPoint point, double width,
                                      double height, double headerFontSize, double textFontSize, double headerHeight)
     {
-      var fontHeader = new XFont("Times New Roman", headerFontSize, XFontStyle.Bold);
-      var fontText = new XFont("Times New Roman", textFontSize, XFontStyle.Bold);
+      XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
+      var fontHeader = new XFont("Times New Roman", headerFontSize, XFontStyle.Bold, options);
+      var fontText = new XFont("Times New Roman", textFontSize, XFontStyle.Bold, options);
       var tf = new XTextFormatter(gfx);
       tf.DrawString(header, fontHeader, XBrushes.Black, new XRect(point.X, point.Y, width, height));
       tf.DrawString(text, fontText, XBrushes.Black, new XRect(point.X + 5, point.Y + headerHeight, width, height));

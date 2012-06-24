@@ -109,6 +109,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         {
           deliveryNotesService.CanceledDeliveryNote(SelectableDeliveryNote.SelectedItem.DeliveryNote);
         }
+        LoadDeliveryNotes(string.Empty, ShowCanceledDeliveryNotes);
       }
       catch (FaultException<ExceptionDetail> f)
       {
@@ -161,6 +162,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       try
       {
         ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory);
+        LoadDeliveryNotes(string.Empty, ShowCanceledDeliveryNotes);
       }
       catch (FaultException<ExceptionDetail> f)
       {

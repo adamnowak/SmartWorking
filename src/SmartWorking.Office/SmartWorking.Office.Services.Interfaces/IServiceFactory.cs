@@ -41,5 +41,11 @@
     /// </summary>
     /// <returns>Service provides operations on drivers.</returns>
     IDriversService GetDriversService();
+
+    /// <summary>
+    /// Gets the reports service.
+    /// </summary>
+    /// <returns>Service provides operations to create reports.</returns>
+    IReportsService GetReportsService();
   }
 }

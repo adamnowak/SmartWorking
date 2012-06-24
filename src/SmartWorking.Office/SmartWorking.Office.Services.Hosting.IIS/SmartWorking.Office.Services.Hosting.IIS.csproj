@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ContractorsService.svc" />
+    <Content Include="ReportsService.svc" />
     <Content Include="DeliveryNotesService.svc" />
     <Content Include="DriversService.svc" />
     <Content Include="CarsService.svc" />
