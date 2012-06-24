@@ -4,13 +4,14 @@ using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Gui.View.Cars;
+using SmartWorking.Office.Gui.View.Reports;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Cars
 {
   /// <summary>
-  ///  View model for <see cref="ManageCars"/> dialog. 
+  ///  View model for <see cref="View.Reports.ManageCars"/> dialog. 
   /// </summary>
   public class ManageCarsViewModel : ModalDialogViewModelBase
   {

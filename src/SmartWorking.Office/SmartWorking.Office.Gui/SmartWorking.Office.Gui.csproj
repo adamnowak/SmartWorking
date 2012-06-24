@@ -95,6 +95,10 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\WPF Toolkit\v3.5.50211.1\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\System.Windows.Interactivity.dll</HintPath>
@@ -110,6 +114,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\WPF Toolkit\v3.5.50211.1\WPFToolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -121,6 +129,7 @@
     <Compile Include="ViewModel\Contractors\UpdateBuildingViewModel.cs" />
     <Compile Include="ViewModel\PrinterHelper.cs" />
     <Compile Include="ViewModel\IDialogViewModel.cs" />
+    <Compile Include="ViewModel\Reports\DriversCarsReportViewModel.cs" />
     <Compile Include="ViewModel\Shared\MessageBox\IMessageBoxViewModel.cs" />
     <Compile Include="ViewModel\ModalDialogViewModelBase.cs" />
     <Compile Include="ViewModel\DeliveryNotes\ManageDeliveryNotesViewModel.cs" />
@@ -189,7 +198,12 @@
     <Compile Include="View\Recipes\UpdateRecipe.xaml.cs">
       <DependentUpon>UpdateRecipe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Reports\DriversCarsReport.xaml.cs">
+      <DependentUpon>DriversCarsReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Shared\Converters\DateTimeToShortDateConverter.cs" />
+    <Compile Include="View\Shared\TwoImagePanelLabel.cs" />
+    <Compile Include="View\Shared\TwoImageDescriptionButton.cs" />
     <Compile Include="View\Shared\DataGridCommands.cs" />
     <Compile Include="View\Shared\DescriptionButton.cs" />
     <Compile Include="View\Shared\Converters\ComparingMultiConverter.cs" />
@@ -279,6 +293,10 @@
     <Page Include="View\Recipes\UpdateRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reports\DriversCarsReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Shared\MessageBox\MessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -386,7 +404,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\Help.png" />
-    <Resource Include="Media\Raport.png" />
     <Resource Include="Media\Save.png" />
     <Resource Include="Media\Search.png" />
   </ItemGroup>
@@ -412,6 +429,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\Print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Reports.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Managing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Ganarate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />

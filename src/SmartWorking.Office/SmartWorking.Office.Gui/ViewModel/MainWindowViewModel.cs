@@ -25,6 +25,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     private ICommand _manageMaterialStocksCommand;
     private ICommand _manageMaterialsCommand;
     private ICommand _manageRecipesCommand;
+    private ICommand _createDriversCarsReportCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/>. 
@@ -161,6 +162,46 @@ namespace SmartWorking.Office.Gui.ViewModel
         return _manageMaterialStocksCommand;
       }
     }
+
+    /// <summary>
+    /// Gets the creating report about relations <see cref="Driver"/> and <see cref="Car"/> command.
+    /// </summary>
+    /// <remarks>Creates report about relations <see cref="Driver"/> and <see cref="Car"/>.</remarks>
+    public ICommand CreateDriversCarsReportCommand
+    {
+      get
+      {
+        if (_createDriversCarsReportCommand == null)
+          _createDriversCarsReportCommand =
+            new RelayCommand(CreateDriversCarsReport);
+        return _createDriversCarsReportCommand;
+      }
+    }
+
+    private void CreateDriversCarsReport()
+    {
+      string errorCaption = "Tworzenie raportu (Kierowcy/Samochody)!";
+      try
+      {
+        ModalDialogService.CreateDriversCarsReport(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+
 
     private void ManageDeliveryNotes()
     {

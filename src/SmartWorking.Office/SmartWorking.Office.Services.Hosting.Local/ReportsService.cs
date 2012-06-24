@@ -17,24 +17,68 @@ namespace SmartWorking.Office.Services.Hosting.Local
     #region IReportService Members
 
     
-    public ReportPackage<CarPrimitive, DriverPrimitive>  GetCarsAndDriversReport(DateTime startTime, DateTime endTime) 
+    public ReportPackage<CarPrimitive, DriverPrimitive> GetDriversCarsDataReport(DateTime startTime, DateTime endTime)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
-          //List<Material> result =
-          //  (string.IsNullOrWhiteSpace(materialNameFilter))
-          //    ? ctx.Materials.Include("MaterialStocks").ToList()
-          //    : ctx.Materials.Include("MaterialStocks").Where(x => x.Name.StartsWith(materialNameFilter)).ToList();
-          //return result.Select(x => x.GetPrimitive()).ToList(); ;
+          ReportPackage<CarPrimitive, DriverPrimitive> result = new ReportPackage<CarPrimitive, DriverPrimitive>();
+          List<DeliveryNote> allDeliveryNotes =
+            ctx.DeliveryNotes.Include("Car").Include("Driver").Where(x => !x.Canceled.HasValue).ToList();
+          foreach (DeliveryNote deliveryNote in allDeliveryNotes)
+          {
+            if (deliveryNote.Car != null)
+            {
+              if (result.ColumntElements.Where(x => x.Id == deliveryNote.Car.Id).FirstOrDefault() == null)
+              {
+                result.ColumntElements.Add(deliveryNote.Car.GetPrimitive());
+              }
+            }
+            if (deliveryNote.Driver != null)
+            {
+              if (result.RowElements.Where(x => x.Id == deliveryNote.Driver.Id).FirstOrDefault() == null)
+              {
+                result.RowElements.Add(deliveryNote.Driver.GetPrimitive());
+              }
+            }
+
+            ReportRow row = result.RowValues.Where(x => x.Id == deliveryNote.Driver_Id).FirstOrDefault();
+            if (row == null)
+            {
+              row = new ReportRow();
+              row.Id = deliveryNote.Driver_Id.Value;
+              row.ReportValues.Add(new ReportValue()
+                               {Id = deliveryNote.Car_Id.Value, Amount = deliveryNote.Amount, NoOfTransports = 1});
+              result.RowValues.Add(row);
+            }
+            else
+            {
+              ReportValue reportValue = row.ReportValues.Where(x => x.Id == deliveryNote.Car_Id.Value).FirstOrDefault();
+              if (reportValue == null)
+              {
+                reportValue = new ReportValue();
+                reportValue.Amount = deliveryNote.Amount;
+                reportValue.NoOfTransports = 1; 
+                row.ReportValues.Add(reportValue);
+              }
+              else
+              {
+                reportValue.Amount += deliveryNote.Amount;
+                reportValue.NoOfTransports += 1;
+              }
+            }
+            
+          }
+          return result;
         }
       }
-      catch (Exception e)
+      catch(Exception e)
       {
         throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
-      return null;
+
+
     }
 
     /// <summary>

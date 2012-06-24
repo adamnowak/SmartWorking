@@ -1,87 +1,90 @@
-﻿<Window x:Class="SmartWorking.Office.Gui.View.MainWindow" Style="{StaticResource styleMainWindow}" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:SmartWorking.Office.Gui.ViewModel" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" Title="Smart working (office)">
+﻿<Window x:Class="SmartWorking.Office.Gui.View.MainWindow" Style="{StaticResource styleMainWindow}" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:SmartWorking.Office.Gui.ViewModel" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" Title="Smart working (office)">
 	<Window.DataContext>
 		<local:MainWindowViewModel />
 	</Window.DataContext>
 	<Grid>
-		<StackPanel Style="{StaticResource mainPanel}">
-			<Shared:DescriptionButton Command="{Binding ManageDeliveryNotesCommand}" Image="{DynamicResource DeliveryNoteImageSource}" Comment="Tworzymy nową lub anulujemy już istniejącą WZ'tkę">Zarządzanie WZ'tkami</Shared:DescriptionButton>
-			<Shared:DescriptionButton Command="{Binding ManageContractorsCommand}" Image="{DynamicResource ContractorImageSource}" Comment="Dopisz lub zmodyfikuj dane o kontrahencie">
-				Zarządzanie kontrahentami
-			</Shared:DescriptionButton>
-			<Shared:DescriptionButton Command="{Binding ManageRecipesCommand}" Image="{DynamicResource RecipeImageSource}" Comment="Utwórz lub zmodyfikuj receptę">
-				Zarządzanie receptami
-			</Shared:DescriptionButton>
-			<Shared:DescriptionButton Command="{Binding ManageMaterialsCommand}" Image="{DynamicResource MaterialImageSource}" Comment="Utwórz lub edytuj dane o materiałach">
-				Zarządzanie materiałami
-			</Shared:DescriptionButton>
-			<Shared:DescriptionButton Command="{Binding ManageDriversCommand}" Image="{DynamicResource DriverImageSource}" Comment="Zarządzaj kierowcami">
-				Zarządzanie kierowcami
-			</Shared:DescriptionButton>
-			<Shared:DescriptionButton Command="{Binding ManageCarsCommand}" Image="{DynamicResource CarImageSource}" Comment="Zarządzaj swoimi samochodami">
-				Zarządzanie samochodami
-			</Shared:DescriptionButton>
-			<Shared:DescriptionButton Command="{Binding ManageMaterialStocksCommand}" Image="{DynamicResource MaterialStockImageSource}" Comment="Wprowadz dane o dostawie towaru do magazynu">
-				Zarządzanie magazynem
-			</Shared:DescriptionButton>
-		</StackPanel>
-	</Grid>
-	<!--<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition />
-			<RowDefinition />
-			<RowDefinition />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
-		Column 1
-		<GroupBox Header="Kontrahent">
-			<StackPanel>
-				<Button Content="Nowy kontrahent" Command="{Binding CreateContractorCommand}" />
-				<Button Content="Edytuj kontrahenta" Command="{Binding EditContractorCommand}" />
-			</StackPanel>
-		</GroupBox>
-		<GroupBox Grid.Row="1" Header="Materiał">
-			<StackPanel>
-				<Button Content="Nowy materiał" Command="{Binding CreateMaterialCommand}" />
-				<Button Content="Edytuj materiał" Command="{Binding EditMaterialCommand}" />
-			</StackPanel>
-		</GroupBox>
-		<GroupBox Grid.Row="2" Header="Recepta">
-			<StackPanel>
-				<Button Content="Nowa recepta" Command="{Binding CreateRecipeCommand}" />
-				<Button Content="Edytuj receptę" Command="{Binding EditRecipeCommand}" />
-			</StackPanel>
-		</GroupBox>
-
-		Column 2
-		<Button Grid.Row="1" Grid.Column="1" Content="Utwórz WZ'tkę" Command="{Binding CreateDeliveryNoteCommand}" />
-		<GroupBox Grid.Row="2" Grid.Column="1" Header="WZ'tka">
-			<StackPanel>
-				<Button Content="Anuluj WZ'tkę" Command="{Binding CancelDeliveryNoteCommand}" />
-				<Button Content="Ponownie drukuj WZ'tkę" Command="{Binding PrintAgainDeliveryNoteCommand}" />
-			</StackPanel>
-		</GroupBox>
-        
-		Column 3
-		<GroupBox Grid.Column="2" Header="Samochod">
-			<StackPanel>
-				<Button Content="Nowy samochód" Command="{Binding CreateCarCommand}" />
-				<Button Content="Edytuj samochód" Command="{Binding UpdateCarCommand}" />
-			</StackPanel>
-		</GroupBox>
-		<GroupBox Grid.Column="2" Grid.Row="1" Header="Kierowca">
-			<StackPanel>
-				<Button Content="Nowy kierowca" Command="{Binding CreateDriverCommand}" />
-				<Button Content="Edytuj kierowcę" Command="{Binding UpdateDriverCommand}" />
-			</StackPanel>
-		</GroupBox>
-		<GroupBox Grid.Column="2" Grid.Row="2" Header="Magazyn">
-			<StackPanel>
-				<Button Content="Dodaj do magazynu" Command="{Binding UpdateMaterialStock}" />
-			</StackPanel>
-		</GroupBox>
-	</Grid>-->
+        <Controls:Accordion >
+            <Controls:AccordionItem >
+                <Controls:AccordionItem.Header>
+                    <StackPanel Orientation="Horizontal" >                    
+                        <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="5" Padding="1" Width="55" Height="55">
+                            <Image  Source="{StaticResource ManagingImageSource}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        </Border>
+                        <TextBlock FontSize="24">Zarządzanie </TextBlock>
+                    </StackPanel>
+                </Controls:AccordionItem.Header>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
+                    <StackPanel  Style="{StaticResource mainPanel}">
+                        <Shared:DescriptionButton Command="{Binding ManageDeliveryNotesCommand}" Image="{DynamicResource DeliveryNoteImageSource}" Comment="Tworzymy nową lub anulujemy już istniejącą WZ'tkę">Zarządzanie WZ'tkami</Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding ManageContractorsCommand}" Image="{DynamicResource ContractorImageSource}" Comment="Dopisz lub zmodyfikuj dane o kontrahencie">
+                            Zarządzanie kontrahentami
+                        </Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding ManageRecipesCommand}" Image="{DynamicResource RecipeImageSource}" Comment="Utwórz lub zmodyfikuj receptę">
+                            Zarządzanie receptami
+                        </Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding ManageMaterialsCommand}" Image="{DynamicResource MaterialImageSource}" Comment="Utwórz lub edytuj dane o materiałach">
+                            Zarządzanie materiałami
+                        </Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding ManageDriversCommand}" Image="{DynamicResource DriverImageSource}" Comment="Zarządzaj kierowcami">
+                            Zarządzanie kierowcami
+                        </Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding ManageCarsCommand}" Image="{DynamicResource CarImageSource}" Comment="Zarządzaj swoimi samochodami">
+                            Zarządzanie samochodami
+                        </Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding ManageMaterialStocksCommand}" Image="{DynamicResource MaterialStockImageSource}" Comment="Wprowadz dane o dostawie towaru do magazynu">
+                            Zarządzanie magazynem
+                        </Shared:DescriptionButton>
+                    </StackPanel>
+                </Grid>
+            </Controls:AccordionItem>
+            <Controls:AccordionItem >
+                <Controls:AccordionItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="5" Padding="1" Width="55" Height="55">
+                            <Image Source="{StaticResource ReportsImageSource}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        </Border>
+                        <TextBlock FontSize="24">Raporty</TextBlock>
+                    </StackPanel>
+                </Controls:AccordionItem.Header>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
+                    <StackPanel  Style="{StaticResource mainPanel}">
+                        <Shared:TwoImageDescriptionButton Command="{Binding CreateDriversCarsReportCommand}" Image="{DynamicResource DriverImageSource}" 
+                                                          Image2="{DynamicResource CarImageSource}" Comment="Raport zbiorczy Kierowcy / Samochody">
+                            Kierowcy / Samochody
+                            </Shared:TwoImageDescriptionButton>
+                            <Shared:TwoImageDescriptionButton Command="{Binding CreateCarsRecipesReportCommand}" Image="{DynamicResource CarImageSource}" 
+                                                              Image2="{DynamicResource RecipeImageSource}" Comment="Raport zbiorczy Samochody / Recepty">
+                            Samochody / Recepty
+                            </Shared:TwoImageDescriptionButton>
+                    </StackPanel>
+                </Grid> 
+            </Controls:AccordionItem>
+            <Controls:AccordionItem>
+                <Controls:AccordionItem.Header>
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="5" Padding="1" Width="55" Height="55">
+                            <Image Source="{StaticResource SettingsImageSource}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        </Border>
+                        <TextBlock FontSize="24">Ustawienia</TextBlock>
+                    </StackPanel>
+                </Controls:AccordionItem.Header>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
+                    <StackPanel  Style="{StaticResource mainPanel}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                        </Grid>      
+                        <TextBlock>Folder z PDF'ami:</TextBlock>
+                        <TextBox></TextBox>
+                    </StackPanel>
+                </Grid>
+            </Controls:AccordionItem>
+        </Controls:Accordion>
+    </Grid>	
 </Window>

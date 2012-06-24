@@ -49,24 +49,24 @@ namespace SmartWorking.Office.PrimitiveEntities.Reports
       set { _rowElements = value; }
     }
 
-    private List<ReportRow> _values;
+    private List<ReportRow> _rowValues;
     /// <summary>
     /// Gets or sets the report's value.
     /// </summary>
     /// <value>
     /// The report's value.
     /// </value>
-    public List<ReportRow> Values
+    public List<ReportRow> RowValues
     {
       get
       {
-        if (_values == null)
+        if (_rowValues == null)
         {
-          _values = new List<ReportRow>(); 
+          _rowValues = new List<ReportRow>(); 
         }
-        return _values;
+        return _rowValues;
       }
-      set { _values = value; }
+      set { _rowValues = value; }
     }
   }
 }

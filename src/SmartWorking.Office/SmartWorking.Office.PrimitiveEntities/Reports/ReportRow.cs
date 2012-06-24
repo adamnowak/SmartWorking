@@ -15,7 +15,7 @@ namespace SmartWorking.Office.PrimitiveEntities.Reports
     /// </value>
     public int Id { get; set; }
 
-    private List<ReportValue> _values;
+    private List<ReportValue> _reportValues;
 
     /// <summary>
     /// Gets or sets the values in row.
@@ -23,17 +23,17 @@ namespace SmartWorking.Office.PrimitiveEntities.Reports
     /// <value>
     /// The values in row.
     /// </value>
-    public List<ReportValue> Values
+    public List<ReportValue> ReportValues
     {
       get
       {
-        if (_values == null)
+        if (_reportValues == null)
         {
-          _values = new List<ReportValue>();
+          _reportValues = new List<ReportValue>();
         }
-        return _values;
+        return _reportValues;
       }
-      set { _values = value; }
+      set { _reportValues = value; }
     }
   }
 }

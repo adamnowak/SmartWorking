@@ -286,5 +286,7 @@ namespace SmartWorking.Office.Gui.ViewModel
                                     string caption, string message, MessageBoxButton button, string info);
 
     #endregion
+
+    void CreateDriversCarsReport(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
   }
 }

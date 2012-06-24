@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:System="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit">
 	<BitmapImage x:Key="ApplicatoinImageSource" UriSource="Media/AppIcon.png" />
 	<BitmapImage x:Key="BuildingImageSource" UriSource="Media/Building.png" />
 	<BitmapImage x:Key="CarImageSource" UriSource="Media/Car.png" />
@@ -16,8 +16,7 @@
 	<BitmapImage x:Key="DeleteImageSource" UriSource="Media/Delete.png" />
 	<BitmapImage x:Key="ChoseImageSource" UriSource="Media/Chose.png" />
 
-	<BitmapImage x:Key="HelpImageSource" UriSource="Media/Help.png" />
-	<BitmapImage x:Key="RaportImageSource" UriSource="Media/Raport.png" />
+	<BitmapImage x:Key="HelpImageSource" UriSource="Media/Help.png" />    
 	<BitmapImage x:Key="SaveImageSource" UriSource="Media/Save.png" />
 	<BitmapImage x:Key="SearchImageSource" UriSource="Media/Search.png" />
 
@@ -33,6 +32,10 @@
 	<BitmapImage x:Key="WarningImageSource" UriSource="Media/Warning.png" />
 	<BitmapImage x:Key="QuestionImageSource" UriSource="Media/Question.png" />
 
+    <BitmapImage x:Key="ReportsImageSource" UriSource="Media/Reports.png" />
+    <BitmapImage x:Key="ManagingImageSource" UriSource="Media/Managing.png" />
+    <BitmapImage x:Key="SettingsImageSource" UriSource="Media/Settings.png" />
+    <BitmapImage x:Key="GanarateImageSource" UriSource="Media/Ganarate.png" />
 
 	<!--Width (GridLength) for button panel-->
 	<GridLength x:Key="dialogButtonPanelWidthGridLength">180</GridLength>
@@ -194,7 +197,44 @@
 		</Setter>
 	</Style>
 
-	<Style x:Key="MessageBoxDescriptionButton" TargetType="Shared:DescriptionButton" BasedOn="{StaticResource {x:Type Shared:DescriptionButton}}">
+    <Style TargetType="Shared:TwoImageDescriptionButton" BasedOn="{StaticResource {x:Type Shared:DescriptionButton}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Shared:TwoImageDescriptionButton}">
+                    <Button HorizontalContentAlignment="Stretch" Command="{TemplateBinding Command}">
+                        <Grid Height="62" HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="5" Padding="1">
+                                <Image Source="{TemplateBinding Image}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="5" Padding="1">
+                                <Image Source="{TemplateBinding Image2}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                            </Border>
+                            <TextBlock TextWrapping="Wrap" Text="{TemplateBinding Content}" FontSize="21.333" Foreground="#FF1C3840" VerticalAlignment="Top" Grid.Column="2" />
+                            <TextBlock TextWrapping="Wrap" Text="{TemplateBinding Comment}" FontSize="16" Grid.Row="1" Grid.Column="2" />
+                        </Grid>
+                    </Button>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="BorderThickness" Value="6" />
+                            <Setter Property="Opacity" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MessageBoxDescriptionButton" TargetType="Shared:DescriptionButton" BasedOn="{StaticResource {x:Type Shared:DescriptionButton}}">
 		<Setter Property="Margin" Value="1" />
 		<Setter Property="Height" Value="45" />
 		<Setter Property="VerticalAlignment" Value="Top" />
@@ -236,4 +276,37 @@
 		</Setter>
 	</Style>
 
+    <Style TargetType="Shared:TwoImagePanelLabel" BasedOn="{StaticResource {x:Type Shared:PanelLabel}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Shared:TwoImagePanelLabel}">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="2" Padding="1">
+                            <!--{Binding Path=Height, RelativeSource={RelativeSource Self}}-->
+                            <Image Source="{TemplateBinding Image}" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        </Border>
+                        <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="2" Padding="1">
+                            <!--{Binding Path=Height, RelativeSource={RelativeSource Self}}-->
+                            <Image Source="{TemplateBinding Image2}" Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        </Border>
+                        <TextBlock Style="{TemplateBinding HeaderStyle}" Text="{TemplateBinding Content}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="Controls:Accordion">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="ExpandDirection" Value="Left" />
+    </Style>
+    <Style TargetType="Controls:AccordionItem">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    </Style>
 </ResourceDictionary>

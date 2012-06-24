@@ -6,6 +6,7 @@ using SmartWorking.Office.Gui.View.DeliveryNotes;
 using SmartWorking.Office.Gui.View.Drivers;
 using SmartWorking.Office.Gui.View.Materials;
 using SmartWorking.Office.Gui.View.Recipes;
+using SmartWorking.Office.Gui.View.Reports;
 using SmartWorking.Office.Gui.View.Shared.MessageBox;
 using SmartWorking.Office.Gui.ViewModel;
 using SmartWorking.Office.Gui.ViewModel.Cars;
@@ -14,10 +15,12 @@ using SmartWorking.Office.Gui.ViewModel.DeliveryNotes;
 using SmartWorking.Office.Gui.ViewModel.Drivers;
 using SmartWorking.Office.Gui.ViewModel.Materials;
 using SmartWorking.Office.Gui.ViewModel.Recipes;
+using SmartWorking.Office.Gui.ViewModel.Reports;
 using SmartWorking.Office.Gui.ViewModel.Shared.MessageBox;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using MessageBox = SmartWorking.Office.Gui.View.Shared.MessageBox.MessageBox;
+
 
 namespace SmartWorking.Office.Gui.View
 {
@@ -370,6 +373,13 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new MessageBoxViewModel(modalDialogService, serviceFactory, icon, caption, message, button, info);
       return MessageBoxHelper<MessageBox>.ShowDialog(viewModel);
+    }
+
+    public void CreateDriversCarsReport(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new DriversCarsReportViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Create;
+      ModalDialogHelper<DriversCarsReport>.ShowDialog(viewModel);      
     }
 
     #endregion
