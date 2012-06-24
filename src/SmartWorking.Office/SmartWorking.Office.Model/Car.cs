@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using SmartWorking.Office.PrimitiveEntities;
 
 namespace SmartWorking.Office.Entities
 {

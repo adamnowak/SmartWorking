@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SmartWorking.Office.Entities;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Hosting.Local;
 
 namespace SmartWorking.Office.Services.Hosting.IIS

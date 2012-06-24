@@ -32,7 +32,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <value>
     /// The service factory.
     /// </value>
-    public IServiceFactory ServiceFactory { get; set; }
+    public IServiceFactory ServiceFactory { get; protected set; }
 
     /// <summary>
     /// Gets the cancel command.
@@ -51,7 +51,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <summary>
     /// Gets the modal dialog service.
     /// </summary>
-    public IModalDialogService ModalDialogService { get; private set; }
+    public IModalDialogService ModalDialogService { get; protected set; }
 
     #region IModalDialogViewModel Members
 

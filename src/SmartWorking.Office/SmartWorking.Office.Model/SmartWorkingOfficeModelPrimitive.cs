@@ -14,3 +14,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
+namespace SmartWorking.Office.PrimitiveEntities
+{
+    public interface IPrimitive
+    {
+    	int Id { get; set; }
+    }
+}

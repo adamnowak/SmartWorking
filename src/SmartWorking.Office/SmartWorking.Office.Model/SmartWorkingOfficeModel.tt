@@ -27,7 +27,7 @@ string namespaceName = code.VsNamespaceSuggestion();
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 
 // Write out support code to primary template output file
-WriteHeader(fileManager);
+WriteHeader(fileManager, new string[] { "SmartWorking.Office.PrimitiveEntities" });
 BeginNamespace(namespaceName, code);
 WriteCustomObservableCollection();
 EndNamespace(namespaceName);
@@ -48,8 +48,7 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
     foreach (EdmProperty edmProperty in entity.Properties.Where(p => p.TypeUsage.EdmType is PrimitiveType && p.DeclaringType == entity))
     {
         bool isForeignKey = entity.NavigationProperties.Any(np=>np.GetDependentProperties().Contains(edmProperty));
-        bool isDefaultValueDefinedInModel = (edmProperty.DefaultValue != null);
-        bool generateAutomaticProperty = false;
+        bool isDefaultValueDefinedInModel = (edmProperty.DefaultValue != null);        
 
         if (isForeignKey)
         {

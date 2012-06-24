@@ -97,7 +97,7 @@
       <Link>SmartWorkingOfficeModelPrimitive.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SmartWorkingOfficeModelPrimitive.cs</LastGenOutput>
-      <CustomToolNamespace>SmartWorking.Office.Entities</CustomToolNamespace>
+      <CustomToolNamespace>SmartWorking.Office.PrimitiveEntities</CustomToolNamespace>
     </None>
     <None Include="..\SmartWorking.pfx">
       <Link>SmartWorking.pfx</Link>

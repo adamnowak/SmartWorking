@@ -13,9 +13,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace SmartWorking.Office.Entities
+namespace SmartWorking.Office.PrimitiveEntities
 {
-    public partial class CarPrimitive
+    public partial class CarPrimitive : IPrimitive
     {
         #region Primitive Properties
     		public int Id

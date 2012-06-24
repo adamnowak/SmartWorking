@@ -7,6 +7,7 @@ using SmartWorking.Office.Entities;
 using SmartWorking.Office.Gui.View;
 using SmartWorking.Office.Gui.View.Drivers;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Drivers

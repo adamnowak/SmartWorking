@@ -26,7 +26,17 @@ string namespaceName = code.VsNamespaceSuggestion();
 
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 
+// Write out support code to primary template output file
 WriteHeader(fileManager);
+BeginNamespace(namespaceName, code);
+#>
+public interface IPrimitive
+{
+	int Id { get; set; }
+}
+<#
+EndNamespace(namespaceName);
+
 
 // Emit Entity Types
 foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
@@ -38,7 +48,7 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
 
 
 #>
-<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#>Primitive<#=code.StringBefore(" : ", code.Escape(entity.BaseType))#>
+<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#>Primitive : IPrimitive<#=code.StringBefore(", ", code.Escape(entity.BaseType))#>
 {
 <#
 	region.Begin("Primitive Properties");

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using SmartWorking.Office.Entities;
+using SmartWorking.Office.PrimitiveEntities;
 
 namespace SmartWorking.Office.Services.Interfaces
 {

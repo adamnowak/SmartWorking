@@ -55,26 +55,10 @@ namespace SmartWorking.Office.Gui.ViewModel
       ServiceFactory = serviceFactory;
     }
 
-    /// <summary>
-    /// Gets or sets the modal dialog service.
-    /// </summary>
-    /// <value>
-    /// The modal dialog service.
-    /// </value>
-    public IModalDialogService ModalDialogService { get; set; }
-
     public override string Title
     {
       get { return "SmartWorking (office)"; }
     }
-
-    /// <summary>
-    /// Gets or sets the service factory.
-    /// </summary>
-    /// <value>
-    /// The service factory.
-    /// </value>
-    public IServiceFactory ServiceFactory { get; set; }
 
     /// <summary>
     /// Gets the manage <see cref="DeliveryNote"/> command.
