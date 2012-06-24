@@ -47,7 +47,7 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateDeliveryNote",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateDeliveryNote(DeliveryNotePrimitive deliveryNote);
+    int UpdateDeliveryNote(DeliveryNotePrimitive deliveryNote);
 
     /// <summary>
     /// Deletes the <see cref="DeliveryNote"/>.

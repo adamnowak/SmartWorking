@@ -107,7 +107,10 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       string errorCaption = "Anulowanie WZ'tki!";
       try
       {
-        //TODO:
+        using (IDeliveryNotesService deliveryNotesService = ServiceFactory.GetDeliveryNotesService())
+        {
+          deliveryNotesService.CanceledDeliveryNote(SelectableDeliveryNote.SelectedItem.DeliveryNote);
+        }
       }
       catch (FaultException<ExceptionDetail> f)
       {
@@ -128,8 +131,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
 
     private bool CanCancelDeliveryNote()
     {
-      //TODO:
-      return false;
+      return SelectableDeliveryNote.SelectedItem != null && SelectableDeliveryNote.SelectedItem.DeliveryNote != null;
     }
     #endregion
 

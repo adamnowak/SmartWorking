@@ -103,7 +103,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the <see cref="DeliveryNote"/>.
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be updated.</param>
-    public void UpdateDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
+    public int UpdateDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
     {
       try
       {
@@ -117,7 +117,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           if (existingObject == null && deliveryNote.Id > 0)
           {
             //log
-            return;
+            return -1;
           }
 
           //Item has no PK value, must be new);
@@ -132,6 +132,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           }
 
           context.SaveChanges();
+          return deliveryNote.Id;
         }
       }
       catch (Exception e)
@@ -144,11 +145,27 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Deletes the <see cref="DeliveryNote"/>.
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be canceled.</param>
-    public void CanceledDeliveryNote(DeliveryNotePrimitive deliveryNote)
+    public void CanceledDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
     {
       try
       {
-        throw new NotImplementedException();
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          DeliveryNote deliveryNote = deliveryNotePrimitive.GetEntity();
+
+          DeliveryNote existingObject = context.DeliveryNotes.Where(x => x.Id == deliveryNote.Id).FirstOrDefault();
+
+          //no record of this item in the DB, item being passed in has a PK
+          if (existingObject == null)
+          {
+            throw new Exception("Only exists delivery note can be canceled.");
+          }
+
+          deliveryNote.Canceled = DateTime.Now;
+          context.DeliveryNotes.ApplyCurrentValues(deliveryNote);          
+
+          context.SaveChanges();          
+        }
       }
       catch (Exception e)
       {

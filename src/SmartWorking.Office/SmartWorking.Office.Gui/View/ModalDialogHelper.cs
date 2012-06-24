@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using SmartWorking.Office.Gui.ViewModel;
@@ -26,7 +27,7 @@ namespace SmartWorking.Office.Gui.View
       window.Content = new TWindow();
       window.DataContext = viewModel;
       window.Title = "Smart Working  (office) - " + viewModel.Title;
-      
+      window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
       //if (window.Content is Control)
       //{
       //  window.Height = ((Control) window.Content).Height;

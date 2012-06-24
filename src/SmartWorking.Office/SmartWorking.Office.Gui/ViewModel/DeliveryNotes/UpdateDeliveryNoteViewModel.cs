@@ -225,9 +225,9 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
        
 
         using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
-        {
-          //todo: set *_Id
-          service.UpdateDeliveryNote(DeliveryNotePackage.GetDeliveryNotePrimitiveWithReference());
+        {          
+          int deliveryNoteId = service.UpdateDeliveryNote(DeliveryNotePackage.GetDeliveryNotePrimitiveWithReference());
+          DeliveryNotePackage.DeliveryNote.Id = deliveryNoteId;
         }
 
         PrintDeliveryNote(DeliveryNotePackage);

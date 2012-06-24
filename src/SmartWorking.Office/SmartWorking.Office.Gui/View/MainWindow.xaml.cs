@@ -10,6 +10,7 @@ namespace SmartWorking.Office.Gui.View
     public MainWindow()
     {
       InitializeComponent();
+      WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
   }
 }
