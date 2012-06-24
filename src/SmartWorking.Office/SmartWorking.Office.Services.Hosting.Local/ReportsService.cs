@@ -16,16 +16,16 @@ namespace SmartWorking.Office.Services.Hosting.Local
   {
     #region IReportService Members
 
-    
-    public ReportPackage<CarPrimitive, DriverPrimitive> GetDriversCarsDataReport(DateTime startTime, DateTime endTime)
+
+    public ReportPackage<DriverPrimitive, CarPrimitive> GetDriversCarsDataReport(DateTime startTime, DateTime endTime)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
-          ReportPackage<CarPrimitive, DriverPrimitive> result = new ReportPackage<CarPrimitive, DriverPrimitive>();
+          ReportPackage<DriverPrimitive, CarPrimitive> result = new ReportPackage<DriverPrimitive, CarPrimitive>();
           List<DeliveryNote> allDeliveryNotes =
-            ctx.DeliveryNotes.Include("Car").Include("Driver").Where(x => !x.Canceled.HasValue).ToList();
+            ctx.DeliveryNotes.Include("Car").Include("Driver").Where(x => !x.Canceled.HasValue && x.DateDrawing >= startTime && x.DateDrawing <= endTime).ToList();
           foreach (DeliveryNote deliveryNote in allDeliveryNotes)
           {
             if (deliveryNote.Car != null)
@@ -58,6 +58,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
               if (reportValue == null)
               {
                 reportValue = new ReportValue();
+                reportValue.Id = deliveryNote.Car_Id.Value;
                 reportValue.Amount = deliveryNote.Amount;
                 reportValue.NoOfTransports = 1; 
                 row.ReportValues.Add(reportValue);

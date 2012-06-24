@@ -80,7 +80,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Reports
     /// </summary>
     public const string DriversCarsDataReportPropertyName = "DriversCarsDataReport";
 
-    private ReportPackage<CarPrimitive, DriverPrimitive> _driversCarsDataReport;
+    private ReportPackage<DriverPrimitive, CarPrimitive> _driversCarsDataReport;
 
     /// <summary>
     /// Gets the DriversCarsDataReport property.
@@ -88,7 +88,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Reports
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public ReportPackage<CarPrimitive, DriverPrimitive> DriversCarsDataReport
+    public ReportPackage<DriverPrimitive, CarPrimitive> DriversCarsDataReport
     {
       get
       {

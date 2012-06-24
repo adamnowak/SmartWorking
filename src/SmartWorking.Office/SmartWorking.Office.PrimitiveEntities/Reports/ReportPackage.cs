@@ -5,9 +5,9 @@ namespace SmartWorking.Office.PrimitiveEntities.Reports
   /// <summary>
   /// Represents report information.
   /// </summary>
-  public class ReportPackage<TColumnElements, TRowElements> 
+  public class ReportPackage<TRowElements,TColumnElements>     
+    where TRowElements : IPrimitive
     where TColumnElements : IPrimitive
-    where TRowElements : IPrimitive 
   {
     private List<TColumnElements> _columntElements;
     /// <summary>

@@ -22,6 +22,6 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "POST", UriTemplate = "/GetDriversCarsDataReport/?startTime={startTime}#endTime={endTime}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
           BodyStyle = WebMessageBodyStyle.Wrapped)]
-    ReportPackage<CarPrimitive, DriverPrimitive> GetDriversCarsDataReport(DateTime startTime, DateTime endTime); 
+    ReportPackage<DriverPrimitive, CarPrimitive> GetDriversCarsDataReport(DateTime startTime, DateTime endTime); 
   }
 }
