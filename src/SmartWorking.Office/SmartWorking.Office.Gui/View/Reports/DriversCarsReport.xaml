@@ -44,6 +44,7 @@
 
 		<!--Buttons-->
 		<StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Shared:DescriptionButton Image="{StaticResource ExcelImageSource}" Content="Export" Comment="Do Excela" Command="{Binding ExportReportToExcelCommand}" />
 			<Shared:DescriptionButton Image="{StaticResource CancelImageSource}" Content="Anuluj" Comment="Zamknij okno" Command="{Binding CancelCommand}" />
 		</StackPanel>
 	</Grid>

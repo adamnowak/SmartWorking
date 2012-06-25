@@ -17,13 +17,13 @@ namespace SmartWorking.Office.Services.Hosting.Local
     #region IReportService Members
 
 
-    public ReportPackage<DriverPrimitive, CarPrimitive> GetDriversCarsDataReport(DateTime startTime, DateTime endTime)
+    public DriversCarsReportPackage GetDriversCarsDataReport(DateTime startTime, DateTime endTime)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
-          ReportPackage<DriverPrimitive, CarPrimitive> result = new ReportPackage<DriverPrimitive, CarPrimitive>();
+          DriversCarsReportPackage result = new DriversCarsReportPackage();
           List<DeliveryNote> allDeliveryNotes =
             ctx.DeliveryNotes.Include("Car").Include("Driver").Where(x => !x.Canceled.HasValue && x.DateDrawing >= startTime && x.DateDrawing <= endTime).ToList();
           foreach (DeliveryNote deliveryNote in allDeliveryNotes)

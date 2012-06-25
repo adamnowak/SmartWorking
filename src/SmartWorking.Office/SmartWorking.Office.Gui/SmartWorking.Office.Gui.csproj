@@ -83,6 +83,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\contrib\NPOI\.net 4.0\NPOI.dll</HintPath>
+    </Reference>
     <Reference Include="PdfSharp-WPF">
       <HintPath>..\..\..\contrib\PdfSharp\bin\PdfSharp-WPF.dll</HintPath>
     </Reference>
@@ -127,6 +130,8 @@
     <Compile Include="ViewModel\Cars\ManageCarsViewModel.cs" />
     <Compile Include="ViewModel\Cars\UpdateCarViewModel.cs" />
     <Compile Include="ViewModel\Contractors\UpdateBuildingViewModel.cs" />
+    <Compile Include="ViewModel\Exporters\ExcelExporter.cs" />
+    <Compile Include="ViewModel\Exporters\IExporter.cs" />
     <Compile Include="ViewModel\PrinterHelper.cs" />
     <Compile Include="ViewModel\IDialogViewModel.cs" />
     <Compile Include="ViewModel\Reports\DriversCarsReportViewModel.cs" />
@@ -448,6 +453,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\Ganarate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Excel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />

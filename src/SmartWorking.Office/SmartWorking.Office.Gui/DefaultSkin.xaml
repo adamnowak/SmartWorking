@@ -36,6 +36,7 @@
     <BitmapImage x:Key="ManagingImageSource" UriSource="Media/Managing.png" />
     <BitmapImage x:Key="SettingsImageSource" UriSource="Media/Settings.png" />
     <BitmapImage x:Key="GanarateImageSource" UriSource="Media/Ganarate.png" />
+    <BitmapImage x:Key="ExcelImageSource" UriSource="Media/Excel.png" />
 
 	<!--Width (GridLength) for button panel-->
 	<GridLength x:Key="dialogButtonPanelWidthGridLength">180</GridLength>

@@ -91,6 +91,7 @@
     <Compile Include="RecipeComponentAndMaterialPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\ReportPackage.cs" />
+    <Compile Include="Reports\DriversCarsReportPackage.cs" />
     <Compile Include="Reports\ReportRow.cs" />
     <Compile Include="Reports\ReportValue.cs" />
   </ItemGroup>
