@@ -5,6 +5,13 @@ using SmartWorking.Office.Services.Interfaces;
 namespace SmartWorking.Office.Services.Factory.IIS
 {
   /// <summary>
+  /// <see cref="IClientChannel"/> for <see cref="IClientsService"/> service.
+  /// </summary>
+  internal interface IClientsServiceChannel : IClientsService, IClientChannel
+  {
+  }
+
+  /// <summary>
   /// <see cref="IClientChannel"/> for <see cref="IContractorsService"/> service.
   /// </summary>
   internal interface IContractorsServiceChannel : IContractorsService, IClientChannel
@@ -59,6 +66,19 @@ namespace SmartWorking.Office.Services.Factory.IIS
   public class ServiceFactoryIIS : IServiceFactory
   {
     #region IServiceFactory Members
+
+    /// <summary>
+    /// Gets the clients service.
+    /// </summary>
+    /// <returns>
+    /// Service provides operations on clients.
+    /// </returns>
+    public IClientsService GetClientsService()
+    {
+      var channelFactory = new ChannelFactory<IClientsServiceChannel>("*");
+      IClientsServiceChannel service = channelFactory.CreateChannel();
+      return service;
+    }
 
     /// <summary>
     /// Gets the contractors service.

@@ -20,37 +20,37 @@ namespace SmartWorking.Office.Entities
     {
         #region Navigation Properties
     
-        public ICollection<DeliveryNote> DeliveryNotes
+        public ICollection<Order> Orders
         {
             get
             {
-                if (_deliveryNotes == null)
+                if (_orders == null)
                 {
-                    var newCollection = new FixupCollection<DeliveryNote>();
-                    newCollection.CollectionChanged += FixupDeliveryNotes;
-                    _deliveryNotes = newCollection;
+                    var newCollection = new FixupCollection<Order>();
+                    newCollection.CollectionChanged += FixupOrders;
+                    _orders = newCollection;
                 }
-                return _deliveryNotes;
+                return _orders;
             }
             set
             {
-                if (!ReferenceEquals(_deliveryNotes, value))
+                if (!ReferenceEquals(_orders, value))
                 {
-                    var previousValue = _deliveryNotes as FixupCollection<DeliveryNote>;
+                    var previousValue = _orders as FixupCollection<Order>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupDeliveryNotes;
+                        previousValue.CollectionChanged -= FixupOrders;
                     }
-                    _deliveryNotes = value;
-                    var newValue = value as FixupCollection<DeliveryNote>;
+                    _orders = value;
+                    var newValue = value as FixupCollection<Order>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupDeliveryNotes;
+                        newValue.CollectionChanged += FixupOrders;
                     }
                 }
             }
         }
-        private ICollection<DeliveryNote> _deliveryNotes;
+        private ICollection<Order> _orders;
     
         public ICollection<RecipeComponent> RecipeComponents
         {
@@ -87,11 +87,11 @@ namespace SmartWorking.Office.Entities
         #endregion
         #region Association Fixup
     
-        private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupOrders(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (DeliveryNote item in e.NewItems)
+                foreach (Order item in e.NewItems)
                 {
                     item.Recipe = this;
                 }
@@ -99,7 +99,7 @@ namespace SmartWorking.Office.Entities
     
             if (e.OldItems != null)
             {
-                foreach (DeliveryNote item in e.OldItems)
+                foreach (Order item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Recipe, this))
                     {

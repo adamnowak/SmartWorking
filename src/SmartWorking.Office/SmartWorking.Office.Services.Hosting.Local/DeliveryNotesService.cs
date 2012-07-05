@@ -28,30 +28,31 @@ namespace SmartWorking.Office.Services.Hosting.Local
         using (var ctx = new SmartWorkingEntities())
         {
           List<DeliveryNote> result;
-          if (string.IsNullOrWhiteSpace(filter))
-          {
-            if (showCanceledDeliveryNotes)
-            {
-              result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").ToList();
-            }
-            else
-            {
-              result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue).ToList();
-            }
-          }
-          else
-          {
-            if (showCanceledDeliveryNotes)
-            {
-              result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
-            }
-            else
-            {
-              result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue && (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
-            }
+          //if (string.IsNullOrWhiteSpace(filter))
+          //{
+          //  if (showCanceledDeliveryNotes)
+          //  {
+          //    result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").ToList();
+          //  }
+          //  else
+          //  {
+          //    result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue).ToList();
+          //  }
+          //}
+          //else
+          //{
+          //  if (showCanceledDeliveryNotes)
+          //  {
+          //    result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
+          //  }
+          //  else
+          //  {
+          //    result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue && (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
+          //  }
 
-          }
-          return result.Select(x => x.GetPrimitive()).ToList();
+          //}
+          //return result.Select(x => x.GetPrimitive()).ToList();
+          return null;
         }
       }
       catch (Exception e)
@@ -60,37 +61,38 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    public List<DeliveryNotePackage> GetDeliveryNotePackages(string filter, bool getCanceled)
+    public List<DeliveryNotePackage> GetDeliveryNotePackageList(string filter, bool getCanceled)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
-          List<DeliveryNote> result;
-          if (string.IsNullOrWhiteSpace(filter))
-          {
-            if (getCanceled)
-            {
-              result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").ToList();
-            }
-            else
-            {
-              result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue).ToList();
-            }
-          }
-          else
-          {
-            if (getCanceled)
-            {
-              result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
-            }
-            else
-            {
-              result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue && (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
-            }
+          //List<DeliveryNote> result;
+          //if (string.IsNullOrWhiteSpace(filter))
+          //{
+          //  if (getCanceled)
+          //  {
+          //    result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").ToList();
+          //  }
+          //  else
+          //  {
+          //    result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue).ToList();
+          //  }
+          //}
+          //else
+          //{
+          //  if (getCanceled)
+          //  {
+          //    result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
+          //  }
+          //  else
+          //  {
+          //    result = ctx.DeliveryNotes.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue && (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
+          //  }
 
-          }
-          return result.Select(x => x.GetDeliveryNotePackage()).ToList();
+          //}
+          //return result.Select(x => x.GetDeliveryNotePackage()).ToList();
+          return null;
         }
       }
       catch (Exception e)

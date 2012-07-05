@@ -192,7 +192,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       {
         using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
         {
-          SelectableRecipe.LoadItems(recipesService.GetRecipesPackage(string.Empty));
+          SelectableRecipe.LoadItems(recipesService.GetRecipePackageList(string.Empty));
         }
       }
       catch (FaultException<ExceptionDetail> f)

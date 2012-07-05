@@ -8,15 +8,15 @@ namespace SmartWorking.Office.Entities
 {
   public static class GetPackageHelper
   {
-    public static ContractorAndBuildingsPackage GetContractorAndBuildingsPackage(this Contractor contractor)
+    public static ClientAndBuildingsPackage GetClientAndBuildingsPackage(this Client client)
     {
-      ContractorAndBuildingsPackage result = new ContractorAndBuildingsPackage();
-      if (contractor != null)
-        result.Contractor = contractor.GetPrimitive();
-      foreach (Building building in contractor.Buildings)
+      ClientAndBuildingsPackage result = new ClientAndBuildingsPackage();
+      if (client != null)
+        result.Client = client.GetPrimitive();
+      foreach (Building building in client.Buildings)
       {
         if (building != null)
-          result.Buildings.Add(building.GetPrimitive());
+        result.Buildings.Add(building.GetPrimitive());
       }
       return result;
     }
@@ -60,28 +60,57 @@ namespace SmartWorking.Office.Entities
         {
           result.Driver = deliveryNote.Driver.GetPrimitive();
         }
-        if (deliveryNote.Recipe != null)
+        //if (deliveryNote.Recipe != null)
+        //{
+        //  result.Recipe = deliveryNote.Recipe.GetPrimitive();
+        //}
+        //if (deliveryNote.Building != null)
+        //{
+        //  result.BuildingAndContractor = deliveryNote.Building.GetBuildingAndContractorPackage();
+        //}
+      }
+      return result;
+    }
+
+    public static BuildingAndClientPackage GetBuildingAndContractorPackage(this Building building)
+    {
+      BuildingAndClientPackage result = new BuildingAndClientPackage();
+
+      if (building != null)
+      {
+        result.Building = building.GetPrimitive();
+        //if (building.Contractor != null)
+        //{
+        //  result.Contractor = building.Contractor.GetPrimitive();
+        //}
+      }
+      return result;
+    }
+
+    public static DriverAndCarPackage GetDriverAndCarPackage(this Driver driver)
+    {
+      DriverAndCarPackage result = new DriverAndCarPackage();
+
+      if (driver != null)
+      {
+        result.Driver = driver.GetPrimitive();
+        if (driver.Car != null)
         {
-          result.Recipe = deliveryNote.Recipe.GetPrimitive();
-        }
-        if (deliveryNote.Building != null)
-        {
-          result.BuildingAndContractor = deliveryNote.Building.GetBuildingAndContractorPackage();
+          result.Car = driver.Car.GetPrimitive();
         }
       }
       return result;
     }
 
-    public static BuildingAndContractorPackage GetBuildingAndContractorPackage(this Building building)
+    public static MaterialAndContractorsPackage GetMaterialAndContractorsPackage(this Material material)
     {
-      BuildingAndContractorPackage result = new BuildingAndContractorPackage();
-
-      if (building != null)
+      MaterialAndContractorsPackage result = new MaterialAndContractorsPackage();
+      if (material != null)
       {
-        result.Building = building.GetPrimitive();
-        if (building.Contractor != null)
+        result.Material = material.GetPrimitive();
+        if (material.Contractor != null)
         {
-          result.Contractor = building.Contractor.GetPrimitive();
+          result.Producer = material.Contractor.GetPrimitive();
         }
       }
       return result;

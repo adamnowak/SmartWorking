@@ -23,10 +23,20 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
-    		public virtual int Contractor_Id
+    		public virtual int Client_Id
     		{
     			get;
     			set;
+    		}
+    		public string InternalName
+    		{
+            get;
+            set;
+    		}
+    		public string ZIPCode
+    		{
+            get;
+            set;
     		}
     		public string City
     		{
@@ -38,7 +48,27 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public string Phone
+    		{
+            get;
+            set;
+    		}
+    		public string ContactPerson
+    		{
+            get;
+            set;
+    		}
+    		public string ContactPersonPhone
+    		{
+            get;
+            set;
+    		}
     		public string HouseNo
+    		{
+            get;
+            set;
+    		}
+    		public Nullable<System.DateTime> Deleted
     		{
             get;
             set;

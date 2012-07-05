@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using SmartWorking.Office.Gui.View.Cars;
+using SmartWorking.Office.Gui.View.Clients;
 using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
 using SmartWorking.Office.Gui.View.Drivers;
@@ -10,6 +11,7 @@ using SmartWorking.Office.Gui.View.Reports;
 using SmartWorking.Office.Gui.View.Shared.MessageBox;
 using SmartWorking.Office.Gui.ViewModel;
 using SmartWorking.Office.Gui.ViewModel.Cars;
+using SmartWorking.Office.Gui.ViewModel.Clients;
 using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.Gui.ViewModel.DeliveryNotes;
 using SmartWorking.Office.Gui.ViewModel.Drivers;
@@ -22,11 +24,34 @@ using SmartWorking.Office.Services.Interfaces;
 using MessageBox = SmartWorking.Office.Gui.View.Shared.MessageBox.MessageBox;
 
 
+
 namespace SmartWorking.Office.Gui.View
 {
   public class ModalDialogService : IModalDialogService
   {
     #region IModalDialogService Members
+
+    public ClientPrimitive CreateClient(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new UpdateClientViewModel(modalDialogService, serviceFactory);
+      viewModel.Contractor = new ContractorPrimitive();
+      viewModel.DialogMode = DialogMode.Create;
+      ModalDialogHelper<UpdateClient>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        //return viewModel.Contractor;
+      }
+      return null;
+    }
+
+    public ClientPrimitive EditClient(IModalDialogService modalDialogService, IServiceFactory serviceFactory, ClientPrimitive client)
+    {
+      var viewModel = new UpdateClientViewModel(modalDialogService, serviceFactory);
+     // viewModel.Contractor = contractorToEdit;
+      viewModel.DialogMode = DialogMode.Update;
+      ModalDialogHelper<UpdateClient>.ShowDialog(viewModel);
+      return null;// viewModel.Contractor;
+    }
 
     public ContractorPrimitive CreateContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
@@ -59,12 +84,12 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public BuildingPrimitive CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                            ContractorPrimitive contractor)
+                                            ClientPrimitive client)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       //viewModel.Contractor = contractor;
       viewModel.Building = new BuildingPrimitive();
-      viewModel.Building.Contractor_Id = contractor.Id;
+      //viewModel.Building.Contractor_Id = contractor.Id;
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
@@ -85,17 +110,17 @@ namespace SmartWorking.Office.Gui.View
       return viewModel.Building;
     }
 
-    public BuildingAndContractorPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService,
+    public BuildingAndClientPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService,
                                                                            IServiceFactory serviceFactory)
     {
-      var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
+      var viewModel = new ManageClientsViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.ChoseSubItem;
-      ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
+      ModalDialogHelper<ManageClients>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        var result = new BuildingAndContractorPackage();
+        var result = new BuildingAndClientPackage();
         result.Building = viewModel.SelectedBuilding;
-        result.Contractor = viewModel.SelectableContractor.SelectedItem.Contractor;
+        result.Client = viewModel.SelectableClint.SelectedItem.Client;
         return result;
       }
       return null;
@@ -118,7 +143,7 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public DeliveryNotePackage CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                                  BuildingAndContractorPackage buildingAndContractorPackage)
+                                                  BuildingAndClientPackage buildingAndContractorPackage)
     {
       var viewModel = new UpdateDeliveryNoteViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Create;
@@ -310,27 +335,27 @@ namespace SmartWorking.Office.Gui.View
       return null;
     }
 
-    public DriverPrimitive CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public DriverAndCarPackage CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
-      viewModel.Driver = new DriverPrimitive();
+      viewModel.DriverAndCar = new DriverAndCarPackage();
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateDriver>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        return viewModel.Driver;
+        return viewModel.DriverAndCar;
       }
       return null;
     }
 
-    public DriverPrimitive EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                      DriverPrimitive selectedDriver)
+    public DriverAndCarPackage EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                      DriverAndCarPackage selectedDriver)
     {
       var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
-      viewModel.Driver = selectedDriver;
+      viewModel.DriverAndCar = selectedDriver;
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateDriver>.ShowDialog(viewModel);
-      return viewModel.Driver;
+      return viewModel.DriverAndCar;
     }
 
     public void ManageDrivers(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -340,7 +365,7 @@ namespace SmartWorking.Office.Gui.View
       ModalDialogHelper<ManageDrivers>.ShowDialog(viewModel);
     }
 
-    public DriverPrimitive SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public DriverAndCarPackage SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageDriversViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Chose;

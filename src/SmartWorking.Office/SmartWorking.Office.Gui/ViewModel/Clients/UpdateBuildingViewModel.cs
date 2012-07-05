@@ -6,7 +6,7 @@ using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
-namespace SmartWorking.Office.Gui.ViewModel.Contractors
+namespace SmartWorking.Office.Gui.ViewModel.Clients
 {
   /// <summary>
   ///  View model for <see cref="UpdateBuilding"/> dialog. 
@@ -143,7 +143,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         if (Building == null)
           throw new Exception(); //TODO:
 
-        using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
+        using (IClientsService clientService = ServiceFactory.GetClientsService())
         {
           if (DialogMode == DialogMode.Create)
           {
@@ -155,9 +155,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
             if (Building.Id <= 0)
               throw new Exception("Building has wrong Id (<=0).");
           }
-          if (Building.Contractor_Id <= 0)
-            throw new Exception("Building has to belong to Contractor.");
-          contractorService.UpdateBuilding(Building);
+          //if (Building.Contractor_Id <= 0)
+          //  throw new Exception("Building has to belong to Contractor.");
+          clientService.UpdateBuilding(Building);
         }
         CloseModalDialog();
       }

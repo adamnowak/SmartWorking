@@ -22,7 +22,7 @@ namespace SmartWorking.Office.Gui.ViewModel
       {
         throw new SmartWorkingException("Building is not defined.");
       }
-      if (deliveryNotePackage.BuildingAndContractor.Contractor == null)
+      if (deliveryNotePackage.BuildingAndContractor.Client == null)
       {
         throw new SmartWorkingException("Contractor is not defined.");
       }
@@ -78,15 +78,16 @@ namespace SmartWorking.Office.Gui.ViewModel
 
       //Contractor
       string contracotrInfo =
-        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.FullName))
-           ? string.Empty
-           : deliveryNotePackage.BuildingAndContractor.Contractor.FullName + Environment.NewLine) +
-        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Name))
-           ? string.Empty
-           : deliveryNotePackage.BuildingAndContractor.Contractor.Name + Environment.NewLine) +
-        ((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Surname))
-           ? string.Empty
-           : deliveryNotePackage.BuildingAndContractor.Contractor.Surname + Environment.NewLine);
+        //((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.FullName))
+        //   ? string.Empty
+        //   : deliveryNotePackage.BuildingAndContractor.Contractor.FullName + Environment.NewLine) +
+        //((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Name))
+        //   ? string.Empty
+        //   : deliveryNotePackage.BuildingAndContractor.Contractor.Name + Environment.NewLine) +
+        //((string.IsNullOrEmpty(deliveryNotePackage.BuildingAndContractor.Contractor.Surname))
+        //   ? string.Empty
+        //   : deliveryNotePackage.BuildingAndContractor.Contractor.Surname + Environment.NewLine);
+        "";
       PrintSection(gfx, "Kontrahent:", contracotrInfo, new XPoint(30, 70 + shiftY));
 
       //Building

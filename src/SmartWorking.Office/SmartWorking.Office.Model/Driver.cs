@@ -18,6 +18,34 @@ namespace SmartWorking.Office.Entities
 {
     public partial class Driver : DriverPrimitive
     {
+        #region Primitive Properties
+    		public override Nullable<int> Car_Id
+    		{
+            get { return _car_Id; }
+            set
+            {        
+                try
+                {
+                    _settingFK = true;
+                    if (_car_Id != value)
+                    {
+                        if (Car != null && Car.Id != value)
+                        {
+                            Car = null;
+                        }
+                        _car_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+    		}
+    		private Nullable<int> _car_Id;    
+    
+
+        #endregion
         #region Navigation Properties
     
         public ICollection<DeliveryNote> DeliveryNotes
@@ -51,9 +79,50 @@ namespace SmartWorking.Office.Entities
             }
         }
         private ICollection<DeliveryNote> _deliveryNotes;
+    
+        public Car Car
+        {
+            get { return _car; }
+            set
+            {
+                if (!ReferenceEquals(_car, value))
+                {
+                    var previousValue = _car;
+                    _car = value;
+                    FixupCar(previousValue);
+                }
+            }
+        }
+        private Car _car;
 
         #endregion
         #region Association Fixup
+    
+        private bool _settingFK = false;
+    
+        private void FixupCar(Car previousValue)
+        {
+            if (previousValue != null && previousValue.Drivers.Contains(this))
+            {
+                previousValue.Drivers.Remove(this);
+            }
+    
+            if (Car != null)
+            {
+                if (!Car.Drivers.Contains(this))
+                {
+                    Car.Drivers.Add(this);
+                }
+                if (Car_Id != Car.Id)
+                {
+                    Car_Id = Car.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Car_Id = null;
+            }
+        }
     
         private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
         {

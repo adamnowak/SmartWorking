@@ -24,14 +24,26 @@ namespace SmartWorking.Office.PrimitiveEntities
         {
           result.Driver_Id = deliveryNote.Driver.Id;
         }
-        if (deliveryNote.Recipe != null)
-        {
-          result.Recipe_Id = deliveryNote.Recipe.Id;
-        }
-        if (deliveryNote.BuildingAndContractor != null && deliveryNote.BuildingAndContractor.Building != null)
-        {
-          result.Building_Id = deliveryNote.BuildingAndContractor.Building.Id;
-        }
+        //if (deliveryNote.Recipe != null)
+        //{
+        //  result.Recipe_Id = deliveryNote.Recipe.Id;
+        //}
+        //if (deliveryNote.BuildingAndContractor != null && deliveryNote.BuildingAndContractor.Building != null)
+        //{
+        //  result.Building_Id = deliveryNote.BuildingAndContractor.Building.Id;
+        //}
+      }
+      return result;
+    }
+
+    public static DriverPrimitive GetDriverPrimitiveWithReference(this DriverAndCarPackage driverAndCarPackage)
+    {
+      if (driverAndCarPackage == null || driverAndCarPackage.Driver == null)
+        return null;
+      DriverPrimitive result = driverAndCarPackage.Driver;
+      if (driverAndCarPackage.Car != null)
+      {
+        result.Car_Id = driverAndCarPackage.Car.Id;
       }
       return result;
     }

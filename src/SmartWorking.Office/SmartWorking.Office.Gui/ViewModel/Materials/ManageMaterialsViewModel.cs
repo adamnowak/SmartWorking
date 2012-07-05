@@ -259,7 +259,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
         MaterialPrimitive selectedItem = SelectableMaterial.SelectedItem;
         using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
         {
-          SelectableMaterial.LoadItems(materialsService.GetMaterials(string.Empty));
+          SelectableMaterial.LoadItems(materialsService.GetMaterialList(string.Empty));
         }
         if (selectedItem != null)
         {

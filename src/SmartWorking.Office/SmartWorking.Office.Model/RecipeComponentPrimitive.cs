@@ -38,6 +38,11 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public Nullable<System.DateTime> Deleted
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }

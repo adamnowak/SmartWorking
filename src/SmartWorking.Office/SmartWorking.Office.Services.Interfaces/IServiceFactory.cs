@@ -6,6 +6,12 @@
   public interface IServiceFactory
   {
     /// <summary>
+    /// Gets the clients service.
+    /// </summary>
+    /// <returns>Service provides operations on clients.</returns>
+    IClientsService GetClientsService();
+
+    /// <summary>
     /// Gets the contractors service.
     /// </summary>
     /// <returns>Service provides operations on contractors.</returns>

@@ -193,7 +193,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
     {
       return DeliveryNotePackage.BuildingAndContractor != null &&
              DeliveryNotePackage.BuildingAndContractor.Building != null &&
-             DeliveryNotePackage.BuildingAndContractor.Contractor != null &&
+             DeliveryNotePackage.BuildingAndContractor.Client != null &&
              DeliveryNotePackage.Car != null && DeliveryNotePackage.Driver != null && DeliveryNotePackage.Recipe != null;
     }
 
@@ -270,7 +270,12 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       string errorCaption = "Wybranie kierowcy!";
       try
       {
-        DeliveryNotePackage.Driver = ModalDialogService.SelectDriver(ModalDialogService, ServiceFactory);
+        DriverAndCarPackage driverAndCarPackage = ModalDialogService.SelectDriver(ModalDialogService, ServiceFactory);
+        DeliveryNotePackage.Driver = driverAndCarPackage.Driver;
+        if (DeliveryNotePackage.Car == null)
+        {
+          DeliveryNotePackage.Car = driverAndCarPackage.Car;
+        }
         RaisePropertyChanged("DeliveryNotePackage");
       }
       catch (FaultException<ExceptionDetail> f)

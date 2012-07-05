@@ -1,4 +1,7 @@
-﻿<UserControl x:Class="SmartWorking.Office.Gui.View.Drivers.UpdateDriver" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
+﻿<UserControl x:Class="SmartWorking.Office.Gui.View.Drivers.UpdateDriver" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:Cars="clr-namespace:SmartWorking.Office.Gui.ViewModel.Cars" xmlns:Converters="clr-namespace:SmartWorking.Office.Gui.View.Shared.Converters" xmlns:Drivers="clr-namespace:SmartWorking.Office.Gui.View.Drivers" mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Converters:DescriptionIndexedMultiConverter x:Key="descriptionIndexedConverter" />
+    </UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="50" />
@@ -10,7 +13,7 @@
 		
 		<!--Contractor grid-->
 		<GroupBox Header="Kierowca" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
-			<Grid DataContext="{Binding Driver}">
+			<Grid DataContext="{Binding DriverAndCar}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition />
@@ -20,23 +23,83 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 
 				<!--Debug only-->
 				<TextBlock Text="Id:" Grid.Row="0" />
 				<!--End Debug only-->
-				<TextBlock Text="Imię:" Grid.Row="1" />
-				<TextBlock Text="Nazwisko:" Grid.Row="2" />
-				<TextBlock Text="Numer Telefonu:" Grid.Row="3" />
+                <TextBlock Text="Symbol:" Grid.Row="1" />
+				<TextBlock Text="Imię:" Grid.Row="2" />
+				<TextBlock Text="Nazwisko:" Grid.Row="3" />
+				<TextBlock Text="Numer Telefonu:" Grid.Row="4" />
 
 
 				<!--End Debug only-->
-				<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                <TextBox Text="{Binding Driver.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 				<!--Debug only-->
-				<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
-				<TextBox Text="{Binding Surname}" Grid.Row="2" Grid.Column="1" />
-				<TextBox Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" />
-			</Grid>
+                <TextBox Text="{Binding Driver.InternalName}" Grid.Row="1" Grid.Column="1" />
+                <TextBox Text="{Binding Driver.Name}" Grid.Row="2" Grid.Column="1" />
+                <TextBox Text="{Binding Driver.Surname}" Grid.Row="3" Grid.Column="1" />
+                <TextBox Text="{Binding Driver.Phone}" Grid.Row="4" Grid.Column="1" />
+
+                <GroupBox Header="Samochód pod opieką" Grid.Row="5" Grid.ColumnSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Shared:DescriptionButton Image="{StaticResource CarImageSource}" Content="Wybierz samochód" Style="{StaticResource SelectDescriptionButton}" 
+                                                  Command="{Binding DataContext.SelectCarCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Drivers:UpdateDriver}}}" />
+                        <StackPanel Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Symbol:" />
+                                <TextBlock Text="Nazwa:" Grid.Row="1" />
+                                <TextBlock Text="Numer:" Grid.Row="2" />
+                                <TextBlock Text="Rodzaj samochodu:" Grid.Row="3" />
+                                <TextBlock Text="Ładowność:" Grid.Row="4" />
+                                <TextBlock Text="Rodzaj transportu:" Grid.Row="5" />
+
+                                <TextBox Text="{Binding Car.InternalName}" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding Car.Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding Car.RegistrationNumber}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Grid.Row="3"  Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" >
+                                    <TextBox.Text>
+                                        <MultiBinding Mode="OneWay" Converter="{StaticResource descriptionIndexedConverter}" >
+                                            <Binding Path="Car.CarType"/>
+                                            <Binding Source="{x:Static Cars:CarTypes.Instance}" Path="Items"/>
+                                        </MultiBinding>
+                                    </TextBox.Text>
+                                </TextBox>
+                                <TextBox Text="{Binding Car.Capacity}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" >
+                                    <TextBox.Text>
+                                        <MultiBinding Mode="OneWay" Converter="{StaticResource descriptionIndexedConverter}" >
+                                            <Binding Path="Car.TransportType"/>
+                                            <Binding Source="{x:Static Cars:TransportTypes.Instance}" Path="Items"/>
+                                        </MultiBinding>
+                                    </TextBox.Text>
+                                </TextBox>
+
+
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </Grid>
 		</GroupBox>
 
 		<!--Buttons-->

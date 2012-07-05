@@ -18,7 +18,90 @@ namespace SmartWorking.Office.Entities
 {
     public partial class Material : MaterialPrimitive
     {
+        #region Primitive Properties
+    		public override Nullable<int> Producer_Id
+    		{
+            get { return _producer_Id; }
+            set
+            {        
+                try
+                {
+                    _settingFK = true;
+                    if (_producer_Id != value)
+                    {
+                        if (Contractor1 != null && Contractor1.Id != value)
+                        {
+                            Contractor1 = null;
+                        }
+                        _producer_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+    		}
+    		private Nullable<int> _producer_Id;    
+    
+    		public override Nullable<int> Deliverer_Id
+    		{
+            get { return _deliverer_Id; }
+            set
+            {        
+                try
+                {
+                    _settingFK = true;
+                    if (_deliverer_Id != value)
+                    {
+                        if (Contractor != null && Contractor.Id != value)
+                        {
+                            Contractor = null;
+                        }
+                        _deliverer_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+    		}
+    		private Nullable<int> _deliverer_Id;    
+    
+
+        #endregion
         #region Navigation Properties
+    
+        public Contractor Contractor
+        {
+            get { return _contractor; }
+            set
+            {
+                if (!ReferenceEquals(_contractor, value))
+                {
+                    var previousValue = _contractor;
+                    _contractor = value;
+                    FixupContractor(previousValue);
+                }
+            }
+        }
+        private Contractor _contractor;
+    
+        public Contractor Contractor1
+        {
+            get { return _contractor1; }
+            set
+            {
+                if (!ReferenceEquals(_contractor1, value))
+                {
+                    var previousValue = _contractor1;
+                    _contractor1 = value;
+                    FixupContractor1(previousValue);
+                }
+            }
+        }
+        private Contractor _contractor1;
     
         public ICollection<MaterialStock> MaterialStocks
         {
@@ -86,6 +169,56 @@ namespace SmartWorking.Office.Entities
 
         #endregion
         #region Association Fixup
+    
+        private bool _settingFK = false;
+    
+        private void FixupContractor(Contractor previousValue)
+        {
+            if (previousValue != null && previousValue.Materials.Contains(this))
+            {
+                previousValue.Materials.Remove(this);
+            }
+    
+            if (Contractor != null)
+            {
+                if (!Contractor.Materials.Contains(this))
+                {
+                    Contractor.Materials.Add(this);
+                }
+                if (Deliverer_Id != Contractor.Id)
+                {
+                    Deliverer_Id = Contractor.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Deliverer_Id = null;
+            }
+        }
+    
+        private void FixupContractor1(Contractor previousValue)
+        {
+            if (previousValue != null && previousValue.Materials1.Contains(this))
+            {
+                previousValue.Materials1.Remove(this);
+            }
+    
+            if (Contractor1 != null)
+            {
+                if (!Contractor1.Materials1.Contains(this))
+                {
+                    Contractor1.Materials1.Add(this);
+                }
+                if (Producer_Id != Contractor1.Id)
+                {
+                    Producer_Id = Contractor1.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Producer_Id = null;
+            }
+        }
     
         private void FixupMaterialStocks(object sender, NotifyCollectionChangedEventArgs e)
         {

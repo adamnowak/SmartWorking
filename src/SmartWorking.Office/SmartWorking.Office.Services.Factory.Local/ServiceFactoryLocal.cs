@@ -12,6 +12,17 @@ namespace SmartWorking.Office.Services.Factory.Local
     #region IServiceFactory Members
 
     /// <summary>
+    /// Gets the clients service.
+    /// </summary>
+    /// <returns>
+    /// Service provides operations on clients.
+    /// </returns>
+    public IClientsService GetClientsService()
+    {
+      return new ClientsService();
+    }
+
+    /// <summary>
     /// Gets the contractors service.
     /// </summary>
     /// <returns>

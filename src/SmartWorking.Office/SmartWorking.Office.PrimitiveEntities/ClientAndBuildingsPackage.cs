@@ -7,11 +7,11 @@ using System.Text;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
-  public class ContractorAndBuildingsPackage
+  public class ClientAndBuildingsPackage
   {
     private ICollection<BuildingPrimitive> _buildings;
 
-    public ContractorPrimitive Contractor { get; set; }
+    public ClientPrimitive Client { get; set; }
     
     public ICollection<BuildingPrimitive> Buildings
     {

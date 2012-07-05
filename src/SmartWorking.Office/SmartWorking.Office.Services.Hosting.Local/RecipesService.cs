@@ -48,7 +48,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of contractors filtered by <paramref name="filter"/>.
     /// </returns>
-    public List<RecipePackage> GetRecipesPackage(string filter)
+    public List<RecipePackage> GetRecipePackageList(string filter)
     {
       try
       {

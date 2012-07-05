@@ -28,7 +28,22 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public virtual Nullable<int> Producer_Id
+    		{
+    			get;
+    			set;
+    		}
+    		public virtual Nullable<int> Deliverer_Id
+    		{
+    			get;
+    			set;
+    		}
     		public string InternalName
+    		{
+            get;
+            set;
+    		}
+    		public Nullable<System.DateTime> Deleted
     		{
             get;
             set;

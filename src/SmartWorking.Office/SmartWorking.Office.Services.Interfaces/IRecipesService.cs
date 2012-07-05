@@ -30,9 +30,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of contractors filtered by <paramref name="filter"/>. 
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetRecipesPackage/?filter={filter}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetRecipePackageList/?filter={filter}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<RecipePackage> GetRecipesPackage(string filter);
+    List<RecipePackage> GetRecipePackageList(string filter);
 
     /// <summary>
     /// Updates the recipe.

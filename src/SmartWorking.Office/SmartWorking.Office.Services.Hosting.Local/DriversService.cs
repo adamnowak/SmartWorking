@@ -20,17 +20,36 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of Drivers filtered by <paramref name="driversFilter"/>.
     /// </returns>
-    public List<DriverPrimitive> GetDrivers(string driversFilter)
+    public List<DriverPrimitive> GetDrivers(string filter)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
           List<Driver> result =
-            (string.IsNullOrWhiteSpace(driversFilter))
+            (string.IsNullOrWhiteSpace(filter))
               ? ctx.Drivers.ToList()
-              : ctx.Drivers.Where(x => x.Name.StartsWith(driversFilter)).ToList();
+              : ctx.Drivers.Where(x => x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetPrimitive()).ToList(); ;
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
+    public List<DriverAndCarPackage> GetDriverAndCarPackageList(string filter)
+    {
+      try
+      {
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<Driver> result =
+            (string.IsNullOrWhiteSpace(filter))
+              ? ctx.Drivers.Include("Car").ToList()
+              : ctx.Drivers.Include("Car").Where(x => x.Name.StartsWith(filter)).ToList();
+          return result.Select(x => x.GetDriverAndCarPackage()).ToList(); ;
         }
       }
       catch (Exception e)

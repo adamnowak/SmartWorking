@@ -38,6 +38,26 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public Nullable<int> CarType
+    		{
+            get;
+            set;
+    		}
+    		public Nullable<System.DateTime> Deleted
+    		{
+            get;
+            set;
+    		}
+    		public Nullable<double> Capacity
+    		{
+            get;
+            set;
+    		}
+    		public Nullable<int> TransportType
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }

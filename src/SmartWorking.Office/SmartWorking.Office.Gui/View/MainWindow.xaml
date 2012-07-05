@@ -1,12 +1,12 @@
-﻿<Window x:Class="SmartWorking.Office.Gui.View.MainWindow" Style="{StaticResource styleMainWindow}" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:SmartWorking.Office.Gui.ViewModel" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" Title="Smart working (office)">
+﻿<Window x:Class="SmartWorking.Office.Gui.View.MainWindow"  Style="{StaticResource styleMainWindow}"  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:SmartWorking.Office.Gui.ViewModel" xmlns:Shared="clr-namespace:SmartWorking.Office.Gui.View.Shared" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" Title="Smart working (office)">
 	<Window.DataContext>
 		<local:MainWindowViewModel />
 	</Window.DataContext>
 	<Grid>
         <Controls:Accordion >
-            <Controls:AccordionItem >
+            <Controls:AccordionItem>
                 <Controls:AccordionItem.Header>
-                    <StackPanel Orientation="Horizontal" >                    
+                    <StackPanel Orientation="Horizontal">                    
                         <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="5" Padding="1" Width="55" Height="55">
                             <Image  Source="{StaticResource ManagingImageSource}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
                         </Border>
@@ -15,7 +15,7 @@
                 </Controls:AccordionItem.Header>
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
                     <StackPanel  Style="{StaticResource mainPanel}">
-                        <Shared:DescriptionButton Command="{Binding ManageDeliveryNotesCommand}" Image="{DynamicResource DeliveryNoteImageSource}" Comment="Tworzymy nową lub anulujemy już istniejącą WZ'tkę">Zarządzanie WZ'tkami</Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding ManageDeliveryNotesCommand}" Image="{DynamicResource DeliveryNoteImageSource}" Comment="Tworzymy nową lub anulujemy już istniejącą WZ'tkę" AllowDrop="True" Opacity="1">Zarządzanie WZ'tkami</Shared:DescriptionButton>
                         <Shared:DescriptionButton Command="{Binding ManageContractorsCommand}" Image="{DynamicResource ContractorImageSource}" Comment="Dopisz lub zmodyfikuj dane o kontrahencie">
                             Zarządzanie kontrahentami
                         </Shared:DescriptionButton>
@@ -40,7 +40,7 @@
             <Controls:AccordionItem >
                 <Controls:AccordionItem.Header>
                     <StackPanel Orientation="Horizontal" >
-                        <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="5" Padding="1" Width="55" Height="55">
+                        <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1"  Margin="5" Padding="1" Width="55" Height="55">
                             <Image Source="{StaticResource ReportsImageSource}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
                         </Border>
                         <TextBlock FontSize="24">Raporty</TextBlock>

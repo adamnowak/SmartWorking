@@ -49,6 +49,10 @@
       <Link>CarPrimitive.cs</Link>
       <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\ClientPrimitive.cs">
+      <Link>ClientPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\SmartWorking.Office.Model\ContractorPrimitive.cs">
       <Link>ContractorPrimitive.cs</Link>
       <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
@@ -69,6 +73,10 @@
       <Link>MaterialStockPrimitive.cs</Link>
       <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\OrderPrimitive.cs">
+      <Link>OrderPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\SmartWorking.Office.Model\RecipeComponentPrimitive.cs">
       <Link>RecipeComponentPrimitive.cs</Link>
       <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
@@ -83,8 +91,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ContractorAndBuildingsPackage.cs" />
-    <Compile Include="BuildingAndContractorPackage.cs" />
+    <Compile Include="ClientAndBuildingsPackage.cs" />
+    <Compile Include="BuildingAndClientPackage.cs" />
+    <Compile Include="MaterialAndContractorsPackage.cs" />
+    <Compile Include="DriverAndCarPackage.cs" />
     <Compile Include="DeliveryNotePackage.cs" />
     <Compile Include="GetEntityWithReferenceHelper.cs" />
     <Compile Include="RecipePackage.cs" />

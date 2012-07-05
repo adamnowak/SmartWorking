@@ -54,6 +54,12 @@ namespace SmartWorking.Office.Entities
         }
         private ObjectSet<Car> _cars;
     
+        public ObjectSet<Client> Clients
+        {
+            get { return _clients  ?? (_clients = CreateObjectSet<Client>("Clients")); }
+        }
+        private ObjectSet<Client> _clients;
+    
         public ObjectSet<Contractor> Contractors
         {
             get { return _contractors  ?? (_contractors = CreateObjectSet<Contractor>("Contractors")); }
@@ -84,17 +90,23 @@ namespace SmartWorking.Office.Entities
         }
         private ObjectSet<MaterialStock> _materialStocks;
     
-        public ObjectSet<Recipe> Recipes
+        public ObjectSet<Order> Orders
         {
-            get { return _recipes  ?? (_recipes = CreateObjectSet<Recipe>("Recipes")); }
+            get { return _orders  ?? (_orders = CreateObjectSet<Order>("Orders")); }
         }
-        private ObjectSet<Recipe> _recipes;
+        private ObjectSet<Order> _orders;
     
         public ObjectSet<RecipeComponent> RecipeComponents
         {
             get { return _recipeComponents  ?? (_recipeComponents = CreateObjectSet<RecipeComponent>("RecipeComponents")); }
         }
         private ObjectSet<RecipeComponent> _recipeComponents;
+    
+        public ObjectSet<Recipe> Recipes
+        {
+            get { return _recipes  ?? (_recipes = CreateObjectSet<Recipe>("Recipes")); }
+        }
+        private ObjectSet<Recipe> _recipes;
 
         #endregion
     }

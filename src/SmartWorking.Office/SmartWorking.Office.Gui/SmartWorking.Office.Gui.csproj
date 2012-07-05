@@ -127,9 +127,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Cars\CarTypes.cs" />
+    <Compile Include="ViewModel\Cars\TransportTypes.cs" />
     <Compile Include="ViewModel\Cars\ManageCarsViewModel.cs" />
     <Compile Include="ViewModel\Cars\UpdateCarViewModel.cs" />
-    <Compile Include="ViewModel\Contractors\UpdateBuildingViewModel.cs" />
+    <Compile Include="ViewModel\Clients\ManageClientsViewModel.cs" />
+    <Compile Include="ViewModel\Clients\UpdateBuildingViewModel.cs" />
+    <Compile Include="ViewModel\Clients\UpdateClientViewModel.cs" />
     <Compile Include="ViewModel\Exporters\ExcelExporter.cs" />
     <Compile Include="ViewModel\Exporters\IExporter.cs" />
     <Compile Include="ViewModel\PrinterHelper.cs" />
@@ -159,8 +163,14 @@
     <Compile Include="View\Cars\UpdateCar.xaml.cs">
       <DependentUpon>UpdateCar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Contractors\UpdateBuilding.xaml.cs">
+    <Compile Include="View\Clients\UpdateBuilding.xaml.cs">
       <DependentUpon>UpdateBuilding.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Contractors\ManageContractors.xaml.cs">
+      <DependentUpon>ManageContractors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Contractors\UpdateContractor.xaml.cs">
+      <DependentUpon>UpdateContractor.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DeliveryNotes\ManageDeliveryNotes.xaml.cs">
       <DependentUpon>ManageDeliveryNotes.xaml</DependentUpon>
@@ -188,11 +198,11 @@
     <Compile Include="View\ModalDialogHelperWindow.xaml.cs">
       <DependentUpon>ModalDialogHelperWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Contractors\UpdateContractor.xaml.cs">
-      <DependentUpon>UpdateContractor.xaml</DependentUpon>
+    <Compile Include="View\Clients\UpdateClient.xaml.cs">
+      <DependentUpon>UpdateClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Contractors\ManageContractors.xaml.cs">
-      <DependentUpon>ManageContractors.xaml</DependentUpon>
+    <Compile Include="View\Clients\ManageClients.xaml.cs">
+      <DependentUpon>ManageClients.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Recipes\ManageRecipes.xaml.cs">
       <DependentUpon>ManageRecipes.xaml</DependentUpon>
@@ -207,6 +217,7 @@
       <DependentUpon>DriversCarsReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Shared\Converters\DateTimeToShortDateConverter.cs" />
+    <Compile Include="View\Shared\Converters\DescriptionIndexedMultiConverter.cs" />
     <Compile Include="View\Shared\Converters\Reports\DriverCarReport\DriverCarReportPackageToColumnsConverter.cs" />
     <Compile Include="View\Shared\Converters\Reports\DriverCarReport\DriverCarRowValueDynamicWrapper.cs" />
     <Compile Include="View\Shared\Converters\Reports\ReportPackageToColumnsConverter.cs" />
@@ -214,6 +225,7 @@
     <Compile Include="View\Shared\Converters\Reports\DriverCarReport\DriverCarRowValuesToItemsSourceConverter.cs" />
     <Compile Include="View\Shared\Converters\Reports\RowValuesToItemsSourceConverterBase.cs" />
     <Compile Include="View\Shared\DataGridExtension.cs" />
+    <Compile Include="View\Shared\Parts\ContractorSelection.cs" />
     <Compile Include="View\Shared\TwoImagePanelLabel.cs" />
     <Compile Include="View\Shared\TwoImageDescriptionButton.cs" />
     <Compile Include="View\Shared\DataGridCommands.cs" />
@@ -242,9 +254,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Contractors\UpdateBuilding.xaml">
+    <Page Include="View\Clients\UpdateBuilding.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Contractors\ManageContractors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Contractors\UpdateContractor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\DeliveryNotes\ManageDeliveryNotes.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -286,11 +306,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Contractors\UpdateContractor.xaml">
+    <Page Include="View\Clients\UpdateClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Contractors\ManageContractors.xaml">
+    <Page Include="View\Clients\ManageClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -456,6 +476,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\Excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Deliver.png" />
+    <Resource Include="Media\Producer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />

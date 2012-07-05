@@ -11,7 +11,7 @@
 		<Shared:PanelLabel Image="{StaticResource MaterialImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Materiały</Shared:PanelLabel>
 
 
-		<GroupBox Header="Materiały" Grid.Row="1" Style="{StaticResource manageDialogMainPanel}">
+		<GroupBox Header="Materiały" Grid.Row="1" >
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />

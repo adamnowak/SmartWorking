@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;

@@ -33,6 +33,31 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public string Number
+    		{
+            get;
+            set;
+    		}
+    		public string Granulation
+    		{
+            get;
+            set;
+    		}
+    		public string Consistency
+    		{
+            get;
+            set;
+    		}
+    		public string ConcreteClass
+    		{
+            get;
+            set;
+    		}
+    		public Nullable<System.DateTime> Deleted
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }

@@ -19,102 +19,102 @@ namespace SmartWorking.Office.Entities
     public partial class Building : BuildingPrimitive
     {
         #region Primitive Properties
-    		public override int Contractor_Id
+    		public override int Client_Id
     		{
-            get { return _contractor_Id; }
+            get { return _client_Id; }
             set
             {        
-                if (_contractor_Id != value)
+                if (_client_Id != value)
                 {
-                    if (Contractor != null && Contractor.Id != value)
+                    if (Client != null && Client.Id != value)
                     {
-                        Contractor = null;
+                        Client = null;
                     }
-                    _contractor_Id = value;
+                    _client_Id = value;
                 }
             }
     		}
-    		private int _contractor_Id;    
+    		private int _client_Id;    
     
 
         #endregion
         #region Navigation Properties
     
-        public Contractor Contractor
+        public Client Client
         {
-            get { return _contractor; }
+            get { return _client; }
             set
             {
-                if (!ReferenceEquals(_contractor, value))
+                if (!ReferenceEquals(_client, value))
                 {
-                    var previousValue = _contractor;
-                    _contractor = value;
-                    FixupContractor(previousValue);
+                    var previousValue = _client;
+                    _client = value;
+                    FixupClient(previousValue);
                 }
             }
         }
-        private Contractor _contractor;
+        private Client _client;
     
-        public ICollection<DeliveryNote> DeliveryNotes
+        public ICollection<Order> Orders
         {
             get
             {
-                if (_deliveryNotes == null)
+                if (_orders == null)
                 {
-                    var newCollection = new FixupCollection<DeliveryNote>();
-                    newCollection.CollectionChanged += FixupDeliveryNotes;
-                    _deliveryNotes = newCollection;
+                    var newCollection = new FixupCollection<Order>();
+                    newCollection.CollectionChanged += FixupOrders;
+                    _orders = newCollection;
                 }
-                return _deliveryNotes;
+                return _orders;
             }
             set
             {
-                if (!ReferenceEquals(_deliveryNotes, value))
+                if (!ReferenceEquals(_orders, value))
                 {
-                    var previousValue = _deliveryNotes as FixupCollection<DeliveryNote>;
+                    var previousValue = _orders as FixupCollection<Order>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupDeliveryNotes;
+                        previousValue.CollectionChanged -= FixupOrders;
                     }
-                    _deliveryNotes = value;
-                    var newValue = value as FixupCollection<DeliveryNote>;
+                    _orders = value;
+                    var newValue = value as FixupCollection<Order>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupDeliveryNotes;
+                        newValue.CollectionChanged += FixupOrders;
                     }
                 }
             }
         }
-        private ICollection<DeliveryNote> _deliveryNotes;
+        private ICollection<Order> _orders;
 
         #endregion
         #region Association Fixup
     
-        private void FixupContractor(Contractor previousValue)
+        private void FixupClient(Client previousValue)
         {
             if (previousValue != null && previousValue.Buildings.Contains(this))
             {
                 previousValue.Buildings.Remove(this);
             }
     
-            if (Contractor != null)
+            if (Client != null)
             {
-                if (!Contractor.Buildings.Contains(this))
+                if (!Client.Buildings.Contains(this))
                 {
-                    Contractor.Buildings.Add(this);
+                    Client.Buildings.Add(this);
                 }
-                if (Contractor_Id != Contractor.Id)
+                if (Client_Id != Client.Id)
                 {
-                    Contractor_Id = Contractor.Id;
+                    Client_Id = Client.Id;
                 }
             }
         }
     
-        private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupOrders(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (DeliveryNote item in e.NewItems)
+                foreach (Order item in e.NewItems)
                 {
                     item.Building = this;
                 }
@@ -122,7 +122,7 @@ namespace SmartWorking.Office.Entities
     
             if (e.OldItems != null)
             {
-                foreach (DeliveryNote item in e.OldItems)
+                foreach (Order item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Building, this))
                     {

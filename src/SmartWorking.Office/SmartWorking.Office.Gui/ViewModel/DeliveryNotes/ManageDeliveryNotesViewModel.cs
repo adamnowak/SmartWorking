@@ -199,7 +199,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         DeliveryNotePackage selectedItem = SelectableDeliveryNote.SelectedItem;
         using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
         {
-          SelectableDeliveryNote.LoadItems(service.GetDeliveryNotePackages(buildingContains, showDeactivedDeliveryNotes));
+          SelectableDeliveryNote.LoadItems(service.GetDeliveryNotePackageList(buildingContains, showDeactivedDeliveryNotes));
         }
         if (selectedItem != null)
         {

@@ -23,7 +23,7 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
-    		public string FullName
+    		public string InternalName
     		{
             get;
             set;
@@ -33,12 +33,27 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
-    		public string Surname
+    		public string ZIPCode
     		{
             get;
             set;
     		}
-    		public string Phone
+    		public string City
+    		{
+            get;
+            set;
+    		}
+    		public string Street
+    		{
+            get;
+            set;
+    		}
+    		public string HouseNo
+    		{
+            get;
+            set;
+    		}
+    		public Nullable<System.DateTime> Deleted
     		{
             get;
             set;

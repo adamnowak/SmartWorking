@@ -23,21 +23,6 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
-    		public virtual Nullable<int> Building_Id
-    		{
-    			get;
-    			set;
-    		}
-    		public virtual Nullable<int> Recipe_Id
-    		{
-    			get;
-    			set;
-    		}
-    		public Nullable<double> Amount
-    		{
-            get;
-            set;
-    		}
     		public virtual Nullable<int> Driver_Id
     		{
     			get;
@@ -64,6 +49,16 @@ namespace SmartWorking.Office.PrimitiveEntities
             set;
     		}
     		public virtual Nullable<int> Car_Id
+    		{
+    			get;
+    			set;
+    		}
+    		public Nullable<double> Amount
+    		{
+            get;
+            set;
+    		}
+    		public virtual Nullable<int> Order_Id
     		{
     			get;
     			set;

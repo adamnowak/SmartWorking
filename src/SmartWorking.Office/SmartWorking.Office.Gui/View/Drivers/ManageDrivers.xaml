@@ -11,7 +11,7 @@
 		<Shared:PanelLabel Image="{StaticResource DriverImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kierowcy</Shared:PanelLabel>
 
 
-		<GroupBox Header="Kierowcy" Grid.Row="1" Style="{StaticResource manageDialogMainPanel}">
+		<GroupBox Header="Kierowcy" Grid.Row="1" >
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
@@ -37,11 +37,11 @@
 				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableDriver}" ItemsSource="{Binding Items}" Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 					<DataGrid.Columns>
 						<!--Debug only-->
-						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+						<DataGridTextColumn Header="Id" Binding="{Binding Driver.Id}" />
 						<!--End Debug only-->
-						<DataGridTextColumn Header="Imię" Binding="{Binding Name}" />
-						<DataGridTextColumn Header="Nazwisko" Binding="{Binding Surname}" />
-						<DataGridTextColumn Header="Numer telefonu" Binding="{Binding Phone}" />
+                        <DataGridTextColumn Header="Imię" Binding="{Binding Driver.Name}" />
+                        <DataGridTextColumn Header="Nazwisko" Binding="{Binding Driver.Surname}" />
+                        <DataGridTextColumn Header="Numer telefonu" Binding="{Binding Driver.Phone}" />
 
 					</DataGrid.Columns>
 				</DataGrid>

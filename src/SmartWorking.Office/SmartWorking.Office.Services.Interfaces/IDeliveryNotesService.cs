@@ -34,9 +34,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of <see cref="DeliveryNote"/> filtered by <paramref name="filter"/> and <paramref name="showCanceled"/>.
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetDeliveryNotePackages/?filter={filter}&getCanceled={getCanceled}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetDeliveryNotePackageList/?filter={filter}&getCanceled={getCanceled}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<DeliveryNotePackage> GetDeliveryNotePackages(string filter, bool getCanceled);
+    List<DeliveryNotePackage> GetDeliveryNotePackageList(string filter, bool getCanceled);
 
     /// <summary>
     /// Updates the <see cref="DeliveryNote"/>.

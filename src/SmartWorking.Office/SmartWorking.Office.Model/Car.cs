@@ -51,6 +51,38 @@ namespace SmartWorking.Office.Entities
             }
         }
         private ICollection<DeliveryNote> _deliveryNotes;
+    
+        public ICollection<Driver> Drivers
+        {
+            get
+            {
+                if (_drivers == null)
+                {
+                    var newCollection = new FixupCollection<Driver>();
+                    newCollection.CollectionChanged += FixupDrivers;
+                    _drivers = newCollection;
+                }
+                return _drivers;
+            }
+            set
+            {
+                if (!ReferenceEquals(_drivers, value))
+                {
+                    var previousValue = _drivers as FixupCollection<Driver>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupDrivers;
+                    }
+                    _drivers = value;
+                    var newValue = value as FixupCollection<Driver>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupDrivers;
+                    }
+                }
+            }
+        }
+        private ICollection<Driver> _drivers;
 
         #endregion
         #region Association Fixup
@@ -68,6 +100,28 @@ namespace SmartWorking.Office.Entities
             if (e.OldItems != null)
             {
                 foreach (DeliveryNote item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Car, this))
+                    {
+                        item.Car = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupDrivers(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Driver item in e.NewItems)
+                {
+                    item.Car = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Driver item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Car, this))
                     {

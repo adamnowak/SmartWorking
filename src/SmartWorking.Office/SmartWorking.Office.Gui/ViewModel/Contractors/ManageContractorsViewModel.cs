@@ -14,13 +14,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
   /// </summary>
   public class ManageContractorsViewModel : ModalDialogViewModelBase
   {
-    private ICommand _choseBuildingCommand;
-    private ICommand _createBuildingCommand;
     private ICommand _createContractorCommand;
-    private ICommand _createDeliveryNoteCommand;
-    private ICommand _deleteBuildingCommand;
     private ICommand _deleteContractorCommand;
-    private ICommand _editBuildingCommand;
     private ICommand _editContractorCommand;
 
     /// <summary>
@@ -31,7 +26,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     public ManageContractorsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableContractor = new SelectableViewModelBase<ContractorAndBuildingsPackage>();
+      SelectableContractor = new SelectableViewModelBase<ContractorPrimitive>();
       LoadContractors();
     }
 
@@ -46,15 +41,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// <summary>
     /// Gets the selectable contractor. List of contractors and one which is selected.
     /// </summary>
-    public SelectableViewModelBase<ContractorAndBuildingsPackage> SelectableContractor { get; private set; }
+    public SelectableViewModelBase<ContractorPrimitive> SelectableContractor { get; private set; }
 
-    /// <summary>
-    /// Gets or sets the selected building.
-    /// </summary>
-    /// <value>
-    /// The selected building.
-    /// </value>
-    public BuildingPrimitive SelectedBuilding { get; set; }
 
     /// <summary>
     /// Gets the create contractor command.
@@ -104,56 +92,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
     }
 
-    /// <summary>
-    /// Gets the create building command.
-    /// </summary>
-    /// <remarks>Opens dialog to creating <see cref="Building"/>.</remarks>
-    public ICommand CreateBuildingCommand
-    {
-      get
-      {
-        if (_createBuildingCommand == null)
-          _createBuildingCommand = new RelayCommand(CreateBuilding,
-                                                    () =>
-                                                    SelectableContractor != null &&
-                                                    SelectableContractor.SelectedItem != null);
-        return _createBuildingCommand;
-      }
-    }
-
-    /// <summary>
-    /// Gets the edit building command.
-    /// </summary>
-    /// <remarks>Opens dialog to editing <see cref="Building"/>.</remarks>
-    public ICommand EditBuildingCommand
-    {
-      get
-      {
-        if (_editBuildingCommand == null)
-          _editBuildingCommand = new RelayCommand(
-            EditBuilding,
-            () => SelectableContractor != null && SelectableContractor.SelectedItem != null && SelectedBuilding != null);
-        return _editBuildingCommand;
-      }
-    }
-
-    /// <summary>
-    /// Gets the delete building command.
-    /// </summary>
-    /// <remarks>
-    /// Deletes <see cref="Building"/> if user confirmed action. 
-    /// Command cannot be execute if any <see cref="DeliveryNote"/> exists for this Building.
-    /// </remarks>
-    public ICommand DeleteBuildingCommand
-    {
-      get
-      {
-        if (_deleteBuildingCommand == null)
-          _deleteBuildingCommand = new RelayCommand(DeleteBuilding,
-                                                    CanDeleteBuilding);
-        return _deleteBuildingCommand;
-      }
-    }
 
     public override string Title
     {
@@ -194,7 +132,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       try
       {
         ModalDialogService.EditContractor(ModalDialogService, ServiceFactory,
-                                          SelectableContractor.SelectedItem.Contractor);
+                                          SelectableContractor.SelectedItem);
         LoadContractors();
       }
       catch (FaultException<ExceptionDetail> f)
@@ -250,107 +188,22 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     }
 
 
-    private void CreateBuilding()
-    {
-      string errorCaption = "Tworzenie danych o budowie!";
-      try
-      {
-        ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory,
-                                          SelectableContractor.SelectedItem.Contractor);
-        LoadContractors();
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-
-    private void EditBuilding()
-    {
-      string errorCaption = "Edycj danych o budowie!";
-      try
-      {
-        ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory, SelectedBuilding);
-        LoadContractors();
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-
-    private void DeleteBuilding()
-    {
-      string errorCaption = "Uduwanie danych o budowie!";
-      try
-      {
-        //TODO: 
-        //MessageBox with question
-        //if any <see cref="DeliveryNotePackage"/> exists for this Building.
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-
-    private bool CanDeleteBuilding()
-    {
-      if (SelectableContractor != null && SelectableContractor.SelectedItem != null && SelectedBuilding != null)
-      {
-        //TODO: return true if building of this contractor can be deleted.
-      }
-      return false;
-    }
-
+   
 
     private void LoadContractors()
     {
       string errorCaption = "Pobranie danych o kontrahentach!";
       try
       {
-        ContractorAndBuildingsPackage selectedItem = SelectableContractor.SelectedItem;
+        ContractorPrimitive selectedItem = SelectableContractor.SelectedItem;
         using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
         {
-          SelectableContractor.LoadItems(contractorService.GetContractorAndBuildingsPackage(string.Empty));
+          SelectableContractor.LoadItems(contractorService.GetContractors(string.Empty));
         }
-        if (selectedItem != null && selectedItem.Contractor != null)
+        if (selectedItem != null)
         {
-          ContractorAndBuildingsPackage selectionFromItems =
-            SelectableContractor.Items.Where(x => x.Contractor.Id == selectedItem.Contractor.Id).FirstOrDefault();
+          ContractorPrimitive selectionFromItems =
+            SelectableContractor.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
           if (selectionFromItems != null)
             SelectableContractor.SelectedItem = selectionFromItems;
         }
@@ -372,126 +225,5 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       }
     }
 
-    #region ChoseBuildingCommand
-
-    /// <summary>
-    /// Gets the chose building command.
-    /// </summary>
-    /// <remarks>Opens dialog to manage <see cref="Contractor"/> object where user can chose Building.</remarks>
-    public ICommand ChoseBuildingCommand
-    {
-      get
-      {
-        if (_choseBuildingCommand == null)
-          _choseBuildingCommand = new RelayCommand(ChoseBuilding, CanChoseBuilding);
-        return _choseBuildingCommand;
-      }
-    }
-
-    /// <summary>
-    /// Determines whether <see cref="ChoseBuildingCommand"/> can be executed.
-    /// </summary>
-    /// <returns>
-    ///   <c>true</c> if <see cref="ChoseBuildingCommand"/> can be executed; otherwise, <c>false</c>.
-    /// </returns>
-    private bool CanChoseBuilding()
-    {
-      return SelectedBuilding != null && DialogMode == DialogMode.ChoseSubItem;
-    }
-
-    /// <summary>
-    /// Executes  <see cref="ChoseBuildingCommand"/>.
-    /// </summary>
-    /// <remarks>
-    /// Closes modal dialog.
-    /// </remarks>
-    private void ChoseBuilding()
-    {
-      string errorCaption = "Wybieranie budowli!";
-      try
-      {
-        CloseModalDialog();
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-
-    #endregion
-
-    #region CreateDeliveryNoteCommand
-
-    /// <summary>
-    /// Gets the create delivery note command.
-    /// </summary>
-    /// <remarks>Opens dialog to create <see cref="DeliveryNote"/> object.</remarks>
-    public ICommand CreateDeliveryNoteCommand
-    {
-      get
-      {
-        if (_createDeliveryNoteCommand == null)
-          _createDeliveryNoteCommand = new RelayCommand(CreateDeliveryNote, CanCreateDeliveryNote);
-        return _createDeliveryNoteCommand;
-      }
-    }
-
-    /// <summary>
-    /// Determines whether <see cref="CreateDeliveryNoteCommand"/> can be executed.
-    /// </summary>
-    /// <returns>
-    ///   <c>true</c> if <see cref="CreateDeliveryNoteCommand"/> can be executed; otherwise, <c>false</c>.
-    /// </returns>
-    private bool CanCreateDeliveryNote()
-    {
-      return SelectableContractor.SelectedItem != null && SelectedBuilding != null &&
-             DialogMode != DialogMode.ChoseSubItem;
-    }
-
-    /// <summary>
-    /// Executes  <see cref="ChoseBuildingCommand"/>.
-    /// </summary>
-    /// <remarks>
-    /// Closes modal dialog.
-    /// </remarks>
-    private void CreateDeliveryNote()
-    {
-      string errorCaption = "Tworzenie WZ'tki!";
-      try
-      {
-        var buildingAndContractorPackage = new BuildingAndContractorPackage();
-        buildingAndContractorPackage.Building = SelectedBuilding;
-        buildingAndContractorPackage.Contractor = SelectableContractor.SelectedItem.Contractor;
-        ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory, buildingAndContractorPackage);
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-
-    #endregion
   }
 }

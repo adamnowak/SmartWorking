@@ -19,56 +19,6 @@ namespace SmartWorking.Office.Entities
     public partial class DeliveryNote : DeliveryNotePrimitive
     {
         #region Primitive Properties
-    		public override Nullable<int> Building_Id
-    		{
-            get { return _building_Id; }
-            set
-            {        
-                try
-                {
-                    _settingFK = true;
-                    if (_building_Id != value)
-                    {
-                        if (Building != null && Building.Id != value)
-                        {
-                            Building = null;
-                        }
-                        _building_Id = value;
-                    }
-                }
-                finally
-                {
-                    _settingFK = false;
-                }
-            }
-    		}
-    		private Nullable<int> _building_Id;    
-    
-    		public override Nullable<int> Recipe_Id
-    		{
-            get { return _recipe_Id; }
-            set
-            {        
-                try
-                {
-                    _settingFK = true;
-                    if (_recipe_Id != value)
-                    {
-                        if (Recipe != null && Recipe.Id != value)
-                        {
-                            Recipe = null;
-                        }
-                        _recipe_Id = value;
-                    }
-                }
-                finally
-                {
-                    _settingFK = false;
-                }
-            }
-    		}
-    		private Nullable<int> _recipe_Id;    
-    
     		public override Nullable<int> Driver_Id
     		{
             get { return _driver_Id; }
@@ -119,39 +69,34 @@ namespace SmartWorking.Office.Entities
     		}
     		private Nullable<int> _car_Id;    
     
+    		public override Nullable<int> Order_Id
+    		{
+            get { return _order_Id; }
+            set
+            {        
+                try
+                {
+                    _settingFK = true;
+                    if (_order_Id != value)
+                    {
+                        if (Order != null && Order.Id != value)
+                        {
+                            Order = null;
+                        }
+                        _order_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+    		}
+    		private Nullable<int> _order_Id;    
+    
 
         #endregion
         #region Navigation Properties
-    
-        public Building Building
-        {
-            get { return _building; }
-            set
-            {
-                if (!ReferenceEquals(_building, value))
-                {
-                    var previousValue = _building;
-                    _building = value;
-                    FixupBuilding(previousValue);
-                }
-            }
-        }
-        private Building _building;
-    
-        public Car Car
-        {
-            get { return _car; }
-            set
-            {
-                if (!ReferenceEquals(_car, value))
-                {
-                    var previousValue = _car;
-                    _car = value;
-                    FixupCar(previousValue);
-                }
-            }
-        }
-        private Car _car;
     
         public Driver Driver
         {
@@ -168,73 +113,40 @@ namespace SmartWorking.Office.Entities
         }
         private Driver _driver;
     
-        public Recipe Recipe
+        public Order Order
         {
-            get { return _recipe; }
+            get { return _order; }
             set
             {
-                if (!ReferenceEquals(_recipe, value))
+                if (!ReferenceEquals(_order, value))
                 {
-                    var previousValue = _recipe;
-                    _recipe = value;
-                    FixupRecipe(previousValue);
+                    var previousValue = _order;
+                    _order = value;
+                    FixupOrder(previousValue);
                 }
             }
         }
-        private Recipe _recipe;
+        private Order _order;
+    
+        public Car Car
+        {
+            get { return _car; }
+            set
+            {
+                if (!ReferenceEquals(_car, value))
+                {
+                    var previousValue = _car;
+                    _car = value;
+                    FixupCar(previousValue);
+                }
+            }
+        }
+        private Car _car;
 
         #endregion
         #region Association Fixup
     
         private bool _settingFK = false;
-    
-        private void FixupBuilding(Building previousValue)
-        {
-            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-            {
-                previousValue.DeliveryNotes.Remove(this);
-            }
-    
-            if (Building != null)
-            {
-                if (!Building.DeliveryNotes.Contains(this))
-                {
-                    Building.DeliveryNotes.Add(this);
-                }
-                if (Building_Id != Building.Id)
-                {
-                    Building_Id = Building.Id;
-                }
-            }
-            else if (!_settingFK)
-            {
-                Building_Id = null;
-            }
-        }
-    
-        private void FixupCar(Car previousValue)
-        {
-            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-            {
-                previousValue.DeliveryNotes.Remove(this);
-            }
-    
-            if (Car != null)
-            {
-                if (!Car.DeliveryNotes.Contains(this))
-                {
-                    Car.DeliveryNotes.Add(this);
-                }
-                if (Car_Id != Car.Id)
-                {
-                    Car_Id = Car.Id;
-                }
-            }
-            else if (!_settingFK)
-            {
-                Car_Id = null;
-            }
-        }
     
         private void FixupDriver(Driver previousValue)
         {
@@ -260,27 +172,51 @@ namespace SmartWorking.Office.Entities
             }
         }
     
-        private void FixupRecipe(Recipe previousValue)
+        private void FixupOrder(Order previousValue)
         {
             if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
             {
                 previousValue.DeliveryNotes.Remove(this);
             }
     
-            if (Recipe != null)
+            if (Order != null)
             {
-                if (!Recipe.DeliveryNotes.Contains(this))
+                if (!Order.DeliveryNotes.Contains(this))
                 {
-                    Recipe.DeliveryNotes.Add(this);
+                    Order.DeliveryNotes.Add(this);
                 }
-                if (Recipe_Id != Recipe.Id)
+                if (Order_Id != Order.Id)
                 {
-                    Recipe_Id = Recipe.Id;
+                    Order_Id = Order.Id;
                 }
             }
             else if (!_settingFK)
             {
-                Recipe_Id = null;
+                Order_Id = null;
+            }
+        }
+    
+        private void FixupCar(Car previousValue)
+        {
+            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+            {
+                previousValue.DeliveryNotes.Remove(this);
+            }
+    
+            if (Car != null)
+            {
+                if (!Car.DeliveryNotes.Contains(this))
+                {
+                    Car.DeliveryNotes.Add(this);
+                }
+                if (Car_Id != Car.Id)
+                {
+                    Car_Id = Car.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Car_Id = null;
             }
         }
 

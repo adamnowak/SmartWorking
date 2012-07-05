@@ -27,14 +27,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     public ManageDriversViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableDriver = new SelectableViewModelBase<DriverPrimitive>();
+      SelectableDriver = new SelectableViewModelBase<DriverAndCarPackage>();
       LoadDrivers();
     }
 
     /// <summary>
     /// Gets the selectable driver.
     /// </summary>
-    public SelectableViewModelBase<DriverPrimitive> SelectableDriver { get; private set; }
+    public SelectableViewModelBase<DriverAndCarPackage> SelectableDriver { get; private set; }
 
     /// <summary>
     /// Gets or sets the dialog mode.
@@ -217,15 +217,15 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
       string errorCaption = "Wczytywanie danych o kierowcach!";
       try
       {
-        DriverPrimitive selectedItem = SelectableDriver.SelectedItem;
+        DriverAndCarPackage selectedItem = SelectableDriver.SelectedItem;
         using (IDriversService service = ServiceFactory.GetDriversService())
         {
-          SelectableDriver.LoadItems(service.GetDrivers(string.Empty));
+          SelectableDriver.LoadItems(service.GetDriverAndCarPackageList(string.Empty));
         }
         if (selectedItem != null)
         {
-          DriverPrimitive selectionFromItems =
-            SelectableDriver.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+          DriverAndCarPackage selectionFromItems =
+            SelectableDriver.Items.Where(x => x.Driver.Id == selectedItem.Driver.Id).FirstOrDefault();
           if (selectionFromItems != null)
             SelectableDriver.SelectedItem = selectionFromItems;
         }

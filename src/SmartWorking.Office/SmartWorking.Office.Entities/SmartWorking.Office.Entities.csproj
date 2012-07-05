@@ -56,6 +56,10 @@
       <Link>Car.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\Client.cs">
+      <Link>Client.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\SmartWorking.Office.Model\Contractor.cs">
       <Link>Contractor.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
@@ -86,6 +90,10 @@
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\MaterialStock.cs">
       <Link>MaterialStock.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\Order.cs">
+      <Link>Order.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="..\SmartWorking.Office.Model\Recipe.cs">

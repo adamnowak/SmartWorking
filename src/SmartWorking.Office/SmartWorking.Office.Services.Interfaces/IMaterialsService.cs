@@ -20,10 +20,23 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of material filtered by <paramref name="filter"/>. The result has the information about material in stock.
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetMaterials?filter={filter}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetMaterialList?filter={filter}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<MaterialPrimitive> GetMaterials(string filter);
+    List<MaterialPrimitive> GetMaterialList(string filter);
 
+    /// <summary>
+    /// Gets the materials filtered by <paramref name="filter"/>.
+    /// </summary>
+    /// <param name="filter">The filter.</param>
+    /// <returns>
+    /// List of material filtered by <paramref name="filter"/>. The result has the information about material in stock.
+    /// </returns>
+    [OperationContract]
+    [WebInvoke(Method = "GET", UriTemplate = "/GetMaterialAndContractorsPackageList?filter={filter}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    List<MaterialAndContractorsPackage> GetMaterialAndContractorsPackageList(string filter);
+
+    
     /// <summary>
     /// Updates the material.
     /// </summary>

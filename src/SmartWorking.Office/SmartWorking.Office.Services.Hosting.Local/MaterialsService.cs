@@ -22,7 +22,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of material filtered by <paramref name="materialNameFilter"/>. The result has the information about material in stock.
     /// </returns>
-    public List<MaterialPrimitive> GetMaterials(string materialNameFilter)
+    public List<MaterialPrimitive> GetMaterialList(string materialNameFilter)
     {
       try
       {
@@ -30,9 +30,28 @@ namespace SmartWorking.Office.Services.Hosting.Local
         {
           List<Material> result =
             (string.IsNullOrWhiteSpace(materialNameFilter))
-              ? ctx.Materials.Include("MaterialStocks").ToList()
-              : ctx.Materials.Include("MaterialStocks").Where(x => x.Name.StartsWith(materialNameFilter)).ToList();
+              ? ctx.Materials.ToList()
+              : ctx.Materials.Where(x => x.Name.StartsWith(materialNameFilter)).ToList();
           return result.Select(x => x.GetPrimitive()).ToList(); ;
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
+    public List<MaterialAndContractorsPackage> GetMaterialAndContractorsPackageList(string filter)
+    {
+      try
+      {
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<Material> result =
+            (string.IsNullOrWhiteSpace(filter))
+              ? ctx.Materials.Include("Producer").Include("Deliver").ToList()
+              : ctx.Materials.Include("Producer").Include("Deliver").Where(x => x.Name.StartsWith(filter)).ToList();
+          return result.Select(x => x.GetMaterialAndContractorsPackage()).ToList(); ;
         }
       }
       catch (Exception e)

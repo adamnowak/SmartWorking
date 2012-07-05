@@ -1,3 +1,5 @@
+DELETE FROM [Smartworking].[dbo].[Orders]
+GO
 DELETE FROM [Smartworking].[dbo].[DeliveryNotes]
 GO
 DELETE FROM [Smartworking].[dbo].[RecipeComponents]
@@ -15,4 +17,6 @@ GO
 DELETE FROM [Smartworking].[dbo].[MaterialStocks]
 GO
 DELETE FROM [Smartworking].[dbo].[Recipes]
+GO
+DELETE FROM [Smartworking].[dbo].[Clients]
 GO

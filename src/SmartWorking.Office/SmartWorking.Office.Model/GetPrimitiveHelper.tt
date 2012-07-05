@@ -26,7 +26,7 @@ string namespaceName = code.VsNamespaceSuggestion();
 
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 
-WriteHeader(fileManager);
+WriteHeader(fileManager, new string[] { "SmartWorking.Office.PrimitiveEntities" });
 BeginNamespace(namespaceName, code);
 #>
 public static class GetPrimitiveHelper 

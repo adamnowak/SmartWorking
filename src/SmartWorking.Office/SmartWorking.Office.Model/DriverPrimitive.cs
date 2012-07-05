@@ -38,6 +38,21 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public string InternalName
+    		{
+            get;
+            set;
+    		}
+    		public virtual Nullable<int> Car_Id
+    		{
+    			get;
+    			set;
+    		}
+    		public Nullable<System.DateTime> Deleted
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }
