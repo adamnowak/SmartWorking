@@ -7,9 +7,9 @@
 		</Grid.RowDefinitions>
 
 		<Shared:PanelLabel Image="{StaticResource ClientImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Klient</Shared:PanelLabel>
-		<!--Contractor grid-->
-		<GroupBox Header="Kontrahent" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
-			<Grid DataContext="{Binding Contractor}">
+		<!--Client grid-->
+		<GroupBox Header="Klient" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
+			<Grid DataContext="{Binding Client}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition />
@@ -20,29 +20,41 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
 				<!--Debug only-->
 				<TextBlock Text="Id:" Grid.Row="0" />
 				<!--End Debug only-->
-				<TextBlock Text="Pełna nazwa:" Grid.Row="1" />
-				<TextBlock Text="Imię:" Grid.Row="2" />
-				<TextBlock Text="Nazwisko:" Grid.Row="3" />
-				<TextBlock Text="Telefon:" Grid.Row="4" />
+				<TextBlock Text="Symbol:" Grid.Row="1" />
+				<TextBlock Text="Nazwa/Imie i Nazwisko:" Grid.Row="2" />
+				<TextBlock Text="NIP:" Grid.Row="3" />
+				<TextBlock Text="Miasto:" Grid.Row="4" />
+                <TextBlock Text="Kod pocztowy:" Grid.Row="5" />
+                <TextBlock Text="Ulica:" Grid.Row="6" />
+                <TextBlock Text="Numer domu:" Grid.Row="7" />
+                <TextBlock Text="Telefon:" Grid.Row="8" />
 
 				<!--End Debug only-->
 				<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 				<!--Debug only-->
-				<TextBox Text="{Binding FullName}" Grid.Row="1" Grid.Column="1" />
+				<TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" />
 				<TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" />
-				<TextBox Text="{Binding Surname}" Grid.Row="3" Grid.Column="1" />
-				<TextBox Text="{Binding Phone}" Grid.Row="4" Grid.Column="1" />
-			</Grid>
+				<TextBox Text="{Binding NIP}" Grid.Row="3" Grid.Column="1" />
+				<TextBox Text="{Binding City}" Grid.Row="4" Grid.Column="1" />
+                <TextBox Text="{Binding ZIPCode}" Grid.Row="5" Grid.Column="1" />
+                <TextBox Text="{Binding Street}" Grid.Row="6" Grid.Column="1" />
+                <TextBox Text="{Binding HouseNo}" Grid.Row="7" Grid.Column="1" />
+                <TextBox Text="{Binding Phone}" Grid.Row="8" Grid.Column="1" />
+            </Grid>
 		</GroupBox>
         
 		<!--Buttons-->		
 		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-			<Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Zapisz" Comment="Zatwierdz zmiany" Command="{Binding CreateOrUpdateContractorCommand}" />
+			<Shared:DescriptionButton Image="{StaticResource SaveImageSource}" Content="Zapisz" Comment="Zatwierdz zmiany" Command="{Binding CreateOrUpdateClientCommand}" />
 			<Shared:DescriptionButton Image="{StaticResource CancelImageSource}" Content="Anuluj" Comment="Zamknij okno" Command="{Binding CancelCommand}" />
 		</StackPanel>
 	</Grid>

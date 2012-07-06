@@ -59,14 +59,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       }
     }
 
-    #region Building property
+    #region BuildingAndClient property
 
     /// <summary>
     /// The <see cref="Building" /> property's name.
     /// </summary>
-    public const string BuildingPropertyName = "Building";
+    public const string BuildingAndClientPropertyName = "BuildingAndClient";
 
-    private BuildingPrimitive _building;
+    private BuildingAndClientPackage _buildingAndClient;
 
     /// <summary>
     /// Gets the Building property.
@@ -74,61 +74,28 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public BuildingPrimitive Building
+    public BuildingAndClientPackage BuildingAndClient
     {
-      get { return _building; }
+      get { return _buildingAndClient; }
 
       set
       {
-        if (_building == value)
+        if (_buildingAndClient == value)
         {
           return;
         }
-        _building = value;
+        _buildingAndClient = value;
         // Update bindings, no broadcast
-        RaisePropertyChanged(BuildingPropertyName);
+        RaisePropertyChanged(BuildingAndClientPropertyName);
       }
     }
 
     #endregion
 
-    //#region Contractor property
-
-    ///// <summary>
-    ///// The <see cref="Contractor" /> property's name.
-    ///// </summary>
-    //public const string ContractorPropertyName = "Contractor";
-
-    //private Contractor _contractor;
-
-    ///// <summary>
-    ///// Gets the Contractor property.
-    ///// TODO Update documentation:
-    ///// Changes to that property's value raise the PropertyChanged event. 
-    ///// This property's value is broadcasted by the Messenger's default instance when it changes.
-    ///// </summary>
-    //public Contractor Contractor
-    //{
-    //  get { return _contractor; }
-
-    //  set
-    //  {
-    //    if (_contractor == value)
-    //    {
-    //      return;
-    //    }
-    //    _contractor = value;
-
-    //    // Update bindings, no broadcast
-    //    RaisePropertyChanged(ContractorPropertyName);
-    //  }
-    //}
-
-    //#endregion
 
     private bool CanCreateOrUpdatBuilding()
     {
-      if (Building == null)
+      if (BuildingAndClient == null || BuildingAndClient.Building == null || BuildingAndClient.Client == null)
         return false;
       //TODO: validate
       return true;
@@ -140,24 +107,23 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       string errorCaption = "Zatwierdzenie danych o budowie!";
       try
       {
-        if (Building == null)
+        if (BuildingAndClient == null)
           throw new Exception(); //TODO:
 
         using (IClientsService clientService = ServiceFactory.GetClientsService())
         {
           if (DialogMode == DialogMode.Create)
           {
-            if (Building.Id > 0)
+            if (BuildingAndClient.Building.Id > 0)
               throw new Exception("Building has wrong Id (>0).");
           }
           else if (DialogMode == DialogMode.Update)
           {
-            if (Building.Id <= 0)
+            if (BuildingAndClient.Building.Id <= 0)
               throw new Exception("Building has wrong Id (<=0).");
           }
-          //if (Building.Contractor_Id <= 0)
-          //  throw new Exception("Building has to belong to Contractor.");
-          clientService.UpdateBuilding(Building);
+
+          clientService.UpdateBuilding(BuildingAndClient.GetBuildingPrimitiveWithReference());
         }
         CloseModalDialog();
       }

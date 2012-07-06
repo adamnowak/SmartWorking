@@ -34,12 +34,12 @@ namespace SmartWorking.Office.Gui.View
     public ClientPrimitive CreateClient(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateClientViewModel(modalDialogService, serviceFactory);
-      viewModel.Contractor = new ContractorPrimitive();
+      viewModel.Client = new ClientPrimitive();
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateClient>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        //return viewModel.Contractor;
+        return viewModel.Client;
       }
       return null;
     }
@@ -47,10 +47,10 @@ namespace SmartWorking.Office.Gui.View
     public ClientPrimitive EditClient(IModalDialogService modalDialogService, IServiceFactory serviceFactory, ClientPrimitive client)
     {
       var viewModel = new UpdateClientViewModel(modalDialogService, serviceFactory);
-     // viewModel.Contractor = contractorToEdit;
+      viewModel.Client = client;
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateClient>.ShowDialog(viewModel);
-      return null;// viewModel.Contractor;
+      return viewModel.Client;
     }
 
     public void ManageClients(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -102,31 +102,31 @@ namespace SmartWorking.Office.Gui.View
       return null;
     }
 
-    public BuildingPrimitive CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+    public BuildingAndClientPackage CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
                                             ClientPrimitive client)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       //viewModel.Contractor = contractor;
-      viewModel.Building = new BuildingPrimitive();
-      //viewModel.Building.Contractor_Id = contractor.Id;
+      viewModel.BuildingAndClient = new BuildingAndClientPackage();
+      viewModel.BuildingAndClient.Building = new BuildingPrimitive();
+      viewModel.BuildingAndClient.Client = client;
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        return viewModel.Building;
+        return viewModel.BuildingAndClient;
       }
       return null;
     }
 
-    public BuildingPrimitive EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                          BuildingPrimitive building)
+    public BuildingAndClientPackage EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                          BuildingAndClientPackage buildingAndClientPackage)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
-      //viewModel.Contractor = building.Contractor;
-      viewModel.Building = building;
+      viewModel.BuildingAndClient = buildingAndClientPackage;
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateBuilding>.ShowDialog(viewModel);
-      return viewModel.Building;
+      return viewModel.BuildingAndClient;
     }
 
     public BuildingAndClientPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService,
@@ -139,7 +139,7 @@ namespace SmartWorking.Office.Gui.View
       {
         var result = new BuildingAndClientPackage();
         result.Building = viewModel.SelectedBuilding;
-        result.Client = viewModel.SelectableClint.SelectedItem.Client;
+        result.Client = viewModel.SelectableClient.SelectedItem.Client;
         return result;
       }
       return null;

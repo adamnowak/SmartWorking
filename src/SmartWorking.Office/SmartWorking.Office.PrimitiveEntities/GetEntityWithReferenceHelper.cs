@@ -63,5 +63,17 @@ namespace SmartWorking.Office.PrimitiveEntities
       }
       return result;
     }
+
+    public static BuildingPrimitive GetBuildingPrimitiveWithReference(this BuildingAndClientPackage buildingAndClientPackage)
+    {
+      if (buildingAndClientPackage == null || buildingAndClientPackage.Building == null)
+        return null;
+      BuildingPrimitive result = buildingAndClientPackage.Building;
+      if (buildingAndClientPackage.Client != null)
+      {
+        result.Client_Id = buildingAndClientPackage.Client.Id;
+      }
+      return result;
+    }
   }
 }

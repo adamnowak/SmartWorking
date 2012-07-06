@@ -32,7 +32,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     public ManageClientsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableClint = new SelectableViewModelBase<ClientAndBuildingsPackage>();
+      SelectableClient = new SelectableViewModelBase<ClientAndBuildingsPackage>();
       LoadClients();
     }
 
@@ -45,9 +45,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     public DialogMode DialogMode { get; set; }
 
     /// <summary>
-    /// Gets the selectable contractor. List of contractors and one which is selected.
+    /// Gets the selectable client with building information. List of clients with information about them buildings and one which is selected.
     /// </summary>
-    public SelectableViewModelBase<ClientAndBuildingsPackage> SelectableClint { get; private set; }
+    public SelectableViewModelBase<ClientAndBuildingsPackage> SelectableClient { get; private set; }
 
     /// <summary>
     /// Gets or sets the selected building.
@@ -58,7 +58,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     public BuildingPrimitive SelectedBuilding { get; set; }
 
     /// <summary>
-    /// Gets the create contractor command.
+    /// Gets the create client command.
     /// </summary>
     /// <remarks>Opens dialog to creating <see cref="Client"/>.</remarks>
     public ICommand CreateClientCommand
@@ -72,7 +72,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     }
 
     /// <summary>
-    /// Gets the edit contractor command.
+    /// Gets the edit client command.
     /// </summary>
     /// <remarks>Opens dialog to editing <see cref="Client"/>.</remarks>
     public ICommand EditClientCommand
@@ -82,13 +82,13 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
         if (_editClientCommand == null)
           _editClientCommand = new RelayCommand(
             EditClient,
-            () => SelectableClint != null && SelectableClint.SelectedItem != null);
+            () => SelectableClient != null && SelectableClient.SelectedItem != null);
         return _editClientCommand;
       }
     }
 
     /// <summary>
-    /// Gets the delete contractor command.
+    /// Gets the delete client command.
     /// </summary>
     /// <remarks>
     /// Deletes <see cref="Client"/> if user confirmed action. 
@@ -116,8 +116,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
         if (_createBuildingCommand == null)
           _createBuildingCommand = new RelayCommand(CreateBuilding,
                                                     () =>
-                                                    SelectableClint != null &&
-                                                    SelectableClint.SelectedItem != null);
+                                                    SelectableClient != null &&
+                                                    SelectableClient.SelectedItem != null);
         return _createBuildingCommand;
       }
     }
@@ -133,7 +133,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
         if (_editBuildingCommand == null)
           _editBuildingCommand = new RelayCommand(
             EditBuilding,
-            () => SelectableClint != null && SelectableClint.SelectedItem != null && SelectedBuilding != null);
+            () => SelectableClient != null && SelectableClient.SelectedItem != null && SelectedBuilding != null);
         return _editBuildingCommand;
       }
     }
@@ -162,7 +162,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     }
 
     /// <summary>
-    /// Creates the contractor.
+    /// Creates the client.
     /// </summary>
     private void CreateClient()
     {
@@ -195,7 +195,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       try
       {
         ModalDialogService.EditClient(ModalDialogService, ServiceFactory,
-                                          SelectableClint.SelectedItem.Client);
+                                          SelectableClient.SelectedItem.Client);
         LoadClients();
       }
       catch (FaultException<ExceptionDetail> f)
@@ -217,12 +217,12 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
 
     private void DeleteClient()
     {
-      string errorCaption = "Usuwanie danych o kontrahencie!";
+      string errorCaption = "Usuwanie danych o kliencie!";
       try
       {
         //TODO: 
         //MessageBox with question
-        //if yes deletes all building of this contractor and this contractor
+        //if yes deletes all building of this client and this client
       }
       catch (FaultException<ExceptionDetail> f)
       {
@@ -243,9 +243,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
 
     private bool CanDeleteClient()
     {
-      if (SelectableClint != null && SelectableClint.SelectedItem != null)
+      if (SelectableClient != null && SelectableClient.SelectedItem != null)
       {
-        //TODO: return true if all building of this contractor can be deleted.
+        //TODO: return true if all building of this client can be deleted.
       }
       return false;
     }
@@ -257,7 +257,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       try
       {
         ModalDialogService.CreateBuilding(ModalDialogService, ServiceFactory,
-                                          SelectableClint.SelectedItem.Client);
+                                          SelectableClient.SelectedItem.Client);
         LoadClients();
       }
       catch (FaultException<ExceptionDetail> f)
@@ -282,7 +282,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       string errorCaption = "Edycj danych o budowie!";
       try
       {
-        ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory, SelectedBuilding);
+        ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory,
+          new BuildingAndClientPackage() { Building = SelectedBuilding, 
+            Client = (SelectableClient.SelectedItem == null) ? null : SelectableClient.SelectedItem.Client });
         LoadClients();
       }
       catch (FaultException<ExceptionDetail> f)
@@ -330,9 +332,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
 
     private bool CanDeleteBuilding()
     {
-      if (SelectableClint != null && SelectableClint.SelectedItem != null && SelectedBuilding != null)
+      if (SelectableClient != null && SelectableClient.SelectedItem != null && SelectedBuilding != null)
       {
-        //TODO: return true if building of this contractor can be deleted.
+        //TODO: return true if building of this client can be deleted.
       }
       return false;
     }
@@ -340,20 +342,20 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
 
     private void LoadClients()
     {
-      string errorCaption = "Pobranie danych o kontrahentach!";
+      string errorCaption = "Pobranie danych o klientach!";
       try
       {
-        ClientAndBuildingsPackage selectedItem = SelectableClint.SelectedItem;
-        using (IClientsService contractorService = ServiceFactory.GetClientsService())
+        ClientAndBuildingsPackage selectedItem = SelectableClient.SelectedItem;
+        using (IClientsService clientsService = ServiceFactory.GetClientsService())
         {
-          SelectableClint.LoadItems(contractorService.GetClientAndBuildingsPackageList(string.Empty));
+          SelectableClient.LoadItems(clientsService.GetClientAndBuildingsPackageList(string.Empty));
         }
         if (selectedItem != null && selectedItem.Client != null)
         {
           ClientAndBuildingsPackage selectionFromItems =
-            SelectableClint.Items.Where(x => x.Client.Id == selectedItem.Client.Id).FirstOrDefault();
+            SelectableClient.Items.Where(x => x.Client.Id == selectedItem.Client.Id).FirstOrDefault();
           if (selectionFromItems != null)
-            SelectableClint.SelectedItem = selectionFromItems;
+            SelectableClient.SelectedItem = selectionFromItems;
         }
       }
       catch (FaultException<ExceptionDetail> f)
@@ -456,7 +458,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     /// </returns>
     private bool CanCreateDeliveryNote()
     {
-      return SelectableClint.SelectedItem != null && SelectedBuilding != null &&
+      return SelectableClient.SelectedItem != null && SelectedBuilding != null &&
              DialogMode != DialogMode.ChoseSubItem;
     }
 
@@ -473,7 +475,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       {
         var buildingAndClientPackage = new BuildingAndClientPackage();
         buildingAndClientPackage.Building = SelectedBuilding;
-        buildingAndClientPackage.Client = SelectableClint.SelectedItem.Client;
+        buildingAndClientPackage.Client = SelectableClient.SelectedItem.Client;
         ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory, buildingAndClientPackage);
       }
       catch (FaultException<ExceptionDetail> f)

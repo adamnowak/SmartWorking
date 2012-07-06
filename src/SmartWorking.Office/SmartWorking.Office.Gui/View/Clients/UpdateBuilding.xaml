@@ -9,8 +9,8 @@
 		<Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Budowa</Shared:PanelLabel>
 		
 		<!--Contractor grid-->
-		<GroupBox Header="Budowa" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
-			<Grid DataContext="{Binding Building}">
+        <GroupBox Header="{Binding Client.Name, StringFormat='{}Budowa (Klient: {0})'}" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}" DataContext="{Binding BuildingAndClient}">
+            <Grid DataContext="{Binding Building}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition />
@@ -21,24 +21,36 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
   
 				<!--Debug only-->
 				<TextBlock Text="Id:" Grid.Row="0" />
 				<!--End Debug only-->
-				<TextBlock Text="Miasto:" Grid.Row="1" />
-				<TextBlock Text="Ulica:" Grid.Row="2" />
-				<TextBlock Text="Numer domu:" Grid.Row="3" />
-
-
+                <TextBlock Text="Symbol:" Grid.Row="1" />
+				<TextBlock Text="Miasto:" Grid.Row="2" />
+                <TextBlock Text="Kod pocztowy:" Grid.Row="3" />
+				<TextBlock Text="Ulica:" Grid.Row="4" />
+				<TextBlock Text="Numer domu:" Grid.Row="5" />
+                <TextBlock Text="Telefon na budowę:" Grid.Row="6" />
+                <TextBlock Text="Osoba prowadząca:" Grid.Row="7" />
+                <TextBlock Text="Kontakt z osoba prowadzącą:" Grid.Row="8" />
+                
 				<!--End Debug only-->
 				<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 				<!--Debug only-->
-				<TextBox Text="{Binding City}" Grid.Row="1" Grid.Column="1" />
-				<TextBox Text="{Binding Street}" Grid.Row="2" Grid.Column="1" />
-				<TextBox Text="{Binding HouseNo}" Grid.Row="3" Grid.Column="1" />
-
-			</Grid>
+                <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" />
+				<TextBox Text="{Binding City}" Grid.Row="2" Grid.Column="1" />
+                <TextBox Text="{Binding ZIPCode}" Grid.Row="3" Grid.Column="1" />
+				<TextBox Text="{Binding Street}" Grid.Row="4" Grid.Column="1" />
+				<TextBox Text="{Binding HouseNo}" Grid.Row="5" Grid.Column="1" />
+                <TextBox Text="{Binding Phone}" Grid.Row="6" Grid.Column="1" />
+                <TextBox Text="{Binding ContactPerson}" Grid.Row="7" Grid.Column="1" />
+                <TextBox Text="{Binding ContactPersonPhone}" Grid.Row="8" Grid.Column="1" />
+            </Grid>
 		</GroupBox>
 
 		<!--Buttons-->

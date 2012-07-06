@@ -78,9 +78,9 @@
 							<DataGrid.Columns>
 								<!--Debug only-->
 								<DataGridTextColumn Header="Id" Binding="{Binding RecipeComponent.Id}" />
-								<!--End Debug only-->								
-								<DataGridTextColumn Header="Symbol" Binding="{Binding Material.InternalName}" />
-                                <DataGridTextColumn Header="Nazwa" Binding="{Binding Material.Name}" />
+								<!--End Debug only-->
+                                <DataGridTextColumn Header="Symbol" Binding="{Binding MaterialAndContractors.Material.InternalName}" />
+                                <DataGridTextColumn Header="Nazwa" Binding="{Binding MaterialAndContractors.Material.Name}" />
                                 <DataGridTextColumn Header="Ilość" Binding="{Binding RecipeComponent.Amount}" />
 							</DataGrid.Columns>
 						</DataGrid>

@@ -22,19 +22,18 @@
 						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
 					<StackPanel>
-						<Shared:DescriptionButton Command="{Binding CreateContractorCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
-						<Shared:DescriptionButton Command="{Binding EditContractorCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-						<Shared:DescriptionButton Command="{Binding DeleteContractorCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
+						<Shared:DescriptionButton Command="{Binding CreateClientCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
+						<Shared:DescriptionButton Command="{Binding EditClientCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+						<Shared:DescriptionButton Command="{Binding DeleteClientCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
 					</StackPanel>
-					<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableContractor}" ItemsSource="{Binding Items}">
+                    <DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableClient}" ItemsSource="{Binding Items}">
 						<DataGrid.Columns>
 							<!--Debug only-->
-							<DataGridTextColumn Header="Id" Binding="{Binding Contractor.Id}" />
+                            <DataGridTextColumn Header="Id" Binding="{Binding Client.Id}" />
 							<!--End Debug only-->
-							<DataGridTextColumn Header="Pelna nazwa" Binding="{Binding Contractor.FullName}" />
-							<DataGridTextColumn Header="Nazwisko" Binding="{Binding Contractor.Name}" />
-							<DataGridTextColumn Header="Imie" Binding="{Binding Contractor.Surname}" />
-							<DataGridTextColumn Header="Telefon" Binding="{Binding Contractor.Phone}" />
+                            <DataGridTextColumn Header="Pelna nazwa" Binding="{Binding Client.InternalName}" />
+                            <DataGridTextColumn Header="Nazwisko" Binding="{Binding Client.Name}" />                            
+                            <DataGridTextColumn Header="Telefon" Binding="{Binding Client.Phone}" />
 						</DataGrid.Columns>
 					</DataGrid>
 				</Grid>
@@ -46,7 +45,7 @@
 						<RowDefinition />
 					</Grid.RowDefinitions>
 					<Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource TextBlockH2}">
-						Budowy wybranego kontrahenta
+						Budowy wybranego klienta
 					</Shared:PanelLabel>
 
 					<Grid Grid.Row="1">
@@ -83,14 +82,14 @@
 								</Shared:DescriptionButton.Visibility>
 							</Shared:DescriptionButton>
 						</StackPanel>
-						<DataGrid Grid.Row="1" SelectedItem="{Binding SelectedBuilding}" ItemsSource="{Binding SelectableContractor.SelectedItem.Buildings}" Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
+						<DataGrid Grid.Row="1" SelectedItem="{Binding SelectedBuilding}" ItemsSource="{Binding SelectableClient.SelectedItem.Buildings}" Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 							<DataGrid.Columns>
 								<!--Debug only-->
 								<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
 								<!--End Debug only-->
-								<DataGridTextColumn Header="Miasto" Binding="{Binding City}" />
-								<DataGridTextColumn Header="Ulica" Binding="{Binding Street}" />
-								<DataGridTextColumn Header="Numer domu" Binding="{Binding HouseNo}" />
+								<DataGridTextColumn Header="Symbol" Binding="{Binding InternalName}" />
+								<DataGridTextColumn Header="Osoba" Binding="{Binding ContactPerson}" />
+                                <DataGridTextColumn Header="Tel." Binding="{Binding ContactPersonPhone}" />
 							</DataGrid.Columns>
 						</DataGrid>
 					</Grid>

@@ -26,21 +26,39 @@
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
 						<RowDefinition Height="Auto" />
-					</Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
 					<!--Debug only-->
 					<TextBlock Text="Id:" Grid.Row="0" />
 					<!--End Debug only-->
-					<TextBlock Text="Nazwa:" Grid.Row="1" />
-					<TextBlock Text="Skrót:" Grid.Row="2" />
-					<TextBlock Text="Ilość [m³]:" Grid.Row="3" />
+                    <TextBlock Text="Symbol:" Grid.Row="1" />
+                    <TextBlock Text="Nazwa:" Grid.Row="2" />
+
+                    <TextBlock Text="Symbol producenta:" Grid.Row="3" />
+                    <TextBlock Text="Nazwa producenta:" Grid.Row="4" />
+
+                    <TextBlock Text="Symbol dostawcy:" Grid.Row="5" />
+                    <TextBlock Text="Nazwa dostawcy:" Grid.Row="6" />
+
+                    <TextBlock Text="Ilość [m³]:" Grid.Row="7" />
 
 					<!--End Debug only-->
 					<TextBox IsReadOnly="True" Text="{Binding RecipeComponent.Id}" Grid.Row="0" Grid.Column="1" />
 					<!--Debug only DataContext="{Binding Material}"  -->
-					<TextBox IsReadOnly="True" Text="{Binding Material.Name}" Grid.Row="1" Grid.Column="1" />
-					<TextBox IsReadOnly="True" Text="{Binding Material.InternalName}" Grid.Row="2" Grid.Column="1" />
-					<TextBox Text="{Binding RecipeComponent.Amount}" Grid.Row="3" Grid.Column="1" />
+                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Material.InternalName}" Grid.Row="2" Grid.Column="1" />
+                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Material.Name}" Grid.Row="1" Grid.Column="1" />
+
+                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Producer.InternalName}" Grid.Row="3" Grid.Column="1" />
+                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Producer.Name}" Grid.Row="4" Grid.Column="1" />
+
+                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Deliverer.InternalName}" Grid.Row="5" Grid.Column="1" />
+                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Deliverer.Name}" Grid.Row="6" Grid.Column="1" />
+
+                    <TextBox Text="{Binding RecipeComponent.Amount}" Grid.Row="7" Grid.Column="1" />
 
 				</Grid>
 			</Grid>

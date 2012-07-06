@@ -2,19 +2,18 @@
 using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Clients
 {
   /// <summary>
-  /// View model for <see cref="CreateOrUpdateContractor"/> dialog. 
+  /// View model for <see cref="CreateOrUpdateClient"/> dialog. 
   /// </summary>
   public class UpdateClientViewModel : ModalDialogViewModelBase
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="UpdateContractorViewModel"/> class.
+    /// Initializes a new instance of the <see cref="UpdateClientViewModel"/> class.
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
@@ -45,83 +44,83 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       }
     }
 
-    #region Contractor property
+    #region Client property
 
     /// <summary>
-    /// The <see cref="Contractor" /> property's name.
+    /// The <see cref="Client" /> property's name.
     /// </summary>
-    public const string ContractorPropertyName = "Contractor";
+    public const string ClientPropertyName = "Client";
 
-    private ContractorPrimitive _contractor;
+    private ClientPrimitive _client;
 
     /// <summary>
-    /// Gets the Contractor property.
-    /// This instance of <see cref="UpdateContractorViewModel"/> provides operation for this Contractor. 
+    /// Gets the Client property.
+    /// This instance of <see cref="UpdateClientViewModel"/> provides operation for this Client. 
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public ContractorPrimitive Contractor
+    public ClientPrimitive Client
     {
-      get { return _contractor; }
+      get { return _client; }
 
       set
       {
-        if (_contractor == value)
+        if (_client == value)
         {
           return;
         }
-        _contractor = value;
+        _client = value;
 
         // Update bindings, no broadcast
-        RaisePropertyChanged(ContractorPropertyName);
+        RaisePropertyChanged(ClientPropertyName);
       }
     }
 
     #endregion
 
-    #region CreateOrUpdateContractorConmmand
+    #region CreateOrUpdateClientConmmand
 
-    private ICommand _createOrUpdateContractorCommand;
+    private ICommand _createOrUpdateClientCommand;
 
     /// <summary>
-    /// Gets the create or update contractor command.
+    /// Gets the create or update client command.
     /// </summary>
-    /// <remarks>This command opens dialog where Contractor can be created or updated.</remarks>
-    public ICommand CreateOrUpdateContractorCommand
+    /// <remarks>This command opens dialog where Client can be created or updated.</remarks>
+    public ICommand CreateOrUpdateClientCommand
     {
       get
       {
-        if (_createOrUpdateContractorCommand == null)
-          _createOrUpdateContractorCommand = new RelayCommand(CreateOrUpdateContractor, CanCreateOrUpdateContractor);
-        return _createOrUpdateContractorCommand;
+        if (_createOrUpdateClientCommand == null)
+          _createOrUpdateClientCommand = new RelayCommand(CreateOrUpdateClient, CanCreateOrUpdateClient);
+        return _createOrUpdateClientCommand;
       }
     }
 
     /// <summary>
-    /// Validates current fields of Contractor.
+    /// Validates current fields of Client.
     /// </summary>
     /// <returns>
-    ///   <c>true</c> if current fields of Contractor is validate; otherwise, <c>false</c>.
+    ///   <c>true</c> if current fields of Client is validate; otherwise, <c>false</c>.
     /// </returns>
-    private bool CanCreateOrUpdateContractor()
+    private bool CanCreateOrUpdateClient()
     {
       //TODO: validate
       return true;
     }
 
     /// <summary>
-    /// Updates the Contractor in the system.
+    /// Updates the Client in the system.
     /// </summary>
-    private void CreateOrUpdateContractor()
+    private void CreateOrUpdateClient()
     {
       string errorCaption = "Zatwierdzenie danych o kontrahencie!";
       try
       {
         if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
         {
-          using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
+          using (IClientsService clientService = ServiceFactory.GetClientsService())
           {
-            contractorService.CreateOrUpdateContractor(Contractor);
+            clientService.CreateOrUpdateClient(Client);
           }
         }
         CloseModalDialog();
