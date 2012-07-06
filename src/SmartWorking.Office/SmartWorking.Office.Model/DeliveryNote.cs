@@ -113,21 +113,6 @@ namespace SmartWorking.Office.Entities
         }
         private Driver _driver;
     
-        public Order Order
-        {
-            get { return _order; }
-            set
-            {
-                if (!ReferenceEquals(_order, value))
-                {
-                    var previousValue = _order;
-                    _order = value;
-                    FixupOrder(previousValue);
-                }
-            }
-        }
-        private Order _order;
-    
         public Car Car
         {
             get { return _car; }
@@ -142,6 +127,21 @@ namespace SmartWorking.Office.Entities
             }
         }
         private Car _car;
+    
+        public Order Order
+        {
+            get { return _order; }
+            set
+            {
+                if (!ReferenceEquals(_order, value))
+                {
+                    var previousValue = _order;
+                    _order = value;
+                    FixupOrder(previousValue);
+                }
+            }
+        }
+        private Order _order;
 
         #endregion
         #region Association Fixup
@@ -172,30 +172,6 @@ namespace SmartWorking.Office.Entities
             }
         }
     
-        private void FixupOrder(Order previousValue)
-        {
-            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-            {
-                previousValue.DeliveryNotes.Remove(this);
-            }
-    
-            if (Order != null)
-            {
-                if (!Order.DeliveryNotes.Contains(this))
-                {
-                    Order.DeliveryNotes.Add(this);
-                }
-                if (Order_Id != Order.Id)
-                {
-                    Order_Id = Order.Id;
-                }
-            }
-            else if (!_settingFK)
-            {
-                Order_Id = null;
-            }
-        }
-    
         private void FixupCar(Car previousValue)
         {
             if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
@@ -217,6 +193,30 @@ namespace SmartWorking.Office.Entities
             else if (!_settingFK)
             {
                 Car_Id = null;
+            }
+        }
+    
+        private void FixupOrder(Order previousValue)
+        {
+            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+            {
+                previousValue.DeliveryNotes.Remove(this);
+            }
+    
+            if (Order != null)
+            {
+                if (!Order.DeliveryNotes.Contains(this))
+                {
+                    Order.DeliveryNotes.Add(this);
+                }
+                if (Order_Id != Order.Id)
+                {
+                    Order_Id = Order.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Order_Id = null;
             }
         }
 

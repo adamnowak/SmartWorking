@@ -23,7 +23,7 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
-    		public virtual Nullable<int> Recipes_Id
+    		public virtual Nullable<int> Recipe_Id
     		{
     			get;
     			set;

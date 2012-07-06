@@ -19,21 +19,21 @@ namespace SmartWorking.Office.Entities
     public partial class Order : OrderPrimitive
     {
         #region Primitive Properties
-    		public override Nullable<int> Recipes_Id
+    		public override Nullable<int> Recipe_Id
     		{
-            get { return _recipes_Id; }
+            get { return _recipe_Id; }
             set
             {        
                 try
                 {
                     _settingFK = true;
-                    if (_recipes_Id != value)
+                    if (_recipe_Id != value)
                     {
                         if (Recipe != null && Recipe.Id != value)
                         {
                             Recipe = null;
                         }
-                        _recipes_Id = value;
+                        _recipe_Id = value;
                     }
                 }
                 finally
@@ -42,7 +42,7 @@ namespace SmartWorking.Office.Entities
                 }
             }
     		}
-    		private Nullable<int> _recipes_Id;    
+    		private Nullable<int> _recipe_Id;    
     
     		public override Nullable<int> Building_Id
     		{
@@ -177,14 +177,14 @@ namespace SmartWorking.Office.Entities
                 {
                     Recipe.Orders.Add(this);
                 }
-                if (Recipes_Id != Recipe.Id)
+                if (Recipe_Id != Recipe.Id)
                 {
-                    Recipes_Id = Recipe.Id;
+                    Recipe_Id = Recipe.Id;
                 }
             }
             else if (!_settingFK)
             {
-                Recipes_Id = null;
+                Recipe_Id = null;
             }
         }
     

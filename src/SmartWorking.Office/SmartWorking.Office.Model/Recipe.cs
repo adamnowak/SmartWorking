@@ -20,38 +20,6 @@ namespace SmartWorking.Office.Entities
     {
         #region Navigation Properties
     
-        public ICollection<Order> Orders
-        {
-            get
-            {
-                if (_orders == null)
-                {
-                    var newCollection = new FixupCollection<Order>();
-                    newCollection.CollectionChanged += FixupOrders;
-                    _orders = newCollection;
-                }
-                return _orders;
-            }
-            set
-            {
-                if (!ReferenceEquals(_orders, value))
-                {
-                    var previousValue = _orders as FixupCollection<Order>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupOrders;
-                    }
-                    _orders = value;
-                    var newValue = value as FixupCollection<Order>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupOrders;
-                    }
-                }
-            }
-        }
-        private ICollection<Order> _orders;
-    
         public ICollection<RecipeComponent> RecipeComponents
         {
             get
@@ -83,31 +51,41 @@ namespace SmartWorking.Office.Entities
             }
         }
         private ICollection<RecipeComponent> _recipeComponents;
-
-        #endregion
-        #region Association Fixup
     
-        private void FixupOrders(object sender, NotifyCollectionChangedEventArgs e)
+        public ICollection<Order> Orders
         {
-            if (e.NewItems != null)
+            get
             {
-                foreach (Order item in e.NewItems)
+                if (_orders == null)
                 {
-                    item.Recipe = this;
+                    var newCollection = new FixupCollection<Order>();
+                    newCollection.CollectionChanged += FixupOrders;
+                    _orders = newCollection;
                 }
+                return _orders;
             }
-    
-            if (e.OldItems != null)
+            set
             {
-                foreach (Order item in e.OldItems)
+                if (!ReferenceEquals(_orders, value))
                 {
-                    if (ReferenceEquals(item.Recipe, this))
+                    var previousValue = _orders as FixupCollection<Order>;
+                    if (previousValue != null)
                     {
-                        item.Recipe = null;
+                        previousValue.CollectionChanged -= FixupOrders;
+                    }
+                    _orders = value;
+                    var newValue = value as FixupCollection<Order>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupOrders;
                     }
                 }
             }
         }
+        private ICollection<Order> _orders;
+
+        #endregion
+        #region Association Fixup
     
         private void FixupRecipeComponents(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -122,6 +100,28 @@ namespace SmartWorking.Office.Entities
             if (e.OldItems != null)
             {
                 foreach (RecipeComponent item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Recipe, this))
+                    {
+                        item.Recipe = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupOrders(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Order item in e.NewItems)
+                {
+                    item.Recipe = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Order item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Recipe, this))
                     {

@@ -209,7 +209,7 @@ namespace SmartWorking.Office.Entities
         
         		result.Id = primitive.Id;
         		
-        		result.Recipes_Id = primitive.Recipes_Id;
+        		result.Recipe_Id = primitive.Recipe_Id;
         		
         		result.Building_Id = primitive.Building_Id;
         		
