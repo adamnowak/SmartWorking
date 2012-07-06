@@ -31,7 +31,7 @@
 							<!--Debug only-->
                             <DataGridTextColumn Header="Id" Binding="{Binding Client.Id}" />
 							<!--End Debug only-->
-                            <DataGridTextColumn Header="Pelna nazwa" Binding="{Binding Client.InternalName}" />
+                            <DataGridTextColumn Header="Symbol" Binding="{Binding Client.InternalName}" />
                             <DataGridTextColumn Header="Nazwisko" Binding="{Binding Client.Name}" />                            
                             <DataGridTextColumn Header="Telefon" Binding="{Binding Client.Phone}" />
 						</DataGrid.Columns>

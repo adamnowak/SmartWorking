@@ -6,6 +6,7 @@ using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Gui.View.DeliveryNotes;
 using SmartWorking.Office.Gui.View.Drivers;
 using SmartWorking.Office.Gui.View.Materials;
+using SmartWorking.Office.Gui.View.Orders;
 using SmartWorking.Office.Gui.View.Recipes;
 using SmartWorking.Office.Gui.View.Reports;
 using SmartWorking.Office.Gui.View.Shared.MessageBox;
@@ -16,6 +17,7 @@ using SmartWorking.Office.Gui.ViewModel.Contractors;
 using SmartWorking.Office.Gui.ViewModel.DeliveryNotes;
 using SmartWorking.Office.Gui.ViewModel.Drivers;
 using SmartWorking.Office.Gui.ViewModel.Materials;
+using SmartWorking.Office.Gui.ViewModel.Orders;
 using SmartWorking.Office.Gui.ViewModel.Recipes;
 using SmartWorking.Office.Gui.ViewModel.Reports;
 using SmartWorking.Office.Gui.ViewModel.Shared.MessageBox;
@@ -30,6 +32,26 @@ namespace SmartWorking.Office.Gui.View
   public class ModalDialogService : IModalDialogService
   {
     #region IModalDialogService Members
+
+    public OrderPackage CreateOrder(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new UpdateOrderViewModel(modalDialogService, serviceFactory);
+      viewModel.OrderPackage = new OrderPackage();
+      viewModel.DialogMode = DialogMode.Create;
+      ModalDialogHelper<UpdateOrder>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.OrderPackage;
+      }
+      return null;
+    }
+
+    public void ManageOrders(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageOrdersViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Manage;
+      ModalDialogHelper<ManageOrders>.ShowDialog(viewModel);
+    }
 
     public ClientPrimitive CreateClient(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {

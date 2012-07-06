@@ -102,7 +102,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// <summary>
     /// The <see cref="MaterialAndContractorsPackage" /> property's name.
     /// </summary>
-    public const string MaterialPropertyName = "MaterialAndContractors";
+    public const string MaterialAndContractorsPropertyName = "MaterialAndContractors";
 
     private MaterialAndContractorsPackage _materialAndContractors;
 
@@ -125,7 +125,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
         _materialAndContractors = value;
 
         // Update bindings, no broadcast
-        RaisePropertyChanged(MaterialPropertyName);
+        RaisePropertyChanged(MaterialAndContractorsPropertyName);
       }
     }
 
@@ -215,6 +215,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       try
       {
         MaterialAndContractors = ModalDialogService.SelectMaterial(ModalDialogService, ServiceFactory);
+        RaisePropertyChanged("Producer");
       }
       catch (FaultException<ExceptionDetail> f)
       {

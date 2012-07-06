@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="ClientAndBuildingsPackage.cs" />
     <Compile Include="BuildingAndClientPackage.cs" />
+    <Compile Include="OrderPackage.cs" />
     <Compile Include="MaterialAndContractorsPackage.cs" />
     <Compile Include="DriverAndCarPackage.cs" />
     <Compile Include="DeliveryNotePackage.cs" />

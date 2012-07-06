@@ -49,6 +49,12 @@
     IDriversService GetDriversService();
 
     /// <summary>
+    /// Gets the orders service.
+    /// </summary>
+    /// <returns>Service provides operations on orders.</returns>
+    IOrdersService GetOrdersService();
+
+    /// <summary>
     /// Gets the reports service.
     /// </summary>
     /// <returns>Service provides operations to create reports.</returns>

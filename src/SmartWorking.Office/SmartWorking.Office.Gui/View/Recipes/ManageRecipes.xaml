@@ -81,6 +81,8 @@
 								<!--End Debug only-->
                                 <DataGridTextColumn Header="Symbol" Binding="{Binding MaterialAndContractors.Material.InternalName}" />
                                 <DataGridTextColumn Header="Nazwa" Binding="{Binding MaterialAndContractors.Material.Name}" />
+                                <DataGridTextColumn Header="Nazwa" Binding="{Binding MaterialAndContractors.Producer.InternalName}" />
+                                <DataGridTextColumn Header="Nazwa" Binding="{Binding MaterialAndContractors.Deliverer.InternalName}" />
                                 <DataGridTextColumn Header="Ilość" Binding="{Binding RecipeComponent.Amount}" />
 							</DataGrid.Columns>
 						</DataGrid>

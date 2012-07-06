@@ -15,10 +15,15 @@
                 </Controls:AccordionItem.Header>
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
                     <StackPanel  Style="{StaticResource mainPanel}">
-                        <Shared:DescriptionButton Command="{Binding ManageDeliveryNotesCommand}" Image="{DynamicResource DeliveryNoteImageSource}" Comment="Tworzymy nową lub anulujemy już istniejącą WZ'tkę">Zarządzanie WZ'tkami</Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding ManageDeliveryNotesCommand}" Image="{DynamicResource DeliveryNoteImageSource}" Comment="Tworzymy nową lub anulujemy już istniejącą WZ'tkę">
+                            Zarządzanie WZ'tkami
+                        </Shared:DescriptionButton>
+                        <Shared:DescriptionButton Command="{Binding ManageOrdersCommand}" Image="{DynamicResource OrderImageSource}" Comment="Utworz lub zmodyfikuj zamówienie">
+                            Zarządzanie zamówieniami
+                        </Shared:DescriptionButton>
                         <Shared:DescriptionButton Command="{Binding ManageClientsCommand}" Image="{DynamicResource ClientImageSource}" Comment="Dopisz lub zmodyfikuj dane o kliencie">
                             Zarządzanie klientami
-                        </Shared:DescriptionButton>
+                        </Shared:DescriptionButton>                        
                         <Shared:DescriptionButton Command="{Binding ManageRecipesCommand}" Image="{DynamicResource RecipeImageSource}" Comment="Utwórz lub zmodyfikuj receptę">
                             Zarządzanie receptami
                         </Shared:DescriptionButton>

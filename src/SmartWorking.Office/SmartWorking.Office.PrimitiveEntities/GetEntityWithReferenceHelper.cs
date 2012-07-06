@@ -75,5 +75,17 @@ namespace SmartWorking.Office.PrimitiveEntities
       }
       return result;
     }
+
+    public static OrderPrimitive GetOrderPrimitiveWithReference(this OrderPackage orderPackage)
+    {
+      if (orderPackage == null || orderPackage.Order == null)
+        return null;
+      OrderPrimitive result = orderPackage.Order;
+      if (orderPackage.Recipe != null)
+      {
+        result.Recipe_Id = orderPackage.Recipe.Id;
+      }
+      return result;
+    }
   }
 }

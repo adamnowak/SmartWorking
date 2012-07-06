@@ -9,6 +9,11 @@ namespace SmartWorking.Office.Gui.ViewModel
   /// </summary>
   public interface IModalDialogService
   {
+    #region Order
+    OrderPackage CreateOrder(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    void ManageOrders(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    #endregion
+
     #region Client
     ClientPrimitive CreateClient(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     ClientPrimitive EditClient(IModalDialogService modalDialogService, IServiceFactory serviceFactory, ClientPrimitive client);

@@ -28,6 +28,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     private ICommand _createDriversCarsReportCommand;
     private ICommand _createCarsReceipsReportCommand;
     private ICommand _manageClientCommand;
+    private ICommand _manageOrdersCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/>. 
@@ -73,6 +74,45 @@ namespace SmartWorking.Office.Gui.ViewModel
           _manageDeliveryNotesCommand =
             new RelayCommand(ManageDeliveryNotes);
         return _manageDeliveryNotesCommand;
+      }
+    }
+
+    /// <summary>
+    /// Gets the manage <see cref="Order"/> command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="Order"/> objects.</remarks>
+    public ICommand ManageOrdersCommand
+    {
+      get
+      {
+        if (_manageOrdersCommand == null)
+          _manageOrdersCommand =
+            new RelayCommand(ManageOrders);
+        return _manageOrdersCommand;
+      }
+    }
+
+    private void ManageOrders()
+    {
+      string errorCaption = "Zarządzanie zamówieniami!";
+      try
+      {
+        ModalDialogService.ManageOrders(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 

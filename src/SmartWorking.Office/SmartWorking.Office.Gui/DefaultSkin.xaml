@@ -4,6 +4,7 @@
     <BitmapImage x:Key="CarImageSource" UriSource="Media/Car.png" />
     <BitmapImage x:Key="ClientImageSource" UriSource="Media/Client.png" />
     <BitmapImage x:Key="ContractorImageSource" UriSource="Media/Contractor.png" />
+    <BitmapImage x:Key="OrderImageSource" UriSource="Media/Order.png" />
     <BitmapImage x:Key="DeliveryNoteImageSource" UriSource="Media/DeliveryNote.png" />
     <BitmapImage x:Key="DriverImageSource" UriSource="Media/Driver.png" />
     <BitmapImage x:Key="MaterialImageSource" UriSource="Media/Material.png" />
@@ -47,14 +48,20 @@
 
     <!--Custom-->
     <Style x:Key="styleMainWindow" TargetType="Window">
+        <!--<Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="WindowStyle" Value="ToolWindow" />-->
+        <Setter Property="MinWidth" Value="1000" />
+        <Setter Property="MinHeight" Value="800" />
+        <Setter Property="Icon" Value="{StaticResource ApplicatoinImageSource}" />
+    </Style>
+
+    <Style x:Key="styleDialogWindow" TargetType="Window" >
         <Setter Property="ResizeMode" Value="NoResize" />
         <Setter Property="WindowStyle" Value="ToolWindow" />
         <Setter Property="Width" Value="1000" />
         <Setter Property="Height" Value="700" />
         <Setter Property="Icon" Value="{StaticResource ApplicatoinImageSource}" />
     </Style>
-
-    <Style x:Key="styleDialogWindow" TargetType="Window" BasedOn="{StaticResource styleMainWindow}"></Style>
 
     <Style x:Key="styleMessageBoxWindow" TargetType="Window">
         <Setter Property="ResizeMode" Value="NoResize" />
@@ -122,8 +129,8 @@
     <!--Keys-->
     <!--Panel with button on MainWindow-->
     <Style x:Key="mainPanel" TargetType="StackPanel">
-        <Setter Property="Height" Value="610" />
-        <Setter Property="Width" Value="480" />
+        <Setter Property="Height" Value="700" />
+        <Setter Property="Width" Value="520" />
     </Style>
 
     <!--Main Panel for update dialogs which are not at size of window-->

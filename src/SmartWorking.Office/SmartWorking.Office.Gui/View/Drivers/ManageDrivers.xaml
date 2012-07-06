@@ -42,6 +42,8 @@
                         <DataGridTextColumn Header="Imię" Binding="{Binding Driver.Name}" />
                         <DataGridTextColumn Header="Nazwisko" Binding="{Binding Driver.Surname}" />
                         <DataGridTextColumn Header="Numer telefonu" Binding="{Binding Driver.Phone}" />
+                        <DataGridTextColumn Header="Symbol samochodu" Binding="{Binding Car.InternalName}" />
+                        <DataGridTextColumn Header="Nazwa samochodu" Binding="{Binding Driver.Name}" />
 
 					</DataGrid.Columns>
 				</DataGrid>
