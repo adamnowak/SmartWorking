@@ -9,7 +9,7 @@
 		<Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Budowa</Shared:PanelLabel>
 		
 		<!--Contractor grid-->
-        <GroupBox Header="{Binding Client.Name, StringFormat='{}Budowa (Klient: {0})'}" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}" DataContext="{Binding BuildingAndClient}">
+        <GroupBox Header="{Binding Client.Name, StringFormat=Budowa (Klient: \{0\})}" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}" DataContext="{Binding BuildingAndClient}">
             <Grid DataContext="{Binding Building}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
