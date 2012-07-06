@@ -481,6 +481,9 @@
     <Resource Include="Media\Deliver.png" />
     <Resource Include="Media\Producer.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Client.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

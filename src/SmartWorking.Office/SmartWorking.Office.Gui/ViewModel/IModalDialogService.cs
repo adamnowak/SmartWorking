@@ -12,6 +12,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     #region Client
     ClientPrimitive CreateClient(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     ClientPrimitive EditClient(IModalDialogService modalDialogService, IServiceFactory serviceFactory, ClientPrimitive client);
+    void ManageClients(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
     #endregion
 
     #region Contractor
@@ -40,6 +41,15 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     void ManageContractors(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+
+    /// <summary>
+    /// Opens dialog for selecting <see cref="Contractor"/>.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>    
+    /// <returns>Selected Contractor.</returns>
+    ContractorPrimitive SelectContractor(IModalDialogService modalDialogService,
+                                                                    IServiceFactory serviceFactory);
 
     #endregion
 
@@ -105,7 +115,7 @@ namespace SmartWorking.Office.Gui.ViewModel
 
     #endregion
 
-    #region Material
+    #region MaterialAndContractors
 
     /// <summary>
     /// Opens dialog for creating the material.
@@ -113,7 +123,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    MaterialPrimitive CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    MaterialAndContractorsPackage CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for editing the material.
@@ -122,8 +132,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="selectedMaterial">The selected material.</param>
     /// <returns></returns>
-    MaterialPrimitive EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                   MaterialPrimitive selectedMaterial);
+    MaterialAndContractorsPackage EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                   MaterialAndContractorsPackage selectedMaterial);
 
     /// <summary>
     /// Opens dialog for managing the materials.
@@ -138,7 +148,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    MaterialPrimitive SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    MaterialAndContractorsPackage SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     #endregion
 
@@ -294,7 +304,7 @@ namespace SmartWorking.Office.Gui.ViewModel
 
     void CreateDriversCarsReport(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
-    
 
+    
   }
 }

@@ -20,80 +20,80 @@ namespace SmartWorking.Office.Entities
     {
         #region Navigation Properties
     
-        public ICollection<Material> Materials
+        public ICollection<Material> MaterialFromDeliverer
         {
             get
             {
-                if (_materials == null)
+                if (_materialFromDeliverer == null)
                 {
                     var newCollection = new FixupCollection<Material>();
-                    newCollection.CollectionChanged += FixupMaterials;
-                    _materials = newCollection;
+                    newCollection.CollectionChanged += FixupMaterialFromDeliverer;
+                    _materialFromDeliverer = newCollection;
                 }
-                return _materials;
+                return _materialFromDeliverer;
             }
             set
             {
-                if (!ReferenceEquals(_materials, value))
+                if (!ReferenceEquals(_materialFromDeliverer, value))
                 {
-                    var previousValue = _materials as FixupCollection<Material>;
+                    var previousValue = _materialFromDeliverer as FixupCollection<Material>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupMaterials;
+                        previousValue.CollectionChanged -= FixupMaterialFromDeliverer;
                     }
-                    _materials = value;
+                    _materialFromDeliverer = value;
                     var newValue = value as FixupCollection<Material>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupMaterials;
+                        newValue.CollectionChanged += FixupMaterialFromDeliverer;
                     }
                 }
             }
         }
-        private ICollection<Material> _materials;
+        private ICollection<Material> _materialFromDeliverer;
     
-        public ICollection<Material> Materials1
+        public ICollection<Material> MaterialFromProducer
         {
             get
             {
-                if (_materials1 == null)
+                if (_materialFromProducer == null)
                 {
                     var newCollection = new FixupCollection<Material>();
-                    newCollection.CollectionChanged += FixupMaterials1;
-                    _materials1 = newCollection;
+                    newCollection.CollectionChanged += FixupMaterialFromProducer;
+                    _materialFromProducer = newCollection;
                 }
-                return _materials1;
+                return _materialFromProducer;
             }
             set
             {
-                if (!ReferenceEquals(_materials1, value))
+                if (!ReferenceEquals(_materialFromProducer, value))
                 {
-                    var previousValue = _materials1 as FixupCollection<Material>;
+                    var previousValue = _materialFromProducer as FixupCollection<Material>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupMaterials1;
+                        previousValue.CollectionChanged -= FixupMaterialFromProducer;
                     }
-                    _materials1 = value;
+                    _materialFromProducer = value;
                     var newValue = value as FixupCollection<Material>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupMaterials1;
+                        newValue.CollectionChanged += FixupMaterialFromProducer;
                     }
                 }
             }
         }
-        private ICollection<Material> _materials1;
+        private ICollection<Material> _materialFromProducer;
 
         #endregion
         #region Association Fixup
     
-        private void FixupMaterials(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupMaterialFromDeliverer(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
                 foreach (Material item in e.NewItems)
                 {
-                    item.Contractor = this;
+                    item.Deliverer = this;
                 }
             }
     
@@ -101,21 +101,21 @@ namespace SmartWorking.Office.Entities
             {
                 foreach (Material item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Contractor, this))
+                    if (ReferenceEquals(item.Deliverer, this))
                     {
-                        item.Contractor = null;
+                        item.Deliverer = null;
                     }
                 }
             }
         }
     
-        private void FixupMaterials1(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupMaterialFromProducer(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
                 foreach (Material item in e.NewItems)
                 {
-                    item.Contractor1 = this;
+                    item.Producer = this;
                 }
             }
     
@@ -123,9 +123,9 @@ namespace SmartWorking.Office.Entities
             {
                 foreach (Material item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Contractor1, this))
+                    if (ReferenceEquals(item.Producer, this))
                     {
-                        item.Contractor1 = null;
+                        item.Producer = null;
                     }
                 }
             }

@@ -17,6 +17,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     private ICommand _createContractorCommand;
     private ICommand _deleteContractorCommand;
     private ICommand _editContractorCommand;
+    private ICommand _choseContractorCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ManageContractorsViewModel"/> class.
@@ -73,6 +74,47 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         return _editContractorCommand;
       }
     }
+
+    /// <summary>
+    /// Gets the chose contractor command.
+    /// </summary>
+    /// <remarks></remarks>
+    public ICommand ChoseContractorCommand
+    {
+      get
+      {
+        if (_choseContractorCommand == null)
+          _choseContractorCommand = new RelayCommand(
+            ChoseContractor,
+            () => SelectableContractor != null && SelectableContractor.SelectedItem != null);
+        return _choseContractorCommand;
+      }
+    }
+
+    private void ChoseContractor()
+    {
+      string errorCaption = "Wybieranie kontrahenta!";
+      try
+      {
+        CloseModalDialog();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+
 
     /// <summary>
     /// Gets the delete contractor command.

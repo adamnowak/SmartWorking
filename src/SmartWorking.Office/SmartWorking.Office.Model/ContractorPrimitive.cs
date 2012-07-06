@@ -58,6 +58,11 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public string Phone
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }

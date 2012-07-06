@@ -36,7 +36,8 @@
 						</Shared:DescriptionButton.Visibility>
 					</Shared:DescriptionButton>
 				</StackPanel>
-				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableCar}" ItemsSource="{Binding Items}" Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
+				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableCar}" ItemsSource="{Binding Items}" 
+                          Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 					<DataGrid.Columns>
 						<!--Debug only-->
 						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />

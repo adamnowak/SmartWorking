@@ -37,11 +37,12 @@
 				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableMaterial}" ItemsSource="{Binding Items}" Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
 					<DataGrid.Columns>
 						<!--Debug only-->
-						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+						<DataGridTextColumn Header="Id" Binding="{Binding Material.Id}" />
 						<!--End Debug only-->
-						<DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
-						<DataGridTextColumn Header="Skrót" Binding="{Binding InternalName}" />
-
+                        <DataGridTextColumn Header="Symbol" Binding="{Binding Material.InternalName}" />
+                        <DataGridTextColumn Header="Nazwa" Binding="{Binding Material.Name}" />
+                        <DataGridTextColumn Header="Producent" Binding="{Binding Producer.Name}" />
+                        <DataGridTextColumn Header="Dostawca" Binding="{Binding Deliverer.Name}" />
 					</DataGrid.Columns>
 				</DataGrid>
 			</Grid>

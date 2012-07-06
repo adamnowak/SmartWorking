@@ -6,7 +6,7 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Shared:PanelLabel Image="{StaticResource ContractorImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kontrahent</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource ClientImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Klient</Shared:PanelLabel>
 		<!--Contractor grid-->
 		<GroupBox Header="Kontrahent" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
 			<Grid DataContext="{Binding Contractor}">

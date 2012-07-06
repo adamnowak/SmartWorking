@@ -21,19 +21,30 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 
 				<!--Debug only-->
 				<TextBlock Text="Id:" Grid.Row="0" />
 				<!--End Debug only-->
-				<TextBlock Text="Nazwa:" Grid.Row="1" />
-				<TextBlock Text="Skrót:" Grid.Row="2" />
+                <TextBlock Text="Numer recepty:" Grid.Row="1" />
+                <TextBlock Text="Kod recepty:" Grid.Row="2" />
+                <TextBlock Text="Klasa betonu:" Grid.Row="3" />
+                <TextBlock Text="Ziarno:" Grid.Row="4" />
+                <TextBlock Text="Konsystencja:" Grid.Row="5" />
+                
+				
 
 				<!--End Debug only-->
 				<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 				<!--Debug only-->
-				<TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" />
-				<TextBox Text="{Binding InternalName}" Grid.Row="2" Grid.Column="1" />
+                <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" />
+                <TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" />
+                <TextBox Text="{Binding ConcreteClass}" Grid.Row="3" Grid.Column="1" />
+                <TextBox Text="{Binding Granulation}" Grid.Row="4" Grid.Column="1" />
+                <TextBox Text="{Binding Consistency}" Grid.Row="5" Grid.Column="1" />
+
+				
 			</Grid>
 		</GroupBox>
 

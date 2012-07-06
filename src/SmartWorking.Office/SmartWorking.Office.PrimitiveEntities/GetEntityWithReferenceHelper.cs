@@ -47,5 +47,21 @@ namespace SmartWorking.Office.PrimitiveEntities
       }
       return result;
     }
+
+    public static MaterialPrimitive GetMaterialPrimitiveWithReference(this MaterialAndContractorsPackage materialAndContractorsPackage)
+    {
+      if (materialAndContractorsPackage == null || materialAndContractorsPackage.Material == null)
+        return null;
+      MaterialPrimitive result = materialAndContractorsPackage.Material;
+      if (materialAndContractorsPackage.Deliverer != null)
+      {
+        result.Deliverer_Id = materialAndContractorsPackage.Deliverer.Id;
+      }
+      if (materialAndContractorsPackage.Producer != null)
+      {
+        result.Producer_Id = materialAndContractorsPackage.Producer.Id;
+      }
+      return result;
+    }
   }
 }

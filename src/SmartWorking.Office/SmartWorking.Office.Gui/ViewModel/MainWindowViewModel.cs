@@ -27,6 +27,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     private ICommand _manageRecipesCommand;
     private ICommand _createDriversCarsReportCommand;
     private ICommand _createCarsReceipsReportCommand;
+    private ICommand _manageClientCommand;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/>. 
@@ -89,6 +90,46 @@ namespace SmartWorking.Office.Gui.ViewModel
         return _manageContractorsCommand;
       }
     }
+
+    /// <summary>
+    /// Gets the manage <see cref="Contractor"/> command.
+    /// </summary>
+    /// <remarks>Opens dialog to manage <see cref="Contractor"/> objects.</remarks>
+    public ICommand ManageClientsCommand
+    {
+      get
+      {
+        if (_manageClientCommand == null)
+          _manageClientCommand =
+            new RelayCommand(ManageClients);
+        return _manageClientCommand;
+      }
+    }
+
+    private void ManageClients()
+    {
+      string errorCaption = "Zarządzanie klientami!";
+      try
+      {
+        ModalDialogService.ManageClients(ModalDialogService, ServiceFactory);
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+
 
     /// <summary>
     /// Gets the manage <see cref="MaterialPrimitive"/> command.

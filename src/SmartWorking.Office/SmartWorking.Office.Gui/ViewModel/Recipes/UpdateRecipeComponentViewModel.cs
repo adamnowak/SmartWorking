@@ -37,7 +37,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
     /// Gets the create or update material command.
     /// </summary>
     /// <remarks>
-    /// Opens dialog for creating or editing Material.
+    /// Opens dialog for creating or editing MaterialAndContractors.
     /// </remarks>
     public ICommand CreateOrUpdateRecipeComponentCommand
     {
@@ -97,32 +97,32 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
 
     #endregion
 
-    #region Material
+    #region MaterialAndContractors
 
     /// <summary>
-    /// The <see cref="Material" /> property's name.
+    /// The <see cref="MaterialAndContractorsPackage" /> property's name.
     /// </summary>
-    public const string MaterialPropertyName = "Material";
+    public const string MaterialPropertyName = "MaterialAndContractors";
 
-    private MaterialPrimitive _material;
+    private MaterialAndContractorsPackage _materialAndContractors;
 
     /// <summary>
-    /// Gets the Material property.
-    /// Material which will be created or updated.
+    /// Gets the MaterialAndContractors property.
+    /// MaterialAndContractors which will be created or updated.
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public MaterialPrimitive Material
+    public MaterialAndContractorsPackage MaterialAndContractors
     {
-      get { return _material; }
+      get { return _materialAndContractors; }
 
       set
       {
-        if (_material == value)
+        if (_materialAndContractors == value)
         {
           return;
         }
-        _material = value;
+        _materialAndContractors = value;
 
         // Update bindings, no broadcast
         RaisePropertyChanged(MaterialPropertyName);
@@ -152,8 +152,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       string errorCaption = "Zatwierdzenie zmian w danych recepty!";
       try
       {
-        if (RecipeComponent != null)
-          RecipeComponent.Material_Id = Material.Id;
+        if (RecipeComponent != null && MaterialAndContractors != null && MaterialAndContractors.Material != null)
+          RecipeComponent.Material_Id = MaterialAndContractors.Material.Id;
         if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)
         {
           using (IRecipesService service = ServiceFactory.GetRecipesService())
@@ -214,7 +214,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       string errorCaption = "Wybranie materiału!";
       try
       {
-        Material = ModalDialogService.SelectMaterial(ModalDialogService, ServiceFactory);
+        MaterialAndContractors = ModalDialogService.SelectMaterial(ModalDialogService, ServiceFactory);
       }
       catch (FaultException<ExceptionDetail> f)
       {

@@ -45,9 +45,10 @@
 						<DataGrid.Columns>
 							<!--Debug only-->
 							<DataGridTextColumn Header="Id" Binding="{Binding Recipe.Id}" />
-							<!--End Debug only-->
-							<DataGridTextColumn Header="Nazwa" Binding="{Binding Recipe.Name}" />
-							<DataGridTextColumn Header="Skrót" Binding="{Binding Recipe.InternalName}" />
+							<!--End Debug only-->							
+                            <DataGridTextColumn Header="Numer recepty" Binding="{Binding Recipe.InternalName}" />
+                            <DataGridTextColumn Header="Kod recepty" Binding="{Binding Recipe.Name}" />
+                            <DataGridTextColumn Header="Klasa betonu" Binding="{Binding Recipe.Name}" />
 						</DataGrid.Columns>
 					</DataGrid>
 				</Grid>
@@ -77,10 +78,10 @@
 							<DataGrid.Columns>
 								<!--Debug only-->
 								<DataGridTextColumn Header="Id" Binding="{Binding RecipeComponent.Id}" />
-								<!--End Debug only-->
-								<DataGridTextColumn Header="Nazwa" Binding="{Binding Material.Name}" />
-								<DataGridTextColumn Header="Skrót" Binding="{Binding Material.InternalName}" />
-								<DataGridTextColumn Header="Ilość" Binding="{Binding RecipeComponent.Amount}" />
+								<!--End Debug only-->								
+								<DataGridTextColumn Header="Symbol" Binding="{Binding Material.InternalName}" />
+                                <DataGridTextColumn Header="Nazwa" Binding="{Binding Material.Name}" />
+                                <DataGridTextColumn Header="Ilość" Binding="{Binding RecipeComponent.Amount}" />
 							</DataGrid.Columns>
 						</DataGrid>
 					</Grid>

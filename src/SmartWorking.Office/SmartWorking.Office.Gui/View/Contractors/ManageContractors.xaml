@@ -9,94 +9,48 @@
 			<RowDefinition Height="75" />
 		</Grid.RowDefinitions>
 		<Shared:PanelLabel Image="{StaticResource ContractorImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kontrahenci</Shared:PanelLabel>
-		<Grid Grid.Row="1">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
 
-			<GroupBox Header="Kontrahent">
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
-						<ColumnDefinition />
-					</Grid.ColumnDefinitions>
-					<StackPanel>
-						<Shared:DescriptionButton Command="{Binding CreateContractorCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
-						<Shared:DescriptionButton Command="{Binding EditContractorCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-						<Shared:DescriptionButton Command="{Binding DeleteContractorCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
-					</StackPanel>
-					<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableContractor}" ItemsSource="{Binding Items}">
-						<DataGrid.Columns>
-							<!--Debug only-->
-							<DataGridTextColumn Header="Id" Binding="{Binding Contractor.Id}" />
-							<!--End Debug only-->
-							<DataGridTextColumn Header="Pelna nazwa" Binding="{Binding Contractor.FullName}" />
-							<DataGridTextColumn Header="Nazwisko" Binding="{Binding Contractor.Name}" />
-							<DataGridTextColumn Header="Imie" Binding="{Binding Contractor.Surname}" />
-							<DataGridTextColumn Header="Telefon" Binding="{Binding Contractor.Phone}" />
-						</DataGrid.Columns>
-					</DataGrid>
-				</Grid>
-			</GroupBox>
-			<GroupBox Grid.Column="1" Header="Budowy">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="40" />
-						<RowDefinition />
-					</Grid.RowDefinitions>
-					<Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource TextBlockH2}">
-						Budowy wybranego kontrahenta
-					</Shared:PanelLabel>
+        <GroupBox Header="Kontrahent" Grid.Row="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel>
+					<Shared:DescriptionButton Command="{Binding CreateContractorCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
+					<Shared:DescriptionButton Command="{Binding EditContractorCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
+					<Shared:DescriptionButton Command="{Binding DeleteContractorCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
 
-					<Grid Grid.Row="1">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition />
-							<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
-						</Grid.ColumnDefinitions>
-						<StackPanel Grid.Column="1">
-							<Shared:DescriptionButton Command="{Binding CreateBuildingCommand}" Image="{StaticResource NewImageSource}">Dodaj</Shared:DescriptionButton>
-							<Shared:DescriptionButton Command="{Binding EditBuildingCommand}" Image="{StaticResource UpdateImageSource}">Edytuj</Shared:DescriptionButton>
-							<Shared:DescriptionButton Command="{Binding DeleteBuildingCommand}" Image="{StaticResource DeleteImageSource}">Usuń</Shared:DescriptionButton>
-							<Shared:DescriptionButton Content="WZ'tka" Command="{Binding CreateDeliveryNoteCommand}" Image="{StaticResource DeliveryNoteImageSource}">
-								<Shared:DescriptionButton.Visibility>
-									<MultiBinding Converter="{StaticResource comparingMultiConverter}">
-										<MultiBinding.Bindings>
-											<Binding Path="DialogMode" />
-											<Binding Source="{x:Static ViewModel:DialogMode.ChoseSubItem}" />
-											<Binding Source="{x:Static Visibility.Collapsed}" />
-											<Binding Source="{x:Static Visibility.Visible}" />
-										</MultiBinding.Bindings>
-									</MultiBinding>
-								</Shared:DescriptionButton.Visibility>
-							</Shared:DescriptionButton>
-							<Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseBuildingCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
-								<Shared:DescriptionButton.Visibility>
-									<MultiBinding Converter="{StaticResource comparingMultiConverter}">
-										<MultiBinding.Bindings>
-											<Binding Path="DialogMode" />
-											<Binding Source="{x:Static ViewModel:DialogMode.ChoseSubItem}" />
-											<Binding Source="{x:Static Visibility.Visible}" />
-											<Binding Source="{x:Static Visibility.Collapsed}" />
-										</MultiBinding.Bindings>
-									</MultiBinding>
-								</Shared:DescriptionButton.Visibility>
-							</Shared:DescriptionButton>
-						</StackPanel>
-						<DataGrid Grid.Row="1" SelectedItem="{Binding SelectedBuilding}" ItemsSource="{Binding SelectableContractor.SelectedItem.Buildings}" Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
-							<DataGrid.Columns>
-								<!--Debug only-->
-								<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
-								<!--End Debug only-->
-								<DataGridTextColumn Header="Miasto" Binding="{Binding City}" />
-								<DataGridTextColumn Header="Ulica" Binding="{Binding Street}" />
-								<DataGridTextColumn Header="Numer domu" Binding="{Binding HouseNo}" />
-							</DataGrid.Columns>
-						</DataGrid>
-					</Grid>
-				</Grid>
-			</GroupBox>
-		</Grid>
+                    <Shared:DescriptionButton Content="Wybierz" Command="{Binding ChoseContractorCommand}" Image="{StaticResource ChoseImageSource}" x:Name="ChoseButton">
+                        <Shared:DescriptionButton.Visibility>
+                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                <MultiBinding.Bindings>
+                                    <Binding Path="DialogMode" />
+                                    <Binding Source="{x:Static ViewModel:DialogMode.Chose}" />
+                                    <Binding Source="{x:Static Visibility.Visible}" />
+                                    <Binding Source="{x:Static Visibility.Collapsed}" />
+                                </MultiBinding.Bindings>
+                            </MultiBinding>
+                        </Shared:DescriptionButton.Visibility>
+                    </Shared:DescriptionButton>
+				</StackPanel>
+				<DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableContractor}" ItemsSource="{Binding Items}"
+                          Shared:DataGridCommands.DataGridDoubleClickCommand="{Binding Path=Command, ElementName=ChoseButton}">
+					<DataGrid.Columns>
+						<!--Debug only-->
+						<DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+						<!--End Debug only-->
+						<DataGridTextColumn Header="Symbol" Binding="{Binding InternalName}" />
+						<DataGridTextColumn Header="Nazwisko" Binding="{Binding Name}" />						
+						<DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" />
+                        <DataGridTextColumn Header="Misto" Binding="{Binding City}" />
+                        <DataGridTextColumn Header="Kod pocztowy" Binding="{Binding ZIPCode}" />
+                        <DataGridTextColumn Header="Ulica" Binding="{Binding Street}" />
+                        <DataGridTextColumn Header="Number domu" Binding="{Binding HouseNo}" />
+                    </DataGrid.Columns>
+				</DataGrid>
+			</Grid>
+		</GroupBox>			
 
 		<!--Buttons-->       
 		<StackPanel Grid.Row="2" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">

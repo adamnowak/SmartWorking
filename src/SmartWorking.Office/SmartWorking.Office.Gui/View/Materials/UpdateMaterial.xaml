@@ -10,7 +10,7 @@
 		
 		<!--Contractor grid-->
 		<GroupBox Header="Materiał" Grid.Row="1" >
-			<Grid DataContext="{Binding Material}">
+            <Grid DataContext="{Binding MaterialAndContractors}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition />
@@ -30,26 +30,25 @@
                 <TextBlock Text="Symbol:" Grid.Row="1" />
                 <TextBlock Text="Nazwa:" Grid.Row="2" />
 				
-                
-
-
 				<!--End Debug only-->
-				<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+				<TextBox Text="{Binding Material.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 				<!--Debug only-->
+
+                <TextBox Text="{Binding Material.InternalName}" Grid.Row="1" Grid.Column="1"  />
+                <TextBox Text="{Binding Material.Name}" Grid.Row="2" Grid.Column="1"  />
                 
-                <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1"  />
-                <TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1"  />
-                
-                <Parts:ContractorSelection Grid.Row="3" Grid.ColumnSpan="3" 
+                <Parts:ContractorSelection Grid.Row="3" Grid.ColumnSpan="3"                                           
+                                           Contractor="{Binding Producer}"
                                            HeaderDescription="Producent"
                                            ButtonDescription="Wybierz producenta"
                                            ButtonImage="{StaticResource ProducerImageSource}" 
-                                           ButtonCommand="{Binding SelectProducerCommand}"/>
-                <Parts:ContractorSelection Grid.Row="4" Grid.ColumnSpan="2" 
+                                           ButtonCommand="{Binding DataContext.SelectProducerCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
+                <Parts:ContractorSelection Grid.Row="4" Grid.ColumnSpan="2"
+                                           Contractor="{Binding Deliverer}"                                           
                                            HeaderDescription="Dostawca"
                                            ButtonDescription="Wybierz dostawcę"
                                            ButtonImage="{StaticResource DeliverImageSource}" 
-                                           ButtonCommand="{Binding SelectProducerCommand}"/>
+                                           ButtonCommand="{Binding DataContext.SelectDelivererCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
             </Grid>
 		</GroupBox>
 

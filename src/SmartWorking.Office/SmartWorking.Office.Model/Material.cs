@@ -29,9 +29,9 @@ namespace SmartWorking.Office.Entities
                     _settingFK = true;
                     if (_producer_Id != value)
                     {
-                        if (Contractor1 != null && Contractor1.Id != value)
+                        if (Producer != null && Producer.Id != value)
                         {
-                            Contractor1 = null;
+                            Producer = null;
                         }
                         _producer_Id = value;
                     }
@@ -54,9 +54,9 @@ namespace SmartWorking.Office.Entities
                     _settingFK = true;
                     if (_deliverer_Id != value)
                     {
-                        if (Contractor != null && Contractor.Id != value)
+                        if (Deliverer != null && Deliverer.Id != value)
                         {
-                            Contractor = null;
+                            Deliverer = null;
                         }
                         _deliverer_Id = value;
                     }
@@ -73,35 +73,35 @@ namespace SmartWorking.Office.Entities
         #endregion
         #region Navigation Properties
     
-        public Contractor Contractor
+        public Contractor Deliverer
         {
-            get { return _contractor; }
+            get { return _deliverer; }
             set
             {
-                if (!ReferenceEquals(_contractor, value))
+                if (!ReferenceEquals(_deliverer, value))
                 {
-                    var previousValue = _contractor;
-                    _contractor = value;
-                    FixupContractor(previousValue);
+                    var previousValue = _deliverer;
+                    _deliverer = value;
+                    FixupDeliverer(previousValue);
                 }
             }
         }
-        private Contractor _contractor;
+        private Contractor _deliverer;
     
-        public Contractor Contractor1
+        public Contractor Producer
         {
-            get { return _contractor1; }
+            get { return _producer; }
             set
             {
-                if (!ReferenceEquals(_contractor1, value))
+                if (!ReferenceEquals(_producer, value))
                 {
-                    var previousValue = _contractor1;
-                    _contractor1 = value;
-                    FixupContractor1(previousValue);
+                    var previousValue = _producer;
+                    _producer = value;
+                    FixupProducer(previousValue);
                 }
             }
         }
-        private Contractor _contractor1;
+        private Contractor _producer;
     
         public ICollection<MaterialStock> MaterialStocks
         {
@@ -172,22 +172,22 @@ namespace SmartWorking.Office.Entities
     
         private bool _settingFK = false;
     
-        private void FixupContractor(Contractor previousValue)
+        private void FixupDeliverer(Contractor previousValue)
         {
-            if (previousValue != null && previousValue.Materials.Contains(this))
+            if (previousValue != null && previousValue.MaterialFromDeliverer.Contains(this))
             {
-                previousValue.Materials.Remove(this);
+                previousValue.MaterialFromDeliverer.Remove(this);
             }
     
-            if (Contractor != null)
+            if (Deliverer != null)
             {
-                if (!Contractor.Materials.Contains(this))
+                if (!Deliverer.MaterialFromDeliverer.Contains(this))
                 {
-                    Contractor.Materials.Add(this);
+                    Deliverer.MaterialFromDeliverer.Add(this);
                 }
-                if (Deliverer_Id != Contractor.Id)
+                if (Deliverer_Id != Deliverer.Id)
                 {
-                    Deliverer_Id = Contractor.Id;
+                    Deliverer_Id = Deliverer.Id;
                 }
             }
             else if (!_settingFK)
@@ -196,22 +196,22 @@ namespace SmartWorking.Office.Entities
             }
         }
     
-        private void FixupContractor1(Contractor previousValue)
+        private void FixupProducer(Contractor previousValue)
         {
-            if (previousValue != null && previousValue.Materials1.Contains(this))
+            if (previousValue != null && previousValue.MaterialFromProducer.Contains(this))
             {
-                previousValue.Materials1.Remove(this);
+                previousValue.MaterialFromProducer.Remove(this);
             }
     
-            if (Contractor1 != null)
+            if (Producer != null)
             {
-                if (!Contractor1.Materials1.Contains(this))
+                if (!Producer.MaterialFromProducer.Contains(this))
                 {
-                    Contractor1.Materials1.Add(this);
+                    Producer.MaterialFromProducer.Add(this);
                 }
-                if (Producer_Id != Contractor1.Id)
+                if (Producer_Id != Producer.Id)
                 {
-                    Producer_Id = Contractor1.Id;
+                    Producer_Id = Producer.Id;
                 }
             }
             else if (!_settingFK)

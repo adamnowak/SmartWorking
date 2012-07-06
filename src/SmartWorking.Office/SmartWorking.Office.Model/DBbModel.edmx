@@ -114,7 +114,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="InternalName" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" />
           <Property Name="ZIPCode" Type="nvarchar" MaxLength="10" />
@@ -122,6 +122,7 @@
           <Property Name="Street" Type="nvarchar" MaxLength="70" />
           <Property Name="HouseNo" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="datetime" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="DeliveryNotes">
           <Key>
@@ -458,8 +459,9 @@
           <Property Type="String" Name="Street" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="HouseNo" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Deleted" />
-          <NavigationProperty Name="Materials" Relationship="SmartWorkingModel.FK_MaterialsDeliverer_Contractors" FromRole="Contractor" ToRole="Material" />
-          <NavigationProperty Name="Materials1" Relationship="SmartWorkingModel.FK_MaterialsProducer_Contractors" FromRole="Contractor" ToRole="Material" />
+          <NavigationProperty Name="MaterialFromDeliverer" Relationship="SmartWorkingModel.FK_MaterialsDeliverer_Contractors" FromRole="Contractor" ToRole="Material" />
+          <NavigationProperty Name="MaterialFromProducer" Relationship="SmartWorkingModel.FK_MaterialsProducer_Contractors" FromRole="Contractor" ToRole="Material" />
+          <Property Type="String" Name="Phone" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DeliveryNote">
           <Key>
@@ -502,8 +504,8 @@
           <Property Type="Int32" Name="Deliverer_Id" />
           <Property Type="String" Name="InternalName" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Deleted" />
-          <NavigationProperty Name="Contractor" Relationship="SmartWorkingModel.FK_MaterialsDeliverer_Contractors" FromRole="Material" ToRole="Contractor" />
-          <NavigationProperty Name="Contractor1" Relationship="SmartWorkingModel.FK_MaterialsProducer_Contractors" FromRole="Material" ToRole="Contractor" />
+          <NavigationProperty Name="Deliverer" Relationship="SmartWorkingModel.FK_MaterialsDeliverer_Contractors" FromRole="Material" ToRole="Contractor" />
+          <NavigationProperty Name="Producer" Relationship="SmartWorkingModel.FK_MaterialsProducer_Contractors" FromRole="Material" ToRole="Contractor" />
           <NavigationProperty Name="MaterialStocks" Relationship="SmartWorkingModel.FK_MaterialStocks_Materails" FromRole="Material" ToRole="MaterialStock" />
           <NavigationProperty Name="RecipeComponents" Relationship="SmartWorkingModel.FK_RecipeComponents_Materials" FromRole="Material" ToRole="RecipeComponent" />
         </EntityType>
@@ -759,6 +761,7 @@
           <EntitySetMapping Name="Contractors">
             <EntityTypeMapping TypeName="SmartWorkingModel.Contractor">
               <MappingFragment StoreEntitySet="Contractors">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="HouseNo" ColumnName="HouseNo" />
                 <ScalarProperty Name="Street" ColumnName="Street" />

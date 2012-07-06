@@ -13,6 +13,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
   public class UpdateMaterialViewModel : ModalDialogViewModelBase
   {
     private ICommand _createOrUpdateMaterialCommand;
+    private ICommand _selectProducerComman;
+    private ICommand _selectDelivererComman;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="UpdateMaterialViewModel"/> class.
@@ -36,7 +38,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     /// Gets the create or update material command.
     /// </summary>
     /// <remarks>
-    /// Opens dialog for creating or editing Material.
+    /// Opens dialog for creating or editing MaterialAndContractors.
     /// </remarks>
     public ICommand CreateOrUpdateMaterialCommand
     {
@@ -45,6 +47,92 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
         if (_createOrUpdateMaterialCommand == null)
           _createOrUpdateMaterialCommand = new RelayCommand(CreateOrUpdateMaterial, CanCreateOrUpdateMaterial);
         return _createOrUpdateMaterialCommand;
+      }
+    }
+
+    /// <summary>
+    /// Gets the select producer command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog for selecting producer <see cref="Contractor"/>.
+    /// </remarks>
+    public ICommand SelectProducerCommand
+    {
+      get
+      {
+        if (_selectProducerComman == null)
+          _selectProducerComman = new RelayCommand(SelectProducer);
+        return _selectProducerComman;
+      }
+    }
+
+    private void SelectProducer()
+    {
+      string errorCaption = "Wybranie producenta!";
+      try
+      {
+        MaterialAndContractors.Producer = ModalDialogService.SelectContractor(ModalDialogService, ServiceFactory);
+        RaisePropertyChanged("Producer");
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+
+    /// <summary>
+    /// Gets the select deliverer command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog for selecting deliverer <see cref="Contractor"/>.
+    /// </remarks>
+    public ICommand SelectDelivererCommand
+    {
+      get
+      {
+        if (_selectDelivererComman == null)
+          _selectDelivererComman = new RelayCommand(SelectDeliverer);
+        return _selectDelivererComman;
+      }
+    }
+
+    private void SelectDeliverer()
+    {
+      string errorCaption = "Wybranie dostawcy!";
+      try
+      {
+        MaterialAndContractors.Deliverer = ModalDialogService.SelectContractor(ModalDialogService, ServiceFactory);
+        RaisePropertyChanged("MaterialAndContractors");
+        RaisePropertyChanged("Deliverer");
+        RaisePropertyChanged("MaterialAndContractors.Deliverer");
+        RaisePropertyChanged("Contractor");
+        
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
       }
     }
 
@@ -61,35 +149,36 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       }
     }
 
-    #region Material
+    #region MaterialAndContractors
 
     /// <summary>
-    /// The <see cref="Material" /> property's name.
+    /// The <see cref="MaterialAndContractors" /> property's name.
     /// </summary>
-    public const string MaterialPropertyName = "Material";
+    public const string MaterialAndContractorsPropertyName = "MaterialAndContractors";
 
-    private MaterialPrimitive _material;
+    private MaterialAndContractorsPackage _materialAndContractors;
+    
 
     /// <summary>
-    /// Gets the Material property.
-    /// Material which will be created or updated.
+    /// Gets the MaterialAndContractors property.
+    /// MaterialAndContractors which will be created or updated.
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public MaterialPrimitive Material
+    public MaterialAndContractorsPackage MaterialAndContractors
     {
-      get { return _material; }
+      get { return _materialAndContractors; }
 
       set
       {
-        if (_material == value)
+        if (_materialAndContractors == value)
         {
           return;
         }
-        _material = value;
+        _materialAndContractors = value;
 
         // Update bindings, no broadcast
-        RaisePropertyChanged(MaterialPropertyName);
+        RaisePropertyChanged(MaterialAndContractorsPropertyName);
       }
     }
 
@@ -120,7 +209,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
         {
           using (IMaterialsService service = ServiceFactory.GetMaterialsService())
           {
-            service.UpdateMaterial(Material);
+            service.UpdateMaterial(MaterialAndContractors.GetMaterialPrimitiveWithReference());
           }
         }
         CloseModalDialog();

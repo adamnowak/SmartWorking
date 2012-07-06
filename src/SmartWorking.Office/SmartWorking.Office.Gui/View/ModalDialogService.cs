@@ -53,6 +53,13 @@ namespace SmartWorking.Office.Gui.View
       return null;// viewModel.Contractor;
     }
 
+    public void ManageClients(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageClientsViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Manage;
+      ModalDialogHelper<ManageClients>.ShowDialog(viewModel);
+    }
+
     public ContractorPrimitive CreateContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateContractorViewModel(modalDialogService, serviceFactory);
@@ -81,6 +88,18 @@ namespace SmartWorking.Office.Gui.View
       var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Manage;
       ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
+    }
+
+    public ContractorPrimitive SelectContractor(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    {
+      var viewModel = new ManageContractorsViewModel(modalDialogService, serviceFactory);
+      viewModel.DialogMode = DialogMode.Chose;
+      ModalDialogHelper<ManageContractors>.ShowDialog(viewModel);
+      if (!viewModel.IsCanceled)
+      {
+        return viewModel.SelectableContractor.SelectedItem;
+      }
+      return null;
     }
 
     public BuildingPrimitive CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
@@ -167,27 +186,28 @@ namespace SmartWorking.Office.Gui.View
       ModalDialogHelper<ManageDeliveryNotes>.ShowDialog(viewModel);
     }
 
-    public MaterialPrimitive CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public MaterialAndContractorsPackage CreateMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateMaterialViewModel(modalDialogService, serviceFactory);
-      viewModel.Material = new MaterialPrimitive();
+      viewModel.MaterialAndContractors = new MaterialAndContractorsPackage();
+      viewModel.MaterialAndContractors.Material = new MaterialPrimitive();
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateMaterial>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        return viewModel.Material;
+        return viewModel.MaterialAndContractors;
       }
       return null;
     }
 
-    public MaterialPrimitive EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                          MaterialPrimitive selectedMaterial)
+    public MaterialAndContractorsPackage EditMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                          MaterialAndContractorsPackage selectedMaterial)
     {
       var viewModel = new UpdateMaterialViewModel(modalDialogService, serviceFactory);
-      viewModel.Material = selectedMaterial;
+      viewModel.MaterialAndContractors = selectedMaterial;
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateMaterial>.ShowDialog(viewModel);
-      return viewModel.Material;
+      return viewModel.MaterialAndContractors;
     }
 
     public void ManageMaterials(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -197,7 +217,7 @@ namespace SmartWorking.Office.Gui.View
       ModalDialogHelper<ManageMaterials>.ShowDialog(viewModel);
     }
 
-    public MaterialPrimitive SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public MaterialAndContractorsPackage SelectMaterial(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageMaterialsViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Chose;
@@ -287,7 +307,7 @@ namespace SmartWorking.Office.Gui.View
     {
       var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
       viewModel.RecipeComponent = recipeComponentAndMaterialPackage.RecipeComponent;
-      viewModel.Material = recipeComponentAndMaterialPackage.Material;
+      viewModel.MaterialAndContractors = recipeComponentAndMaterialPackage.MaterialAndContractors;
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
       return viewModel.RecipeComponent;

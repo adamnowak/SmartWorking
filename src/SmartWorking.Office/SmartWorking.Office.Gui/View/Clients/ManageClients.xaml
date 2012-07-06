@@ -8,14 +8,14 @@
 			<RowDefinition Height="*" MinHeight="200" />
 			<RowDefinition Height="75" />
 		</Grid.RowDefinitions>
-		<Shared:PanelLabel Image="{StaticResource ContractorImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kontrahenci</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource ClientImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Klienci</Shared:PanelLabel>
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
-			<GroupBox Header="Kontrahent">
+			<GroupBox Header="Klient">
 				<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />

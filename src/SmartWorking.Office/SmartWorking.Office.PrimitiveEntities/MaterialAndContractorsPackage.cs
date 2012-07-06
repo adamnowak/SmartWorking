@@ -13,6 +13,6 @@ namespace SmartWorking.Office.PrimitiveEntities
 
     public ContractorPrimitive Producer { get; set; }
 
-    public ContractorPrimitive Deliver { get; set; }       
+    public ContractorPrimitive Deliverer { get; set; }       
   }
 }

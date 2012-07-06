@@ -118,6 +118,8 @@ namespace SmartWorking.Office.Entities
         		
         		result.Deleted = primitive.Deleted;
         		
+        		result.Phone = primitive.Phone;
+        		
         		return result;
         }
         

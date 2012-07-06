@@ -2,6 +2,7 @@
     <BitmapImage x:Key="ApplicatoinImageSource" UriSource="Media/AppIcon.png" />
     <BitmapImage x:Key="BuildingImageSource" UriSource="Media/Building.png" />
     <BitmapImage x:Key="CarImageSource" UriSource="Media/Car.png" />
+    <BitmapImage x:Key="ClientImageSource" UriSource="Media/Client.png" />
     <BitmapImage x:Key="ContractorImageSource" UriSource="Media/Contractor.png" />
     <BitmapImage x:Key="DeliveryNoteImageSource" UriSource="Media/DeliveryNote.png" />
     <BitmapImage x:Key="DriverImageSource" UriSource="Media/Driver.png" />
@@ -121,7 +122,7 @@
     <!--Keys-->
     <!--Panel with button on MainWindow-->
     <Style x:Key="mainPanel" TargetType="StackPanel">
-        <Setter Property="Height" Value="550" />
+        <Setter Property="Height" Value="610" />
         <Setter Property="Width" Value="480" />
     </Style>
 
@@ -332,7 +333,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Parts:ContractorSelection}">
-                    <GroupBox Header="{TemplateBinding HeaderDescription}" Grid.Row="4" Grid.ColumnSpan="2">
+                    <GroupBox Header="{TemplateBinding HeaderDescription}" Grid.Row="4" Grid.ColumnSpan="2" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="110" />
@@ -341,7 +342,7 @@
                             <Shared:DescriptionButton Image="{TemplateBinding ButtonImage}" Content="{TemplateBinding ButtonDescription}" Style="{StaticResource SelectDescriptionButton}" 
                                                   Command="{TemplateBinding ButtonCommand}" />
                             <StackPanel Grid.Column="1">
-                                <Grid>
+                                <Grid DataContext="{TemplateBinding Contractor}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
@@ -356,22 +357,20 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Symbol:" />
-                                    <TextBlock Text="Telefon:" Grid.Column="2"/>
-                                    <TextBlock Text="Nazwa:" Grid.Row="1" />
+                                    <TextBlock Text="Nazwa:" Grid.Row="1" />                                    
+                                    <TextBlock Text="Telefon:" Grid.Column="2"/>                                    
                                     <TextBlock Text="Miasto:" Grid.Row="2" />
                                     <TextBlock Text="Ulica:" Grid.Row="3" />
                                     <TextBlock Text="Kod pocztowy:" Grid.Row="2" Grid.Column="2" />
                                     <TextBlock Text="Numer domu:" Grid.Row="3" Grid.Column="2"/>
 
-                                    <TextBox Text="{Binding Contractor.InternalName}" Grid.Column="1" Margin="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Contractor.Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Contractor.City}" Grid.Row="2" Grid.Column="1" Margin="3" IsReadOnly="True" />
-                                    <TextBox Grid.Row="3"  Grid.Column="1" Margin="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Contractor.Phone}" Grid.Column="3" Margin="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Contractor.ZIPCode}" Grid.Row="2" Grid.Column="3" Margin="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Contractor.HouseNo}" Grid.Row="3" Grid.Column="3" Margin="3" IsReadOnly="True" />
-
-                                    
+                                    <TextBox Text="{Binding InternalName}" Grid.Column="1" IsReadOnly="True" />
+                                    <TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" IsReadOnly="True" />
+                                    <TextBox Text="{Binding Phone}" Grid.Column="3" IsReadOnly="True" />
+                                    <TextBox Text="{Binding City}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                                    <TextBox Text="{Binding Street}" Grid.Row="3" Grid.Column="1" IsReadOnly="True" />
+                                    <TextBox Text="{Binding ZIPCode}" Grid.Row="2" Grid.Column="3" IsReadOnly="True" />                                                                        
+                                    <TextBox Text="{Binding HouseNo}" Grid.Row="3" Grid.Column="3" IsReadOnly="True" />
                                 </Grid>
                             </StackPanel>
                         </Grid>

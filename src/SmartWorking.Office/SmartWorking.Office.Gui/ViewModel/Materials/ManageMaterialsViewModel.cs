@@ -27,14 +27,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
     public ManageMaterialsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableMaterial = new SelectableViewModelBase<MaterialPrimitive>();
+      SelectableMaterial = new SelectableViewModelBase<MaterialAndContractorsPackage>();
       LoadMaterials();
     }
 
     /// <summary>
     /// Gets the selectable material.
     /// </summary>
-    public SelectableViewModelBase<MaterialPrimitive> SelectableMaterial { get; private set; }
+    public SelectableViewModelBase<MaterialAndContractorsPackage> SelectableMaterial { get; private set; }
 
     /// <summary>
     /// Gets or sets the dialog mode.
@@ -256,15 +256,15 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       string errorCaption = "Pobieranie danych o materiałach!";
       try
       {
-        MaterialPrimitive selectedItem = SelectableMaterial.SelectedItem;
+        MaterialAndContractorsPackage selectedItem = SelectableMaterial.SelectedItem;
         using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
         {
-          SelectableMaterial.LoadItems(materialsService.GetMaterialList(string.Empty));
+          SelectableMaterial.LoadItems(materialsService.GetMaterialAndContractorsPackageList(string.Empty));
         }
-        if (selectedItem != null)
+        if (selectedItem != null && selectedItem.Material != null)
         {
-          MaterialPrimitive selectionFromItems =
-            SelectableMaterial.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+          MaterialAndContractorsPackage selectionFromItems =
+            SelectableMaterial.Items.Where(x => x.Material.Id == selectedItem.Material.Id).FirstOrDefault();
           if (selectionFromItems != null)
             SelectableMaterial.SelectedItem = selectionFromItems;
         }

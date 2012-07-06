@@ -9,7 +9,7 @@ namespace SmartWorking.Office.PrimitiveEntities
 {
   public class RecipeComponentAndMaterialPackage
   {
-    public MaterialPrimitive Material { get; set; }
+    public MaterialAndContractorsPackage MaterialAndContractors { get; set; }
 
     public RecipeComponentPrimitive RecipeComponent { get; set; }    
   }

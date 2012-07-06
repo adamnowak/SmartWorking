@@ -27,7 +27,7 @@ namespace SmartWorking.Office.Entities
       if (recipeComponent != null)
         result.RecipeComponent = recipeComponent.GetPrimitive();
       if (recipeComponent.Material != null)
-        result.Material = recipeComponent.Material.GetPrimitive();
+        result.MaterialAndContractors = recipeComponent.Material.GetMaterialAndContractorsPackage();
       return result;
     }
 
@@ -108,9 +108,13 @@ namespace SmartWorking.Office.Entities
       if (material != null)
       {
         result.Material = material.GetPrimitive();
-        if (material.Contractor != null)
+        if (material.Producer != null)
         {
-          result.Producer = material.Contractor.GetPrimitive();
+          result.Producer = material.Producer.GetPrimitive();
+        }
+        if (material.Deliverer != null)
+        {
+          result.Deliverer = material.Deliverer.GetPrimitive();
         }
       }
       return result;
