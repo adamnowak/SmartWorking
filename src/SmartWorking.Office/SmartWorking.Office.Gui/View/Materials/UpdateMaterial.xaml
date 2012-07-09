@@ -38,13 +38,13 @@
                 <TextBox Text="{Binding Material.Name}" Grid.Row="2" Grid.Column="1"  />
                 
                 <Parts:ContractorSelection Grid.Row="3" Grid.ColumnSpan="3"                                           
-                                           Contractor="{Binding Producer}"
+                                           Contractor="{Binding Producer, Mode=OneWay}"
                                            HeaderDescription="Producent"
                                            ButtonDescription="Wybierz producenta"
                                            ButtonImage="{StaticResource ProducerImageSource}" 
                                            ButtonCommand="{Binding DataContext.SelectProducerCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
                 <Parts:ContractorSelection Grid.Row="4" Grid.ColumnSpan="2"
-                                           Contractor="{Binding Deliverer}"                                           
+                                           Contractor="{Binding Deliverer, Mode=OneWay}"                                           
                                            HeaderDescription="Dostawca"
                                            ButtonDescription="Wybierz dostawcę"
                                            ButtonImage="{StaticResource DeliverImageSource}" 

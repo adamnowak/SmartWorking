@@ -83,8 +83,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
       {
         DriverAndCar.Car = ModalDialogService.SelectCar(ModalDialogService, ServiceFactory);
         RaisePropertyChanged(DriverAndCarPropertyName);
-        RaisePropertyChanged(DriverAndCarPropertyName + ".Car");
-        RaisePropertyChanged("Car");
+        //RaisePropertyChanged(DriverAndCarPropertyName + ".Car");
+        //RaisePropertyChanged("Car");
       }
       catch (FaultException<ExceptionDetail> f)
       {

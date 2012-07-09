@@ -57,6 +57,36 @@ namespace SmartWorking.Office.Gui.ViewModel
       ServiceFactory = serviceFactory;
     }
 
+    public string AssemblyVersion
+    {
+      get { return this.GetType().Assembly.GetName().Version.ToString(); }      
+    }
+
+    public string Configuration
+    {
+      get
+      {
+        
+#if DEBUG
+        return "DEBUG";
+#endif
+#if DEBUGIISLocal
+        return "DEBUGIISLocal";
+#endif
+#if DEBUGIISSomee
+        return "DEBUGIISSomee";
+#endif
+#if DEBUGLocalSomee
+        return "DEBUGLocalSomee";
+#endif
+#if Release
+        return "Release";
+#endif
+
+        return "Nie zdefiniowane";
+      }
+    }
+
     public override string Title
     {
       get { return "SmartWorking (office)"; }

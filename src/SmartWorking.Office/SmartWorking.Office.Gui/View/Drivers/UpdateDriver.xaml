@@ -12,8 +12,8 @@
 		<Shared:PanelLabel Image="{StaticResource DriverImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kierowca</Shared:PanelLabel>
 		
 		<!--Contractor grid-->
-		<GroupBox Header="Kierowca" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
-			<Grid DataContext="{Binding DriverAndCar}">
+        <GroupBox Header="Kierowca" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}" DataContext="{Binding DriverAndCar}">
+			<Grid >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition />
@@ -52,7 +52,8 @@
                         </Grid.ColumnDefinitions>
                         <Shared:DescriptionButton Image="{StaticResource CarImageSource}" Content="Wybierz samochód" Style="{StaticResource SelectDescriptionButton}" 
                                                   Command="{Binding DataContext.SelectCarCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Drivers:UpdateDriver}}}" />
-                        <StackPanel Grid.Column="1">
+                        <StackPanel Grid.Column="1" 
+                                    DataContext="{Binding DataContext.DriverAndCar.Car, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Drivers:UpdateDriver}}}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -73,22 +74,22 @@
                                 <TextBlock Text="Ładowność:" Grid.Row="4" />
                                 <TextBlock Text="Rodzaj transportu:" Grid.Row="5" />
 
-                                <TextBox Text="{Binding Car.InternalName}" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
-                                <TextBox Text="{Binding Car.Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
-                                <TextBox Text="{Binding Car.RegistrationNumber}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding InternalName}" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding RegistrationNumber}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
                                 <TextBox Grid.Row="3"  Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" >
                                     <TextBox.Text>
                                         <MultiBinding Mode="OneWay" Converter="{StaticResource descriptionIndexedConverter}" >
-                                            <Binding Path="Car.CarType"/>
+                                            <Binding Path="CarType"/>
                                             <Binding Source="{x:Static Cars:CarTypes.Instance}" Path="Items"/>
                                         </MultiBinding>
                                     </TextBox.Text>
                                 </TextBox>
-                                <TextBox Text="{Binding Car.Capacity}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding Capacity}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
                                 <TextBox  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" >
                                     <TextBox.Text>
                                         <MultiBinding Mode="OneWay" Converter="{StaticResource descriptionIndexedConverter}" >
-                                            <Binding Path="Car.TransportType"/>
+                                            <Binding Path="TransportType"/>
                                             <Binding Source="{x:Static Cars:TransportTypes.Instance}" Path="Items"/>
                                         </MultiBinding>
                                     </TextBox.Text>

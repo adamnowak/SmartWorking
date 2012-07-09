@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="SmartWorking.Office.Services.MaterialsService" CodeBehind="MaterialsService.svc.cs" %>

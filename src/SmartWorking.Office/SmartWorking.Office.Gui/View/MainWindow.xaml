@@ -77,7 +77,15 @@
                     </StackPanel>
                 </Controls:AccordionItem.Header>
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
-                    <StackPanel  Style="{StaticResource mainPanel}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"  />
+                        <RowDefinition />                        
+                    </Grid.RowDefinitions>
+                    <StackPanel HorizontalAlignment="Right" >
+                        <TextBlock Text="{Binding Configuration, StringFormat=Konfiguracja: \{0\}}" />
+                        <TextBlock Text="{Binding AssemblyVersion, StringFormat=Wersja: \{0\}}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Style="{StaticResource mainPanel}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition />

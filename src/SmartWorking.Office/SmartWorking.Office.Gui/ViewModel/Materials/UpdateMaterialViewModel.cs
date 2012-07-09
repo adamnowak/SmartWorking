@@ -113,10 +113,11 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       try
       {
         MaterialAndContractors.Deliverer = ModalDialogService.SelectContractor(ModalDialogService, ServiceFactory);
-        RaisePropertyChanged("MaterialAndContractors");
+        RaisePropertyChanged(MaterialAndContractorsPropertyName);
         RaisePropertyChanged("Deliverer");
         RaisePropertyChanged("MaterialAndContractors.Deliverer");
         RaisePropertyChanged("Contractor");
+        RaisePropertyChanged("UpdateMaterialViewModel");
         
       }
       catch (FaultException<ExceptionDetail> f)
