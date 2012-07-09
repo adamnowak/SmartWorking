@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\SmartWorking.Office.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -113,8 +119,8 @@
       <LastGenOutput>SmartWorkingOfficeModelPrimitive.cs</LastGenOutput>
       <CustomToolNamespace>SmartWorking.Office.PrimitiveEntities</CustomToolNamespace>
     </None>
-    <None Include="..\SmartWorking.pfx">
-      <Link>SmartWorking.pfx</Link>
+    <None Include="..\SmartWorking.Office.pfx">
+      <Link>SmartWorking.Office.pfx</Link>
     </None>
   </ItemGroup>
   <ItemGroup>

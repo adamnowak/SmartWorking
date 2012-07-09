@@ -34,8 +34,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\SmartWorking.Office.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -67,8 +66,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\SmartWorking.pfx">
-      <Link>SmartWorking.pfx</Link>
+    <None Include="..\SmartWorking.Office.pfx">
+      <Link>SmartWorking.Office.pfx</Link>
     </None>
     <None Include="App.Config" />
     <None Include="GetPrimitiveHelper.tt" />

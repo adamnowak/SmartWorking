@@ -69,8 +69,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\SmartWorking.Office.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -162,8 +161,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\SmartWorking.pfx">
-      <Link>SmartWorking.pfx</Link>
+    <None Include="..\SmartWorking.Office.pfx">
+      <Link>SmartWorking.Office.pfx</Link>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
