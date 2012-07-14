@@ -1,0 +1,2 @@
+This assemblies are compiled from insalled folder.
+I try resolved problem with accordion control (..\..\ContribRepository\WPFToolkit - sources) but there is problem with no matching sources with binary.

@@ -18,6 +18,16 @@ namespace SmartWorking.Office.PrimitiveEntities
 {
     public interface IPrimitive
     {
-    	int Id { get; set; }
+        int Id { get; set; }
+        bool IsNew { get; }
+    }
+        
+    public abstract class PrimitiveBase : IPrimitive
+    {
+        public int Id { get; set; }
+        public bool IsNew
+        {
+            get { return Id <= 0; }
+        }
     }
 }

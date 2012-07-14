@@ -11,12 +11,9 @@
 		<!--Contractor grid-->
 		<GroupBox Header="Element recepty" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
 			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="110" />
-					<ColumnDefinition />
-				</Grid.ColumnDefinitions>
-				<Shared:DescriptionButton Image="{StaticResource MaterialImageSource}" Content="Wybierz material" Style="{StaticResource SelectDescriptionButton}" Command="{Binding SelectMaterialCommand}" />
-				<Grid Grid.Column="1">
+				
+				
+				<Grid >
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition />

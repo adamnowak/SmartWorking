@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Cars.ManageCarsViewModel">
+    <Position X="16.5" Y="15.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAQACiQ4ACAUEAAAAAAAAQIAEAAAAAAAAAIABEEAA=</HashCode>
+      <FileName>ViewModel\Cars\ManageCarsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Cars.UpdateCarViewModel">
+    <Position X="31" Y="24" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAUCAEAAAABAAAAAAAQAAAAACAQAAAAAgAA=</HashCode>
+      <FileName>ViewModel\Cars\UpdateCarViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Clients.ManageClientsViewModel">
+    <Position X="24.25" Y="15.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAuAAAjAFgAIAAQAgAAIQBASFIgAAJDIREAIAA=</HashCode>
+      <FileName>ViewModel\Clients\ManageClientsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Clients.UpdateBuildingViewModel">
+    <Position X="4.75" Y="24" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ACgAAAAAQAgCIEAAgAAAAAAAAAAAAQAAAABAAQAAACA=</HashCode>
+      <FileName>ViewModel\Clients\UpdateBuildingViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Clients.UpdateClientViewModel">
+    <Position X="15.25" Y="24" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BABAAAAAAAACAMIAAAAAAAAAAAAAAAAAQAAAAAAAAAQ=</HashCode>
+      <FileName>ViewModel\Clients\UpdateClientViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Contractors.ManageContractorsViewModel">
+    <Position X="18.75" Y="15.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQACBACQEBABCAQAAAgAAAAAgQAAAIAAEAAAEA=</HashCode>
+      <FileName>ViewModel\Contractors\ManageContractorsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Contractors.UpdateContractorViewModel">
+    <Position X="21.25" Y="24" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAAgCAAAAAACQEAAAAAAAAAAgIAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>ViewModel\Contractors\UpdateContractorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.DeliveryNotes.ManageDeliveryNotesViewModel">
+    <Position X="9.25" Y="15.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ABAAEAAAEAACAEAAQAIQAAAUQAAACAEAIEAAAREAAAA=</HashCode>
+      <FileName>ViewModel\DeliveryNotes\ManageDeliveryNotesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.DeliveryNotes.UpdateDeliveryNoteViewModel">
+    <Position X="18.25" Y="24" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABACoBAACIGgBMAQAAAAAQgAAAAACAABABEAAIAA=</HashCode>
+      <FileName>ViewModel\DeliveryNotes\UpdateDeliveryNoteViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.DialogViewModelBase">
+    <Position X="7.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAEAAAAAQAAAAEBEAAAAAEAABAAEAAAAAAABAAAAAQA=</HashCode>
+      <FileName>ViewModel\DialogViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.MainWindowViewModel">
+    <Position X="0.75" Y="12.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EQhQgAQEEAkAQEDAAABAAAhAAgAhQAAAiAAEIRAAAhA=</HashCode>
+      <FileName>ViewModel\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.ModalDialogViewModelBase">
+    <Position X="11.5" Y="12.75" Width="2.25" />
+    <InheritanceLine Type="SmartWorking.Office.Gui.ViewModel.WindowViewModelBase" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="6.675" />
+        <Point X="10" Y="12.375" />
+        <Point X="12.625" Y="12.375" />
+        <Point X="12.625" Y="12.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ModalDialogViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.WindowViewModelBase">
+    <Position X="9" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\WindowViewModelBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Drivers.ManageDriversViewModel">
+    <Position X="3.75" Y="15.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAIiAgCAAACAEAAAgCkAAAAAAgAAAAgAAIAgMAAAAQ=</HashCode>
+      <FileName>ViewModel\Drivers\ManageDriversViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Drivers.UpdateDriverViewModel">
+    <Position X="8" Y="24" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAIAAACAEAAAAQAAEAAAAAAAAAAA0AAAAAAACA=</HashCode>
+      <FileName>ViewModel\Drivers\UpdateDriverViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Materials.ManageMaterialsViewModel">
+    <Position X="6.5" Y="15.25" Width="2.25" />
+    <InheritanceLine Type="SmartWorking.Office.Gui.ViewModel.ModalDialogViewModelBase" FixedToPoint="true">
+      <Path>
+        <Point X="12.625" Y="14.367" />
+        <Point X="12.625" Y="14.875" />
+        <Point X="7.312" Y="14.875" />
+        <Point X="7.312" Y="15.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAkABAgBgACAEAAASAAACQAAAAQAACAAiIABAAACAA=</HashCode>
+      <FileName>ViewModel\Materials\ManageMaterialsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Materials.UpdateMaterialViewModel">
+    <Position X="11" Y="24" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACBACAEAAEAABAAAYAACAACAAABAAACAADAE=</HashCode>
+      <FileName>ViewModel\Materials\UpdateMaterialViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Orders.ManageOrdersViewModel">
+    <Position X="13.25" Y="15.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAASAEAIAAQCBAAAAAAAABIAAAAwAAAACiA=</HashCode>
+      <FileName>ViewModel\Orders\ManageOrdersViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Orders.UpdateOrderViewModel">
+    <Position X="24.5" Y="24" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAgACAAAACAEAEEAAAIAAAAAAAAAACAAhgAEAAIAA=</HashCode>
+      <FileName>ViewModel\Orders\UpdateOrderViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Recipes.ManageRecipesViewModel">
+    <Position X="21.75" Y="15.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEkABACAFIAAgAAABAEAIAIAAQAAAAIAAAAAAU=</HashCode>
+      <FileName>ViewModel\Recipes\ManageRecipesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Recipes.UpdateRecipeComponentViewModel">
+    <Position X="27.5" Y="24" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>QEAYUIAAAAACAEAAAAAAAAgAAAAAgAAEAAAAACAARAE=</HashCode>
+      <FileName>ViewModel\Recipes\UpdateRecipeComponentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Recipes.UpdateRecipeViewModel">
+    <Position X="0.75" Y="24" Width="3.25" />
+    <NestedTypes>
+      <Class Name="SmartWorking.Office.Gui.ViewModel.Recipes.UpdateRecipeViewModel.MaterialAndContractorsPackageComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ViewModel\Recipes\UpdateRecipeViewModel.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgEFkQAABERDAEAAAEABEAAAAAAAQAkAAAAEAIAgUAI=</HashCode>
+      <FileName>ViewModel\Recipes\UpdateRecipeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Reports.DriversCarsReportViewModel">
+    <Position X="13.25" Y="29.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAACAEAAAAIAAEAgICAgAAAAAAACITAAAAA=</HashCode>
+      <FileName>ViewModel\Reports\DriversCarsReportViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.Gui.ViewModel.Shared.MessageBox.MessageBoxViewModel">
+    <Position X="4.25" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEgUAAAQAgAAAEAAAAAAEAQgAIAAAAAZGACgIEUACAA=</HashCode>
+      <FileName>ViewModel\Shared\MessageBox\MessageBoxViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="SmartWorking.Office.Gui.ViewModel.IDialogViewModel">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEBAAAAAAAAABAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>ViewModel\IDialogViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmartWorking.Office.Gui.ViewModel.IModalDialogViewModel">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\IModalDialogViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmartWorking.Office.Gui.ViewModel.Shared.MessageBox.IMessageBoxViewModel">
+    <Position X="3" Y="3" Width="2" />
+    <InheritanceLine Type="SmartWorking.Office.Gui.ViewModel.IDialogViewModel" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="2.44" />
+        <Point X="2.5" Y="2.7" />
+        <Point X="4" Y="2.7" />
+        <Point X="4" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Shared\MessageBox\IMessageBoxViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

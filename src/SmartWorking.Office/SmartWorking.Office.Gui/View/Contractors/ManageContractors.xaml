@@ -8,9 +8,9 @@
 			<RowDefinition Height="*" MinHeight="200" />
 			<RowDefinition Height="75" />
 		</Grid.RowDefinitions>
-		<Shared:PanelLabel Image="{StaticResource ContractorImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kontrahenci</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource ContractorImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Dostawcy</Shared:PanelLabel>
 
-        <GroupBox Header="Kontrahent" Grid.Row="1">
+        <GroupBox Header="Dostawcy" Grid.Row="1">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="{StaticResource dialogButtonPanelWidthGridLength}" />
@@ -42,11 +42,13 @@
 						<!--End Debug only-->
 						<DataGridTextColumn Header="Symbol" Binding="{Binding InternalName}" />
 						<DataGridTextColumn Header="Nazwisko" Binding="{Binding Name}" />						
-						<DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" />
-                        <DataGridTextColumn Header="Misto" Binding="{Binding City}" />
-                        <DataGridTextColumn Header="Kod pocztowy" Binding="{Binding ZIPCode}" />
+                        
                         <DataGridTextColumn Header="Ulica" Binding="{Binding Street}" />
                         <DataGridTextColumn Header="Number domu" Binding="{Binding HouseNo}" />
+                        <DataGridTextColumn Header="Misto" Binding="{Binding City}" />
+                        <DataGridTextColumn Header="Kod pocztowy" Binding="{Binding ZIPCode}" />
+                        
+                        <DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" />
                     </DataGrid.Columns>
 				</DataGrid>
 			</Grid>

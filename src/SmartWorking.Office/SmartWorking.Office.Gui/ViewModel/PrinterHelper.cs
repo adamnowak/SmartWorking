@@ -88,7 +88,7 @@ namespace SmartWorking.Office.Gui.ViewModel
         //   ? string.Empty
         //   : deliveryNotePackage.BuildingAndContractor.Contractor.Surname + Environment.NewLine);
         "";
-      PrintSection(gfx, "Kontrahent:", contracotrInfo, new XPoint(30, 70 + shiftY));
+      PrintSection(gfx, "Klient:", contracotrInfo, new XPoint(30, 70 + shiftY));
 
       //Building
       string buildingInfo =

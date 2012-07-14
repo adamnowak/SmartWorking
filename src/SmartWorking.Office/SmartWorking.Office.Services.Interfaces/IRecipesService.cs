@@ -42,7 +42,7 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipe",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateRecipe(RecipePrimitive recipe);
+    RecipePrimitive UpdateRecipe(RecipePrimitive recipe);
 
     /// <summary>
     /// Deletes the recipe.

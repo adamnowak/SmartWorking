@@ -32,7 +32,17 @@ BeginNamespace(namespaceName, code);
 #>
 public interface IPrimitive
 {
-	int Id { get; set; }
+    int Id { get; set; }
+    bool IsNew { get; }
+}
+    
+public abstract class PrimitiveBase : IPrimitive
+{
+    public int Id { get; set; }
+    public bool IsNew
+    {
+        get { return Id <= 0; }
+    }
 }
 <#
 EndNamespace(namespaceName);
@@ -48,7 +58,7 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
 
 
 #>
-<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#>Primitive : IPrimitive<#=code.StringBefore(", ", code.Escape(entity.BaseType))#>
+<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#>Primitive : PrimitiveBase
 {
 <#
 	region.Begin("Primitive Properties");
@@ -68,6 +78,8 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
 		}
 		else
 		{
+			if (code.Escape(edmProperty) != "Id")
+			{
 #>
 		<#=PropertyVirtualModifier(Accessibility.ForProperty(edmProperty))#> <#=code.Escape(edmProperty.TypeUsage)#> <#=code.Escape(edmProperty)#>
 		{
@@ -75,6 +87,7 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
         <#=code.SpaceAfter(Accessibility.ForSetter(edmProperty))#>set;
 		}
 <#
+			}
 		}  
     }
     region.End();

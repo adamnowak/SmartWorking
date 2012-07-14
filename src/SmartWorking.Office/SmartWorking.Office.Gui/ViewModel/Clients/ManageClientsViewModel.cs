@@ -158,7 +158,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
 
     public override string Title
     {
-      get { return "Wybierz kontrahenta."; }
+      get { return "Wybierz klienta."; }
     }
 
     /// <summary>
@@ -166,7 +166,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     /// </summary>
     private void CreateClient()
     {
-      string errorCaption = "Tworzenie danych o kontrahencie!";
+      string errorCaption = "Tworzenie danych o kliencie!";
       try
       {
         ModalDialogService.CreateClient(ModalDialogService, ServiceFactory);
@@ -191,7 +191,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
 
     private void EditClient()
     {
-      string errorCaption = "Edycja danych o kontrahencie!";
+      string errorCaption = "Edycja danych o kliencie!";
       try
       {
         ModalDialogService.EditClient(ModalDialogService, ServiceFactory,

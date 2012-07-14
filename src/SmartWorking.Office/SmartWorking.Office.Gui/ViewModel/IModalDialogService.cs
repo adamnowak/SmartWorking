@@ -165,7 +165,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    RecipePrimitive CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    RecipePackage CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for editing the recipe.
@@ -174,8 +174,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="selectedRecipe">The selected recipe.</param>
     /// <returns></returns>
-    RecipePrimitive EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                               RecipePrimitive selectedRecipe);
+    RecipePackage EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                               RecipePackage recipePackage);
 
     /// <summary>
     /// Opens dialog for managing the recipes.
@@ -200,7 +200,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="recipe">The recipe for which the <see cref="RecipeComponent"/>s will be added.</param>
     /// <returns></returns>
     RecipeComponentPrimitive CreateRecipeComponent(IModalDialogService modalDialogService,
-                                                   IServiceFactory serviceFactory, RecipePrimitive recipe);
+                                                   IServiceFactory serviceFactory, RecipePrimitive recipePrimitive, MaterialAndContractorsPackage materialAndContractorsPackage);
 
     /// <summary>
     /// Opens dialog for editing the recipe component.

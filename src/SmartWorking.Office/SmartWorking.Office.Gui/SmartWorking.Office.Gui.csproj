@@ -39,7 +39,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin\gui\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CONFIG_NAME_Debug</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -48,7 +48,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\bin\gui\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;CONFIG_NAME_Release</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -58,7 +58,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocalSomee|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\..\..\bin\gui\DebugLocalSomee\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;CONFIG_NAME_DebugLocalSomee</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -66,7 +66,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugIISLocal|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\..\..\bin\gui\DebugIISLocal\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;IIS_USED</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;IIS_USED;CONFIG_NAME_DebugIISLocal</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -76,7 +76,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugIISSomee|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\..\..\bin\gui\DebugIISSomee\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;IIS_USED</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;IIS_USED;CONFIG_NAME_DebugIISSomee</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -103,13 +103,17 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4, Version=3.0.0.19993, Culture=neutral, PublicKeyToken=1673db7d5906b0ad, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
-    </Reference>
     <Reference Include="GalaSoft.MvvmLight.WPF4, Version=3.0.0.19994, Culture=neutral, PublicKeyToken=63eb5c012e0b3c1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\contrib\GMap.Net\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsPresentation, Version=1.7.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\contrib\GMap.Net\GMap.NET.WindowsPresentation.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>..\..\..\contrib\NPOI\.net 4.0\NPOI.dll</HintPath>
@@ -142,6 +146,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -165,6 +171,7 @@
     <Compile Include="ViewModel\Exporters\ExcelExporter.cs" />
     <Compile Include="ViewModel\Exporters\IExporter.cs" />
     <Compile Include="ViewModel\Orders\ManageOrdersViewModel.cs" />
+    <Compile Include="ViewModel\SmartWorkingException.cs" />
     <Compile Include="ViewModel\Orders\UpdateOrderViewModel.cs" />
     <Compile Include="ViewModel\PrinterHelper.cs" />
     <Compile Include="ViewModel\IDialogViewModel.cs" />
@@ -187,6 +194,7 @@
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\SelectableViewModelBase.cs" />
     <Compile Include="ViewModel\SelectedItemChangedEventArgEventArgs.cs" />
+    <Compile Include="ViewModel\WindowViewModelBase.cs" />
     <Compile Include="View\Cars\ManageCars.xaml.cs">
       <DependentUpon>ManageCars.xaml</DependentUpon>
     </Compile>
@@ -252,6 +260,11 @@
     <Compile Include="View\Reports\DriversCarsReport.xaml.cs">
       <DependentUpon>DriversCarsReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Shared\Converters\BoolToOppositeBoolConverter.cs" />
+    <Compile Include="View\Shared\CustomMarkerRed.xaml.cs">
+      <DependentUpon>CustomMarkerRed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shared\EventToCommandExecuter.cs" />
     <Compile Include="View\Shared\Converters\DateTimeToShortDateConverter.cs" />
     <Compile Include="View\Shared\Converters\DescriptionIndexedMultiConverter.cs" />
     <Compile Include="View\Shared\Converters\Reports\DriverCarReport\DriverCarReportPackageToColumnsConverter.cs" />
@@ -261,6 +274,7 @@
     <Compile Include="View\Shared\Converters\Reports\DriverCarReport\DriverCarRowValuesToItemsSourceConverter.cs" />
     <Compile Include="View\Shared\Converters\Reports\RowValuesToItemsSourceConverterBase.cs" />
     <Compile Include="View\Shared\DataGridExtension.cs" />
+    <Compile Include="View\Shared\SmartGMapControl.cs" />
     <Compile Include="View\Shared\Parts\ContractorSelection.cs" />
     <Compile Include="View\Shared\TwoImagePanelLabel.cs" />
     <Compile Include="View\Shared\TwoImageDescriptionButton.cs" />
@@ -374,6 +388,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Shared\CustomMarkerRed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Shared\MessageBox\MessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -425,6 +443,7 @@
       <DependentUpon>app.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </None>
+    <None Include="ViewModelClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

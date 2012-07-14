@@ -67,19 +67,19 @@ namespace SmartWorking.Office.Gui.ViewModel
       get
       {
         
-#if DEBUG
-        return "DEBUG";
+#if CONFIG_NAME_Debug
+        return "Debug";
 #endif
-#if DEBUGIISLocal
-        return "DEBUGIISLocal";
+#if CONFIG_NAME_DebugIISLocal
+        return "DebugIISLocal";
 #endif
-#if DEBUGIISSomee
-        return "DEBUGIISSomee";
+#if CONFIG_NAME_DebugIISSomee
+        return "DebugIISSomee";
 #endif
-#if DEBUGLocalSomee
-        return "DEBUGLocalSomee";
+#if CONFIG_NAME_DebugLocalSomee
+        return "DebugLocalSomee";
 #endif
-#if Release
+#if CONFIG_NAME_Release
         return "Release";
 #endif
 
@@ -386,7 +386,7 @@ namespace SmartWorking.Office.Gui.ViewModel
 
     private void ManageContractors()
     {
-      string errorCaption = "Zarządzanie kontrahentami!";
+      string errorCaption = "Zarządzanie dostawcami!";
       try
       {
         ModalDialogService.ManageContractors(ModalDialogService, ServiceFactory);

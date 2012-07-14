@@ -15,14 +15,9 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
-    public partial class DriverPrimitive : IPrimitive
+    public partial class DriverPrimitive : PrimitiveBase
     {
         #region Primitive Properties
-    		public int Id
-    		{
-            get;
-            set;
-    		}
     		public string Name
     		{
             get;

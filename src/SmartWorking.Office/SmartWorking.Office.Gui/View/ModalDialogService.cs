@@ -251,27 +251,28 @@ namespace SmartWorking.Office.Gui.View
       return null;
     }
 
-    public RecipePrimitive CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public RecipePackage CreateRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateRecipeViewModel(modalDialogService, serviceFactory);
-      viewModel.Recipe = new RecipePrimitive();
+      viewModel.RecipePackage = new RecipePackage();
+      viewModel.RecipePackage.Recipe = new RecipePrimitive();      
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateRecipe>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        return viewModel.Recipe;
+        return viewModel.RecipePackage;
       }
       return null;
     }
 
-    public RecipePrimitive EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                      RecipePrimitive selectedRecipe)
+    public RecipePackage EditRecipe(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                      RecipePackage recipePackage)
     {
       var viewModel = new UpdateRecipeViewModel(modalDialogService, serviceFactory);
-      viewModel.Recipe = selectedRecipe;
+      viewModel.RecipePackage = recipePackage;
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateRecipe>.ShowDialog(viewModel);
-      return viewModel.Recipe;
+      return viewModel.RecipePackage;
     }
 
     public void ManageRecipes(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -301,11 +302,13 @@ namespace SmartWorking.Office.Gui.View
     /// <param name="recipe">The recipe for which the <see cref="RecipeComponent"/>s will be added.</param>
     /// <returns></returns>
     public RecipeComponentPrimitive CreateRecipeComponent(IModalDialogService modalDialogService,
-                                                          IServiceFactory serviceFactory, RecipePrimitive recipe)
+                                                          IServiceFactory serviceFactory, 
+                                                          RecipePrimitive recipePrimitive, MaterialAndContractorsPackage materialAndContractorsPackage)
     {
       var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
       viewModel.RecipeComponent = new RecipeComponentPrimitive();
-      viewModel.RecipeComponent.Recipe_Id = recipe.Id;
+      viewModel.RecipeComponent.Recipe_Id = recipePrimitive.Id;
+      viewModel.MaterialAndContractors = materialAndContractorsPackage;
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateRecipeComponent>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
@@ -324,8 +327,7 @@ namespace SmartWorking.Office.Gui.View
     /// <returns></returns>
     public RecipeComponentPrimitive EditRecipeComponent(IModalDialogService modalDialogService,
                                                         IServiceFactory serviceFactory,
-                                                        RecipeComponentAndMaterialPackage
-                                                          recipeComponentAndMaterialPackage)
+                                                        RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage)
     {
       var viewModel = new UpdateRecipeComponentViewModel(modalDialogService, serviceFactory);
       viewModel.RecipeComponent = recipeComponentAndMaterialPackage.RecipeComponent;

@@ -39,8 +39,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
       get
       {
         return (DialogMode == DialogMode.Create)
-                 ? "Utwórz nowego kontrahenta."
-                 : "Edytuj kontrahenta.";
+                 ? "Utwórz nowego dostawcę."
+                 : "Edytuj dostawcę.";
       }
     }
 
@@ -113,7 +113,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     private void CreateOrUpdateContractor()
     {
-      string errorCaption = "Zatwierdzenie danych o kontrahencie!";
+      string errorCaption = "Zatwierdzenie danych o dostawcy!";
       try
       {
         if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)

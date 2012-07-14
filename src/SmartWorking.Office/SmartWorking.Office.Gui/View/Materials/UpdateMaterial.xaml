@@ -10,7 +10,7 @@
 		
 		<!--Contractor grid-->
 		<GroupBox Header="Materiał" Grid.Row="1" >
-            <Grid DataContext="{Binding MaterialAndContractors}">
+            <Grid >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition />
@@ -31,20 +31,20 @@
                 <TextBlock Text="Nazwa:" Grid.Row="2" />
 				
 				<!--End Debug only-->
-				<TextBox Text="{Binding Material.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                <TextBox Text="{Binding MaterialAndContractors.Material.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 				<!--Debug only-->
 
-                <TextBox Text="{Binding Material.InternalName}" Grid.Row="1" Grid.Column="1"  />
-                <TextBox Text="{Binding Material.Name}" Grid.Row="2" Grid.Column="1"  />
+                <TextBox Text="{Binding MaterialAndContractors.Material.InternalName}" Grid.Row="1" Grid.Column="1"  />
+                <TextBox Text="{Binding MaterialAndContractors.Material.Name}" Grid.Row="2" Grid.Column="1"  />
                 
                 <Parts:ContractorSelection Grid.Row="3" Grid.ColumnSpan="3"                                           
-                                           Contractor="{Binding Producer, Mode=OneWay}"
+                                           Contractor="{Binding MaterialAndContractors.Producer}"
                                            HeaderDescription="Producent"
                                            ButtonDescription="Wybierz producenta"
                                            ButtonImage="{StaticResource ProducerImageSource}" 
                                            ButtonCommand="{Binding DataContext.SelectProducerCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
                 <Parts:ContractorSelection Grid.Row="4" Grid.ColumnSpan="2"
-                                           Contractor="{Binding Deliverer, Mode=OneWay}"                                           
+                                           Contractor="{Binding MaterialAndContractors.Deliverer}"                                           
                                            HeaderDescription="Dostawca"
                                            ButtonDescription="Wybierz dostawcę"
                                            ButtonImage="{StaticResource DeliverImageSource}" 

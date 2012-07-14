@@ -15,14 +15,9 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
-    public partial class BuildingPrimitive : IPrimitive
+    public partial class BuildingPrimitive : PrimitiveBase
     {
         #region Primitive Properties
-    		public int Id
-    		{
-            get;
-            set;
-    		}
     		public virtual int Client_Id
     		{
     			get;

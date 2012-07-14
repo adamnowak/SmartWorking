@@ -156,7 +156,6 @@
 
     <!--DescriptionButton class-->
     <Style TargetType="Shared:DescriptionButton">
-
         <Setter Property="BorderBrush" Value="Gray" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Height" Value="70" />
@@ -219,6 +218,40 @@
         </Setter>
     </Style>
 
+    <Style x:Key="SmallDescriptionButton" TargetType="Shared:DescriptionButton" BasedOn="{StaticResource {x:Type Shared:DescriptionButton}}">
+        <Setter Property="Height" Value="60" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Shared:DescriptionButton}">
+                    <Button HorizontalContentAlignment="Stretch" Command="{TemplateBinding Command}" Background="{TemplateBinding Background}">
+                        <Grid Height="50" HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="5" Padding="1">
+                                <Image Source="{TemplateBinding Image}" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                            </Border>
+                            <TextBlock TextWrapping="Wrap" Text="{TemplateBinding Content}" FontSize="21.333" Foreground="#FF1C3840" VerticalAlignment="Top" Grid.Column="1" />
+                            <TextBlock TextWrapping="Wrap" Text="{TemplateBinding Comment}" FontSize="16" Grid.Row="1" Grid.Column="1" />
+                        </Grid>
+                    </Button>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="BorderThickness" Value="6" />
+                            <Setter Property="Opacity" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style TargetType="Shared:TwoImageDescriptionButton" BasedOn="{StaticResource {x:Type Shared:DescriptionButton}}">
         <Setter Property="Template">
             <Setter.Value>
@@ -330,6 +363,11 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.3" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 
@@ -366,18 +404,20 @@
                                     <TextBlock Text="Symbol:" />
                                     <TextBlock Text="Nazwa:" Grid.Row="1" />                                    
                                     <TextBlock Text="Telefon:" Grid.Column="2"/>                                    
-                                    <TextBlock Text="Miasto:" Grid.Row="2" />
-                                    <TextBlock Text="Ulica:" Grid.Row="3" />
-                                    <TextBlock Text="Kod pocztowy:" Grid.Row="2" Grid.Column="2" />
-                                    <TextBlock Text="Numer domu:" Grid.Row="3" Grid.Column="2"/>
-
+                                    <TextBlock Text="Ulica:" Grid.Row="2" />
+                                    <TextBlock Text="Numer domu:" Grid.Row="2" Grid.Column="2"/>
+                                    <TextBlock Text="Kod pocztowy:" Grid.Row="3"  />
+                                    <TextBlock Text="Miasto:" Grid.Row="3" Grid.Column="2"/>
+                                    
                                     <TextBox Text="{Binding InternalName}" Grid.Column="1" IsReadOnly="True" />
                                     <TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" IsReadOnly="True" />
                                     <TextBox Text="{Binding Phone}" Grid.Column="3" IsReadOnly="True" />
-                                    <TextBox Text="{Binding City}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
-                                    <TextBox Text="{Binding Street}" Grid.Row="3" Grid.Column="1" IsReadOnly="True" />
-                                    <TextBox Text="{Binding ZIPCode}" Grid.Row="2" Grid.Column="3" IsReadOnly="True" />                                                                        
-                                    <TextBox Text="{Binding HouseNo}" Grid.Row="3" Grid.Column="3" IsReadOnly="True" />
+                                    
+                                    <TextBox Text="{Binding Street}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                                    <TextBox Text="{Binding HouseNo}" Grid.Row="2" Grid.Column="3" IsReadOnly="True" />
+                                    <TextBox Text="{Binding City}" Grid.Row="3" Grid.Column="1" IsReadOnly="True" />
+                                    <TextBox Text="{Binding ZIPCode}" Grid.Row="3" Grid.Column="3" IsReadOnly="True" />                                                                        
+                                    
                                 </Grid>
                             </StackPanel>
                         </Grid>
@@ -386,4 +426,6 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    
 </ResourceDictionary>

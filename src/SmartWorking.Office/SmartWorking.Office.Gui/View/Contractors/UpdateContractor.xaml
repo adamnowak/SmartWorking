@@ -6,9 +6,9 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Shared:PanelLabel Image="{StaticResource ContractorImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kontrahent</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource ContractorImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Dostawca</Shared:PanelLabel>
 		<!--Contractor grid-->
-		<GroupBox Header="Kontrahent" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
+		<GroupBox Header="Dostawca" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}">
 			<Grid DataContext="{Binding Contractor}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
@@ -30,23 +30,26 @@
 				<!--End Debug only-->
 				<TextBlock Text="Symbol:" Grid.Row="1" />
 				<TextBlock Text="Nazwa:" Grid.Row="2" />				
-				<TextBlock Text="Telefon:" Grid.Row="3" />
-
-                <TextBlock Text="Misto:" Grid.Row="4" />
-                <TextBlock Text="Ulica:" Grid.Row="5" />
+				
+                
+                <TextBlock Text="Ulica:" Grid.Row="3" />               
+                <TextBlock Text="Numer domu:" Grid.Row="4" />
+                <TextBlock Text="Miasto:" Grid.Row="5" />
                 <TextBlock Text="Kod pocztowy:" Grid.Row="6" />
-                <TextBlock Text="Numer domu:" Grid.Row="7" />
-
+                <TextBlock Text="Telefon:" Grid.Row="7" />
+                
                 <!--End Debug only-->
 				<TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 				<!--Debug only-->
 				<TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" />
 				<TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" />
-				<TextBox Text="{Binding Phone}" Grid.Row="3" Grid.Column="1" />
-				<TextBox Text="{Binding City}" Grid.Row="4" Grid.Column="1" />
-                <TextBox Text="{Binding Street}" Grid.Row="5" Grid.Column="1" />
+								
+                <TextBox Text="{Binding Street}" Grid.Row="3" Grid.Column="1" />                
+                <TextBox Text="{Binding HouseNo}" Grid.Row="4" Grid.Column="1" />
+                <TextBox Text="{Binding City}" Grid.Row="5" Grid.Column="1" />
                 <TextBox Text="{Binding ZIPCode}" Grid.Row="6" Grid.Column="1" />
-                <TextBox Text="{Binding HouseNo}" Grid.Row="7" Grid.Column="1" />
+                
+                <TextBox Text="{Binding Phone}" Grid.Row="7" Grid.Column="1" />
             </Grid>
 		</GroupBox>
         

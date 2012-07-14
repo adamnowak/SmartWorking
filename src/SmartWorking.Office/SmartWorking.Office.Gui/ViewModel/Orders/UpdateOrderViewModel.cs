@@ -15,8 +15,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Orders
   {
     private ICommand _createAndPrintOrderCommand;
     private ICommand _selectBuildingCommand;
-    private ICommand _selectCarCommand;
-    private ICommand _selectDriverCommand;
     private ICommand _selectRecipeCommand;
 
     /// <summary>
@@ -194,7 +192,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Orders
       return OrderPackage.BuildingAndContractor != null &&
              OrderPackage.BuildingAndContractor.Building != null &&
              OrderPackage.BuildingAndContractor.Client != null &&
-             OrderPackage.Car != null && OrderPackage.Driver != null && OrderPackage.Recipe != null;
+             OrderPackage.Recipe != null;
     }
 
     private void CreateAndPrintOrder()
@@ -209,14 +207,6 @@ namespace SmartWorking.Office.Gui.ViewModel.Orders
         if (OrderPackage.BuildingAndContractor == null)
         {
           throw new SmartWorkingException("Building and contractor is not defined.");
-        }
-        if (OrderPackage.Car == null)
-        {
-          throw new SmartWorkingException("Car is not defined.");
-        }
-        if (OrderPackage.Driver == null)
-        {
-          throw new SmartWorkingException("Driver is not defined.");
         }
         if (OrderPackage.Recipe == null)
         {
@@ -251,96 +241,5 @@ namespace SmartWorking.Office.Gui.ViewModel.Orders
     }
 
     #endregion
-
-    #region SelectDriverCommand
-
-    public ICommand SelectDriverCommand
-    {
-      get
-      {
-        if (_selectDriverCommand == null)
-          _selectDriverCommand = new RelayCommand(SelectDriver);
-        return _selectDriverCommand;
-      }
-    }
-
-    private void SelectDriver()
-    {
-      string errorCaption = "Wybranie kierowcy!";
-      try
-      {
-        DriverAndCarPackage driverAndCarPackage = ModalDialogService.SelectDriver(ModalDialogService, ServiceFactory);
-        OrderPackage.Driver = driverAndCarPackage.Driver;
-        if (OrderPackage.Car == null)
-        {
-          OrderPackage.Car = driverAndCarPackage.Car;
-        }
-        RaisePropertyChanged("OrderPackage");
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-
-    #endregion
-
-    #region SelectCarCommand
-
-    public ICommand SelectCarCommand
-    {
-      get
-      {
-        if (_selectCarCommand == null)
-          _selectCarCommand = new RelayCommand(SelectCar);
-        return _selectCarCommand;
-      }
-    }
-
-    private void SelectCar()
-    {
-      string errorCaption = "Wybranie samochodu!";
-      try
-      {
-        OrderPackage.Car = ModalDialogService.SelectCar(ModalDialogService, ServiceFactory);
-        RaisePropertyChanged("OrderPackage");
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-
-    #endregion
-  }
-
-  public class SmartWorkingException : Exception
-  {
-    public SmartWorkingException(string message)
-      : base(message)
-    {
-    }
   }
 }

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SmartWorking.Office.PrimitiveEntities.BuildingAndClientPackage">
+    <Position X="5" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>BuildingAndClientPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.ClientAndBuildingsPackage">
+    <Position X="7.25" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>ClientAndBuildingsPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.DeliveryNotePackage">
+    <Position X="9.75" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAQAAAAQAAAAAAAAAAAAgAAAAAAgAAAAAAA=</HashCode>
+      <FileName>DeliveryNotePackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.DriverAndCarPackage">
+    <Position X="11.75" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DriverAndCarPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.GetEntityWithReferenceHelper">
+    <Position X="11.75" Y="8.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAgAAAAAAAAAAAAAIAAAAAAAAAAAAAACAAAAgA=</HashCode>
+      <FileName>GetEntityWithReferenceHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.MaterialAndContractorsPackage">
+    <Position X="13.75" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MaterialAndContractorsPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.OrderPackage">
+    <Position X="22.5" Y="6.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAEAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>OrderPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.RecipeComponentAndMaterialPackage">
+    <Position X="19.25" Y="6.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>RecipeComponentAndMaterialPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.RecipePackage">
+    <Position X="16.5" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAABAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RecipePackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.BuildingPrimitive">
+    <Position X="14.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIBgAAEAAAADAEAQAAAAIAIAAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\BuildingPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.CarPrimitive">
+    <Position X="19" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAgAAEAQCAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\CarPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.ClientPrimitive">
+    <Position X="24.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAgAAEAQAABAAAQAAAAIAIAAAAAI=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\ClientPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.ContractorPrimitive">
+    <Position X="1.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAgAAEAQAABAAAQAAAAIAIAAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\ContractorPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.DeliveryNotePrimitive">
+    <Position X="7.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAIAgAAAAAgAAAAACAAAAAAAEAAAAAAACIAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\DeliveryNotePrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.DriverPrimitive">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAgAAEAQABAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\DriverPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.MaterialPrimitive">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAEAQAAAACAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\MaterialPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.MaterialStockPrimitive">
+    <Position X="21.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAECCAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\MaterialStockPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.OrderPrimitive">
+    <Position X="26.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAgAAAAACAAAAEAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\OrderPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.RecipeComponentPrimitive">
+    <Position X="4.25" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAECCAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\RecipeComponentPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.RecipePrimitive">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAkAAEAwAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\RecipePrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.PrimitiveBase">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\SmartWorkingOfficeModelPrimitive.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.Reports.DriversCarsReportPackage">
+    <Position X="0.5" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Reports\DriversCarsReportPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.Reports.ReportPackage&lt;TRowElements, TColumnElements&gt;">
+    <Position X="0.5" Y="5.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAJAAgQAAAAAAAAAAAQAAAAAg=</HashCode>
+      <FileName>Reports\ReportPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.Reports.ReportRow">
+    <Position X="0.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAgAA=</HashCode>
+      <FileName>Reports\ReportRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SmartWorking.Office.PrimitiveEntities.Reports.ReportValue">
+    <Position X="2.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Reports\ReportValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="SmartWorking.Office.PrimitiveEntities.IPrimitive">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>D:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.Model\SmartWorkingOfficeModelPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

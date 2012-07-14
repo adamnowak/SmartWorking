@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>My Command</Title>
+      <Author>Adam Nowak</Author>
+      <Description>Simple command.</Description>
+      <Shortcut>mycommand</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>CommandName</ID>
+          <ToolTip>Command name</ToolTip>
+          <Default>DoSomething</Default>
+          <Function>
+          </Function>
+        </Literal>
+		<Literal Editable="true">
+          <ID>FieldName</ID>
+          <ToolTip>Field name</ToolTip>
+          <Default>_doSomething</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[#region $CommandName$Command
+    private ICommand _$FieldName$Command;
+    
+	/// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand $CommandName$Command
+    {
+      get
+      {
+        if (_$FieldName$Command == null)
+          _$FieldName$Command = new RelayCommand($CommandName$, Can$CommandName$);
+        return _$FieldName$Command;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool Can$CommandName$()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void $CommandName$()
+    {
+      string errorCaption = "TODO!";
+      try
+      {
+        
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+    #endregion //$CommandName$Command]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

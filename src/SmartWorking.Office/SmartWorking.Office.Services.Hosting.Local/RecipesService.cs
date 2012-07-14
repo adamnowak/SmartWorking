@@ -55,9 +55,9 @@ namespace SmartWorking.Office.Services.Hosting.Local
         using (var ctx = new SmartWorkingEntities())
         {
           List<Recipe> result = (string.IsNullOrWhiteSpace(filter))
-                                  ? ctx.Recipes.Include("RecipeComponents.Material").ToList()
-                                  : ctx.Recipes.Include("RecipeComponents.Material").Where(
-                                    x => x.Name.StartsWith(filter)).ToList();
+                                  ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").ToList()
+                                  : ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer")
+                                                                                                      .Where(x => x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetRecipesPackage()).ToList();
         }
       }
@@ -71,7 +71,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the recipe.
     /// </summary>
     /// <param name="recipePrimitive">The recipe primitive.</param>
-    public void UpdateRecipe(RecipePrimitive recipePrimitive)
+    public RecipePrimitive UpdateRecipe(RecipePrimitive recipePrimitive)
     {
       try
       {
@@ -84,8 +84,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //no record of this item in the DB, item being passed in has a PK
           if (existingObject == null && recipe.Id > 0)
           {
-            //TODO:
-            return;
+            throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")), "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
           //Item has no PK value, must be new
           else if (recipe.Id <= 0)
@@ -99,6 +98,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
           }
 
           context.SaveChanges();
+
+          return recipe.GetPrimitive();
         }
       }
       catch (Exception e)

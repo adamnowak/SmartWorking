@@ -39,8 +39,8 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       get
       {
         return (DialogMode == DialogMode.Create)
-                 ? "Utwórz nowego kontrahenta."
-                 : "Edytuj kontrahenta.";
+                 ? "Utwórz nowego klienta."
+                 : "Edytuj klienta.";
       }
     }
 
@@ -113,7 +113,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     /// </summary>
     private void CreateOrUpdateClient()
     {
-      string errorCaption = "Zatwierdzenie danych o kontrahencie!";
+      string errorCaption = "Zatwierdzenie danych o kliencie!";
       try
       {
         if (DialogMode == DialogMode.Create || DialogMode == DialogMode.Update)

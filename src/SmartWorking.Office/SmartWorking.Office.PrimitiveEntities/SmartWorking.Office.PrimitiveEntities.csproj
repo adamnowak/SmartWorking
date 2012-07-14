@@ -122,6 +122,7 @@
     <None Include="..\SmartWorking.Office.pfx">
       <Link>SmartWorking.Office.pfx</Link>
     </None>
+    <None Include="PrimitiveClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

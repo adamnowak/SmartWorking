@@ -93,7 +93,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void ChoseContractor()
     {
-      string errorCaption = "Wybieranie kontrahenta!";
+      string errorCaption = "Wybieranie dostawcy!";
       try
       {
         CloseModalDialog();
@@ -137,7 +137,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     public override string Title
     {
-      get { return "Wybierz kontrahenta."; }
+      get { return "Wybierz dostawcę."; }
     }
 
     /// <summary>
@@ -145,7 +145,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
     /// </summary>
     private void CreateContractor()
     {
-      string errorCaption = "Tworzenie danych o kontrahencie!";
+      string errorCaption = "Tworzenie danych o dostawcy!";
       try
       {
         ModalDialogService.CreateContractor(ModalDialogService, ServiceFactory);
@@ -170,7 +170,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void EditContractor()
     {
-      string errorCaption = "Edycja danych o kontrahencie!";
+      string errorCaption = "Edycja danych o dostawcy!";
       try
       {
         ModalDialogService.EditContractor(ModalDialogService, ServiceFactory,
@@ -196,7 +196,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void DeleteContractor()
     {
-      string errorCaption = "Usuwanie danych o kontrahencie!";
+      string errorCaption = "Usuwanie danych o dostawcy!";
       try
       {
         //TODO: 
@@ -234,7 +234,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
 
     private void LoadContractors()
     {
-      string errorCaption = "Pobranie danych o kontrahentach!";
+      string errorCaption = "Pobranie danych o dostawcach!";
       try
       {
         ContractorPrimitive selectedItem = SelectableContractor.SelectedItem;

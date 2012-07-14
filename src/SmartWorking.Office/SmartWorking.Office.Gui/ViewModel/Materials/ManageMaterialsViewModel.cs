@@ -31,6 +31,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
       LoadMaterials();
     }
 
+
     /// <summary>
     /// Gets the selectable material.
     /// </summary>

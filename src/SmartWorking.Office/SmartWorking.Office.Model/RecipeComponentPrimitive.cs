@@ -15,14 +15,9 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
-    public partial class RecipeComponentPrimitive : IPrimitive
+    public partial class RecipeComponentPrimitive : PrimitiveBase
     {
         #region Primitive Properties
-    		public int Id
-    		{
-            get;
-            set;
-    		}
     		public virtual Nullable<int> Material_Id
     		{
     			get;

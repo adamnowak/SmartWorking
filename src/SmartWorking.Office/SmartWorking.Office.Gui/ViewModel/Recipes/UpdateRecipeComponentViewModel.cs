@@ -215,7 +215,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
       try
       {
         MaterialAndContractors = ModalDialogService.SelectMaterial(ModalDialogService, ServiceFactory);
-        RaisePropertyChanged("Producer");
+        RaisePropertyChanged(MaterialAndContractorsPropertyName);
       }
       catch (FaultException<ExceptionDetail> f)
       {

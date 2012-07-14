@@ -9,5 +9,10 @@
     /// Initializes view model properties.
     /// </summary>
     void Initialize();
+
+    /// <summary>
+    /// Refreshes this instance.
+    /// </summary>
+    void Refresh();
   }
 }

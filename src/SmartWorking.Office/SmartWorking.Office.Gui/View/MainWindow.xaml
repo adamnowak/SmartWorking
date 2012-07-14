@@ -30,8 +30,8 @@
                         <Shared:DescriptionButton Command="{Binding ManageMaterialsCommand}" Image="{DynamicResource MaterialImageSource}" Comment="Utwórz lub edytuj dane o materiałach">
                             Zarządzanie materiałami
                         </Shared:DescriptionButton>
-                        <Shared:DescriptionButton Command="{Binding ManageContractorsCommand}" Image="{DynamicResource ContractorImageSource}" Comment="Dopisz lub zmodyfikuj dane o kontrahencie">
-                            Zarządzanie kontrahentami
+                        <Shared:DescriptionButton Command="{Binding ManageContractorsCommand}" Image="{DynamicResource ContractorImageSource}" Comment="Dopisz lub zmodyfikuj dane o dostawcach">
+                            Zarządzanie dostawcami
                         </Shared:DescriptionButton>
                         <Shared:DescriptionButton Command="{Binding ManageDriversCommand}" Image="{DynamicResource DriverImageSource}" Comment="Zarządzaj kierowcami">
                             Zarządzanie kierowcami
@@ -83,7 +83,7 @@
                     </Grid.RowDefinitions>
                     <StackPanel HorizontalAlignment="Right" >
                         <TextBlock Text="{Binding Configuration, StringFormat=Konfiguracja: \{0\}}" />
-                        <TextBlock Text="{Binding AssemblyVersion, StringFormat=Wersja: \{0\}}"/>
+                        <TextBox IsReadOnly="True" Text="{Binding AssemblyVersion, Mode=OneWay, StringFormat=Wersja: \{0\}}"/>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Style="{StaticResource mainPanel}">
                         <Grid>

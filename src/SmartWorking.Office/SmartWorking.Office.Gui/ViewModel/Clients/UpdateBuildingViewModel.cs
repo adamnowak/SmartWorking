@@ -3,6 +3,7 @@ using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Gui.View.Contractors;
+using SmartWorking.Office.Gui.ViewModel.Shared;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -58,6 +59,32 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
                  : "Edytuj budowę.";
       }
     }
+
+    #region BuildingDescription
+    /// <summary>
+    /// The <see cref="BuildingDescription" /> property's name.
+    /// </summary>
+    public const string BuildingDescriptionPropertyName = "BuildingDescription";
+
+    private string _buldingDescription;
+
+    /// <summary>
+    /// Gets the BuildingDescription property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public string BuildingDescription
+    {
+      get
+      {
+        return (_buildingAndClient != null && _buildingAndClient.Building != null) 
+          ? _buildingAndClient.Building.City + ", " + _buildingAndClient.Building.ZIPCode + ", " + 
+          _buildingAndClient.Building.Street + " " + _buildingAndClient.Building.HouseNo : string.Empty;
+      }
+
+    }
+    #endregion //BuildingDescription
 
     #region BuildingAndClient property
 

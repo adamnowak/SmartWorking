@@ -1,0 +1,1 @@
+This assemblies are compiled from sources (..\..\ContribRepository\GreatMaps)

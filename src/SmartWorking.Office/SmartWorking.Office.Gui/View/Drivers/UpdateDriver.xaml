@@ -12,7 +12,7 @@
 		<Shared:PanelLabel Image="{StaticResource DriverImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Kierowca</Shared:PanelLabel>
 		
 		<!--Contractor grid-->
-        <GroupBox Header="Kierowca" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}" DataContext="{Binding DriverAndCar}">
+        <GroupBox Header="Kierowca" Grid.Row="1" Style="{StaticResource updateDialogMainPanel}" >
 			<Grid >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
@@ -37,12 +37,12 @@
 
 
 				<!--End Debug only-->
-                <TextBox Text="{Binding Driver.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                <TextBox Text="{Binding DriverAndCar.Driver.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
 				<!--Debug only-->
-                <TextBox Text="{Binding Driver.InternalName}" Grid.Row="1" Grid.Column="1" />
-                <TextBox Text="{Binding Driver.Name}" Grid.Row="2" Grid.Column="1" />
-                <TextBox Text="{Binding Driver.Surname}" Grid.Row="3" Grid.Column="1" />
-                <TextBox Text="{Binding Driver.Phone}" Grid.Row="4" Grid.Column="1" />
+                <TextBox Text="{Binding DriverAndCar.Driver.InternalName}" Grid.Row="1" Grid.Column="1" />
+                <TextBox Text="{Binding DriverAndCar.Driver.Name}" Grid.Row="2" Grid.Column="1" />
+                <TextBox Text="{Binding DriverAndCar.Driver.Surname}" Grid.Row="3" Grid.Column="1" />
+                <TextBox Text="{Binding DriverAndCar.Driver.Phone}" Grid.Row="4" Grid.Column="1" />
 
                 <GroupBox Header="Samochód pod opieką" Grid.Row="5" Grid.ColumnSpan="2">
                     <Grid>
@@ -52,8 +52,7 @@
                         </Grid.ColumnDefinitions>
                         <Shared:DescriptionButton Image="{StaticResource CarImageSource}" Content="Wybierz samochód" Style="{StaticResource SelectDescriptionButton}" 
                                                   Command="{Binding DataContext.SelectCarCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Drivers:UpdateDriver}}}" />
-                        <StackPanel Grid.Column="1" 
-                                    DataContext="{Binding DataContext.DriverAndCar.Car, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Drivers:UpdateDriver}}}">
+                        <StackPanel Grid.Column="1">                                     
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -74,22 +73,22 @@
                                 <TextBlock Text="Ładowność:" Grid.Row="4" />
                                 <TextBlock Text="Rodzaj transportu:" Grid.Row="5" />
 
-                                <TextBox Text="{Binding InternalName}" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
-                                <TextBox Text="{Binding Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
-                                <TextBox Text="{Binding RegistrationNumber}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding DriverAndCar.Car.InternalName}" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding DriverAndCar.Car.Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding DriverAndCar.Car.RegistrationNumber}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
                                 <TextBox Grid.Row="3"  Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" >
                                     <TextBox.Text>
                                         <MultiBinding Mode="OneWay" Converter="{StaticResource descriptionIndexedConverter}" >
-                                            <Binding Path="CarType"/>
+                                            <Binding Path="DriverAndCar.Car.CarType"/>
                                             <Binding Source="{x:Static Cars:CarTypes.Instance}" Path="Items"/>
                                         </MultiBinding>
                                     </TextBox.Text>
                                 </TextBox>
-                                <TextBox Text="{Binding Capacity}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
+                                <TextBox Text="{Binding DriverAndCar.Car.Capacity}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" />
                                 <TextBox  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" IsReadOnly="True" >
                                     <TextBox.Text>
                                         <MultiBinding Mode="OneWay" Converter="{StaticResource descriptionIndexedConverter}" >
-                                            <Binding Path="TransportType"/>
+                                            <Binding Path="DriverAndCar.Car.TransportType"/>
                                             <Binding Source="{x:Static Cars:TransportTypes.Instance}" Path="Items"/>
                                         </MultiBinding>
                                     </TextBox.Text>
