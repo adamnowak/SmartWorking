@@ -32,21 +32,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 
     
 
-    /// <summary>
-    /// Gets the editing mode of the control.
-    /// </summary>
-    public EditingMode EditingMode { get; set; }
-
-    /// <summary>
-    /// Gets a value indicating whether this instance is editing.
-    /// </summary>
-    /// <value>
-    /// 	<c>true</c> if this instance is editing; otherwise, <c>false</c>.
-    /// </value>
-    public virtual bool IsEditing
-    {
-      get { return EditingMode == EditingMode.New || EditingMode == EditingMode.Edit; }
-    }
+    
 
     #region EditCommand
     private ICommand _editCommand;

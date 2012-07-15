@@ -41,10 +41,10 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 
     private void LoadItems()
     {
-      Items.Add(new CarType { Id = 1, Description = "Betonomieszarka" });
-      Items.Add(new CarType { Id = 2, Description = "Pompogruszka" });
-      Items.Add(new CarType { Id = 3, Description = "Wywrotka" });
-      Items.Add(new CarType { Id = 4, Description = "Inny" });
+      Items.Add(new CarType { Id = 1, Description = "str_Betonomieszarka" });
+      Items.Add(new CarType { Id = 2, Description = "str_Pompogruszka" });
+      Items.Add(new CarType { Id = 3, Description = "str_Wywrotka" });
+      Items.Add(new CarType { Id = 4, Description = "str_Inny" });
     }
   }
 }

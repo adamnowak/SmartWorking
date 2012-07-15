@@ -27,7 +27,7 @@ namespace SmartWorking.Office.TabsGui.Shared.View
       helper.Owner = Process.GetCurrentProcess().MainWindowHandle;
       window.Content = new TWindow();
       window.DataContext = viewModel;
-      window.Title = "Smart Working  (office) - " + viewModel.Title;
+      window.Title = "str_Smart Working  (office) - " + viewModel.Title;
 
       //if (window.Content is Control)
       //{

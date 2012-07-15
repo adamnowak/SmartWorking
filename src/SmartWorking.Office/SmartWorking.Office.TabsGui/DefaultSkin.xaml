@@ -3,6 +3,32 @@
         <Setter Property="Width" Value="70"/>
         <Setter Property="Margin" Value="2"/>
     </Style>
+
+
+    <Style x:Key="styleMessageBoxWindow" TargetType="Window">
+        <Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="WindowStyle" Value="ToolWindow" />
+        <Setter Property="Width" Value="500" />
+        <Setter Property="SizeToContent" Value="Height" />
+        <Setter Property="MaxHeight" Value="400" />
+    </Style>
+
+    <Style TargetType="DataGrid">
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="CanUserResizeRows" Value="False" />
+        <Setter Property="RowHeight" Value="20" />
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="CanUserDeleteRows" Value="False" />
+        <Setter Property="CanUserReorderColumns" Value="False" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="IsReadOnly" Value="True" />
+    </Style>
+
+    <Style TargetType="DataGridRow">
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+    
     <Style TargetType="{x:Type TabItem}">
         <Setter Property="Template">
             <Setter.Value>

@@ -23,7 +23,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 
     public override string Name
     {
-      get { return "CarList"; }
+      get { return "str_CarList"; }
     }
 
     private void LoadItems()

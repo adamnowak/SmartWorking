@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup.AdministrationGroupControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="7">
+            <TextBlock Text="{Binding SelectedItem.Header, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}}"></TextBlock>
+            <TextBlock Margin="10,0,0,0" Text="{Binding SelectedItem.Header, ElementName=administrationTabControl}"></TextBlock>
+        </StackPanel>
+        <TabControl Grid.Row="1" Style="{StaticResource verticalTabControl}"  TabStripPlacement="Left" 
+                    x:Name="administrationTabControl" SelectedItem="{Binding SelectedTab}" IsSynchronizedWithCurrentItem="True">
+            <i:Interaction.Triggers>
+                <i:EventTrigger  EventName="SelectionChanged">
+                    <cmd:EventToCommand Command="{Binding TabChangedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <TabItem Header="{Binding Name}" DataContext="{Binding DriversAndCarsTabItemViewModel}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <!--Cars-->
+                    <GroupBox Header="str_Cars" Grid.Row="0">
+                        <Grid >
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <!--CarsList-->
+                            <GroupBox Header="str_CarList" Grid.Column="0"  DataContext="{Binding CarListViewModel}">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Cars:CarListControl/>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                        <Button>str_Add</Button>
+                                        <Button>str_Delete</Button>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                            <!--CarsDetails-->
+                            <GroupBox Header="str_CarsDetails" Grid.Column="1" DataContext="{Binding CarDetailsViewModel}">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Cars:CarDetailsControl/>
+                                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                        <Button>str_Edit</Button>
+                                        <Button>str_Save</Button>
+                                        <Button>str_Cancel</Button>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="str_ProducersAndMaterials">t2</TabItem>
+            <TabItem Header="str_Recipes">t3</TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

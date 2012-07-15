@@ -37,6 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4, Version=3.0.0.19993, Culture=neutral, PublicKeyToken=1673db7d5906b0ad, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.WPF4, Version=3.0.0.19994, Culture=neutral, PublicKeyToken=63eb5c012e0b3c1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\GalaSoft.MvvmLight.WPF4.dll</HintPath>
@@ -44,6 +48,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,7 +70,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\Cars\CarDetailsViewModel.cs" />
+    <Compile Include="Controls\MainGroups\AdministrationGroup\DriversAndCarsTabItemViewModel.cs" />
+    <Compile Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupControl.xaml.cs">
+      <DependentUpon>AdministrationGroupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupViewModel.cs" />
+    <Compile Include="Controls\MainGroups\OrdersGroupControl.xaml.cs">
+      <DependentUpon>OrdersGroupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainGroups\ReportsGroupControl.xaml.cs">
+      <DependentUpon>ReportsGroupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainGroups\SettingsGroupControl.xaml.cs">
+      <DependentUpon>SettingsGroupControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Shared\ViewModel\TabControlViewModelBase.cs" />
+    <Compile Include="Shared\ViewModel\ITabControlViewModel.cs" />
     <Compile Include="Shared\ViewModel\DialogViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\EditingMode.cs" />
     <Compile Include="Shared\ViewModel\EditableControlViewModelBase.cs" />
@@ -93,6 +117,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Cars\CarListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainGroups\OrdersGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainGroups\ReportsGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MainGroups\SettingsGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +189,11 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="app.Debug.config" />
+    <None Include="app.DebugIISLocal.config" />
+    <None Include="app.DebugIISSomee.config" />
+    <None Include="app.DebugLocalSomee.config" />
+    <None Include="app.Release.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

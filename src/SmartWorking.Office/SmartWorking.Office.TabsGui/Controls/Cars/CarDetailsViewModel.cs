@@ -21,7 +21,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     /// </summary>
     public override string Name
     {
-      get { return "CarDetails"; }
+      get { return "str_CarDetails"; }
     }
 
     public override void Refresh()

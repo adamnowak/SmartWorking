@@ -8,33 +8,31 @@
         <Converters:DescriptionIndexedMultiConverter x:Key="descriptionIndexedConverter" />
     </UserControl.Resources>
     <Grid>
-        <DataGrid>
-            <DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding SelectableCar}" ItemsSource="{Binding Items}" >
-                <DataGrid.Columns>
-                    <!--Debug only-->
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
-                    <!--End Debug only-->
-                    <DataGridTextColumn Header="Symbol" Binding="{Binding InternalName}" />
-                    <DataGridTextColumn Header="Numer Rejestracyjny" Binding="{Binding RegistrationNumber}" />
-                    <DataGridTextColumn Header="Rodzaj samochodu"  >
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding Converter="{StaticResource descriptionIndexedConverter}" >
-                                <Binding Path="CarType"/>
-                                <Binding Source="{x:Static Cars:CarTypes.Instance}" Path="Items"/>
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="Ładowność" Binding="{Binding Capacity}" />
-                    <DataGridTextColumn Header="Rodzaj transportu"  >
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding Converter="{StaticResource descriptionIndexedConverter}" >
-                                <Binding Path="TransportType"/>
-                                <Binding Source="{x:Static Cars:TransportTypes.Instance}" Path="Items"/>
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+        <DataGrid Grid.Column="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}" >
+            <DataGrid.Columns>
+                <!--Debug only-->
+                <DataGridTextColumn Header="str_Id" Binding="{Binding Id}" />
+                <!--End Debug only-->
+                <DataGridTextColumn Header="str_Symbol" Binding="{Binding InternalName}" />
+                <DataGridTextColumn Header="str_Numer Rejestracyjny" Binding="{Binding RegistrationNumber}" />
+                <DataGridTextColumn Header="str_Rodzaj samochodu"  >
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource descriptionIndexedConverter}" >
+                            <Binding Path="CarType"/>
+                            <Binding Source="{x:Static Cars:CarTypes.Instance}" Path="Items"/>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="str_Ładowność" Binding="{Binding Capacity}" />
+                <DataGridTextColumn Header="str_Rodzaj transportu"  >
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource descriptionIndexedConverter}" >
+                            <Binding Path="TransportType"/>
+                            <Binding Source="{x:Static Cars:TransportTypes.Instance}" Path="Items"/>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

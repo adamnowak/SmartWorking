@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
+using System.Windows.Controls;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Services.Factory.Local;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Cars;
+using SmartWorking.Office.TabsGui.Controls.MainGroups;
+using SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup;
 using SmartWorking.Office.TabsGui.Shared.View;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 
@@ -14,7 +20,7 @@ namespace SmartWorking.Office.TabsGui
   /// <summary>
   /// Main windows view model implementation.
   /// </summary>
-  public class MainWindowViewModel : ControlViewModelBase
+  public class MainWindowViewModel : TabControlViewModelBase
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
@@ -39,28 +45,21 @@ namespace SmartWorking.Office.TabsGui
     public MainWindowViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-        
+      AdministrationGroupViewModel = new AdministrationGroupViewModel(ModalDialogService, ServiceFactory);
     }
+
+    public AdministrationGroupViewModel AdministrationGroupViewModel { get; private set; }
 
     
-
-    public CarListViewModel CarListViewModel { get; private set; }
-    public CarDetailsViewModel CarDetailsViewModel { get; private set; }
-
-    /// <summary>
-    /// Refreshes control context.
-    /// </summary>
-    public override void Refresh()
-    {
-      
-    }
 
     /// <summary>
     /// Gets the name of control.
     /// </summary>
     public override string Name
     {
-      get { return "SmartWorking.Office"; }
+      get { return "str_SmartWorking.Office"; }
     }
+
+   
   }
 }

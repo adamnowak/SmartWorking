@@ -26,5 +26,18 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// Gets the service factory.
     /// </summary>
     IServiceFactory ServiceFactory { get; }
+
+    /// <summary>
+    /// Gets the editing mode of the control.
+    /// </summary>
+    EditingMode EditingMode { get; }
+
+    /// <summary>
+    /// Gets a value indicating whether this instance is editing.
+    /// </summary>
+    /// <value>
+    /// 	<c>true</c> if this instance is editing; otherwise, <c>false</c>.
+    /// </value>
+    bool IsEditing { get; }
   }
 }

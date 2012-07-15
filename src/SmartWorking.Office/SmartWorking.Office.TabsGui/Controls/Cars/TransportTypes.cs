@@ -35,9 +35,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 
     private void LoadItems()
     {
-      Items.Add(new TransportType { Id = 1, Description = "Transport własny" });
-      Items.Add(new TransportType { Id = 2, Description = "Transport wynajęty" });
-      Items.Add(new TransportType { Id = 3, Description = "Odbiór własny" });
+      Items.Add(new TransportType { Id = 1, Description = "str_Transport własny" });
+      Items.Add(new TransportType { Id = 2, Description = "str_Transport wynajęty" });
+      Items.Add(new TransportType { Id = 3, Description = "str_Odbiór własny" });
     }
   }
 }

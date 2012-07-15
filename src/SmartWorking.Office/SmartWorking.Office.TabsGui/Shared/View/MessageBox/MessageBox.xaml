@@ -19,14 +19,14 @@
 
 		<!--Buttons-->
 		<StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
-			<Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='Ok'}" Content="Ok" Command="{Binding OkCommand}" />
-            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='Yes'}" Content="Tak" Command="{Binding YesCommand}"  />
-            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='No'}" Content="Nie" Command="{Binding NoCommand}"  />
-            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='Cancel'}"  Content="Anuluj" Command="{Binding CancelCommand}" />
+            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='Ok'}" Content="str_Ok" Command="{Binding OkCommand}" />
+            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='Yes'}" Content="str_Tak" Command="{Binding YesCommand}"  />
+            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='No'}" Content="str_Nie" Command="{Binding NoCommand}"  />
+            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='Cancel'}"  Content="str_Anuluj" Command="{Binding CancelCommand}" />
 		</StackPanel>
         
 		<!--Details-->
-		<Expander Grid.Row="3" Header="Dodatkowa informacja" Visibility="{Binding Info, Converter={StaticResource infoVisibilityConverter}}">
+        <Expander Grid.Row="3" Header="str_Dodatkowa informacja" Visibility="{Binding Info, Converter={StaticResource infoVisibilityConverter}}">
 			<TextBox IsReadOnly="True" Text="{Binding Info, Mode=OneWay}" />
 		</Expander>
 	</Grid>
