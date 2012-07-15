@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="SmartWorking.Office.TabsGui.Shared.View.MessageBox.MessageBox" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:MessageBox="clr-namespace:SmartWorking.Office.TabsGui.Shared.View.MessageBox" mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="500">
+	<UserControl.Resources>
+		<MessageBox:MessageBoxImageConverter x:Key="messageBoxImageConverter" />
+		<MessageBox:InfoVisibilityConverter x:Key="infoVisibilityConverter" />
+		<MessageBox:ButtonVisibilityConverter x:Key="buttonVisibilityConverter" />
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50" />
+			<RowDefinition Height="Auto" MinHeight="70" />
+			<RowDefinition Height="50" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<TextBlock Text="{Binding Caption}" /> 
+		
+		<!--Contractor grid-->
+		<TextBlock VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextAlignment="Center" TextWrapping="Wrap" Margin="5" Grid.Row="1" Text="{Binding Message}" />
+
+		<!--Buttons-->
+		<StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+			<Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='Ok'}" Content="Ok" Command="{Binding OkCommand}" />
+            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='Yes'}" Content="Tak" Command="{Binding YesCommand}"  />
+            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='No'}" Content="Nie" Command="{Binding NoCommand}"  />
+            <Button Visibility="{Binding Button, Converter={StaticResource buttonVisibilityConverter}, ConverterParameter='Cancel'}"  Content="Anuluj" Command="{Binding CancelCommand}" />
+		</StackPanel>
+        
+		<!--Details-->
+		<Expander Grid.Row="3" Header="Dodatkowa informacja" Visibility="{Binding Info, Converter={StaticResource infoVisibilityConverter}}">
+			<TextBox IsReadOnly="True" Text="{Binding Info, Mode=OneWay}" />
+		</Expander>
+	</Grid>
+</UserControl>

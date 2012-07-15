@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D868BCCD-CE6B-4F16-BF86-01DAD979A356}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmartWorking.Office.TabsGui</RootNamespace>
+    <AssemblyName>SmartWorking.Office.TabsGui</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.WPF4, Version=3.0.0.19994, Culture=neutral, PublicKeyToken=63eb5c012e0b3c1c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\contrib\MvvmLightToolkit\Binaries\WPF4\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controls\Cars\CarDetailsViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Shared\ViewModel\DialogViewModelBase.cs" />
+    <Compile Include="Shared\ViewModel\EditingMode.cs" />
+    <Compile Include="Shared\ViewModel\EditableControlViewModelBase.cs" />
+    <Compile Include="Shared\ViewModel\IDialogViewModel.cs" />
+    <Compile Include="Shared\ViewModel\IEditableControlViewModel.cs" />
+    <Compile Include="Shared\ViewModel\IListingEditableControlViewModel.cs" />
+    <Compile Include="Shared\ViewModel\IControlViewModel.cs" />
+    <Compile Include="Shared\ViewModel\IModalDialogService.cs" />
+    <Compile Include="Shared\ViewModel\ListingEditableControlViewModel.cs" />
+    <Compile Include="Shared\ViewModel\MessageBox\IMessageBoxViewModel.cs" />
+    <Compile Include="Shared\ViewModel\MessageBox\MessageBoxViewModel.cs" />
+    <Compile Include="Shared\ViewModel\SelectableViewModelBase.cs" />
+    <Compile Include="Shared\ViewModel\SelectedItemChangedEventArgEventArgs.cs" />
+    <Compile Include="Shared\ViewModel\ControlViewModelBase.cs" />
+    <Compile Include="Shared\View\MessageBoxHelper.cs" />
+    <Compile Include="Shared\View\MessageBox\InfoVisibilityConverter.cs" />
+    <Compile Include="Shared\View\MessageBox\MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\View\MessageBox\MessageBoxHelper.cs" />
+    <Compile Include="Shared\View\MessageBox\MessageBoxImageConverter.cs" />
+    <Compile Include="Shared\View\MessageBox\MessageBoxWindow.xaml.cs">
+      <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\View\ModalDialogService.cs" />
+    <Page Include="Controls\Cars\CarDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Cars\CarListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DefaultSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shared\View\MessageBox\MessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shared\View\MessageBox\MessageBoxWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\Cars\CarDetailsControl.xaml.cs">
+      <DependentUpon>CarDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cars\CarListControl.xaml.cs">
+      <DependentUpon>CarListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cars\CarListViewModel.cs" />
+    <Compile Include="Controls\Cars\CarTypes.cs" />
+    <Compile Include="Controls\Cars\TransportTypes.cs" />
+    <Compile Include="Converters\DescriptionIndexedMultiConverter.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartWorking.Office.PrimitiveEntities\SmartWorking.Office.PrimitiveEntities.csproj">
+      <Project>{75E10916-6E7E-4042-9B5A-BE53BAC74992}</Project>
+      <Name>SmartWorking.Office.PrimitiveEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartWorking.Office.Services.Interfaces\SmartWorking.Office.Services.Interfaces.csproj">
+      <Project>{B6945818-7C7E-4AA8-9837-2290E7E1E64B}</Project>
+      <Name>SmartWorking.Office.Services.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Condition="'$(Configuration)' == 'DebugIISLocal' OR '$(Configuration)' == 'DebugIISSomee'" Include="..\SmartWorking.Office.Services.Factory.IIS\SmartWorking.Office.Services.Factory.IIS.csproj">
+      <Project>{14081C14-0821-448F-886F-ABD83B8E7237}</Project>
+      <Name>SmartWorking.Office.Services.Factory.IIS</Name>
+    </ProjectReference>
+    <ProjectReference Condition="'$(Configuration)' != 'DebugIISLocal' AND '$(Configuration)' != 'DebugIISSomee'" Include="..\SmartWorking.Office.Services.Factory.Local\SmartWorking.Office.Services.Factory.Local.csproj">
+      <Project>{ED50F2E1-5142-436A-9E47-64A5E954D7AA}</Project>
+      <Name>SmartWorking.Office.Services.Factory.Local</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
