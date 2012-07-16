@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.ServiceModel;
+using System.Windows.Input;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -24,14 +26,23 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       Items.SelectedItemChanged +=
         (o, e) =>
         Dispatcher.CurrentDispatcher.BeginInvoke(new System.EventHandler<SelectedItemChangedEventArgs<T>>(Items_SelectedItemChanged), o, e);
+      EditingViewModel.ChangesCanceled += new System.EventHandler(EditingViewModel_ChangesCanceled);
+      EditingViewModel.ItemSaved += new System.EventHandler(EditingViewModel_ItemSaved);
+    }
+
+    void EditingViewModel_ItemSaved(object sender, System.EventArgs e)
+    {
+      Refresh();
+    }
+
+    void EditingViewModel_ChangesCanceled(object sender, System.EventArgs e)
+    {      
+      EditingViewModel.Item = Items.SelectedItem;
     }
 
     void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<T> e)
     {
-      //IListingEditableControlViewModel<T> listingEditableControlViewModel =
-      //  sender as IListingEditableControlViewModel<T>;
-
-      if (EditingViewModel != null && e != null)
+      if (EditingViewModel != null && EditingViewModel.IsReadOnly && e != null)
       {
         EditingViewModel.Item = e.NewValue;
       }
@@ -46,6 +57,40 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// Gets the editing view model which is used to editing or create new item.
     /// </summary>
     public IEditableControlViewModel<T> EditingViewModel { get; private set; }
+
+    public string Filter { get; set; }
+
+    protected virtual void LoadItems()
+    {
+      string errorCaption = Name;
+      try
+      {
+        OnLoadItems();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+      }
+    }
+
+    protected virtual void OnLoadItems()
+    {
+    }
+
+    public override void Refresh()
+    {
+      LoadItems();
+    }
 
     #region AddItemCommand
     private ICommand _addItemCommand;
@@ -70,7 +115,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </returns>
     protected virtual bool CanAddItemCommandExecute()
     {
-      return true;
+      return EditingViewModel.IsReadOnly;
     }
 
     /// <summary>
@@ -103,7 +148,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </returns>
     protected virtual bool CanAddCloneItemCommandExecute()
     {
-      return true;
+      return EditingViewModel.IsReadOnly;
     }
 
     /// <summary>
@@ -127,6 +172,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         return _deleteItemCommand;
       }
     }
+
     /// <summary>
     /// Determines whether delete command can be execute.
     /// </summary>
@@ -135,7 +181,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </returns>
     protected virtual bool CanDeleteItemCommandExecute()
     {
-      return false;
+      return EditingViewModel.IsReadOnly && Items.SelectedItem != null;
     }
 
     /// <summary>

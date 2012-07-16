@@ -1,4 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.ServiceModel;
+using System.Windows.Input;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Services.Interfaces;
@@ -21,6 +24,8 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     {
       
     }
+
+    public override void Refresh() {}
 
     #region Item
     /// <summary>
@@ -79,14 +84,16 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </returns>
     protected virtual bool CanEditItemCommandExecute()
     {
-      return Item != null;
+      return IsReadOnly && Item != null;
     }
 
     /// <summary>
     /// Execute edit command.
     /// </summary>
     protected virtual void EditItemCommandExecute()
-    { }
+    {
+      EditingMode = Shared.ViewModel.EditingMode.Edit;
+    }
     #endregion
 
     #region SaveItemCommand
@@ -112,14 +119,54 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </returns>
     protected virtual bool CanSaveItemCommandExecute()
     {
-      return true;
+      return !IsReadOnly && Item != null;
     }
 
     /// <summary>
     /// Execute save command.
     /// </summary>
     protected virtual void SaveItemCommandExecute()
-    { }
+    {
+      string errorCaption = "str_SaveItem" + Name;
+      try
+      {
+        if (OnSaveItem())
+        {
+          if (ItemSaved != null)
+          {
+            ItemSaved(null, null);
+          }
+        }
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+      }
+      
+    }
+
+    /// <summary>
+    /// Called when [save item].
+    /// </summary>
+    /// <returns></returns>
+    protected virtual bool OnSaveItem()
+    {
+      EditingMode = EditingMode.Display;
+      return true;
+    }
+
+    /// <summary>
+    /// Occurs when item saved.
+    /// </summary>
+    public event EventHandler ItemSaved;
     #endregion
 
     #region CancelChangesCommand
@@ -145,16 +192,38 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </returns>
     protected virtual bool CanCancelChangesCommandExecute()
     {
-      return true;
+      return !IsReadOnly && Item != null;
     }
 
     /// <summary>
     /// Execute cancel command.
     /// </summary>
-    protected virtual void CancelChangesCommandExecute()
-    { }
+    private void CancelChangesCommandExecute()
+    {
+      if (OnCancelChanges())
+      {
+        if (ChangesCanceled != null)
+        {
+          ChangesCanceled(null, null);
+        }
+      }
+    }
+
+    /// <summary>
+    /// Called when [cancel changes].
+    /// </summary>
+    /// <returns>true if ChangesCanceled event should be fired.</returns>
+    protected virtual bool OnCancelChanges()
+    {
+      EditingMode = EditingMode.Display;
+      return true;
+    }
+
+    /// <summary>
+    /// Occurs when canceled changes.
+    /// </summary>
+    public event EventHandler ChangesCanceled;
+
     #endregion
-
-
   }
 }

@@ -39,7 +39,7 @@
   <PropertyGroup>
     <SlowCheetahTargets Condition=" '$(SlowCheetahTargets)'=='' ">$(LOCALAPPDATA)\Microsoft\MSBuild\SlowCheetah\v1\SlowCheetah.Transforms.targets</SlowCheetahTargets>
   </PropertyGroup>
-<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocalSomee|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocalSomee|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\..\..\bin\TabGui\DebugLocalSomee\</OutputPath>
     <DefineConstants>DEBUG;TRACE;CONFIG_NAME_DebugLocalSomee</DefineConstants>
@@ -69,8 +69,6 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
-  
-  
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4, Version=3.0.0.19993, Culture=neutral, PublicKeyToken=1673db7d5906b0ad, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -119,6 +117,8 @@
     <Compile Include="Controls\MainGroups\SettingsGroupControl.xaml.cs">
       <DependentUpon>SettingsGroupControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
+    <Compile Include="Converters\ComparingMultiConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Shared\ViewModel\TabControlViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\ITabControlViewModel.cs" />
@@ -258,7 +258,6 @@
       <Project>{75E10916-6E7E-4042-9B5A-BE53BAC74992}</Project>
       <Name>SmartWorking.Office.PrimitiveEntities</Name>
     </ProjectReference>
-    
     <ProjectReference Condition="'$(Configuration)' == 'DebugIISLocal' OR '$(Configuration)' == 'DebugIISSomee'" Include="..\SmartWorking.Office.Services.Factory.IIS\SmartWorking.Office.Services.Factory.IIS.csproj">
       <Project>{14081C14-0821-448F-886F-ABD83B8E7237}</Project>
       <Name>SmartWorking.Office.Services.Factory.IIS</Name>

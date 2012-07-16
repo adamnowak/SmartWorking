@@ -24,17 +24,23 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
       get { return "str_CarDetails"; }
     }
 
-    public override void Refresh()
-    {
-      
-    }
-
-    
-
     protected override void EditItemCommandExecute()
     {
+      Item = Item.GetPrimitiveCopy();
       base.EditItemCommandExecute();
-      EditingMode = Shared.ViewModel.EditingMode.Edit;
+    }
+
+    protected override bool OnSaveItem()
+    {
+      if (base.OnSaveItem())
+      {
+        using (ICarsService service = ServiceFactory.GetCarsService())
+        {
+          service.UpdateCar(Item);
+        }
+        return true;
+      }
+      return false;
     }
   }
 }

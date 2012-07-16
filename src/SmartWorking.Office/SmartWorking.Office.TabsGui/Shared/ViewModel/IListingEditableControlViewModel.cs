@@ -14,6 +14,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     IEditableControlViewModel<T> EditingViewModel { get; }
 
     /// <summary>
+    /// Gets the items which will be listed.
+    /// </summary>s
+    SelectableViewModelBase<T> Items { get; }
+
+    /// <summary>
     /// Gets the add command which enables to add new item (using details control).
     /// </summary>
     ICommand AddItemCommand { get; }
@@ -27,5 +32,10 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// Gets the delete command which enables to delete existing item.
     /// </summary>
     ICommand DeleteItemCommand { get; }
+
+    /// <summary>
+    /// Gets the filter used to filterfing items.
+    /// </summary>
+    string Filter { get; }
   }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using SmartWorking.Office.TabsGui.Controls.Cars;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel
@@ -28,8 +29,18 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     ICommand SaveItemCommand { get; }
 
     /// <summary>
+    /// Occurs when item was saved.
+    /// </summary>
+    event EventHandler ItemSaved;
+
+    /// <summary>
     /// Gets the cancel command - command which cancel editing.
     /// </summary>
     ICommand CancelChangesCommand { get; }
+
+    /// <summary>
+    /// Occurs when cancel changes.
+    /// </summary>
+    event EventHandler ChangesCanceled;
   }
 }

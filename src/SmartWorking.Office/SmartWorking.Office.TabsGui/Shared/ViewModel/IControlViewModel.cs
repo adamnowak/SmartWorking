@@ -30,7 +30,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Gets the editing mode of the control.
     /// </summary>
-    EditingMode EditingMode { get; }
+    EditingMode EditingMode { get; set;  }
 
     /// <summary>
     /// Gets a value indicating whether this instance is read only.
@@ -39,5 +39,6 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// 	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
     /// </value>
     bool IsReadOnly { get; }
+
   }
 }

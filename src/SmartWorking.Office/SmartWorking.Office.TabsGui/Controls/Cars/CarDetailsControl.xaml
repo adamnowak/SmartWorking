@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
     <Grid>
         <GroupBox Header="Samochody" >
             <Grid >
@@ -35,10 +36,12 @@
                 <TextBox Text="{Binding Item.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 <TextBox Text="{Binding Item.RegistrationNumber}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 <ComboBox ItemsSource="{Binding Source={x:Static Cars:CarTypes.Instance}, Path=Items}" SelectedValue="{Binding Item.CarType}" 
-                          SelectedValuePath="Id" DisplayMemberPath="Description" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                          SelectedValuePath="Id" DisplayMemberPath="Description" Grid.Row="3" Grid.Column="1" IsReadOnly="True" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
                 <TextBox Text="{Binding Item.Capacity}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 <ComboBox ItemsSource="{Binding Source={x:Static Cars:TransportTypes.Instance}, Path=Items}" SelectedValue="{Binding Item.TransportType}"  
-                          SelectedValuePath="Id" DisplayMemberPath="Description" Grid.Row="5" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                          SelectedValuePath="Id" DisplayMemberPath="Description" Grid.Row="5" Grid.Column="1" IsReadOnly="True"
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>
         </GroupBox>
     </Grid>

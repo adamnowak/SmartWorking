@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
+using System.Windows.Threading;
 using SmartWorking.Office.TabsGui.Shared.View.MessageBox;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.MessageBox;
 
@@ -43,7 +44,7 @@ namespace SmartWorking.Office.TabsGui.Shared.View
                     window.Close();
                   };
       viewModel.RequestClose += handler;
-      window.ShowDialog();
+      Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Normal,new Action(() => window.ShowDialog()));
 
       return viewModel.Result;
     }

@@ -16,47 +16,24 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     {
     }
 
-    public override void Refresh()
-    {
-      LoadItems();
-    }
-
     public override string Name
     {
       get { return "str_CarList"; }
     }
 
-    private void LoadItems()
-    {
-      string errorCaption = Name;
-      try
+    protected override void  OnLoadItems()
+    {      
+      CarPrimitive selectedItem = Items.SelectedItem;
+      using (ICarsService service = ServiceFactory.GetCarsService())
       {
-        CarPrimitive selectedItem = Items.SelectedItem;
-        using (ICarsService service = ServiceFactory.GetCarsService())
-        {
-          Items.LoadItems(service.GetCars(string.Empty));
-        }
-        if (selectedItem != null)
-        {
-          CarPrimitive selectionFromItems =
-            Items.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
-          if (selectionFromItems != null)
-            Items.SelectedItem = selectionFromItems;
-        }
+        Items.LoadItems(service.GetCars(Filter));
       }
-      catch (FaultException<ExceptionDetail> f)
+      if (selectedItem != null)
       {
-        ShowError(errorCaption, f);
-
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
+        CarPrimitive selectionFromItems =
+          Items.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+        if (selectionFromItems != null)
+          Items.SelectedItem = selectionFromItems;
       }
     }
 
@@ -64,14 +41,23 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     {
       base.AddItemCommandExecute();
       EditingViewModel.Item = new CarPrimitive();
+      EditingViewModel.EditingMode = EditingMode.New;
     }
 
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
       CarPrimitive clone = Items.SelectedItem.GetPrimitiveCopy();
-      clone.Id = 0;
+      if (clone != null)
+      {
+        clone.Id = 0;        
+      }
+      else
+      {
+        clone = new CarPrimitive();
+      }
       EditingViewModel.Item = clone;
+      EditingViewModel.EditingMode = EditingMode.New;
     }
   }
 
