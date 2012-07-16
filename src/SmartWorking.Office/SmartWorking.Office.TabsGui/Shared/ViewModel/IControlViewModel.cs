@@ -33,11 +33,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     EditingMode EditingMode { get; }
 
     /// <summary>
-    /// Gets a value indicating whether this instance is editing.
+    /// Gets a value indicating whether this instance is read only.
     /// </summary>
     /// <value>
-    /// 	<c>true</c> if this instance is editing; otherwise, <c>false</c>.
+    /// 	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
     /// </value>
-    bool IsEditing { get; }
+    bool IsReadOnly { get; }
   }
 }

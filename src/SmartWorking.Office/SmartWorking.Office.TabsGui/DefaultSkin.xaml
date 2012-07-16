@@ -28,6 +28,26 @@
     <Style TargetType="DataGridRow">
         <Setter Property="FontSize" Value="12" />
     </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="Padding" Value="1" />
+        <Style.Triggers>
+            <Trigger Property="IsReadOnly" Value="True">
+                <Setter Property="Background" Value="#FFEFEFEF" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="ComboBox">
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="Padding" Value="1" />
+        <Style.Triggers>
+            <Trigger Property="IsReadOnly" Value="True">
+                <Setter Property="Background" Value="#FFEFEFEF" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     
     <Style TargetType="{x:Type TabItem}">
         <Setter Property="Template">

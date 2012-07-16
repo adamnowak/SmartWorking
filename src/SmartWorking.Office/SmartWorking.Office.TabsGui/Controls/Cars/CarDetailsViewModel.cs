@@ -28,5 +28,13 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     {
       
     }
+
+    
+
+    protected override void EditItemCommandExecute()
+    {
+      base.EditItemCommandExecute();
+      EditingMode = Shared.ViewModel.EditingMode.Edit;
+    }
   }
 }

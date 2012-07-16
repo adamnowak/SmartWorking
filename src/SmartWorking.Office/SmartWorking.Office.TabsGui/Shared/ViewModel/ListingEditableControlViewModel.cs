@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Services.Interfaces;
@@ -8,18 +9,32 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
   /// <summary>
   /// Base view model for control which listing items for editing.
   /// </summary>
-  public abstract  class  ListingEditableControlViewModel<T> : ControlViewModelBase, IListingEditableControlViewModel
+  public abstract  class  ListingEditableControlViewModel<T> : ControlViewModelBase, IListingEditableControlViewModel<T>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ListingEditableControlViewModel{T}"/> class.
     /// </summary>
     /// <param name="editingViewModel">The editing view model.</param>
-    public ListingEditableControlViewModel(IEditableControlViewModel editingViewModel,
+    public ListingEditableControlViewModel(IEditableControlViewModel<T> editingViewModel,
       IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
       Items = new SelectableViewModelBase<T>();
       EditingViewModel = editingViewModel;
+      Items.SelectedItemChanged +=
+        (o, e) =>
+        Dispatcher.CurrentDispatcher.BeginInvoke(new System.EventHandler<SelectedItemChangedEventArgs<T>>(Items_SelectedItemChanged), o, e);
+    }
+
+    void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<T> e)
+    {
+      //IListingEditableControlViewModel<T> listingEditableControlViewModel =
+      //  sender as IListingEditableControlViewModel<T>;
+
+      if (EditingViewModel != null && e != null)
+      {
+        EditingViewModel.Item = e.NewValue;
+      }
     }
 
     /// <summary>
@@ -30,20 +45,20 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Gets the editing view model which is used to editing or create new item.
     /// </summary>
-    public IEditableControlViewModel EditingViewModel { get; private set; }
+    public IEditableControlViewModel<T> EditingViewModel { get; private set; }
 
-    #region AddCommand
-    private ICommand _addCommand;
+    #region AddItemCommand
+    private ICommand _addItemCommand;
     /// <summary>
     /// Gets the add command which enables to add new item (using details control).
     /// </summary>
-    public ICommand AddCommand
+    public ICommand AddItemCommand
     {
       get
       {
-        if (_addCommand == null)
-          _addCommand = new RelayCommand(AddCommandExecute, CanAddCommandExecute);
-        return _addCommand;
+        if (_addItemCommand == null)
+          _addItemCommand = new RelayCommand(AddItemCommandExecute, CanAddItemCommandExecute);
+        return _addItemCommand;
       }
     }
 
@@ -53,7 +68,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <returns>
     ///   <c>true</c> if add command can be execute; otherwise, <c>false</c>.
     /// </returns>
-    protected virtual bool CanAddCommandExecute()
+    protected virtual bool CanAddItemCommandExecute()
     {
       return true;
     }
@@ -61,22 +76,22 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Execute add command.
     /// </summary>
-    protected virtual void AddCommandExecute()
+    protected virtual void AddItemCommandExecute()
     {}
     #endregion
 
-    #region DeleteCommand
-    private ICommand _deleteCommand;
+    #region DeleteItemCommand
+    private ICommand _deleteItemCommand;
     /// <summary>
     /// Gets the delete command which enables to delete existing item.
     /// </summary>
-    public ICommand DeleteCommand
+    public ICommand DeleteItemCommand
     {
       get
       {
-        if (_deleteCommand == null)
-          _deleteCommand = new RelayCommand(DeleteCommandExecute, CanDeleteCommandExecute);
-        return _deleteCommand;
+        if (_deleteItemCommand == null)
+          _deleteItemCommand = new RelayCommand(DeleteItemCommandExecute, CanDeleteItemCommandExecute);
+        return _deleteItemCommand;
       }
     }
     /// <summary>
@@ -85,7 +100,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <returns>
     ///   <c>true</c> if delete command can be execute; otherwise, <c>false</c>.
     /// </returns>
-    protected virtual bool CanDeleteCommandExecute()
+    protected virtual bool CanDeleteItemCommandExecute()
     {
       return false;
     }
@@ -93,7 +108,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Execute delete command.
     /// </summary>
-    protected virtual void DeleteCommandExecute()
+    protected virtual void DeleteItemCommandExecute()
     { }
     #endregion
 

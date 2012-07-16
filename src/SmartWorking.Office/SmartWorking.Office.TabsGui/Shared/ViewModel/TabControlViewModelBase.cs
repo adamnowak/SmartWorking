@@ -148,7 +148,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         if (tabControl != null)
         {
           IControlViewModel oldControlViewModel = GetControlViewModel(selectionChangedEventArgs);
-          if (oldControlViewModel != null && oldControlViewModel.IsEditing)
+          if (oldControlViewModel != null && !oldControlViewModel.IsReadOnly)
           {
             //if (ShowMessage() == save)
             {

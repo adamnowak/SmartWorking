@@ -94,20 +94,54 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </summary>
     public IServiceFactory ServiceFactory { get; private set; }
 
+    #region EditingMode
     /// <summary>
-    /// Gets the editing mode of the control.
+    /// The <see cref="EditingMode" /> property's name.
     /// </summary>
-    public EditingMode EditingMode { get; set; }
+    public const string EditingModePropertyName = "EditingMode";
+
+    private EditingMode _editingMode;
 
     /// <summary>
-    /// Gets a value indicating whether this instance is editing.
+    /// Gets the EditingMode property.
+    /// Gets the editing mode of the control.
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public EditingMode EditingMode
+    {
+      get
+      {
+        return _editingMode;
+      }
+
+      set
+      {
+        if (_editingMode == value)
+        {
+          return;
+        }
+        _editingMode = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(EditingModePropertyName);
+        RaisePropertyChanged(IsReadOnlyPropertyName);
+      }
+    }
+    #endregion //EditingMode
+
+    /// <summary>
+    /// The <see cref="EditingMode" /> property's name.
+    /// </summary>
+    public const string IsReadOnlyPropertyName = "IsReadOnly";
+    /// <summary>
+    /// Gets a value indicating whether this instance is read only.
     /// </summary>
     /// <value>
-    /// 	<c>true</c> if this instance is editing; otherwise, <c>false</c>.
+    /// 	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
     /// </value>
-    public virtual bool IsEditing
+    public virtual bool IsReadOnly
     {
-      get { return EditingMode == EditingMode.New || EditingMode == EditingMode.Edit; }
+      get { return EditingMode == ViewModel.EditingMode.Display; }
     }
   }
 }

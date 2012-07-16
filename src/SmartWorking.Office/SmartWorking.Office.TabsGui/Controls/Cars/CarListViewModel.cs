@@ -11,7 +11,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 {
   public class CarListViewModel : ListingEditableControlViewModel<CarPrimitive>
   {
-    public CarListViewModel(IEditableControlViewModel editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public CarListViewModel(IEditableControlViewModel<CarPrimitive> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(editingViewModel, modalDialogService, serviceFactory)
     {
     }

@@ -43,8 +43,8 @@
                                     </Grid.RowDefinitions>
                                     <Cars:CarListControl/>
                                     <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                        <Button>str_Add</Button>
-                                        <Button>str_Delete</Button>
+                                        <Button Command="{Binding AddItemCommand}">str_Add</Button>
+                                        <Button Command="{Binding DeleteItemCommand}">str_Delete</Button>
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>
@@ -57,9 +57,9 @@
                                     </Grid.RowDefinitions>
                                     <Cars:CarDetailsControl/>
                                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                        <Button>str_Edit</Button>
-                                        <Button>str_Save</Button>
-                                        <Button>str_Cancel</Button>
+                                        <Button Command="{Binding EditItemCommand}">str_Edit</Button>
+                                        <Button Command="{Binding SaveItemCommand}">str_Save</Button>
+                                        <Button Command="{Binding CancelChangesCommand}">str_Cancel</Button>
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>
