@@ -70,6 +70,7 @@
       <Link>SmartWorking.Office.pfx</Link>
     </None>
     <None Include="App.Config" />
+    <None Include="GetPrimitiveCopier.tt" />
     <None Include="GetPrimitiveHelper.tt" />
     <None Include="GetEntityHelper.tt" />
     <None Include="SmartWorkingOfficeModelPrimitive.tt" />

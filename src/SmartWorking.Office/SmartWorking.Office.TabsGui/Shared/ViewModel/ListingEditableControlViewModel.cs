@@ -80,6 +80,39 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     {}
     #endregion
 
+    #region AddCloneItemCommand
+    private ICommand _addCloneItemCommand;
+    /// <summary>
+    /// Gets the addClone command which enables to addClone new item (using details control).
+    /// </summary>
+    public ICommand AddCloneItemCommand
+    {
+      get
+      {
+        if (_addCloneItemCommand == null)
+          _addCloneItemCommand = new RelayCommand(AddCloneItemCommandExecute, CanAddCloneItemCommandExecute);
+        return _addCloneItemCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether addClone command can be execute.
+    /// </summary>
+    /// <returns>
+    ///   <c>true</c> if addClone command can be execute; otherwise, <c>false</c>.
+    /// </returns>
+    protected virtual bool CanAddCloneItemCommandExecute()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// Execute addClone command.
+    /// </summary>
+    protected virtual void AddCloneItemCommandExecute()
+    { }
+    #endregion
+
     #region DeleteItemCommand
     private ICommand _deleteItemCommand;
     /// <summary>
@@ -110,8 +143,6 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </summary>
     protected virtual void DeleteItemCommandExecute()
     { }
-    #endregion
-
-    
+    #endregion  
   }
 }

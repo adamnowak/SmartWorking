@@ -59,6 +59,20 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
         ShowError(errorCaption, e);
       }
     }
+
+    protected override void AddItemCommandExecute()
+    {
+      base.AddItemCommandExecute();
+      EditingViewModel.Item = new CarPrimitive();
+    }
+
+    protected override void AddCloneItemCommandExecute()
+    {
+      base.AddCloneItemCommandExecute();
+      CarPrimitive clone = Items.SelectedItem.GetPrimitiveCopy();
+      clone.Id = 0;
+      EditingViewModel.Item = clone;
+    }
   }
 
   

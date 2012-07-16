@@ -71,6 +71,12 @@
       <Link>DriverPrimitive.cs</Link>
       <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\GetPrimitiveCopier.cs">
+      <Link>GetPrimitiveCopier.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetPrimitiveCopier.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\SmartWorking.Office.Model\MaterialPrimitive.cs">
       <Link>MaterialPrimitive.cs</Link>
       <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
@@ -113,6 +119,11 @@
     <Compile Include="Reports\ReportValue.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\SmartWorking.Office.Model\GetPrimitiveCopier.tt">
+      <Link>GetPrimitiveCopier.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GetPrimitiveCopier.cs</LastGenOutput>
+    </None>
     <None Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModelPrimitive.tt">
       <Link>SmartWorkingOfficeModelPrimitive.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>

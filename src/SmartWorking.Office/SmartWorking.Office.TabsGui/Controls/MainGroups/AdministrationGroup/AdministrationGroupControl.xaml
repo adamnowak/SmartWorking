@@ -44,6 +44,7 @@
                                     <Cars:CarListControl/>
                                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                                         <Button Command="{Binding AddItemCommand}">str_Add</Button>
+                                        <Button Command="{Binding AddCloneItemCommand}">str_AddClone</Button>
                                         <Button Command="{Binding DeleteItemCommand}">str_Delete</Button>
                                     </StackPanel>
                                 </Grid>

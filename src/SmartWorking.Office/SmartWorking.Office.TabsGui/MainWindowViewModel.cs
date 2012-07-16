@@ -7,7 +7,11 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+#if IIS_USED
+using SmartWorking.Office.Services.Factory.IIS;
+#else
 using SmartWorking.Office.Services.Factory.Local;
+#endif
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Cars;
 using SmartWorking.Office.TabsGui.Controls.MainGroups;

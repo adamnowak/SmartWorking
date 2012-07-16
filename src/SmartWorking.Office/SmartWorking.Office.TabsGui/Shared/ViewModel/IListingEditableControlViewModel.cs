@@ -19,6 +19,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     ICommand AddItemCommand { get; }
 
     /// <summary>
+    /// Gets the add clone command which enables to add item the same item as selected one (using details control).
+    /// </summary>
+    ICommand AddCloneItemCommand { get; }
+
+    /// <summary>
     /// Gets the delete command which enables to delete existing item.
     /// </summary>
     ICommand DeleteItemCommand { get; }
