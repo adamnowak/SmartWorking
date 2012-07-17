@@ -11,8 +11,6 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
   /// </summary>
   public class AdministrationGroupViewModel : TabControlViewModelBase
   {
-
-
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
     /// </summary>
@@ -24,6 +22,9 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       DriversAndCarsTabItemViewModel = new DriversAndCarsTabItemViewModel(ModalDialogService, ServiceFactory);
     }
 
+    /// <summary>
+    /// Gets the drivers and cars tab item view model.
+    /// </summary>
     public DriversAndCarsTabItemViewModel DriversAndCarsTabItemViewModel { get; private set; }
 
     /// <summary>
@@ -41,5 +42,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
         //TabChanged(new SelectionChangedEventArgs(TabControl.SelectionChangedEvent, new List<TabItem>(), new List<TabItem> { SelectedTab }));
       }
     }
+
+    public override bool IsReadOnly
+    {
+      get
+      {
+        return base.IsReadOnly && DriversAndCarsTabItemViewModel.IsReadOnly;
+      }
+    }
+
   }
 }

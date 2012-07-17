@@ -9,19 +9,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartWorking.Office.TabsGui
+namespace SmartWorking.Office.TabsGui.Controls.Materials
 {
   /// <summary>
-  /// Interaction logic for MainWindow.xaml
+  /// Interaction logic for MaterialListControl.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class MaterialListControl : UserControl
   {
-    public MainWindow()
+    public MaterialListControl()
     {
       InitializeComponent();
-      //this.WindowState = WindowState.Maximized;
     }
   }
 }

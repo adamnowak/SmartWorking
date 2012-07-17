@@ -10,6 +10,6 @@ namespace SmartWorking.Office.PrimitiveEntities
   public class DriverAndCarPackage
   {
     public DriverPrimitive Driver { get; set; }
-    public CarPrimitive Car { get; set; }
+    public CarPrimitive Car { get; set; }    
   }
 }

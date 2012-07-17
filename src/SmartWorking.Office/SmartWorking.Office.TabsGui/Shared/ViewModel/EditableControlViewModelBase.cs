@@ -25,6 +25,9 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       
     }
 
+    /// <summary>
+    /// Refreshes control context.
+    /// </summary>
     public override void Refresh() {}
 
     #region Item
@@ -54,7 +57,10 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         {
           return;
         }
+        T oldValue = _item;
         _item = value;
+        OnItemChanged(oldValue);
+
         // Update bindings, no broadcast
         RaisePropertyChanged(ItemPropertyName);
       }
@@ -223,6 +229,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// Occurs when canceled changes.
     /// </summary>
     public event EventHandler ChangesCanceled;
+
+    protected virtual void OnItemChanged(T oldItem)
+    {
+      
+    }
 
     #endregion
   }

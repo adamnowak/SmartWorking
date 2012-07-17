@@ -30,16 +30,31 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       EditingViewModel.ItemSaved += new System.EventHandler(EditingViewModel_ItemSaved);
     }
 
+    /// <summary>
+    /// Handles the ItemSaved event of the EditingViewModel control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     void EditingViewModel_ItemSaved(object sender, System.EventArgs e)
     {
       Refresh();
     }
 
+    /// <summary>
+    /// Handles the ChangesCanceled event of the EditingViewModel control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     void EditingViewModel_ChangesCanceled(object sender, System.EventArgs e)
     {      
       EditingViewModel.Item = Items.SelectedItem;
     }
 
+    /// <summary>
+    /// Handles the SelectedItemChanged event of the Items control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="SmartWorking.Office.TabsGui.Shared.ViewModel.SelectedItemChangedEventArgs&lt;T&gt;"/> instance containing the event data.</param>
     void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<T> e)
     {
       if (EditingViewModel != null && EditingViewModel.IsReadOnly && e != null)
@@ -60,6 +75,9 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 
     public string Filter { get; set; }
 
+    /// <summary>
+    /// Loads the items.
+    /// </summary>
     protected virtual void LoadItems()
     {
       string errorCaption = Name;
@@ -83,10 +101,16 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
+    /// <summary>
+    /// Called when load items.
+    /// </summary>
     protected virtual void OnLoadItems()
     {
     }
 
+    /// <summary>
+    /// Refreshes control context.
+    /// </summary>
     public override void Refresh()
     {
       LoadItems();

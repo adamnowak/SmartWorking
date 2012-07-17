@@ -9,19 +9,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartWorking.Office.TabsGui
+namespace SmartWorking.Office.TabsGui.Controls.Drivers
 {
   /// <summary>
-  /// Interaction logic for MainWindow.xaml
+  /// Interaction logic for DriverDetailsControl.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class DriverDetailsControl : UserControl
   {
-    public MainWindow()
+    public DriverDetailsControl()
     {
       InitializeComponent();
-      //this.WindowState = WindowState.Maximized;
     }
   }
 }

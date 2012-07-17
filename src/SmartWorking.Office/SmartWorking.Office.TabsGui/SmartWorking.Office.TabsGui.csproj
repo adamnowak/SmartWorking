@@ -103,6 +103,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\Cars\CarDetailsViewModel.cs" />
+    <Compile Include="Controls\Contractors\ContractorDetailsControl.xaml.cs">
+      <DependentUpon>ContractorDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Contractors\ContractorListControl.xaml.cs">
+      <DependentUpon>ContractorListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Drivers\DriverDetailsViewModel.cs" />
+    <Compile Include="Controls\Drivers\DriverListViewModel.cs" />
+    <Compile Include="Controls\Drivers\DriverDetailsControl.xaml.cs">
+      <DependentUpon>DriverDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Drivers\DriverListControl.xaml.cs">
+      <DependentUpon>DriverListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MainGroups\AdministrationGroup\DriversAndCarsTabItemViewModel.cs" />
     <Compile Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupControl.xaml.cs">
       <DependentUpon>AdministrationGroupControl.xaml</DependentUpon>
@@ -116,6 +130,12 @@
     </Compile>
     <Compile Include="Controls\MainGroups\SettingsGroupControl.xaml.cs">
       <DependentUpon>SettingsGroupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Materials\MaterialDetailsControl.xaml.cs">
+      <DependentUpon>MaterialDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Materials\MaterialListControl.xaml.cs">
+      <DependentUpon>MaterialListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
     <Compile Include="Converters\ComparingMultiConverter.cs" />
@@ -155,6 +175,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Contractors\ContractorDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Contractors\ContractorListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Drivers\DriverDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Drivers\DriverListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +204,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MainGroups\SettingsGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Materials\MaterialDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Materials\MaterialListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,7 +315,9 @@
       <Name>SmartWorking.Office.Services.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Media\AppIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

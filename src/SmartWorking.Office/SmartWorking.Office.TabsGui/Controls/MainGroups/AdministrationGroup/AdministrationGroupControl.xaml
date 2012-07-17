@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"  xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters" mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"  xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters" xmlns:Drivers="clr-namespace:SmartWorking.Office.TabsGui.Controls.Drivers" mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.Resources>
         <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
@@ -103,7 +103,80 @@
                             </GroupBox>
                         </Grid>
                     </GroupBox>
+                    <!--Drivers-->
+                    <GroupBox Header="str_Drivers" Grid.Row="1">
+                        <Grid >
 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <!--DriverList-->
+                            <GroupBox Header="str_DriverList" Grid.Column="0"  DataContext="{Binding DriverListViewModel}" >
+                                <Grid >
+                                    <!--IsEnabled="{Binding EditingViewModel.IsReadOnly}"-->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Drivers:DriverListControl/>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                        <Button Command="{Binding AddItemCommand}">str_Add</Button>
+                                        <Button Command="{Binding AddCloneItemCommand}">str_AddClone</Button>
+                                        <Button Command="{Binding DeleteItemCommand}">str_Delete</Button>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                            <!--DriversDetails-->
+                            <GroupBox Header="str_DriversDetails" Grid.Column="1" DataContext="{Binding DriverDetailsViewModel}">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Drivers:DriverDetailsControl/>
+                                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                        <Button Command="{Binding EditItemCommand}" Content="str_Edit">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticTrue}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button Command="{Binding SaveItemCommand}" Content="str_Save">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticFalse}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button Command="{Binding CancelChangesCommand}" Content="str_Cancel">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticFalse}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="str_ProducersAndMaterials">t2</TabItem>

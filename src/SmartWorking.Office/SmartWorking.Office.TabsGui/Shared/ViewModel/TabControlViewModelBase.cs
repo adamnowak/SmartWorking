@@ -12,13 +12,27 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 {
+  /// <summary>
+  /// View model for tab control.
+  /// </summary>
   public abstract class TabControlViewModelBase : ControlViewModelBase, ITabControlViewModel
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TabControlViewModelBase"/> class.
+    /// </summary>
+    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="serviceFactory">The service factory.</param>
     public TabControlViewModelBase(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
     }
 
+    /// <summary>
+    /// Gets the tab item from SelectionChangedEventArgs.
+    /// </summary>
+    /// <param name="selectionChangedEventArgs">The <see cref="System.Windows.Controls.SelectionChangedEventArgs"/> instance containing the event data.</param>
+    /// <param name="bOldTabItem">if set to <c>true</c> [b old tab item].</param>
+    /// <returns></returns>
     protected TabItem GetTabItem(SelectionChangedEventArgs selectionChangedEventArgs, bool bOldTabItem = true)
     {
       if (bOldTabItem)
@@ -38,6 +52,12 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       return null;
     }
 
+    /// <summary>
+    /// Gets the control view model from SelectionChangedEventArgs element (old or new).
+    /// </summary>
+    /// <param name="selectionChangedEventArgs">The <see cref="System.Windows.Controls.SelectionChangedEventArgs"/> instance containing the event data.</param>
+    /// <param name="bOldTabItem">if set to <c>true</c> [b old tab item].</param>
+    /// <returns></returns>
     protected IControlViewModel GetControlViewModel(SelectionChangedEventArgs selectionChangedEventArgs, bool bOldTabItem = true)
     {
       TabItem tabItem = GetTabItem(selectionChangedEventArgs, bOldTabItem);
@@ -48,6 +68,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       return null;
     }
 
+    /// <summary>
+    /// Gets the control view model from TabItem.
+    /// </summary>
+    /// <param name="tabItem">The tab item.</param>
+    /// <returns>View model or null.</returns>
     protected IControlViewModel GetControlViewModel(TabItem tabItem)
     {
       if (tabItem.DataContext != null)
@@ -58,6 +83,9 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       return null;
     }
 
+    /// <summary>
+    /// Refreshes control context.
+    /// </summary>
     public override void Refresh()
     {
       if (SelectedTab != null)
@@ -134,8 +162,6 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
-
-
     /// <summary>
     /// Executes tab changed command.
     /// </summary>
@@ -156,8 +182,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
               //selectionChangedEventArgs.Handled = true;
               //return;
             }
-          }
-          
+          }  
         }
         IControlViewModel newControlViewModel = GetControlViewModel(selectionChangedEventArgs, false);
         if (newControlViewModel != null)

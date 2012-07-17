@@ -42,5 +42,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// Occurs when cancel changes.
     /// </summary>
     event EventHandler ChangesCanceled;
+
+  
   }
 }
