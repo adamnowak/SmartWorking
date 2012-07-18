@@ -5,42 +5,49 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters" mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
     <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition  />
-        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <GroupBox Header="Kierowcy" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition  />
+                    </Grid.RowDefinitions>
 
-        <!--Debug only-->
-        <TextBlock Text="Id:" Grid.Row="0" />
-        <!--End Debug only-->
-        <TextBlock Text="Symbol:" Grid.Row="1" />
-        <TextBlock Text="Imię:" Grid.Row="2" />
-        <TextBlock Text="Nazwisko:" Grid.Row="3" />
-        <TextBlock Text="Numer Telefonu:" Grid.Row="4" />
+                    <!--Debug only-->
+                    <TextBlock Text="Id:" Grid.Row="0" />
+                    <!--End Debug only-->
+                    <TextBlock Text="Symbol:" Grid.Row="1" />
+                    <TextBlock Text="Imię:" Grid.Row="2" />
+                    <TextBlock Text="Nazwisko:" Grid.Row="3" />
+                    <TextBlock Text="Numer Telefonu:" Grid.Row="4" />
 
 
-        <!--End Debug only-->
-        <TextBox Text="{Binding Item.Driver.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
-        <!--Debug only-->
-        <TextBox Text="{Binding Item.Driver.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-        <TextBox Text="{Binding Item.Driver.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-        <TextBox Text="{Binding Item.Driver.Surname}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-        <TextBox Text="{Binding Item.Driver.Phone}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                    <!--End Debug only-->
+                    <TextBox Text="{Binding Item.Driver.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                    <!--Debug only-->
+                    <TextBox Text="{Binding Item.Driver.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                    <TextBox Text="{Binding Item.Driver.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                    <TextBox Text="{Binding Item.Driver.Surname}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                    <TextBox Text="{Binding Item.Driver.Phone}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
 
-        <GroupBox Header="Samochody pod opieką" Grid.Row="5" Grid.ColumnSpan="2">
-            <Grid>
-                <Cars:CarListControl FiltersVisibility="Collapsed" />
-            </Grid>
-        </GroupBox>
+                    <GroupBox Header="Samochody pod opieką" Grid.Row="5" Grid.ColumnSpan="2">
+                        <Grid>
+                            <Cars:CarListControl FiltersVisibility="Collapsed" />
+                        </Grid>
+                    </GroupBox>
 
-        
+
+                </Grid>
+
+            </GroupBox>
+        </ScrollViewer>
     </Grid>
 </UserControl>

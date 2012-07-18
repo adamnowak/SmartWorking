@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
-using SmartWorking.Office.TabsGui.Controls.Cars;
 
-namespace SmartWorking.Office.TabsGui.Shared.ViewModel
+namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
   /// <summary>
   /// Interface for view model for listing control.
@@ -37,5 +36,10 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// Gets the filter used to filterfing items.
     /// </summary>
     string Filter { get; }
+
+    /// <summary>
+    /// Gets the show deleted.
+    /// </summary>
+    bool ShowDeleted { get; }
   }
 }

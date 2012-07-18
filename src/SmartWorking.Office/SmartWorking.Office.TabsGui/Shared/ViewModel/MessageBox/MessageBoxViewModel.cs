@@ -3,6 +3,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Gui.ViewModel;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel.MessageBox
 {

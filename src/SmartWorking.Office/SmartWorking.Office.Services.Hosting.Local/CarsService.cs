@@ -21,7 +21,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of Car filtered by <paramref name="carsFilter"/>.
     /// </returns>
-    public List<CarPrimitive> GetCars(string carsFilter)
+    public List<CarPrimitive> GetCars(string carsFilter, bool getDeactive, bool getDeleted)
     {
       try
       {
@@ -29,8 +29,11 @@ namespace SmartWorking.Office.Services.Hosting.Local
         {
           List<Car> result =
             (string.IsNullOrWhiteSpace(carsFilter))
-              ? ctx.Cars.ToList()
-              : ctx.Cars.Where(x => x.RegistrationNumber.StartsWith(carsFilter)).ToList();
+              ? ctx.Cars.Where(x => 
+                              (((!getDeactive) && x.IsActive == 0) || getDeactive) &&
+                              (((!getDeleted) && !x.Deleted.HasValue) || getDeleted)
+                              ).ToList()
+              : ctx.Cars.Where(x => (((!getDeactive) && x.IsActive == 0) || getDeactive) && x.RegistrationNumber.StartsWith(carsFilter)).ToList();
           return result.Select(x => x.GetPrimitive()).ToList(); ;
         }
       }
@@ -41,7 +44,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
 
     }
 
-    public List<CarAndDriverPackage> GetCarAndDriverPackageList(string filter)
+    public List<CarAndDriverPackage> GetCarAndDriverPackageList(string filter, bool getDeactive, bool getDeleted)
     {
       try
       {
@@ -49,7 +52,10 @@ namespace SmartWorking.Office.Services.Hosting.Local
         {
           List<Car> result =
             (string.IsNullOrWhiteSpace(filter))
-              ? ctx.Cars.Include("Driver").ToList()
+              ? ctx.Cars.Include("Driver").Where(x =>
+                              (((!getDeactive) && x.IsActive == 0) || getDeactive) &&
+                              (((!getDeleted) && !x.Deleted.HasValue) || getDeleted)
+                              ).ToList()
               : ctx.Cars.Include("Driver").Where(x => x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetDriverAndCarPackage()).ToList(); ;
         }

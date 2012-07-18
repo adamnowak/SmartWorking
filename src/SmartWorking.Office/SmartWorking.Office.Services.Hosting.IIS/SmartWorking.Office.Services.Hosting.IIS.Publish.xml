@@ -1,26 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
   <publishProfile publishUrl="ftp://smartworking.somee.com/www.smartworking.somee.com" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Somee" publishMethod="FTP" replaceMatchingFiles="True" userName="smartworking" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGMPkqUXxqUKXHfixty/cTQAAAAACAAAAAAAQZgAAAAEAACAAAADt1yKizkKTGLrKqPPhpR3GXL3QevIVj2I5rdNXFAcqYwAAAAAOgAAAAAIAACAAAADD01izq9cvGj6/ClSHXPvE2Dap6rI5oSvGAOIQMe89PiAAAAAKGyub1j91mAKm7luX9PC7uedo7R62s6Jd3O/1luUGz0AAAAD43Et8UqL+8q8CTIcepisnFIKYwMXENNuVch83Sn1ycH0y0dNUzVyy017ex7QMMONQfvVy9XolXRc+GYAoWS9K" SelectedForPublish="True">
-    <file relUrl="bin/SmartWorking.Office.Services.Hosting.Local.pdb" publishTime="07/16/2012 17:42:59" />
-    <file relUrl="bin/SmartWorking.Office.Entities.pdb" publishTime="07/16/2012 14:56:27" />
-    <file relUrl="bin/SmartWorking.Office.Services.Hosting.Local.dll" publishTime="07/16/2012 17:42:59" />
-    <file relUrl="bin/SmartWorking.Office.Services.Interfaces.pdb" publishTime="07/16/2012 14:56:26" />
-    <file relUrl="ClientsService.svc" publishTime="07/07/2012 01:58:05" />
+    <file relUrl="bin/SmartWorking.Office.Services.Hosting.Local.pdb" publishTime="07/18/2012 21:52:13" />
+    <file relUrl="bin/SmartWorking.Office.Entities.pdb" publishTime="07/18/2012 21:52:11" />
+    <file relUrl="bin/SmartWorking.Office.Services.Hosting.Local.dll" publishTime="07/18/2012 21:52:13" />
+    <file relUrl="bin/SmartWorking.Office.Services.Interfaces.pdb" publishTime="07/18/2012 21:52:10" />
     <file relUrl="DeliveryNotesService.svc" publishTime="06/19/2012 00:06:10" />
-    <file relUrl="bin/SmartWorking.Office.Services.Hosting.IIS.dll" publishTime="07/16/2012 17:43:00" />
-    <file relUrl="bin/SmartWorking.Office.Entities.dll" publishTime="07/16/2012 14:56:27" />
-    <file relUrl="Web.config" publishTime="07/16/2012 18:39:37" />
+    <file relUrl="bin/SmartWorking.Office.Services.Hosting.IIS.dll" publishTime="07/18/2012 21:52:28" />
+    <file relUrl="Web.config" publishTime="07/18/2012 21:54:26" />
     <file relUrl="ReportsService.svc" publishTime="06/24/2012 12:21:20" />
     <file relUrl="MaterialsService.svc" publishTime="06/19/2012 00:33:38" />
-    <file relUrl="bin/SmartWorking.Office.PrimitiveEntities.dll" publishTime="07/16/2012 14:56:25" />
-    <file relUrl="bin/SmartWorking.Office.Services.Hosting.IIS.pdb" publishTime="07/16/2012 17:43:00" />
-    <file relUrl="RecipesService.svc" publishTime="06/19/2012 00:06:09" />
-    <file relUrl="bin/SmartWorking.Office.Services.Interfaces.dll" publishTime="07/16/2012 14:56:26" />
-    <file relUrl="bin/SmartWorking.Office.PrimitiveEntities.pdb" publishTime="07/16/2012 14:56:25" />
-    <file relUrl="DriversService.svc" publishTime="06/19/2012 00:06:09" />
-    <file relUrl="OrdersService.svc" publishTime="07/07/2012 01:58:05" />
-    <file relUrl="TestPage.aspx" publishTime="06/08/2012 00:30:05" />
+    <file relUrl="bin/SmartWorking.Office.PrimitiveEntities.dll" publishTime="07/18/2012 21:52:09" />
     <file relUrl="CarsService.svc" publishTime="06/22/2012 00:43:11" />
+    <file relUrl="bin/SmartWorking.Office.Services.Hosting.IIS.pdb" publishTime="07/18/2012 21:52:28" />
+    <file relUrl="RecipesService.svc" publishTime="06/19/2012 00:06:09" />
+    <file relUrl="bin/SmartWorking.Office.Services.Interfaces.dll" publishTime="07/18/2012 21:52:11" />
+    <file relUrl="OrdersService.svc" publishTime="07/07/2012 01:58:05" />
+    <file relUrl="bin/SmartWorking.Office.PrimitiveEntities.pdb" publishTime="07/18/2012 21:52:09" />
+    <file relUrl="DriversService.svc" publishTime="06/19/2012 00:06:09" />
+    <file relUrl="bin/SmartWorking.Office.Entities.dll" publishTime="07/18/2012 21:52:12" />
+    <file relUrl="TestPage.aspx" publishTime="06/08/2012 00:30:05" />
+    <file relUrl="ClientsService.svc" publishTime="07/07/2012 01:58:05" />
     <file relUrl="ContractorsService.svc" publishTime="06/22/2012 00:43:14" />
   </publishProfile>
   <publishProfile publishUrl="http://localhost:86/SmartWorking" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="LocalFile" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="False">

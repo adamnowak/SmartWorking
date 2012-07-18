@@ -109,6 +109,8 @@
     <Compile Include="Controls\Contractors\ContractorListControl.xaml.cs">
       <DependentUpon>ContractorListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Contractors\ContractorDetailsViewModel.cs" />
+    <Compile Include="Controls\Contractors\ContractorListViewModel.cs" />
     <Compile Include="Controls\Drivers\DriverDetailsViewModel.cs" />
     <Compile Include="Controls\Drivers\DriverListViewModel.cs" />
     <Compile Include="Controls\Drivers\DriverDetailsControl.xaml.cs">
@@ -117,6 +119,7 @@
     <Compile Include="Controls\Drivers\DriverListControl.xaml.cs">
       <DependentUpon>DriverListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainGroups\AdministrationGroup\MaterialsAndContractorsTabItemViewModel.cs" />
     <Compile Include="Controls\MainGroups\AdministrationGroup\DriversAndCarsTabItemViewModel.cs" />
     <Compile Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupControl.xaml.cs">
       <DependentUpon>AdministrationGroupControl.xaml</DependentUpon>
@@ -131,6 +134,8 @@
     <Compile Include="Controls\MainGroups\SettingsGroupControl.xaml.cs">
       <DependentUpon>SettingsGroupControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Materials\MaterialDetailsViewModel.cs" />
+    <Compile Include="Controls\Materials\MaterialListViewModel.cs" />
     <Compile Include="Controls\Materials\MaterialDetailsControl.xaml.cs">
       <DependentUpon>MaterialDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -141,16 +146,17 @@
     <Compile Include="Converters\ComparingMultiConverter.cs" />
     <Compile Include="Converters\IsActiveToBoolConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\IMainViewModel.cs" />
     <Compile Include="Shared\ViewModel\TabControlViewModelBase.cs" />
-    <Compile Include="Shared\ViewModel\ITabControlViewModel.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\ITabControlViewModel.cs" />
     <Compile Include="Shared\ViewModel\DialogViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\EditingMode.cs" />
     <Compile Include="Shared\ViewModel\EditableControlViewModelBase.cs" />
-    <Compile Include="Shared\ViewModel\IDialogViewModel.cs" />
-    <Compile Include="Shared\ViewModel\IEditableControlViewModel.cs" />
-    <Compile Include="Shared\ViewModel\IListingEditableControlViewModel.cs" />
-    <Compile Include="Shared\ViewModel\IControlViewModel.cs" />
-    <Compile Include="Shared\ViewModel\IModalDialogService.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\IDialogViewModel.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\IEditableControlViewModel.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\IListingEditableControlViewModel.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\IControlViewModel.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\IModalDialogService.cs" />
     <Compile Include="Shared\ViewModel\ListingEditableControlViewModel.cs" />
     <Compile Include="Shared\ViewModel\MessageBox\IMessageBoxViewModel.cs" />
     <Compile Include="Shared\ViewModel\MessageBox\MessageBoxViewModel.cs" />
@@ -319,6 +325,7 @@
   <ItemGroup>
     <Resource Include="Media\AppIcon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

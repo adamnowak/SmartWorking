@@ -46,6 +46,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
         		
+        		primitive.IsActive = primitiveToCopy.IsActive;
+        		
         		return primitive;
         }
         
@@ -103,6 +105,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Phone = primitiveToCopy.Phone;
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.IsActive = primitiveToCopy.IsActive;
         		
         		return primitive;
         }

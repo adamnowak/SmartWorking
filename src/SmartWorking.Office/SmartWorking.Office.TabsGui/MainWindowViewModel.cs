@@ -18,13 +18,14 @@ using SmartWorking.Office.TabsGui.Controls.MainGroups;
 using SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup;
 using SmartWorking.Office.TabsGui.Shared.View;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui
 {
   /// <summary>
   /// Main windows view model implementation.
   /// </summary>
-  public class MainWindowViewModel : TabControlViewModelBase
+  public class MainWindowViewModel : TabControlViewModelBase, IMainViewModel
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
@@ -47,9 +48,9 @@ namespace SmartWorking.Office.TabsGui
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     public MainWindowViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(modalDialogService, serviceFactory)
+      : base(null, modalDialogService, serviceFactory)
     {
-      AdministrationGroupViewModel = new AdministrationGroupViewModel(ModalDialogService, ServiceFactory);
+      AdministrationGroupViewModel = new AdministrationGroupViewModel(this, ModalDialogService, ServiceFactory);
     }
 
     public AdministrationGroupViewModel AdministrationGroupViewModel { get; private set; }

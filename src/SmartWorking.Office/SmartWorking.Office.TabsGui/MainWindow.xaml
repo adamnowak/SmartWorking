@@ -12,6 +12,10 @@
         <TabsGui:MainWindowViewModel  />
     </Window.DataContext>
     <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <TabControl Style="{StaticResource horizontalMainTabControl}" x:Name="mainTabControl" SelectedItem="{Binding SelectedTab}" IsSynchronizedWithCurrentItem="True">
             <i:Interaction.Triggers>
                 <i:EventTrigger  EventName="SelectionChanged">
@@ -35,5 +39,18 @@
                 <MainGroups:SettingsGroupControl/>
             </TabItem>
         </TabControl>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition /> <!--TODO: should be removed-->
+            </Grid.ColumnDefinitions> 
+            <TextBlock Height="20" Text="{Binding StatusText}" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Background="Yellow" >
+                <RadioButton GroupName="Roles" Content="Admin"   />
+                <RadioButton GroupName="Roles" Content="WOS"    />
+                <RadioButton GroupName="Roles" Content="Operator" />                
+                <CheckBox Content="DebugMode" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

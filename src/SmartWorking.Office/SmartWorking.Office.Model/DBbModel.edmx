@@ -81,6 +81,7 @@
           <Property Name="ContactPersonPhone" Type="nvarchar" MaxLength="20" />
           <Property Name="HouseNo" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="datetime" />
+          <Property Name="IsActive" Type="int" />
         </EntityType>
         <EntityType Name="Cars">
           <Key>
@@ -111,6 +112,7 @@
           <Property Name="HouseNo" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" />
           <Property Name="Deleted" Type="datetime" />
+          <Property Name="IsActive" Type="int" />
         </EntityType>
         <EntityType Name="Contractors">
           <Key>
@@ -432,6 +434,7 @@
           <Property Type="DateTime" Name="Deleted" />
           <NavigationProperty Name="Client" Relationship="SmartWorkingModel.FK_Buildings_Clients" FromRole="Building" ToRole="Client" />
           <NavigationProperty Name="Orders" Relationship="SmartWorkingModel.FK_Orders_Buildings" FromRole="Building" ToRole="Order" />
+          <Property Type="Int32" Name="IsActive" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -448,6 +451,7 @@
           <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="Deleted" />
           <NavigationProperty Name="Buildings" Relationship="SmartWorkingModel.FK_Buildings_Clients" FromRole="Client" ToRole="Building" />
+          <Property Type="Int32" Name="IsActive" />
         </EntityType>
         <EntityType Name="Contractor">
           <Key>
@@ -732,6 +736,7 @@
           <EntitySetMapping Name="Buildings">
             <EntityTypeMapping TypeName="SmartWorkingModel.Building">
               <MappingFragment StoreEntitySet="Buildings">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="HouseNo" ColumnName="HouseNo" />
                 <ScalarProperty Name="ContactPersonPhone" ColumnName="ContactPersonPhone" />
@@ -749,6 +754,7 @@
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="SmartWorkingModel.Client">
               <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="HouseNo" ColumnName="HouseNo" />

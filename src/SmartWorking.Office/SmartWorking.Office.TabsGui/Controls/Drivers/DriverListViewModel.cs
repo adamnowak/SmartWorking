@@ -7,6 +7,7 @@ using System.Text;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Controls.Drivers
 {
@@ -21,8 +22,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// <param name="editingViewModel">The editing view model.</param>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public DriverListViewModel(IEditableControlViewModel<CarAndDriverPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(editingViewModel, modalDialogService, serviceFactory)
+    public DriverListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<CarAndDriverPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+      : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
     }
 

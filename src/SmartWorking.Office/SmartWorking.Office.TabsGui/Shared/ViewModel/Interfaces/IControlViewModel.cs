@@ -1,12 +1,17 @@
 ﻿using SmartWorking.Office.Services.Interfaces;
 
-namespace SmartWorking.Office.TabsGui.Shared.ViewModel
+namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
   /// <summary>
   /// Interface for view model for each control.
   /// </summary>
   public interface IControlViewModel
   {
+    /// <summary>
+    /// Gets the main view model.
+    /// </summary>
+    IMainViewModel MainViewModel { get; }
+
     /// <summary>
     /// Gets the name of control.
     /// </summary>

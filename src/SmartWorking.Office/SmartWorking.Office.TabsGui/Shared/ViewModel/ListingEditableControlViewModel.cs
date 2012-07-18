@@ -5,6 +5,7 @@ using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 {
@@ -17,9 +18,9 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// Initializes a new instance of the <see cref="ListingEditableControlViewModel{T}"/> class.
     /// </summary>
     /// <param name="editingViewModel">The editing view model.</param>
-    public ListingEditableControlViewModel(IEditableControlViewModel<T> editingViewModel,
+    public ListingEditableControlViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<T> editingViewModel,
       IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(modalDialogService, serviceFactory)
+      : base(mainViewModel, modalDialogService, serviceFactory)
     {
       Items = new SelectableViewModelBase<T>();
       EditingViewModel = editingViewModel;
@@ -73,7 +74,93 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </summary>
     public IEditableControlViewModel<T> EditingViewModel { get; private set; }
 
-    public string Filter { get; set; }
+    #region Filter
+    /// <summary>
+    /// The <see cref="Filter" /> property's name.
+    /// </summary>
+    public const string FilterPropertyName = "Filter";
+
+    private string _filter;
+
+    /// <summary>
+    /// Gets the Filter property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public string Filter
+    {
+      get
+      {
+        return _filter;
+      }
+
+      set
+      {
+        if (_filter == value)
+        {
+          return;
+        }
+        _filter = value;
+
+        OnFilterChanged();
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged(FilterPropertyName);
+      }
+    }
+
+    protected virtual void OnFilterChanged()
+    {      
+    }
+
+    #endregion //Filter
+
+    #region ShowDeleted
+    /// <summary>
+    /// The <see cref="ShowDeleted" /> property's name.
+    /// </summary>
+    public const string ShowDeletedPropertyName = "ShowDeleted";
+
+    private bool _showDeleted = false;
+
+    /// <summary>
+    /// Gets the ShowDeleted property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public bool ShowDeleted
+    {
+      get
+      {
+        return _showDeleted;
+      }
+
+      set
+      {
+        if (_showDeleted == value)
+        {
+          return;
+        }
+        _showDeleted = value;
+
+        OnShowDeletedChanged();
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged(ShowDeletedPropertyName);
+      }
+    }
+
+    protected virtual void OnShowDeletedChanged()
+    {
+      if (EditingViewModel.EditingMode == EditingMode.Display)
+      {
+        Refresh();
+      }
+    }
+
+    #endregion //ShowDeleted
 
     /// <summary>
     /// Loads the items.

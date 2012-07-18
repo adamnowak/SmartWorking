@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel
 {

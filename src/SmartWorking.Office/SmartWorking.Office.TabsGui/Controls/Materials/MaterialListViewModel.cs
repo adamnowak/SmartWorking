@@ -8,31 +8,31 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
-namespace SmartWorking.Office.TabsGui.Controls.Cars
+namespace SmartWorking.Office.TabsGui.Controls.Materials
 {
-  public class CarListViewModel : ListingEditableControlViewModel<CarAndDriverPackage>
+  public class MaterialListViewModel : ListingEditableControlViewModel<MaterialAndContractorsPackage>
   {
-    public CarListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<CarAndDriverPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public MaterialListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<MaterialAndContractorsPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
     }
 
     public override string Name
     {
-      get { return "str_CarList"; }
+      get { return "str_MaterialList"; }
     }
 
     protected override void  OnLoadItems()
     {
-      CarAndDriverPackage selectedItem = Items.SelectedItem;
-      using (ICarsService service = ServiceFactory.GetCarsService())
+      MaterialAndContractorsPackage selectedItem = Items.SelectedItem;
+      using (IMaterialsService service = ServiceFactory.GetMaterialsService())
       {
-        Items.LoadItems(service.GetCarAndDriverPackageList(Filter, ShowDeactivated, ShowDeleted));
+       // Items.LoadItems(service.GetMaterialAndContractorsPackageList(Filter, ShowDeleted));
       }
       if (selectedItem != null)
       {
-        CarAndDriverPackage selectionFromItems =
-          Items.Items.Where(x => x.Car.Id == selectedItem.Car.Id).FirstOrDefault();
+        MaterialAndContractorsPackage selectionFromItems =
+          Items.Items.Where(x => x.Material.Id == selectedItem.Material.Id).FirstOrDefault();
         if (selectionFromItems != null)
           Items.SelectedItem = selectionFromItems;
       }
@@ -43,22 +43,22 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     protected override void AddItemCommandExecute()
     {
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new CarAndDriverPackage();
-      EditingViewModel.Item.Car = new CarPrimitive();
+      EditingViewModel.Item = new MaterialAndContractorsPackage();
+      EditingViewModel.Item.Material= new MaterialPrimitive();
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      CarAndDriverPackage clone = Items.SelectedItem.GetPackageCopy();
+      MaterialAndContractorsPackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {
-        clone.Car.Id = 0;        
+        clone.Material.Id = 0;        
       }
       else
       {
-        clone = new CarAndDriverPackage();
+        clone = new MaterialAndContractorsPackage();
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;

@@ -63,6 +63,11 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public Nullable<int> IsActive
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }

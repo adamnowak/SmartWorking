@@ -45,6 +45,8 @@ namespace SmartWorking.Office.Entities
         		
         		primitive.Deleted = entity.Deleted;
         		
+        		primitive.IsActive = entity.IsActive;
+        		
         		return primitive;
         }
         
@@ -98,6 +100,8 @@ namespace SmartWorking.Office.Entities
         		primitive.Phone = entity.Phone;
         		
         		primitive.Deleted = entity.Deleted;
+        		
+        		primitive.IsActive = entity.IsActive;
         		
         		return primitive;
         }

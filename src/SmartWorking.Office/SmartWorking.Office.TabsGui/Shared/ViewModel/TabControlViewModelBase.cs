@@ -9,21 +9,22 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel
-{
+{  
   /// <summary>
   /// View model for tab control.
   /// </summary>
-  public abstract class TabControlViewModelBase : ControlViewModelBase, ITabControlViewModel
+  public abstract class TabControlViewModelBase : ControlViewModelBase, ITabControlViewModel 
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="TabControlViewModelBase"/> class.
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public TabControlViewModelBase(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(modalDialogService, serviceFactory)
+    public TabControlViewModelBase(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogService, serviceFactory)
     {
     }
 

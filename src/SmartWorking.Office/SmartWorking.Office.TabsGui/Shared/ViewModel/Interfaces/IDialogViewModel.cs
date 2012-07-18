@@ -1,6 +1,7 @@
 ﻿using System;
+using SmartWorking.Office.Gui.ViewModel;
 
-namespace SmartWorking.Office.TabsGui.Shared.ViewModel
+namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
   /// <summary>
   /// Interface for dialog view model.

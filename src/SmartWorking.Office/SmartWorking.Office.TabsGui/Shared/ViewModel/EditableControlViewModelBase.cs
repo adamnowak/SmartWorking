@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Cars;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 {
@@ -19,8 +20,8 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public EditableControlViewModelBase(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(modalDialogService, serviceFactory)
+    public EditableControlViewModelBase(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogService, serviceFactory)
     {
       
     }

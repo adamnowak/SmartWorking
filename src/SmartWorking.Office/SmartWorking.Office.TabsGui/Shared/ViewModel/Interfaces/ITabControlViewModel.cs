@@ -1,8 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
-using SmartWorking.Office.Services.Interfaces;
 
-namespace SmartWorking.Office.TabsGui.Shared.ViewModel
+namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
   /// <summary>
   /// Interface for view model for each control.

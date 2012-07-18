@@ -3,6 +3,7 @@ using System.Windows;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.MessageBox;
 using MessageBoxClass = SmartWorking.Office.TabsGui.Shared.View.MessageBox.MessageBox;
 

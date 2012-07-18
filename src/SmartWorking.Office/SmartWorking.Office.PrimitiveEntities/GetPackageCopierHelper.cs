@@ -15,5 +15,14 @@ namespace SmartWorking.Office.PrimitiveEntities
       package.Car = packageToCopy.Car.GetPrimitiveCopy();
       return package;
     }
+
+    public static MaterialAndContractorsPackage GetPackageCopy(this MaterialAndContractorsPackage packageToCopy)
+    {
+      MaterialAndContractorsPackage package = new MaterialAndContractorsPackage();
+      package.Material = packageToCopy.Material.GetPrimitiveCopy();
+      package.Deliverer = packageToCopy.Deliverer.GetPrimitiveCopy();
+      package.Producer = packageToCopy.Producer.GetPrimitiveCopy();
+      return package;
+    }
   }
 }

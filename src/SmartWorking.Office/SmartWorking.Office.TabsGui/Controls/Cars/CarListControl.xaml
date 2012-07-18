@@ -12,30 +12,31 @@
         <DataGrid  SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}" >
             <DataGrid.Columns>
                 <!--Debug only-->
-                <DataGridTextColumn Header="str_Id" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="str_Id" Binding="{Binding Car.Id}" />
                 <!--End Debug only-->
-                <DataGridTextColumn Header="str_Symbol" Binding="{Binding InternalName}" />
-                <DataGridTextColumn Header="str_Numer Rejestracyjny" Binding="{Binding RegistrationNumber}" />
+                <DataGridTextColumn Header="str_Symbol" Binding="{Binding Car.InternalName}" />
+                <DataGridTextColumn Header="str_Numer Rejestracyjny" Binding="{Binding Car.RegistrationNumber}" />
                 <DataGridTextColumn Header="str_Rodzaj samochodu"  >
                     <DataGridTextColumn.Binding>
                         <MultiBinding Converter="{StaticResource descriptionIndexedConverter}" >
-                            <Binding Path="CarType"/>
+                            <Binding Path="Car.CarType"/>
                             <Binding Source="{x:Static Cars:CarTypes.Instance}" Path="Items"/>
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="str_Ładowność" Binding="{Binding Capacity}" />
+                <DataGridTextColumn Header="str_Ładowność" Binding="{Binding Car.Capacity}" />
                 <DataGridTextColumn Header="str_Rodzaj transportu"  >
                     <DataGridTextColumn.Binding>
                         <MultiBinding Converter="{StaticResource descriptionIndexedConverter}" >
-                            <Binding Path="TransportType"/>
+                            <Binding Path="Car.TransportType"/>
                             <Binding Source="{x:Static Cars:TransportTypes.Instance}" Path="Items"/>
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
+                <DataGridTextColumn Header="str_Protector" Binding="{Binding Driver.InternalName}" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource Self}}">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
             <CheckBox IsThreeState="False" IsChecked="{Binding ShowNotActivate}" Content="strShowActive" />
             <CheckBox IsThreeState="False" IsChecked="{Binding ShowDeleted}" Content="strShowDeleted" />
         </StackPanel>

@@ -6,13 +6,15 @@ using System.Text;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 {
   public abstract class ControlViewModelBase : ViewModelBase, IControlViewModel
   {
-    public ControlViewModelBase(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public ControlViewModelBase(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
+      MainViewModel = mainViewModel;
       ModalDialogService = modalDialogService;
       ServiceFactory = serviceFactory;
       EditingMode = EditingMode.Display;
@@ -78,6 +80,8 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// Refreshes control context.
     /// </summary>
     public abstract void Refresh();
+
+    public IMainViewModel MainViewModel { get; private set;  }
 
     /// <summary>
     /// Gets the name of control.

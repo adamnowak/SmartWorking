@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
-using SmartWorking.Office.TabsGui.Controls.Cars;
 
-namespace SmartWorking.Office.TabsGui.Shared.ViewModel
+namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
   /// <summary>
   /// Interface for view model for editing control.

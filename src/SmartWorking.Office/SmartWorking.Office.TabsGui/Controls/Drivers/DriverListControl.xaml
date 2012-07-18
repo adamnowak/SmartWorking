@@ -6,7 +6,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <DataGrid SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
             <DataGrid.Columns>
                 <!--Debug only-->
@@ -16,11 +19,12 @@
                 <DataGridTextColumn Header="Imię" Binding="{Binding Driver.Name}" />
                 <DataGridTextColumn Header="Nazwisko" Binding="{Binding Driver.Surname}" />
                 <DataGridTextColumn Header="Numer telefonu" Binding="{Binding Driver.Phone}" />
-                <DataGridTextColumn Header="Symbol samochodu" Binding="{Binding Car.InternalName}" />
                 <DataGridTextColumn Header="Nazwa samochodu" Binding="{Binding Driver.Name}" />
 
             </DataGrid.Columns>
         </DataGrid>
-        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource Self}}">
+            <CheckBox IsThreeState="False" IsChecked="{Binding ShowDeleted}" Content="strShowDeleted" />
+        </StackPanel>
     </Grid>
 </UserControl>

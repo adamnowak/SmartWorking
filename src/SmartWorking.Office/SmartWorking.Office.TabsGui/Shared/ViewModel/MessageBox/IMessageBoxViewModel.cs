@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel.MessageBox
 {

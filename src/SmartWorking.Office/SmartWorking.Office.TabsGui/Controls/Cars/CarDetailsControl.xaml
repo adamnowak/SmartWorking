@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="300">
 
-    <Grid>
+    <Grid >
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <GroupBox Header="Samochody" >
             <Grid >
                 <Grid.ColumnDefinitions>
@@ -33,15 +34,15 @@
                 <TextBlock Text="Rodzaj transportu:" Grid.Row="5" />
 
                 <!--End Debug only-->
-                <TextBox Text="{Binding Item.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                <TextBox Text="{Binding Item.Car.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
                 <!--Debug only-->
-                <TextBox Text="{Binding Item.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.RegistrationNumber}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <ComboBox ItemsSource="{Binding Source={x:Static Cars:CarTypes.Instance}, Path=Items}" SelectedValue="{Binding Item.CarType}" 
+                <TextBox Text="{Binding Item.Car.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.Car.RegistrationNumber}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                <ComboBox ItemsSource="{Binding Source={x:Static Cars:CarTypes.Instance}, Path=Items}" SelectedValue="{Binding Item.Car.CarType}" 
                           SelectedValuePath="Id" DisplayMemberPath="Description" Grid.Row="3" Grid.Column="1" IsReadOnly="True" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
-                <TextBox Text="{Binding Item.Capacity}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <ComboBox ItemsSource="{Binding Source={x:Static Cars:TransportTypes.Instance}, Path=Items}" SelectedValue="{Binding Item.TransportType}"  
+                <TextBox Text="{Binding Item.Car.Capacity}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                <ComboBox ItemsSource="{Binding Source={x:Static Cars:TransportTypes.Instance}, Path=Items}" SelectedValue="{Binding Item.Car.TransportType}"  
                           SelectedValuePath="Id" DisplayMemberPath="Description" Grid.Row="5" Grid.Column="1" IsReadOnly="True"
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
                 <GroupBox Grid.Row="6" Grid.ColumnSpan="2" Header="Kierowca">
@@ -63,7 +64,7 @@
                         <TextBlock Text="Nazwisko:" Grid.Row="3" />
                         <TextBlock Text="Telefon:" Grid.Row="4" />
 
-                        <TextBox Text="{Binding DeliveryNotePackage.Driver.Id}" Grid.Column="1" IsReadOnly="True" />
+                        <TextBox Text="{Binding Drivers.SelectedItem.Id}" Grid.Column="1" IsReadOnly="True" />
                         <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
                           DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
@@ -73,8 +74,10 @@
                     </Grid>
                 </GroupBox>
                 <TextBlock Text="strIsActive:" Grid.Row="7" />
-                <CheckBox Grid.Row="7" Grid.Column="1" IsThreeState="False" IsChecked="{Binding IsActivate, Converter={StaticResource isActiveToBoolConverter}}" IsEnabled="{Binding IsReadOnly}"/>
+                <CheckBox Grid.Row="7" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Car.IsActive, Converter={StaticResource isActiveToBoolConverter}}" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>
         </GroupBox>
+        </ScrollViewer>
     </Grid>
 </UserControl>

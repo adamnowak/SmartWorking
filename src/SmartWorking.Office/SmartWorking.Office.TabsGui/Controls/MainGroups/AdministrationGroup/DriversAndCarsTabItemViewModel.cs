@@ -3,6 +3,7 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Cars;
 using SmartWorking.Office.TabsGui.Controls.Drivers;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
 {
@@ -16,13 +17,13 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public DriversAndCarsTabItemViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(modalDialogService, serviceFactory)
+    public DriversAndCarsTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      CarDetailsViewModel = new CarDetailsViewModel(ModalDialogService, ServiceFactory);
-      CarListViewModel = new CarListViewModel(CarDetailsViewModel, ModalDialogService, ServiceFactory);
-      DriverDetailsViewModel = new DriverDetailsViewModel(ModalDialogService, ServiceFactory);
-      DriverListViewModel = new DriverListViewModel(DriverDetailsViewModel, ModalDialogService, ServiceFactory);
+      CarDetailsViewModel = new CarDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      CarListViewModel = new CarListViewModel(MainViewModel, CarDetailsViewModel, ModalDialogService, ServiceFactory);
+      DriverDetailsViewModel = new DriverDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      DriverListViewModel = new DriverListViewModel(MainViewModel, DriverDetailsViewModel, ModalDialogService, ServiceFactory);
     }
 
     /// <summary>

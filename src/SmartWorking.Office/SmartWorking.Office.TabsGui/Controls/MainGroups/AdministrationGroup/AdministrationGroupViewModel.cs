@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Cars;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
 {
@@ -16,10 +17,10 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public AdministrationGroupViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(modalDialogService, serviceFactory)
+    public AdministrationGroupViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      DriversAndCarsTabItemViewModel = new DriversAndCarsTabItemViewModel(ModalDialogService, ServiceFactory);
+      DriversAndCarsTabItemViewModel = new DriversAndCarsTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
     }
 
     /// <summary>

@@ -4,6 +4,7 @@ using System.ServiceModel;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Controls.Drivers
 {
@@ -17,45 +18,10 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public DriverDetailsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(modalDialogService, serviceFactory)
+    public DriverDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      Cars = new SelectableViewModelBase<CarPrimitive>();
     }
-
-    #region Cars
-    /// <summary>
-    /// The <see cref="Cars" /> property's name.
-    /// </summary>
-    public const string CarsPropertyName = "Cars";
-
-    private SelectableViewModelBase<CarPrimitive> _cars;
-
-    /// <summary>
-    /// Gets the Cars property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public SelectableViewModelBase<CarPrimitive> Cars
-    {
-      get
-      {
-        return _cars;
-      }
-
-      set
-      {
-        if (_cars == value)
-        {
-          return;
-        }
-        _cars = value;
-        // Update bindings, no broadcast
-        RaisePropertyChanged(CarsPropertyName);
-      }
-    }
-    #endregion //Cars
 
     /// <summary>
     /// Gets the name of editing control.
@@ -80,7 +46,6 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// <returns></returns>
     protected override bool OnSaveItem()
     {
-      Item.Car = Cars.SelectedItem;
       if (base.OnSaveItem())
       {
         using (IDriversService service = ServiceFactory.GetDriversService())
@@ -90,31 +55,6 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
         return true;
       }
       return false;
-    }
-
-    /// <summary>
-    /// Refreshes this instance.
-    /// </summary>
-    public override void Refresh()
-    {
-      base.Refresh();
-      using (ICarsService service = ServiceFactory.GetCarsService())
-      {
-        Cars.LoadItems(service.GetCars(string.Empty));
-      }
-    }
-
-    /// <summary>
-    /// Called when [item changed].
-    /// </summary>
-    /// <param name="oldItem">The old item.</param>
-    protected override void OnItemChanged(CarAndDriverPackage oldItem)
-    {
-      if (Cars != null && Cars.Items != null && Item != null && Item.Car != null)
-      {
-        Cars.SelectedItem = Cars.Items.Where(x => x.Id == Item.Car.Id).FirstOrDefault();
-        Item.Car = Cars.SelectedItem;
-      }
     }
   }
 }

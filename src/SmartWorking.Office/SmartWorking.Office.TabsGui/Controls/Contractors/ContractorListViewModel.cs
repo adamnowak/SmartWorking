@@ -8,31 +8,31 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
-namespace SmartWorking.Office.TabsGui.Controls.Cars
+namespace SmartWorking.Office.TabsGui.Controls.Contractors
 {
-  public class CarListViewModel : ListingEditableControlViewModel<CarAndDriverPackage>
+  public class ContractorListViewModel : ListingEditableControlViewModel<ContractorPrimitive>
   {
-    public CarListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<CarAndDriverPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public ContractorListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<ContractorPrimitive> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
     }
 
     public override string Name
     {
-      get { return "str_CarList"; }
+      get { return "str_ContractorList"; }
     }
 
     protected override void  OnLoadItems()
     {
-      CarAndDriverPackage selectedItem = Items.SelectedItem;
-      using (ICarsService service = ServiceFactory.GetCarsService())
+      ContractorPrimitive selectedItem = Items.SelectedItem;
+      using (IContractorsService service = ServiceFactory.GetContractorsService())
       {
-        Items.LoadItems(service.GetCarAndDriverPackageList(Filter, ShowDeactivated, ShowDeleted));
+        //Items.LoadItems(service.GetContractors(Filter, ShowDeleted));
       }
       if (selectedItem != null)
       {
-        CarAndDriverPackage selectionFromItems =
-          Items.Items.Where(x => x.Car.Id == selectedItem.Car.Id).FirstOrDefault();
+        ContractorPrimitive selectionFromItems =
+          Items.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
         if (selectionFromItems != null)
           Items.SelectedItem = selectionFromItems;
       }
@@ -43,22 +43,21 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     protected override void AddItemCommandExecute()
     {
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new CarAndDriverPackage();
-      EditingViewModel.Item.Car = new CarPrimitive();
+      EditingViewModel.Item = new ContractorPrimitive();
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      CarAndDriverPackage clone = Items.SelectedItem.GetPackageCopy();
+      ContractorPrimitive clone = Items.SelectedItem;
       if (clone != null)
       {
-        clone.Car.Id = 0;        
+        clone.Id = 0;        
       }
       else
       {
-        clone = new CarAndDriverPackage();
+        clone = new ContractorPrimitive();
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;
