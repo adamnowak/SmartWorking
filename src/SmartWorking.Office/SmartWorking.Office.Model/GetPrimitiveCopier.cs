@@ -71,6 +71,10 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.TransportType = primitiveToCopy.TransportType;
         		
+        		primitive.Driver_Id = primitiveToCopy.Driver_Id;
+        		
+        		primitive.IsActive = primitiveToCopy.IsActive;
+        		
         		return primitive;
         }
         
@@ -173,8 +177,6 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.InternalName = primitiveToCopy.InternalName;
         		
-        		primitive.Car_Id = primitiveToCopy.Car_Id;
-        		
         		primitive.Deleted = primitiveToCopy.Deleted;
         		
         		return primitive;
@@ -260,6 +262,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.ConcreteClass = primitiveToCopy.ConcreteClass;
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.IsActive = primitiveToCopy.IsActive;
         		
         		return primitive;
         }

@@ -10,7 +10,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
   /// <summary>
   /// Driver details view model implementation.
   /// </summary>
-  public class DriverDetailsViewModel : EditableControlViewModelBase<DriverAndCarPackage>
+  public class DriverDetailsViewModel : EditableControlViewModelBase<CarAndDriverPackage>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="DriverDetailsViewModel"/> class.
@@ -85,7 +85,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
       {
         using (IDriversService service = ServiceFactory.GetDriversService())
         {
-          service.UpdateDriver(Item.GetDriverPrimitiveWithReference());
+          service.UpdateDriver(Item.Driver);
         }
         return true;
       }
@@ -108,7 +108,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// Called when [item changed].
     /// </summary>
     /// <param name="oldItem">The old item.</param>
-    protected override void OnItemChanged(DriverAndCarPackage oldItem)
+    protected override void OnItemChanged(CarAndDriverPackage oldItem)
     {
       if (Cars != null && Cars.Items != null && Item != null && Item.Car != null)
       {

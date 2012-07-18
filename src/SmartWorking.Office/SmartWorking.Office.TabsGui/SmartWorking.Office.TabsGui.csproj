@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
     <Compile Include="Converters\ComparingMultiConverter.cs" />
+    <Compile Include="Converters\IsActiveToBoolConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Shared\ViewModel\TabControlViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\ITabControlViewModel.cs" />

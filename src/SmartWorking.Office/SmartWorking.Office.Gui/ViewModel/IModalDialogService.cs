@@ -259,7 +259,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    DriverAndCarPackage CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    CarAndDriverPackage CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     /// <summary>
     /// Opens dialog for editing the driver.
@@ -268,8 +268,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="selectedRecipe">The driver to edit.</param>
     /// <returns></returns>
-    DriverAndCarPackage EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                               DriverAndCarPackage selectedDriver);
+    CarAndDriverPackage EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                               CarAndDriverPackage selectedCarAndDriver);
 
     /// <summary>
     /// Opens dialog for managing the driver.
@@ -284,7 +284,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
     /// <returns></returns>
-    DriverAndCarPackage SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
+    CarAndDriverPackage SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory);
 
     #endregion
 

@@ -108,7 +108,7 @@
     <Compile Include="GetPackageCopierHelper.cs" />
     <Compile Include="OrderPackage.cs" />
     <Compile Include="MaterialAndContractorsPackage.cs" />
-    <Compile Include="DriverAndCarPackage.cs" />
+    <Compile Include="CarAndDriverPackage.cs" />
     <Compile Include="DeliveryNotePackage.cs" />
     <Compile Include="GetEntityWithReferenceHelper.cs" />
     <Compile Include="RecipePackage.cs" />

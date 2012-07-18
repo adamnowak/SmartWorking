@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
-  public class DriverAndCarPackage
+  public class CarAndDriverPackage
   {
     public DriverPrimitive Driver { get; set; }
     public CarPrimitive Car { get; set; }    

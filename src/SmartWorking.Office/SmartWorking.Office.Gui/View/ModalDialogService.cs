@@ -379,27 +379,27 @@ namespace SmartWorking.Office.Gui.View
       return null;
     }
 
-    public DriverAndCarPackage CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public CarAndDriverPackage CreateDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
-      viewModel.DriverAndCar = new DriverAndCarPackage();
+      viewModel.CarAndDriver = new CarAndDriverPackage();
       viewModel.DialogMode = DialogMode.Create;
       ModalDialogHelper<UpdateDriver>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        return viewModel.DriverAndCar;
+        return viewModel.CarAndDriver;
       }
       return null;
     }
 
-    public DriverAndCarPackage EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                      DriverAndCarPackage selectedDriver)
+    public CarAndDriverPackage EditDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                      CarAndDriverPackage selectedCarAndDriver)
     {
       var viewModel = new UpdateDriverViewModel(modalDialogService, serviceFactory);
-      viewModel.DriverAndCar = selectedDriver;
+      viewModel.CarAndDriver = selectedCarAndDriver;
       viewModel.DialogMode = DialogMode.Update;
       ModalDialogHelper<UpdateDriver>.ShowDialog(viewModel);
-      return viewModel.DriverAndCar;
+      return viewModel.CarAndDriver;
     }
 
     public void ManageDrivers(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
@@ -409,7 +409,7 @@ namespace SmartWorking.Office.Gui.View
       ModalDialogHelper<ManageDrivers>.ShowDialog(viewModel);
     }
 
-    public DriverAndCarPackage SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public CarAndDriverPackage SelectDriver(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
     {
       var viewModel = new ManageDriversViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Chose;

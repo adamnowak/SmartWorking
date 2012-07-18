@@ -4,8 +4,12 @@
     <System:Boolean x:Key="StaticTrue">True</System:Boolean>
     <System:Boolean x:Key="StaticFalse">False</System:Boolean>
 
+    
+
     <Converters:DescriptionIndexedMultiConverter x:Key="descriptionIndexedConverter" />
     <Converters:BoolToOppositeBoolConverter x:Key="boolToOppositeBoolConverter" />
+    <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
+    <Converters:IsActiveToBoolConverter x:Key="isActiveToBoolConverter" />
     
     <Style TargetType="{x:Type Button}">
         <Setter Property="Width" Value="70"/>

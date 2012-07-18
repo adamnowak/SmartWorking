@@ -41,6 +41,25 @@ namespace SmartWorking.Office.Services.Hosting.Local
 
     }
 
+    public List<CarAndDriverPackage> GetCarAndDriverPackageList(string filter)
+    {
+      try
+      {
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<Car> result =
+            (string.IsNullOrWhiteSpace(filter))
+              ? ctx.Cars.Include("Driver").ToList()
+              : ctx.Cars.Include("Driver").Where(x => x.Name.StartsWith(filter)).ToList();
+          return result.Select(x => x.GetDriverAndCarPackage()).ToList(); ;
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
     /// <summary>
     /// Updates the car.oo
     /// </summary>

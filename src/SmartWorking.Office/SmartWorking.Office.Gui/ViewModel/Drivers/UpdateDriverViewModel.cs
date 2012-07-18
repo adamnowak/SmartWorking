@@ -81,7 +81,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
       string errorCaption = "Wybranie samochodu!";
       try
       {
-        DriverAndCar.Car = ModalDialogService.SelectCar(ModalDialogService, ServiceFactory);
+        CarAndDriver.Car = ModalDialogService.SelectCar(ModalDialogService, ServiceFactory);
         RaisePropertyChanged(DriverAndCarPropertyName);
         //RaisePropertyChanged(DriverAndCarPropertyName + ".Car");
         //RaisePropertyChanged("Car");
@@ -105,14 +105,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
 
     #endregion
 
-    #region DriverAndCar
+    #region CarAndDriver
 
     /// <summary>
-    /// The <see cref="DriverAndCar" /> property's name.
+    /// The <see cref="CarAndDriver" /> property's name.
     /// </summary>
-    public const string DriverAndCarPropertyName = "DriverAndCar";
+    public const string DriverAndCarPropertyName = "CarAndDriver";
 
-    private DriverAndCarPackage _driverAndCar;
+    private CarAndDriverPackage _carAndDriver;
     
 
     /// <summary>
@@ -121,17 +121,17 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public DriverAndCarPackage DriverAndCar
+    public CarAndDriverPackage CarAndDriver
     {
-      get { return _driverAndCar; }
+      get { return _carAndDriver; }
 
       set
       {
-        if (_driverAndCar == value)
+        if (_carAndDriver == value)
         {
           return;
         }
-        _driverAndCar = value;
+        _carAndDriver = value;
 
         // Update bindings, no broadcast
         RaisePropertyChanged(DriverAndCarPropertyName);
@@ -165,7 +165,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
         {
           using (IDriversService service = ServiceFactory.GetDriversService())
           {
-            service.UpdateDriver(DriverAndCar.GetDriverPrimitiveWithReference());
+            service.UpdateDriver(CarAndDriver.Driver);
           }
         }
         CloseModalDialog();

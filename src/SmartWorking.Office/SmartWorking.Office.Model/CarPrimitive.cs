@@ -53,6 +53,16 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public virtual Nullable<int> Driver_Id
+    		{
+    			get;
+    			set;
+    		}
+    		public Nullable<int> IsActive
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }

@@ -270,11 +270,11 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       string errorCaption = "Wybranie kierowcy!";
       try
       {
-        DriverAndCarPackage driverAndCarPackage = ModalDialogService.SelectDriver(ModalDialogService, ServiceFactory);
-        DeliveryNotePackage.Driver = driverAndCarPackage.Driver;
+        CarAndDriverPackage carAndDriverPackage = ModalDialogService.SelectDriver(ModalDialogService, ServiceFactory);
+        DeliveryNotePackage.Driver = carAndDriverPackage.Driver;
         if (DeliveryNotePackage.Car == null)
         {
-          DeliveryNotePackage.Car = driverAndCarPackage.Car;
+          DeliveryNotePackage.Car = carAndDriverPackage.Car;
         }
         RaisePropertyChanged("DeliveryNotePackage");
       }

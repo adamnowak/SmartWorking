@@ -8,9 +8,9 @@ namespace SmartWorking.Office.PrimitiveEntities
 {
   public static class GetPackageCopierHelper
   {
-    public static DriverAndCarPackage GetPackageCopy(this DriverAndCarPackage packageToCopy)
+    public static CarAndDriverPackage GetPackageCopy(this CarAndDriverPackage packageToCopy)
     {
-      DriverAndCarPackage package = new DriverAndCarPackage();
+      CarAndDriverPackage package = new CarAndDriverPackage();
       package.Driver = packageToCopy.Driver.GetPrimitiveCopy();
       package.Car = packageToCopy.Car.GetPrimitiveCopy();
       return package;

@@ -39,24 +39,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    public List<DriverAndCarPackage> GetDriverAndCarPackageList(string filter)
-    {
-      try
-      {
-        using (var ctx = new SmartWorkingEntities())
-        {
-          List<Driver> result =
-            (string.IsNullOrWhiteSpace(filter))
-              ? ctx.Drivers.Include("Car").ToList()
-              : ctx.Drivers.Include("Car").Where(x => x.Name.StartsWith(filter)).ToList();
-          return result.Select(x => x.GetDriverAndCarPackage()).ToList(); ;
-        }
-      }
-      catch (Exception e)
-      {
-        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
-      }
-    }
+    
 
     /// <summary>
     /// Updates the driver.

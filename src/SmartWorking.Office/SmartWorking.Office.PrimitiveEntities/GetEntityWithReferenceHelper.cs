@@ -36,14 +36,14 @@ namespace SmartWorking.Office.PrimitiveEntities
       return result;
     }
 
-    public static DriverPrimitive GetDriverPrimitiveWithReference(this DriverAndCarPackage driverAndCarPackage)
+    public static CarPrimitive GetCarPrimitiveWithReference(this CarAndDriverPackage carAndDriverPackage)
     {
-      if (driverAndCarPackage == null || driverAndCarPackage.Driver == null)
+      if (carAndDriverPackage == null || carAndDriverPackage.Car == null)
         return null;
-      DriverPrimitive result = driverAndCarPackage.Driver;
-      if (driverAndCarPackage.Car != null)
+      CarPrimitive result = carAndDriverPackage.Car;
+      if (carAndDriverPackage.Driver != null)
       {
-        result.Car_Id = driverAndCarPackage.Car.Id;
+        result.Driver_Id = carAndDriverPackage.Driver.Id;
       }
       return result;
     }

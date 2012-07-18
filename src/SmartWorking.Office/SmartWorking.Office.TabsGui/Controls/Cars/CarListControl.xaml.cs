@@ -23,5 +23,35 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     {
       InitializeComponent();
     }
+
+    /// <summary>
+    /// The <see cref="FiltersVisibility" /> dependency property's name.
+    /// </summary>
+    public const string FiltersVisibilityPropertyName = "FiltersVisibility";
+
+    /// <summary>
+    /// Gets or sets the value of the <see cref="FiltersVisibility" />
+    /// property. This is a dependency property.
+    /// </summary>
+    public Visibility FiltersVisibility
+    {
+      get
+      {
+        return (Visibility)GetValue(FiltersVisibilityProperty);
+      }
+      set
+      {
+        SetValue(FiltersVisibilityProperty, value);
+      }
+    }
+
+    /// <summary>
+    /// Identifies the <see cref="FiltersVisibility" /> dependency property.
+    /// </summary>
+    public static readonly DependencyProperty FiltersVisibilityProperty = DependencyProperty.Register(
+        FiltersVisibilityPropertyName,
+        typeof(Visibility),
+        typeof(CarListControl),
+        new UIPropertyMetadata(Visibility.Visible));
   }
 }

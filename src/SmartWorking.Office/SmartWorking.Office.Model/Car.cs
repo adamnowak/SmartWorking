@@ -18,7 +18,50 @@ namespace SmartWorking.Office.Entities
 {
     public partial class Car : CarPrimitive
     {
+        #region Primitive Properties
+    		public override Nullable<int> Driver_Id
+    		{
+            get { return _driver_Id; }
+            set
+            {        
+                try
+                {
+                    _settingFK = true;
+                    if (_driver_Id != value)
+                    {
+                        if (Driver != null && Driver.Id != value)
+                        {
+                            Driver = null;
+                        }
+                        _driver_Id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+    		}
+    		private Nullable<int> _driver_Id;    
+    
+
+        #endregion
         #region Navigation Properties
+    
+        public Driver Driver
+        {
+            get { return _driver; }
+            set
+            {
+                if (!ReferenceEquals(_driver, value))
+                {
+                    var previousValue = _driver;
+                    _driver = value;
+                    FixupDriver(previousValue);
+                }
+            }
+        }
+        private Driver _driver;
     
         public ICollection<DeliveryNote> DeliveryNotes
         {
@@ -51,41 +94,35 @@ namespace SmartWorking.Office.Entities
             }
         }
         private ICollection<DeliveryNote> _deliveryNotes;
-    
-        public ICollection<Driver> Drivers
-        {
-            get
-            {
-                if (_drivers == null)
-                {
-                    var newCollection = new FixupCollection<Driver>();
-                    newCollection.CollectionChanged += FixupDrivers;
-                    _drivers = newCollection;
-                }
-                return _drivers;
-            }
-            set
-            {
-                if (!ReferenceEquals(_drivers, value))
-                {
-                    var previousValue = _drivers as FixupCollection<Driver>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupDrivers;
-                    }
-                    _drivers = value;
-                    var newValue = value as FixupCollection<Driver>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupDrivers;
-                    }
-                }
-            }
-        }
-        private ICollection<Driver> _drivers;
 
         #endregion
         #region Association Fixup
+    
+        private bool _settingFK = false;
+    
+        private void FixupDriver(Driver previousValue)
+        {
+            if (previousValue != null && previousValue.Cars.Contains(this))
+            {
+                previousValue.Cars.Remove(this);
+            }
+    
+            if (Driver != null)
+            {
+                if (!Driver.Cars.Contains(this))
+                {
+                    Driver.Cars.Add(this);
+                }
+                if (Driver_Id != Driver.Id)
+                {
+                    Driver_Id = Driver.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Driver_Id = null;
+            }
+        }
     
         private void FixupDeliveryNotes(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -100,28 +137,6 @@ namespace SmartWorking.Office.Entities
             if (e.OldItems != null)
             {
                 foreach (DeliveryNote item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Car, this))
-                    {
-                        item.Car = null;
-                    }
-                }
-            }
-        }
-    
-        private void FixupDrivers(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (Driver item in e.NewItems)
-                {
-                    item.Car = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Driver item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Car, this))
                     {

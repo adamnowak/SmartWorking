@@ -4,10 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"  xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters" xmlns:Drivers="clr-namespace:SmartWorking.Office.TabsGui.Controls.Drivers" mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
-        
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -29,40 +25,26 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <!--Cars-->
-                    <GroupBox Header="str_Cars" Grid.Row="0">
+                    </Grid.RowDefinitions>                    
+                    <!--Drivers-->
+                    <GroupBox Header="str_Drivers" Grid.Row="0">
                         <Grid >
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <!--CarsList-->
-                            <GroupBox Header="str_CarList" Grid.Column="0"  DataContext="{Binding CarListViewModel}" >
-                                <Grid ><!--IsEnabled="{Binding EditingViewModel.IsReadOnly}"-->
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Cars:CarListControl/>
-                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                        <Button Command="{Binding AddItemCommand}">str_Add</Button>
-                                        <Button Command="{Binding AddCloneItemCommand}">str_AddClone</Button>
-                                        <Button Command="{Binding DeleteItemCommand}">str_Delete</Button>
-                                    </StackPanel>
-                                </Grid>
-                            </GroupBox>
-                            <!--CarsDetails-->
-                            <GroupBox Header="str_CarsDetails" Grid.Column="1" DataContext="{Binding CarDetailsViewModel}">
+                            
+                            <!--DriversDetails-->
+                            <GroupBox Header="str_DriversDetails" Grid.Column="0" >
                                 <Grid >
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Cars:CarDetailsControl/>
+                                    <Drivers:DriverDetailsControl DataContext="{Binding DriverDetailsViewModel}"/>
                                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                        <Button Command="{Binding EditItemCommand}" Content="str_Edit">
+                                        <Button DataContext="{Binding DriverListViewModel}" Command="{Binding AddItemCommand}" Content="str_Add">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource comparingMultiConverter}">
                                                     <MultiBinding.Bindings>
@@ -74,7 +56,32 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding SaveItemCommand}" Content="str_Save">
+
+                                        <Button DataContext="{Binding DriverListViewModel}" Command="{Binding AddCloneItemCommand}" Content="str_AddClone">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticTrue}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button DataContext="{Binding DriverDetailsViewModel}" Command="{Binding EditItemCommand}" Content="str_Edit">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticTrue}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button DataContext="{Binding DriverDetailsViewModel}" Command="{Binding SaveItemCommand}" Content="str_Save">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource comparingMultiConverter}">
                                                     <MultiBinding.Bindings>
@@ -86,7 +93,7 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding CancelChangesCommand}" Content="str_Cancel">
+                                        <Button DataContext="{Binding DriverDetailsViewModel}" Command="{Binding CancelChangesCommand}" Content="str_Cancel">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource comparingMultiConverter}">
                                                     <MultiBinding.Bindings>
@@ -96,85 +103,141 @@
                                                         <Binding Source="{x:Static Visibility.Collapsed}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
-                                            </Button.Visibility>                                            
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button DataContext="{Binding DriverListViewModel}" Command="{Binding DeleteItemCommand}" Content="str_Delete">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticTrue}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
                                         </Button>
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>
+                            <!--DriverList-->
+                            <GroupBox Header="str_DriverList" Grid.Column="1"  DataContext="{Binding DriverListViewModel}" >
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Drivers:DriverListControl/>
+                                    
+                                </Grid>
+                            </GroupBox>
                         </Grid>
                     </GroupBox>
-                    <!--Drivers-->
-                    <GroupBox Header="str_Drivers" Grid.Row="1">
+                    <!--Cars-->
+                    <GroupBox Header="str_Cars" Grid.Row="1">
                         <Grid >
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <!--DriverList-->
-                            <GroupBox Header="str_DriverList" Grid.Column="0"  DataContext="{Binding DriverListViewModel}" >
+                            <!--CarsDetails-->
+                            <GroupBox Header="str_CarsDetails" Grid.Column="0" >
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Cars:CarDetailsControl DataContext="{Binding CarDetailsViewModel}"/>
+                                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                        <Button Command="{Binding CarListViewModel.AddItemCommand}" Content="str_Add">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticTrue}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+
+                                        <Button Command="{Binding CarListViewModel.AddCloneItemCommand}" Content="str_AddClone">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticTrue}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button Command="{Binding CarDetailsViewModel.EditItemCommand}" Content="str_Edit">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticTrue}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button Command="{Binding CarDetailsViewModel.SaveItemCommand}" Content="str_Save">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticFalse}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button Command="{Binding CarDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticFalse}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button Command="{Binding CarListViewModel.DeleteItemCommand}" Content="str_Delete">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="IsReadOnly" />
+                                                        <Binding Source="{StaticResource StaticTrue}"/>
+                                                        <Binding Source="{x:Static Visibility.Visible}" />
+                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                            <!--CarsList-->
+                            <GroupBox Header="str_CarList" Grid.Column="1"   >
                                 <Grid >
                                     <!--IsEnabled="{Binding EditingViewModel.IsReadOnly}"-->
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Drivers:DriverListControl/>
-                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                        <Button Command="{Binding AddItemCommand}">str_Add</Button>
-                                        <Button Command="{Binding AddCloneItemCommand}">str_AddClone</Button>
-                                        <Button Command="{Binding DeleteItemCommand}">str_Delete</Button>
-                                    </StackPanel>
+                                    <Cars:CarListControl DataContext="{Binding CarListViewModel}"/>
                                 </Grid>
                             </GroupBox>
-                            <!--DriversDetails-->
-                            <GroupBox Header="str_DriversDetails" Grid.Column="1" DataContext="{Binding DriverDetailsViewModel}">
-                                <Grid >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Drivers:DriverDetailsControl/>
-                                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                        <Button Command="{Binding EditItemCommand}" Content="str_Edit">
-                                            <Button.Visibility>
-                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <MultiBinding.Bindings>
-                                                        <Binding Path="IsReadOnly" />
-                                                        <Binding Source="{StaticResource StaticTrue}"/>
-                                                        <Binding Source="{x:Static Visibility.Visible}" />
-                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
-                                                    </MultiBinding.Bindings>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                        </Button>
-                                        <Button Command="{Binding SaveItemCommand}" Content="str_Save">
-                                            <Button.Visibility>
-                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <MultiBinding.Bindings>
-                                                        <Binding Path="IsReadOnly" />
-                                                        <Binding Source="{StaticResource StaticFalse}"/>
-                                                        <Binding Source="{x:Static Visibility.Visible}" />
-                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
-                                                    </MultiBinding.Bindings>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                        </Button>
-                                        <Button Command="{Binding CancelChangesCommand}" Content="str_Cancel">
-                                            <Button.Visibility>
-                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <MultiBinding.Bindings>
-                                                        <Binding Path="IsReadOnly" />
-                                                        <Binding Source="{StaticResource StaticFalse}"/>
-                                                        <Binding Source="{x:Static Visibility.Visible}" />
-                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
-                                                    </MultiBinding.Bindings>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                        </Button>
-                                    </StackPanel>
-                                </Grid>
-                            </GroupBox>
+                            
                         </Grid>
                     </GroupBox>
                 </Grid>

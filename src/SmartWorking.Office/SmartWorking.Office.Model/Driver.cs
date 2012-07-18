@@ -18,35 +18,39 @@ namespace SmartWorking.Office.Entities
 {
     public partial class Driver : DriverPrimitive
     {
-        #region Primitive Properties
-    		public override Nullable<int> Car_Id
-    		{
-            get { return _car_Id; }
-            set
-            {        
-                try
+        #region Navigation Properties
+    
+        public ICollection<Car> Cars
+        {
+            get
+            {
+                if (_cars == null)
                 {
-                    _settingFK = true;
-                    if (_car_Id != value)
+                    var newCollection = new FixupCollection<Car>();
+                    newCollection.CollectionChanged += FixupCars;
+                    _cars = newCollection;
+                }
+                return _cars;
+            }
+            set
+            {
+                if (!ReferenceEquals(_cars, value))
+                {
+                    var previousValue = _cars as FixupCollection<Car>;
+                    if (previousValue != null)
                     {
-                        if (Car != null && Car.Id != value)
-                        {
-                            Car = null;
-                        }
-                        _car_Id = value;
+                        previousValue.CollectionChanged -= FixupCars;
+                    }
+                    _cars = value;
+                    var newValue = value as FixupCollection<Car>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupCars;
                     }
                 }
-                finally
-                {
-                    _settingFK = false;
-                }
             }
-    		}
-    		private Nullable<int> _car_Id;    
-    
-
-        #endregion
-        #region Navigation Properties
+        }
+        private ICollection<Car> _cars;
     
         public ICollection<DeliveryNote> DeliveryNotes
         {
@@ -79,48 +83,29 @@ namespace SmartWorking.Office.Entities
             }
         }
         private ICollection<DeliveryNote> _deliveryNotes;
-    
-        public Car Car
-        {
-            get { return _car; }
-            set
-            {
-                if (!ReferenceEquals(_car, value))
-                {
-                    var previousValue = _car;
-                    _car = value;
-                    FixupCar(previousValue);
-                }
-            }
-        }
-        private Car _car;
 
         #endregion
         #region Association Fixup
     
-        private bool _settingFK = false;
-    
-        private void FixupCar(Car previousValue)
+        private void FixupCars(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (previousValue != null && previousValue.Drivers.Contains(this))
+            if (e.NewItems != null)
             {
-                previousValue.Drivers.Remove(this);
+                foreach (Car item in e.NewItems)
+                {
+                    item.Driver = this;
+                }
             }
     
-            if (Car != null)
+            if (e.OldItems != null)
             {
-                if (!Car.Drivers.Contains(this))
+                foreach (Car item in e.OldItems)
                 {
-                    Car.Drivers.Add(this);
+                    if (ReferenceEquals(item.Driver, this))
+                    {
+                        item.Driver = null;
+                    }
                 }
-                if (Car_Id != Car.Id)
-                {
-                    Car_Id = Car.Id;
-                }
-            }
-            else if (!_settingFK)
-            {
-                Car_Id = null;
             }
         }
     

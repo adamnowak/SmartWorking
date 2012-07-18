@@ -25,6 +25,11 @@ namespace SmartWorking.Office.Services.Interfaces
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
     List<CarPrimitive> GetCars(string filter);
 
+    [OperationContract]
+    [WebInvoke(Method = "GET", UriTemplate = "/GetCarAndDriverPackageList/?filter={filter}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    List<CarAndDriverPackage> GetCarAndDriverPackageList(string filter);
+
     /// <summary>
     /// Updates the car.
     /// </summary>

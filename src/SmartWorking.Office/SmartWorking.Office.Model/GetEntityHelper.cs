@@ -68,6 +68,10 @@ namespace SmartWorking.Office.Entities
         		
         		result.TransportType = primitive.TransportType;
         		
+        		result.Driver_Id = primitive.Driver_Id;
+        		
+        		result.IsActive = primitive.IsActive;
+        		
         		return result;
         }
         
@@ -162,8 +166,6 @@ namespace SmartWorking.Office.Entities
         		
         		result.InternalName = primitive.InternalName;
         		
-        		result.Car_Id = primitive.Car_Id;
-        		
         		result.Deleted = primitive.Deleted;
         		
         		return result;
@@ -241,6 +243,8 @@ namespace SmartWorking.Office.Entities
         		result.ConcreteClass = primitive.ConcreteClass;
         		
         		result.Deleted = primitive.Deleted;
+        		
+        		result.IsActive = primitive.IsActive;
         		
         		return result;
         }

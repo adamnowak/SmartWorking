@@ -98,20 +98,20 @@ namespace SmartWorking.Office.Entities
         #endregion
         #region Navigation Properties
     
-        public Driver Driver
+        public Order Order
         {
-            get { return _driver; }
+            get { return _order; }
             set
             {
-                if (!ReferenceEquals(_driver, value))
+                if (!ReferenceEquals(_order, value))
                 {
-                    var previousValue = _driver;
-                    _driver = value;
-                    FixupDriver(previousValue);
+                    var previousValue = _order;
+                    _order = value;
+                    FixupOrder(previousValue);
                 }
             }
         }
-        private Driver _driver;
+        private Order _order;
     
         public Car Car
         {
@@ -128,47 +128,47 @@ namespace SmartWorking.Office.Entities
         }
         private Car _car;
     
-        public Order Order
+        public Driver Driver
         {
-            get { return _order; }
+            get { return _driver; }
             set
             {
-                if (!ReferenceEquals(_order, value))
+                if (!ReferenceEquals(_driver, value))
                 {
-                    var previousValue = _order;
-                    _order = value;
-                    FixupOrder(previousValue);
+                    var previousValue = _driver;
+                    _driver = value;
+                    FixupDriver(previousValue);
                 }
             }
         }
-        private Order _order;
+        private Driver _driver;
 
         #endregion
         #region Association Fixup
     
         private bool _settingFK = false;
     
-        private void FixupDriver(Driver previousValue)
+        private void FixupOrder(Order previousValue)
         {
             if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
             {
                 previousValue.DeliveryNotes.Remove(this);
             }
     
-            if (Driver != null)
+            if (Order != null)
             {
-                if (!Driver.DeliveryNotes.Contains(this))
+                if (!Order.DeliveryNotes.Contains(this))
                 {
-                    Driver.DeliveryNotes.Add(this);
+                    Order.DeliveryNotes.Add(this);
                 }
-                if (Driver_Id != Driver.Id)
+                if (Order_Id != Order.Id)
                 {
-                    Driver_Id = Driver.Id;
+                    Order_Id = Order.Id;
                 }
             }
             else if (!_settingFK)
             {
-                Driver_Id = null;
+                Order_Id = null;
             }
         }
     
@@ -196,27 +196,27 @@ namespace SmartWorking.Office.Entities
             }
         }
     
-        private void FixupOrder(Order previousValue)
+        private void FixupDriver(Driver previousValue)
         {
             if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
             {
                 previousValue.DeliveryNotes.Remove(this);
             }
     
-            if (Order != null)
+            if (Driver != null)
             {
-                if (!Order.DeliveryNotes.Contains(this))
+                if (!Driver.DeliveryNotes.Contains(this))
                 {
-                    Order.DeliveryNotes.Add(this);
+                    Driver.DeliveryNotes.Add(this);
                 }
-                if (Order_Id != Order.Id)
+                if (Driver_Id != Driver.Id)
                 {
-                    Order_Id = Order.Id;
+                    Driver_Id = Driver.Id;
                 }
             }
             else if (!_settingFK)
             {
-                Order_Id = null;
+                Driver_Id = null;
             }
         }
 

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="350" d:DesignWidth="300">
 
     <Grid>
         <GroupBox Header="Samochody" >
@@ -13,6 +13,8 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -42,6 +44,36 @@
                 <ComboBox ItemsSource="{Binding Source={x:Static Cars:TransportTypes.Instance}, Path=Items}" SelectedValue="{Binding Item.TransportType}"  
                           SelectedValuePath="Id" DisplayMemberPath="Description" Grid.Row="5" Grid.Column="1" IsReadOnly="True"
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
+                <GroupBox Grid.Row="6" Grid.ColumnSpan="2" Header="Kierowca">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Id:" />
+                        <TextBlock Text="Symbol:" Grid.Row="1"/>
+                        <TextBlock Text="Imię:" Grid.Row="2"/>
+                        <TextBlock Text="Nazwisko:" Grid.Row="3" />
+                        <TextBlock Text="Telefon:" Grid.Row="4" />
+
+                        <TextBox Text="{Binding DeliveryNotePackage.Driver.Id}" Grid.Column="1" IsReadOnly="True" />
+                        <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
+                          DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
+                        <TextBox Text="{Binding Drivers.SelectedItem.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                        <TextBox Text="{Binding Drivers.SelectedItem.Surname}" Grid.Row="3" Grid.Column="1" IsReadOnly="True" />
+                        <TextBox Text="{Binding Drivers.SelectedItem.Phone}" Grid.Row="4" Grid.Column="1" IsReadOnly="True" />
+                    </Grid>
+                </GroupBox>
+                <TextBlock Text="strIsActive:" Grid.Row="7" />
+                <CheckBox Grid.Row="7" Grid.Column="1" IsThreeState="False" IsChecked="{Binding IsActivate, Converter={StaticResource isActiveToBoolConverter}}" IsEnabled="{Binding IsReadOnly}"/>
             </Grid>
         </GroupBox>
     </Grid>

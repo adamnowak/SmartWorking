@@ -21,6 +21,10 @@
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Buildings" EntitySet="Buildings" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cars_Drivers" Association="SmartWorkingModel.Store.FK_Cars_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
           <AssociationSet Name="FK_DeliveryNotes_Cars" Association="SmartWorkingModel.Store.FK_DeliveryNotes_Cars">
             <End Role="Cars" EntitySet="Cars" />
             <End Role="DeliveryNotes" EntitySet="DeliveryNotes" />
@@ -32,10 +36,6 @@
           <AssociationSet Name="FK_DeliveryNotes_Orders" Association="SmartWorkingModel.Store.FK_DeliveryNotes_Orders">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="DeliveryNotes" EntitySet="DeliveryNotes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Drivers_Cars" Association="SmartWorkingModel.Store.FK_Drivers_Cars">
-            <End Role="Cars" EntitySet="Cars" />
-            <End Role="Drivers" EntitySet="Drivers" />
           </AssociationSet>
           <AssociationSet Name="FK_MaterialsDeliverer_Contractors" Association="SmartWorkingModel.Store.FK_MaterialsDeliverer_Contractors">
             <End Role="Contractors" EntitySet="Contractors" />
@@ -94,6 +94,8 @@
           <Property Name="Deleted" Type="datetime" />
           <Property Name="Capacity" Type="float" />
           <Property Name="TransportType" Type="int" />
+          <Property Name="Driver_Id" Type="int" />
+          <Property Name="IsActive" Type="int" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -147,7 +149,6 @@
           <Property Name="Surname" Type="nvarchar" MaxLength="100" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" />
           <Property Name="InternalName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Car_Id" Type="int" />
           <Property Name="Deleted" Type="datetime" />
         </EntityType>
         <EntityType Name="Materials">
@@ -203,6 +204,7 @@
           <Property Name="Consistency" Type="nvarchar" MaxLength="10" />
           <Property Name="ConcreteClass" Type="nchar" MaxLength="10" />
           <Property Name="Deleted" Type="datetime" />
+          <Property Name="IsActive" Type="int" />
         </EntityType>
         <Association Name="FK_Buildings_Clients">
           <End Role="Clients" Type="SmartWorkingModel.Store.Clients" Multiplicity="0..1" />
@@ -213,6 +215,18 @@
             </Principal>
             <Dependent Role="Buildings">
               <PropertyRef Name="Client_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Drivers">
+          <End Role="Drivers" Type="SmartWorkingModel.Store.Drivers" Multiplicity="0..1" />
+          <End Role="Cars" Type="SmartWorkingModel.Store.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="Driver_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -249,18 +263,6 @@
             </Principal>
             <Dependent Role="DeliveryNotes">
               <PropertyRef Name="Order_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Drivers_Cars">
-          <End Role="Cars" Type="SmartWorkingModel.Store.Cars" Multiplicity="0..1" />
-          <End Role="Drivers" Type="SmartWorkingModel.Store.Drivers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cars">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Drivers">
-              <PropertyRef Name="Car_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -357,7 +359,6 @@
           <EntitySet Name="Clients" EntityType="SmartWorkingModel.Client" />
           <EntitySet Name="Contractors" EntityType="SmartWorkingModel.Contractor" />
           <EntitySet Name="DeliveryNotes" EntityType="SmartWorkingModel.DeliveryNote" />
-          <EntitySet Name="Drivers" EntityType="SmartWorkingModel.Driver" />
           <EntitySet Name="Materials" EntityType="SmartWorkingModel.Material" />
           <EntitySet Name="MaterialStocks" EntityType="SmartWorkingModel.MaterialStock" />
           <EntitySet Name="RecipeComponents" EntityType="SmartWorkingModel.RecipeComponent" />
@@ -374,10 +375,6 @@
             <End Role="Contractor" EntitySet="Contractors" />
             <End Role="Material" EntitySet="Materials" />
           </AssociationSet>
-          <AssociationSet Name="FK_DeliveryNotes_Drivers" Association="SmartWorkingModel.FK_DeliveryNotes_Drivers">
-            <End Role="Driver" EntitySet="Drivers" />
-            <End Role="DeliveryNote" EntitySet="DeliveryNotes" />
-          </AssociationSet>
           <AssociationSet Name="FK_MaterialStocks_Materails" Association="SmartWorkingModel.FK_MaterialStocks_Materails">
             <End Role="Material" EntitySet="Materials" />
             <End Role="MaterialStock" EntitySet="MaterialStocks" />
@@ -389,15 +386,6 @@
           <AssociationSet Name="FK_RecipeComponents_Recipes" Association="SmartWorkingModel.FK_RecipeComponents_Recipes">
             <End Role="Recipe" EntitySet="Recipes" />
             <End Role="RecipeComponent" EntitySet="RecipeComponents" />
-          </AssociationSet>
-          <EntitySet Name="Cars" EntityType="SmartWorkingModel.Car" />
-          <AssociationSet Name="FK_DeliveryNotes_Cars" Association="SmartWorkingModel.FK_DeliveryNotes_Cars">
-            <End Role="Car" EntitySet="Cars" />
-            <End Role="DeliveryNote" EntitySet="DeliveryNotes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Drivers_Cars" Association="SmartWorkingModel.FK_Drivers_Cars">
-            <End Role="Car" EntitySet="Cars" />
-            <End Role="Driver" EntitySet="Drivers" />
           </AssociationSet>
           <EntitySet Name="Orders" EntityType="SmartWorkingModel.Order" />
           <AssociationSet Name="FK_Orders_Buildings" Association="SmartWorkingModel.FK_Orders_Buildings">
@@ -411,6 +399,20 @@
           <AssociationSet Name="FK_Orders_Recipes" Association="SmartWorkingModel.FK_Orders_Recipes">
             <End Role="Recipe" EntitySet="Recipes" />
             <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <EntitySet Name="Cars" EntityType="SmartWorkingModel.Car" />
+          <EntitySet Name="Drivers" EntityType="SmartWorkingModel.Driver" />
+          <AssociationSet Name="FK_Cars_Drivers" Association="SmartWorkingModel.FK_Cars_Drivers">
+            <End Role="Driver" EntitySet="Drivers" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryNotes_Cars" Association="SmartWorkingModel.FK_DeliveryNotes_Cars">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="DeliveryNote" EntitySet="DeliveryNotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryNotes_Drivers" Association="SmartWorkingModel.FK_DeliveryNotes_Drivers">
+            <End Role="Driver" EntitySet="Drivers" />
+            <End Role="DeliveryNote" EntitySet="DeliveryNotes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Building">
@@ -476,23 +478,9 @@
           <Property Type="Int32" Name="Car_Id" />
           <Property Type="Double" Name="Amount" />
           <Property Type="Int32" Name="Order_Id" />
-          <NavigationProperty Name="Driver" Relationship="SmartWorkingModel.FK_DeliveryNotes_Drivers" FromRole="DeliveryNote" ToRole="Driver" />
-          <NavigationProperty Name="Car" Relationship="SmartWorkingModel.FK_DeliveryNotes_Cars" FromRole="DeliveryNote" ToRole="Car" />
           <NavigationProperty Name="Order" Relationship="SmartWorkingModel.FK_DeliveryNotes_Orders" FromRole="DeliveryNote" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="Driver">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" MaxLength="70" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Surname" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="InternalName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Car_Id" />
-          <Property Type="DateTime" Name="Deleted" />
-          <NavigationProperty Name="DeliveryNotes" Relationship="SmartWorkingModel.FK_DeliveryNotes_Drivers" FromRole="Driver" ToRole="DeliveryNote" />
-          <NavigationProperty Name="Car" Relationship="SmartWorkingModel.FK_Drivers_Cars" FromRole="Driver" ToRole="Car" />
+          <NavigationProperty Name="Car" Relationship="SmartWorkingModel.FK_DeliveryNotes_Cars" FromRole="DeliveryNote" ToRole="Car" />
+          <NavigationProperty Name="Driver" Relationship="SmartWorkingModel.FK_DeliveryNotes_Drivers" FromRole="DeliveryNote" ToRole="Driver" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -545,6 +533,7 @@
           <Property Type="DateTime" Name="Deleted" />
           <NavigationProperty Name="RecipeComponents" Relationship="SmartWorkingModel.FK_RecipeComponents_Recipes" FromRole="Recipe" ToRole="RecipeComponent" />
           <NavigationProperty Name="Orders" Relationship="SmartWorkingModel.FK_Orders_Recipes" FromRole="Recipe" ToRole="Order" />
+          <Property Type="Int32" Name="IsActive" />
         </EntityType>
         <Association Name="FK_Buildings_Clients">
           <End Type="SmartWorkingModel.Client" Role="Client" Multiplicity="1" />
@@ -582,18 +571,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DeliveryNotes_Drivers">
-          <End Type="SmartWorkingModel.Driver" Role="Driver" Multiplicity="0..1" />
-          <End Type="SmartWorkingModel.DeliveryNote" Role="DeliveryNote" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Driver">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DeliveryNote">
-              <PropertyRef Name="Driver_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MaterialStocks_Materails">
           <End Type="SmartWorkingModel.Material" Role="Material" Multiplicity="0..1" />
           <End Type="SmartWorkingModel.MaterialStock" Role="MaterialStock" Multiplicity="*" />
@@ -627,45 +604,6 @@
             </Principal>
             <Dependent Role="RecipeComponent">
               <PropertyRef Name="Recipe_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Car">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="RegistrationNumber" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="InternalName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="CarType" />
-          <Property Type="DateTime" Name="Deleted" />
-          <Property Type="Double" Name="Capacity" />
-          <Property Type="Int32" Name="TransportType" />
-          <NavigationProperty Name="DeliveryNotes" Relationship="SmartWorkingModel.FK_DeliveryNotes_Cars" FromRole="Car" ToRole="DeliveryNote" />
-          <NavigationProperty Name="Drivers" Relationship="SmartWorkingModel.FK_Drivers_Cars" FromRole="Car" ToRole="Driver" />
-        </EntityType>
-        <Association Name="FK_DeliveryNotes_Cars">
-          <End Type="SmartWorkingModel.Car" Role="Car" Multiplicity="0..1" />
-          <End Type="SmartWorkingModel.DeliveryNote" Role="DeliveryNote" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DeliveryNote">
-              <PropertyRef Name="Car_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Drivers_Cars">
-          <End Type="SmartWorkingModel.Car" Role="Car" Multiplicity="0..1" />
-          <End Type="SmartWorkingModel.Driver" Role="Driver" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Driver">
-              <PropertyRef Name="Car_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -716,6 +654,72 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="Recipe_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RegistrationNumber" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="InternalName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CarType" />
+          <Property Type="DateTime" Name="Deleted" />
+          <Property Type="Double" Name="Capacity" />
+          <Property Type="Int32" Name="TransportType" />
+          <Property Type="Int32" Name="Driver_Id" />
+          <Property Type="Int32" Name="IsActive" />
+          <NavigationProperty Name="Driver" Relationship="SmartWorkingModel.FK_Cars_Drivers" FromRole="Car" ToRole="Driver" />
+          <NavigationProperty Name="DeliveryNotes" Relationship="SmartWorkingModel.FK_DeliveryNotes_Cars" FromRole="Car" ToRole="DeliveryNote" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Surname" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="InternalName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Deleted" />
+          <NavigationProperty Name="Cars" Relationship="SmartWorkingModel.FK_Cars_Drivers" FromRole="Driver" ToRole="Car" />
+          <NavigationProperty Name="DeliveryNotes" Relationship="SmartWorkingModel.FK_DeliveryNotes_Drivers" FromRole="Driver" ToRole="DeliveryNote" />
+        </EntityType>
+        <Association Name="FK_Cars_Drivers">
+          <End Type="SmartWorkingModel.Driver" Role="Driver" Multiplicity="0..1" />
+          <End Type="SmartWorkingModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="Driver_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryNotes_Cars">
+          <End Type="SmartWorkingModel.Car" Role="Car" Multiplicity="0..1" />
+          <End Type="SmartWorkingModel.DeliveryNote" Role="DeliveryNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryNote">
+              <PropertyRef Name="Car_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryNotes_Drivers">
+          <End Type="SmartWorkingModel.Driver" Role="Driver" Multiplicity="0..1" />
+          <End Type="SmartWorkingModel.DeliveryNote" Role="DeliveryNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryNote">
+              <PropertyRef Name="Driver_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -788,19 +792,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Drivers">
-            <EntityTypeMapping TypeName="SmartWorkingModel.Driver">
-              <MappingFragment StoreEntitySet="Drivers">
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="Car_Id" ColumnName="Car_Id" />
-                <ScalarProperty Name="InternalName" ColumnName="InternalName" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Materials">
             <EntityTypeMapping TypeName="SmartWorkingModel.Material">
               <MappingFragment StoreEntitySet="Materials">
@@ -837,6 +828,7 @@
           <EntitySetMapping Name="Recipes">
             <EntityTypeMapping TypeName="SmartWorkingModel.Recipe">
               <MappingFragment StoreEntitySet="Recipes">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="ConcreteClass" ColumnName="ConcreteClass" />
                 <ScalarProperty Name="Consistency" ColumnName="Consistency" />
@@ -844,20 +836,6 @@
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="InternalName" ColumnName="InternalName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cars">
-            <EntityTypeMapping TypeName="SmartWorkingModel.Car">
-              <MappingFragment StoreEntitySet="Cars">
-                <ScalarProperty Name="TransportType" ColumnName="TransportType" />
-                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="CarType" ColumnName="CarType" />
-                <ScalarProperty Name="InternalName" ColumnName="InternalName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -870,6 +848,34 @@
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Building_Id" ColumnName="Building_Id" />
                 <ScalarProperty Name="Recipe_Id" ColumnName="Recipe_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="SmartWorkingModel.Car">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
+                <ScalarProperty Name="TransportType" ColumnName="TransportType" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CarType" ColumnName="CarType" />
+                <ScalarProperty Name="InternalName" ColumnName="InternalName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="SmartWorkingModel.Driver">
+              <MappingFragment StoreEntitySet="Drivers">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="InternalName" ColumnName="InternalName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -900,7 +906,6 @@
         <EntityTypeShape EntityType="SmartWorkingModel.Client" Width="1.5" PointX="7.875" PointY="7.5" Height="3.1340950520833317" />
         <EntityTypeShape EntityType="SmartWorkingModel.Contractor" Width="1.5" PointX="2.75" PointY="7.25" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="SmartWorkingModel.DeliveryNote" Width="1.5" PointX="6" PointY="3.625" Height="3.3263964843750031" />
-        <EntityTypeShape EntityType="SmartWorkingModel.Driver" Width="1.5" PointX="5.875" PointY="0.5" Height="2.7494921874999925" />
         <EntityTypeShape EntityType="SmartWorkingModel.Material" Width="1.5" PointX="0.75" PointY="3.5" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="SmartWorkingModel.MaterialStock" Width="1.5" PointX="0.75" PointY="7.375" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="SmartWorkingModel.RecipeComponent" Width="1.5" PointX="1" PointY="0.5" Height="2.3648893229166674" />
@@ -919,10 +924,6 @@
           <ConnectorPoint PointX="3.558596875" PointY="3.65625" />
           <ConnectorPoint PointX="2.25" PointY="3.65625" />
         </AssociationConnector>
-        <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Drivers" >
-          <ConnectorPoint PointX="6.6875" PointY="3.2494921874999925" />
-          <ConnectorPoint PointX="6.6875" PointY="3.625" />
-        </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_MaterialStocks_Materails" >
           <ConnectorPoint PointX="1.5" PointY="6.4417936197916674" />
           <ConnectorPoint PointX="1.5" PointY="7.375" />
@@ -932,17 +933,8 @@
           <ConnectorPoint PointX="1.625" PointY="2.8648893229166674" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_RecipeComponents_Recipes" >
-          <ConnectorPoint PointX="3.375" PointY="1.6824446614583339" />
-          <ConnectorPoint PointX="2.5" PointY="1.6824446614583339" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="SmartWorkingModel.Car" Width="1.5" PointX="8.125" PointY="0.5" Height="2.9417936197916674" />
-        <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Cars" >
-          <ConnectorPoint PointX="8.125" PointY="3.4417936197916674" />
-          <ConnectorPoint PointX="7.5" PointY="3.625" />
-        </AssociationConnector>
-        <AssociationConnector Association="SmartWorkingModel.FK_Drivers_Cars" >
-          <ConnectorPoint PointX="8.125" PointY="1.87474609375" />
-          <ConnectorPoint PointX="7.375" PointY="1.87474609375" />
+          <ConnectorPoint PointX="3.375" PointY="1.6824446614583337" />
+          <ConnectorPoint PointX="2.5" PointY="1.6824446614583337" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SmartWorkingModel.Order" Width="1.5" PointX="4" PointY="3.875" Height="2.7494921875000031" />
         <AssociationConnector Association="SmartWorkingModel.FK_Orders_Buildings" >
@@ -955,8 +947,23 @@
           <ConnectorPoint PointX="6" PointY="5.2497460937500016" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_Orders_Recipes" >
-          <ConnectorPoint PointX="4.4375" PointY="3.4417936197916661" />
+          <ConnectorPoint PointX="4.4375" PointY="3.6340950520833331" />
           <ConnectorPoint PointX="4.4375" PointY="3.875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SmartWorkingModel.Car" Width="1.5" PointX="8.75" PointY="0.5" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Driver" Width="1.5" PointX="6" PointY="0.5" Height="2.5571907552083388" />
+        <AssociationConnector Association="SmartWorkingModel.FK_Cars_Drivers" >
+          <ConnectorPoint PointX="7.5" PointY="1.7785953776041694" />
+          <ConnectorPoint PointX="8.75" PointY="1.7785953776041694" />
+        </AssociationConnector>
+        <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Cars" >
+          <ConnectorPoint PointX="9.5" PointY="3.8263964843750031" />
+          <ConnectorPoint PointX="9.5" PointY="5.3888969843750019" />
+          <ConnectorPoint PointX="7.5" PointY="5.3888969843750019" />
+        </AssociationConnector>
+        <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Drivers" >
+          <ConnectorPoint PointX="6.75" PointY="3.0571907552083388" />
+          <ConnectorPoint PointX="6.75" PointY="3.625" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>
