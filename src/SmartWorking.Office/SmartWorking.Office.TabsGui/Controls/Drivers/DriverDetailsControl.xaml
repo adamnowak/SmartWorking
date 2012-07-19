@@ -40,7 +40,7 @@
 
                     <GroupBox Header="Samochody pod opieką" Grid.Row="5" Grid.ColumnSpan="2">
                         <Grid>
-                            <Cars:CarListControl FiltersVisibility="Collapsed" />
+                            <Cars:CarListControl FiltersVisibility="Collapsed" DataContext="{Binding CarListProtectedViewModel}" />
                         </Grid>
                     </GroupBox>
 

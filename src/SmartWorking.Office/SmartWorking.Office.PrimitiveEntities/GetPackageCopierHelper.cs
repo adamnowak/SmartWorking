@@ -16,6 +16,17 @@ namespace SmartWorking.Office.PrimitiveEntities
       return package;
     }
 
+    public static DriverAndCarsPackage GetPackageCopy(this DriverAndCarsPackage packageToCopy)
+    {
+      DriverAndCarsPackage package = new DriverAndCarsPackage();
+      package.Driver = packageToCopy.Driver;
+
+      foreach (CarPrimitive carPrimitive in packageToCopy.Cars)
+      {
+        package.Cars.Add(carPrimitive.GetPrimitiveCopy());  
+      }
+      return package;
+    }
     public static MaterialAndContractorsPackage GetPackageCopy(this MaterialAndContractorsPackage packageToCopy)
     {
       MaterialAndContractorsPackage package = new MaterialAndContractorsPackage();

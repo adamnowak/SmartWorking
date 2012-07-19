@@ -5,7 +5,95 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid >
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <GroupBox Header="Materiał" Grid.Row="1" >
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--Debug only-->
+                    <TextBlock Text="Id:" Grid.Row="0" />
+                    <!--End Debug only-->
+                    <TextBlock Text="Symbol:" Grid.Row="1" />
+                    <TextBlock Text="Nazwa:" Grid.Row="2" />
+
+                    <!--End Debug only-->
+                    <TextBox Text="{Binding MaterialAndContractors.Material.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                    <!--Debug only-->
+
+                    <TextBox Text="{Binding MaterialAndContractors.Material.InternalName}" Grid.Row="1" Grid.Column="1"  />
+                    <TextBox Text="{Binding MaterialAndContractors.Material.Name}" Grid.Row="2" Grid.Column="1"  />
+
+                    <GroupBox Header="Producent" Grid.Row="3" Grid.ColumnSpan="2" >
+                        <Grid DataContext="{Binding Contractor}" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!--Debug only-->
+                            <TextBlock Text="Id:" Grid.Row="0" />
+                            <!--End Debug only-->
+                            <TextBlock Text="Symbol:" Grid.Row="1" />
+                            <TextBlock Text="Nazwa:" Grid.Row="2" />
+
+
+                            <!--End Debug only-->
+                            <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                            <!--Debug only-->
+                            <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
+                              DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
+                              IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             
+                            <TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Dostawca" Grid.Row="4" Grid.ColumnSpan="2" >
+                        <Grid DataContext="{Binding Contractor}" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!--Debug only-->
+                            <TextBlock Text="Id:" Grid.Row="0" />
+                            <!--End Debug only-->
+                            <TextBlock Text="Symbol:" Grid.Row="1" />
+                            <TextBlock Text="Nazwa:" Grid.Row="2" />
+
+
+                            <!--End Debug only-->
+                            <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                            <!--Debug only-->
+                            <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
+                              DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
+                              IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
+                            <TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </GroupBox>
+        </ScrollViewer>
     </Grid>
 </UserControl>

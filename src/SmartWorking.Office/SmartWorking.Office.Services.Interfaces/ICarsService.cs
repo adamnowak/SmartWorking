@@ -21,16 +21,16 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </returns>
     /// http://localhost:60322/CarsService.svc/json/GetCars/?filter=
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetCars/?filter={filter}&getDeactive={getDeactive}&getDeleted={getDeleted}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetCars/?filter={filter}&listFilter={listItemsFilterValue}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    List<CarPrimitive> GetCars(string filter, bool getDeactive, bool getDeleted);
+    List<CarPrimitive> GetCars(string filter, ListItemsFilterValues listItemsFilterValue);
 
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetCarAndDriverPackageList/?filter={filter}&getDeactive={getDeactive}&getDeleted={getDeleted}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetCarAndDriverPackageList/?filter={filter}&listFilter={listItemsFilterValue}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    List<CarAndDriverPackage> GetCarAndDriverPackageList(string filter, bool getDeactive, bool getDeleted);
+    List<CarAndDriverPackage> GetCarAndDriverPackageList(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
     /// Updates the car.

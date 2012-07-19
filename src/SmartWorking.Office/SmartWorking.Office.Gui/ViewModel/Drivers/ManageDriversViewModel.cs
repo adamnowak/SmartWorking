@@ -220,7 +220,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Drivers
         CarAndDriverPackage selectedItem = SelectableDriver.SelectedItem;
         using (IDriversService service = ServiceFactory.GetDriversService())
         {
-          SelectableDriver.LoadItems(service.GetDrivers(string.Empty).Select(x => new CarAndDriverPackage() { Driver = x}));
+          SelectableDriver.LoadItems(service.GetDrivers(string.Empty, ListItemsFilterValues.OnlyActive).Select(x => new CarAndDriverPackage() { Driver = x}));
         }
         if (selectedItem != null)
         {

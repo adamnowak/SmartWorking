@@ -60,7 +60,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     {
       using (IDriversService service = ServiceFactory.GetDriversService())
       {
-        Drivers.LoadItems(service.GetDrivers(string.Empty));
+        Drivers.LoadItems(service.GetDrivers(string.Empty, ListItemsFilterValues.OnlyActive));
       }
     }
 

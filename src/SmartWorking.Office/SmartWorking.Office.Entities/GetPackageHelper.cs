@@ -87,7 +87,7 @@ namespace SmartWorking.Office.Entities
       return result;
     }
 
-    public static CarAndDriverPackage GetDriverAndCarPackage(this Car car)
+    public static CarAndDriverPackage GetCarAndDriverPackage(this Car car)
     {
       CarAndDriverPackage result = new CarAndDriverPackage();
 
@@ -97,6 +97,25 @@ namespace SmartWorking.Office.Entities
         if (car.Driver != null)
         {
           result.Driver = car.Driver.GetPrimitive();
+        }
+      }
+      return result;
+    }
+
+    public static DriverAndCarsPackage GetDriverAndCarsPackage(this Driver driver)
+    {
+      DriverAndCarsPackage result = new DriverAndCarsPackage();
+
+      if (driver != null)
+      {
+        result.Driver = driver.GetPrimitive();
+        
+        if (driver.Cars != null)
+        {
+          foreach(Car car in driver.Cars)
+          {
+            result.Cars.Add(car.GetPrimitive());
+          }          
         }
       }
       return result;

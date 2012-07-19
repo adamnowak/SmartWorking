@@ -22,13 +22,17 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
+      ListItemsFilter = ListItemsFilterValues.OnlyActive;
       Items = new SelectableViewModelBase<T>();
       EditingViewModel = editingViewModel;
       Items.SelectedItemChanged +=
         (o, e) =>
         Dispatcher.CurrentDispatcher.BeginInvoke(new System.EventHandler<SelectedItemChangedEventArgs<T>>(Items_SelectedItemChanged), o, e);
-      EditingViewModel.ChangesCanceled += new System.EventHandler(EditingViewModel_ChangesCanceled);
-      EditingViewModel.ItemSaved += new System.EventHandler(EditingViewModel_ItemSaved);
+      if (EditingViewModel != null)
+      {
+        EditingViewModel.ChangesCanceled += new System.EventHandler(EditingViewModel_ChangesCanceled);
+        EditingViewModel.ItemSaved += new System.EventHandler(EditingViewModel_ItemSaved);
+      }
     }
 
     /// <summary>
@@ -47,8 +51,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     void EditingViewModel_ChangesCanceled(object sender, System.EventArgs e)
-    {      
-      EditingViewModel.Item = Items.SelectedItem;
+    {
+      if (EditingViewModel != null)
+      {
+        EditingViewModel.Item = Items.SelectedItem;
+      }
     }
 
     /// <summary>
@@ -58,9 +65,12 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <param name="e">The <see cref="SmartWorking.Office.TabsGui.Shared.ViewModel.SelectedItemChangedEventArgs&lt;T&gt;"/> instance containing the event data.</param>
     void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<T> e)
     {
-      if (EditingViewModel != null && EditingViewModel.IsReadOnly && e != null)
+      if (EditingViewModel != null)
       {
-        EditingViewModel.Item = e.NewValue;
+        if (EditingViewModel != null && EditingViewModel.IsReadOnly && e != null)
+        {
+          EditingViewModel.Item = e.NewValue;
+        }
       }
     }
 
@@ -103,64 +113,60 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         }
         _filter = value;
 
-        OnFilterChanged();
-
         // Update bindings, no broadcast
         RaisePropertyChanged(FilterPropertyName);
+
+        OnFilterChanged();
       }
     }
 
     protected virtual void OnFilterChanged()
-    {      
+    {
+      Refresh();
     }
 
     #endregion //Filter
 
-    #region ShowDeleted
+    #region ListItemsFilter
     /// <summary>
-    /// The <see cref="ShowDeleted" /> property's name.
+    /// The <see cref="ListItemsFilter" /> property's name.
     /// </summary>
-    public const string ShowDeletedPropertyName = "ShowDeleted";
+    public const string ListItemsFilterPropertyName = "ListItemsFilter";
 
-    private bool _showDeleted = false;
+    private ListItemsFilterValues _istItemsFilterType;
 
     /// <summary>
-    /// Gets the ShowDeleted property.
+    /// Gets the ListItemsFilter property.
     /// TODO Update documentation:
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public bool ShowDeleted
+    public ListItemsFilterValues ListItemsFilter
     {
       get
       {
-        return _showDeleted;
+        return _istItemsFilterType;
       }
 
       set
       {
-        if (_showDeleted == value)
+        if (_istItemsFilterType == value)
         {
           return;
         }
-        _showDeleted = value;
-
-        OnShowDeletedChanged();
-
+        _istItemsFilterType = value;
         // Update bindings, no broadcast
-        RaisePropertyChanged(ShowDeletedPropertyName);
+        RaisePropertyChanged(ListItemsFilterPropertyName);
+        OnListItemsFilterChanged();
       }
     }
 
-    protected virtual void OnShowDeletedChanged()
+    protected virtual void OnListItemsFilterChanged()
     {
-      if (EditingViewModel.EditingMode == EditingMode.Display)
-      {
-        Refresh();
-      }
+      Refresh();
     }
+    #endregion //ListItemsFilter
 
-    #endregion //ShowDeleted
 
     /// <summary>
     /// Loads the items.

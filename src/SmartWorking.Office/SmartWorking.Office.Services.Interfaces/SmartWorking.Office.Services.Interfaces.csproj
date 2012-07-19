@@ -61,6 +61,7 @@
     <Compile Include="IServiceFactory.cs" />
     <Compile Include="IContractorsService.cs" />
     <Compile Include="IMaterialsService.cs" />
+    <Compile Include="ListItemsFilterValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -231,6 +231,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </summary>
     public event EventHandler ChangesCanceled;
 
+    public void OnSelectedItemChanged(T newValue)
+    {
+      throw new NotImplementedException();
+    }
+
     protected virtual void OnItemChanged(T oldItem)
     {
       

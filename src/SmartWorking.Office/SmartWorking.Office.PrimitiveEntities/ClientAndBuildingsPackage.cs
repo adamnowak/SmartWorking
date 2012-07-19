@@ -9,10 +9,11 @@ namespace SmartWorking.Office.PrimitiveEntities
 {
   public class ClientAndBuildingsPackage
   {
-    private ICollection<BuildingPrimitive> _buildings;
+    
 
     public ClientPrimitive Client { get; set; }
-    
+
+    private ICollection<BuildingPrimitive> _buildings;
     public ICollection<BuildingPrimitive> Buildings
     {
       get

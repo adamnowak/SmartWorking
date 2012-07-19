@@ -14,7 +14,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
   /// <summary>
   /// View model for listing drivers.
   /// </summary>
-  public class DriverListViewModel : ListingEditableControlViewModel<CarAndDriverPackage>
+  public class DriverListViewModel : ListingEditableControlViewModel<DriverAndCarsPackage>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="DriverListViewModel"/> class.
@@ -22,7 +22,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// <param name="editingViewModel">The editing view model.</param>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public DriverListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<CarAndDriverPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public DriverListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<DriverAndCarsPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
     }
@@ -41,14 +41,14 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// </summary>
     protected override void  OnLoadItems()
     {
-      CarAndDriverPackage selectedItem = Items.SelectedItem;
+      DriverAndCarsPackage selectedItem = Items.SelectedItem;
       using (IDriversService service = ServiceFactory.GetDriversService())
       {
-        Items.LoadItems(service.GetDrivers(Filter).Select(x => new CarAndDriverPackage() { Driver =  x }));
+        Items.LoadItems(service.GetDriverAndCarsPackageList(Filter, ListItemsFilter));
       }
       if (selectedItem != null)
       {
-        CarAndDriverPackage selectionFromItems =
+        DriverAndCarsPackage selectionFromItems =
           Items.Items.Where(x => x.Driver.Id == selectedItem.Driver.Id).FirstOrDefault();
         if (selectionFromItems != null)
           Items.SelectedItem = selectionFromItems;
@@ -61,7 +61,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     protected override void AddItemCommandExecute()
     {
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new CarAndDriverPackage();
+      EditingViewModel.Item = new DriverAndCarsPackage() { Driver = new DriverPrimitive() };
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
@@ -71,17 +71,27 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      CarAndDriverPackage clone = Items.SelectedItem.GetPackageCopy();
+      DriverAndCarsPackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {
         clone.Driver.Id = 0;        
       }
       else
       {
-        clone = new CarAndDriverPackage();
+        clone = new DriverAndCarsPackage() { Driver = new DriverPrimitive() };
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;
+    }
+
+    protected override void DeleteItemCommandExecute()
+    {
+      base.DeleteItemCommandExecute();
+      using (IDriversService service = ServiceFactory.GetDriversService())
+      {
+        service.DeleteDriver(EditingViewModel.Item.Driver);
+      }
+      Refresh();
     }
   }
 

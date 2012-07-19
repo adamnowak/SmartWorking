@@ -20,10 +20,23 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of Drivers filtered by <paramref name="filter"/>.
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetDrivers/?filter={filter}",
-          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<DriverPrimitive> GetDrivers(string filter);
+    [WebInvoke(Method = "GET", UriTemplate = "/GetDrivers/?filter={filter}&listFilter={listItemsFilterValue}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    List<DriverPrimitive> GetDrivers(string filter, ListItemsFilterValues listItemsFilterValue);
 
+    /// <summary>
+    /// Gets the drivers filtered be <paramref name="filter"/>.
+    /// </summary>
+    /// <param name="filter">The drivers filter used to result filtering.</param>
+    /// <returns>
+    /// List of Drivers filtered by <paramref name="filter"/>.
+    /// </returns>
+    [OperationContract]
+    [WebInvoke(Method = "GET", UriTemplate = "/GetDriverAndCarsPackageList/?filter={filter}&listFilter={listItemsFilterValue}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    List<DriverAndCarsPackage> GetDriverAndCarsPackageList(string filter, ListItemsFilterValues listItemsFilterValue);
     
 
     /// <summary>

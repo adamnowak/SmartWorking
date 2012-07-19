@@ -119,19 +119,20 @@
     <Compile Include="Controls\Drivers\DriverListControl.xaml.cs">
       <DependentUpon>DriverListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainGroups\AdministrationGroup\RecipesTabItemViewModel.cs" />
     <Compile Include="Controls\MainGroups\AdministrationGroup\MaterialsAndContractorsTabItemViewModel.cs" />
     <Compile Include="Controls\MainGroups\AdministrationGroup\DriversAndCarsTabItemViewModel.cs" />
     <Compile Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupControl.xaml.cs">
       <DependentUpon>AdministrationGroupControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupViewModel.cs" />
-    <Compile Include="Controls\MainGroups\OrdersGroupControl.xaml.cs">
+    <Compile Include="Controls\MainGroups\OrdersGroup\OrdersGroupControl.xaml.cs">
       <DependentUpon>OrdersGroupControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainGroups\ReportsGroupControl.xaml.cs">
+    <Compile Include="Controls\MainGroups\ReportsGroup\ReportsGroupControl.xaml.cs">
       <DependentUpon>ReportsGroupControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainGroups\SettingsGroupControl.xaml.cs">
+    <Compile Include="Controls\MainGroups\SettingsGroup\SettingsGroupControl.xaml.cs">
       <DependentUpon>SettingsGroupControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Materials\MaterialDetailsViewModel.cs" />
@@ -142,8 +143,17 @@
     <Compile Include="Controls\Materials\MaterialListControl.xaml.cs">
       <DependentUpon>MaterialListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Recipes\RecipeDetailsControl.xaml.cs">
+      <DependentUpon>RecipeDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Recipes\RecipeDetailsViewModel.cs" />
+    <Compile Include="Controls\Recipes\RecipeListControl.xaml.cs">
+      <DependentUpon>RecipeListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Recipes\RecipeListViewModel.cs" />
     <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
     <Compile Include="Converters\ComparingMultiConverter.cs" />
+    <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\IsActiveToBoolConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\IMainViewModel.cs" />
@@ -202,15 +212,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MainGroups\OrdersGroupControl.xaml">
+    <Page Include="Controls\MainGroups\OrdersGroup\OrdersGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MainGroups\ReportsGroupControl.xaml">
+    <Page Include="Controls\MainGroups\ReportsGroup\ReportsGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MainGroups\SettingsGroupControl.xaml">
+    <Page Include="Controls\MainGroups\SettingsGroup\SettingsGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +231,14 @@
     <Page Include="Controls\Materials\MaterialListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Recipes\RecipeDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Recipes\RecipeListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="DefaultSkin.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -7,7 +7,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
         xmlns:MainGroups="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups" 
-        xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" >
+        xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:OrdersGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.OrdersGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup">
     <Window.DataContext>
         <TabsGui:MainWindowViewModel  />
     </Window.DataContext>
@@ -24,11 +24,11 @@
             </i:Interaction.Triggers>
 
             <TabItem Header="str_Orders" >
-                <MainGroups:OrdersGroupControl/>
+                <OrdersGroup:OrdersGroupControl/>
             </TabItem>
 
             <TabItem Header="str_Reports">
-                <MainGroups:ReportsGroupControl/>    
+                <ReportsGroup:ReportsGroupControl/>    
             </TabItem>
 
             <TabItem Header="str_Administration" DataContext="{Binding AdministrationGroupViewModel}">
@@ -36,13 +36,13 @@
             </TabItem>
 
             <TabItem Header="str_Settings">
-                <MainGroups:SettingsGroupControl/>
+                <SettingsGroup:SettingsGroupControl/>
             </TabItem>
         </TabControl>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition /> <!--TODO: should be removed-->
+                <ColumnDefinition Width="Auto" /> <!--TODO: should be removed-->
             </Grid.ColumnDefinitions> 
             <TextBlock Height="20" Text="{Binding StatusText}" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" Background="Yellow" >

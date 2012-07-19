@@ -21,12 +21,18 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
       DriversAndCarsTabItemViewModel = new DriversAndCarsTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
+      MaterialsAndContractorsTabItemViewModel = new MaterialsAndContractorsTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
     }
 
     /// <summary>
     /// Gets the drivers and cars tab item view model.
     /// </summary>
     public DriversAndCarsTabItemViewModel DriversAndCarsTabItemViewModel { get; private set; }
+
+    /// <summary>
+    /// Gets the materials and contractors tab item view model.
+    /// </summary>
+    public MaterialsAndContractorsTabItemViewModel MaterialsAndContractorsTabItemViewModel { get; private set; }
 
     /// <summary>
     /// Gets the name of control.

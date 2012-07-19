@@ -42,6 +42,5 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     /// </summary>
     event EventHandler ChangesCanceled;
 
-  
   }
 }

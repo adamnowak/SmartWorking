@@ -229,7 +229,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Cars
         CarPrimitive selectedItem = SelectableCar.SelectedItem;
         using (ICarsService service = ServiceFactory.GetCarsService())
         {
-          SelectableCar.LoadItems(service.GetCars(string.Empty, true, true));
+          SelectableCar.LoadItems(service.GetCars(string.Empty, ListItemsFilterValues.All));
         }
         if (selectedItem != null)
         {

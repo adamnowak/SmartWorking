@@ -13,6 +13,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
   /// </summary>
   public class DriversService : IDriversService
   {
+    
     /// <summary>
     /// Gets the drivers filtered be <paramref name="driversFilter"/>.
     /// </summary>
@@ -20,7 +21,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of Drivers filtered by <paramref name="driversFilter"/>.
     /// </returns>
-    public List<DriverPrimitive> GetDrivers(string filter)
+    public List<DriverPrimitive> GetDrivers(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
@@ -28,9 +29,13 @@ namespace SmartWorking.Office.Services.Hosting.Local
         {
           List<Driver> result =
             (string.IsNullOrWhiteSpace(filter))
-              ? ctx.Drivers.ToList()
-              : ctx.Drivers.Where(x => x.Name.StartsWith(filter)).ToList();
-          return result.Select(x => x.GetPrimitive()).ToList(); ;
+              ? (listItemsFilterValue == ListItemsFilterValues.All)
+               ? ctx.Drivers.Where(x => x.Name.StartsWith(filter)).ToList()
+                  : ctx.Drivers.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+              : (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Drivers.Where(x => x.Name.StartsWith(filter)).ToList()
+                  : ctx.Drivers.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList();            
+          return result.Select(x => x.GetPrimitive()).ToList(); 
         }
       }
       catch (Exception e)
@@ -39,7 +44,28 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    
+    public List<DriverAndCarsPackage> GetDriverAndCarsPackageList(string filter, ListItemsFilterValues listItemsFilterValue)
+    {
+      try
+      {
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<Driver> result =
+            (string.IsNullOrWhiteSpace(filter))
+              ? (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Drivers.Include("Cars").ToList()
+                  : ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue).ToList()
+              : (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Drivers.Include("Cars").Where(x => x.Name.StartsWith(filter)).ToList()
+                  : ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList();
+          return result.Select(x => x.GetDriverAndCarsPackage()).ToList();
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
 
     /// <summary>
     /// Updates the driver.
@@ -89,7 +115,20 @@ namespace SmartWorking.Office.Services.Hosting.Local
     {
       try
       {
-        throw new NotImplementedException();
+        //TODO: if is not used in any DeliveryNotes than delete.
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Driver driver = context.Drivers.Where(x => x.Id == driverPrimitive.Id).FirstOrDefault();
+          if (driver != null)
+          {
+            driver.Deleted = DateTime.Now;
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This driver does not exist in db.");
+          }
+        }
       }
       catch (Exception e)
       {

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
@@ -38,8 +39,8 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     string Filter { get; }
 
     /// <summary>
-    /// Gets the show deleted.
+    /// Gets the list items filter.
     /// </summary>
-    bool ShowDeleted { get; }
+    ListItemsFilterValues ListItemsFilter { get; }
   }
 }

@@ -10,6 +10,7 @@
     <Converters:BoolToOppositeBoolConverter x:Key="boolToOppositeBoolConverter" />
     <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
     <Converters:IsActiveToBoolConverter x:Key="isActiveToBoolConverter" />
+    <Converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
     
     <Style TargetType="{x:Type Button}">
         <Setter Property="Width" Value="70"/>
