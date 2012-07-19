@@ -27,7 +27,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
       MaterialAndContractorsPackage selectedItem = Items.SelectedItem;
       using (IMaterialsService service = ServiceFactory.GetMaterialsService())
       {
-       // Items.LoadItems(service.GetMaterialAndContractorsPackageList(Filter, ShowDeleted));
+        Items.LoadItems(service.GetMaterialAndContractorsPackageList(Filter, ListItemsFilter));
       }
       if (selectedItem != null)
       {
@@ -43,8 +43,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
     protected override void AddItemCommandExecute()
     {
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new MaterialAndContractorsPackage();
-      EditingViewModel.Item.Material= new MaterialPrimitive();
+      EditingViewModel.Item = new MaterialAndContractorsPackage() { Material = new MaterialPrimitive() };      
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
@@ -58,51 +57,21 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
       }
       else
       {
-        clone = new MaterialAndContractorsPackage();
+        clone = new MaterialAndContractorsPackage() { Material = new MaterialPrimitive() };
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    #region ShowDeactivated
-    /// <summary>
-    /// The <see cref="ShowDeactivated" /> property's name.
-    /// </summary>
-    public const string ShowDeactivatedPropertyName = "ShowDeactivated";
-
-    private bool _showDeactivated;
-
-    /// <summary>
-    /// Gets the ShowDeactivated property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public bool ShowDeactivated
+    protected override void DeleteItemCommandExecute()
     {
-      get
+      base.DeleteItemCommandExecute();
+      using (IMaterialsService service = ServiceFactory.GetMaterialsService())
       {
-        return _showDeactivated;
+        service.DeleteMaterial(EditingViewModel.Item.GetMaterialPrimitiveWithReference());
       }
-
-      set
-      {
-        if (_showDeactivated == value)
-        {
-          return;
-        }
-        _showDeactivated = value;
-        // Update bindings, no broadcast
-
-        if (EditingViewModel.EditingMode == EditingMode.Display)
-        {
-          Refresh();
-        }
-
-        RaisePropertyChanged(ShowDeactivatedPropertyName);
-      }
+      Refresh();
     }
-    #endregion //ShowDeactivated
   }
 
   

@@ -8,7 +8,7 @@
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <GroupBox Header="Dostawca" Grid.Row="1" >
-                <Grid DataContext="{Binding Contractor}">
+                <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
@@ -38,17 +38,17 @@
                     <TextBlock Text="Telefon:" Grid.Row="7" />
 
                     <!--End Debug only-->
-                    <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                    <TextBox Text="{Binding Item.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
                     <!--Debug only-->
-                    <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" />
-                    <TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" />
+                    <TextBox Text="{Binding Item.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                    <TextBox Text="{Binding Item.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
 
-                    <TextBox Text="{Binding Street}" Grid.Row="3" Grid.Column="1" />
-                    <TextBox Text="{Binding HouseNo}" Grid.Row="4" Grid.Column="1" />
-                    <TextBox Text="{Binding City}" Grid.Row="5" Grid.Column="1" />
-                    <TextBox Text="{Binding ZIPCode}" Grid.Row="6" Grid.Column="1" />
+                    <TextBox Text="{Binding Item.Street}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                    <TextBox Text="{Binding Item.HouseNo}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                    <TextBox Text="{Binding Item.City}" Grid.Row="5" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                    <TextBox Text="{Binding Item.ZIPCode}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
 
-                    <TextBox Text="{Binding Phone}" Grid.Row="7" Grid.Column="1" />
+                    <TextBox Text="{Binding Item.Phone}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 </Grid>
             </GroupBox>
         </ScrollViewer>

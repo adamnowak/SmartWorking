@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
@@ -14,8 +15,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
     public MaterialDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      Contractors = new SelectableViewModelBase<ContractorPrimitive>();
+      Deliverers = new SelectableViewModelBase<ContractorPrimitive>();
+      Producers = new SelectableViewModelBase<ContractorPrimitive>();
     }
+
+    public SelectableViewModelBase<ContractorPrimitive> Deliverers { get; private set; }
+    public SelectableViewModelBase<ContractorPrimitive> Producers { get; private set; }
 
     /// <summary>
     /// Gets the name of editing control.
@@ -34,19 +39,23 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
 
     protected override bool OnSaveItem()
     {
-      Item.Deliverer = Contractors.SelectedItem;
-      if (base.OnSaveItem())
+      if (Item != null)
       {
-        using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+        Item.Producer = Producers.SelectedItem;
+        Item.Deliverer = Deliverers.SelectedItem;
+        if (base.OnSaveItem())
         {
-          service.UpdateMaterial(Item.GetMaterialPrimitiveWithReference());
+          using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+          {
+            service.UpdateMaterial(Item.GetMaterialPrimitiveWithReference());
+          }
+          return true;
         }
-        return true;
       }
       return false;
     }
 
-    public SelectableViewModelBase<ContractorPrimitive> Contractors { get; private set; }
+    
 
     public override void Refresh()
     {
@@ -58,26 +67,47 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
     {
       using (IContractorsService service = ServiceFactory.GetContractorsService())
       {
-        Contractors.LoadItems(service.GetContractors(string.Empty));
+        List<ContractorPrimitive> contractors = service.GetContractors(string.Empty, ListItemsFilterValues.OnlyActive);
+        Producers.LoadItems(contractors);
+        Deliverers.LoadItems(contractors);
       }
     }
 
-    /// <summary>
-    /// Called when [item changed].
-    /// </summary>
-    /// <param name="oldItem">The old item.</param>
-    //protected override void OnItemChanged(MaterialAndContractorsPackage oldItem)
-    //{
-    //  if (Contractors.Items != null && Item != null && Item.Deliverer != null)
-    //  {
-    //    Contractors.SelectedItem = Contractors.Items.Where(x => x.Id == Item.Driver.Id).FirstOrDefault();
-    //    Item.Deliverer = Contractors.SelectedItem;
-    //  }
-    //  else
-    //  {
-    //    Contractors.SelectedItem = null;
-    //  }
+     //<summary>
+     //Called when [item changed].
+     //</summary>
+     //<param name="oldItem">The old item.</param>
+    protected override void OnItemChanged(MaterialAndContractorsPackage oldItem)
+    {
+      if (Item != null)
+      {
+        if (Producers.Items != null && Item.Producer != null)
+        {
+          Producers.SelectedItem = Producers.Items.Where(x => x.Id == Item.Producer.Id).FirstOrDefault();
+          Item.Producer = Producers.SelectedItem;
+        }
+        else
+        {
+          Producers.SelectedItem = null;
+        }
 
-    //}
+        if (Deliverers.Items != null && Item.Deliverer != null)
+        {
+          Deliverers.SelectedItem = Deliverers.Items.Where(x => x.Id == Item.Deliverer.Id).FirstOrDefault();
+          Item.Deliverer = Deliverers.SelectedItem;
+        }
+        else
+        {
+          Deliverers.SelectedItem = null;
+        } 
+      }
+      else
+      {
+        Producers.SelectedItem = null;
+        Deliverers.SelectedItem = null;
+      }
+      
+
+    }
   }
 }

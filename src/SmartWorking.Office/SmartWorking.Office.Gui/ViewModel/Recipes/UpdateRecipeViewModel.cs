@@ -334,7 +334,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
         MaterialAndContractorsPackage selectedItem = SelectableMaterial.SelectedItem;
         using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
         {
-          List<MaterialAndContractorsPackage> allMaterials = materialsService.GetMaterialAndContractorsPackageList(string.Empty);
+          List<MaterialAndContractorsPackage> allMaterials = materialsService.GetMaterialAndContractorsPackageList(string.Empty, ListItemsFilterValues.All);
           List<MaterialAndContractorsPackage> toDisplay = allMaterials.Except(materialsInRecipe, new MaterialAndContractorsPackageComparer()).ToList();
           SelectableMaterial.LoadItems(toDisplay);
         }

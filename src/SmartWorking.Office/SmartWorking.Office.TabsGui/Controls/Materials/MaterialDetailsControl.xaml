@@ -29,14 +29,14 @@
                     <TextBlock Text="Nazwa:" Grid.Row="2" />
 
                     <!--End Debug only-->
-                    <TextBox Text="{Binding MaterialAndContractors.Material.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                    <TextBox Text="{Binding Item.Material.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
                     <!--Debug only-->
 
-                    <TextBox Text="{Binding MaterialAndContractors.Material.InternalName}" Grid.Row="1" Grid.Column="1"  />
-                    <TextBox Text="{Binding MaterialAndContractors.Material.Name}" Grid.Row="2" Grid.Column="1"  />
+                    <TextBox Text="{Binding Item.Material.InternalName}" Grid.Row="1" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
+                    <TextBox Text="{Binding Item.Material.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
 
                     <GroupBox Header="Producent" Grid.Row="3" Grid.ColumnSpan="2" >
-                        <Grid DataContext="{Binding Contractor}" >
+                        <Grid  >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
@@ -55,17 +55,17 @@
 
 
                             <!--End Debug only-->
-                            <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                            <TextBox Text="{Binding Producers.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
                             <!--Debug only-->
-                            <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
+                            <ComboBox SelectedItem="{Binding Producers.SelectedItem}"  ItemsSource="{Binding Producers.Items}" 
                               DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
                               IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
-            
-                            <TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+
+                            <TextBox Text="{Binding Producers.SelectedItem.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Dostawca" Grid.Row="4" Grid.ColumnSpan="2" >
-                        <Grid DataContext="{Binding Contractor}" >
+                        <Grid  >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
@@ -84,12 +84,12 @@
 
 
                             <!--End Debug only-->
-                            <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                            <TextBox Text="{Binding Deliverers.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
                             <!--Debug only-->
-                            <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
+                            <ComboBox SelectedItem="{Binding Deliverers.SelectedItem}"  ItemsSource="{Binding Deliverers.Items}" 
                               DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
                               IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
-                            <TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                            <TextBox Text="{Binding Deliverers.SelectedItem.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
                         </Grid>
                     </GroupBox>
                 </Grid>

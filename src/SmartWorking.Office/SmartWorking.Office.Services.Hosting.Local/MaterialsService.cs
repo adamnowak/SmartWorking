@@ -22,17 +22,21 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of material filtered by <paramref name="materialNameFilter"/>. The result has the information about material in stock.
     /// </returns>
-    public List<MaterialPrimitive> GetMaterialList(string materialNameFilter)
+    public List<MaterialPrimitive> GetMaterialList(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
           List<Material> result =
-            (string.IsNullOrWhiteSpace(materialNameFilter))
-              ? ctx.Materials.ToList()
-              : ctx.Materials.Where(x => x.Name.StartsWith(materialNameFilter)).ToList();
-          return result.Select(x => x.GetPrimitive()).ToList(); ;
+            (string.IsNullOrWhiteSpace(filter))
+              ? (listItemsFilterValue == ListItemsFilterValues.All)
+               ? ctx.Materials.Where(x => x.Name.StartsWith(filter)).ToList()
+                  : ctx.Materials.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+              : (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Materials.Where(x => x.Name.StartsWith(filter)).ToList()
+                  : ctx.Materials.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList();     
+          return result.Select(x => x.GetPrimitive()).ToList(); 
         }
       }
       catch (Exception e)
@@ -41,7 +45,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    public List<MaterialAndContractorsPackage> GetMaterialAndContractorsPackageList(string filter)
+    public List<MaterialAndContractorsPackage> GetMaterialAndContractorsPackageList(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
@@ -49,9 +53,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
         {
           List<Material> result =
             (string.IsNullOrWhiteSpace(filter))
-              ? ctx.Materials.Include("Producer").Include("Deliverer").ToList()
-              : ctx.Materials.Include("Producer").Include("Deliverer").Where(x => x.Name.StartsWith(filter)).ToList();
-          return result.Select(x => x.GetMaterialAndContractorsPackage()).ToList(); ;
+              ? (listItemsFilterValue == ListItemsFilterValues.All)
+               ? ctx.Materials.Include("Producer").Include("Deliverer").ToList()
+                  : ctx.Materials.Include("Producer").Include("Deliverer").Where(x => !x.Deleted.HasValue).ToList()
+              : (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Materials.Include("Producer").Include("Deliverer").Where(x => x.Name.StartsWith(filter)).ToList()
+                  : ctx.Materials.Include("Producer").Include("Deliverer").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList();
+          return result.Select(x => x.GetMaterialAndContractorsPackage()).ToList(); 
+
         }
       }
       catch (Exception e)
@@ -108,7 +117,19 @@ namespace SmartWorking.Office.Services.Hosting.Local
     {
       try
       {
-        throw new NotImplementedException();
+        using (var context = new SmartWorkingEntities())
+        {
+          Material material = context.Materials.Where(x => x.Id == materialPrimitive.Id).FirstOrDefault();
+          if (material != null)
+          {
+            material.Deleted = DateTime.Now;
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This car does not exist in db.");
+          }
+        }
       }
       catch (Exception e)
       {

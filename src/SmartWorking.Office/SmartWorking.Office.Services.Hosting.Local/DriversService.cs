@@ -30,8 +30,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
           List<Driver> result =
             (string.IsNullOrWhiteSpace(filter))
               ? (listItemsFilterValue == ListItemsFilterValues.All)
-               ? ctx.Drivers.Where(x => x.Name.StartsWith(filter)).ToList()
-                  : ctx.Drivers.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+               ? ctx.Drivers.ToList()
+                  : ctx.Drivers.Where(x => !x.Deleted.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
                   ? ctx.Drivers.Where(x => x.Name.StartsWith(filter)).ToList()
                   : ctx.Drivers.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList();            

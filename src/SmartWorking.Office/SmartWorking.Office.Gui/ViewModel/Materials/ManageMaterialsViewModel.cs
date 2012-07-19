@@ -260,7 +260,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Materials
         MaterialAndContractorsPackage selectedItem = SelectableMaterial.SelectedItem;
         using (IMaterialsService materialsService = ServiceFactory.GetMaterialsService())
         {
-          SelectableMaterial.LoadItems(materialsService.GetMaterialAndContractorsPackageList(string.Empty));
+          SelectableMaterial.LoadItems(materialsService.GetMaterialAndContractorsPackageList(string.Empty, ListItemsFilterValues.All));
         }
         if (selectedItem != null && selectedItem.Material != null)
         {

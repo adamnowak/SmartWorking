@@ -29,13 +29,15 @@
                 <!--End Debug only-->
                 <DataGridTextColumn Header="Symbol" Binding="{Binding Material.InternalName}" />
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Material.Name}" />
-                <DataGridTextColumn Header="Producent" Binding="{Binding Producer.Name}" />
-                <DataGridTextColumn Header="Dostawca" Binding="{Binding Deliverer.Name}" />
+                <DataGridTextColumn Header="Producent_Id" Binding="{Binding Producer.Id}" />
+                <DataGridTextColumn Header="Producent" Binding="{Binding Producer.InternalName}" />
+                <DataGridTextColumn Header="Dostawca_Id" Binding="{Binding Deliverer.Id}" />
+                <DataGridTextColumn Header="Dostawca" Binding="{Binding Deliverer.InternalName}" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
-            <RadioButton GroupName="ListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
-            <RadioButton GroupName="ListItemsFilterGroupName" Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"/>
+            <RadioButton GroupName="MaterialListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
+            <RadioButton GroupName="MaterialListItemsFilterGroupName" Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"/>
         </StackPanel>
     </Grid>
 </UserControl>

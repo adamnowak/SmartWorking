@@ -35,7 +35,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
                       ? ctx.Cars.Where(x => !x.Deleted.HasValue).ToList()
                       : ctx.Cars.Where(x => !x.Deleted.HasValue && (!x.IsActive.HasValue || x.IsActive.Value != 0)).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Cars.Include("Driver").Where(x => x.Name.StartsWith(filter)).ToList()
+                  ? ctx.Cars.Where(x => x.Name.StartsWith(filter)).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
                       ? ctx.Cars.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
                       : ctx.Cars.Where(x => !x.Deleted.HasValue && (!x.IsActive.HasValue || x.IsActive.Value != 0) && x.Name.StartsWith(filter)).ToList();

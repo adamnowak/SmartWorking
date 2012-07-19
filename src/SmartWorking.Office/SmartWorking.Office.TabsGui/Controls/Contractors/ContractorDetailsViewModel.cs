@@ -27,7 +27,6 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
 
     protected override void EditItemCommandExecute()
     {
-      LoadContractors();
       Item = Item.GetPrimitiveCopy();
       base.EditItemCommandExecute();
     }
@@ -49,17 +48,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
 
     public override void Refresh()
     {
-      LoadContractors();
+     
       base.Refresh();
     }
 
-    private void LoadContractors()
-    {
-      using (IContractorsService service = ServiceFactory.GetContractorsService())
-      {
-        Contractors.LoadItems(service.GetContractors(string.Empty));
-      }
-    }
+  
 
     /// <summary>
     /// Called when [item changed].
@@ -67,14 +60,14 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
     /// <param name="oldItem">The old item.</param>
     //protected override void OnItemChanged(CarAndDriverPackage oldItem)
     //{
-    //  if (Contractors.Items != null && Item != null && Item.Deliverer != null)
+    //  if (Producers.Items != null && Item != null && Item.Deliverer != null)
     //  {
-    //    Contractors.SelectedItem = Contractors.Items.Where(x => x.Id == Item.Driver.Id).FirstOrDefault();
-    //    Item.Deliverer = Contractors.SelectedItem;
+    //    Producers.SelectedItem = Producers.Items.Where(x => x.Id == Item.Driver.Id).FirstOrDefault();
+    //    Item.Deliverer = Producers.SelectedItem;
     //  }
     //  else
     //  {
-    //    Contractors.SelectedItem = null;
+    //    Producers.SelectedItem = null;
     //  }
 
     //}

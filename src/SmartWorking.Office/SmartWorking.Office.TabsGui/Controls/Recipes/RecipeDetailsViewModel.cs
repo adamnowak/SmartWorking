@@ -56,7 +56,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
     {
       using (IContractorsService service = ServiceFactory.GetContractorsService())
       {
-        Contractors.LoadItems(service.GetContractors(string.Empty));
+        Contractors.LoadItems(service.GetContractors(string.Empty, ListItemsFilterValues.OnlyActive));
       }
     }
 

@@ -18,9 +18,10 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="filter">The contractor name filter.</param>
     /// <returns>List of contractors filtered by <paramref name="filter"/>. 
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetContractors/?filter={filter}",
-          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<ContractorPrimitive> GetContractors(string filter);
+    [WebInvoke(Method = "GET", UriTemplate = "/GetContractors/?filter={filter}&listFilter={listItemsFilterValue}",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    List<ContractorPrimitive> GetContractors(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
     /// Creates or updates the contractor.

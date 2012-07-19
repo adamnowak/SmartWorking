@@ -240,7 +240,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Contractors
         ContractorPrimitive selectedItem = SelectableContractor.SelectedItem;
         using (IContractorsService contractorService = ServiceFactory.GetContractorsService())
         {
-          SelectableContractor.LoadItems(contractorService.GetContractors(string.Empty));
+          SelectableContractor.LoadItems(contractorService.GetContractors(string.Empty, ListItemsFilterValues.All));
         }
         if (selectedItem != null)
         {

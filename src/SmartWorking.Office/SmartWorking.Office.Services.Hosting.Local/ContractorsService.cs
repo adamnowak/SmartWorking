@@ -22,17 +22,21 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of contractors filtered by <paramref name="contractorNameFilter"/>. Result contains Buildings of Contractors.
     /// </returns>
-    public List<ContractorPrimitive> GetContractors(string contractorNameFilter)
+    public List<ContractorPrimitive> GetContractors(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
           List<Contractor> result =
-            (string.IsNullOrWhiteSpace(contractorNameFilter))
-              ? ctx.Contractors.ToList()
-              : ctx.Contractors.Where(x => x.Name.StartsWith(contractorNameFilter)).ToList();
-          return result.Select(x => x.GetPrimitive()).ToList();
+            (string.IsNullOrWhiteSpace(filter))
+              ? (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Contractors.ToList()
+                  : ctx.Contractors.Where(x => !x.Deleted.HasValue).ToList()                     
+              : (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Contractors.Where(x => x.Name.StartsWith(filter)).ToList()
+                  : ctx.Contractors.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList();
+          return result.Select(x => x.GetPrimitive()).ToList(); ;
         }
       }
       catch (Exception e)
@@ -93,7 +97,20 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
       catch (Exception e)
       {
-        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+        //TODO: if is not used in any DeliveryNotes than delete.
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Contractor contractor = context.Contractors.Where(x => x.Id == contractorPrimitive.Id).FirstOrDefault();
+          if (contractor != null)
+          {
+            contractor.Deleted = DateTime.Now;
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This car does not exist in db.");
+          }
+        }
       }
     }
     #endregion

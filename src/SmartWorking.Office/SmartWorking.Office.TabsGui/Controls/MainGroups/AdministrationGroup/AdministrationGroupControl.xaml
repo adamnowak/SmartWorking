@@ -464,7 +464,7 @@
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Recipes:RecipeListControl DataContext="{Binding RecipeListViewModel}"/>
+                                    <Contractors:ContractorListControl DataContext="{Binding ContractorListViewModel}"/>
                                 </Grid>
                             </GroupBox>
 

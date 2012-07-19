@@ -58,47 +58,5 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;
     }
-
-    #region ShowDeactivated
-    /// <summary>
-    /// The <see cref="ShowDeactivated" /> property's name.
-    /// </summary>
-    public const string ShowDeactivatedPropertyName = "ShowDeactivated";
-
-    private bool _showDeactivated;
-
-    /// <summary>
-    /// Gets the ShowDeactivated property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public bool ShowDeactivated
-    {
-      get
-      {
-        return _showDeactivated;
-      }
-
-      set
-      {
-        if (_showDeactivated == value)
-        {
-          return;
-        }
-        _showDeactivated = value;
-        // Update bindings, no broadcast
-
-        if (EditingViewModel.EditingMode == EditingMode.Display)
-        {
-          Refresh();
-        }
-
-        RaisePropertyChanged(ShowDeactivatedPropertyName);
-      }
-    }
-    #endregion //ShowDeactivated
   }
-
-  
 }

@@ -27,7 +27,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
       ContractorPrimitive selectedItem = Items.SelectedItem;
       using (IContractorsService service = ServiceFactory.GetContractorsService())
       {
-        //Items.LoadItems(service.GetContractors(Filter, ShowDeleted));
+        Items.LoadItems(service.GetContractors(Filter, ListItemsFilter));
       }
       if (selectedItem != null)
       {
@@ -63,46 +63,15 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    #region ShowDeactivated
-    /// <summary>
-    /// The <see cref="ShowDeactivated" /> property's name.
-    /// </summary>
-    public const string ShowDeactivatedPropertyName = "ShowDeactivated";
-
-    private bool _showDeactivated;
-
-    /// <summary>
-    /// Gets the ShowDeactivated property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public bool ShowDeactivated
+    protected override void DeleteItemCommandExecute()
     {
-      get
+      base.DeleteItemCommandExecute();
+      using (IContractorsService service = ServiceFactory.GetContractorsService())
       {
-        return _showDeactivated;
+        service.DeleteContractor(EditingViewModel.Item);
       }
-
-      set
-      {
-        if (_showDeactivated == value)
-        {
-          return;
-        }
-        _showDeactivated = value;
-        // Update bindings, no broadcast
-
-        if (EditingViewModel.EditingMode == EditingMode.Display)
-        {
-          Refresh();
-        }
-
-        RaisePropertyChanged(ShowDeactivatedPropertyName);
-      }
+      Refresh();
     }
-    #endregion //ShowDeactivated
-  }
 
-  
+  }
 }
