@@ -7,7 +7,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
         xmlns:MainGroups="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups" 
-        xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:OrdersGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.OrdersGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup">
+        xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:OrdersGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.OrdersGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel">
     <Window.DataContext>
         <TabsGui:MainWindowViewModel  />
     </Window.DataContext>
@@ -46,10 +46,10 @@
             </Grid.ColumnDefinitions> 
             <TextBlock Height="20" Text="{Binding StatusText}" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" Background="Yellow" >
-                <RadioButton GroupName="Roles" Content="Admin"   />
-                <RadioButton GroupName="Roles" Content="WOS"    />
-                <RadioButton GroupName="Roles" Content="Operator" />                
-                <CheckBox Content="DebugMode" />
+                <RadioButton GroupName="Roles" Content="Admin"  IsChecked="{Binding AccessLevel, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
+                <RadioButton GroupName="Roles" Content="WOS"   IsChecked="{Binding AccessLevel, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.WOSLevel}}" />
+                <RadioButton GroupName="Roles" Content="Operator" IsChecked="{Binding AccessLevel, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.OperatorLevel}}" />
+                <CheckBox Content="DebugMode" IsChecked="{Binding IsDebugMode}" /> 
             </StackPanel>
         </Grid>
     </Grid>

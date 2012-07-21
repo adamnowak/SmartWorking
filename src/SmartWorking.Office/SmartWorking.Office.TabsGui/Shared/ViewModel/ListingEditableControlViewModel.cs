@@ -307,5 +307,44 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     protected virtual void DeleteItemCommandExecute()
     { }
     #endregion  
+
+    #region ApplyFilterCommand
+    private ICommand _applyFilterCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand ApplyFilterCommand
+    {
+      get
+      {
+        if (_applyFilterCommand == null)
+          _applyFilterCommand = new RelayCommand(ApplyFilter, CanApplyFilter);
+        return _applyFilterCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanApplyFilter()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void ApplyFilter()
+    {
+      Refresh();
+    }
+    #endregion //ApplyFilterCommand
   }
 }

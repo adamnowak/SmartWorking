@@ -8,7 +8,7 @@
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <GroupBox Header="Recepta"  >
-                <Grid DataContext="{Binding RecipePackage.Recipe}">
+                <Grid DataContext="{Binding Item.Recipe}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />

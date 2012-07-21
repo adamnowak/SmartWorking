@@ -2,7 +2,7 @@
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Contractors;
 using SmartWorking.Office.TabsGui.Controls.Materials;
-
+using SmartWorking.Office.TabsGui.Controls.Recipes;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -21,38 +21,40 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     public RecipesTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      MaterialDetailsViewModel = new MaterialDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      MaterialListViewModel = new MaterialListViewModel(MainViewModel, MaterialDetailsViewModel, ModalDialogService, ServiceFactory);
-      ContractorDetailsViewModel = new ContractorDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      ContractorListViewModel = new ContractorListViewModel(MainViewModel, ContractorDetailsViewModel, ModalDialogService, ServiceFactory);
+      RecipeDetailsViewModel = new RecipeDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogService, ServiceFactory);
+      RecipeComponentDetailsViewModel = new RecipeComponentDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      RecipeComponentListViewModel = new RecipeComponentListViewModel(MainViewModel, RecipeComponentDetailsViewModel, ModalDialogService, ServiceFactory);
     }
 
     /// <summary>
     /// Gets the car list view model.
     /// </summary>
-    public MaterialListViewModel MaterialListViewModel { get; private set; }
+    public RecipeListViewModel RecipeListViewModel { get; private set; }
 
     /// <summary>
     /// Gets the car details view model.
     /// </summary>
-    public MaterialDetailsViewModel MaterialDetailsViewModel { get; private set; }
+    public RecipeDetailsViewModel RecipeDetailsViewModel { get; private set; }
 
     /// <summary>
-    /// Gets the driver list view model.
+    /// Gets the recipe component details view model.
     /// </summary>
-    public ContractorListViewModel ContractorListViewModel { get; private set; }
+    public RecipeComponentDetailsViewModel RecipeComponentDetailsViewModel { get; private set; }
 
     /// <summary>
-    /// Gets the driver details view model.
+    /// Gets the recipe component list view model.
     /// </summary>
-    public ContractorDetailsViewModel ContractorDetailsViewModel { get; private set; }
+    public RecipeComponentListViewModel RecipeComponentListViewModel { get; private set; }
+
+
 
     /// <summary>
     /// Gets the name of editing control.
     /// </summary>
     public override string Name
     {
-      get { return "str_ProducersAndMaterialsTabItem"; }
+      get { return "str_RecipeTabItem"; }
     }
 
     /// <summary>
@@ -60,10 +62,10 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// </summary>
     public override void Refresh()
     {
-      MaterialListViewModel.Refresh();
-      MaterialDetailsViewModel.Refresh();
-      ContractorListViewModel.Refresh();
-      ContractorDetailsViewModel.Refresh();
+      RecipeListViewModel.Refresh();
+      RecipeDetailsViewModel.Refresh();
+      RecipeComponentListViewModel.Refresh();
+      RecipeComponentDetailsViewModel.Refresh();
     }
 
     public override bool IsReadOnly
@@ -71,10 +73,10 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       get
       {
         return base.IsReadOnly &&
-               MaterialListViewModel.IsReadOnly &&
-               MaterialDetailsViewModel.IsReadOnly &&
-               ContractorListViewModel.IsReadOnly &&
-               ContractorDetailsViewModel.IsReadOnly;
+               RecipeListViewModel.IsReadOnly &&
+               RecipeDetailsViewModel.IsReadOnly &&
+               RecipeComponentListViewModel.IsReadOnly &&
+               RecipeComponentDetailsViewModel.IsReadOnly;
       }
     }
   }

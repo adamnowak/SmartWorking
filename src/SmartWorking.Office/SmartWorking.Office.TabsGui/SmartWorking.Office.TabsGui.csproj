@@ -143,6 +143,14 @@
     <Compile Include="Controls\Materials\MaterialListControl.xaml.cs">
       <DependentUpon>MaterialListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Recipes\RecipeComponentDetailsControl.xaml.cs">
+      <DependentUpon>RecipeComponentDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Recipes\RecipeComponentListControl.xaml.cs">
+      <DependentUpon>RecipeComponentListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Recipes\RecipeComponentDetailsViewModel.cs" />
+    <Compile Include="Controls\Recipes\RecipeComponentListViewModel.cs" />
     <Compile Include="Controls\Recipes\RecipeDetailsControl.xaml.cs">
       <DependentUpon>RecipeDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -153,9 +161,12 @@
     <Compile Include="Controls\Recipes\RecipeListViewModel.cs" />
     <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
     <Compile Include="Converters\ComparingMultiConverter.cs" />
+    <Compile Include="Converters\EnumVisibilityConverter.cs" />
+    <Compile Include="Converters\VisibilitisANDBinaryConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\IsActiveToBoolConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Shared\ViewModel\AccessLevel.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\IMainViewModel.cs" />
     <Compile Include="Shared\ViewModel\TabControlViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\ITabControlViewModel.cs" />
@@ -173,6 +184,8 @@
     <Compile Include="Shared\ViewModel\SelectableViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\SelectedItemChangedEventArgEventArgs.cs" />
     <Compile Include="Shared\ViewModel\ControlViewModelBase.cs" />
+    <Compile Include="Shared\View\BindingProxy.cs" />
+    <Compile Include="Shared\View\ListUserControl.cs" />
     <Compile Include="Shared\View\MessageBoxHelper.cs" />
     <Compile Include="Shared\View\MessageBox\InfoVisibilityConverter.cs" />
     <Compile Include="Shared\View\MessageBox\MessageBox.xaml.cs">
@@ -231,6 +244,14 @@
     <Page Include="Controls\Materials\MaterialListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Recipes\RecipeComponentDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Recipes\RecipeComponentListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Recipes\RecipeDetailsControl.xaml">
       <Generator>MSBuild:Compile</Generator>

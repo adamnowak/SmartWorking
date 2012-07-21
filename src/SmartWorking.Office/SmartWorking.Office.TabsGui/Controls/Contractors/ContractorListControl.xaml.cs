@@ -11,13 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SmartWorking.Office.TabsGui.Shared.View;
 
 namespace SmartWorking.Office.TabsGui.Controls.Contractors
 {
   /// <summary>
   /// Interaction logic for ContractorListControl.xaml
   /// </summary>
-  public partial class ContractorListControl : UserControl
+  public partial class ContractorListControl : ListUserControl
   {
     public ContractorListControl()
     {

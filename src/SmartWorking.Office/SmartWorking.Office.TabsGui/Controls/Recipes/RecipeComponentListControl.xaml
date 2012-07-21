@@ -1,4 +1,4 @@
-﻿<View:ListUserControl x:Class="SmartWorking.Office.TabsGui.Controls.Contractors.ContractorListControl"
+﻿<View:ListUserControl x:Class="SmartWorking.Office.TabsGui.Controls.Recipes.RecipeComponentListControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -22,25 +22,17 @@
         </Grid>
 
 
-        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
+
+        <DataGrid Grid.Row="1"  SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}" >
             <DataGrid.Columns>
-                <!--Debug only-->
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
-                <!--End Debug only-->
-                <DataGridTextColumn Header="Symbol" Binding="{Binding InternalName}" />
-                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Name}" />
-
-                <DataGridTextColumn Header="Ulica" Binding="{Binding Street}" />
-                <DataGridTextColumn Header="Number domu" Binding="{Binding HouseNo}" />
-                <DataGridTextColumn Header="Misto" Binding="{Binding City}" />
-                <DataGridTextColumn Header="Kod pocztowy" Binding="{Binding ZIPCode}" />
-
-                <DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" />
+                
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
-            <RadioButton GroupName="ContractorListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
-            <RadioButton GroupName="ContractorListItemsFilterGroupName" Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}" >
+            <RadioButton GroupName="CarListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
+            <RadioButton GroupName="CarListItemsFilterGroupName" Content="strIncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
+            <RadioButton GroupName="CarListItemsFilterGroupName" Content="strAll" 
+                         IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
                          Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
         </StackPanel>
     </Grid>

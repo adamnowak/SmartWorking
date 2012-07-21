@@ -8,31 +8,50 @@ namespace SmartWorking.Office.PrimitiveEntities
 {
   public static class GetPackageCopierHelper
   {
-    public static CarAndDriverPackage GetPackageCopy(this CarAndDriverPackage packageToCopy)
+    public static CarAndDriverPackage GetPackageCopy(this CarAndDriverPackage source)
     {
       CarAndDriverPackage package = new CarAndDriverPackage();
-      package.Driver = packageToCopy.Driver.GetPrimitiveCopy();
-      package.Car = packageToCopy.Car.GetPrimitiveCopy();
+      package.Driver = source.Driver.GetPrimitiveCopy();
+      package.Car = source.Car.GetPrimitiveCopy();
       return package;
     }
 
-    public static DriverAndCarsPackage GetPackageCopy(this DriverAndCarsPackage packageToCopy)
+    public static DriverAndCarsPackage GetPackageCopy(this DriverAndCarsPackage source)
     {
       DriverAndCarsPackage package = new DriverAndCarsPackage();
-      package.Driver = packageToCopy.Driver;
+      package.Driver = source.Driver;
 
-      foreach (CarPrimitive carPrimitive in packageToCopy.Cars)
+      foreach (CarPrimitive carPrimitive in source.Cars)
       {
         package.Cars.Add(carPrimitive.GetPrimitiveCopy());  
       }
       return package;
     }
-    public static MaterialAndContractorsPackage GetPackageCopy(this MaterialAndContractorsPackage packageToCopy)
+    public static MaterialAndContractorsPackage GetPackageCopy(this MaterialAndContractorsPackage source)
     {
       MaterialAndContractorsPackage package = new MaterialAndContractorsPackage();
-      package.Material = packageToCopy.Material.GetPrimitiveCopy();
-      package.Deliverer = packageToCopy.Deliverer.GetPrimitiveCopy();
-      package.Producer = packageToCopy.Producer.GetPrimitiveCopy();
+      package.Material = source.Material.GetPrimitiveCopy();
+      package.Deliverer = source.Deliverer.GetPrimitiveCopy();
+      package.Producer = source.Producer.GetPrimitiveCopy();
+      return package;
+    }
+
+    public static RecipeComponentAndMaterialPackage GetPackageCopy(this RecipeComponentAndMaterialPackage source)
+    {
+      RecipeComponentAndMaterialPackage package = new RecipeComponentAndMaterialPackage();
+      package.RecipeComponent = source.RecipeComponent.GetPrimitiveCopy();
+      package.MaterialAndContractors = source.MaterialAndContractors.GetPackageCopy();
+      return package;
+    }
+
+    public static RecipePackage GetPackageCopy(this RecipePackage source)
+    {
+      RecipePackage package = new RecipePackage();
+      package.Recipe = source.Recipe.GetPrimitiveCopy();
+      foreach (RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage in source.RecipeComponentAndMaterialList)
+      {
+        package.RecipeComponentAndMaterialList.Add(recipeComponentAndMaterialPackage.GetPackageCopy());
+      }
       return package;
     }
   }

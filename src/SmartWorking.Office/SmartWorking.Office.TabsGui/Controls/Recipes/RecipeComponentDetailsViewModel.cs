@@ -8,12 +8,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
   /// <summary>
   /// Car details view model implementation.
   /// </summary>
-  public class RecipeDetailsViewModel : EditableControlViewModelBase<RecipePackage>
+  public class RecipeComponentDetailsViewModel : EditableControlViewModelBase<ContractorPrimitive>
   {
-    public RecipeDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public RecipeComponentDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      
+      Contractors = new SelectableViewModelBase<ContractorPrimitive>();
     }
 
     /// <summary>
@@ -26,8 +26,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
 
     protected override void EditItemCommandExecute()
     {
-     
-      Item = Item.GetPackageCopy();
+      LoadContractors();
+      Item = Item.GetPrimitiveCopy();
       base.EditItemCommandExecute();
     }
 
@@ -35,23 +35,30 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
     {
       if (base.OnSaveItem())
       {
-        //using (IContractorsService service = ServiceFactory.GetContractorsService())
-        //{
-        //  service.CreateOrUpdateContractor(Item);
-        //}
+        using (IContractorsService service = ServiceFactory.GetContractorsService())
+        {
+          service.CreateOrUpdateContractor(Item);
+        }
         return true;
       }
       return false;
     }
 
-    
+    public SelectableViewModelBase<ContractorPrimitive> Contractors { get; private set; }
 
     public override void Refresh()
     {
+      LoadContractors();
       base.Refresh();
     }
 
-
+    private void LoadContractors()
+    {
+      using (IContractorsService service = ServiceFactory.GetContractorsService())
+      {
+        Contractors.LoadItems(service.GetContractors(string.Empty, ListItemsFilterValues.OnlyActive));
+      }
+    }
 
     /// <summary>
     /// Called when [item changed].

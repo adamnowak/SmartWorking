@@ -11,6 +11,8 @@
     <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
     <Converters:IsActiveToBoolConverter x:Key="isActiveToBoolConverter" />
     <Converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
+    <Converters:VisibilitisANDBinaryConverter x:Key="visibilitisANDBinaryConverter" />
+    <Converters:EnumVisibilityConverter x:Key="enumVisibilityConverter" />
     
     <Style TargetType="{x:Type Button}">
         <Setter Property="Width" Value="70"/>

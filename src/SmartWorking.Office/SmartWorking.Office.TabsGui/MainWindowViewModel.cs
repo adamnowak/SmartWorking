@@ -51,7 +51,79 @@ namespace SmartWorking.Office.TabsGui
       : base(null, modalDialogService, serviceFactory)
     {
       AdministrationGroupViewModel = new AdministrationGroupViewModel(this, ModalDialogService, ServiceFactory);
+      AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
     }
+    
+
+    #region AccessLevel
+    /// <summary>
+    /// The <see cref="AccessLevel" /> property's name.
+    /// </summary>
+    public const string AccessLevelPropertyName = "AccessLevel";
+
+    private AccessLevel _accessLevel;
+
+    /// <summary>
+    /// Gets the AccessLevel property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public AccessLevel AccessLevel
+    {
+        get
+        {
+            return _accessLevel;
+        }
+
+        set
+        {
+            if (_accessLevel == value)
+            {
+                return;
+            }
+            _accessLevel = value;
+            // Update bindings, no broadcast
+            RaisePropertyChanged(AccessLevelPropertyName);
+        }
+    }
+    #endregion //AccessLevel
+
+    #region IsDebugMode
+    /// <summary>
+    /// The <see cref="IsDebugMode" /> property's name.
+    /// </summary>
+    public const string IsDebugModePropertyName = "IsDebugMode";
+
+    private bool _isDebugMode = true;
+
+    /// <summary>
+    /// Gets the IsDebugMode property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public bool IsDebugMode
+    {
+      get
+      {
+        return _isDebugMode;
+      }
+
+      set
+      {
+        if (_isDebugMode == value)
+        {
+          return;
+        }
+        _isDebugMode = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(IsDebugModePropertyName);
+      }
+    }
+    #endregion //IsDebugMode
+
+
 
     public AdministrationGroupViewModel AdministrationGroupViewModel { get; private set; }
 
@@ -65,6 +137,7 @@ namespace SmartWorking.Office.TabsGui
       get { return "str_SmartWorking.Office"; }
     }
 
-   
+
+
   }
 }

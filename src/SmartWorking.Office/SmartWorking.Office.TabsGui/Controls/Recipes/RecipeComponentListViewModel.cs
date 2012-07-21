@@ -6,9 +6,9 @@ using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Controls.Recipes
 {
-  public class RecipeListViewModel : ListingEditableControlViewModel<RecipePackage>
+  public class RecipeComponentListViewModel : ListingEditableControlViewModel<ContractorPrimitive>
   {
-    public RecipeListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<RecipePackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public RecipeComponentListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<ContractorPrimitive> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
     }
@@ -20,15 +20,15 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
 
     protected override void  OnLoadItems()
     {
-      RecipePackage selectedItem = Items.SelectedItem;
-      using (IRecipesService service = ServiceFactory.GetRecipesService())
+      ContractorPrimitive selectedItem = Items.SelectedItem;
+      using (IContractorsService service = ServiceFactory.GetContractorsService())
       {
-        Items.LoadItems(service.GetRecipePackageList(Filter));
+        //Items.LoadItems(service.GetContractors(Filter, ShowDeleted));
       }
       if (selectedItem != null)
       {
-        RecipePackage selectionFromItems =
-          Items.Items.Where(x => x.Recipe.Id == selectedItem.Recipe.Id).FirstOrDefault();
+        ContractorPrimitive selectionFromItems =
+          Items.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
         if (selectionFromItems != null)
           Items.SelectedItem = selectionFromItems;
       }
@@ -39,21 +39,21 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
     protected override void AddItemCommandExecute()
     {
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new RecipePackage();
+      EditingViewModel.Item = new ContractorPrimitive();
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      RecipePackage clone = Items.SelectedItem;
+      ContractorPrimitive clone = Items.SelectedItem;
       if (clone != null)
       {
-        clone.Recipe.Id = 0;        
+        clone.Id = 0;        
       }
       else
       {
-        clone = new RecipePackage();
+        clone = new ContractorPrimitive();
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;

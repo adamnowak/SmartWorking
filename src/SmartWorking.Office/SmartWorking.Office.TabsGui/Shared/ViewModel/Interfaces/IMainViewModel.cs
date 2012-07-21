@@ -7,5 +7,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
   public interface IMainViewModel : ITabControlViewModel
   {
+    AccessLevel AccessLevel { get;  }
+    bool IsDebugMode { get; }
   }
 }
