@@ -584,7 +584,7 @@
                                 </Grid>
                             </GroupBox>
                             <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                <GroupBox Header="str_RecipeCompnents" Grid.Column="1"  DataContext="{Binding RecipeListViewModel}" >
+                                <GroupBox Header="str_RecipeCompnents" Grid.Column="1"   >
                                     <Grid >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition />
@@ -592,13 +592,18 @@
                                             <ColumnDefinition />
                                             <ColumnDefinition />                                            
                                         </Grid.ColumnDefinitions>
-                                        <Materials:MaterialListControl />
+                                        <GroupBox Header="str_AllMaterials">
+                                            <Materials:MaterialListControl DataContext="{Binding RecipeDetailsViewModel.MaterialListToAddViewModel}" />
+                                        </GroupBox>
                                         <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
                                             <Button Content=">>"  />
                                             <Button Content="&lt;&lt;"  />
                                         </StackPanel>
-                                        <Recipes:RecipeComponentListControl Grid.Column="2"/>
-                                        <Recipes:RecipeComponentDetailsControl Grid.Column="3"/>
+
+                                        <GroupBox Header="str_MaterialsInRecipe" Grid.Column="2">
+                                            <Recipes:RecipeComponentListControl  FiltersVisibility="Collapsed"  DataContext="{Binding RecipeDetailsViewModel.RecipeComponentListViewModel}"/>
+                                        </GroupBox>
+                                        <Recipes:RecipeComponentDetailsControl Grid.Column="3" DataContext="{Binding RecipeDetailsViewModel.RecipeComponentDetailsViewModel}"/>
 
                                     </Grid>
                                 </GroupBox>

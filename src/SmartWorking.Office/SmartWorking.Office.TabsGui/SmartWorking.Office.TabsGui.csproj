@@ -103,6 +103,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\Cars\CarDetailsViewModel.cs" />
+    <Compile Include="Controls\Clients\BuildingDetailsControl.xaml.cs">
+      <DependentUpon>BuildingDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Clients\BuildingDetailsViewModel.cs" />
+    <Compile Include="Controls\Clients\BuildingListControl.xaml.cs">
+      <DependentUpon>BuildingListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Clients\BuildingListViewModel.cs" />
+    <Compile Include="Controls\Clients\ClientDetailsControl.xaml.cs">
+      <DependentUpon>ClientDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Clients\ClientDetailsViewModel.cs" />
+    <Compile Include="Controls\Clients\ClientListControl.xaml.cs">
+      <DependentUpon>ClientListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Clients\ClientListViewModel.cs" />
     <Compile Include="Controls\Contractors\ContractorDetailsControl.xaml.cs">
       <DependentUpon>ContractorDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -204,6 +220,22 @@
     <Page Include="Controls\Cars\CarListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Clients\BuildingDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Clients\BuildingListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Clients\ClientDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Clients\ClientListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Contractors\ContractorDetailsControl.xaml">
       <SubType>Designer</SubType>

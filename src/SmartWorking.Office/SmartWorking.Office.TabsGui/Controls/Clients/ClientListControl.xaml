@@ -1,0 +1,41 @@
+﻿<View:ListUserControl x:Class="SmartWorking.Office.TabsGui.Controls.Clients.ClientListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Interfaces="clr-namespace:SmartWorking.Office.Services.Interfaces;assembly=SmartWorking.Office.Services.Interfaces" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="strFilter:"/>
+            <TextBox Grid.Column="1" Text="{Binding Filter}" />
+            <Button Grid.Column="2" Content="strApply" Command="{Binding ApplyFilterCommand}" />
+        </Grid>
+
+
+        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
+            <DataGrid.Columns>
+                <!--Debug only-->
+                <DataGridTextColumn Header="Id" Binding="{Binding Recipe.Id}" />
+                <!--End Debug only-->
+                <DataGridTextColumn Header="Numer recepty" Binding="{Binding Recipe.InternalName}" />
+                <DataGridTextColumn Header="Kod recepty" Binding="{Binding Recipe.Name}" />
+                <DataGridTextColumn Header="Klasa betonu" Binding="{Binding Recipe.ConcreteClass}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
+            <RadioButton GroupName="ListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
+            <RadioButton GroupName="ListItemsFilterGroupName" Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
+                        Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />                
+        </StackPanel>
+    </Grid>
+</View:ListUserControl>
