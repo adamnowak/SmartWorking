@@ -7,7 +7,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
         xmlns:MainGroups="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups" 
-        xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:OrdersGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.OrdersGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel">
+        xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:SaleGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup">
     <Window.DataContext>
         <TabsGui:MainWindowViewModel  />
     </Window.DataContext>
@@ -23,15 +23,15 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
 
-            <TabItem Header="str_Orders" >
-                <OrdersGroup:OrdersGroupControl/>
+            <TabItem Header="{Binding Name}" DataContext="{Binding SaleGroupViewModel}" >
+                <SaleGroup:SaleGroupControl/>
             </TabItem>
 
             <TabItem Header="str_Reports">
                 <ReportsGroup:ReportsGroupControl/>    
             </TabItem>
 
-            <TabItem Header="str_Administration" DataContext="{Binding AdministrationGroupViewModel}">
+            <TabItem Header="{Binding Name}" DataContext="{Binding AdministrationGroupViewModel}">
                 <AdministrationGroup:AdministrationGroupControl /> 
             </TabItem>
 

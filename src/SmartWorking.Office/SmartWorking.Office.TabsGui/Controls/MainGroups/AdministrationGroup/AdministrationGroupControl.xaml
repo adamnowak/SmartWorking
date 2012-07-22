@@ -584,28 +584,34 @@
                                 </Grid>
                             </GroupBox>
                             <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                <GroupBox Header="str_RecipeCompnents" Grid.Column="1"   >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <GroupBox Header="str_RecipeCompnents"    >
                                     <Grid >
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition />
                                             <ColumnDefinition />                                            
+                                            <ColumnDefinition />
+                                                                        
                                         </Grid.ColumnDefinitions>
-                                        <GroupBox Header="str_AllMaterials">
-                                            <Materials:MaterialListControl DataContext="{Binding RecipeDetailsViewModel.MaterialListToAddViewModel}" />
-                                        </GroupBox>
-                                        <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
-                                            <Button Content=">>"  />
-                                            <Button Content="&lt;&lt;"  />
-                                        </StackPanel>
+                                        <Recipes:RecipeComponentDetailsControl  DataContext="{Binding RecipeDetailsViewModel.RecipeComponentDetailsViewModel}"/>
+                                        
 
                                         <GroupBox Header="str_MaterialsInRecipe" Grid.Column="2">
                                             <Recipes:RecipeComponentListControl  FiltersVisibility="Collapsed"  DataContext="{Binding RecipeDetailsViewModel.RecipeComponentListViewModel}"/>
                                         </GroupBox>
-                                        <Recipes:RecipeComponentDetailsControl Grid.Column="3" DataContext="{Binding RecipeDetailsViewModel.RecipeComponentDetailsViewModel}"/>
+                                        
 
                                     </Grid>
+                                </GroupBox>
+                                <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
+                                    <Button Content=">>"  />
+                                    <Button Content="&lt;&lt;"  />
+                                </StackPanel>
+                                <GroupBox Header="str_AllMaterials" Grid.Column="2">
+                                    <Materials:MaterialListControl DataContext="{Binding RecipeDetailsViewModel.MaterialListToAddViewModel}" />
                                 </GroupBox>
                             </Grid>
                         </Grid>

@@ -142,9 +142,13 @@
       <DependentUpon>AdministrationGroupControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupViewModel.cs" />
-    <Compile Include="Controls\MainGroups\OrdersGroup\OrdersGroupControl.xaml.cs">
-      <DependentUpon>OrdersGroupControl.xaml</DependentUpon>
+    <Compile Include="Controls\MainGroups\SaleGroup\SaleGroupViewModel.cs" />
+    <Compile Include="Controls\MainGroups\SaleGroup\OrdersTabItemViewModel.cs" />
+    <Compile Include="Controls\MainGroups\SaleGroup\DeliveryNotesTabItemViewModel.cs" />
+    <Compile Include="Controls\MainGroups\SaleGroup\SaleGroupControl.xaml.cs">
+      <DependentUpon>SaleGroupControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainGroups\SaleGroup\ClientsAndBuildingsTabItemViewModel.cs" />
     <Compile Include="Controls\MainGroups\ReportsGroup\ReportsGroupControl.xaml.cs">
       <DependentUpon>ReportsGroupControl.xaml</DependentUpon>
     </Compile>
@@ -257,7 +261,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MainGroups\OrdersGroup\OrdersGroupControl.xaml">
+    <Page Include="Controls\MainGroups\SaleGroup\SaleGroupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

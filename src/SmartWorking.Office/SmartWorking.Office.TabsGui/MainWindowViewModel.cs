@@ -16,6 +16,7 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Cars;
 using SmartWorking.Office.TabsGui.Controls.MainGroups;
 using SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup;
+using SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup;
 using SmartWorking.Office.TabsGui.Shared.View;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
@@ -50,6 +51,7 @@ namespace SmartWorking.Office.TabsGui
     public MainWindowViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(null, modalDialogService, serviceFactory)
     {
+      SaleGroupViewModel = new SaleGroupViewModel(this, ModalDialogService, ServiceFactory);
       AdministrationGroupViewModel = new AdministrationGroupViewModel(this, ModalDialogService, ServiceFactory);
       AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
     }
@@ -123,12 +125,10 @@ namespace SmartWorking.Office.TabsGui
     }
     #endregion //IsDebugMode
 
-
+    public SaleGroupViewModel SaleGroupViewModel { get; private set; }
 
     public AdministrationGroupViewModel AdministrationGroupViewModel { get; private set; }
-
     
-
     /// <summary>
     /// Gets the name of control.
     /// </summary>
