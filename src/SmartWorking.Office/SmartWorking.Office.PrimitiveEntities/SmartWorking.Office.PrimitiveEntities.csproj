@@ -55,6 +55,10 @@
       <Link>CarPrimitive.cs</Link>
       <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\ClientBuildingPrimitive.cs">
+      <Link>ClientBuildingPrimitive.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\SmartWorking.Office.Model\ClientPrimitive.cs">
       <Link>ClientPrimitive.cs</Link>
       <DependentUpon>SmartWorkingOfficeModelPrimitive.tt</DependentUpon>
@@ -104,7 +108,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="ClientAndBuildingsPackage.cs" />
-    <Compile Include="BuildingAndClientPackage.cs" />
+    <Compile Include="ClientBuildingPackage.cs" />
     <Compile Include="DriverAndCarsPackage.cs" />
     <Compile Include="GetPackageCopierHelper.cs" />
     <Compile Include="OrderPackage.cs" />

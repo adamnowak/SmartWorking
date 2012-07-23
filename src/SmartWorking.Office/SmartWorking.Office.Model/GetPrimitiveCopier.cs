@@ -26,8 +26,6 @@ namespace SmartWorking.Office.PrimitiveEntities
         
         		primitive.Id = primitiveToCopy.Id;
         		
-        		primitive.Client_Id = primitiveToCopy.Client_Id;
-        		
         		primitive.InternalName = primitiveToCopy.InternalName;
         		
         		primitive.ZIPCode = primitiveToCopy.ZIPCode;
@@ -107,6 +105,21 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Deleted = primitiveToCopy.Deleted;
         		
         		primitive.IsActive = primitiveToCopy.IsActive;
+        		
+        		return primitive;
+        }
+        
+        public static ClientBuildingPrimitive GetPrimitiveCopy(this ClientBuildingPrimitive primitiveToCopy)
+        {
+        		if (primitiveToCopy == null) return null;
+        
+        		ClientBuildingPrimitive primitive = new ClientBuildingPrimitive(); 
+        
+        		primitive.Id = primitiveToCopy.Id;
+        		
+        		primitive.Client_Id = primitiveToCopy.Client_Id;
+        		
+        		primitive.Building_Id = primitiveToCopy.Building_Id;
         		
         		return primitive;
         }
@@ -234,7 +247,7 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Recipe_Id = primitiveToCopy.Recipe_Id;
         		
-        		primitive.Building_Id = primitiveToCopy.Building_Id;
+        		primitive.ClientBuilding_Id = primitiveToCopy.ClientBuilding_Id;
         		
         		primitive.Amount = primitiveToCopy.Amount;
         		

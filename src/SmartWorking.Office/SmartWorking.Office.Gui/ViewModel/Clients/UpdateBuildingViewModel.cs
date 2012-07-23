@@ -93,7 +93,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     /// </summary>
     public const string BuildingAndClientPropertyName = "BuildingAndClient";
 
-    private BuildingAndClientPackage _buildingAndClient;
+    private ClientBuildingPackage _buildingAndClient;
 
     /// <summary>
     /// Gets the Building property.
@@ -101,7 +101,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public BuildingAndClientPackage BuildingAndClient
+    public ClientBuildingPackage BuildingAndClient
     {
       get { return _buildingAndClient; }
 
@@ -150,7 +150,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
               throw new Exception("Building has wrong Id (<=0).");
           }
 
-          clientService.UpdateBuilding(BuildingAndClient.GetBuildingPrimitiveWithReference());
+          clientService.UpdateBuilding(BuildingAndClient.Building.GetPrimitiveCopy());//.GetClientBuildingPrimitiveWithReference());
         }
         CloseModalDialog();
       }

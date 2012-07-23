@@ -283,7 +283,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       try
       {
         ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory,
-          new BuildingAndClientPackage() { Building = SelectedBuilding, 
+          new ClientBuildingPackage() { Building = SelectedBuilding, 
             Client = (SelectableClient.SelectedItem == null) ? null : SelectableClient.SelectedItem.Client });
         LoadClients();
       }
@@ -473,7 +473,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       string errorCaption = "Tworzenie WZ'tki!";
       try
       {
-        var buildingAndClientPackage = new BuildingAndClientPackage();
+        var buildingAndClientPackage = new ClientBuildingPackage();
         buildingAndClientPackage.Building = SelectedBuilding;
         buildingAndClientPackage.Client = SelectableClient.SelectedItem.Client;
         ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory, buildingAndClientPackage);

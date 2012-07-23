@@ -401,7 +401,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
         {
           using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
           {
-            RecipePackage.Recipe = recipesService.UpdateRecipe(RecipePackage.Recipe);
+            RecipePackage.Recipe = recipesService.UpdateRecipePackage(RecipePackage);
             RaisePropertyChanged("RecipePackage");
           }
         }

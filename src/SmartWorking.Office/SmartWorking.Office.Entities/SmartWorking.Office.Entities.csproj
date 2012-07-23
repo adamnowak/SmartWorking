@@ -59,6 +59,10 @@
       <Link>Client.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\ClientBuilding.cs">
+      <Link>ClientBuilding.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\SmartWorking.Office.Model\Contractor.cs">
       <Link>Contractor.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>

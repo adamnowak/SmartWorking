@@ -1,13 +1,13 @@
 ﻿using SmartWorking.Office.TabsGui.Shared.View;
 
-namespace SmartWorking.Office.TabsGui.Controls.Contractors
+namespace SmartWorking.Office.TabsGui.Controls.Orders
 {
   /// <summary>
   /// Interaction logic for ContractorListControl.xaml
   /// </summary>
-  public partial class ContractorListControl : ListUserControl
+  public partial class OrderListControl : ListUserControl
   {
-    public ContractorListControl()
+    public OrderListControl()
     {
       InitializeComponent();
     }

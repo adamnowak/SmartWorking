@@ -6,7 +6,7 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource TextBlockH1}">Budowa</Shared:PanelLabel>
+		<Shared:PanelLabel Image="{StaticResource BuildingImageSource}" HeaderStyle="{StaticResource  TextBlockH1}">Budowa</Shared:PanelLabel>
 
         <Controls:Accordion Grid.Row="1">
             <Controls:AccordionItem>

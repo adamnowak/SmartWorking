@@ -17,10 +17,10 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </summary>
     /// <param name="filter">The recipes filter.</param>
     /// <returns>List of Recipe filtered by <paramref name="filter"/>. Recipe contains list of Material contains to this Recipe.</returns>
-    [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetRecipes/?filter={filter}",
-          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<RecipePrimitive> GetRecipes(string filter);
+    //[OperationContract]
+    //[WebInvoke(Method = "GET", UriTemplate = "/GetRecipes/?filter={filter}",
+    //      RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    //List<RecipePrimitive> GetRecipes(string filter);
 
     /// <summary>
     /// Gets the <see cref="RecipePackage"/> list filtered by <paramref name="filter"/>.
@@ -38,11 +38,11 @@ namespace SmartWorking.Office.Services.Interfaces
     /// Updates the recipe.
     /// </summary>
     /// <param name="recipe">The recipe which will be updated.</param>
-    [OperationContract]
-    [WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipe",
-          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
-      BodyStyle = WebMessageBodyStyle.Wrapped)]
-    RecipePrimitive UpdateRecipe(RecipePrimitive recipe);
+    //[OperationContract]
+    //[WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipe",
+    //      RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+    //  BodyStyle = WebMessageBodyStyle.Wrapped)]
+    //RecipePrimitive UpdateRecipe(RecipePrimitive recipe);
 
     /// <summary>
     /// Deletes the recipe.
@@ -64,11 +64,17 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <remarks>
     /// Only amount of material will be updated.
     /// </remarks>
+    //[OperationContract]
+    //[WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipeComponent",
+    //      RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+    //  BodyStyle = WebMessageBodyStyle.Wrapped)]
+    //void UpdateRecipeComponent(RecipeComponentPrimitive recipeComponent);
+
     [OperationContract]
-    [WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipeComponent",
+    [WebInvoke(Method = "POST", UriTemplate = "/UpdateRecipePackage",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateRecipeComponent(RecipeComponentPrimitive recipeComponent);
+    RecipePrimitive UpdateRecipePackage(RecipePackage item);
 
     /// <summary>
     /// Deletes the material from recipe.
@@ -79,5 +85,7 @@ namespace SmartWorking.Office.Services.Interfaces
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteRecipeComponent(RecipeComponentPrimitive recipeComponent);
+
+    
   }
 }

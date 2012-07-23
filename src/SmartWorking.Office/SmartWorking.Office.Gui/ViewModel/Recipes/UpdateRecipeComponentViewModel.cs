@@ -158,7 +158,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Recipes
         {
           using (IRecipesService service = ServiceFactory.GetRecipesService())
           {
-            service.UpdateRecipeComponent(RecipeComponent);
+            //service.UpdateRecipeComponent(RecipeComponent);
           }
         }
         CloseModalDialog();

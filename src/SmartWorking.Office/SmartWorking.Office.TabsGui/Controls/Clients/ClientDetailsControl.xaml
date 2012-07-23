@@ -7,8 +7,8 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <GroupBox Header="Recepta"  >
-                <Grid DataContext="{Binding Item.Recipe}">
+    
+                <Grid DataContext="{Binding Client}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
@@ -20,31 +20,36 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <!--Debug only-->
                     <TextBlock Text="Id:" Grid.Row="0" />
                     <!--End Debug only-->
-                    <TextBlock Text="Numer recepty:" Grid.Row="1" />
-                    <TextBlock Text="Kod recepty:" Grid.Row="2" />
-                    <TextBlock Text="Klasa betonu:" Grid.Row="3" />
-                    <TextBlock Text="Ziarno:" Grid.Row="4" />
-                    <TextBlock Text="Konsystencja:" Grid.Row="5" />
-
-
+                    <TextBlock Text="Symbol:" Grid.Row="1" />
+                    <TextBlock Text="Nazwa/Imie i Nazwisko:" Grid.Row="2" />
+                    <TextBlock Text="NIP:" Grid.Row="3" />
+                    <TextBlock Text="Miasto:" Grid.Row="4" />
+                    <TextBlock Text="Kod pocztowy:" Grid.Row="5" />
+                    <TextBlock Text="Ulica:" Grid.Row="6" />
+                    <TextBlock Text="Numer domu:" Grid.Row="7" />
+                    <TextBlock Text="Telefon:" Grid.Row="8" />
 
                     <!--End Debug only-->
                     <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
                     <!--Debug only-->
                     <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" />
                     <TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" />
-                    <TextBox Text="{Binding ConcreteClass}" Grid.Row="3" Grid.Column="1" />
-                    <TextBox Text="{Binding Granulation}" Grid.Row="4" Grid.Column="1" />
-                    <TextBox Text="{Binding Consistency}" Grid.Row="5" Grid.Column="1" />
-
-
+                    <TextBox Text="{Binding NIP}" Grid.Row="3" Grid.Column="1" />
+                    <TextBox Text="{Binding City}" Grid.Row="4" Grid.Column="1" />
+                    <TextBox Text="{Binding ZIPCode}" Grid.Row="5" Grid.Column="1" />
+                    <TextBox Text="{Binding Street}" Grid.Row="6" Grid.Column="1" />
+                    <TextBox Text="{Binding HouseNo}" Grid.Row="7" Grid.Column="1" />
+                    <TextBox Text="{Binding Phone}" Grid.Row="8" Grid.Column="1" />
                 </Grid>
-            </GroupBox>
+
         </ScrollViewer>
     </Grid>
 </UserControl>

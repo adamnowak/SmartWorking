@@ -12,7 +12,7 @@ namespace SmartWorking.Office.PrimitiveEntities
     public DeliveryNotePrimitive DeliveryNote { get; set; }
     public CarPrimitive Car { get; set; }
     public DriverPrimitive Driver { get; set; }
-    public BuildingAndClientPackage BuildingAndContractor { get; set; }
+    public ClientBuildingPackage BuildingAndContractor { get; set; }
     public RecipePrimitive Recipe { get; set; }
   }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
 using System.ServiceModel;
+using System.Transactions;
 using SmartWorking.Office.Entities;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
@@ -67,39 +69,50 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    /// <summary>
-    /// Updates the recipe.
-    /// </summary>
-    /// <param name="recipePrimitive">The recipe primitive.</param>
-    public RecipePrimitive UpdateRecipe(RecipePrimitive recipePrimitive)
+    public RecipePrimitive UpdateRecipePackage(RecipePackage recipePackage)
     {
       try
       {
         using (SmartWorkingEntities context = new SmartWorkingEntities())
         {
-          Recipe recipe = recipePrimitive.GetEntity();
+          
 
-          Recipe existingObject = context.Recipes.Where(x => x.Id == recipe.Id).FirstOrDefault();
+            Recipe recipe = recipePackage.Recipe.GetEntity();
 
-          //no record of this item in the DB, item being passed in has a PK
-          if (existingObject == null && recipe.Id > 0)
-          {
-            throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")), "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
-          }
-          //Item has no PK value, must be new
-          else if (recipe.Id <= 0)
-          {
+            Recipe existingObject = context.Recipes.Where(x => x.Id == recipe.Id).FirstOrDefault();
+
+            //no record of this item in the DB, item being passed in has a PK
+            if (existingObject == null && recipe.Id > 0)
+            {
+              throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
+                                                        "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
+            }
+            //Item has no PK value, must be new
+
+
+            if (recipe.Id > 0)
+            {
+              existingObject.Deleted = DateTime.Now;
+              context.Recipes.ApplyCurrentValues(existingObject);
+
+            }
+
+            recipe.Id = 0;
             context.Recipes.AddObject(recipe);
-          }
-          //Item was retrieved, and the item passed has a valid ID, do an update
-          else
-          {
-            context.Recipes.ApplyCurrentValues(recipe);
-          }
+            foreach (
+              RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage in
+                recipePackage.RecipeComponentAndMaterialList)
+            {
+              recipeComponentAndMaterialPackage.RecipeComponent.Id = 0;
+              RecipeComponent recipeComponent = recipeComponentAndMaterialPackage.RecipeComponent.GetEntity();
+              recipeComponent.Recipe = recipe;
+              context.RecipeComponents.AddObject(recipeComponent);
+            }
 
-          context.SaveChanges();
+            context.SaveChanges();
 
-          return recipe.GetPrimitive();
+            return recipe.GetPrimitive();
+          
         }
       }
       catch (Exception e)
@@ -123,6 +136,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
         throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
+
+    
 
     /// <summary>
     /// Updates the amount material in recipe.

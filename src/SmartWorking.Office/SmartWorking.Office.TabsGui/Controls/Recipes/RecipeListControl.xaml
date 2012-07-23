@@ -30,6 +30,8 @@
                 <DataGridTextColumn Header="Numer recepty" Binding="{Binding Recipe.InternalName}" />
                 <DataGridTextColumn Header="Kod recepty" Binding="{Binding Recipe.Name}" />
                 <DataGridTextColumn Header="Klasa betonu" Binding="{Binding Recipe.ConcreteClass}" />
+                <DataGridTextColumn Header="Ziarno" Binding="{Binding Recipe.Granulation}" />
+                <DataGridTextColumn Header="Konsystencja" Binding="{Binding Recipe.Consistency}" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">

@@ -50,7 +50,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// </summary>
     public override string Name
     {
-      get { return "str_ProducersAndMaterialsTabItem"; }
+      get { return "str_DeliveryNotesTabItem"; }
     }
 
     /// <summary>

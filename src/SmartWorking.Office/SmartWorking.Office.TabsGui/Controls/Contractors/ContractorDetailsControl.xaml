@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <GroupBox Header="Dostawca" Grid.Row="1" >
+
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -50,7 +50,7 @@
 
                     <TextBox Text="{Binding Item.Phone}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 </Grid>
-            </GroupBox>
+
         </ScrollViewer>
     </Grid>
 </UserControl>

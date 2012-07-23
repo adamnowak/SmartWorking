@@ -6,7 +6,7 @@
              d:DesignHeight="400" d:DesignWidth="400">
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <GroupBox Header="Kierowcy" >
+     
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -47,7 +47,7 @@
 
                 </Grid>
 
-            </GroupBox>
+       
         </ScrollViewer>
     </Grid>
 </UserControl>

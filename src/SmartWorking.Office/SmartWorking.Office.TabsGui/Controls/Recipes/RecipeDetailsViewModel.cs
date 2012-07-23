@@ -38,18 +38,23 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
     protected override void EditItemCommandExecute()
     {
      
-      Item = Item.GetPackageCopy();
+      //Item = Item.GetPackageCopy();
       base.EditItemCommandExecute();
+      RecipeComponentDetailsViewModel.EditingMode = EditingMode.Edit;
+      //RecipeComponentDetailsViewModel.Item = RecipeComponentDetailsViewModel.Item.GetPackageCopy();
+      RecipeComponentListViewModel.EditingMode = EditingMode.Edit;
     }
 
     protected override bool OnSaveItem()
     {
       if (base.OnSaveItem())
       {
-        //using (IContractorsService service = ServiceFactory.GetContractorsService())
-        //{
-        //  service.CreateOrUpdateContractor(Item);
-        //}
+        RecipeComponentDetailsViewModel.EditingMode = EditingMode.Display;
+        RecipeComponentListViewModel.EditingMode = EditingMode.Display;
+        using (IRecipesService service = ServiceFactory.GetRecipesService())
+        {
+          service.UpdateRecipePackage(Item);
+        }
         return true;
       }
       return false;

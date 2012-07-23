@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <GroupBox Header="Materiał" Grid.Row="1" >
+            
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -93,7 +93,7 @@
                         </Grid>
                     </GroupBox>
                 </Grid>
-            </GroupBox>
+           
         </ScrollViewer>
     </Grid>
 </UserControl>

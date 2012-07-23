@@ -67,7 +67,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="contractor">The contractor.</param>
     /// <returns>Created Building.</returns>
-    BuildingAndClientPackage CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+    ClientBuildingPackage CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
                                      ClientPrimitive contractor);
 
     /// <summary>
@@ -77,8 +77,8 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="serviceFactory">The service factory.</param>
     /// <param name="building">The building.</param>
     /// <returns>Edited Building.</returns>
-    BuildingAndClientPackage EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                   BuildingAndClientPackage buildingAndClientPackage);
+    ClientBuildingPackage EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                   ClientBuildingPackage buildingAndClientPackage);
 
     /// <summary>
     /// Opens dialog for managing Contractor and user can chose Building.
@@ -86,7 +86,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>    
     /// <returns>Selected Building.</returns>
-    BuildingAndClientPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService,
+    ClientBuildingPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService,
                                                                     IServiceFactory serviceFactory);
 
     #endregion
@@ -109,7 +109,7 @@ namespace SmartWorking.Office.Gui.ViewModel
     /// <param name="buildingAndContractorPackage">The building and contractor package.</param>
     /// <returns></returns>
     DeliveryNotePackage CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                           BuildingAndClientPackage buildingAndContractorPackage);
+                                           ClientBuildingPackage buildingAndContractorPackage);
 
     /// <summary>
     /// Opens dialog for managing the delivery notes.

@@ -20,46 +20,46 @@ namespace SmartWorking.Office.Entities
     {
         #region Navigation Properties
     
-        public ICollection<Building> Buildings
+        public ICollection<ClientBuilding> ClientBuildings
         {
             get
             {
-                if (_buildings == null)
+                if (_clientBuildings == null)
                 {
-                    var newCollection = new FixupCollection<Building>();
-                    newCollection.CollectionChanged += FixupBuildings;
-                    _buildings = newCollection;
+                    var newCollection = new FixupCollection<ClientBuilding>();
+                    newCollection.CollectionChanged += FixupClientBuildings;
+                    _clientBuildings = newCollection;
                 }
-                return _buildings;
+                return _clientBuildings;
             }
             set
             {
-                if (!ReferenceEquals(_buildings, value))
+                if (!ReferenceEquals(_clientBuildings, value))
                 {
-                    var previousValue = _buildings as FixupCollection<Building>;
+                    var previousValue = _clientBuildings as FixupCollection<ClientBuilding>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupBuildings;
+                        previousValue.CollectionChanged -= FixupClientBuildings;
                     }
-                    _buildings = value;
-                    var newValue = value as FixupCollection<Building>;
+                    _clientBuildings = value;
+                    var newValue = value as FixupCollection<ClientBuilding>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupBuildings;
+                        newValue.CollectionChanged += FixupClientBuildings;
                     }
                 }
             }
         }
-        private ICollection<Building> _buildings;
+        private ICollection<ClientBuilding> _clientBuildings;
 
         #endregion
         #region Association Fixup
     
-        private void FixupBuildings(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupClientBuildings(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (Building item in e.NewItems)
+                foreach (ClientBuilding item in e.NewItems)
                 {
                     item.Client = this;
                 }
@@ -67,7 +67,7 @@ namespace SmartWorking.Office.Entities
     
             if (e.OldItems != null)
             {
-                foreach (Building item in e.OldItems)
+                foreach (ClientBuilding item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Client, this))
                     {

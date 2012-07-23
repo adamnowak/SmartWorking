@@ -25,8 +25,6 @@ namespace SmartWorking.Office.Entities
         
         		result.Id = primitive.Id;
         		
-        		result.Client_Id = primitive.Client_Id;
-        		
         		result.InternalName = primitive.InternalName;
         		
         		result.ZIPCode = primitive.ZIPCode;
@@ -102,6 +100,19 @@ namespace SmartWorking.Office.Entities
         		result.Deleted = primitive.Deleted;
         		
         		result.IsActive = primitive.IsActive;
+        		
+        		return result;
+        }
+        
+        public static ClientBuilding GetEntity(this ClientBuildingPrimitive primitive)
+        {
+        		ClientBuilding result = new ClientBuilding(); 
+        
+        		result.Id = primitive.Id;
+        		
+        		result.Client_Id = primitive.Client_Id;
+        		
+        		result.Building_Id = primitive.Building_Id;
         		
         		return result;
         }
@@ -217,7 +228,7 @@ namespace SmartWorking.Office.Entities
         		
         		result.Recipe_Id = primitive.Recipe_Id;
         		
-        		result.Building_Id = primitive.Building_Id;
+        		result.ClientBuilding_Id = primitive.ClientBuilding_Id;
         		
         		result.Amount = primitive.Amount;
         		

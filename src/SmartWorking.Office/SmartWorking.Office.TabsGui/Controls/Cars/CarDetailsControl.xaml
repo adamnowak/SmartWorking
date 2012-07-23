@@ -7,7 +7,7 @@
 
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <GroupBox Header="Samochody" >
+        
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -77,7 +77,7 @@
                 <CheckBox Grid.Row="7" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Car.IsActive, Converter={StaticResource isActiveToBoolConverter}}" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>
-        </GroupBox>
+       
         </ScrollViewer>
     </Grid>
 </UserControl>

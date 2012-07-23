@@ -18,103 +18,48 @@ namespace SmartWorking.Office.Entities
 {
     public partial class Building : BuildingPrimitive
     {
-        #region Primitive Properties
-    		public override int Client_Id
-    		{
-            get { return _client_Id; }
-            set
-            {        
-                if (_client_Id != value)
-                {
-                    if (Client != null && Client.Id != value)
-                    {
-                        Client = null;
-                    }
-                    _client_Id = value;
-                }
-            }
-    		}
-    		private int _client_Id;    
-    
-
-        #endregion
         #region Navigation Properties
     
-        public Client Client
-        {
-            get { return _client; }
-            set
-            {
-                if (!ReferenceEquals(_client, value))
-                {
-                    var previousValue = _client;
-                    _client = value;
-                    FixupClient(previousValue);
-                }
-            }
-        }
-        private Client _client;
-    
-        public ICollection<Order> Orders
+        public ICollection<ClientBuilding> ClientBuildings
         {
             get
             {
-                if (_orders == null)
+                if (_clientBuildings == null)
                 {
-                    var newCollection = new FixupCollection<Order>();
-                    newCollection.CollectionChanged += FixupOrders;
-                    _orders = newCollection;
+                    var newCollection = new FixupCollection<ClientBuilding>();
+                    newCollection.CollectionChanged += FixupClientBuildings;
+                    _clientBuildings = newCollection;
                 }
-                return _orders;
+                return _clientBuildings;
             }
             set
             {
-                if (!ReferenceEquals(_orders, value))
+                if (!ReferenceEquals(_clientBuildings, value))
                 {
-                    var previousValue = _orders as FixupCollection<Order>;
+                    var previousValue = _clientBuildings as FixupCollection<ClientBuilding>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= FixupOrders;
+                        previousValue.CollectionChanged -= FixupClientBuildings;
                     }
-                    _orders = value;
-                    var newValue = value as FixupCollection<Order>;
+                    _clientBuildings = value;
+                    var newValue = value as FixupCollection<ClientBuilding>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += FixupOrders;
+                        newValue.CollectionChanged += FixupClientBuildings;
                     }
                 }
             }
         }
-        private ICollection<Order> _orders;
+        private ICollection<ClientBuilding> _clientBuildings;
 
         #endregion
         #region Association Fixup
     
-        private void FixupClient(Client previousValue)
-        {
-            if (previousValue != null && previousValue.Buildings.Contains(this))
-            {
-                previousValue.Buildings.Remove(this);
-            }
-    
-            if (Client != null)
-            {
-                if (!Client.Buildings.Contains(this))
-                {
-                    Client.Buildings.Add(this);
-                }
-                if (Client_Id != Client.Id)
-                {
-                    Client_Id = Client.Id;
-                }
-            }
-        }
-    
-        private void FixupOrders(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupClientBuildings(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (Order item in e.NewItems)
+                foreach (ClientBuilding item in e.NewItems)
                 {
                     item.Building = this;
                 }
@@ -122,7 +67,7 @@ namespace SmartWorking.Office.Entities
     
             if (e.OldItems != null)
             {
-                foreach (Order item in e.OldItems)
+                foreach (ClientBuilding item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Building, this))
                     {

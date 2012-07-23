@@ -124,12 +124,12 @@ namespace SmartWorking.Office.Gui.View
       return null;
     }
 
-    public BuildingAndClientPackage CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+    public ClientBuildingPackage CreateBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
                                             ClientPrimitive client)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       //viewModel.Contractor = contractor;
-      viewModel.BuildingAndClient = new BuildingAndClientPackage();
+      viewModel.BuildingAndClient = new ClientBuildingPackage();
       viewModel.BuildingAndClient.Building = new BuildingPrimitive();
       viewModel.BuildingAndClient.Client = client;
       viewModel.DialogMode = DialogMode.Create;
@@ -141,8 +141,8 @@ namespace SmartWorking.Office.Gui.View
       return null;
     }
 
-    public BuildingAndClientPackage EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                          BuildingAndClientPackage buildingAndClientPackage)
+    public ClientBuildingPackage EditBuilding(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
+                                          ClientBuildingPackage buildingAndClientPackage)
     {
       var viewModel = new UpdateBuildingViewModel(modalDialogService, serviceFactory);
       viewModel.BuildingAndClient = buildingAndClientPackage;
@@ -151,7 +151,7 @@ namespace SmartWorking.Office.Gui.View
       return viewModel.BuildingAndClient;
     }
 
-    public BuildingAndClientPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService,
+    public ClientBuildingPackage SelectBuildingAndContractorPackage(IModalDialogService modalDialogService,
                                                                            IServiceFactory serviceFactory)
     {
       var viewModel = new ManageClientsViewModel(modalDialogService, serviceFactory);
@@ -159,7 +159,7 @@ namespace SmartWorking.Office.Gui.View
       ModalDialogHelper<ManageClients>.ShowDialog(viewModel);
       if (!viewModel.IsCanceled)
       {
-        var result = new BuildingAndClientPackage();
+        var result = new ClientBuildingPackage();
         result.Building = viewModel.SelectedBuilding;
         result.Client = viewModel.SelectableClient.SelectedItem.Client;
         return result;
@@ -184,7 +184,7 @@ namespace SmartWorking.Office.Gui.View
     }
 
     public DeliveryNotePackage CreateDeliveryNote(IModalDialogService modalDialogService, IServiceFactory serviceFactory,
-                                                  BuildingAndClientPackage buildingAndContractorPackage)
+                                                  ClientBuildingPackage buildingAndContractorPackage)
     {
       var viewModel = new UpdateDeliveryNoteViewModel(modalDialogService, serviceFactory);
       viewModel.DialogMode = DialogMode.Create;

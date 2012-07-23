@@ -44,21 +44,21 @@ namespace SmartWorking.Office.Entities
     		}
     		private Nullable<int> _recipe_Id;    
     
-    		public override Nullable<int> Building_Id
+    		public override Nullable<int> ClientBuilding_Id
     		{
-            get { return _building_Id; }
+            get { return _clientBuilding_Id; }
             set
             {        
                 try
                 {
                     _settingFK = true;
-                    if (_building_Id != value)
+                    if (_clientBuilding_Id != value)
                     {
-                        if (Building != null && Building.Id != value)
+                        if (ClientBuilding != null && ClientBuilding.Id != value)
                         {
-                            Building = null;
+                            ClientBuilding = null;
                         }
-                        _building_Id = value;
+                        _clientBuilding_Id = value;
                     }
                 }
                 finally
@@ -67,26 +67,26 @@ namespace SmartWorking.Office.Entities
                 }
             }
     		}
-    		private Nullable<int> _building_Id;    
+    		private Nullable<int> _clientBuilding_Id;    
     
 
         #endregion
         #region Navigation Properties
     
-        public Building Building
+        public ClientBuilding ClientBuilding
         {
-            get { return _building; }
+            get { return _clientBuilding; }
             set
             {
-                if (!ReferenceEquals(_building, value))
+                if (!ReferenceEquals(_clientBuilding, value))
                 {
-                    var previousValue = _building;
-                    _building = value;
-                    FixupBuilding(previousValue);
+                    var previousValue = _clientBuilding;
+                    _clientBuilding = value;
+                    FixupClientBuilding(previousValue);
                 }
             }
         }
-        private Building _building;
+        private ClientBuilding _clientBuilding;
     
         public ICollection<DeliveryNote> DeliveryNotes
         {
@@ -140,27 +140,27 @@ namespace SmartWorking.Office.Entities
     
         private bool _settingFK = false;
     
-        private void FixupBuilding(Building previousValue)
+        private void FixupClientBuilding(ClientBuilding previousValue)
         {
             if (previousValue != null && previousValue.Orders.Contains(this))
             {
                 previousValue.Orders.Remove(this);
             }
     
-            if (Building != null)
+            if (ClientBuilding != null)
             {
-                if (!Building.Orders.Contains(this))
+                if (!ClientBuilding.Orders.Contains(this))
                 {
-                    Building.Orders.Add(this);
+                    ClientBuilding.Orders.Add(this);
                 }
-                if (Building_Id != Building.Id)
+                if (ClientBuilding_Id != ClientBuilding.Id)
                 {
-                    Building_Id = Building.Id;
+                    ClientBuilding_Id = ClientBuilding.Id;
                 }
             }
             else if (!_settingFK)
             {
-                Building_Id = null;
+                ClientBuilding_Id = null;
             }
         }
     

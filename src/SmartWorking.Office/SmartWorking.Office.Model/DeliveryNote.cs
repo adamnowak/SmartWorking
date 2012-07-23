@@ -98,21 +98,6 @@ namespace SmartWorking.Office.Entities
         #endregion
         #region Navigation Properties
     
-        public Order Order
-        {
-            get { return _order; }
-            set
-            {
-                if (!ReferenceEquals(_order, value))
-                {
-                    var previousValue = _order;
-                    _order = value;
-                    FixupOrder(previousValue);
-                }
-            }
-        }
-        private Order _order;
-    
         public Car Car
         {
             get { return _car; }
@@ -142,35 +127,26 @@ namespace SmartWorking.Office.Entities
             }
         }
         private Driver _driver;
+    
+        public Order Order
+        {
+            get { return _order; }
+            set
+            {
+                if (!ReferenceEquals(_order, value))
+                {
+                    var previousValue = _order;
+                    _order = value;
+                    FixupOrder(previousValue);
+                }
+            }
+        }
+        private Order _order;
 
         #endregion
         #region Association Fixup
     
         private bool _settingFK = false;
-    
-        private void FixupOrder(Order previousValue)
-        {
-            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
-            {
-                previousValue.DeliveryNotes.Remove(this);
-            }
-    
-            if (Order != null)
-            {
-                if (!Order.DeliveryNotes.Contains(this))
-                {
-                    Order.DeliveryNotes.Add(this);
-                }
-                if (Order_Id != Order.Id)
-                {
-                    Order_Id = Order.Id;
-                }
-            }
-            else if (!_settingFK)
-            {
-                Order_Id = null;
-            }
-        }
     
         private void FixupCar(Car previousValue)
         {
@@ -217,6 +193,30 @@ namespace SmartWorking.Office.Entities
             else if (!_settingFK)
             {
                 Driver_Id = null;
+            }
+        }
+    
+        private void FixupOrder(Order previousValue)
+        {
+            if (previousValue != null && previousValue.DeliveryNotes.Contains(this))
+            {
+                previousValue.DeliveryNotes.Remove(this);
+            }
+    
+            if (Order != null)
+            {
+                if (!Order.DeliveryNotes.Contains(this))
+                {
+                    Order.DeliveryNotes.Add(this);
+                }
+                if (Order_Id != Order.Id)
+                {
+                    Order_Id = Order.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                Order_Id = null;
             }
         }
 

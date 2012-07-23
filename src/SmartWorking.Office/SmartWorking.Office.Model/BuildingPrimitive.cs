@@ -18,11 +18,6 @@ namespace SmartWorking.Office.PrimitiveEntities
     public partial class BuildingPrimitive : PrimitiveBase
     {
         #region Primitive Properties
-    		public virtual int Client_Id
-    		{
-    			get;
-    			set;
-    		}
     		public string InternalName
     		{
             get;

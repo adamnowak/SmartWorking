@@ -5,15 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid >
+    <Grid DataContext="{Binding BuildingAndClient}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <GroupBox Header="str_RecipeComponent"  >
-                <Grid >
+  
+                <Grid DataContext="{Binding Building}" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -28,32 +30,28 @@
                     <TextBlock Text="Id:" Grid.Row="0" />
                     <!--End Debug only-->
                     <TextBlock Text="Symbol:" Grid.Row="1" />
-                    <TextBlock Text="Nazwa:" Grid.Row="2" />
-
-                    <TextBlock Text="Symbol producenta:" Grid.Row="3" />
-                    <TextBlock Text="Nazwa producenta:" Grid.Row="4" />
-
-                    <TextBlock Text="Symbol dostawcy:" Grid.Row="5" />
-                    <TextBlock Text="Nazwa dostawcy:" Grid.Row="6" />
-
-                    <TextBlock Text="Ilość [m³]:" Grid.Row="7" />
+                    <TextBlock Text="Miasto:" Grid.Row="2" />
+                    <TextBlock Text="Kod pocztowy:" Grid.Row="3" />
+                    <TextBlock Text="Ulica:" Grid.Row="4" />
+                    <TextBlock Text="Numer domu:" Grid.Row="5" />
+                    <TextBlock Text="Telefon na budowę:" Grid.Row="6" />
+                    <TextBlock Text="Osoba prowadząca:" Grid.Row="7" />
+                    <TextBlock Text="Kontakt z osoba prowadzącą:" Grid.Row="8" />
+                    <TextBlock Text="Odległość:" Grid.Row="9" />
 
                     <!--End Debug only-->
-                    <TextBox IsReadOnly="True" Text="{Binding RecipeComponent.Id}" Grid.Row="0" Grid.Column="1" />
-                    <!--Debug only DataContext="{Binding Material}"  -->
-                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Material.InternalName}" Grid.Row="2" Grid.Column="1" />
-                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Material.Name}" Grid.Row="1" Grid.Column="1" />
-
-                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Producer.InternalName}" Grid.Row="3" Grid.Column="1" />
-                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Producer.Name}" Grid.Row="4" Grid.Column="1" />
-
-                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Deliverer.InternalName}" Grid.Row="5" Grid.Column="1" />
-                    <TextBox IsReadOnly="True" Text="{Binding MaterialAndContractors.Deliverer.Name}" Grid.Row="6" Grid.Column="1" />
-
-                    <TextBox Text="{Binding RecipeComponent.Amount}" Grid.Row="7" Grid.Column="1" />
-
+                    <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                    <!--Debug only-->
+                    <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" />
+                    <TextBox Text="{Binding City}" Grid.Row="2" Grid.Column="1" />
+                    <TextBox Text="{Binding ZIPCode}" Grid.Row="3" Grid.Column="1" />
+                    <TextBox Text="{Binding Street}" Grid.Row="4" Grid.Column="1" />
+                    <TextBox Text="{Binding HouseNo}" Grid.Row="5" Grid.Column="1" />
+                    <TextBox Text="{Binding Phone}" Grid.Row="6" Grid.Column="1" />
+                    <TextBox Text="{Binding ContactPerson}" Grid.Row="7" Grid.Column="1" />
+                    <TextBox Text="{Binding ContactPersonPhone}" Grid.Row="8" Grid.Column="1" />
+                    <TextBox Text="{Binding RouteDistance, Mode=OneWay, ElementName=Map}" Grid.Row="9" Grid.Column="1" IsReadOnly="True" />
                 </Grid>
-            </GroupBox>
         </ScrollViewer>
     </Grid>
 </UserControl>

@@ -492,84 +492,7 @@
                             <!--RecipesDetails-->
                             <GroupBox Header="str_RecipeDetails" Grid.Column="0" >
                                 <Grid >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
                                     <Recipes:RecipeDetailsControl DataContext="{Binding RecipeDetailsViewModel}"/>
-                                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                        <Button Command="{Binding RecipeListViewModel.AddItemCommand}" Content="str_Add">
-                                            <Button.Visibility>
-                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <MultiBinding.Bindings>
-                                                        <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
-                                                        <Binding Source="{StaticResource StaticTrue}"/>
-                                                        <Binding Source="{x:Static Visibility.Visible}" />
-                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
-                                                    </MultiBinding.Bindings>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                        </Button>
-                                        <Button Command="{Binding RecipeListViewModel.AddCloneItemCommand}" Content="str_AddClone">
-                                            <Button.Visibility>
-                                                
-                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <MultiBinding.Bindings>
-                                                        <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
-                                                        <Binding Source="{StaticResource StaticTrue}"/>
-                                                        <Binding Source="{x:Static Visibility.Visible}" />
-                                                        <Binding Source="{x:Static Visibility.Collapsed}" />                                                       
-                                                    </MultiBinding.Bindings>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                        </Button>
-                                        <Button Command="{Binding RecipeDetailsViewModel.EditItemCommand}" Content="str_Edit">
-                                            <Button.Visibility>
-                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <MultiBinding.Bindings>
-                                                        <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
-                                                        <Binding Source="{StaticResource StaticTrue}"/>
-                                                        <Binding Source="{x:Static Visibility.Visible}" />
-                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
-                                                    </MultiBinding.Bindings>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                        </Button>
-                                        <Button Command="{Binding RecipeDetailsViewModel.SaveItemCommand}" Content="str_Save">
-                                            <Button.Visibility>
-                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <MultiBinding.Bindings>
-                                                        <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
-                                                        <Binding Source="{StaticResource StaticFalse}"/>
-                                                        <Binding Source="{x:Static Visibility.Visible}" />
-                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
-                                                    </MultiBinding.Bindings>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                        </Button>
-                                        <Button Command="{Binding RecipeDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
-                                            <Button.Visibility>
-                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <MultiBinding.Bindings>
-                                                        <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
-                                                        <Binding Source="{StaticResource StaticFalse}"/>
-                                                        <Binding Source="{x:Static Visibility.Visible}" />
-                                                        <Binding Source="{x:Static Visibility.Collapsed}" />
-                                                    </MultiBinding.Bindings>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                        </Button>
-                                        <Button Command="{Binding RecipeListViewModel.DeleteItemCommand}" Content="str_Delete">
-                                            <Button.Visibility>
-                                                <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
-                                                    <MultiBinding.Bindings>
-                                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
-                                                        <Binding Path="DriverDetailsViewModel.IsReadOnly" />
-                                                    </MultiBinding.Bindings>
-                                                </MultiBinding>
-                                            </Button.Visibility>
-                                        </Button>
-                                    </StackPanel>
                                 </Grid>
                             </GroupBox>
                             <!--RecipeList-->
@@ -596,10 +519,88 @@
                                             <ColumnDefinition />
                                                                         
                                         </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <GroupBox Header="str_MaterialInRecipe" >
                                         <Recipes:RecipeComponentDetailsControl  DataContext="{Binding RecipeDetailsViewModel.RecipeComponentDetailsViewModel}"/>
-                                        
+                                        </GroupBox>
+                                        <StackPanel Grid.Row="1"  Orientation="Horizontal">
+                                            <Button Command="{Binding RecipeListViewModel.AddItemCommand}" Content="str_Add">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
+                                                            <Binding Source="{StaticResource StaticTrue}"/>
+                                                            <Binding Source="{x:Static Visibility.Visible}" />
+                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RecipeListViewModel.AddCloneItemCommand}" Content="str_AddClone">
+                                                <Button.Visibility>
 
-                                        <GroupBox Header="str_MaterialsInRecipe" Grid.Column="2">
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
+                                                            <Binding Source="{StaticResource StaticTrue}"/>
+                                                            <Binding Source="{x:Static Visibility.Visible}" />
+                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RecipeDetailsViewModel.EditItemCommand}" Content="str_Edit">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
+                                                            <Binding Source="{StaticResource StaticTrue}"/>
+                                                            <Binding Source="{x:Static Visibility.Visible}" />
+                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RecipeDetailsViewModel.SaveItemCommand}" Content="str_Save">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
+                                                            <Binding Source="{StaticResource StaticFalse}"/>
+                                                            <Binding Source="{x:Static Visibility.Visible}" />
+                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RecipeDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
+                                                            <Binding Source="{StaticResource StaticFalse}"/>
+                                                            <Binding Source="{x:Static Visibility.Visible}" />
+                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RecipeListViewModel.DeleteItemCommand}" Content="str_Delete">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                            <Binding Path="DriverDetailsViewModel.IsReadOnly" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                        </StackPanel>
+
+                                        <GroupBox Header="str_MaterialsInRecipe" Grid.Column="2" Grid.RowSpan="2">
                                             <Recipes:RecipeComponentListControl  FiltersVisibility="Collapsed"  DataContext="{Binding RecipeDetailsViewModel.RecipeComponentListViewModel}"/>
                                         </GroupBox>
                                         

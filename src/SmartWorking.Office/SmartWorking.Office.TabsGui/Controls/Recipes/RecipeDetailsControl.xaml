@@ -7,8 +7,8 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <GroupBox Header="Recepta"  >
-                <Grid DataContext="{Binding Item.Recipe}">
+       
+                <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
@@ -34,17 +34,17 @@
 
 
                     <!--End Debug only-->
-                    <TextBox Text="{Binding Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
+                <TextBox Text="{Binding Item.Recipe.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
                     <!--Debug only-->
-                    <TextBox Text="{Binding InternalName}" Grid.Row="1" Grid.Column="1" />
-                    <TextBox Text="{Binding Name}" Grid.Row="2" Grid.Column="1" />
-                    <TextBox Text="{Binding ConcreteClass}" Grid.Row="3" Grid.Column="1" />
-                    <TextBox Text="{Binding Granulation}" Grid.Row="4" Grid.Column="1" />
-                    <TextBox Text="{Binding Consistency}" Grid.Row="5" Grid.Column="1" />
+                <TextBox Text="{Binding Item.Recipe.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Recipe.Name}" Grid.Row="2" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.Recipe.ConcreteClass}" Grid.Row="3" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.Recipe.Granulation}" Grid.Row="4" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.Recipe.Consistency}" Grid.Row="5" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
 
 
                 </Grid>
-            </GroupBox>
+      
         </ScrollViewer>
     </Grid>
 </UserControl>

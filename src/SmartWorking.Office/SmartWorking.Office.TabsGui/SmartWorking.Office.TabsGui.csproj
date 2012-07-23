@@ -163,6 +163,14 @@
     <Compile Include="Controls\Materials\MaterialListControl.xaml.cs">
       <DependentUpon>MaterialListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Orders\OrderDetailsControl.xaml.cs">
+      <DependentUpon>OrderDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Orders\OrderDetailsViewModel.cs" />
+    <Compile Include="Controls\Orders\OrderListControl.xaml.cs">
+      <DependentUpon>OrderListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Orders\OrderListViewModel.cs" />
     <Compile Include="Controls\Recipes\RecipeComponentDetailsControl.xaml.cs">
       <DependentUpon>RecipeComponentDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -280,6 +288,14 @@
     <Page Include="Controls\Materials\MaterialListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Orders\OrderDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Orders\OrderListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Recipes\RecipeComponentDetailsControl.xaml">
       <Generator>MSBuild:Compile</Generator>

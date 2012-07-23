@@ -25,11 +25,11 @@
         <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
             <DataGrid.Columns>
                 <!--Debug only-->
-                <DataGridTextColumn Header="Id" Binding="{Binding Recipe.Id}" />
+                <DataGridTextColumn Header="Id" Binding="{Binding Client.Id}" />
                 <!--End Debug only-->
-                <DataGridTextColumn Header="Numer recepty" Binding="{Binding Recipe.InternalName}" />
-                <DataGridTextColumn Header="Kod recepty" Binding="{Binding Recipe.Name}" />
-                <DataGridTextColumn Header="Klasa betonu" Binding="{Binding Recipe.ConcreteClass}" />
+                <DataGridTextColumn Header="Symbol" Binding="{Binding Client.InternalName}" />
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Client.Name}" />
+                <DataGridTextColumn Header="Telefon" Binding="{Binding Client.Phone}" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">

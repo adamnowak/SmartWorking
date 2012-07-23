@@ -15,33 +15,18 @@ using System.Collections.Specialized;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
-    public partial class OrderPrimitive : PrimitiveBase
+    public partial class ClientBuildingPrimitive : PrimitiveBase
     {
         #region Primitive Properties
-    		public virtual Nullable<int> Recipe_Id
+    		public virtual Nullable<int> Client_Id
     		{
     			get;
     			set;
     		}
-    		public virtual Nullable<int> ClientBuilding_Id
+    		public virtual Nullable<int> Building_Id
     		{
     			get;
     			set;
-    		}
-    		public Nullable<double> Amount
-    		{
-            get;
-            set;
-    		}
-    		public Nullable<System.DateTime> DateOfOrder
-    		{
-            get;
-            set;
-    		}
-    		public Nullable<System.DateTime> Canceled
-    		{
-            get;
-            set;
     		}
 
         #endregion
