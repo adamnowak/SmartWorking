@@ -38,11 +38,6 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
-    		public Nullable<System.DateTime> Deleted
-    		{
-            get;
-            set;
-    		}
     		public Nullable<double> Capacity
     		{
             get;
@@ -57,11 +52,6 @@ namespace SmartWorking.Office.PrimitiveEntities
     		{
     			get;
     			set;
-    		}
-    		public Nullable<int> IsActive
-    		{
-            get;
-            set;
     		}
 
         #endregion

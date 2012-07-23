@@ -42,10 +42,10 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </summary>
     /// <param name="material">The material which will be updated.</param>
     [OperationContract]
-    [WebInvoke(Method = "POST", UriTemplate = "/UpdateMaterial",
+    [WebInvoke(Method = "POST", UriTemplate = "/CreateOrUpdateMaterial",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateMaterial(MaterialPrimitive material);
+    void CreateOrUpdateMaterial(MaterialPrimitive material);
 
     /// <summary>
     /// Deletes the material.

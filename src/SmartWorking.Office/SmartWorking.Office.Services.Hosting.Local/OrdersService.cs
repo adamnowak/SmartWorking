@@ -21,7 +21,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of <see cref="Order"/> filtered by <paramref name="filter"/> and <paramref name="showCanceledOrders"/>.
     /// </returns>
-    public List<OrderPrimitive> GetOrders(string filter, bool showCanceledOrders)
+    public List<OrderPrimitive> GetOrders(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
@@ -61,65 +61,50 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    public List<OrderPackage> GetOrderPackageList(string filter, bool getCanceled)
+    public List<OrderPackage> GetOrderPackageList(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
-          //List<Order> result;
-          //if (string.IsNullOrWhiteSpace(filter))
-          //{
-          //  if (getCanceled)
-          //  {
-          //    result = ctx.Orders.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").ToList();
-          //  }
-          //  else
-          //  {
-          //    result = ctx.Orders.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue).ToList();
-          //  }
-          //}
-          //else
-          //{
-          //  if (getCanceled)
-          //  {
-          //    result = ctx.Orders.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
-          //  }
-          //  else
-          //  {
-          //    result = ctx.Orders.Include("Building.Contractor").Include("Recipe").Include("Driver").Include("Car").Where(x => x.Canceled != DateTime.MinValue && (x.Building.City + " " + x.Building.Street).Contains(filter)).ToList();
-          //  }
-
-          //}
-          //return result.Select(x => x.GetOrderPackage()).ToList();
-          return null;
+          List<Order> result =
+            (string.IsNullOrWhiteSpace(filter))
+              ? (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue).ToList()
+                      : ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
+              : (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList()
+                      : ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList();
+          return result.Select(x => x.GetOrderPackage()).ToList(); ;
         }
       }
       catch (Exception e)
       {
         throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
-      }
+      }    
     }
 
-    /// <summary>
-    /// Updates the <see cref="Order"/>.
-    /// </summary>
-    /// <param name="order">The delivery note which will be updated.</param>
-    public int UpdateOrder(OrderPrimitive orderPrimitive)
+   
+
+    public void CreateOrUpdateOrderPackage(OrderPackage item)
     {
       try
       {
         using (SmartWorkingEntities context = new SmartWorkingEntities())
         {
-          Order order = orderPrimitive.GetEntity();
+          Order order = item.Order.GetEntity();// orderPrimitive.GetEntity();
 
           Order existingObject = context.Orders.Where(x => x.Id == order.Id).FirstOrDefault();
 
           //no record of this item in the DB, item being passed in has a PK
           if (existingObject == null && order.Id > 0)
           {
-            //log
-            return -1;
+            throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
+                                                        "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
 
           //Item has no PK value, must be new);
@@ -134,7 +119,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           }
 
           context.SaveChanges();
-          return order.Id;
+          
         }
       }
       catch (Exception e)

@@ -54,7 +54,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
       {
         using (IDriversService service = ServiceFactory.GetDriversService())
         {
-          service.UpdateDriver(Item.Driver);
+          service.CreateOrUpdateDriver(Item.Driver);
         }
         return true;
       }

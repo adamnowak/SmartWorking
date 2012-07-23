@@ -24,7 +24,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of Recipe filtered by <paramref name="recipesFilter"/>. Recipe contains list of Material contains to this Recipe.
     /// </returns>
-    public List<RecipePrimitive> GetRecipes(string recipesFilter)
+    public List<RecipePrimitive> GetRecipes(string recipesFilter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
@@ -50,7 +50,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of contractors filtered by <paramref name="filter"/>.
     /// </returns>
-    public List<RecipePackage> GetRecipePackageList(string filter)
+    public List<RecipePackage> GetRecipePackageList(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
@@ -69,7 +69,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    public RecipePrimitive UpdateRecipePackage(RecipePackage recipePackage)
+    public void CreateOrUpdateRecipePackage(RecipePackage recipePackage)
     {
       try
       {
@@ -110,9 +110,6 @@ namespace SmartWorking.Office.Services.Hosting.Local
             }
 
             context.SaveChanges();
-
-            return recipe.GetPrimitive();
-          
         }
       }
       catch (Exception e)
@@ -136,65 +133,6 @@ namespace SmartWorking.Office.Services.Hosting.Local
         throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
       }
     }
-
-    
-
-    /// <summary>
-    /// Updates the amount material in recipe.
-    /// </summary>
-    /// <param name="recipeComponentPrimitive">The recipe component primitive.</param>
-    public void UpdateRecipeComponent(RecipeComponentPrimitive recipeComponentPrimitive)
-    {
-      try
-      {
-        using (SmartWorkingEntities context = new SmartWorkingEntities())
-        {
-          RecipeComponent recipeComponent = recipeComponentPrimitive.GetEntity();
-
-          RecipeComponent existingObject = context.RecipeComponents.Where(x => x.Id == recipeComponent.Id).FirstOrDefault();
-
-          //no record of this item in the DB, item being passed in has a PK
-          if (existingObject == null && recipeComponent.Id > 0)
-          {
-            //TODO:
-            return;
-          }
-          //Item has no PK value, must be new
-          if (recipeComponent.Id <= 0)
-          {
-            context.RecipeComponents.AddObject(recipeComponent);
-          }
-          //Item was retrieved, and the item passed has a valid ID, do an update
-          else
-          {
-            context.RecipeComponents.ApplyCurrentValues(recipeComponent);
-          }
-
-          context.SaveChanges();
-        }
-      }
-      catch (Exception e)
-      {
-        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
-      }
-    }
-
-    /// <summary>
-    /// Deletes the material from recipe.
-    /// </summary>
-    /// <param name="recipeComponentPrimitive">The recipe component primitive.</param>
-    public void DeleteRecipeComponent(RecipeComponentPrimitive recipeComponentPrimitive)
-    {
-      try
-      {
-        throw new NotImplementedException();
-      }
-      catch (Exception e)
-      {
-        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
-      }
-    }
-
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

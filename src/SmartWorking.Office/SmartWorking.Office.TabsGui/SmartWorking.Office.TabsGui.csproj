@@ -213,6 +213,7 @@
     <Compile Include="Shared\ViewModel\SelectedItemChangedEventArgEventArgs.cs" />
     <Compile Include="Shared\ViewModel\ControlViewModelBase.cs" />
     <Compile Include="Shared\View\BindingProxy.cs" />
+    <Compile Include="Shared\View\DetailsUserControl.cs" />
     <Compile Include="Shared\View\ListUserControl.cs" />
     <Compile Include="Shared\View\MessageBoxHelper.cs" />
     <Compile Include="Shared\View\MessageBox\InfoVisibilityConverter.cs" />

@@ -11,13 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SmartWorking.Office.TabsGui.Shared.View;
 
 namespace SmartWorking.Office.TabsGui.Controls.Drivers
 {
   /// <summary>
   /// Interaction logic for DriverDetailsControl.xaml
   /// </summary>
-  public partial class DriverDetailsControl : UserControl
+  public partial class DriverDetailsControl : DetailsUserControl
   {
     public DriverDetailsControl()
     {

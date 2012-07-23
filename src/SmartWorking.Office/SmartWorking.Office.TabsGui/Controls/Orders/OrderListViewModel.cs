@@ -6,29 +6,30 @@ using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Controls.Orders
 {
-  public class OrderListViewModel : ListingEditableControlViewModel<ContractorPrimitive>
+  public class OrderListViewModel : ListingEditableControlViewModel<OrderPackage>
   {
-    public OrderListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<ContractorPrimitive> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public OrderListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<OrderPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
     }
 
     public override string Name
     {
-      get { return "str_ContractorList"; }
+      get { return "str_OrderList"; }
     }
 
     protected override void  OnLoadItems()
     {
-      ContractorPrimitive selectedItem = Items.SelectedItem;
-      using (IContractorsService service = ServiceFactory.GetContractorsService())
+
+      OrderPackage selectedItem = Items.SelectedItem;
+      using (IOrdersService service = ServiceFactory.GetOrdersService())
       {
-        Items.LoadItems(service.GetContractors(Filter, ListItemsFilter));
+        Items.LoadItems(service.GetOrderPackageList(Filter, ListItemsFilter));
       }
       if (selectedItem != null)
       {
-        ContractorPrimitive selectionFromItems =
-          Items.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+        OrderPackage selectionFromItems =
+          Items.Items.Where(x => x.Order.Id == selectedItem.Order.Id).FirstOrDefault();
         if (selectionFromItems != null)
           Items.SelectedItem = selectionFromItems;
       }
@@ -39,21 +40,21 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     protected override void AddItemCommandExecute()
     {
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new ContractorPrimitive();
+      EditingViewModel.Item = new OrderPackage() {Order = new OrderPrimitive()};
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      ContractorPrimitive clone = Items.SelectedItem;
+      OrderPackage clone = Items.SelectedItem;
       if (clone != null)
       {
-        clone.Id = 0;        
+        clone.Order.Id = 0;        
       }
       else
       {
-        clone = new ContractorPrimitive();
+        clone = new OrderPackage() {Order = new OrderPrimitive()};
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;
@@ -64,7 +65,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       base.DeleteItemCommandExecute();
       using (IContractorsService service = ServiceFactory.GetContractorsService())
       {
-        service.DeleteContractor(EditingViewModel.Item);
+        //service.DeleteContractor(EditingViewModel.Item.);
       }
       Refresh();
     }

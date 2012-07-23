@@ -23,16 +23,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
       OrderDetailsViewModel = new OrderDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      OrderListViewModel = new OrderListViewModel(MainViewModel, OrderDetailsViewModel, ModalDialogService, ServiceFactory);
-      
-      ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogService, ServiceFactory);
-
-      BuildingDetailsViewModel = new BuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      BuildingListViewModel = new BuildingListViewModel(MainViewModel, BuildingDetailsViewModel, ModalDialogService, ServiceFactory);
-
-      RecipeDetailsViewModel = new RecipeDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogService, ServiceFactory);
+      OrderListViewModel = new OrderListViewModel(MainViewModel, OrderDetailsViewModel, ModalDialogService, ServiceFactory);     
     }
 
     /// <summary>
@@ -45,35 +36,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// </summary>
     public OrderDetailsViewModel OrderDetailsViewModel { get; private set; }
 
-    /// <summary>
-    /// Gets the driver list view model.
-    /// </summary>
-    public ClientListViewModel ClientListViewModel { get; private set; }
-
-    /// <summary>
-    /// Gets the driver details view model.
-    /// </summary>
-    public ClientDetailsViewModel ClientDetailsViewModel { get; private set; }
-
-    /// <summary>
-    /// Gets the driver list view model.
-    /// </summary>
-    public BuildingListViewModel BuildingListViewModel { get; private set; }
-
-    /// <summary>
-    /// Gets the driver details view model.
-    /// </summary>
-    public BuildingDetailsViewModel BuildingDetailsViewModel { get; private set; }
-
-    /// <summary>
-    /// Gets the driver list view model.
-    /// </summary>
-    public RecipeListViewModel RecipeListViewModel { get; private set; }
-
-    /// <summary>
-    /// Gets the driver details view model.
-    /// </summary>
-    public RecipeDetailsViewModel RecipeDetailsViewModel { get; private set; }
+    
 
     /// <summary>
     /// Gets the name of editing control.
@@ -90,8 +53,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     {
       OrderListViewModel.Refresh();
       OrderDetailsViewModel.Refresh();
-      ClientListViewModel.Refresh();
-      ClientDetailsViewModel.Refresh();
+      
     }
 
     public override bool IsReadOnly
@@ -100,9 +62,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
       {
         return base.IsReadOnly &&
                OrderListViewModel.IsReadOnly &&
-               OrderDetailsViewModel.IsReadOnly &&
-               ClientListViewModel.IsReadOnly &&
-               ClientDetailsViewModel.IsReadOnly;
+               OrderDetailsViewModel.IsReadOnly;
       }
     }
   }

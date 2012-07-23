@@ -11,13 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SmartWorking.Office.TabsGui.Shared.View;
 
 namespace SmartWorking.Office.TabsGui.Controls.Cars
 {
   /// <summary>
   /// Interaction logic for CarDetailsControl.xaml
   /// </summary>
-  public partial class CarDetailsControl : UserControl
+  public partial class CarDetailsControl : DetailsUserControl
   {
     public CarDetailsControl()
     {

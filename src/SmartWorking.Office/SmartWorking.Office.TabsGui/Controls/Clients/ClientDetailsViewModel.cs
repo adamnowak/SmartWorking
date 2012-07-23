@@ -11,7 +11,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
   /// <summary>
   /// Car details view model implementation.
   /// </summary>
-  public class ClientDetailsViewModel : EditableControlViewModelBase<RecipePackage>
+  public class ClientDetailsViewModel : EditableControlViewModelBase<ClientAndBuildingsPackage>
   {
     public ClientDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
@@ -59,14 +59,14 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     public override void Refresh()
     {
       base.Refresh();
-      LoadAllMaterials();
-      if (Item != null && AllMaterials != null)
-      {
-        MaterialListToAddViewModel.Items.LoadItems(
-          AllMaterials.Where(
-            x =>
-            !Item.RecipeComponentAndMaterialList.Select(y => y.MaterialAndContractors.Material.Id).Contains(x.Material.Id)));
-      }
+      //LoadAllMaterials();
+      //if (Item != null && AllMaterials != null)
+      //{
+      //  MaterialListToAddViewModel.Items.LoadItems(
+      //    AllMaterials.Where(
+      //      x =>
+      //      !Item.RecipeComponentAndMaterialList.Select(y => y.MaterialAndContractors.Material.Id).Contains(x.Material.Id)));
+      //}
     }
 
     private void LoadAllMaterials()

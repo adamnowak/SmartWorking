@@ -62,8 +62,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //no record of this item in the DB, item being passed in has a PK
           if (existingObject == null && contractor.Id > 0)
           {
-            //log
-            return;
+            throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
+                                                        "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
           //Item has no PK value, must be new
           else if (contractor.Id <= 0)

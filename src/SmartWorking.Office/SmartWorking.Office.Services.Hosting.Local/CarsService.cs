@@ -33,12 +33,12 @@ namespace SmartWorking.Office.Services.Hosting.Local
                   ? ctx.Cars.ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
                       ? ctx.Cars.Where(x => !x.Deleted.HasValue).ToList()
-                      : ctx.Cars.Where(x => !x.Deleted.HasValue && (!x.IsActive.HasValue || x.IsActive.Value != 0)).ToList()
+                      : ctx.Cars.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
                   ? ctx.Cars.Where(x => x.Name.StartsWith(filter)).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
                       ? ctx.Cars.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
-                      : ctx.Cars.Where(x => !x.Deleted.HasValue && (!x.IsActive.HasValue || x.IsActive.Value != 0) && x.Name.StartsWith(filter)).ToList();
+                      : ctx.Cars.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetPrimitive()).ToList(); ;
         }
       }
@@ -61,12 +61,12 @@ namespace SmartWorking.Office.Services.Hosting.Local
                   ? ctx.Cars.Include("Driver").ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
                       ? ctx.Cars.Include("Driver").Where(x => !x.Deleted.HasValue).ToList()
-                      : ctx.Cars.Include("Driver").Where(x => !x.Deleted.HasValue && (!x.IsActive.HasValue || x.IsActive.Value != 0)).ToList()
+                      : ctx.Cars.Include("Driver").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
                   ? ctx.Cars.Include("Driver").Where(x => x.Name.StartsWith(filter)).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
                       ? ctx.Cars.Include("Driver").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
-                      : ctx.Cars.Include("Driver").Where(x => !x.Deleted.HasValue && (!x.IsActive.HasValue || x.IsActive.Value != 0) && x.Name.StartsWith(filter)).ToList();
+                      : ctx.Cars.Include("Driver").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetCarAndDriverPackage()).ToList(); 
         }
       }
@@ -80,7 +80,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the car.oo
     /// </summary>
     /// <param name="carPrimitive">The car primitive.</param>
-    public void UpdateCar(CarPrimitive carPrimitive)
+    public void CreateOrUpdateCar(CarPrimitive carPrimitive)
     {
       try
       {
@@ -92,8 +92,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //no record of this item in the DB, item being passed in has a PK
           if (existingObject == null && car.Id > 0)
           {
-            //TODO:
-            return;
+            throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
+                                                        "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
           //Item has no PK value, must be new
           else if (car.Id <= 0)

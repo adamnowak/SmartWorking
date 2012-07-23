@@ -53,7 +53,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
         RecipeComponentListViewModel.EditingMode = EditingMode.Display;
         using (IRecipesService service = ServiceFactory.GetRecipesService())
         {
-          service.UpdateRecipePackage(Item);
+          service.CreateOrUpdateRecipePackage(Item);
         }
         return true;
       }

@@ -14,7 +14,7 @@
             <TextBlock Margin="10,0,0,0" Text="{Binding SelectedItem.Header, ElementName=ordersTabControl}"></TextBlock>
         </StackPanel>
         <TabControl Grid.Row="1" Style="{StaticResource verticalTabControl}" TabStripPlacement="Left" x:Name="ordersTabControl">
-            <TabItem Header="str_DeliveryNotes">t3</TabItem>           
+            <TabItem Header="str_DeliveryNotes">t3</TabItem>
             <TabItem Header="{Binding Name}" DataContext="{Binding OrdersTabItemViewModel}">
                 <Grid>
                     <GroupBox Header="str_Orders">
@@ -54,7 +54,7 @@
                                     </MultiBinding>
                                 </GroupBox.Visibility>
                                 <Grid>
-                                    <Clients:ClientListControl DataContext="{Binding ClientListViewModel}" />
+                                    <Clients:ClientListControl DataContext="{Binding OrderDetailsViewModel.ClientListViewModel}" />
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="str_Wybierz budowe" Grid.Column="1" >
@@ -68,7 +68,7 @@
                                         </MultiBinding.Bindings>
                                     </MultiBinding>
                                 </GroupBox.Visibility>
-                                <Grid DataContext="{Binding BuildingListViewModel}">
+                                <Grid DataContext="{Binding OrderDetailsViewModel.BuildingListViewModel}">
                                     <Clients:BuildingListControl  />
                                 </Grid>
                             </GroupBox>
@@ -83,7 +83,7 @@
                                         </MultiBinding.Bindings>
                                     </MultiBinding>
                                 </GroupBox.Visibility>
-                                <Grid DataContext="{Binding RecipeListViewModel}">
+                                <Grid DataContext="{Binding OrderDetailsViewModel.RecipeListViewModel}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
@@ -95,35 +95,35 @@
 
                             <GroupBox Header="str_Wybrany klient" Grid.Row="1" >
                                 <Grid>
-                                    <Clients:ClientDetailsControl  DataContext="{Binding ClientDetailsViewModel.ClientComponentDetailsViewModel}"/>
+                                    <Clients:ClientDetailsControl  DataContext="{Binding OrderDetailsViewModel.ClientListViewModel.EditingViewModel}"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="str_Wybrana budowa" Grid.Row="1" Grid.Column="1">
                                 <Grid>
-                                    <Clients:BuildingDetailsControl  DataContext="{Binding ClientDetailsViewModel.ClientComponentDetailsViewModel}"/>
+                                    <Clients:BuildingDetailsControl  DataContext="{Binding OrderDetailsViewModel.BuildingListViewModel.EditingViewModel}"/>
                                 </Grid>
                             </GroupBox>
                             <Grid Grid.Row="1" Grid.Column="2">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition  />
-                                    </Grid.RowDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition  />
+                                </Grid.RowDefinitions>
 
-                                   
-                                    <GroupBox Header="str_WybranaRecepta" DataContext="{Binding RecipeDetailsViewModel}">
-                                        <Grid >
-                                            <Recipes:RecipeDetailsControl />
-                                        </Grid>
-                                    </GroupBox>
 
-                                
-                                    <GroupBox Header="str_OrderDetails" Grid.Row="1" DataContext="{Binding RecipeDetailsViewModel}">
-                                        <Grid >
-                                            <Orders:OrderDetailsControl />
-                                        </Grid>
-                                    </GroupBox>
-                                </Grid>
-                            
+                                <GroupBox Header="str_WybranaRecepta" DataContext="{Binding OrderDetailsViewModel.RecipeListViewModel.EditingViewModel}">
+                                    <Grid >
+                                        <Recipes:RecipeDetailsControl />
+                                    </Grid>
+                                </GroupBox>
+
+
+                                <GroupBox Header="str_OrderDetails" Grid.Row="1" DataContext="{Binding RecipeDetailsViewModel}">
+                                    <Grid >
+                                        <Orders:OrderDetailsControl />
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+
 
                             <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Button Command="{Binding OrderListViewModel.AddItemCommand}" Content="str_Add">

@@ -41,7 +41,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
       {
         using (ICarsService service = ServiceFactory.GetCarsService())
         {
-          service.UpdateCar(Item.GetCarPrimitiveWithReference());
+          service.CreateOrUpdateCar(Item.GetCarPrimitiveWithReference());
         }
         return true;
       }

@@ -22,7 +22,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of clients filtered by <paramref name="clientNameFilter"/>. Result contains Buildings of Clients.
     /// </returns>
-    public List<ClientPrimitive> GetClients(string clientNameFilter)
+    public List<ClientPrimitive> GetClients(string clientNameFilter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
@@ -48,7 +48,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of clients filtered by <paramref name="filter"/>.
     /// </returns>
-    public List<ClientAndBuildingsPackage> GetClientAndBuildingsPackageList(string filter)
+    public List<ClientAndBuildingsPackage> GetClientAndBuildingsPackageList(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
@@ -56,8 +56,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
         {
           List<Client> result =
             (string.IsNullOrWhiteSpace(filter))
-              ? ctx.Clients.Include("Buildings").ToList()
-              : ctx.Clients.Include("Buildings").Where(x => x.Name.StartsWith(filter)).ToList();
+              ? ctx.Clients.Include("ClientBuildings.Building").ToList()
+              : ctx.Clients.Include("ClientBuildings.Building").Where(x => x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetClientAndBuildingsPackage()).ToList();
         }
       }
@@ -84,8 +84,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //no record of this item in the DB, item being passed in has a PK
           if (existingObject == null && client.Id > 0)
           {
-            //log
-            return;
+            throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
+                                                        "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
           //Item has no PK value, must be new
           else if (client.Id <= 0)

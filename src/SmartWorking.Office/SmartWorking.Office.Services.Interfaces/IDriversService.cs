@@ -44,10 +44,10 @@ namespace SmartWorking.Office.Services.Interfaces
     /// </summary>
     /// <param name="driver">The driver which will be updated.</param>
     [OperationContract]
-    [WebInvoke(Method = "POST", UriTemplate = "/UpdateDriver",
+    [WebInvoke(Method = "POST", UriTemplate = "/CreateOrUpdateDriver",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateDriver(DriverPrimitive driver);
+    void CreateOrUpdateDriver(DriverPrimitive driver);
 
     /// <summary>
     /// Deletes the recipe.

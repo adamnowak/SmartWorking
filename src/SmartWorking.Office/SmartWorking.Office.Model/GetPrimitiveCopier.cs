@@ -44,7 +44,7 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
         		
-        		primitive.IsActive = primitiveToCopy.IsActive;
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
         		return primitive;
         }
@@ -73,7 +73,7 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Driver_Id = primitiveToCopy.Driver_Id;
         		
-        		primitive.IsActive = primitiveToCopy.IsActive;
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
         		return primitive;
         }
@@ -104,7 +104,7 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
         		
-        		primitive.IsActive = primitiveToCopy.IsActive;
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
         		return primitive;
         }
@@ -120,6 +120,10 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Client_Id = primitiveToCopy.Client_Id;
         		
         		primitive.Building_Id = primitiveToCopy.Building_Id;
+        		
+        		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
         		return primitive;
         }
@@ -148,6 +152,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Phone = primitiveToCopy.Phone;
         		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
+        		
         		return primitive;
         }
         
@@ -175,6 +181,10 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Order_Id = primitiveToCopy.Order_Id;
         		
+        		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
+        		
         		return primitive;
         }
         
@@ -195,6 +205,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.InternalName = primitiveToCopy.InternalName;
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
         		return primitive;
         }
@@ -217,6 +229,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
         		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
+        		
         		return primitive;
         }
         
@@ -233,6 +247,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Amount = primitiveToCopy.Amount;
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
         		return primitive;
         }
@@ -252,6 +268,10 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Amount = primitiveToCopy.Amount;
         		
         		primitive.DateOfOrder = primitiveToCopy.DateOfOrder;
+        		
+        		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
         		primitive.Canceled = primitiveToCopy.Canceled;
         		
@@ -280,7 +300,7 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
         		
-        		primitive.IsActive = primitiveToCopy.IsActive;
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
         		return primitive;
         }
@@ -300,6 +320,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Amount = primitiveToCopy.Amount;
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
         		return primitive;
         }

@@ -47,7 +47,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
         {
           using (IMaterialsService service = ServiceFactory.GetMaterialsService())
           {
-            service.UpdateMaterial(Item.GetMaterialPrimitiveWithReference());
+            service.CreateOrUpdateMaterial(Item.GetMaterialPrimitiveWithReference());
           }
           return true;
         }

@@ -21,7 +21,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of <see cref="DeliveryNote"/> filtered by <paramref name="filter"/> and <paramref name="showCanceledDeliveryNotes"/>.
     /// </returns>
-    public List<DeliveryNotePrimitive> GetDeliveryNotes(string filter, bool showCanceledDeliveryNotes)
+    public List<DeliveryNotePrimitive> GetDeliveryNotes(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
@@ -61,7 +61,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    public List<DeliveryNotePackage> GetDeliveryNotePackageList(string filter, bool getCanceled)
+    public List<DeliveryNotePackage> GetDeliveryNotePackageList(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
@@ -105,7 +105,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the <see cref="DeliveryNote"/>.
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be updated.</param>
-    public int UpdateDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
+    public void CreateOrUpdateDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
     {
       try
       {
@@ -118,8 +118,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //no record of this item in the DB, item being passed in has a PK
           if (existingObject == null && deliveryNote.Id > 0)
           {
-            //log
-            return -1;
+            throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
+                                                        "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
 
           //Item has no PK value, must be new);
@@ -134,7 +134,6 @@ namespace SmartWorking.Office.Services.Hosting.Local
           }
 
           context.SaveChanges();
-          return deliveryNote.Id;
         }
       }
       catch (Exception e)

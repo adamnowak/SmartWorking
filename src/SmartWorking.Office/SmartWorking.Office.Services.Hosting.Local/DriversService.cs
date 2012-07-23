@@ -71,7 +71,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the driver.
     /// </summary>
     /// <param name="driver">The driver which will be updated.</param>
-    public void UpdateDriver(DriverPrimitive driverPrimitive)
+    public void CreateOrUpdateDriver(DriverPrimitive driverPrimitive)
     {
       try
       {
@@ -84,8 +84,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //no record of this item in the DB, item being passed in has a PK
           if (existingObject == null && driver.Id > 0)
           {
-            //TODO:
-            return;
+            throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
+                                                        "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
           //Item has no PK value, must be new
           else if (driver.Id <= 0)

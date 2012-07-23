@@ -43,7 +43,7 @@ namespace SmartWorking.Office.Entities
         		
         		result.Deleted = primitive.Deleted;
         		
-        		result.IsActive = primitive.IsActive;
+        		result.Deactivated = primitive.Deactivated;
         		
         		return result;
         }
@@ -70,7 +70,7 @@ namespace SmartWorking.Office.Entities
         		
         		result.Driver_Id = primitive.Driver_Id;
         		
-        		result.IsActive = primitive.IsActive;
+        		result.Deactivated = primitive.Deactivated;
         		
         		return result;
         }
@@ -99,7 +99,7 @@ namespace SmartWorking.Office.Entities
         		
         		result.Deleted = primitive.Deleted;
         		
-        		result.IsActive = primitive.IsActive;
+        		result.Deactivated = primitive.Deactivated;
         		
         		return result;
         }
@@ -113,6 +113,10 @@ namespace SmartWorking.Office.Entities
         		result.Client_Id = primitive.Client_Id;
         		
         		result.Building_Id = primitive.Building_Id;
+        		
+        		result.Deleted = primitive.Deleted;
+        		
+        		result.Deactivated = primitive.Deactivated;
         		
         		return result;
         }
@@ -139,6 +143,8 @@ namespace SmartWorking.Office.Entities
         		
         		result.Phone = primitive.Phone;
         		
+        		result.Deactivated = primitive.Deactivated;
+        		
         		return result;
         }
         
@@ -164,6 +170,10 @@ namespace SmartWorking.Office.Entities
         		
         		result.Order_Id = primitive.Order_Id;
         		
+        		result.Deleted = primitive.Deleted;
+        		
+        		result.Deactivated = primitive.Deactivated;
+        		
         		return result;
         }
         
@@ -182,6 +192,8 @@ namespace SmartWorking.Office.Entities
         		result.InternalName = primitive.InternalName;
         		
         		result.Deleted = primitive.Deleted;
+        		
+        		result.Deactivated = primitive.Deactivated;
         		
         		return result;
         }
@@ -202,6 +214,8 @@ namespace SmartWorking.Office.Entities
         		
         		result.Deleted = primitive.Deleted;
         		
+        		result.Deactivated = primitive.Deactivated;
+        		
         		return result;
         }
         
@@ -216,6 +230,8 @@ namespace SmartWorking.Office.Entities
         		result.Amount = primitive.Amount;
         		
         		result.Deleted = primitive.Deleted;
+        		
+        		result.Deactivated = primitive.Deactivated;
         		
         		return result;
         }
@@ -233,6 +249,10 @@ namespace SmartWorking.Office.Entities
         		result.Amount = primitive.Amount;
         		
         		result.DateOfOrder = primitive.DateOfOrder;
+        		
+        		result.Deleted = primitive.Deleted;
+        		
+        		result.Deactivated = primitive.Deactivated;
         		
         		result.Canceled = primitive.Canceled;
         		
@@ -259,7 +279,7 @@ namespace SmartWorking.Office.Entities
         		
         		result.Deleted = primitive.Deleted;
         		
-        		result.IsActive = primitive.IsActive;
+        		result.Deactivated = primitive.Deactivated;
         		
         		return result;
         }
@@ -277,6 +297,8 @@ namespace SmartWorking.Office.Entities
         		result.Amount = primitive.Amount;
         		
         		result.Deleted = primitive.Deleted;
+        		
+        		result.Deactivated = primitive.Deactivated;
         		
         		return result;
         }

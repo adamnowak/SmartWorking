@@ -28,7 +28,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                 <!--End Debug only-->
                 <DataGridTextColumn Header="Symbol" Binding="{Binding InternalName}" />
-                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Client.Name}" />
 
                 <DataGridTextColumn Header="Ulica" Binding="{Binding Street}" />
                 <DataGridTextColumn Header="Number domu" Binding="{Binding HouseNo}" />
@@ -36,6 +36,8 @@
                 <DataGridTextColumn Header="Kod pocztowy" Binding="{Binding ZIPCode}" />
 
                 <DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" />
+                
+                
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">

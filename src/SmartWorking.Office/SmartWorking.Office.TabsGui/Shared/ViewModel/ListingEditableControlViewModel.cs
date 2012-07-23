@@ -265,7 +265,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </returns>
     protected virtual bool CanAddCloneItemCommandExecute()
     {
-      return EditingViewModel.IsReadOnly;
+      return EditingViewModel.IsReadOnly && Items.SelectedItem != null;
     }
 
     /// <summary>

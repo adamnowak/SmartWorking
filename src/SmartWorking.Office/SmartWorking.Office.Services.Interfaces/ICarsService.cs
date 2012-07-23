@@ -40,7 +40,7 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateCar",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateCar(CarPrimitive car);
+    void CreateOrUpdateCar(CarPrimitive car);
 
     /// <summary>
     /// Deletes the car.

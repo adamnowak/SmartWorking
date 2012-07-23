@@ -23,7 +23,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
       RecipePackage selectedItem = Items.SelectedItem;
       using (IRecipesService service = ServiceFactory.GetRecipesService())
       {
-        Items.LoadItems(service.GetRecipePackageList(Filter));
+        Items.LoadItems(service.GetRecipePackageList(Filter, ListItemsFilter));
       }
       if (selectedItem != null)
       {

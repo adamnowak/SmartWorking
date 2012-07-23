@@ -21,9 +21,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of <see cref="DeliveryNote"/> filtered by <paramref name="filter"/> and <paramref name="showCanceled"/>.
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetDeliveryNotes/?filter={filter}&getCanceled={getCanceled}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetDeliveryNotes/?filter={filter}&listFilter={listItemsFilterValue}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<DeliveryNotePrimitive> GetDeliveryNotes(string filter, bool getCanceled);
+    List<DeliveryNotePrimitive> GetDeliveryNotes(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
     /// Gets the <see cref="DeliveryNote"/> filtered be <paramref name="filter"/> and <paramref name="showCanceled"/>.
@@ -34,9 +34,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of <see cref="DeliveryNote"/> filtered by <paramref name="filter"/> and <paramref name="showCanceled"/>.
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetDeliveryNotePackageList/?filter={filter}&getCanceled={getCanceled}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetDeliveryNotePackageList/?filter={filter}&listFilter={listItemsFilterValue}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<DeliveryNotePackage> GetDeliveryNotePackageList(string filter, bool getCanceled);
+    List<DeliveryNotePackage> GetDeliveryNotePackageList(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
     /// Updates the <see cref="DeliveryNote"/>.
@@ -46,7 +46,7 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "POST", UriTemplate = "/UpdateDeliveryNote",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    int UpdateDeliveryNote(DeliveryNotePrimitive deliveryNote);
+    void CreateOrUpdateDeliveryNote(DeliveryNotePrimitive deliveryNote);
 
     /// <summary>
     /// Deletes the <see cref="DeliveryNote"/>.

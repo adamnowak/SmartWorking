@@ -21,9 +21,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of <see cref="Order"/> filtered by <paramref name="filter"/> and <paramref name="showCanceled"/>.
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetOrders/?filter={filter}&getCanceled={getCanceled}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetOrders/?filter={filter}&listFilter={listItemsFilterValue}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<OrderPrimitive> GetOrders(string filter, bool getCanceled);
+    List<OrderPrimitive> GetOrders(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
     /// Gets the <see cref="Order"/> filtered be <paramref name="filter"/> and <paramref name="showCanceled"/>.
@@ -34,19 +34,19 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of <see cref="Order"/> filtered by <paramref name="filter"/> and <paramref name="showCanceled"/>.
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetOrderPackageList/?filter={filter}&getCanceled={getCanceled}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetOrderPackageList/?filter={filter}&listFilter={listItemsFilterValue}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<OrderPackage> GetOrderPackageList(string filter, bool getCanceled);
+    List<OrderPackage> GetOrderPackageList(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
-    /// Updates the <see cref="Order"/>.
+    /// Creates the or update order package.
     /// </summary>
-    /// <param name="order">The delivery note which will be updated.</param>
+    /// <param name="item">The item.</param>
     [OperationContract]
-    [WebInvoke(Method = "POST", UriTemplate = "/UpdateOrder",
+    [WebInvoke(Method = "POST", UriTemplate = "/CreateOrUpdateOrderPackage",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    int UpdateOrder(OrderPrimitive order);
+    void CreateOrUpdateOrderPackage(OrderPackage item);
 
     /// <summary>
     /// Deletes the <see cref="Order"/>.
@@ -60,5 +60,7 @@ namespace SmartWorking.Office.Services.Interfaces
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void CanceledOrder(OrderPrimitive order);
+
+    
   }
 }

@@ -18,9 +18,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="filter">The client name filter.</param>
     /// <returns>List of clients filtered by <paramref name="filter"/>. 
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetClients/?filter={filter}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetClients/?filter={filter}&listFilter={listItemsFilterValue}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<ClientPrimitive> GetClients(string filter);
+    List<ClientPrimitive> GetClients(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
     /// Gets the <see cref="ClientAndBuildingsPackage"/> list filtered by <paramref name="filter"/>.
@@ -30,9 +30,9 @@ namespace SmartWorking.Office.Services.Interfaces
     /// List of clients filtered by <paramref name="filter"/>. 
     /// </returns>
     [OperationContract]
-    [WebInvoke(Method = "GET", UriTemplate = "/GetClientAndBuildingsPackageList/?filter={filter}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetClientAndBuildingsPackageList/?filter={filter}&listFilter={listItemsFilterValue}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<ClientAndBuildingsPackage> GetClientAndBuildingsPackageList(string filter);
+    List<ClientAndBuildingsPackage> GetClientAndBuildingsPackageList(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
     /// Creates or updates the client.

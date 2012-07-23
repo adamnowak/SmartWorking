@@ -19,15 +19,29 @@ namespace SmartWorking.Office.PrimitiveEntities
     public interface IPrimitive
     {
         int Id { get; set; }
+        Nullable<System.DateTime> Deleted { get; set; }
+        Nullable<System.DateTime> Deactivated { get; set; }
         bool IsNew { get; }
+        bool IsDeleted { get; }
+        bool IsDeactive { get; }
     }
         
     public abstract class PrimitiveBase : IPrimitive
     {
         public int Id { get; set; }
+        public Nullable<System.DateTime> Deleted { get; set; }
+        public Nullable<System.DateTime> Deactivated { get; set; }
         public bool IsNew
         {
-            get { return Id <= 0; }
+            get { return Id <= 0; }            
+        }
+        public bool IsDeleted
+        {
+          get { return Deleted != null && Deleted.HasValue; }
+        }
+        public bool IsDeactive
+        {
+          get { return Deactivated != null && Deactivated.HasValue; }
         }
     }
 }

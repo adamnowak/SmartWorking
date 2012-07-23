@@ -92,6 +92,32 @@ namespace SmartWorking.Office.Entities
       return result;
     }
 
+    public static OrderPackage GetOrderPackage(this Order order)
+    {
+      OrderPackage result = new OrderPackage();
+      if (order != null)
+      {
+        result.Order = order.GetPrimitive();
+        if (order.Recipe != null)
+        {
+          result.Recipe = order.Recipe.GetPrimitive();
+        }
+        if (order.ClientBuilding != null)
+        {
+          result.BuildingAndContractor.ClientBuilding = order.ClientBuilding.GetPrimitive();
+          if (order.ClientBuilding.Building != null)
+          {
+            result.BuildingAndContractor.Building = order.ClientBuilding.Building;
+          }
+          if (order.ClientBuilding.Client != null)
+          {
+            result.BuildingAndContractor.Client = order.ClientBuilding.Client;
+          }
+        }
+      }
+      return result;
+    }
+
     public static CarAndDriverPackage GetCarAndDriverPackage(this Car car)
     {
       CarAndDriverPackage result = new CarAndDriverPackage();
