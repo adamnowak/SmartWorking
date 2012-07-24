@@ -46,19 +46,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
       get { return "str_SaleGroup"; }
     }
 
-    protected override void WorkaroundOnSelectedTab(TabItem oldValue)
-    {
-      if (oldValue == null && SelectedTab != null)
-      {
-        //TabChanged(new SelectionChangedEventArgs(TabControl.SelectionChangedEvent, new List<TabItem>(), new List<TabItem> { SelectedTab }));
-      }
-    }
+    
 
     public override bool IsReadOnly
     {
       get
       {
-        return base.IsReadOnly && ClientsAndBuildingsTabItemViewModel.IsReadOnly;
+        return base.IsReadOnly &&               
+          (ClientsAndBuildingsTabItemViewModel != null ? ClientsAndBuildingsTabItemViewModel.IsReadOnly : true);
       }
     }
 

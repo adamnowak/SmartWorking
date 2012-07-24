@@ -117,7 +117,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       return false;
     }
 
-    public override void Refresh()
+    protected override bool OnRefresh()
     {
       //ClientDetailsViewModel.Refresh();
       ClientListViewModel.Refresh();
@@ -128,7 +128,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       //RecipeDetailsViewModel.Refresh();
       RecipeListViewModel.Refresh();
 
-      base.Refresh();
+      return base.OnRefresh(); 
     }
 
   

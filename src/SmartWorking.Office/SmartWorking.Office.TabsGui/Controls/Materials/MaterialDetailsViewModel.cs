@@ -55,12 +55,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
       return false;
     }
 
-    
 
-    public override void Refresh()
+
+    protected override bool OnRefresh()
     {
       LoadContractors();
-      base.Refresh();
+      return base.OnRefresh();
     }
 
     private void LoadContractors()

@@ -25,8 +25,8 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       DriverDetailsViewModel = new DriverDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       DriverListViewModel = new DriverListViewModel(MainViewModel, DriverDetailsViewModel, ModalDialogService, ServiceFactory);
 
-      ViewModelProvider.RegisterChildViewModel(CarDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged);
-      ViewModelProvider.RegisterChildViewModel(DriverDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged);
+      ViewModelProvider.RegisterChildViewModel(CarDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.DeleteInvoiked | ViewModelProviderAction.SaveInvoiked);
+      ViewModelProvider.RegisterChildViewModel(DriverDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.DeleteInvoiked | ViewModelProviderAction.SaveInvoiked);
     }
 
     /// <summary>
@@ -60,12 +60,13 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// <summary>
     /// Refreshes control context.
     /// </summary>
-    public override void Refresh()
+    protected override bool OnRefresh()
     {
       CarListViewModel.Refresh();
       CarDetailsViewModel.Refresh();
       DriverListViewModel.Refresh();
       DriverDetailsViewModel.Refresh();
+      return true;
     }
 
     public override bool IsReadOnly
@@ -73,10 +74,10 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       get
       {
         return base.IsReadOnly &&
-               CarListViewModel.IsReadOnly &&
-               CarDetailsViewModel.IsReadOnly &&
-               DriverListViewModel.IsReadOnly &&
-               DriverDetailsViewModel.IsReadOnly;
+               (CarListViewModel != null ? CarListViewModel.IsReadOnly : true) &&
+               (CarDetailsViewModel != null ? CarDetailsViewModel.IsReadOnly : true) &&
+               (DriverListViewModel != null ? DriverListViewModel.IsReadOnly : true) &&
+               (DriverDetailsViewModel != null ? DriverDetailsViewModel.IsReadOnly : true);
       }
     }
   }

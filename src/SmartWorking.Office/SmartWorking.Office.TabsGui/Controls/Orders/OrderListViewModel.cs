@@ -151,14 +151,18 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void DeleteItemCommandExecute()
-    {
-      base.DeleteItemCommandExecute();
-      using (IContractorsService service = ServiceFactory.GetContractorsService())
+    protected override bool  OnDeleteItem()
+    {      
+      if (base.OnDeleteItem())
       {
-        //service.DeleteContractor(EditingViewModel.Item.);
+        using (IContractorsService service = ServiceFactory.GetContractorsService())
+        {
+          //service.DeleteContractor(EditingViewModel.Item.);
+        }
+        Refresh();
+        return true;
       }
-      Refresh();
+      return false;
     }
 
   }

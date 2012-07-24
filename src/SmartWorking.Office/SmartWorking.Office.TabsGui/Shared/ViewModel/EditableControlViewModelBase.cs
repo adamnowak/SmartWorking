@@ -26,10 +26,6 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       
     }
 
-    /// <summary>
-    /// Refreshes control context.
-    /// </summary>
-    public override void Refresh() {}
 
     #region Item
     /// <summary>

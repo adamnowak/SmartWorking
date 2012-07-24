@@ -60,13 +60,17 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
       return false;
     }
 
-    
 
-    public override void Refresh()
+
+    protected override bool OnRefresh()
     {
-      base.Refresh();
-      LoadAllMaterials();
-      SetMaterialsToAdd();
+      if (base.OnRefresh())
+      {
+        LoadAllMaterials();
+        SetMaterialsToAdd();
+        return true;
+      }
+      return false;
     }
 
     private void SetMaterialsToAdd()

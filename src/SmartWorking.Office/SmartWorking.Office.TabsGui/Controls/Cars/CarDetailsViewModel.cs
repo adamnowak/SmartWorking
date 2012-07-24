@@ -50,10 +50,10 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 
     public SelectableViewModelBase<DriverPrimitive> Drivers { get; private set; }
 
-    public override void Refresh()
-    {
+    protected override bool OnRefresh()
+    {      
       LoadDrivers();
-      base.Refresh();
+      return base.OnRefresh();
     }
 
     private void LoadDrivers()

@@ -205,9 +205,10 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Refreshes control context.
     /// </summary>
-    public override void Refresh()
+    protected override bool OnRefresh()
     {
       LoadItems();
+      return true;
     }
 
     #region AddItemCommand
@@ -291,6 +292,8 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
+    public event EventHandler ItemDeleted;
+
     /// <summary>
     /// Determines whether delete command can be execute.
     /// </summary>
@@ -305,8 +308,38 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Execute delete command.
     /// </summary>
-    protected virtual void DeleteItemCommandExecute()
-    { }
+    protected void DeleteItemCommandExecute()
+    {
+      string errorCaption = "str_SaveItem" + Name;
+      try
+      {
+        if (OnDeleteItem())
+        {
+          if (ItemDeleted != null)
+          {
+            ItemDeleted(null, null);
+          }
+        }
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+      }
+    }
+
+    protected virtual bool OnDeleteItem()
+    {
+      return true;
+    }
+
     #endregion  
 
     #region ApplyFilterCommand

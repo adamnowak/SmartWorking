@@ -63,14 +63,18 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void DeleteItemCommandExecute()
+    protected override bool OnDeleteItem()
     {
-      base.DeleteItemCommandExecute();
-      using (IContractorsService service = ServiceFactory.GetContractorsService())
+      if (base.OnDeleteItem())
       {
-        service.DeleteContractor(EditingViewModel.Item);
+        using (IContractorsService service = ServiceFactory.GetContractorsService())
+        {
+          service.DeleteContractor(EditingViewModel.Item);
+        }
+        Refresh();
+        return true;
       }
-      Refresh();
+      return false;
     }
 
   }

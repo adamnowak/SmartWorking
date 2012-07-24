@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
@@ -19,6 +20,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     /// Gets the delete command which enables to delete existing item.
     /// </summary>
     ICommand DeleteItemCommand { get; }
+
+    /// <summary>
+    /// Occurs when item was saved.
+    /// </summary>
+    event EventHandler ItemDeleted;
 
     /// <summary>
     /// Gets the filter used to filterfing items.

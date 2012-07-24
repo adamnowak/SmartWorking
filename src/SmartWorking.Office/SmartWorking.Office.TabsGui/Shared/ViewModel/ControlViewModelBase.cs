@@ -30,9 +30,10 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
-    protected virtual void OnChildViewModelIsReadOnlyChanged(ControlViewModelBase viewModel)
+    protected virtual bool OnChildViewModelIsReadOnlyChanged(ControlViewModelBase viewModel)
     {
       RaisePropertyChanged(IsReadOnlyPropertyName);
+      return true;
     }
 
 
@@ -93,7 +94,37 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Refreshes control context.
     /// </summary>
-    public abstract void Refresh();
+    public void Refresh()
+    {
+      string errorCaption = "str_Refresh" + Name;
+      try
+      {
+        if (OnRefresh())
+        {
+          if (Refreshed != null)
+          {
+            Refreshed(this, null);
+          }
+        }
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+      }
+    }
+
+    protected virtual bool OnRefresh()
+    {
+      return true;
+    }
 
     public event EventHandler Refreshed;
 
@@ -113,6 +144,8 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// Gets the service factory.
     /// </summary>
     public IServiceFactory ServiceFactory { get; private set; }
+
+    public ViewModelProvider ViewModelProvider { get; private set; }
 
     #region EditingMode
     /// <summary>
@@ -145,18 +178,39 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         _editingMode = value;
         // Update bindings, no broadcast
         RaisePropertyChanged(EditingModePropertyName);
+        if (OnEditingModeChanged())
+        {
+          if (EditingModeChanged != null)
+          {
+            EditingModeChanged(this, EventArgs.Empty);
+          }
+        }
 
         if (oldIsReadOnly != IsReadOnly)
         {
           RaisePropertyChanged(IsReadOnlyPropertyName);
+          if (OnIsReadOnlyChanged())
+          {
+            if (IsReadOnlyChanged != null)
+            {
+              IsReadOnlyChanged(this, EventArgs.Empty);
+            }
+          }
         }
       }
     }
 
     public event EventHandler EditingModeChanged;
 
+    protected virtual bool OnEditingModeChanged()
+    {
+      return true;
+    }
+
+
     #endregion //EditingMode
 
+    #region IsReadOnly
     /// <summary>
     /// The <see cref="EditingMode" /> property's name.
     /// </summary>
@@ -177,6 +231,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 
     public event EventHandler IsReadOnlyChanged;
 
-    public ViewModelProvider ViewModelProvider { get; private set; }
+    protected virtual bool OnIsReadOnlyChanged()
+    {
+      return true;
+    }
+    #endregion //IsReadOnly
+    
   }
 }

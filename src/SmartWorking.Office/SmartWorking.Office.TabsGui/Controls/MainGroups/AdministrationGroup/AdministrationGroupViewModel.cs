@@ -48,19 +48,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       get { return "str_AdministrationGroup"; }
     }
 
-    protected override void WorkaroundOnSelectedTab(TabItem oldValue)
-    {
-      if (oldValue == null && SelectedTab != null)
-      {
-        //TabChanged(new SelectionChangedEventArgs(TabControl.SelectionChangedEvent, new List<TabItem>(), new List<TabItem> { SelectedTab }));
-      }
-    }
+   
 
     public override bool IsReadOnly
     {
       get
       {
-        return base.IsReadOnly && DriversAndCarsTabItemViewModel.IsReadOnly;
+        return base.IsReadOnly &&
+          (DriversAndCarsTabItemViewModel != null ? DriversAndCarsTabItemViewModel.IsReadOnly : true);
       }
     }
 

@@ -87,7 +87,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Refreshes control context.
     /// </summary>
-    public override void Refresh()
+    protected override bool OnRefresh()
     {
       if (SelectedTab != null)
       {
@@ -95,8 +95,10 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         if (controlViewModel != null && controlViewModel != this)
         {
           controlViewModel.Refresh();
+          return true;
         }
       }
+      return false;
     }
 
 
@@ -132,17 +134,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         // Update bindings, no broadcast
         RaisePropertyChanged(SelectedTabPropertyName);
 
-        //workaround
-        WorkaroundOnSelectedTab(oldValue);
       }
-    }
-
-    protected virtual void WorkaroundOnSelectedTab(TabItem oldValue)
-    {
-      //if (oldValue == null)
-      //{
-      //  TabChanged(new SelectionChangedEventArgs(TabControl.SelectionChangedEvent, new List<TabItem>(), new List<TabItem> { _selectedTab }));
-      //}
     }
 
     #endregion //SelectedTab

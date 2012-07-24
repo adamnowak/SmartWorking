@@ -44,12 +44,6 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
     }
 
 
-    public override void Refresh()
-    {
-      base.Refresh();
-    }
-
-
     /// <summary>
     /// Called when [item changed].
     /// </summary>

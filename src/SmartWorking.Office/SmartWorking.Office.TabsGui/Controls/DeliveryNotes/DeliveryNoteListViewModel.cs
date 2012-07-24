@@ -58,14 +58,19 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void DeleteItemCommandExecute()
-    {
-      base.DeleteItemCommandExecute();
-      using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+    protected override bool OnDeleteItem()
+    { 
+      if (base.OnDeleteItem())
       {
-        service.DeleteMaterial(EditingViewModel.Item.GetMaterialPrimitiveWithReference());
+        using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+        {
+          service.DeleteMaterial(EditingViewModel.Item.GetMaterialPrimitiveWithReference());
+        }
+        Refresh();
+        return true;
       }
-      Refresh();
+      return false;
+      
     }
   }
 

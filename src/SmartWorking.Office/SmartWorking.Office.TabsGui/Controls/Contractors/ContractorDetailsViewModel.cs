@@ -46,13 +46,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
 
     public SelectableViewModelBase<ContractorPrimitive> Contractors { get; private set; }
 
-    public override void Refresh()
-    {
-     
-      base.Refresh();
-    }
 
-  
 
     /// <summary>
     /// Called when [item changed].

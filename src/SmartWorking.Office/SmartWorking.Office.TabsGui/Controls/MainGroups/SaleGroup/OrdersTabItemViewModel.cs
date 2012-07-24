@@ -49,11 +49,12 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// <summary>
     /// Refreshes control context.
     /// </summary>
-    public override void Refresh()
+    protected override bool OnRefresh()
     {
       OrderListViewModel.Refresh();
       OrderDetailsViewModel.Refresh();
-      
+      return true;
+
     }
 
     public override bool IsReadOnly
@@ -61,8 +62,8 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
       get
       {
         return base.IsReadOnly &&
-               OrderListViewModel.IsReadOnly &&
-               OrderDetailsViewModel.IsReadOnly;
+               (OrderListViewModel != null ? OrderListViewModel.IsReadOnly : true)  &&
+               (OrderDetailsViewModel != null ? OrderDetailsViewModel.IsReadOnly : true);
       }
     }
   }

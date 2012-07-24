@@ -57,10 +57,10 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 
     
 
-    public override void Refresh()
+    protected override bool OnRefresh()
     {
       LoadContractors();
-      base.Refresh();
+      return base.OnRefresh(); 
     }
 
     private void LoadContractors()

@@ -65,14 +65,18 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void DeleteItemCommandExecute()
+    protected override bool OnDeleteItem()
     {
-      base.DeleteItemCommandExecute();
-      using (ICarsService service = ServiceFactory.GetCarsService())
+      if (base.OnDeleteItem())
       {
-        service.DeleteCar(EditingViewModel.Item.GetCarPrimitiveWithReference());
+        using (ICarsService service = ServiceFactory.GetCarsService())
+        {
+          service.DeleteCar(EditingViewModel.Item.GetCarPrimitiveWithReference());
+        }
+        Refresh();
+        return true;
       }
-      Refresh();
+      return false;
     }
 
     #region ShowDeactivated

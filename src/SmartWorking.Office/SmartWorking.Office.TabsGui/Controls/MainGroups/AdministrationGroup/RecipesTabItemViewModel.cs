@@ -60,12 +60,13 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// <summary>
     /// Refreshes control context.
     /// </summary>
-    public override void Refresh()
+    protected override bool OnRefresh()
     {
       RecipeListViewModel.Refresh();
       RecipeDetailsViewModel.Refresh();
       RecipeComponentListViewModel.Refresh();
       RecipeComponentDetailsViewModel.Refresh();
+      return true;
     }
 
     public override bool IsReadOnly
@@ -73,10 +74,10 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       get
       {
         return base.IsReadOnly &&
-               RecipeListViewModel.IsReadOnly &&
-               RecipeDetailsViewModel.IsReadOnly &&
-               RecipeComponentListViewModel.IsReadOnly &&
-               RecipeComponentDetailsViewModel.IsReadOnly;
+               (RecipeListViewModel != null ? RecipeListViewModel.IsReadOnly : true) &&
+               (RecipeDetailsViewModel != null ? RecipeDetailsViewModel.IsReadOnly : true) &&
+               (RecipeComponentListViewModel != null ? RecipeComponentListViewModel.IsReadOnly : true) &&
+               (RecipeComponentDetailsViewModel != null ? RecipeComponentDetailsViewModel.IsReadOnly : true);
       }
     }
   }
