@@ -6,9 +6,9 @@ using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Controls.Clients
 {
-  public class BuildingListViewModel : ListingEditableControlViewModel<ContractorPrimitive>
+  public class BuildingListViewModel : ListingEditableControlViewModel<BuildingPrimitive>
   {
-    public BuildingListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<ContractorPrimitive> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public BuildingListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<BuildingPrimitive> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
     }
@@ -20,14 +20,14 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
 
     protected override void  OnLoadItems()
     {
-      ContractorPrimitive selectedItem = Items.SelectedItem;
-      using (IContractorsService service = ServiceFactory.GetContractorsService())
+      BuildingPrimitive selectedItem = Items.SelectedItem;
+      using (IClientsService service = ServiceFactory.GetClientsService())
       {
-        //Items.LoadItems(service.GetContractors(Filter, ShowDeleted));
+        //Items.LoadItems(service.get.GetContractors(Filter, ShowDeleted));
       }
       if (selectedItem != null)
       {
-        ContractorPrimitive selectionFromItems =
+        BuildingPrimitive selectionFromItems =
           Items.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
         if (selectionFromItems != null)
           Items.SelectedItem = selectionFromItems;
@@ -39,21 +39,21 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     protected override void AddItemCommandExecute()
     {
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new ContractorPrimitive();
+      EditingViewModel.Item = new BuildingPrimitive();
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      ContractorPrimitive clone = Items.SelectedItem;
+      BuildingPrimitive clone = Items.SelectedItem;
       if (clone != null)
       {
         clone.Id = 0;        
       }
       else
       {
-        clone = new ContractorPrimitive();
+        clone = new BuildingPrimitive();
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;

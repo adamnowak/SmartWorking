@@ -112,7 +112,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Orders
       string errorCaption = "Wybieranie WZ'tki!";
       try
       {
-        OrderPackage.BuildingAndContractor =
+        OrderPackage.ClientBuildingPackage =
           ModalDialogService.SelectBuildingAndContractorPackage(ModalDialogService, ServiceFactory);
         RaisePropertyChanged("OrderPackage");
       }
@@ -189,9 +189,9 @@ namespace SmartWorking.Office.Gui.ViewModel.Orders
 
     private bool CanCreateAndPrintOrder()
     {
-      return OrderPackage.BuildingAndContractor != null &&
-             OrderPackage.BuildingAndContractor.Building != null &&
-             OrderPackage.BuildingAndContractor.Client != null &&
+      return OrderPackage.ClientBuildingPackage != null &&
+             OrderPackage.ClientBuildingPackage.Building != null &&
+             OrderPackage.ClientBuildingPackage.Client != null &&
              OrderPackage.Recipe != null;
     }
 
@@ -204,7 +204,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Orders
         {
           throw new SmartWorkingException("OrderPackage is not initialized.");
         }
-        if (OrderPackage.BuildingAndContractor == null)
+        if (OrderPackage.ClientBuildingPackage == null)
         {
           throw new SmartWorkingException("Building and contractor is not defined.");
         }

@@ -1,0 +1,2 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SmartWorking.Office.Services.Hosting.Local.BuildingsService, SmartWorking.Office.Services.Hosting.Local"  
+Factory="System.ServiceModel.Activation.WebServiceHostFactory"  %>

@@ -19,6 +19,13 @@ namespace SmartWorking.Office.Services.Factory.IIS
   }
 
   /// <summary>
+  /// <see cref="IClientChannel"/> for <see cref="IClientsService"/> service.
+  /// </summary>
+  internal interface IBuildingsServiceChannel : IBuildingsService, IClientChannel
+  {
+  }
+
+  /// <summary>
   /// <see cref="IClientChannel"/> for <see cref="IContractorsService"/> service.
   /// </summary>
   internal interface IContractorsServiceChannel : IContractorsService, IClientChannel
@@ -188,6 +195,13 @@ namespace SmartWorking.Office.Services.Factory.IIS
     {
       var channelFactory = new ChannelFactory<IReportsServiceChannel>("*");
       IReportsServiceChannel service = channelFactory.CreateChannel();
+      return service;
+    }
+
+    public IBuildingsService GetBuildingsService()
+    {
+      var channelFactory = new ChannelFactory<IBuildingsServiceChannel>("*");
+      IBuildingsServiceChannel service = channelFactory.CreateChannel();
       return service;
     }
 

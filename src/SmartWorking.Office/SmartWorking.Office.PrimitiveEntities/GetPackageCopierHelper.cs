@@ -86,7 +86,7 @@ namespace SmartWorking.Office.PrimitiveEntities
       OrderPackage package = new OrderPackage();
       package.Order = source.Order.GetPrimitiveCopy();
       package.Recipe = source.Recipe.GetPrimitiveCopy();
-      package.BuildingAndContractor = source.BuildingAndContractor.GetPackageCopy();
+      package.ClientBuildingPackage = source.ClientBuildingPackage.GetPackageCopy();
       return package;
     }
   }

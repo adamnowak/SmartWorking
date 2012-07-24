@@ -8,12 +8,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
   /// <summary>
   /// Car details view model implementation.
   /// </summary>
-  public class BuildingDetailsViewModel : EditableControlViewModelBase<ContractorPrimitive>
+  public class BuildingDetailsViewModel : EditableControlViewModelBase<BuildingPrimitive>
   {
     public BuildingDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      Contractors = new SelectableViewModelBase<ContractorPrimitive>();
+
     }
 
     /// <summary>
@@ -26,7 +26,6 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
 
     protected override void EditItemCommandExecute()
     {
-      LoadContractors();
       Item = Item.GetPrimitiveCopy();
       base.EditItemCommandExecute();
     }
@@ -35,30 +34,21 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     {
       if (base.OnSaveItem())
       {
-        using (IContractorsService service = ServiceFactory.GetContractorsService())
+        using (IBuildingsService service = ServiceFactory.GetBuildingsService())
         {
-          service.CreateOrUpdateContractor(Item);
+          //service.CreateOrUpdateContractor(Item);
         }
         return true;
       }
       return false;
     }
 
-    public SelectableViewModelBase<ContractorPrimitive> Contractors { get; private set; }
 
     public override void Refresh()
     {
-      LoadContractors();
       base.Refresh();
     }
 
-    private void LoadContractors()
-    {
-      using (IContractorsService service = ServiceFactory.GetContractorsService())
-      {
-        Contractors.LoadItems(service.GetContractors(string.Empty, ListItemsFilterValues.OnlyActive));
-      }
-    }
 
     /// <summary>
     /// Called when [item changed].

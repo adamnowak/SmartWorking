@@ -110,6 +110,11 @@ namespace SmartWorking.Office.Services.Factory.Local
       return new ReportsService();
     }
 
+    public IBuildingsService GetBuildingsService()
+    {
+      return new BuildingsService();
+    }
+
     #endregion
   }
 }

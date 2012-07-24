@@ -59,5 +59,7 @@
     /// </summary>
     /// <returns>Service provides operations to create reports.</returns>
     IReportsService GetReportsService();
+
+    IBuildingsService GetBuildingsService();
   }
 }

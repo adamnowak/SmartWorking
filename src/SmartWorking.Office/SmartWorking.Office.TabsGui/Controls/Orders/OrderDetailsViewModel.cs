@@ -1,4 +1,5 @@
-﻿using SmartWorking.Office.PrimitiveEntities;
+﻿using System.Linq;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Clients;
 using SmartWorking.Office.TabsGui.Controls.Recipes;
@@ -18,6 +19,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogService, ServiceFactory);
 
+      ClientListViewModel.Items.SelectedItemChanged += new System.EventHandler<SelectedItemChangedEventArgs<ClientAndBuildingsPackage>>(Items_SelectedItemChanged);
+
       BuildingDetailsViewModel = new BuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       BuildingListViewModel = new BuildingListViewModel(MainViewModel, BuildingDetailsViewModel, ModalDialogService, ServiceFactory);
 
@@ -25,6 +28,18 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogService, ServiceFactory);
 
       
+    }
+
+    void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<ClientAndBuildingsPackage> e)
+    {
+      if (e.NewValue != null)
+      {
+        BuildingListViewModel.Items.LoadItems(e.NewValue.Buildings);
+      }
+      else
+      {
+        BuildingListViewModel.Items.Items.Clear();
+      }
     }
 
     /// <summary>
@@ -90,7 +105,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       ClientListViewModel.Refresh();
       
       //BuildingDetailsViewModel.Refresh();
-      BuildingListViewModel.Refresh();
+      //BuildingListViewModel.Refresh();
       
       //RecipeDetailsViewModel.Refresh();
       RecipeListViewModel.Refresh();
@@ -104,18 +119,26 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     /// Called when [item changed].
     /// </summary>
     /// <param name="oldItem">The old item.</param>
-    //protected override void OnItemChanged(CarAndDriverPackage oldItem)
-    //{
-    //  if (Producers.Items != null && Item != null && Item.Deliverer != null)
-    //  {
-    //    Producers.SelectedItem = Producers.Items.Where(x => x.Id == Item.Driver.Id).FirstOrDefault();
-    //    Item.Deliverer = Producers.SelectedItem;
-    //  }
-    //  else
-    //  {
-    //    Producers.SelectedItem = null;
-    //  }
+    protected override void OnItemChanged(OrderPackage oldItem)
+    {
+      if (Item != null && Item.ClientBuildingPackage != null && Item.ClientBuildingPackage.Client != null)
+      {
+        ClientListViewModel.Items.SelectedItem = ClientListViewModel.Items.Items.Where(x => x.Client.Id == Item.ClientBuildingPackage.Client.Id).FirstOrDefault();
+      }
+      else
+      {
+        ClientListViewModel.Items.SelectedItem = null;
+      }
+      //if (Producers.Items != null && Item != null && Item.Deliverer != null)
+      //{
+      //  Producers.SelectedItem = Producers.Items.Where(x => x.Id == Item.Driver.Id).FirstOrDefault();
+      //  Item.Deliverer = Producers.SelectedItem;
+      //}
+      //else
+      //{
+      //  Producers.SelectedItem = null;
+      //}
 
-    //}
+    }
   }
 }

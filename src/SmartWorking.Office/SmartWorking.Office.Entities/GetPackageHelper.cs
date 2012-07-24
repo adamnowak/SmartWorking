@@ -104,14 +104,14 @@ namespace SmartWorking.Office.Entities
         }
         if (order.ClientBuilding != null)
         {
-          result.BuildingAndContractor.ClientBuilding = order.ClientBuilding.GetPrimitive();
+          result.ClientBuildingPackage.ClientBuilding = order.ClientBuilding.GetPrimitive();
           if (order.ClientBuilding.Building != null)
           {
-            result.BuildingAndContractor.Building = order.ClientBuilding.Building;
+            result.ClientBuildingPackage.Building = order.ClientBuilding.Building;
           }
           if (order.ClientBuilding.Client != null)
           {
-            result.BuildingAndContractor.Client = order.ClientBuilding.Client;
+            result.ClientBuildingPackage.Client = order.ClientBuilding.Client;
           }
         }
       }

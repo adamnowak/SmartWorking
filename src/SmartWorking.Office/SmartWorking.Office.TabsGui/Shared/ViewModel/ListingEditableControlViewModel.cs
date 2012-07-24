@@ -30,6 +30,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         Dispatcher.CurrentDispatcher.BeginInvoke(new System.EventHandler<SelectedItemChangedEventArgs<T>>(Items_SelectedItemChanged), o, e);
       if (EditingViewModel != null)
       {
+        EditingViewModel.Item = Items.SelectedItem;
         EditingViewModel.ChangesCanceled += new System.EventHandler(EditingViewModel_ChangesCanceled);
         EditingViewModel.ItemSaved += new System.EventHandler(EditingViewModel_ItemSaved);
       }
