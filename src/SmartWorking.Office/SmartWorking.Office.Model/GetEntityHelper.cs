@@ -256,6 +256,10 @@ namespace SmartWorking.Office.Entities
         		
         		result.Canceled = primitive.Canceled;
         		
+        		result.Pump = primitive.Pump;
+        		
+        		result.Notice = primitive.Notice;
+        		
         		return result;
         }
         

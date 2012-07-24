@@ -275,6 +275,10 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Canceled = primitiveToCopy.Canceled;
         		
+        		primitive.Pump = primitiveToCopy.Pump;
+        		
+        		primitive.Notice = primitiveToCopy.Notice;
+        		
         		return primitive;
         }
         

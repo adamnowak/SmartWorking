@@ -11,7 +11,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
   /// <summary>
   /// View model for drivers and cars tab item
   /// </summary>
-  public class RecipesTabItemViewModel : ControlViewModelBase
+  public class RecipesTabItemViewModel : TabItemViewModelBase
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ProducersAndMaterialsTabItemViewModel"/> class.

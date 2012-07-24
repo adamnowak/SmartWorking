@@ -24,14 +24,19 @@
 
 
         <DataGrid Grid.Row="1"  SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}" >
+            <DataGrid.Resources>
+                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+            </DataGrid.Resources>
             <DataGrid.Columns>
            
                     <!--Debug only-->
-                    <DataGridTextColumn Header="Id" Binding="{Binding RecipeComponent.Id}" />
+                <DataGridTextColumn Header="str_Id" Binding="{Binding RecipeComponent.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                     <!--End Debug only-->
-                    <DataGridTextColumn Header="Id Materiału" Binding="{Binding MaterialAndContractors.Material.Id}" />
-                    <DataGridTextColumn Header="Nazwa Materiału" Binding="{Binding MaterialAndContractors.Material.Name}" />
-                    <DataGridTextColumn Header="Ilość" Binding="{Binding RecipeComponent.Amount}" />
+                <DataGridTextColumn Header="str_Id Materiału" Binding="{Binding MaterialAndContractors.Material.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <DataGridTextColumn Header="str_Nazwa Materiału" Binding="{Binding MaterialAndContractors.Material.Name}" />
+                <DataGridTextColumn Header="str_Ilość" Binding="{Binding RecipeComponent.Amount}" />
                 </DataGrid.Columns>
      
         </DataGrid>

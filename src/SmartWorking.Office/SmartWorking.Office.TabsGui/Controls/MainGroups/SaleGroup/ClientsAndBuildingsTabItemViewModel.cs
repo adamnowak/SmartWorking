@@ -1,4 +1,6 @@
 ﻿using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Controls.Buildings;
+using SmartWorking.Office.TabsGui.Controls.Clients;
 using SmartWorking.Office.TabsGui.Controls.Recipes;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
@@ -8,7 +10,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
   /// <summary>
   /// View model for drivers and cars tab item
   /// </summary>
-  public class ClientsAndBuildingsTabItemViewModel : ControlViewModelBase
+  public class ClientsAndBuildingsTabItemViewModel : TabItemViewModelBase
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ProducersAndMaterialsTabItemViewModel"/> class.
@@ -18,31 +20,31 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     public ClientsAndBuildingsTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      RecipeDetailsViewModel = new RecipeDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogService, ServiceFactory);
-      RecipeComponentDetailsViewModel = new RecipeComponentDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      RecipeComponentListViewModel = new RecipeComponentListViewModel(MainViewModel, RecipeComponentDetailsViewModel, ModalDialogService, ServiceFactory);
+      ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogService, ServiceFactory);
+      BuildingDetailsViewModel = new BuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      BuildingListViewModel = new BuildingListViewModel(MainViewModel, BuildingDetailsViewModel, ModalDialogService, ServiceFactory);
     }
 
     /// <summary>
     /// Gets the car list view model.
     /// </summary>
-    public RecipeListViewModel RecipeListViewModel { get; private set; }
+    public ClientListViewModel ClientListViewModel { get; private set; }
 
     /// <summary>
     /// Gets the car details view model.
     /// </summary>
-    public RecipeDetailsViewModel RecipeDetailsViewModel { get; private set; }
+    public ClientDetailsViewModel ClientDetailsViewModel { get; private set; }
 
     /// <summary>
     /// Gets the recipe component details view model.
     /// </summary>
-    public RecipeComponentDetailsViewModel RecipeComponentDetailsViewModel { get; private set; }
+    public BuildingDetailsViewModel BuildingDetailsViewModel { get; private set; }
 
     /// <summary>
     /// Gets the recipe component list view model.
     /// </summary>
-    public RecipeComponentListViewModel RecipeComponentListViewModel { get; private set; }
+    public BuildingListViewModel BuildingListViewModel { get; private set; }
 
 
 
@@ -59,10 +61,10 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// </summary>
     public override void Refresh()
     {
-      RecipeListViewModel.Refresh();
-      RecipeDetailsViewModel.Refresh();
-      RecipeComponentListViewModel.Refresh();
-      RecipeComponentDetailsViewModel.Refresh();
+      ClientListViewModel.Refresh();
+      //ClientDetailsViewModel.Refresh();
+      BuildingListViewModel.Refresh();
+      //BuildingDetailsViewModel.Refresh();
     }
 
     public override bool IsReadOnly
@@ -70,10 +72,10 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
       get
       {
         return base.IsReadOnly &&
-               RecipeListViewModel.IsReadOnly &&
-               RecipeDetailsViewModel.IsReadOnly &&
-               RecipeComponentListViewModel.IsReadOnly &&
-               RecipeComponentDetailsViewModel.IsReadOnly;
+               ClientListViewModel.IsReadOnly &&
+               ClientDetailsViewModel.IsReadOnly &&
+               BuildingListViewModel.IsReadOnly &&
+               BuildingDetailsViewModel.IsReadOnly;
       }
     }
   }

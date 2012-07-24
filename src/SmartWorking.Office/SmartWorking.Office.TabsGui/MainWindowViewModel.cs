@@ -54,6 +54,9 @@ namespace SmartWorking.Office.TabsGui
       SaleGroupViewModel = new SaleGroupViewModel(this, ModalDialogService, ServiceFactory);
       AdministrationGroupViewModel = new AdministrationGroupViewModel(this, ModalDialogService, ServiceFactory);
       AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
+      MainViewModel = this;
+      IsDebugMode = false;
+
     }
     
 
@@ -97,7 +100,7 @@ namespace SmartWorking.Office.TabsGui
     /// </summary>
     public const string IsDebugModePropertyName = "IsDebugMode";
 
-    private bool _isDebugMode = true;
+    private bool _isDebugMode;
 
     /// <summary>
     /// Gets the IsDebugMode property.

@@ -18,9 +18,23 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       ModalDialogService = modalDialogService;
       ServiceFactory = serviceFactory;
       EditingMode = EditingMode.Display;
+      ViewModelProvider = new ViewModelProvider(this);
+      ViewModelProvider.ChildrenViewModelProviderActionInvoked += new EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelProviderActionInvoked);
     }
 
-    
+    void ViewModelProvider_ChildrenViewModelProviderActionInvoked(object sender, ViewModelProviderActionEventArgs e)
+    {
+      if (e.ViewModelProviderAction == ViewModelProviderAction.IsReadOnlyChanged)
+      {
+        OnChildViewModelIsReadOnlyChanged(e.ViewModel);
+      }
+    }
+
+    protected virtual void OnChildViewModelIsReadOnlyChanged(ControlViewModelBase viewModel)
+    {
+      RaisePropertyChanged(IsReadOnlyPropertyName);
+    }
+
 
     /// <summary>
     /// Shows <see cref="MessageBox"/> dialog with information about <paramref name="faultException"/>.
@@ -81,7 +95,9 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </summary>
     public abstract void Refresh();
 
-    public IMainViewModel MainViewModel { get; private set;  }
+    public event EventHandler Refreshed;
+
+    public IMainViewModel MainViewModel { get; protected set;  }
 
     /// <summary>
     /// Gets the name of control.
@@ -125,12 +141,20 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         {
           return;
         }
+        bool oldIsReadOnly = IsReadOnly;
         _editingMode = value;
         // Update bindings, no broadcast
         RaisePropertyChanged(EditingModePropertyName);
-        RaisePropertyChanged(IsReadOnlyPropertyName);
+
+        if (oldIsReadOnly != IsReadOnly)
+        {
+          RaisePropertyChanged(IsReadOnlyPropertyName);
+        }
       }
     }
+
+    public event EventHandler EditingModeChanged;
+
     #endregion //EditingMode
 
     /// <summary>
@@ -145,7 +169,14 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </value>
     public virtual bool IsReadOnly
     {
-      get { return EditingMode == ViewModel.EditingMode.Display; }
+      get
+      {
+        return EditingMode == ViewModel.EditingMode.Display;
+      }
     }
+
+    public event EventHandler IsReadOnlyChanged;
+
+    public ViewModelProvider ViewModelProvider { get; private set; }
   }
 }

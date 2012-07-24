@@ -1,4 +1,5 @@
-﻿using SmartWorking.Office.Services.Interfaces;
+﻿using System;
+using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
@@ -23,6 +24,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     void Refresh();
 
     /// <summary>
+    /// Occurs when item was saved.
+    /// </summary>
+    event EventHandler Refreshed;
+
+    /// <summary>
     /// Gets the modal dialog service.
     /// </summary>
     IModalDialogService ModalDialogService { get; }
@@ -38,12 +44,22 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     EditingMode EditingMode { get; set;  }
 
     /// <summary>
+    /// Occurs when item was saved.
+    /// </summary>
+    event EventHandler EditingModeChanged;
+
+    /// <summary>
     /// Gets a value indicating whether this instance is read only.
     /// </summary>
     /// <value>
     /// 	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
     /// </value>
     bool IsReadOnly { get; }
+
+    /// <summary>
+    /// Occurs when item was saved.
+    /// </summary>
+    event EventHandler IsReadOnlyChanged;
 
   }
 }

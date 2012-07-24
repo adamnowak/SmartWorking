@@ -4,7 +4,7 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
-namespace SmartWorking.Office.TabsGui.Controls.Clients
+namespace SmartWorking.Office.TabsGui.Controls.Buildings
 {
   public class BuildingListViewModel : ListingEditableControlViewModel<BuildingPrimitive>
   {
@@ -21,9 +21,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     protected override void  OnLoadItems()
     {
       BuildingPrimitive selectedItem = Items.SelectedItem;
-      using (IClientsService service = ServiceFactory.GetClientsService())
+      using (IBuildingsService service = ServiceFactory.GetBuildingsService())
       {
-        //Items.LoadItems(service.get.GetContractors(Filter, ShowDeleted));
+        Items.LoadItems(service.GetBuildings(Filter, ListItemsFilter));
       }
       if (selectedItem != null)
       {

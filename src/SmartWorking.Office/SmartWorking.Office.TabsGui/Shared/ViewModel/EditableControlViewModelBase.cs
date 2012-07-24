@@ -83,6 +83,8 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
+    public event EventHandler ItemEdited;
+
     /// <summary>
     /// Determines whether edit command can be execute.
     /// </summary>

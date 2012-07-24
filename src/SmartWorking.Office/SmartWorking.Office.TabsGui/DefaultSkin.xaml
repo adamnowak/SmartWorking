@@ -9,7 +9,7 @@
     <Converters:DescriptionIndexedMultiConverter x:Key="descriptionIndexedConverter" />
     <Converters:BoolToOppositeBoolConverter x:Key="boolToOppositeBoolConverter" />
     <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
-    <Converters:IsActiveToBoolConverter x:Key="isActiveToBoolConverter" />
+    <Converters:DeactivatedToIsActiveConverter x:Key="deactivatedToIsActiveConverter" />
     <Converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
     <Converters:VisibilitisANDBinaryConverter x:Key="visibilitisANDBinaryConverter" />
     <Converters:EnumVisibilityConverter x:Key="enumVisibilityConverter" />

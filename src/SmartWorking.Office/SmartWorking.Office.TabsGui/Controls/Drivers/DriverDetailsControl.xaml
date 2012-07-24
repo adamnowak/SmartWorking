@@ -2,52 +2,52 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
     <Grid >
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-     
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition  />
-                    </Grid.RowDefinitions>
 
-                    <!--Debug only-->
-                    <TextBlock Text="Id:" Grid.Row="0" />
-                    <!--End Debug only-->
-                    <TextBlock Text="Symbol:" Grid.Row="1" />
-                    <TextBlock Text="Imię:" Grid.Row="2" />
-                    <TextBlock Text="Nazwisko:" Grid.Row="3" />
-                    <TextBlock Text="Numer Telefonu:" Grid.Row="4" />
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition  />
+                </Grid.RowDefinitions>
 
-
-                    <!--End Debug only-->
-                    <TextBox Text="{Binding Item.Driver.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" />
-                    <!--Debug only-->
-                    <TextBox Text="{Binding Item.Driver.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                    <TextBox Text="{Binding Item.Driver.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                    <TextBox Text="{Binding Item.Driver.Surname}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                    <TextBox Text="{Binding Item.Driver.Phone}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-
-                    <GroupBox Header="Samochody pod opieką" Grid.Row="5" Grid.ColumnSpan="2">
-                        <Grid>
-                            <Cars:CarListControl FiltersVisibility="Collapsed" DataContext="{Binding CarListProtectedViewModel}" />
-                        </Grid>
-                    </GroupBox>
+                <!--Debug only-->
+                <TextBlock Text="str_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <!--End Debug only-->
+                <TextBlock Text="str_Symbol:" Grid.Row="1" />
+                <TextBlock Text="str_Imię:" Grid.Row="2" />
+                <TextBlock Text="str_Nazwisko:" Grid.Row="3" />
+                <TextBlock Text="str_Numer Telefonu:" Grid.Row="4" />
 
 
-                </Grid>
+                <!--End Debug only-->
+                <TextBox Text="{Binding Item.Driver.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <!--Debug only-->
+                <TextBox Text="{Binding Item.Driver.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.Driver.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.Driver.Surname}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.Driver.Phone}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
 
-       
+                <GroupBox Header="str_Samochody pod opieką" Grid.Row="5" Grid.ColumnSpan="2">
+                    <Grid>
+                        <Cars:CarListControl FiltersVisibility="Collapsed" DataContext="{Binding CarListProtectedViewModel}" />
+                    </Grid>
+                </GroupBox>
+
+
+            </Grid>
+
+
         </ScrollViewer>
     </Grid>
 </View:DetailsUserControl>

@@ -24,9 +24,13 @@
         
 
         <DataGrid Grid.Row="1"  SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}" >
+            <DataGrid.Resources>
+                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--Debug only-->
-                <DataGridTextColumn Header="str_Id" Binding="{Binding Car.Id}" />
+                <DataGridTextColumn Header="str_Id" Binding="{Binding Car.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
                 <DataGridTextColumn Header="str_Symbol" Binding="{Binding Car.InternalName}" />
                 <DataGridTextColumn Header="str_Numer Rejestracyjny" Binding="{Binding Car.RegistrationNumber}" />

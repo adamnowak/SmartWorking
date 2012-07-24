@@ -3,7 +3,7 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
-namespace SmartWorking.Office.TabsGui.Controls.Clients
+namespace SmartWorking.Office.TabsGui.Controls.Buildings
 {
   /// <summary>
   /// Car details view model implementation.

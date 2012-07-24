@@ -35,7 +35,7 @@
                 <AdministrationGroup:AdministrationGroupControl /> 
             </TabItem>
 
-            <TabItem Header="str_Settings">
+            <TabItem Header="str_Settings" Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}">
                 <SettingsGroup:SettingsGroupControl/>
             </TabItem>
         </TabControl>

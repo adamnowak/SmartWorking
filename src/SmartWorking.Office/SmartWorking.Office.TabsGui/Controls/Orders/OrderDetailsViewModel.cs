@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Controls.Buildings;
 using SmartWorking.Office.TabsGui.Controls.Clients;
+using SmartWorking.Office.TabsGui.Controls.DeliveryNotes;
 using SmartWorking.Office.TabsGui.Controls.Recipes;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
@@ -27,8 +30,13 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       RecipeDetailsViewModel = new RecipeDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogService, ServiceFactory);
 
-      
+      DeliveryNoteDetailsViewModel = new DeliveryNoteDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      DeliveryNoteListViewModel = new DeliveryNoteListViewModel(MainViewModel, DeliveryNoteDetailsViewModel,
+                                                                ModalDialogService, ServiceFactory);
     }
+
+    
+
 
     void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<ClientAndBuildingsPackage> e)
     {
@@ -71,6 +79,16 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     /// Gets the driver details view model.
     /// </summary>
     public RecipeDetailsViewModel RecipeDetailsViewModel { get; private set; }
+
+    /// <summary>
+    /// Gets the delivery note details view model.
+    /// </summary>
+    public DeliveryNoteDetailsViewModel DeliveryNoteDetailsViewModel { get; private set; }
+
+    /// <summary>
+    /// Gets the delivery note list view model.
+    /// </summary>
+    public DeliveryNoteListViewModel DeliveryNoteListViewModel { get; private set; }
 
     /// <summary>
     /// Gets the name of editing control.
@@ -141,4 +159,5 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
 
     }
   }
+
 }

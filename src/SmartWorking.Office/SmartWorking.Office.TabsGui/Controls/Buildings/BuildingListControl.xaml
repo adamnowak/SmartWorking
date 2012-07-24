@@ -1,4 +1,4 @@
-﻿<View:ListUserControl x:Class="SmartWorking.Office.TabsGui.Controls.Clients.BuildingListControl"
+﻿<View:ListUserControl x:Class="SmartWorking.Office.TabsGui.Controls.Buildings.BuildingListControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -24,16 +24,20 @@
 
 
         <DataGrid Grid.Row="1"  SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}" >
+            <DataGrid.Resources>
+                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+            </DataGrid.Resources>
             <DataGrid.Columns>
            
                 <!--Debug only-->
-                <DataGridTextColumn Header="Id" Binding="{Binding RecipeComponent.Id}" />
+                <DataGridTextColumn Header="str_Id" Binding="{Binding RecipeComponent.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
-                <DataGridTextColumn Header="Symbol" Binding="{Binding InternalName}" />
-                <DataGridTextColumn Header="Miasto" Binding="{Binding City}" />
-                <DataGridTextColumn Header="Ulica" Binding="{Binding Street}" />
-                <DataGridTextColumn Header="Numer domu" Binding="{Binding HouseNo}" />
-                <DataGridTextColumn Header="Telefon" Binding="{Binding ContactPersonPhone}" />
+                <DataGridTextColumn Header="str_Symbol" Binding="{Binding InternalName}" />
+                <DataGridTextColumn Header="str_Miasto" Binding="{Binding City}" />
+                <DataGridTextColumn Header="str_Ulica" Binding="{Binding Street}" />
+                <DataGridTextColumn Header="str_Numer domu" Binding="{Binding HouseNo}" />
+                <DataGridTextColumn Header="str_Telefon" Binding="{Binding ContactPersonPhone}" />
             </DataGrid.Columns>
      
         </DataGrid>

@@ -43,7 +43,7 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "POST", UriTemplate = "/CreateOrUpdateClient",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void CreateOrUpdateClient(ClientPrimitive client);
+    void CreateOrUpdateClient(ClientAndBuildingsPackage client);
 
     /// <summary>
     /// Deletes the client.
@@ -57,25 +57,6 @@ namespace SmartWorking.Office.Services.Interfaces
     void DeleteClient(ClientPrimitive client);
 
 
-    /// <summary>
-    /// Updates the building.
-    /// </summary>
-    /// <param name="building">The building which will be updated.</param>
-    /// <remarks>Only fields of Building will be updated. Associated object e.g. Client have to be updated separately.</remarks>
-    [OperationContract]
-    [WebInvoke(Method = "POST", UriTemplate = "/UpdateBuilding",
-          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
-      BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void UpdateBuilding(BuildingPrimitive building);
 
-    /// <summary>
-    /// Deletes the building.
-    /// </summary>
-    /// <param name="building">The building which will be deleted.</param>
-    [OperationContract]
-    [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteBuilding",
-          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
-      BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void DeleteBuilding(BuildingPrimitive building);
   }
 }

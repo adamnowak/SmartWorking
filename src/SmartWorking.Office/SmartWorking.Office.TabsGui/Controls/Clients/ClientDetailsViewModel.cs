@@ -2,6 +2,7 @@
 using System.Linq;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Controls.Buildings;
 using SmartWorking.Office.TabsGui.Controls.Materials;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
@@ -16,15 +17,10 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     public ClientDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      MaterialListToAddViewModel = new MaterialListViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
-      BuildingDetailsViewModel = new BuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      BuildingListViewModel = new BuildingListViewModel(MainViewModel, BuildingDetailsViewModel, ModalDialogService, ServiceFactory);
+      BuildingListToAddViewModel = new BuildingListViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
     }
 
-    public BuildingListViewModel BuildingListViewModel { get; private set; }
-    public BuildingDetailsViewModel BuildingDetailsViewModel { get; private set; }
-    public MaterialListViewModel MaterialListToAddViewModel { get; private set; }
-    private List<MaterialAndContractorsPackage> AllMaterials { get; set; }
+    public BuildingListViewModel BuildingListToAddViewModel { get; private set; }
 
     /// <summary>
     /// Gets the name of editing control.
@@ -45,55 +41,30 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     {
       if (base.OnSaveItem())
       {
-        //using (IContractorsService service = ServiceFactory.GetContractorsService())
-        //{
-        //  service.CreateOrUpdateContractor(Item);
-        //}
+        using (IClientsService service = ServiceFactory.GetClientsService())
+        {
+          service.CreateOrUpdateClient(Item);
+        }
         return true;
       }
       return false;
     }
 
-    
-
-    public override void Refresh()
-    {
-      base.Refresh();
-      //LoadAllMaterials();
-      //if (Item != null && AllMaterials != null)
-      //{
-      //  MaterialListToAddViewModel.Items.LoadItems(
-      //    AllMaterials.Where(
-      //      x =>
-      //      !Item.RecipeComponentAndMaterialList.Select(y => y.MaterialAndContractors.Material.Id).Contains(x.Material.Id)));
-      //}
-    }
-
-    private void LoadAllMaterials()
-    {
-      using (IMaterialsService service = ServiceFactory.GetMaterialsService())
-      {
-        AllMaterials = service.GetMaterialAndContractorsPackageList(MaterialListToAddViewModel.Filter, MaterialListToAddViewModel.ListItemsFilter);
-      }
-    }
-
-
     /// <summary>
     /// Called when [item changed].
     /// </summary>
     /// <param name="oldItem">The old item.</param>
-    //protected override void OnItemChanged(CarAndDriverPackage oldItem)
-    //{
-    //  if (Contractors.Items != null && Item != null && Item.Deliverer != null)
-    //  {
-    //    Contractors.SelectedItem = Contractors.Items.Where(x => x.Id == Item.Driver.Id).FirstOrDefault();
-    //    Item.Deliverer = Contractors.SelectedItem;
-    //  }
-    //  else
-    //  {
-    //    Contractors.SelectedItem = null;
-    //  }
+    protected override void OnItemChanged(ClientAndBuildingsPackage oldItem)
+    {
+      if (Item != null)
+      {
+        BuildingListToAddViewModel.Items.LoadItems(Item.Buildings);
+      }
+      else
+      {
+        BuildingListToAddViewModel.Items.LoadItems(null);
+      }
 
-    //}
+    }
   }
 }

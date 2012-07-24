@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.ServiceModel;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
@@ -35,7 +39,94 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       }
     }
 
-    
+    #region IsPreparingDelivery
+    /// <summary>
+    /// The <see cref="IsPreparingDelivery" /> property's name.
+    /// </summary>
+    public const string IsPreparingDeliveryPropertyName = "IsPreparingDelivery";
+
+    private bool _isPreparingDelivery;
+
+    /// <summary>
+    /// Gets the IsPreparingDelivery property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public bool IsPreparingDelivery
+    {
+      get
+      {
+        return _isPreparingDelivery;
+      }
+
+      set
+      {
+        if (_isPreparingDelivery == value)
+        {
+          return;
+        }
+        _isPreparingDelivery = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(IsPreparingDeliveryPropertyName);
+      }
+    }
+    #endregion //IsPreparingDelivery
+
+    #region PrepareDeliverCommand
+    private ICommand _prepareDeliverCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand PrepareDeliverCommand
+    {
+      get
+      {
+        if (_prepareDeliverCommand == null)
+          _prepareDeliverCommand = new RelayCommand(PrepareDeliver, CanPrepareDeliver);
+        return _prepareDeliverCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanPrepareDeliver()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void PrepareDeliver()
+    {
+      string errorCaption = "TODO!";
+      try
+      {
+        IsPreparingDelivery = !IsPreparingDelivery;
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+      }
+    }
+    #endregion //PrepareDeliverCommand
 
     protected override void AddItemCommandExecute()
     {

@@ -103,14 +103,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\Cars\CarDetailsViewModel.cs" />
-    <Compile Include="Controls\Clients\BuildingDetailsControl.xaml.cs">
+    <Compile Include="Controls\Buildings\BuildingDetailsControl.xaml.cs">
       <DependentUpon>BuildingDetailsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Clients\BuildingDetailsViewModel.cs" />
-    <Compile Include="Controls\Clients\BuildingListControl.xaml.cs">
+    <Compile Include="Controls\Buildings\BuildingDetailsViewModel.cs" />
+    <Compile Include="Controls\Buildings\BuildingListControl.xaml.cs">
       <DependentUpon>BuildingListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Clients\BuildingListViewModel.cs" />
+    <Compile Include="Controls\Buildings\BuildingListViewModel.cs" />
     <Compile Include="Controls\Clients\ClientDetailsControl.xaml.cs">
       <DependentUpon>ClientDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -127,6 +127,14 @@
     </Compile>
     <Compile Include="Controls\Contractors\ContractorDetailsViewModel.cs" />
     <Compile Include="Controls\Contractors\ContractorListViewModel.cs" />
+    <Compile Include="Controls\DeliveryNotes\DeliveryNoteDetailsControl.xaml.cs">
+      <DependentUpon>DeliveryNoteDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeliveryNotes\DeliveryNoteDetailsViewModel.cs" />
+    <Compile Include="Controls\DeliveryNotes\DeliveryNoteListControl.xaml.cs">
+      <DependentUpon>DeliveryNoteListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeliveryNotes\DeliveryNoteListViewModel.cs" />
     <Compile Include="Controls\Drivers\DriverDetailsViewModel.cs" />
     <Compile Include="Controls\Drivers\DriverListViewModel.cs" />
     <Compile Include="Controls\Drivers\DriverDetailsControl.xaml.cs">
@@ -192,9 +200,12 @@
     <Compile Include="Converters\EnumVisibilityConverter.cs" />
     <Compile Include="Converters\VisibilitisANDBinaryConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
-    <Compile Include="Converters\IsActiveToBoolConverter.cs" />
+    <Compile Include="Converters\DeactivatedToIsActiveConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Shared\ViewModel\AccessLevel.cs" />
+    <Compile Include="Shared\ViewModel\TabItemViewModelBase.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\ITabItemViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ViewModelProvider.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\IMainViewModel.cs" />
     <Compile Include="Shared\ViewModel\TabControlViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\ITabControlViewModel.cs" />
@@ -234,11 +245,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Clients\BuildingDetailsControl.xaml">
+    <Page Include="Controls\Buildings\BuildingDetailsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Clients\BuildingListControl.xaml">
+    <Page Include="Controls\Buildings\BuildingListControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -257,6 +268,14 @@
     <Page Include="Controls\Contractors\ContractorListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DeliveryNotes\DeliveryNoteDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DeliveryNotes\DeliveryNoteListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Drivers\DriverDetailsControl.xaml">
       <SubType>Designer</SubType>

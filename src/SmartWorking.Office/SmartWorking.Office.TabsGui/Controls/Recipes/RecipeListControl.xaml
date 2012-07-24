@@ -23,15 +23,19 @@
 
 
         <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
+            <DataGrid.Resources>
+                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--Debug only-->
-                <DataGridTextColumn Header="Id" Binding="{Binding Recipe.Id}" />
+                <DataGridTextColumn Header="str_Id" Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
-                <DataGridTextColumn Header="Numer recepty" Binding="{Binding Recipe.InternalName}" />
-                <DataGridTextColumn Header="Kod recepty" Binding="{Binding Recipe.Name}" />
-                <DataGridTextColumn Header="Klasa betonu" Binding="{Binding Recipe.ConcreteClass}" />
-                <DataGridTextColumn Header="Ziarno" Binding="{Binding Recipe.Granulation}" />
-                <DataGridTextColumn Header="Konsystencja" Binding="{Binding Recipe.Consistency}" />
+                <DataGridTextColumn Header="str_Numer recepty" Binding="{Binding Recipe.InternalName}" />
+                <DataGridTextColumn Header="str_Kod recepty" Binding="{Binding Recipe.Name}" />
+                <DataGridTextColumn Header="str_Klasa betonu" Binding="{Binding Recipe.ConcreteClass}" />
+                <DataGridTextColumn Header="str_Ziarno" Binding="{Binding Recipe.Granulation}" />
+                <DataGridTextColumn Header="str_Konsystencja" Binding="{Binding Recipe.Consistency}" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">

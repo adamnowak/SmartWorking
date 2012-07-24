@@ -71,13 +71,13 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the client.
     /// </summary>
     /// <param name="clientPrimitive">The client primitive.</param>
-    public void CreateOrUpdateClient(ClientPrimitive clientPrimitive)
+    public void CreateOrUpdateClient(ClientAndBuildingsPackage clientAndBuildingsPackage)
     {
       try
       {
         using (SmartWorkingEntities context = new SmartWorkingEntities())
         {
-          Client client = clientPrimitive.GetEntity();
+          Client client = clientAndBuildingsPackage.Client.GetEntity();
 
           Client existingObject = context.Clients.Where(x => x.Id == client.Id).FirstOrDefault();
 
@@ -91,11 +91,13 @@ namespace SmartWorking.Office.Services.Hosting.Local
           else if (client.Id <= 0)
           {
             context.Clients.AddObject(client);
+            //TODO: add buildings to client
           }
           //Item was retrieved, and the item passed has a valid ID, do an update
           else
           {
             context.Clients.ApplyCurrentValues(client);
+            //TODO: update buildings to client
           }
 
           context.SaveChanges();
@@ -123,61 +125,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    /// <summary>
-    /// Updates the building.
-    /// </summary>
-    /// <param name="buildingPrimitive">The building primitive.</param>
-    public void UpdateBuilding(BuildingPrimitive buildingPrimitive)
-    {
-      try
-      {
-        using (SmartWorkingEntities context = new SmartWorkingEntities())
-        {
-          Building building = buildingPrimitive.GetEntity();
-          Building existingObject = context.Buildings.Where(x => x.Id == building.Id).FirstOrDefault();
-
-
-          //no record of this item in the DB, item being passed in has a PK
-          if (existingObject == null && building.Id > 0)
-          {
-            //log //TODO: client have to be in database before
-            return;
-          }
-          //Item has no PK value, must be new
-          else if (building.Id <= 0)
-          {
-            context.Buildings.AddObject(building);
-          }
-          //Item was retrieved, and the item passed has a valid ID, do an update
-          else
-          {
-            context.Buildings.ApplyCurrentValues(building);
-          }
-
-          context.SaveChanges();
-        }
-      }
-      catch (Exception e)
-      {
-        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
-      }
-    }
-
-    /// <summary>
-    /// Deletes the building.
-    /// </summary>
-    /// <param name="building">The building which will be deleted.</param>
-    public void DeleteBuilding(BuildingPrimitive buildingPrimitive)
-    {
-      try
-      {
-        throw new NotImplementedException();
-      }
-      catch (Exception e)
-      {
-        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
-      }
-    }
+    
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

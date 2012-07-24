@@ -43,6 +43,16 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public Nullable<int> Pump
+    		{
+            get;
+            set;
+    		}
+    		public string Notice
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }

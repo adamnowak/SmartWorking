@@ -23,15 +23,19 @@
 
 
         <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
+            <DataGrid.Resources>
+                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--Debug only-->
-                <DataGridTextColumn Header="std_Id" Binding="{Binding Driver.Id}" />
+                <DataGridTextColumn Header="std_Id" Binding="{Binding Driver.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
-                <DataGridTextColumn Header="Symbol" Binding="{Binding Driver.InternalName}" />
-                <DataGridTextColumn Header="Imię" Binding="{Binding Driver.Name}" />
-                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Driver.Surname}" />
-                <DataGridTextColumn Header="Numer telefonu" Binding="{Binding Driver.Phone}" />
-                <DataGridTextColumn Header="Nazwa samochodu" Binding="{Binding Driver.Name}" />
+                <DataGridTextColumn Header="str_Symbol" Binding="{Binding Driver.InternalName}" />
+                <DataGridTextColumn Header="str_Imię" Binding="{Binding Driver.Name}" />
+                <DataGridTextColumn Header="str_Nazwisko" Binding="{Binding Driver.Surname}" />
+                <DataGridTextColumn Header="str_Numer telefonu" Binding="{Binding Driver.Phone}" />
+                <DataGridTextColumn Header="str_Nazwa samochodu" Binding="{Binding Driver.Name}" />
 
             </DataGrid.Columns>
         </DataGrid>

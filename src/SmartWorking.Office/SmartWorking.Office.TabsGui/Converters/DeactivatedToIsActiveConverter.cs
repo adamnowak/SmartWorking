@@ -3,19 +3,29 @@ using System.Windows.Data;
 
 namespace SmartWorking.Office.TabsGui.Converters
 {
-  public class IsActiveToBoolConverter : IValueConverter
+  public class DeactivatedToIsActiveConverter : IValueConverter
   {
     #region IValueConverter Members
 
     public object Convert(object value, Type targetType,
         object parameter, System.Globalization.CultureInfo culture)
     {
-      if (value != null && value is int)
+      DateTime? dateTime = value as DateTime?;
+      if (dateTime != null)
       {
-        var val = (int)value;
-        return (val == 0) ? false : true;
+        if (dateTime.HasValue)
+        {
+          return false;
+        }
       }
       return true;
+
+      //if (value != null && value is int)
+      //{
+      //  var val = (int)value;
+      //  return (val == 0) ? false : true;
+      //}
+      //return true;
 
     }
 
@@ -25,9 +35,16 @@ namespace SmartWorking.Office.TabsGui.Converters
       if (value != null && value is bool)
       {
         var val = (bool)value;
-        return val ? 1 : 0;
+        if (val) 
+        {
+          return null;
+        }
+        else
+        {
+          return DateTime.Now; 
+        }
       }
-      return 0;
+      return null;
     }
 
     #endregion  

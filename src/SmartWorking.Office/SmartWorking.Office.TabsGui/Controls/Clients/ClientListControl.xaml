@@ -23,13 +23,17 @@
 
 
         <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
+            <DataGrid.Resources>
+                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--Debug only-->
-                <DataGridTextColumn Header="Id" Binding="{Binding Client.Id}" />
+                <DataGridTextColumn Header="str_Id" Binding="{Binding Client.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
-                <DataGridTextColumn Header="Symbol" Binding="{Binding Client.InternalName}" />
-                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Client.Name}" />
-                <DataGridTextColumn Header="Telefon" Binding="{Binding Client.Phone}" />
+                <DataGridTextColumn Header="str_Symbol" Binding="{Binding Client.InternalName}" />
+                <DataGridTextColumn Header="str_Nazwisko" Binding="{Binding Client.Name}" />
+                <DataGridTextColumn Header="str_Telefon" Binding="{Binding Client.Phone}" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">

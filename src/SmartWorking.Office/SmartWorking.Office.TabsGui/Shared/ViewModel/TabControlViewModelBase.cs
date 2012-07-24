@@ -193,12 +193,41 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         selectionChangedEventArgs.Handled = true;
       }
     }
-
-    
-
-    
     #endregion //TabChangedCommand
 
+
+    #region RefreshCommand
+    private ICommand _refreshCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand RefreshCommand
+    {
+      get
+      {
+        if (_refreshCommand == null)
+          _refreshCommand = new RelayCommand(Refresh, CanRefresh);
+        return _refreshCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanRefresh()
+    {
+      return false;
+    }
+
+    
+    #endregion //RefreshCommand
     
   }
 }

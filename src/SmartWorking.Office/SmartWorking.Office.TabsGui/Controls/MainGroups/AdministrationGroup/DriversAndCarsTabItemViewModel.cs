@@ -10,7 +10,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
   /// <summary>
   /// View model for drivers and cars tab item
   /// </summary>
-  public class DriversAndCarsTabItemViewModel : ControlViewModelBase
+  public class DriversAndCarsTabItemViewModel : TabItemViewModelBase
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="DriversAndCarsTabItemViewModel"/> class.
@@ -24,6 +24,9 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       CarListViewModel = new CarListViewModel(MainViewModel, CarDetailsViewModel, ModalDialogService, ServiceFactory);
       DriverDetailsViewModel = new DriverDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       DriverListViewModel = new DriverListViewModel(MainViewModel, DriverDetailsViewModel, ModalDialogService, ServiceFactory);
+
+      ViewModelProvider.RegisterChildViewModel(CarDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged);
+      ViewModelProvider.RegisterChildViewModel(DriverDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged);
     }
 
     /// <summary>

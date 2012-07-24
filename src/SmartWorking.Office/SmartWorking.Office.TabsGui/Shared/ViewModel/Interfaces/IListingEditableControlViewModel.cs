@@ -3,21 +3,8 @@ using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
-  /// <summary>
-  /// Interface for view model for listing control.
-  /// </summary>
-  public interface IListingEditableControlViewModel<T> : IControlViewModel
+  public interface IListingEditableControlViewModel : IControlViewModel
   {
-    /// <summary>
-    /// Gets the editing view model which is used to editing or create new item.
-    /// </summary>
-    IEditableControlViewModel<T> EditingViewModel { get; }
-
-    /// <summary>
-    /// Gets the items which will be listed.
-    /// </summary>s
-    SelectableViewModelBase<T> Items { get; }
-
     /// <summary>
     /// Gets the add command which enables to add new item (using details control).
     /// </summary>
@@ -43,4 +30,22 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     /// </summary>
     ListItemsFilterValues ListItemsFilter { get; }
   }
+
+  /// <summary>
+  /// Interface for view model for listing control.
+  /// </summary>
+  public interface IListingEditableControlViewModel<T> : IListingEditableControlViewModel
+  {
+    /// <summary>
+    /// Gets the editing view model which is used to editing or create new item.
+    /// </summary>
+    IEditableControlViewModel<T> EditingViewModel { get; }
+
+    /// <summary>
+    /// Gets the items which will be listed.
+    /// </summary>s
+    SelectableViewModelBase<T> Items { get; }
+  }
+  
+  
 }

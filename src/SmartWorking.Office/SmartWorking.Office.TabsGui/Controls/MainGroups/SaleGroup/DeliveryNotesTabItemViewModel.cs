@@ -9,7 +9,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
   /// <summary>
   /// View model for drivers and cars tab item
   /// </summary>
-  public class DeliveryNotesTabItemViewModel : ControlViewModelBase
+  public class DeliveryNotesTabItemViewModel : TabItemViewModelBase
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ProducersAndMaterialsTabItemViewModel"/> class.
