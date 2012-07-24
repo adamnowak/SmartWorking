@@ -19,23 +19,13 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       ServiceFactory = serviceFactory;
       EditingMode = EditingMode.Display;
       ViewModelProvider = new ViewModelProvider(this);
-      ViewModelProvider.ChildrenViewModelProviderActionInvoked += new EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelProviderActionInvoked);
+      ViewModelProvider.ChildrenViewModelIsReadOnlyChanged += new EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelIsReadOnlyChanged);
     }
 
-    void ViewModelProvider_ChildrenViewModelProviderActionInvoked(object sender, ViewModelProviderActionEventArgs e)
-    {
-      if (e.ViewModelProviderAction == ViewModelProviderAction.IsReadOnlyChanged)
-      {
-        OnChildViewModelIsReadOnlyChanged(e.ViewModel);
-      }
-    }
-
-    protected virtual bool OnChildViewModelIsReadOnlyChanged(ControlViewModelBase viewModel)
+    protected virtual void ViewModelProvider_ChildrenViewModelIsReadOnlyChanged(object sender, ViewModelProviderActionEventArgs e)
     {
       RaisePropertyChanged(IsReadOnlyPropertyName);
-      return true;
     }
-
 
     /// <summary>
     /// Shows <see cref="MessageBox"/> dialog with information about <paramref name="faultException"/>.

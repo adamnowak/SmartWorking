@@ -317,7 +317,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         {
           if (ItemDeleted != null)
           {
-            ItemDeleted(null, null);
+            ItemDeleted(this, EventArgs.Empty);
           }
         }
       }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 {
@@ -11,35 +12,29 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
   {
     IsReadOnlyChanged = 0x1,
     EditingModeChanged = 0x2,
-    RefreshInvoiked = 0x4,
-    SaveInvoiked = 0x8,
-    DeleteInvoiked = 0x16
+    RefreshInvoked = 0x4,
+    SaveInvoked = 0x8,
+    DeleteInvoked = 0x16
   }
 
   public class ViewModelProviderActionEventArgs : EventArgs
   {
     public ControlViewModelBase ViewModel { set; get; }
-    public ViewModelProviderAction ViewModelProviderAction { get; set; }
 
-    public ViewModelProviderActionEventArgs(ControlViewModelBase viewModel, ViewModelProviderAction viewModelProviderAction)
+    public ViewModelProviderActionEventArgs(ControlViewModelBase viewModel)
     {
       ViewModel = viewModel;
-      ViewModelProviderAction = viewModelProviderAction;
     }
   }
 
   public class ViewModelProvider
   {
-    public event EventHandler<ViewModelProviderActionEventArgs> ChildrenViewModelProviderActionInvoked;
+    public event EventHandler<ViewModelProviderActionEventArgs> ChildrenViewModelIsReadOnlyChanged;
+    public event EventHandler<ViewModelProviderActionEventArgs> ChildrenViewModelIsEditingModeChanged;
+    public event EventHandler<ViewModelProviderActionEventArgs> ChildrenViewModelRefreshInvoked;
+    public event EventHandler<ViewModelProviderActionEventArgs> ChildrenViewModelSaveInvoked;
+    public event EventHandler<ViewModelProviderActionEventArgs> ChildrenViewModelDeleteInvoked;
 
-    private void OnChildrenViewModelProviderActionInvoked(ControlViewModelBase viewModel, ViewModelProviderAction viewModelProviderAction)
-    {
-      if (ChildrenViewModelProviderActionInvoked != null && viewModel != null)
-      {
-        ChildrenViewModelProviderActionInvoked(this, new ViewModelProviderActionEventArgs(viewModel, viewModelProviderAction));
-      }
-    }
-  
     public ControlViewModelBase ParentViewModel { get; private set; }
 
     public ViewModelProvider(ControlViewModelBase parentViewModel)
@@ -48,11 +43,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       ChildrenViewModels = new Dictionary<ControlViewModelBase, ViewModelProviderAction>();
     }
 
-    private Dictionary<ControlViewModelBase, ViewModelProviderAction> ChildrenViewModels { get;  set; }
+    private Dictionary<ControlViewModelBase, ViewModelProviderAction> ChildrenViewModels { get; set; }
 
     public void RegisterChildViewModel(ControlViewModelBase controlViewModelBase)
     {
-      RegisterChildViewModel(controlViewModelBase, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.EditingModeChanged | ViewModelProviderAction.RefreshInvoiked);
+      RegisterChildViewModel(controlViewModelBase, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.EditingModeChanged | ViewModelProviderAction.RefreshInvoked);
     }
 
     public void RegisterChildViewModel(ControlViewModelBase controlViewModelBase, ViewModelProviderAction viewModelProviderAction)
@@ -61,7 +56,46 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       {
         ChildrenViewModels.Add(controlViewModelBase, viewModelProviderAction);
 
-        controlViewModelBase.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(controlViewModelBase_PropertyChanged);
+        if (((viewModelProviderAction & ViewModelProviderAction.IsReadOnlyChanged) == ViewModelProviderAction.IsReadOnlyChanged) ||
+          ((viewModelProviderAction & ViewModelProviderAction.EditingModeChanged) == ViewModelProviderAction.EditingModeChanged))
+        {
+          controlViewModelBase.PropertyChanged +=
+            new System.ComponentModel.PropertyChangedEventHandler(controlViewModelBase_PropertyChanged);
+        }
+
+        if ((viewModelProviderAction & ViewModelProviderAction.RefreshInvoked) == ViewModelProviderAction.RefreshInvoked)
+        {
+          controlViewModelBase.Refreshed += new EventHandler(controlViewModelBase_Refreshed);
+        }
+
+        if (controlViewModelBase is IEditableControlViewModel && ((viewModelProviderAction & ViewModelProviderAction.SaveInvoked) == ViewModelProviderAction.SaveInvoked))
+        {
+          ((IEditableControlViewModel)controlViewModelBase).ItemSaved += new EventHandler(ViewModelProvider_ItemSaved);
+        }
+      }
+    }
+
+    void ViewModelProvider_ItemSaved(object sender, EventArgs e)
+    {
+      ControlViewModelBase controlViewModelBase = sender as ControlViewModelBase;
+      if (controlViewModelBase != null && ChildrenViewModels.ContainsKey(controlViewModelBase))
+      {
+        if ((ChildrenViewModels[controlViewModelBase] & ViewModelProviderAction.SaveInvoked) == ViewModelProviderAction.SaveInvoked)
+        {
+          OnChildrenViewModelSaveInvoked(controlViewModelBase);
+        }
+      }
+    }
+
+    void controlViewModelBase_Refreshed(object sender, EventArgs e)
+    {
+      ControlViewModelBase controlViewModelBase = sender as ControlViewModelBase;
+      if (controlViewModelBase != null && ChildrenViewModels.ContainsKey(controlViewModelBase))
+      {
+        if ((ChildrenViewModels[controlViewModelBase] & ViewModelProviderAction.RefreshInvoked) == ViewModelProviderAction.RefreshInvoked)
+        {
+          OnChildrenViewModelRefreshInvoked(controlViewModelBase);
+        }
       }
     }
 
@@ -73,17 +107,63 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         switch (e.PropertyName)
         {
           case ControlViewModelBase.IsReadOnlyPropertyName:
-          {
-            if ((ChildrenViewModels[controlViewModelBase] & ViewModelProviderAction.IsReadOnlyChanged) == ViewModelProviderAction.IsReadOnlyChanged)
             {
-              OnChildrenViewModelProviderActionInvoked(controlViewModelBase, ViewModelProviderAction.IsReadOnlyChanged);
+              if ((ChildrenViewModels[controlViewModelBase] & ViewModelProviderAction.IsReadOnlyChanged) == ViewModelProviderAction.IsReadOnlyChanged)
+              {
+                OnChildrenViewModelIsReadOnlyChanged(controlViewModelBase);
+              }
             }
-          }
-          break;
+            break;
 
           case ControlViewModelBase.EditingModePropertyName:
-          break;
+            {
+              if ((ChildrenViewModels[controlViewModelBase] & ViewModelProviderAction.EditingModeChanged) == ViewModelProviderAction.EditingModeChanged)
+              {
+                OnChildrenViewModelIsEditingModeChanged(controlViewModelBase);
+              }
+            }
+            break;
         }
+      }
+    }
+
+    private void OnChildrenViewModelIsReadOnlyChanged(ControlViewModelBase viewModel)
+    {
+      if (ChildrenViewModelIsReadOnlyChanged != null && viewModel != null)
+      {
+        ChildrenViewModelIsReadOnlyChanged(this, new ViewModelProviderActionEventArgs(viewModel));
+      }
+    }
+
+    private void OnChildrenViewModelIsEditingModeChanged(ControlViewModelBase viewModel)
+    {
+      if (ChildrenViewModelIsEditingModeChanged != null && viewModel != null)
+      {
+        ChildrenViewModelIsEditingModeChanged(this, new ViewModelProviderActionEventArgs(viewModel));
+      }
+    }
+
+    private void OnChildrenViewModelRefreshInvoked(ControlViewModelBase viewModel)
+    {
+      if (ChildrenViewModelRefreshInvoked != null && viewModel != null)
+      {
+        ChildrenViewModelRefreshInvoked(this, new ViewModelProviderActionEventArgs(viewModel));
+      }
+    }
+
+    private void OnChildrenViewModelSaveInvoked(ControlViewModelBase viewModel)
+    {
+      if (ChildrenViewModelSaveInvoked != null && viewModel != null)
+      {
+        ChildrenViewModelSaveInvoked(this, new ViewModelProviderActionEventArgs(viewModel));
+      }
+    }
+
+    private void OnChildrenViewModelDeleteInvoked(ControlViewModelBase viewModel)
+    {
+      if (ChildrenViewModelDeleteInvoked != null && viewModel != null)
+      {
+        ChildrenViewModelDeleteInvoked(this, new ViewModelProviderActionEventArgs(viewModel));
       }
     }
   }

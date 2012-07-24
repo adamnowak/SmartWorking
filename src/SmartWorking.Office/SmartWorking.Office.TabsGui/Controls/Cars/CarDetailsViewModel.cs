@@ -58,9 +58,15 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 
     private void LoadDrivers()
     {
+      DriverPrimitive selectedItem = Drivers.SelectedItem;
       using (IDriversService service = ServiceFactory.GetDriversService())
       {
         Drivers.LoadItems(service.GetDrivers(string.Empty, ListItemsFilterValues.OnlyActive));
+      }
+      if (selectedItem != null)
+      {
+        Drivers.SelectedItem =
+          Drivers.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
       }
     }
 

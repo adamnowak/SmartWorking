@@ -139,7 +139,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         {
           if (ItemSaved != null)
           {
-            ItemSaved(null, null);
+            ItemSaved(this, EventArgs.Empty);
           }
         }
       }
@@ -209,7 +209,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       {
         if (ChangesCanceled != null)
         {
-          ChangesCanceled(null, null);
+          ChangesCanceled(this, EventArgs.Empty);
         }
       }
     }

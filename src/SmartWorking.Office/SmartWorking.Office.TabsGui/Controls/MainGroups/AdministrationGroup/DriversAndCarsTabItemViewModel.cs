@@ -25,8 +25,34 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       DriverDetailsViewModel = new DriverDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       DriverListViewModel = new DriverListViewModel(MainViewModel, DriverDetailsViewModel, ModalDialogService, ServiceFactory);
 
-      ViewModelProvider.RegisterChildViewModel(CarDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.DeleteInvoiked | ViewModelProviderAction.SaveInvoiked);
-      ViewModelProvider.RegisterChildViewModel(DriverDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.DeleteInvoiked | ViewModelProviderAction.SaveInvoiked);
+      ViewModelProvider.RegisterChildViewModel(CarDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.DeleteInvoked | ViewModelProviderAction.SaveInvoked);
+      ViewModelProvider.RegisterChildViewModel(DriverDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.DeleteInvoked | ViewModelProviderAction.SaveInvoked);
+
+      ViewModelProvider.ChildrenViewModelDeleteInvoked += new System.EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelDeleteInvoked);
+      ViewModelProvider.ChildrenViewModelSaveInvoked += new System.EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelSaveInvoked);
+    }
+
+    void ViewModelProvider_ChildrenViewModelSaveInvoked(object sender, ViewModelProviderActionEventArgs e)
+    {
+      if (e != null && e.ViewModel != null)
+      {
+        if (e.ViewModel == DriverDetailsViewModel)
+        {
+          CarDetailsViewModel.Refresh();
+        }
+        if (e.ViewModel == CarDetailsViewModel)
+        {
+          DriverListViewModel.Refresh();
+        }
+      }
+    }
+
+    void ViewModelProvider_ChildrenViewModelDeleteInvoked(object sender, ViewModelProviderActionEventArgs e)
+    {
+      if (e != null && e.ViewModel != null)
+      {
+
+      }
     }
 
     /// <summary>
