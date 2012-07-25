@@ -26,11 +26,21 @@
         <DataGrid Grid.Row="1"  SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}" >
             <DataGrid.Resources>
                 <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsDeactive}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsDeleted}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
            
                 <!--Debug only-->
-                <DataGridTextColumn Header="str_Id" Binding="{Binding RecipeComponent.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                <DataGridTextColumn Header="str_Id" Binding="{Binding Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
                 <DataGridTextColumn Header="str_Symbol" Binding="{Binding InternalName}" />
@@ -42,9 +52,9 @@
      
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}" >
-            <RadioButton GroupName="CarListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
-            <RadioButton GroupName="CarListItemsFilterGroupName" Content="strIncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
-            <RadioButton GroupName="CarListItemsFilterGroupName" Content="strAll" 
+            <RadioButton GroupName="BuildingListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
+            <RadioButton GroupName="BuildingListItemsFilterGroupName" Content="strIncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
+            <RadioButton GroupName="BuildingListItemsFilterGroupName" Content="strAll" 
                          IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
                          Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
         </StackPanel>

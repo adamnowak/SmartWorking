@@ -66,8 +66,29 @@
 
                         <TextBox Text="{Binding Drivers.SelectedItem.Id}" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
-                          DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" 
-                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
+                           Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" DisplayMemberPath="InternalName">
+                            <!--<ComboBox.ItemTemplate>
+
+                                <DataTemplate >
+                                    <Border>
+                                        <StackPanel>             
+                                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" >
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} {1} {2}" > 
+                                                        <Binding Path="InternalName" />
+                                                        <Binding Path="Name" />
+                                                        <Binding Path="Surname" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                                
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+
+                            </ComboBox.ItemTemplate>-->
+                        </ComboBox>
                         <TextBox Text="{Binding Drivers.SelectedItem.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
                         <TextBox Text="{Binding Drivers.SelectedItem.Surname}" Grid.Row="3" Grid.Column="1" IsReadOnly="True" />
                         <TextBox Text="{Binding Drivers.SelectedItem.Phone}" Grid.Row="4" Grid.Column="1" IsReadOnly="True" />

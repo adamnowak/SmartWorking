@@ -63,10 +63,14 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
       {
         Drivers.LoadItems(service.GetDrivers(string.Empty, ListItemsFilterValues.OnlyActive));
       }
+
       if (selectedItem != null)
       {
-        Drivers.SelectedItem =
-          Drivers.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+        Drivers.SelectedItem = Drivers.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+      }
+      else
+      {
+        Drivers.SelectedItem = null;
       }
     }
 

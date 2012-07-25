@@ -30,11 +30,16 @@ namespace SmartWorking.Office.Services.Hosting.Local
           List<Driver> result =
             (string.IsNullOrWhiteSpace(filter))
               ? (listItemsFilterValue == ListItemsFilterValues.All)
-               ? ctx.Drivers.ToList()
-                  : ctx.Drivers.Where(x => !x.Deleted.HasValue).ToList()
+                  ? ctx.Drivers.ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Drivers.Where(x => !x.Deleted.HasValue).ToList()
+                      : ctx.Drivers.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Drivers.Where(x => x.Name.StartsWith(filter)).ToList()
-                  : ctx.Drivers.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList();            
+                  ? ctx.Drivers.ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Drivers.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+                      : ctx.Drivers.Where(
+                        x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();        
           return result.Select(x => x.GetPrimitive()).ToList(); 
         }
       }
@@ -54,10 +59,15 @@ namespace SmartWorking.Office.Services.Hosting.Local
             (string.IsNullOrWhiteSpace(filter))
               ? (listItemsFilterValue == ListItemsFilterValues.All)
                   ? ctx.Drivers.Include("Cars").ToList()
-                  : ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue).ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue).ToList()
+                      : ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Drivers.Include("Cars").Where(x => x.Name.StartsWith(filter)).ToList()
-                  : ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList();
+                  ? ctx.Drivers.Include("Cars").ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+                      : ctx.Drivers.Include("Cars").Where(
+                        x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetDriverAndCarsPackage()).ToList();
         }
       }
@@ -122,6 +132,13 @@ namespace SmartWorking.Office.Services.Hosting.Local
           if (driver != null)
           {
             driver.Deleted = DateTime.Now;
+            
+            //'disconnect' driver from car
+            foreach (Car car in context.Cars.Where(x => x.Driver_Id == driverPrimitive.Id))
+            {
+              car.Driver = null;
+            }
+
             context.SaveChanges();
           }
           else

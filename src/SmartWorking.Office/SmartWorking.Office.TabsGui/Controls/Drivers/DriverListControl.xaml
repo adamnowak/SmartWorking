@@ -25,6 +25,16 @@
         <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
             <DataGrid.Resources>
                 <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Driver.IsDeactive}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Driver.IsDeleted}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--Debug only-->
@@ -35,7 +45,7 @@
                 <DataGridTextColumn Header="str_Imię" Binding="{Binding Driver.Name}" />
                 <DataGridTextColumn Header="str_Nazwisko" Binding="{Binding Driver.Surname}" />
                 <DataGridTextColumn Header="str_Numer telefonu" Binding="{Binding Driver.Phone}" />
-                <DataGridTextColumn Header="str_Nazwa samochodu" Binding="{Binding Driver.Name}" />
+                <DataGridTextColumn Header="str_RegistrationNumber" Binding="{Binding Car.RegistrationNumber}" />
 
             </DataGrid.Columns>
         </DataGrid>

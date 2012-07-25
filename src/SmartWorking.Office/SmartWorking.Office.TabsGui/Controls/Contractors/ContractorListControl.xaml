@@ -25,6 +25,16 @@
         <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
             <DataGrid.Resources>
                 <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsDeactive}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsDeleted}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--Debug only-->
@@ -44,6 +54,7 @@
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
             <RadioButton GroupName="ContractorListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
+            <RadioButton GroupName="ContractorListItemsFilterGroupName" Content="strIncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
             <RadioButton GroupName="ContractorListItemsFilterGroupName" Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
                          Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
         </StackPanel>

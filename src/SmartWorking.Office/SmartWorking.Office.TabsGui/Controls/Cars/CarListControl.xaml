@@ -16,7 +16,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="strFilter:"/>
+            <TextBlock Grid.Column="0" Text="strFilter:" />
             <TextBox Grid.Column="1" Text="{Binding Filter}" />
             <Button Grid.Column="2" Content="strApply" Command="{Binding ApplyFilterCommand}" />
         </Grid>
@@ -24,8 +24,19 @@
         
 
         <DataGrid Grid.Row="1"  SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}" >
+            
             <DataGrid.Resources>
                 <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Car.IsDeactive}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Car.IsDeleted}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--Debug only-->
@@ -51,7 +62,14 @@
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="str_Protector" Binding="{Binding Driver.InternalName}" />
+                <DataGridTextColumn Header="str_Protector" >
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1}" > <!--Converter="{StaticResource stringConcatenationMultiConverter}" >-->
+                            <Binding Path="Driver.Name" />
+                            <Binding Path="Driver.Surname" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn><!--Binding="{Binding Driver.Name}" />-->
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}" >

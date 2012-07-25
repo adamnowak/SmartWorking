@@ -25,6 +25,16 @@
         <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
             <DataGrid.Resources>
                 <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Car.IsDeactive}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Car.IsDeleted}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
                 
@@ -44,8 +54,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
-            <RadioButton GroupName="MaterialListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
-            <RadioButton GroupName="MaterialListItemsFilterGroupName" Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
+            <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
+            <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="strIncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
+            <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
                          Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
         </StackPanel>
     </Grid>

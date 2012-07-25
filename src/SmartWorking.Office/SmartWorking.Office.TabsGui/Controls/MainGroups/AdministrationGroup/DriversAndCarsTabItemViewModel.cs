@@ -25,8 +25,11 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       DriverDetailsViewModel = new DriverDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       DriverListViewModel = new DriverListViewModel(MainViewModel, DriverDetailsViewModel, ModalDialogService, ServiceFactory);
 
-      ViewModelProvider.RegisterChildViewModel(CarDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.DeleteInvoked | ViewModelProviderAction.SaveInvoked);
-      ViewModelProvider.RegisterChildViewModel(DriverDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.DeleteInvoked | ViewModelProviderAction.SaveInvoked);
+      ViewModelProvider.RegisterChildViewModel(CarDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged |  ViewModelProviderAction.SaveInvoked);
+      ViewModelProvider.RegisterChildViewModel(DriverDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.SaveInvoked);
+
+      ViewModelProvider.RegisterChildViewModel(CarListViewModel, ViewModelProviderAction.DeleteInvoked);
+      ViewModelProvider.RegisterChildViewModel(DriverListViewModel, ViewModelProviderAction.DeleteInvoked);
 
       ViewModelProvider.ChildrenViewModelDeleteInvoked += new System.EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelDeleteInvoked);
       ViewModelProvider.ChildrenViewModelSaveInvoked += new System.EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelSaveInvoked);
@@ -51,7 +54,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     {
       if (e != null && e.ViewModel != null)
       {
-
+        if (e.ViewModel == DriverListViewModel)
+        {
+          CarDetailsViewModel.Refresh();
+        }
+        if (e.ViewModel == CarListViewModel)
+        {
+          DriverListViewModel.Refresh();
+        }
       }
     }
 

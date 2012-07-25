@@ -10,11 +10,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
   [Flags]
   public enum ViewModelProviderAction
   {
-    IsReadOnlyChanged = 0x1,
-    EditingModeChanged = 0x2,
-    RefreshInvoked = 0x4,
-    SaveInvoked = 0x8,
-    DeleteInvoked = 0x16
+    IsReadOnlyChanged = 0x0001,
+    EditingModeChanged = 0x0002,
+    RefreshInvoked = 0x0004,
+    SaveInvoked = 0x0008,
+    DeleteInvoked = 0x0010
   }
 
   public class ViewModelProviderActionEventArgs : EventArgs
@@ -71,6 +71,23 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
         if (controlViewModelBase is IEditableControlViewModel && ((viewModelProviderAction & ViewModelProviderAction.SaveInvoked) == ViewModelProviderAction.SaveInvoked))
         {
           ((IEditableControlViewModel)controlViewModelBase).ItemSaved += new EventHandler(ViewModelProvider_ItemSaved);
+        }
+
+        if (controlViewModelBase is IListingEditableControlViewModel && ((viewModelProviderAction & ViewModelProviderAction.DeleteInvoked) == ViewModelProviderAction.DeleteInvoked))
+        {
+          ((IListingEditableControlViewModel)controlViewModelBase).ItemDeleted += new EventHandler(ViewModelProvider_ItemDeleted);
+        }
+      }
+    }
+
+    void ViewModelProvider_ItemDeleted(object sender, EventArgs e)
+    {
+      ControlViewModelBase controlViewModelBase = sender as ControlViewModelBase;
+      if (controlViewModelBase != null && ChildrenViewModels.ContainsKey(controlViewModelBase))
+      {
+        if ((ChildrenViewModels[controlViewModelBase] & ViewModelProviderAction.DeleteInvoked) == ViewModelProviderAction.DeleteInvoked)
+        {
+          OnChildrenViewModelDeleteInvoked(controlViewModelBase);
         }
       }
     }
