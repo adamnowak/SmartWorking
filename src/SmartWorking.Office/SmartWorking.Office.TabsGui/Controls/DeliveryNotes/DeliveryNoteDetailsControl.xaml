@@ -19,6 +19,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!--Debug only-->
@@ -91,6 +92,10 @@
                         <TextBox Text="{Binding Deliverers.SelectedItem.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
                     </Grid>
                 </GroupBox>
+
+                <TextBlock Text="str_IsActive:" Grid.Row="5" />
+                <CheckBox Grid.Row="5" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.D.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>
 
         </ScrollViewer>

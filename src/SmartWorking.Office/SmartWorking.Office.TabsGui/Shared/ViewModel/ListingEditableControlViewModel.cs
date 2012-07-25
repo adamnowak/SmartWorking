@@ -36,6 +36,16 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
+    public override void Save()
+    {
+      EditingViewModel.Save();
+    }
+
+    public override void Cancel()
+    {
+      EditingViewModel.Cancel();
+    }
+
     /// <summary>
     /// Handles the ItemSaved event of the EditingViewModel control.
     /// </summary>

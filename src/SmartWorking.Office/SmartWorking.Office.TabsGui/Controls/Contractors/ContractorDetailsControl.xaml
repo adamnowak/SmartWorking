@@ -21,7 +21,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
                     <!--Debug only-->
                 <TextBlock Text="str_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
@@ -48,7 +49,11 @@
                     <TextBox Text="{Binding Item.ZIPCode}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
 
                     <TextBox Text="{Binding Item.Phone}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                </Grid>
+
+                <TextBlock Text="str_IsActive:" Grid.Row="8" />
+                <CheckBox Grid.Row="8" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
+            </Grid>
 
         </ScrollViewer>
     </Grid>

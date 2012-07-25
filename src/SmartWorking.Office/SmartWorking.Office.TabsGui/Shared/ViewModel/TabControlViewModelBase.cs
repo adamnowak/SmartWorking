@@ -28,6 +28,16 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     {
     }
 
+    public override void Save()
+    {
+      
+    }
+
+    public override void Cancel()
+    {
+      
+    }
+
     /// <summary>
     /// Gets the tab item from SelectionChangedEventArgs.
     /// </summary>
@@ -169,11 +179,14 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
           IControlViewModel oldControlViewModel = GetControlViewModel(selectionChangedEventArgs);
           if (oldControlViewModel != null && !oldControlViewModel.IsReadOnly)
           {
-            //if (ShowMessage() == save)
+            if (ShowMessageBox(MessageBoxImage.Warning, "str_Niezapisane dane", "str_czy zapisac", MessageBoxButton.YesNo, oldControlViewModel.Name)
+              == MessageBoxResult.Yes)
             {
-              //come to previouse
-              //selectionChangedEventArgs.Handled = true;
-              //return;
+              oldControlViewModel.Save();
+            }
+            else
+            {
+              oldControlViewModel.Cancel();
             }
           }  
         }

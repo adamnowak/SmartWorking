@@ -18,6 +18,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition  />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!--Debug only-->
@@ -37,9 +38,13 @@
                 
                 <DatePicker Grid.Row="1" Grid.Column="1" IsEnabled="{Binding IsReadOnly}"/>
                 <TextBox Text="{Binding Item.Order.Amount}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <CheckBox Grid.Row="3" Grid.Column="1" IsEnabled="{Binding IsReadOnly}"/>
-                <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                <CheckBox Grid.Row="3" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Order.Pump}" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
+                <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" Text="{Binding Item.Order.Notice}"/>
 
+                <TextBlock Text="str_IsActive:" Grid.Row="5" />
+                <CheckBox Grid.Row="5" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Order.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>
 
         </ScrollViewer>

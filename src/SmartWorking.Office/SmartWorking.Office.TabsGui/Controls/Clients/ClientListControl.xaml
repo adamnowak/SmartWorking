@@ -46,11 +46,13 @@
                 <DataGridTextColumn Header="str_Telefon" Binding="{Binding Client.Phone}" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
-            <RadioButton GroupName="ClientListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
-            <RadioButton GroupName="ClientListItemsFilterGroupName" Content="strIncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
-            <RadioButton GroupName="ClientListItemsFilterGroupName" Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
-                        Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />                
-        </StackPanel>
+        <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
+            <StackPanel Orientation="Horizontal" >
+                <RadioButton GroupName="ClientListItemsFilterGroupName" Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
+                <RadioButton GroupName="ClientListItemsFilterGroupName" Content="strIncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
+                <RadioButton GroupName="ClientListItemsFilterGroupName" Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
+                        Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </View:ListUserControl>

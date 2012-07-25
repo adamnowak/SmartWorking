@@ -116,5 +116,23 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
                (DriverDetailsViewModel != null ? DriverDetailsViewModel.IsReadOnly : true);
       }
     }
+
+    public override void Save()
+    {
+      base.Save();
+      if (CarListViewModel != null && !CarListViewModel.IsReadOnly) CarListViewModel.Save();
+      if (CarDetailsViewModel != null && !CarDetailsViewModel.IsReadOnly) CarDetailsViewModel.Save();
+      if (DriverListViewModel != null && !DriverListViewModel.IsReadOnly) DriverListViewModel.Save();
+      if (DriverDetailsViewModel != null && !DriverDetailsViewModel.IsReadOnly) DriverDetailsViewModel.Save();
+    }
+
+    public override void Cancel()
+    {
+      base.Cancel();
+      if (CarListViewModel != null && !CarListViewModel.IsReadOnly) CarListViewModel.Cancel();
+      if (CarDetailsViewModel != null && !CarDetailsViewModel.IsReadOnly) CarDetailsViewModel.Cancel();
+      if (DriverListViewModel != null && !DriverListViewModel.IsReadOnly) DriverListViewModel.Cancel();
+      if (DriverDetailsViewModel != null && !DriverDetailsViewModel.IsReadOnly) DriverDetailsViewModel.Cancel();
+    }
   }
 }

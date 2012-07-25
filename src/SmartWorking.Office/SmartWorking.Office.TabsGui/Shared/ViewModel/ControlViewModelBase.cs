@@ -81,6 +81,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
+    protected MessageBoxResult ShowMessageBox(MessageBoxImage icon, string caption, string message, MessageBoxButton button, string info)
+    {
+      return ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, icon, caption, message, button, info); 
+    }
+
     /// <summary>
     /// Refreshes control context.
     /// </summary>
@@ -220,12 +225,16 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     }
 
     public event EventHandler IsReadOnlyChanged;
+    
 
     protected virtual bool OnIsReadOnlyChanged()
     {
       return true;
     }
     #endregion //IsReadOnly
-    
+
+    public abstract void Save();
+
+    public abstract void Cancel();
   }
 }

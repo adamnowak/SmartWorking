@@ -73,16 +73,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
     {
       try
       {
-        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        if (recipePackage != null && recipePackage.Recipe != null)
         {
-          
-
-            Recipe recipe = recipePackage.Recipe.GetEntity();
-
-            Recipe existingObject = context.Recipes.Where(x => x.Id == recipe.Id).FirstOrDefault();
+          using (SmartWorkingEntities context = new SmartWorkingEntities())
+          {
+            Recipe existingObject = context.Recipes.Where(x => x.Id == recipePackage.Recipe.Id).FirstOrDefault();
 
             //no record of this item in the DB, item being passed in has a PK
-            if (existingObject == null && recipe.Id > 0)
+            if (existingObject == null && recipePackage.Recipe.Id > 0)
             {
               throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
                                                         "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
@@ -90,13 +88,14 @@ namespace SmartWorking.Office.Services.Hosting.Local
             //Item has no PK value, must be new
 
 
-            if (recipe.Id > 0)
+            if (recipePackage.Recipe.Id > 0)
             {
               existingObject.Deleted = DateTime.Now;
               context.Recipes.ApplyCurrentValues(existingObject);
 
             }
 
+            Recipe recipe = recipePackage.Recipe.GetEntity();
             recipe.Id = 0;
             context.Recipes.AddObject(recipe);
             foreach (
@@ -104,12 +103,18 @@ namespace SmartWorking.Office.Services.Hosting.Local
                 recipePackage.RecipeComponentAndMaterialList)
             {
               recipeComponentAndMaterialPackage.RecipeComponent.Id = 0;
-              RecipeComponent recipeComponent = recipeComponentAndMaterialPackage.RecipeComponent.GetEntity();
+              RecipeComponent recipeComponent =
+                recipeComponentAndMaterialPackage.GetRecipeComponentPrimitiveWithReference().GetEntity();
               recipeComponent.Recipe = recipe;
               context.RecipeComponents.AddObject(recipeComponent);
             }
 
             context.SaveChanges();
+          }
+        }
+        else
+        {
+          throw new Exception("str_Inpute parameter was wrong.");
         }
       }
       catch (Exception e)
@@ -126,7 +131,28 @@ namespace SmartWorking.Office.Services.Hosting.Local
     {
       try
       {
-        throw new NotImplementedException();
+        if (recipePrimitive != null)
+        {
+          using (SmartWorkingEntities context = new SmartWorkingEntities())
+          {
+            Recipe recipe = context.Recipes.Where(x => x.Id == recipePrimitive.Id).FirstOrDefault();
+            if (recipe != null)
+            {
+              recipe.Deleted = DateTime.Now;
+              context.SaveChanges();
+            }
+            else
+            {
+              throw new Exception("This car does not exist in db.");
+            }
+
+            context.SaveChanges();
+          }
+        }
+        else
+        {
+          throw new Exception("str_Inpute parameter was wrong.");
+        }
       }
       catch (Exception e)
       {

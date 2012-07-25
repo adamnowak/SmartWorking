@@ -91,5 +91,18 @@ namespace SmartWorking.Office.PrimitiveEntities
       }
       return result;
     }
+
+    public static RecipeComponentPrimitive GetRecipeComponentPrimitiveWithReference(this RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage)
+    {
+      if (recipeComponentAndMaterialPackage == null || recipeComponentAndMaterialPackage.RecipeComponent == null)
+        return null;
+      RecipeComponentPrimitive result = recipeComponentAndMaterialPackage.RecipeComponent;
+      if (recipeComponentAndMaterialPackage.MaterialAndContractors != null && recipeComponentAndMaterialPackage.MaterialAndContractors.Material != null)
+      {
+        result.Material_Id = recipeComponentAndMaterialPackage.MaterialAndContractors.Material.Id;
+      }
+      
+      return result;
+    }
   }
 }

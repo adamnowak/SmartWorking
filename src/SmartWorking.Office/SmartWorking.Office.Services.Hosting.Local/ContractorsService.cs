@@ -29,13 +29,17 @@ namespace SmartWorking.Office.Services.Hosting.Local
         using (var ctx = new SmartWorkingEntities())
         {
           List<Contractor> result =
-            (string.IsNullOrWhiteSpace(filter))
-              ? (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Contractors.ToList()
-                  : ctx.Contractors.Where(x => !x.Deleted.HasValue).ToList()                     
-              : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Contractors.Where(x => x.Name.StartsWith(filter)).ToList()
-                  : ctx.Contractors.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList();
+           (string.IsNullOrWhiteSpace(filter))
+             ? (listItemsFilterValue == ListItemsFilterValues.All)
+                 ? ctx.Contractors.ToList()
+                 : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                     ? ctx.Contractors.Where(x => !x.Deleted.HasValue).ToList()
+                     : ctx.Contractors.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
+             : (listItemsFilterValue == ListItemsFilterValues.All)
+                 ? ctx.Contractors.Where(x => x.Name.StartsWith(filter)).ToList()
+                 : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                     ? ctx.Contractors.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+                     : ctx.Contractors.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetPrimitive()).ToList(); ;
         }
       }

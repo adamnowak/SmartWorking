@@ -68,8 +68,29 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
       using (IContractorsService service = ServiceFactory.GetContractorsService())
       {
         List<ContractorPrimitive> contractors = service.GetContractors(string.Empty, ListItemsFilterValues.OnlyActive);
+        //TODO:
+        ContractorPrimitive selectedProducer = Producers.SelectedItem;
         Producers.LoadItems(contractors);
+        if (selectedProducer != null)
+        {
+          Producers.SelectedItem = Producers.Items.Where(x => x.Id == selectedProducer.Id).FirstOrDefault();
+        }
+        else
+        {
+          Producers.SelectedItem = null;
+        }
+
+        ContractorPrimitive selectedDeliverer = Deliverers.SelectedItem;
         Deliverers.LoadItems(contractors);
+        if (selectedDeliverer != null)
+        {
+          Deliverers.SelectedItem = Deliverers.Items.Where(x => x.Id == selectedDeliverer.Id).FirstOrDefault();
+        }
+        else
+        {
+          Deliverers.SelectedItem = null;
+        }
+        
       }
     }
 

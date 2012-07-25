@@ -25,6 +25,36 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       MaterialListViewModel = new MaterialListViewModel(MainViewModel, MaterialDetailsViewModel, ModalDialogService, ServiceFactory);
       ContractorDetailsViewModel = new ContractorDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       ContractorListViewModel = new ContractorListViewModel(MainViewModel, ContractorDetailsViewModel, ModalDialogService, ServiceFactory);
+
+      ViewModelProvider.RegisterChildViewModel(MaterialDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged);
+      ViewModelProvider.RegisterChildViewModel(ContractorDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.SaveInvoked);
+
+      ViewModelProvider.RegisterChildViewModel(ContractorListViewModel, ViewModelProviderAction.DeleteInvoked);
+
+      ViewModelProvider.ChildrenViewModelDeleteInvoked += new System.EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelDeleteInvoked);
+      ViewModelProvider.ChildrenViewModelSaveInvoked += new System.EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelSaveInvoked);
+    }
+
+    void ViewModelProvider_ChildrenViewModelSaveInvoked(object sender, ViewModelProviderActionEventArgs e)
+    {
+      if (e != null && e.ViewModel != null)
+      {
+        if (e.ViewModel == ContractorDetailsViewModel)
+        {
+          MaterialDetailsViewModel.Refresh();
+        }
+      }
+    }
+
+    void ViewModelProvider_ChildrenViewModelDeleteInvoked(object sender, ViewModelProviderActionEventArgs e)
+    {
+      if (e != null && e.ViewModel != null)
+      {
+        if (e.ViewModel == ContractorListViewModel)
+        {
+          MaterialListViewModel.Refresh();
+        }
+      }
     }
 
     /// <summary>

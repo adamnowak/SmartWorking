@@ -18,6 +18,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
       get { return "str_ContractorList"; }
     }
 
+     
     
   }
 }

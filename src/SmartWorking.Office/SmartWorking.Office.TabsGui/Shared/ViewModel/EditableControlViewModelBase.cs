@@ -26,6 +26,15 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       
     }
 
+    public override void Save()
+    {
+      SaveItemCommandExecute();
+    }
+
+    public override void Cancel()
+    {
+      CancelChangesCommandExecute();
+    }
 
     #region Item
     /// <summary>

@@ -18,6 +18,16 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
   /// </summary>
   public abstract class TabItemViewModelBase : ControlViewModelBase, ITabItemViewModel 
   {
+    public override void Save()
+    {
+     
+    }
+
+    public override void Cancel()
+    {
+      
+    }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="TabControlViewModelBase"/> class.
     /// </summary>

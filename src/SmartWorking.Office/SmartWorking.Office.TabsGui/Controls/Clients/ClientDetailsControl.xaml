@@ -22,6 +22,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!--Debug only-->
@@ -47,6 +48,10 @@
                 <TextBox Text="{Binding Item.Client.Street}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 <TextBox Text="{Binding Item.Client.HouseNo}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 <TextBox Text="{Binding Item.Client.Phone}" Grid.Row="8" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+
+                <TextBlock Text="str_IsActive:" Grid.Row="9" />
+                <CheckBox Grid.Row="9" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Client.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>
 
         </ScrollViewer>

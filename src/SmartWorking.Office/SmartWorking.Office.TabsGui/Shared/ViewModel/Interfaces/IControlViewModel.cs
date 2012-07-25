@@ -61,5 +61,14 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     /// </summary>
     event EventHandler IsReadOnlyChanged;
 
+    /// <summary>
+    /// Save changes in this ControlViewModel or edited child.
+    /// </summary>
+    void Save();
+
+    /// <summary>
+    /// Cancel changes in this ControlViewModel or edited child.
+    /// </summary>
+    void Cancel();
   }
 }

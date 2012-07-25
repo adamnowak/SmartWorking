@@ -44,7 +44,7 @@ namespace SmartWorking.Office.TabsGui.Shared.View
                     window.Close();
                   };
       viewModel.RequestClose += handler;
-      Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Normal,new Action(() => window.ShowDialog()));
+      Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Normal,new Action(() => window.ShowDialog()));
 
       return viewModel.Result;
     }

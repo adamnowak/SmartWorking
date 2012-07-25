@@ -50,6 +50,10 @@
                 <TextBox Text="{Binding Item.ContactPerson}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 <TextBox Text="{Binding Item.ContactPersonPhone}" Grid.Row="8" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 <!--<TextBox Text="{Binding RouteDistance, Mode=OneWay, ElementName=Map}" Grid.Row="9" Grid.Column="1" IsReadOnly="True" />-->
+
+                <TextBlock Text="str_IsActive:" Grid.Row="9" />
+                <CheckBox Grid.Row="9" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
+                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>
         </ScrollViewer>
     </Grid>

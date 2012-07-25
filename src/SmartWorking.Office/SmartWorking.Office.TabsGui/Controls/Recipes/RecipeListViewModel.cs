@@ -39,24 +39,47 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
     protected override void AddItemCommandExecute()
     {
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new RecipePackage();
+      EditingViewModel.Item = new RecipePackage() {Recipe = new RecipePrimitive()};
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      RecipePackage clone = Items.SelectedItem;
+      RecipePackage clone = null;
+      if (Items.SelectedItem != null)
+      {
+        clone = Items.SelectedItem.GetPackageCopy();
+      }
       if (clone != null)
       {
-        clone.Recipe.Id = 0;        
+        clone.Recipe.Id = 0;
+        foreach (RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage in clone.RecipeComponentAndMaterialList)
+        {
+          recipeComponentAndMaterialPackage.RecipeComponent.Id = 0;
+        }
       }
       else
       {
-        clone = new RecipePackage();
+        clone = new RecipePackage() { Recipe = new RecipePrimitive() };
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;
+    }
+
+    protected override bool OnDeleteItem()
+    {
+      if (base.OnDeleteItem())
+      {
+        
+        using (IRecipesService service = ServiceFactory.GetRecipesService())
+        {
+          service.DeleteRecipe(EditingViewModel.Item.Recipe);
+        }
+        Refresh();
+        return true;
+      }
+      return false;
     }
   }
 }
