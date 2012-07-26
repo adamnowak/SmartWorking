@@ -58,5 +58,19 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;
     }
+
+    protected override bool OnDeleteItem()
+    {
+      if (base.OnDeleteItem())
+      {
+        using (IBuildingsService service = ServiceFactory.GetBuildingsService())
+        {
+          service.DeleteBuilding(EditingViewModel.Item);
+        }
+        Refresh();
+        return true;
+      }
+      return false;
+    }
   }
 }

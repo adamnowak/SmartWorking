@@ -36,7 +36,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
       {
         using (IBuildingsService service = ServiceFactory.GetBuildingsService())
         {
-          //service.CreateOrUpdateContractor(Item);
+          service.CreateOrUpdateBuilding(Item);
         }
         return true;
       }

@@ -26,8 +26,10 @@ namespace SmartWorking.Office.TabsGui.Shared.View
       var window = new MessageBoxHelperWindow();
       var helper = new WindowInteropHelper(window);
       helper.Owner = Process.GetCurrentProcess().MainWindowHandle;
-      window.Content = new TWindow();
-      window.DataContext = viewModel;
+      Control content = new TWindow();
+      window.Content = content;
+      
+      
       window.Title = "str_Smart Working  (office) - " + viewModel.Title;
 
       //if (window.Content is Control)
@@ -44,9 +46,43 @@ namespace SmartWorking.Office.TabsGui.Shared.View
                     window.Close();
                   };
       viewModel.RequestClose += handler;
+
+      // Checking if this thread has access to the object.
+      //if (window.Dispatcher.CheckAccess())
+      //{
+      //  // This thread has access so it can update the UI thread.
+      //  window.ShowDialog();
+      //}
+      //else
+      //{
+        // This thread does not have access to the UI thread.
+        // Place the update method on the Dispatcher of the UI thread.      
+      //window.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => window.ShowDialog()));
+      //}
+
+
+
+      //This implementation is from GUI (previous version)
+      //EventHandler handler = null;
+      //handler = delegate
+      //{
+      //  viewModel.RequestClose -= handler;
+      //  window.Close();
+      //};
+      //viewModel.RequestClose += handler;
+      //viewModel.Initialize();
+      //if (!viewModel.Closing)
+      //  window.ShowDialog();
+
+
+
+      //TODO: do sprawdzenia; wyrzucic window.DataContext = viewModel; i w tej metodzie bindowac DataContext
+      //content.Initialized += new EventHandler(content_Initialized);
+
+
       Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Normal,new Action(() => window.ShowDialog()));
 
       return viewModel.Result;
-    }
+    }    
   }
 }

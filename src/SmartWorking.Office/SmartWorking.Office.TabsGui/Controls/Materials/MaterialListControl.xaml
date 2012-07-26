@@ -53,7 +53,15 @@
                 <DataGridTextColumn Header="str_Dostawca" Binding="{Binding Deliverer.InternalName}" />
             </DataGrid.Columns>
         </DataGrid>
-        <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
+        <GroupBox Grid.Row="2" >
+            <GroupBox.Visibility>
+                <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding Path="FiltersVisibility" RelativeSource="{RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}"/>
+                        <Binding Path="ListItemsFilterVisibility" RelativeSource="{RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}" />
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </GroupBox.Visibility>            
             <StackPanel Orientation="Horizontal" >
                 <RadioButton Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
                 <RadioButton Content="strIncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>

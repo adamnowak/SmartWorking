@@ -24,16 +24,24 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of Recipe filtered by <paramref name="recipesFilter"/>. Recipe contains list of Material contains to this Recipe.
     /// </returns>
-    public List<RecipePrimitive> GetRecipes(string recipesFilter, ListItemsFilterValues listItemsFilterValue)
+    public List<RecipePrimitive> GetRecipes(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
-          List<Recipe> result = (string.IsNullOrWhiteSpace(recipesFilter))
-                                  ? ctx.Recipes.ToList()
-                                  : ctx.Recipes.Where(
-                                    x => x.Name.StartsWith(recipesFilter)).ToList();
+          List<Recipe> result =
+            (string.IsNullOrWhiteSpace(filter))
+              ? (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Recipes.ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Recipes.Where(x => !x.Deleted.HasValue).ToList()
+                      : ctx.Recipes.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
+              : (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Recipes.Where(x => x.Name.StartsWith(filter)).ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Recipes.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+                      : ctx.Recipes.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetPrimitive()).ToList();
         }
       }
@@ -56,10 +64,19 @@ namespace SmartWorking.Office.Services.Hosting.Local
       {
         using (var ctx = new SmartWorkingEntities())
         {
-          List<Recipe> result = (string.IsNullOrWhiteSpace(filter))
-                                  ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").ToList()
-                                  : ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer")
-                                                                                                      .Where(x => x.Name.StartsWith(filter)).ToList();
+          List<Recipe> result =
+            (string.IsNullOrWhiteSpace(filter))
+              ? (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue).ToList()
+                      : ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
+              : (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => x.Name.StartsWith(filter)).ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+                      : ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
+          
           return result.Select(x => x.GetRecipesPackage()).ToList();
         }
       }

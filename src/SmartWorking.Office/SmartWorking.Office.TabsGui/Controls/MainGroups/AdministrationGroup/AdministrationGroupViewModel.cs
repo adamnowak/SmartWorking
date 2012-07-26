@@ -55,7 +55,9 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
       get
       {
         return base.IsReadOnly &&
-          (DriversAndCarsTabItemViewModel != null ? DriversAndCarsTabItemViewModel.IsReadOnly : true);
+          (DriversAndCarsTabItemViewModel != null ? DriversAndCarsTabItemViewModel.IsReadOnly : true) &&
+          (MaterialsAndContractorsTabItemViewModel != null ? MaterialsAndContractorsTabItemViewModel.IsReadOnly : true) &&
+          (RecipesTabItemViewModel != null ? RecipesTabItemViewModel.IsReadOnly : true);
       }
     }
 

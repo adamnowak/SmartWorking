@@ -526,7 +526,7 @@
                                     <Button Content=">>"  Command="{Binding RecipeDetailsViewModel.RemoveMaterialCommand}"/>                                    
                                 </StackPanel>
                                 <GroupBox Header="str_AllMaterials" Grid.Column="2">
-                                    <Materials:MaterialListControl DataContext="{Binding RecipeDetailsViewModel.MaterialListToAddViewModel}" />
+                                    <Materials:MaterialListControl DataContext="{Binding RecipeDetailsViewModel.MaterialListToAddViewModel}" ListItemsFilterVisibility="Collapsed" />
                                 </GroupBox>
                             </Grid>
                         </Grid>

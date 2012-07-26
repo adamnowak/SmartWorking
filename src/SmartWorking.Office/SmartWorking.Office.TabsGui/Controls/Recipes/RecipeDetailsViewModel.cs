@@ -66,13 +66,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
     }
 
     protected override void EditItemCommandExecute()
-    {
-     
+    {     
       Item = Item.GetPackageCopy();
       base.EditItemCommandExecute();
-      //RecipeComponentDetailsViewModel.EditingMode = EditingMode.Edit;
-      //RecipeComponentDetailsViewModel.Item = RecipeComponentDetailsViewModel.Item.GetPackageCopy();
-      //RecipeComponentListViewModel.EditingMode = EditingMode.Edit;
     }
 
     protected override bool OnSaveItem()

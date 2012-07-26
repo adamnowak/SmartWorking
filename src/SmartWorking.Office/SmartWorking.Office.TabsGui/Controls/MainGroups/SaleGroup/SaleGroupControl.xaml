@@ -279,75 +279,59 @@
                                             <RowDefinition />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Buildings:BuildingListControl DataContext="{Binding ClientDetailsViewModel.BuildingListToAddViewModel}" FiltersVisibility="Collapsed" />
-                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                            <Button Command="{Binding ClientListViewModel.AddItemCommand}" Content="str_Add">
+                                        <Buildings:BuildingListControl DataContext="{Binding ClientDetailsViewModel.ClientBuildingsListViewModel}" FiltersVisibility="Collapsed" />
+                                        <StackPanel Grid.Row="1"  Orientation="Horizontal">
+                                            <Button Command="{Binding ClientListViewModel.AddItemCommand}" Content="str_Add" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
                                                             <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticTrue}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding ClientListViewModel.AddCloneItemCommand}" Content="str_AddClone">
+                                            <Button Command="{Binding ClientListViewModel.AddCloneItemCommand}" Content="str_AddClone" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
-
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
                                                             <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticTrue}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding ClientDetailsViewModel.EditItemCommand}" Content="str_Edit">
+                                            <Button Command="{Binding ClientDetailsViewModel.EditItemCommand}" Content="str_Edit" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
                                                             <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticTrue}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
                                             <Button Command="{Binding ClientDetailsViewModel.SaveItemCommand}" Content="str_Save">
                                                 <Button.Visibility>
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticFalse}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
                                             <Button Command="{Binding ClientDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
                                                 <Button.Visibility>
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticFalse}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding ClientListViewModel.DeleteItemCommand}" Content="str_Delete">
+                                            <Button Command="{Binding ClientListViewModel.DeleteItemCommand}" Content="str_Delete" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
                                                             <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
-                                                            <Binding Path="DriverDetailsViewModel.IsReadOnly" />
+                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
@@ -356,8 +340,8 @@
                                     </Grid>
                                 </GroupBox>
                                 <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
-                                    <Button Content=">>"  />
-                                    <Button Content="&lt;&lt;"  />
+                                    <Button Content="&lt;&lt;" Command="{Binding ClientDetailsViewModel.AddBuildingCommand}" />
+                                    <Button Content=">>"  Command="{Binding ClientDetailsViewModel.RemoveBuildingCommand}" />
                                 </StackPanel>
                                 <GroupBox Grid.Column="2" Grid.ColumnSpan="2" Header="str_Wszystkie Budowy" >
                                     <Grid>
@@ -373,74 +357,58 @@
                                         <GroupBox Header="str_Budowa"  Grid.Column="1" DataContext="{Binding BuildingDetailsViewModel}">
                                             <Buildings:BuildingDetailsControl/>
                                         </GroupBox>
-                                        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                                            <Button Command="{Binding ClientListViewModel.AddItemCommand}" Content="str_Add">
+                                        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right"  Orientation="Horizontal">
+                                            <Button Command="{Binding BuildingListViewModel.AddItemCommand}" Content="str_Add" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticTrue}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                            <Binding Path="BuildingDetailsViewModel.IsReadOnly" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding ClientListViewModel.AddCloneItemCommand}" Content="str_AddClone">
+                                            <Button Command="{Binding BuildingListViewModel.AddCloneItemCommand}" Content="str_AddClone" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
-
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticTrue}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                            <Binding Path="BuildingDetailsViewModel.IsReadOnly" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding ClientDetailsViewModel.EditItemCommand}" Content="str_Edit">
+                                            <Button Command="{Binding BuildingDetailsViewModel.EditItemCommand}" Content="str_Edit" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticTrue}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                            <Binding Path="BuildingDetailsViewModel.IsReadOnly" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding ClientDetailsViewModel.SaveItemCommand}" Content="str_Save">
+                                            <Button Command="{Binding BuildingDetailsViewModel.SaveItemCommand}" Content="str_Save">
                                                 <Button.Visibility>
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticFalse}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                            <Binding Path="BuildingDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding ClientDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
+                                            <Button Command="{Binding BuildingDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
                                                 <Button.Visibility>
-                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="ClientDetailsViewModel.IsReadOnly" />
-                                                            <Binding Source="{StaticResource StaticFalse}"/>
-                                                            <Binding Source="{x:Static Visibility.Visible}" />
-                                                            <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                            <Binding Path="BuildingDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding ClientListViewModel.DeleteItemCommand}" Content="str_Delete">
+                                            <Button Command="{Binding BuildingListViewModel.DeleteItemCommand}" Content="str_Delete" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
                                                             <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
-                                                            <Binding Path="DriverDetailsViewModel.IsReadOnly" />
+                                                            <Binding Path="BuildingDetailsViewModel.IsReadOnly" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>

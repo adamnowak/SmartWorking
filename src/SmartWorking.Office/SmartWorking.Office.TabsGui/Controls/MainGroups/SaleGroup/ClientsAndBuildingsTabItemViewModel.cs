@@ -20,10 +20,15 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     public ClientsAndBuildingsTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogService, ServiceFactory);
       BuildingDetailsViewModel = new BuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       BuildingListViewModel = new BuildingListViewModel(MainViewModel, BuildingDetailsViewModel, ModalDialogService, ServiceFactory);
+
+      ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, BuildingListViewModel, ModalDialogService, ServiceFactory);
+      ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogService, ServiceFactory);
+      
+
+      ViewModelProvider.RegisterChildViewModel(ClientDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged);
+      ViewModelProvider.RegisterChildViewModel(BuildingDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged);
     }
 
     /// <summary>

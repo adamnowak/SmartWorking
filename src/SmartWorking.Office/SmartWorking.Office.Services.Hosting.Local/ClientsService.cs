@@ -87,10 +87,12 @@ namespace SmartWorking.Office.Services.Hosting.Local
             throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
                                                         "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
+
           //Item has no PK value, must be new
-          else if (client.Id <= 0)
+          if (client.Id <= 0)
           {
             context.Clients.AddObject(client);
+            
             //TODO: add buildings to client
           }
           //Item was retrieved, and the item passed has a valid ID, do an update
@@ -117,7 +119,20 @@ namespace SmartWorking.Office.Services.Hosting.Local
     {
       try
       {
-        throw new NotImplementedException();
+        //TODO: if is not used in any DeliveryNotes than delete.
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Client car = context.Clients.Where(x => x.Id == clientPrimitive.Id).FirstOrDefault();
+          if (car != null)
+          {
+            car.Deleted = DateTime.Now;
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This car does not exist in db.");
+          }
+        }
       }
       catch (Exception e)
       {
