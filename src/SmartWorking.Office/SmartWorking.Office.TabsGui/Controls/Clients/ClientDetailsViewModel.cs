@@ -71,7 +71,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     {
       if (Item != null)
       {
-        ClientBuildingsListViewModel.Items.LoadItems(Item.Buildings);
+        //ClientBuildingsListViewModel.Items.LoadItems(Item.ClientBuildings);
       }
       else
       {
@@ -116,8 +116,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     private bool CanAddBuilding()
     {
       return !IsReadOnly &&
-             BuildingListToAddViewModel.Items.SelectedItem != null &&
-             !Item.Buildings.Contains(BuildingListToAddViewModel.Items.SelectedItem);
+             BuildingListToAddViewModel.Items.SelectedItem != null;// &&
+             //!Item.ClientBuildings.Contains(BuildingListToAddViewModel.Items.SelectedItem);
     }
 
     /// <summary>
@@ -128,10 +128,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
       string errorCaption = "TODO!";
       try
       {
-        if (BuildingListToAddViewModel.Items.SelectedItem != null &&
-             !Item.Buildings.Contains(BuildingListToAddViewModel.Items.SelectedItem))
+        if (BuildingListToAddViewModel.Items.SelectedItem != null)
+        //;/// &&
+             //!Item.ClientBuildings.Contains(BuildingListToAddViewModel.Items.SelectedItem))
         {
-          Item.Buildings.Add(BuildingListToAddViewModel.Items.SelectedItem);
+          //Item.ClientBuildings.Add(BuildingListToAddViewModel.Items.SelectedItem);
         }
         SetClientBuildings();
       }
@@ -193,7 +194,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
       {
         if (ClientBuildingsListViewModel.Items.SelectedItem != null)
         {
-          Item.Buildings.Remove(ClientBuildingsListViewModel.Items.SelectedItem);
+          //Item.ClientBuildings.Remove(ClientBuildingsListViewModel.Items.SelectedItem);
         }
         SetClientBuildings();
       }

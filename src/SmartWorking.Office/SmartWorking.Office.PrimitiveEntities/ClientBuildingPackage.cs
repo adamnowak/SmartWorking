@@ -13,6 +13,6 @@ namespace SmartWorking.Office.PrimitiveEntities
 
     public BuildingPrimitive Building { get; set; }
 
-    public ClientPrimitive Client { get; set; }
+    //public ClientPrimitive Client { get; set; }
   }
 }

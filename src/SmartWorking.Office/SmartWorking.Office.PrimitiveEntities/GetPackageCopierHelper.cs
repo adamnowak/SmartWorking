@@ -63,10 +63,10 @@ namespace SmartWorking.Office.PrimitiveEntities
         if (source.Client != null)
         {
           package.Client = source.Client.GetPrimitiveCopy();
-          foreach (BuildingPrimitive building in source.Buildings)
-          {
-            source.Buildings.Add(building.GetPrimitiveCopy());
-          }
+          //foreach (BuildingPrimitive building in source.ClientBuildings)
+          //{
+          //  source.ClientBuildings.Add(building.GetPrimitiveCopy());
+          //}
         }
       }
       return package;
@@ -74,10 +74,20 @@ namespace SmartWorking.Office.PrimitiveEntities
 
     public static ClientBuildingPackage GetPackageCopy(this ClientBuildingPackage source)
     {
+      if (source == null)
+        return null;
+
       ClientBuildingPackage package = new ClientBuildingPackage();
-      package.ClientBuilding = source.ClientBuilding.GetPrimitiveCopy();
-      package.Client = source.Client.GetPrimitiveCopy();
-      package.Building = source.Building.GetPrimitiveCopy();
+      if (source.ClientBuilding != null)
+      {
+        package.ClientBuilding = source.ClientBuilding.GetPrimitiveCopy();
+        
+      }
+      //package.Client = source.Client.GetPrimitiveCopy();
+      if (source.Building != null)
+      {
+        package.Building = source.Building.GetPrimitiveCopy();
+      }
       return package;
     }
 

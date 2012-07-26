@@ -16,11 +16,11 @@ namespace SmartWorking.Office.Entities
         result.Client = client.GetPrimitive();
         if (client.ClientBuildings != null)
         {
-          foreach (ClientBuilding clientBuilding in client.ClientBuildings)
-          {
-            if (clientBuilding != null && clientBuilding.Building != null)
-              result.Buildings.Add(clientBuilding.Building.GetPrimitive());
-          }
+          //foreach (ClientBuilding clientBuilding in client.ClientBuildings)
+          //{
+          //  if (clientBuilding != null && clientBuilding.Building != null)
+          //    result.Buildings.Add(clientBuilding.Building.GetPrimitive());
+          //}
         }
       }
       return result;
@@ -109,10 +109,10 @@ namespace SmartWorking.Office.Entities
           {
             result.ClientBuildingPackage.Building = order.ClientBuilding.Building;
           }
-          if (order.ClientBuilding.Client != null)
-          {
-            result.ClientBuildingPackage.Client = order.ClientBuilding.Client;
-          }
+          //if (order.ClientBuilding.Client != null)
+          //{
+          //  result.ClientBuildingPackage.Client = order.ClientBuilding.Client;
+          //}
         }
       }
       return result;

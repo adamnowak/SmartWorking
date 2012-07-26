@@ -13,20 +13,20 @@ namespace SmartWorking.Office.PrimitiveEntities
 
     public ClientPrimitive Client { get; set; }
 
-    private ICollection<BuildingPrimitive> _buildings;
-    public ICollection<BuildingPrimitive> Buildings
+    private ICollection<ClientBuildingPackage> _clientBuildings;
+    public ICollection<ClientBuildingPackage> ClientBuildings
     {
       get
       {
-        if (_buildings == null)
+        if (_clientBuildings == null)
         {
-          _buildings = new ObservableCollection<BuildingPrimitive>();
+          _clientBuildings = new ObservableCollection<ClientBuildingPackage>();
         }
-        return _buildings;        
+        return _clientBuildings;        
       }
       set
       {
-        _buildings = value;
+        _clientBuildings = value;
       }
     }
   }

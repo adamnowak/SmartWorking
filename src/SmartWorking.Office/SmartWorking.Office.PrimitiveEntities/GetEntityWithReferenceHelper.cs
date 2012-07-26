@@ -69,10 +69,10 @@ namespace SmartWorking.Office.PrimitiveEntities
       if (clientBuildingPackage == null || clientBuildingPackage.ClientBuilding == null)
         return null;
       ClientBuildingPrimitive result = clientBuildingPackage.ClientBuilding;
-      if (clientBuildingPackage.Client != null)
-      {
-        result.Client_Id = clientBuildingPackage.Client.Id;
-      }
+      //if (clientBuildingPackage.Client != null)
+      //{
+      //  result.Client_Id = clientBuildingPackage.Client.Id;
+      //}
       if (clientBuildingPackage.Building != null)
       {
         result.Building_Id = clientBuildingPackage.Building.Id;

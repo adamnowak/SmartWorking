@@ -42,11 +42,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     {
       if (e.NewValue != null)
       {
-        BuildingListViewModel.Items.LoadItems(e.NewValue.Buildings);
+        //BuildingListViewModel.Items.LoadItems(e.NewValue.ClientBuildings);
       }
       else
       {
-        BuildingListViewModel.Items.Items.Clear();
+        BuildingListViewModel.Items.LoadItems(null);
       }
     }
 
@@ -139,14 +139,16 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     /// <param name="oldItem">The old item.</param>
     protected override void OnItemChanged(OrderPackage oldItem)
     {
-      if (Item != null && Item.ClientBuildingPackage != null && Item.ClientBuildingPackage.Client != null)
+      //if (Item != null && Item.ClientBuildingPackage != null && Item.ClientBuildingPackage.Client != null)
       {
-        ClientListViewModel.Items.SelectedItem = ClientListViewModel.Items.Items.Where(x => x.Client.Id == Item.ClientBuildingPackage.Client.Id).FirstOrDefault();
+        //ClientListViewModel.Items.SelectedItem = ClientListViewModel.Items.Items.Where(x => x.Client.Id == Item.ClientBuildingPackage.Client.Id).FirstOrDefault();
       }
-      else
+      //else
       {
-        ClientListViewModel.Items.SelectedItem = null;
+      //  ClientListViewModel.Items.SelectedItem = null;
       }
+
+
       //if (Producers.Items != null && Item != null && Item.Deliverer != null)
       //{
       //  Producers.SelectedItem = Producers.Items.Where(x => x.Id == Item.Driver.Id).FirstOrDefault();
