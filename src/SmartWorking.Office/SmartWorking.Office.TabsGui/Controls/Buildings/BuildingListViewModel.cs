@@ -63,9 +63,20 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
     {
       if (base.OnItemDeletedFlagChanged())
       {
-        using (IBuildingsService service = ServiceFactory.GetBuildingsService())
+
+        if (EditingViewModel.Item != null)
         {
-          service.DeleteBuilding(EditingViewModel.Item);
+          using (IBuildingsService service = ServiceFactory.GetBuildingsService())
+          {
+            if (EditingViewModel.Item.IsDeleted)
+            {
+              service.UndeleteBuilding(EditingViewModel.Item);
+            }
+            else
+            {
+              service.DeleteBuilding(EditingViewModel.Item);
+            }
+          }
         }
         Refresh();
         return true;

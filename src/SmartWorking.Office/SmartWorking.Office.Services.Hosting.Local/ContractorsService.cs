@@ -98,10 +98,6 @@ namespace SmartWorking.Office.Services.Hosting.Local
     {
       try
       {
-        throw new NotImplementedException();
-      }
-      catch (Exception e)
-      {
         //TODO: if is not used in any DeliveryNotes than delete.
         using (SmartWorkingEntities context = new SmartWorkingEntities())
         {
@@ -113,11 +109,41 @@ namespace SmartWorking.Office.Services.Hosting.Local
           }
           else
           {
-            throw new Exception("This car does not exist in db.");
+            throw new Exception("This contractor does not exist in db.");
           }
         }
       }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
     }
+
+    public void UndeleteContractor(ContractorPrimitive contractorPrimitive)
+    {
+      try
+      {
+        //TODO: if is not used in any DeliveryNotes than delete.
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Contractor contractor = context.Contractors.Where(x => x.Id == contractorPrimitive.Id).FirstOrDefault();
+          if (contractor != null)
+          {
+            contractor.Deleted = null;
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This contractor does not exist in db.");
+          }
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
     #endregion
 
     public void Dispose()

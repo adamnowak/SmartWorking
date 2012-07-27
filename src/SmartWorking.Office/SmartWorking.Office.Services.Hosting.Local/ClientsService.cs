@@ -23,16 +23,25 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// <returns>
     /// List of clients filtered by <paramref name="clientNameFilter"/>. Result contains Buildings of Clients.
     /// </returns>
-    public List<ClientPrimitive> GetClients(string clientNameFilter, ListItemsFilterValues listItemsFilterValue)
+    public List<ClientPrimitive> GetClients(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
           List<Client> result =
-            (string.IsNullOrWhiteSpace(clientNameFilter))
-              ? ctx.Clients.ToList()
-              : ctx.Clients.Where(x => x.Name.StartsWith(clientNameFilter)).ToList();
+            (string.IsNullOrWhiteSpace(filter))
+              ? (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Clients.ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Clients.Where(x => !x.Deleted.HasValue).ToList()
+                      : ctx.Clients.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
+              : (listItemsFilterValue == ListItemsFilterValues.All)
+                  ? ctx.Clients.Where(x => x.Name.StartsWith(filter)).ToList()
+                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                      ? ctx.Clients.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+                      : ctx.Clients.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
+
           return result.Select(x => x.GetPrimitive()).ToList();
         }
       }
@@ -43,22 +52,30 @@ namespace SmartWorking.Office.Services.Hosting.Local
     }
 
     /// <summary>
-    /// Gets the <see cref="ClientAndBuildingsPackage"/> list filtered by <paramref name="filter"/>.
+    /// Gets the <see cref="ClientAndClientBuildingsPackage"/> list filtered by <paramref name="filter"/>.
     /// </summary>
     /// <param name="filter">The client name filter.</param>
     /// <returns>
     /// List of clients filtered by <paramref name="filter"/>.
     /// </returns>
-    public List<ClientAndBuildingsPackage> GetClientAndBuildingsPackageList(string filter, ListItemsFilterValues listItemsFilterValue)
+    public List<ClientAndClientBuildingsPackage> GetClientAndBuildingsPackageList(string filter, ListItemsFilterValues listItemsFilterValue)
     {
       try
       {
         using (var ctx = new SmartWorkingEntities())
         {
           List<Client> result =
-            (string.IsNullOrWhiteSpace(filter))
-              ? ctx.Clients.Include("ClientBuildings.Building").ToList()
-              : ctx.Clients.Include("ClientBuildings.Building").Where(x => x.Name.StartsWith(filter)).ToList();
+           (string.IsNullOrWhiteSpace(filter))
+             ? (listItemsFilterValue == ListItemsFilterValues.All)
+                 ? ctx.Clients.Include("ClientBuildings.Building").ToList()
+                 : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                     ? ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue).ToList()
+                     : ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
+             : (listItemsFilterValue == ListItemsFilterValues.All)
+                 ? ctx.Clients.Include("ClientBuildings.Building").Where(x => x.Name.StartsWith(filter)).ToList()
+                 : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
+                     ? ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+                     : ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
           return result.Select(x => x.GetClientAndBuildingsPackage()).ToList();
         }
       }
@@ -72,7 +89,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the client.
     /// </summary>
     /// <param name="clientPrimitive">The client primitive.</param>
-    public void CreateOrUpdateClient(ClientAndBuildingsPackage clientAndBuildingsPackage)
+    public void CreateOrUpdateClient(ClientAndClientBuildingsPackage clientAndBuildingsPackage)
     {
       try
       {
@@ -93,7 +110,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           if (client.Id <= 0)
           {
             context.Clients.AddObject(client);
-            foreach (ClientBuildingPackage clientBuildingPackage in clientAndBuildingsPackage.ClientBuildings)
+            foreach (ClientBuildingAndBuildingPackage clientBuildingPackage in clientAndBuildingsPackage.ClientBuildings)
             {
               ClientBuildingPrimitive clientBuildingPrimitive =
                 clientBuildingPackage.GetClientBuildingPrimitiveWithReference();
@@ -111,14 +128,27 @@ namespace SmartWorking.Office.Services.Hosting.Local
           else
           {
             List<ClientBuildingPrimitive> existingClientBuildings = existingObject.ClientBuildings.Select(x => x.GetPrimitive()).ToList();
-            List<ClientBuildingPrimitive> newClientBuildings =
-              clientAndBuildingsPackage.ClientBuildings.Select(x => x.ClientBuilding).ToList();
-            
+            List<ClientBuildingPrimitive> newClientBuildings = clientAndBuildingsPackage.GetClientBuildingListWithReference().ToList();
             List<ClientBuildingPrimitive> theSameElements = newClientBuildings.Intersect(existingClientBuildings).ToList();
-            //existingClientBuildings.Where(x =>  .RemoveAll())
 
-            context.Clients.ApplyCurrentValues(client);
+            existingClientBuildings.RemoveAll(x => theSameElements.Select(y => y.Building_Id).Contains(x.Building_Id));
+            newClientBuildings.RemoveAll(x => theSameElements.Select(y => y.Building_Id).Contains(x.Building_Id));
+
+            List<int> existingClientBuildingIds = existingClientBuildings.Select(x => x.Id).ToList();
+            List<ClientBuilding> clientBuildingListToDelete =
+              context.ClientBuildings.Where(x => existingClientBuildingIds.Contains(x.Id)).ToList();
+           // foreach (ClientBuildingPrimitive clientBuldingToDelete in existingClientBuildings)
+            foreach (ClientBuilding clientBuldingToDelete in clientBuildingListToDelete)
+            {
+              //context.ClientBuildings.Where(x => x.Id == clientBuldingToDelete)
+              context.ClientBuildings.DeleteObject(clientBuldingToDelete);
+            }
+            foreach (ClientBuildingPrimitive clientBuildingPrimitive in newClientBuildings)
+            {
+              context.ClientBuildings.AddObject(clientBuildingPrimitive.GetEntity());
+            }
             
+            context.Clients.ApplyCurrentValues(client);            
           }
 
           context.SaveChanges();
@@ -159,7 +189,31 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    
+    public void UndeleteClient(ClientPrimitive clientPrimitive)
+    {
+      try
+      {
+        //TODO: if is not used in any DeliveryNotes than delete.
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Client car = context.Clients.Where(x => x.Id == clientPrimitive.Id).FirstOrDefault();
+          if (car != null)
+          {
+            car.Deleted = null;
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This car does not exist in db.");
+          }
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

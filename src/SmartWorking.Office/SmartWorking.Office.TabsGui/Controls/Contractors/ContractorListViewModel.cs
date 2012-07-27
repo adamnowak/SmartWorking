@@ -67,9 +67,19 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
     {
       if (base.OnItemDeletedFlagChanged())
       {
-        using (IContractorsService service = ServiceFactory.GetContractorsService())
+        if (EditingViewModel.Item != null)
         {
-          service.DeleteContractor(EditingViewModel.Item);
+          using (IContractorsService service = ServiceFactory.GetContractorsService())
+          {
+            if (EditingViewModel.Item.IsDeleted)
+            {
+              service.UndeleteContractor(EditingViewModel.Item);
+            }
+            else
+            {
+              service.DeleteContractor(EditingViewModel.Item);
+            }
+          }
         }
         Refresh();
         return true;

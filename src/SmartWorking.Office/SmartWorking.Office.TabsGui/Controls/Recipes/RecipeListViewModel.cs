@@ -71,10 +71,19 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
     {
       if (base.OnItemDeletedFlagChanged())
       {
-        
-        using (IRecipesService service = ServiceFactory.GetRecipesService())
+        if (EditingViewModel.Item != null && EditingViewModel.Item.Recipe != null)
         {
-          service.DeleteRecipe(EditingViewModel.Item.Recipe);
+          using (IRecipesService service = ServiceFactory.GetRecipesService())
+          {
+            if (EditingViewModel.Item.Recipe.IsDeleted)
+            {
+              service.UndeleteRecipe(EditingViewModel.Item.Recipe);
+            }
+            else
+            {
+              service.DeleteRecipe(EditingViewModel.Item.Recipe);
+            }
+          }
         }
         Refresh();
         return true;

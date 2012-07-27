@@ -58,6 +58,12 @@ namespace SmartWorking.Office.Services.Interfaces
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteMaterial(MaterialPrimitive material);
 
+    [OperationContract]
+    [WebInvoke(Method = "POST", UriTemplate = "/UndeleteMaterial",
+      RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void UndeleteMaterial(MaterialPrimitive material);
+
     /// <summary>
     /// Updates the information about material in stock.
     /// </summary>
@@ -68,5 +74,7 @@ namespace SmartWorking.Office.Services.Interfaces
       RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, 
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void UpdateMaterialStock(MaterialStockPrimitive materialStockPrimitive);
+
+    
   }
 }

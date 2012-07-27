@@ -22,7 +22,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
       ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogService, ServiceFactory);
 
-      ClientListViewModel.Items.SelectedItemChanged += new System.EventHandler<SelectedItemChangedEventArgs<ClientAndBuildingsPackage>>(Items_SelectedItemChanged);
+      ClientListViewModel.Items.SelectedItemChanged += new System.EventHandler<SelectedItemChangedEventArgs<ClientAndClientBuildingsPackage>>(Items_SelectedItemChanged);
 
       BuildingDetailsViewModel = new BuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       BuildingListViewModel = new BuildingListViewModel(MainViewModel, BuildingDetailsViewModel, ModalDialogService, ServiceFactory);
@@ -38,7 +38,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     
 
 
-    void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<ClientAndBuildingsPackage> e)
+    void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<ClientAndClientBuildingsPackage> e)
     {
       if (e.NewValue != null)
       {

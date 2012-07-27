@@ -55,29 +55,29 @@ namespace SmartWorking.Office.PrimitiveEntities
       return package;
     }
 
-    public static ClientAndBuildingsPackage GetPackageCopy(this ClientAndBuildingsPackage source)
+    public static ClientAndClientBuildingsPackage GetPackageCopy(this ClientAndClientBuildingsPackage source)
     {
-      ClientAndBuildingsPackage package = new ClientAndBuildingsPackage();
+      ClientAndClientBuildingsPackage result = new ClientAndClientBuildingsPackage();
       if (source != null)
       {
         if (source.Client != null)
         {
-          package.Client = source.Client.GetPrimitiveCopy();
-          //foreach (BuildingPrimitive building in source.ClientBuildings)
-          //{
-          //  source.ClientBuildings.Add(building.GetPrimitiveCopy());
-          //}
+          result.Client = source.Client.GetPrimitiveCopy();
+          foreach (ClientBuildingAndBuildingPackage clientBuildingAndBuildingPackage in source.ClientBuildings)
+          {
+            result.ClientBuildings.Add(clientBuildingAndBuildingPackage.GetPackageCopy());
+          }
         }
       }
-      return package;
+      return result;
     }
 
-    public static ClientBuildingPackage GetPackageCopy(this ClientBuildingPackage source)
+    public static ClientBuildingAndBuildingPackage GetPackageCopy(this ClientBuildingAndBuildingPackage source)
     {
       if (source == null)
         return null;
 
-      ClientBuildingPackage package = new ClientBuildingPackage();
+      ClientBuildingAndBuildingPackage package = new ClientBuildingAndBuildingPackage();
       if (source.ClientBuilding != null)
       {
         package.ClientBuilding = source.ClientBuilding.GetPrimitiveCopy();

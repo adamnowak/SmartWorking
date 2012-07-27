@@ -8,19 +8,19 @@ namespace SmartWorking.Office.Entities
 {
   public static class GetPackageHelper
   {
-    public static ClientAndBuildingsPackage GetClientAndBuildingsPackage(this Client client)
+    public static ClientAndClientBuildingsPackage GetClientAndBuildingsPackage(this Client client)
     {
-      ClientAndBuildingsPackage result = new ClientAndBuildingsPackage();
+      ClientAndClientBuildingsPackage result = new ClientAndClientBuildingsPackage();
       if (client != null)
       {
         result.Client = client.GetPrimitive();
         if (client.ClientBuildings != null)
         {
-          //foreach (ClientBuilding clientBuilding in client.ClientBuildings)
-          //{
-          //  if (clientBuilding != null && clientBuilding.Building != null)
-          //    result.Buildings.Add(clientBuilding.Building.GetPrimitive());
-          //}
+          foreach (ClientBuilding clientBuilding in client.ClientBuildings)
+          {
+            if (clientBuilding != null && clientBuilding.Building != null)
+              result.ClientBuildings.Add(new ClientBuildingAndBuildingPackage() { ClientBuilding = clientBuilding, Building = clientBuilding.Building });
+          }
         }
       }
       return result;
@@ -77,9 +77,9 @@ namespace SmartWorking.Office.Entities
       return result;
     }
 
-    public static ClientBuildingPackage GetBuildingAndContractorPackage(this Building building)
+    public static ClientBuildingAndBuildingPackage GetBuildingAndContractorPackage(this Building building)
     {
-      ClientBuildingPackage result = new ClientBuildingPackage();
+      ClientBuildingAndBuildingPackage result = new ClientBuildingAndBuildingPackage();
 
       if (building != null)
       {

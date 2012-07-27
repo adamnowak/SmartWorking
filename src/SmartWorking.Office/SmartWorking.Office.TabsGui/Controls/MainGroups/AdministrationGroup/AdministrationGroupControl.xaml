@@ -304,7 +304,7 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding MaterialListViewModel.DeleteItemCommand}" Content="str_Delete" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding MaterialListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -313,7 +313,16 @@
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
+                                            <Button.Content>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <Binding Path="MaterialDetailsViewModel.Item.Material.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                    <Binding Source="{StaticResource StaticFalse}"/>
+                                                    <Binding Source="{StaticResource StaticStringUndelete}"/>
+                                                    <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                </MultiBinding>
+                                            </Button.Content>
                                         </Button>
+                                        
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>
@@ -392,7 +401,7 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding ContractorListViewModel.DeleteItemCommand}" Content="str_Delete" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding ContractorListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -401,6 +410,14 @@
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
+                                            <Button.Content>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <Binding Path="ContractorDetailsViewModel.Item.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                    <Binding Source="{StaticResource StaticFalse}"/>
+                                                    <Binding Source="{StaticResource StaticStringUndelete}"/>
+                                                    <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                </MultiBinding>
+                                            </Button.Content>
                                         </Button>
                                     </StackPanel>
                                 </Grid>
@@ -519,7 +536,7 @@
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding RecipeListViewModel.DeleteItemCommand}" Content="str_Delete" IsEnabled="{Binding IsReadOnly}">
+                                            <Button Command="{Binding RecipeListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
@@ -528,7 +545,15 @@
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
-                                            </Button>
+                                                <Button.Content>
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <Binding Path="RecipeDetailsViewModel.Item.Recipe.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Source="{StaticResource StaticFalse}"/>
+                                                        <Binding Source="{StaticResource StaticStringUndelete}"/>
+                                                        <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                    </MultiBinding>
+                                                </Button.Content>
+                                            </Button>                                            
                                         </StackPanel>
 
                                         <GroupBox Header="str_MaterialsInRecipe" Grid.Column="2" Grid.RowSpan="2">

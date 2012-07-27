@@ -17,7 +17,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
   /// <summary>
   /// Car details view model implementation.
   /// </summary>
-  public class ClientDetailsViewModel : EditableControlViewModelBase<ClientAndBuildingsPackage>
+  public class ClientDetailsViewModel : EditableControlViewModelBase<ClientAndClientBuildingsPackage>
   {
     public ClientDetailsViewModel(IMainViewModel mainViewModel, IListingEditableControlViewModel<BuildingPrimitive> buildingListViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
@@ -62,7 +62,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     /// Called when [item changed].
     /// </summary>
     /// <param name="oldItem">The old item.</param>
-    protected override void OnItemChanged(ClientAndBuildingsPackage oldItem)
+    protected override void OnItemChanged(ClientAndClientBuildingsPackage oldItem)
     {
       SetClientBuildings();
     }
@@ -117,7 +117,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     {
       return !IsReadOnly &&
              BuildingListToAddViewModel.Items.SelectedItem != null &&
-             !Item.ClientBuildings.Select(x => x.Building).Contains(BuildingListToAddViewModel.Items.SelectedItem);
+             !Item.ClientBuildings.Select(x => x.Building.Id).Contains(BuildingListToAddViewModel.Items.SelectedItem.Id);
     }
 
     /// <summary>
@@ -131,7 +131,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
         if (BuildingListToAddViewModel.Items.SelectedItem != null &&
              !Item.ClientBuildings.Select(x => x.Building).Contains(BuildingListToAddViewModel.Items.SelectedItem))
         {
-          Item.ClientBuildings.Add(new ClientBuildingPackage() { Building = BuildingListToAddViewModel.Items.SelectedItem });
+          Item.ClientBuildings.Add(new ClientBuildingAndBuildingPackage() { Building = BuildingListToAddViewModel.Items.SelectedItem, ClientBuilding = new ClientBuildingPrimitive()});
         }
         SetClientBuildings();
       }

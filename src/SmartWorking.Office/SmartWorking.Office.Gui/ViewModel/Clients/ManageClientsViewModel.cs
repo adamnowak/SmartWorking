@@ -32,7 +32,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     public ManageClientsViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(modalDialogService, serviceFactory)
     {
-      SelectableClient = new SelectableViewModelBase<ClientAndBuildingsPackage>();
+      SelectableClient = new SelectableViewModelBase<ClientAndClientBuildingsPackage>();
       LoadClients();
     }
 
@@ -47,7 +47,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     /// <summary>
     /// Gets the selectable client with building information. List of clients with information about them buildings and one which is selected.
     /// </summary>
-    public SelectableViewModelBase<ClientAndBuildingsPackage> SelectableClient { get; private set; }
+    public SelectableViewModelBase<ClientAndClientBuildingsPackage> SelectableClient { get; private set; }
 
     /// <summary>
     /// Gets or sets the selected building.
@@ -283,7 +283,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       try
       {
         ModalDialogService.EditBuilding(ModalDialogService, ServiceFactory,
-          new ClientBuildingPackage() { Building = SelectedBuilding, 
+          new ClientBuildingAndBuildingPackage() { Building = SelectedBuilding, 
             Client = (SelectableClient.SelectedItem == null) ? null : SelectableClient.SelectedItem.Client });
         LoadClients();
       }
@@ -345,14 +345,14 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       string errorCaption = "Pobranie danych o klientach!";
       try
       {
-        ClientAndBuildingsPackage selectedItem = SelectableClient.SelectedItem;
+        ClientAndClientBuildingsPackage selectedItem = SelectableClient.SelectedItem;
         using (IClientsService clientsService = ServiceFactory.GetClientsService())
         {
           SelectableClient.LoadItems(clientsService.GetClientAndBuildingsPackageList(string.Empty));
         }
         if (selectedItem != null && selectedItem.Client != null)
         {
-          ClientAndBuildingsPackage selectionFromItems =
+          ClientAndClientBuildingsPackage selectionFromItems =
             SelectableClient.Items.Where(x => x.Client.Id == selectedItem.Client.Id).FirstOrDefault();
           if (selectionFromItems != null)
             SelectableClient.SelectedItem = selectionFromItems;
@@ -473,7 +473,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
       string errorCaption = "Tworzenie WZ'tki!";
       try
       {
-        var buildingAndClientPackage = new ClientBuildingPackage();
+        var buildingAndClientPackage = new ClientBuildingAndBuildingPackage();
         buildingAndClientPackage.Building = SelectedBuilding;
         buildingAndClientPackage.Client = SelectableClient.SelectedItem.Client;
         ModalDialogService.CreateDeliveryNote(ModalDialogService, ServiceFactory, buildingAndClientPackage);

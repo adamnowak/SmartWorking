@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
-  public class ClientBuildingPackage
+  public class ClientBuildingAndBuildingPackage
   {
     public ClientBuildingPrimitive ClientBuilding { get; set; }
 

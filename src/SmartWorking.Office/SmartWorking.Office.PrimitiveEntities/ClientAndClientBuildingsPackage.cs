@@ -7,20 +7,20 @@ using System.Text;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
-  public class ClientAndBuildingsPackage
+  public class ClientAndClientBuildingsPackage
   {
     
 
     public ClientPrimitive Client { get; set; }
 
-    private ICollection<ClientBuildingPackage> _clientBuildings;
-    public ICollection<ClientBuildingPackage> ClientBuildings
+    private ICollection<ClientBuildingAndBuildingPackage> _clientBuildings;
+    public ICollection<ClientBuildingAndBuildingPackage> ClientBuildings
     {
       get
       {
         if (_clientBuildings == null)
         {
-          _clientBuildings = new ObservableCollection<ClientBuildingPackage>();
+          _clientBuildings = new ObservableCollection<ClientBuildingAndBuildingPackage>();
         }
         return _clientBuildings;        
       }

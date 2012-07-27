@@ -46,7 +46,10 @@ namespace SmartWorking.Office.Services.Interfaces
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteBuilding(BuildingPrimitive building);
 
-
-   
+    [OperationContract]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/UndeleteBuilding",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void UndeleteBuilding(BuildingPrimitive item);
   }
 }

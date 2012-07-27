@@ -50,6 +50,12 @@ namespace SmartWorking.Office.Services.Interfaces
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteRecipe(RecipePrimitive recipe);
+
+    [OperationContract]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/UndeleteRecipe",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void UndeleteRecipe(RecipePrimitive car);
    
   }
 }

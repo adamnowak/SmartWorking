@@ -69,7 +69,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     {
       if (base.OnItemDeletedFlagChanged())
       {
-        if (EditingViewModel.Item != null)
+        if (EditingViewModel.Item != null && EditingViewModel.Item.Car != null)
         {
           using (ICarsService service = ServiceFactory.GetCarsService())
           {

@@ -67,9 +67,19 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
     { 
       if (base.OnItemDeletedFlagChanged())
       {
-        using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+        if (EditingViewModel.Item != null && EditingViewModel.Item.Material != null)
         {
-          service.DeleteMaterial(EditingViewModel.Item.GetMaterialPrimitiveWithReference());
+          using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+          {
+            if (EditingViewModel.Item.Material.IsDeleted)
+            {
+              service.UndeleteMaterial(EditingViewModel.Item.GetMaterialPrimitiveWithReference());
+            }
+            else
+            {
+              service.DeleteMaterial(EditingViewModel.Item.GetMaterialPrimitiveWithReference());
+            }
+          }
         }
         Refresh();
         return true;

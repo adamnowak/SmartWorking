@@ -107,8 +107,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ClientAndBuildingsPackage.cs" />
-    <Compile Include="ClientBuildingPackage.cs" />
+    <Compile Include="ClientAndClientBuildingsPackage.cs" />
+    <Compile Include="ClientBuildingAndBuildingPackage.cs" />
     <Compile Include="DriverAndCarsPackage.cs" />
     <Compile Include="GetPackageCopierHelper.cs" />
     <Compile Include="OrderPackage.cs" />

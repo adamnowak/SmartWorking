@@ -44,5 +44,11 @@ namespace SmartWorking.Office.Services.Interfaces
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteContractor(ContractorPrimitive contractor);
+
+    [OperationContract]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/UndeleteContractor",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void UndeleteContractor(ContractorPrimitive contractor);
   }
 }

@@ -61,14 +61,22 @@ namespace SmartWorking.Office.PrimitiveEntities
       {
         result.Deliverer_Id = materialAndContractorsPackage.Deliverer.Id;
       }
+      else
+      {
+        result.Deliverer_Id = null;
+      }
       if (materialAndContractorsPackage.Producer != null)
       {
         result.Producer_Id = materialAndContractorsPackage.Producer.Id;
       }
+      else
+      {
+        result.Producer_Id = null;
+      }
       return result;
     }
 
-    public static ClientBuildingPrimitive GetClientBuildingPrimitiveWithReference(this ClientBuildingPackage clientBuildingPackage)
+    public static ClientBuildingPrimitive GetClientBuildingPrimitiveWithReference(this ClientBuildingAndBuildingPackage clientBuildingPackage)
     {
       if (clientBuildingPackage == null || clientBuildingPackage.ClientBuilding == null)
         return null;
@@ -108,5 +116,36 @@ namespace SmartWorking.Office.PrimitiveEntities
       
       return result;
     }
+
+    public static List<ClientBuildingPrimitive> GetClientBuildingListWithReference(this ClientAndClientBuildingsPackage clientAndClientBuildingsPackage)
+    {
+      List<ClientBuildingPrimitive> result = clientAndClientBuildingsPackage.ClientBuildings.Select(x => x.GetClientBuildingPrimitiveWithReference()).ToList();
+      if (clientAndClientBuildingsPackage.Client != null)
+      {
+        foreach (ClientBuildingPrimitive item in result)
+        {
+          item.Client_Id = clientAndClientBuildingsPackage.Client.Id;
+        }
+      }
+      return result;
+    }
+    //public static ClientBuildingPrimitive GetClientBuildingPrimitiveWithReference(this ClientBuildingPackage clientAndBuildingsPackage)
+    //{
+    //  if (clientAndBuildingsPackage == null || clientAndBuildingsPackage.ClientBuilding == null)
+    //    return null;
+    //  ClientBuildingPrimitive result = clientAndBuildingsPackage.ClientBuilding;
+    //  if (clientAndBuildingsPackage.Building != null)
+    //  {
+    //    result.Building_Id = clientAndBuildingsPackage.Building.Id;
+    //  }
+    //  else
+    //  {
+    //    result.Building_Id = null;        
+    //  }
+
+    //  return result;
+    //}
+
+    //GetClientBuildingListWithReference
   }
 }

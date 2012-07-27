@@ -102,6 +102,30 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
+    public void UndeleteBuilding(BuildingPrimitive buildingPrimitive)
+    {
+      try
+      {
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Building building = context.Buildings.Where(x => x.Id == buildingPrimitive.Id).FirstOrDefault();
+          if (building != null)
+          {
+            building.Deleted = null;
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This car does not exist in db.");
+          }
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
     public void Dispose()
     {
 

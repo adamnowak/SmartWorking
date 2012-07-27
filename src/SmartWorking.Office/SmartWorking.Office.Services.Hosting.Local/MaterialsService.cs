@@ -146,6 +146,30 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
+    public void UndeleteMaterial(MaterialPrimitive materialPrimitive)
+    {
+      try
+      {
+        using (var context = new SmartWorkingEntities())
+        {
+          Material material = context.Materials.Where(x => x.Id == materialPrimitive.Id).FirstOrDefault();
+          if (material != null)
+          {
+            material.Deleted = null;
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This car does not exist in db.");
+          }
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
     /// <summary>
     /// Updates the information about material in stock.
     /// </summary>

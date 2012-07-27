@@ -93,7 +93,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     /// </summary>
     public const string BuildingAndClientPropertyName = "BuildingAndClient";
 
-    private ClientBuildingPackage _buildingAndClient;
+    private ClientBuildingAndBuildingPackage _buildingAndClient;
 
     /// <summary>
     /// Gets the Building property.
@@ -101,7 +101,7 @@ namespace SmartWorking.Office.Gui.ViewModel.Clients
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public ClientBuildingPackage BuildingAndClient
+    public ClientBuildingAndBuildingPackage BuildingAndClient
     {
       get { return _buildingAndClient; }
 

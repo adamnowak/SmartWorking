@@ -23,7 +23,7 @@
                 <Button Content="strRefresh" Command="{Binding SelectedTab.DataContext.RefreshCommand}" />
             </StackPanel>
         </Grid>
-        <TabControl Grid.Row="1" Style="{StaticResource verticalTabControl}" TabStripPlacement="Left" x:Name="ordersTabControl">
+        <TabControl Grid.Row="1" Style="{StaticResource verticalTabControl}" TabStripPlacement="Left" x:Name="ordersTabControl" SelectedItem="{Binding SelectedTab}">
             <!--<TabItem Header="{Binding Name}" DataContext="{Binding DeliveryNotesTabItemViewModel}">
                 <Grid>
                     <GroupBox Header="str_Delivery notes">
@@ -336,7 +336,7 @@
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding ClientListViewModel.DeleteItemCommand}" Content="str_Delete" IsEnabled="{Binding IsReadOnly}">
+                                            <Button Command="{Binding ClientListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
@@ -345,7 +345,15 @@
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
-                                            </Button>
+                                                <Button.Content>
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <Binding Path="ClientDetailsViewModel.Item.Client.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Source="{StaticResource StaticFalse}"/>
+                                                        <Binding Source="{StaticResource StaticStringUndelete}"/>
+                                                        <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                    </MultiBinding>
+                                                </Button.Content>
+                                            </Button>                                            
                                         </StackPanel>
                                     </Grid>
                                 </GroupBox>
@@ -413,7 +421,7 @@
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding BuildingListViewModel.DeleteItemCommand}" Content="str_Delete" IsEnabled="{Binding IsReadOnly}">
+                                            <Button Command="{Binding BuildingListViewModel.ChangeItemDeletedFlagCommand}"  IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
@@ -422,7 +430,17 @@
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
+                                                <Button.Content>
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <Binding Path="BuildingDetailsViewModel.Item.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Source="{StaticResource StaticFalse}"/>
+                                                        <Binding Source="{StaticResource StaticStringUndelete}"/>
+                                                        <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                    </MultiBinding>
+                                                </Button.Content>
                                             </Button>
+
+                                           
                                         </StackPanel>
                                     </Grid>
                                 </GroupBox>

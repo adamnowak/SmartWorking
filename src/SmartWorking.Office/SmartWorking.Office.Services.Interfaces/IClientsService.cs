@@ -23,7 +23,7 @@ namespace SmartWorking.Office.Services.Interfaces
     List<ClientPrimitive> GetClients(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
-    /// Gets the <see cref="ClientAndBuildingsPackage"/> list filtered by <paramref name="filter"/>.
+    /// Gets the <see cref="ClientAndClientBuildingsPackage"/> list filtered by <paramref name="filter"/>.
     /// </summary>
     /// <param name="filter">The client name filter.</param>
     /// <returns>
@@ -32,7 +32,7 @@ namespace SmartWorking.Office.Services.Interfaces
     [OperationContract]
     [WebInvoke(Method = "GET", UriTemplate = "/GetClientAndBuildingsPackageList/?filter={filter}&listFilter={listItemsFilterValue}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-    List<ClientAndBuildingsPackage> GetClientAndBuildingsPackageList(string filter, ListItemsFilterValues listItemsFilterValue);
+    List<ClientAndClientBuildingsPackage> GetClientAndBuildingsPackageList(string filter, ListItemsFilterValues listItemsFilterValue);
 
     /// <summary>
     /// Creates or updates the client.
@@ -43,7 +43,7 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "POST", UriTemplate = "/CreateOrUpdateClient",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void CreateOrUpdateClient(ClientAndBuildingsPackage client);
+    void CreateOrUpdateClient(ClientAndClientBuildingsPackage client);
 
     /// <summary>
     /// Deletes the client.
@@ -56,7 +56,10 @@ namespace SmartWorking.Office.Services.Interfaces
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteClient(ClientPrimitive client);
 
-
-
+    [OperationContract]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/UndeleteClient",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void UndeleteClient(ClientPrimitive client);
   }
 }

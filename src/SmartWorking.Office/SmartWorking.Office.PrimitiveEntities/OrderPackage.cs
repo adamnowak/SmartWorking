@@ -10,7 +10,7 @@ namespace SmartWorking.Office.PrimitiveEntities
   public class OrderPackage
   {
     public OrderPrimitive Order { get; set; }    
-    public ClientBuildingPackage ClientBuildingPackage { get; set; }
+    public ClientBuildingAndBuildingPackage ClientBuildingPackage { get; set; }
     public RecipePrimitive Recipe { get; set; }
     private ICollection<DeliveryNotePrimitive> _deliveryNotes;
     public ICollection<DeliveryNotePrimitive> DeliveryNotes

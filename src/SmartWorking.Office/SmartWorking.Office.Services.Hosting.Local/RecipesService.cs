@@ -178,6 +178,39 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
+    public void UndeleteRecipe(RecipePrimitive recipePrimitive)
+    {
+      try
+      {
+        if (recipePrimitive != null)
+        {
+          using (SmartWorkingEntities context = new SmartWorkingEntities())
+          {
+            Recipe recipe = context.Recipes.Where(x => x.Id == recipePrimitive.Id).FirstOrDefault();
+            if (recipe != null)
+            {
+              recipe.Deleted = null;
+              context.SaveChanges();
+            }
+            else
+            {
+              throw new Exception("This car does not exist in db.");
+            }
+
+            context.SaveChanges();
+          }
+        }
+        else
+        {
+          throw new Exception("str_Inpute parameter was wrong.");
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
     /// </summary>
