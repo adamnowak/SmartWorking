@@ -111,6 +111,10 @@
       <DependentUpon>BuildingListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Buildings\BuildingListViewModel.cs" />
+    <Compile Include="Controls\Clients\ClientBuildingListControl.xaml.cs">
+      <DependentUpon>ClientBuildingListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Clients\ClientBuildingListViewModel.cs" />
     <Compile Include="Controls\Clients\ClientDetailsControl.xaml.cs">
       <DependentUpon>ClientDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -197,6 +201,7 @@
     <Compile Include="Controls\Recipes\RecipeListViewModel.cs" />
     <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
     <Compile Include="Converters\ComparingMultiConverter.cs" />
+    <Compile Include="Converters\NotSetToBoolConverter.cs" />
     <Compile Include="Converters\EnumVisibilityConverter.cs" />
     <Compile Include="Converters\VisibilitisANDBinaryConverter.cs" />
     <Compile Include="Converters\EnumBooleanConverter.cs" />
@@ -224,6 +229,7 @@
     <Compile Include="Shared\ViewModel\SelectedItemChangedEventArgEventArgs.cs" />
     <Compile Include="Shared\ViewModel\ControlViewModelBase.cs" />
     <Compile Include="Shared\View\BindingProxy.cs" />
+    <Compile Include="Shared\View\ComboBoxUtil.cs" />
     <Compile Include="Shared\View\DetailsUserControl.cs" />
     <Compile Include="Shared\View\ListUserControl.cs" />
     <Compile Include="Shared\View\MessageBoxHelper.cs" />
@@ -237,6 +243,10 @@
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shared\View\ModalDialogService.cs" />
+    <Page Include="ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\Cars\CarDetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,6 +260,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Buildings\BuildingListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Clients\ClientBuildingListControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

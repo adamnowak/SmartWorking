@@ -45,6 +45,10 @@ namespace SmartWorking.Office.PrimitiveEntities
       {
         result.Driver_Id = carAndDriverPackage.Driver.Id;
       }
+      else
+      {
+        result.Driver_Id = null;
+      }
       return result;
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using SmartWorking.Office.Entities;
+
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -79,7 +80,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
         {
           Client client = clientAndBuildingsPackage.Client.GetEntity();
 
-          Client existingObject = context.Clients.Where(x => x.Id == client.Id).FirstOrDefault();
+          Client existingObject = context.Clients.Include("ClientBuildings").Where(x => x.Id == client.Id).FirstOrDefault();
 
           //no record of this item in the DB, item being passed in has a PK
           if (existingObject == null && client.Id > 0)
@@ -92,14 +93,32 @@ namespace SmartWorking.Office.Services.Hosting.Local
           if (client.Id <= 0)
           {
             context.Clients.AddObject(client);
-            
-            //TODO: add buildings to client
+            foreach (ClientBuildingPackage clientBuildingPackage in clientAndBuildingsPackage.ClientBuildings)
+            {
+              ClientBuildingPrimitive clientBuildingPrimitive =
+                clientBuildingPackage.GetClientBuildingPrimitiveWithReference();
+              
+              if (clientBuildingPrimitive != null)
+              {
+                clientBuildingPrimitive.Id = 0;
+                ClientBuilding clientBuilding = clientBuildingPrimitive.GetEntity();
+                clientBuilding.Client = client;
+                context.ClientBuildings.AddObject(clientBuilding);
+              }
+            }
           }
           //Item was retrieved, and the item passed has a valid ID, do an update
           else
           {
+            List<ClientBuildingPrimitive> existingClientBuildings = existingObject.ClientBuildings.Select(x => x.GetPrimitive()).ToList();
+            List<ClientBuildingPrimitive> newClientBuildings =
+              clientAndBuildingsPackage.ClientBuildings.Select(x => x.ClientBuilding).ToList();
+            
+            List<ClientBuildingPrimitive> theSameElements = newClientBuildings.Intersect(existingClientBuildings).ToList();
+            //existingClientBuildings.Where(x =>  .RemoveAll())
+
             context.Clients.ApplyCurrentValues(client);
-            //TODO: update buildings to client
+            
           }
 
           context.SaveChanges();

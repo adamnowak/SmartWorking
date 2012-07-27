@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using SmartWorking.Office.Entities;
+
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -130,6 +131,31 @@ namespace SmartWorking.Office.Services.Hosting.Local
           if (car != null)
           {
             car.Deleted = DateTime.Now;
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This car does not exist in db.");
+          }
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
+    public void UndeleteCar(CarPrimitive carPrimitive)
+    {
+      try
+      {
+        //TODO: if is not used in any DeliveryNotes than delete.
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Car car = context.Cars.Where(x => x.Id == carPrimitive.Id).FirstOrDefault();
+          if (car != null)
+          {
+            car.Deleted = null;
             context.SaveChanges();
           }
           else

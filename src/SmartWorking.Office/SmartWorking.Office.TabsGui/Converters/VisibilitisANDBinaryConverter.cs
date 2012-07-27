@@ -14,8 +14,8 @@ namespace SmartWorking.Office.TabsGui.Converters
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
       foreach (object value in values)
-      {        
-        if ((value is Visibility && (Visibility)value != Visibility.Visible)  || (value is bool && !(bool)value))
+      {
+        if (value == null || value == DependencyProperty.UnsetValue || (value is Visibility && (Visibility)value != Visibility.Visible) || (value is bool && !(bool)value))
         {
           return Visibility.Collapsed;
         }

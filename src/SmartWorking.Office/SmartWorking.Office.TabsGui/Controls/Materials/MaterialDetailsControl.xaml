@@ -57,7 +57,7 @@
                         <!--End Debug only-->
                         <TextBox Text="{Binding Producers.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <!--Debug only-->
-                        <ComboBox SelectedItem="{Binding Producers.SelectedItem}"  ItemsSource="{Binding Producers.Items}" 
+                        <ComboBox SelectedItem="{Binding Producers.SelectedItem}"  ItemsSource="{Binding Producers.Items}" View:ComboBoxUtil.IsNullable="True"
                               DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
                               IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
 
@@ -86,7 +86,7 @@
                         <!--End Debug only-->
                         <TextBox Text="{Binding Deliverers.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <!--Debug only-->
-                        <ComboBox SelectedItem="{Binding Deliverers.SelectedItem}"  ItemsSource="{Binding Deliverers.Items}" 
+                        <ComboBox SelectedItem="{Binding Deliverers.SelectedItem}"  ItemsSource="{Binding Deliverers.Items}"  View:ComboBoxUtil.IsNullable="True"
                               DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
                               IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
                         <TextBox Text="{Binding Deliverers.SelectedItem.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />

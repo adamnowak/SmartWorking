@@ -19,12 +19,13 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     /// <summary>
     /// Gets the delete command which enables to delete existing item.
     /// </summary>
-    ICommand DeleteItemCommand { get; }
+    ICommand ChangeItemDeletedFlagCommand { get; }
 
+    
     /// <summary>
     /// Occurs when item was saved.
     /// </summary>
-    event EventHandler ItemDeleted;
+    event EventHandler ItemDeletedFlagChanged;
 
     /// <summary>
     /// Gets the filter used to filterfing items.

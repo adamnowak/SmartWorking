@@ -9,10 +9,20 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="7">
-            <TextBlock Text="{Binding SelectedItem.Header, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}}"></TextBlock>
-            <TextBlock Margin="10,0,0,0" Text="{Binding SelectedItem.Header, ElementName=ordersTabControl}"></TextBlock>
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition  Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Margin="7">
+                <TextBlock Text="{Binding SelectedItem.Header, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}}"></TextBlock>
+                <TextBlock Margin="10,0,0,0" Text="{Binding SelectedItem.Header, ElementName=ordersTabControl}"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="7" Grid.Column="1">
+                <TextBlock Text="{Binding MainViewModel.EditingMode, StringFormat=str_Editing \{0\}}" />
+                <Button Content="strRefresh" Command="{Binding SelectedTab.DataContext.RefreshCommand}" />
+            </StackPanel>
+        </Grid>
         <TabControl Grid.Row="1" Style="{StaticResource verticalTabControl}" TabStripPlacement="Left" x:Name="ordersTabControl">
             <!--<TabItem Header="{Binding Name}" DataContext="{Binding DeliveryNotesTabItemViewModel}">
                 <Grid>
@@ -99,7 +109,7 @@
                                     </MultiBinding>
                                 </GroupBox.Visibility>
                                 <Grid DataContext="{Binding OrderDetailsViewModel.BuildingListViewModel}">
-                                    <Buildings:BuildingListControl  />
+                                    <Clients:ClientBuildingListControl  />
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="str_Wybierz receptę" Grid.Column="2" Grid.Row="1"   >
@@ -279,7 +289,7 @@
                                             <RowDefinition />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <Buildings:BuildingListControl DataContext="{Binding ClientDetailsViewModel.ClientBuildingsListViewModel}" FiltersVisibility="Collapsed" />
+                                        <Clients:ClientBuildingListControl DataContext="{Binding ClientDetailsViewModel.ClientBuildingListViewModel}" FiltersVisibility="Collapsed" />
                                         <StackPanel Grid.Row="1"  Orientation="Horizontal">
                                             <Button Command="{Binding ClientListViewModel.AddItemCommand}" Content="str_Add" IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>

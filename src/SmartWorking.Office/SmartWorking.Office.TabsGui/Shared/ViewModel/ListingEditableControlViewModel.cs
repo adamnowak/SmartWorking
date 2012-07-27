@@ -287,22 +287,22 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     { }
     #endregion
 
-    #region DeleteItemCommand
-    private ICommand _deleteItemCommand;
+    #region ChangeItemDeletedFlagCommand
+    private ICommand _changeItemDeletedFlagCommand;
     /// <summary>
     /// Gets the delete command which enables to delete existing item.
     /// </summary>
-    public ICommand DeleteItemCommand
+    public ICommand ChangeItemDeletedFlagCommand
     {
       get
       {
-        if (_deleteItemCommand == null)
-          _deleteItemCommand = new RelayCommand(DeleteItemCommandExecute, CanDeleteItemCommandExecute);
-        return _deleteItemCommand;
+        if (_changeItemDeletedFlagCommand == null)
+          _changeItemDeletedFlagCommand = new RelayCommand(ChangeItemDeletedFlagCommandExecute, CanChangeItemDeletedFlagCommandExecute);
+        return _changeItemDeletedFlagCommand;
       }
     }
 
-    public event EventHandler ItemDeleted;
+    public event EventHandler ItemDeletedFlagChanged;
 
     /// <summary>
     /// Determines whether delete command can be execute.
@@ -310,7 +310,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <returns>
     ///   <c>true</c> if delete command can be execute; otherwise, <c>false</c>.
     /// </returns>
-    protected virtual bool CanDeleteItemCommandExecute()
+    protected virtual bool CanChangeItemDeletedFlagCommandExecute()
     {
       return EditingViewModel.IsReadOnly && Items.SelectedItem != null;
     }
@@ -318,16 +318,16 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Execute delete command.
     /// </summary>
-    protected void DeleteItemCommandExecute()
+    protected void ChangeItemDeletedFlagCommandExecute()
     {
       string errorCaption = "str_SaveItem" + Name;
       try
       {
-        if (OnDeleteItem())
+        if (OnItemDeletedFlagChanged())
         {
-          if (ItemDeleted != null)
+          if (ItemDeletedFlagChanged != null)
           {
-            ItemDeleted(this, EventArgs.Empty);
+            ItemDeletedFlagChanged(this, EventArgs.Empty);
           }
         }
       }
@@ -345,7 +345,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
-    protected virtual bool OnDeleteItem()
+    protected virtual bool OnItemDeletedFlagChanged()
     {
       return true;
     }

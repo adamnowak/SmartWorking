@@ -62,11 +62,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
       using (IDriversService service = ServiceFactory.GetDriversService())
       {
         Drivers.LoadItems(service.GetDrivers(string.Empty, ListItemsFilterValues.OnlyActive));
+        //Drivers.Items.Insert(0, new DriverPrimitive());
       }
 
       if (selectedItem != null)
       {
-        Drivers.SelectedItem = Drivers.Items.Where(x => x.Id == selectedItem.Id).FirstOrDefault();
+        Drivers.SelectedItem = Drivers.Items.Where(x => x != null && x.Id == selectedItem.Id).FirstOrDefault();
       }
       else
       {
@@ -82,7 +83,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
     {
       if (Drivers.Items != null && Item != null && Item.Driver != null)
       {
-        Drivers.SelectedItem = Drivers.Items.Where(x => x.Id == Item.Driver.Id).FirstOrDefault();
+        Drivers.SelectedItem = Drivers.Items.Where(x => x != null && x.Id == Item.Driver.Id).FirstOrDefault();
         Item.Driver = Drivers.SelectedItem;
       }
       else

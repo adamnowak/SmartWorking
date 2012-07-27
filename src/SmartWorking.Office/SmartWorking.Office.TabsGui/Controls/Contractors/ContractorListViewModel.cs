@@ -63,9 +63,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override bool OnDeleteItem()
+    protected override bool OnItemDeletedFlagChanged()
     {
-      if (base.OnDeleteItem())
+      if (base.OnItemDeletedFlagChanged())
       {
         using (IContractorsService service = ServiceFactory.GetContractorsService())
         {

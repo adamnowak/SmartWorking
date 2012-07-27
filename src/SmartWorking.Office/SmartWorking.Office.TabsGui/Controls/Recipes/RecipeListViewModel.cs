@@ -67,9 +67,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override bool OnDeleteItem()
+    protected override bool OnItemDeletedFlagChanged()
     {
-      if (base.OnDeleteItem())
+      if (base.OnItemDeletedFlagChanged())
       {
         
         using (IRecipesService service = ServiceFactory.GetRecipesService())

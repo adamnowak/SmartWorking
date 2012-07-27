@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using SmartWorking.Office.Entities;
+
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 
@@ -139,6 +140,31 @@ namespace SmartWorking.Office.Services.Hosting.Local
               car.Driver = null;
             }
 
+            context.SaveChanges();
+          }
+          else
+          {
+            throw new Exception("This driver does not exist in db.");
+          }
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
+    public void UndeleteDriver(DriverPrimitive driverPrimitive)
+    {
+      try
+      {
+        //TODO: if is not used in any DeliveryNotes than delete.
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          Driver driver = context.Drivers.Where(x => x.Id == driverPrimitive.Id).FirstOrDefault();
+          if (driver != null)
+          {
+            driver.Deleted = null;
             context.SaveChanges();
           }
           else

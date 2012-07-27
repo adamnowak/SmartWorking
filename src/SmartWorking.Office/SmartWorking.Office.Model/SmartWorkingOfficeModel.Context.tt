@@ -41,6 +41,7 @@ if (container == null)
 using System;
 using System.Data.Objects;
 using System.Data.EntityClient;
+using SmartWorking.Office.Entities;
 
 <#
 if (!String.IsNullOrEmpty(namespaceName))

@@ -54,5 +54,11 @@ namespace SmartWorking.Office.Services.Interfaces
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteCar(CarPrimitive car);
+
+    [OperationContract]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/UndeleteCar",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void UndeleteCar(CarPrimitive car);
   }
 }

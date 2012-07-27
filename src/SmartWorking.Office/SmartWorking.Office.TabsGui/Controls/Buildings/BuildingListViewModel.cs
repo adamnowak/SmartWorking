@@ -59,9 +59,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override bool OnDeleteItem()
+    protected override bool OnItemDeletedFlagChanged()
     {
-      if (base.OnDeleteItem())
+      if (base.OnItemDeletedFlagChanged())
       {
         using (IBuildingsService service = ServiceFactory.GetBuildingsService())
         {

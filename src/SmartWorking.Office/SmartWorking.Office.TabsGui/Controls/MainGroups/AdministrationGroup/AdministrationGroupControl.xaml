@@ -99,15 +99,23 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding DriverListViewModel.DeleteItemCommand}" Content="str_Delete" IsEnabled="{Binding IsReadOnly}">                                            
+                                        <Button Command="{Binding DriverListViewModel.ChangeItemDeletedFlagCommand}"  IsEnabled="{Binding IsReadOnly}">                                            
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
-                                                    <MultiBinding.Bindings>
+                                                    <MultiBinding.Bindings>                                                                                                                
                                                         <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                         <Binding Path="DriverDetailsViewModel.IsReadOnly" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
+                                            <Button.Content>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <Binding Path="DriverDetailsViewModel.Item.Driver.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                    <Binding Source="{StaticResource StaticFalse}"/>
+                                                    <Binding Source="{StaticResource StaticStringUndelete}"/>
+                                                    <Binding Source="{StaticResource StaticStringDelete}"/>                                                    
+                                                </MultiBinding>
+                                            </Button.Content>
                                         </Button>
                                     </StackPanel>
                                 </Grid>
@@ -189,7 +197,7 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding CarListViewModel.DeleteItemCommand}" Content="str_Delete" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding CarListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -198,7 +206,16 @@
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
+                                            <Button.Content>
+                                                <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                    <Binding Path="CarDetailsViewModel.Item.Car.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                    <Binding Source="{StaticResource StaticFalse}"/>
+                                                    <Binding Source="{StaticResource StaticStringUndelete}"/>
+                                                    <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                </MultiBinding>
+                                            </Button.Content>
                                         </Button>
+                                        
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>

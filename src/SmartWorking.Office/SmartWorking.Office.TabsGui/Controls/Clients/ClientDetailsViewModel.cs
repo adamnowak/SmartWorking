@@ -24,11 +24,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     {
       BuildingListToAddViewModel = buildingListViewModel;
 
-      ClientBuildingsListViewModel = new BuildingListViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
+      ClientBuildingListViewModel = new ClientBuildingListViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
     }
 
     public IListingEditableControlViewModel<BuildingPrimitive> BuildingListToAddViewModel { get; private set; }
-    public BuildingListViewModel ClientBuildingsListViewModel { get; private set; }
+    public ClientBuildingListViewModel ClientBuildingListViewModel { get; private set; }
 
     /// <summary>
     /// Gets the name of editing control.
@@ -71,11 +71,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     {
       if (Item != null)
       {
-        //ClientBuildingsListViewModel.Items.LoadItems(Item.ClientBuildings);
+        ClientBuildingListViewModel.Items.LoadItems(Item.ClientBuildings);
       }
       else
       {
-        ClientBuildingsListViewModel.Items.LoadItems(null);
+        ClientBuildingListViewModel.Items.LoadItems(null);
       }
     }
 
@@ -116,8 +116,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     private bool CanAddBuilding()
     {
       return !IsReadOnly &&
-             BuildingListToAddViewModel.Items.SelectedItem != null;// &&
-             //!Item.ClientBuildings.Contains(BuildingListToAddViewModel.Items.SelectedItem);
+             BuildingListToAddViewModel.Items.SelectedItem != null &&
+             !Item.ClientBuildings.Select(x => x.Building).Contains(BuildingListToAddViewModel.Items.SelectedItem);
     }
 
     /// <summary>
@@ -128,11 +128,10 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
       string errorCaption = "TODO!";
       try
       {
-        if (BuildingListToAddViewModel.Items.SelectedItem != null)
-        //;/// &&
-             //!Item.ClientBuildings.Contains(BuildingListToAddViewModel.Items.SelectedItem))
+        if (BuildingListToAddViewModel.Items.SelectedItem != null &&
+             !Item.ClientBuildings.Select(x => x.Building).Contains(BuildingListToAddViewModel.Items.SelectedItem))
         {
-          //Item.ClientBuildings.Add(BuildingListToAddViewModel.Items.SelectedItem);
+          Item.ClientBuildings.Add(new ClientBuildingPackage() { Building = BuildingListToAddViewModel.Items.SelectedItem });
         }
         SetClientBuildings();
       }
@@ -181,7 +180,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     /// </returns>
     private bool CanRemoveBuilding()
     {
-      return !IsReadOnly && ClientBuildingsListViewModel.Items.SelectedItem != null;
+      return !IsReadOnly && ClientBuildingListViewModel.Items.SelectedItem != null;
     }
 
     /// <summary>
@@ -192,10 +191,15 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
       string errorCaption = "TODO!";
       try
       {
-        if (ClientBuildingsListViewModel.Items.SelectedItem != null)
-        {
-          //Item.ClientBuildings.Remove(ClientBuildingsListViewModel.Items.SelectedItem);
-        }
+        Item.ClientBuildings.Remove(ClientBuildingListViewModel.Items.SelectedItem);
+        //if (ClientBuildingListViewModel.Items.SelectedItem != null)
+        //{
+        //  ClientBuildingPackage toRemove = Item.ClientBuildings.FirstOrDefault(x => x.Building == ClientBuildingListViewModel.Items.SelectedItem);
+        //  if (toRemove != null)
+        //  {
+            
+        //  }
+        //}
         SetClientBuildings();
       }
       catch (FaultException<ExceptionDetail> f)

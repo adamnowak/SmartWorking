@@ -75,7 +75,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 
         if (controlViewModelBase is IListingEditableControlViewModel && ((viewModelProviderAction & ViewModelProviderAction.DeleteInvoked) == ViewModelProviderAction.DeleteInvoked))
         {
-          ((IListingEditableControlViewModel)controlViewModelBase).ItemDeleted += new EventHandler(ViewModelProvider_ItemDeleted);
+          ((IListingEditableControlViewModel)controlViewModelBase).ItemDeletedFlagChanged += new EventHandler(ViewModelProvider_ItemDeleted);
         }
       }
     }

@@ -65,7 +65,8 @@
                         <TextBlock Text="str_Telefon:" Grid.Row="4" />
 
                         <TextBox Text="{Binding Drivers.SelectedItem.Id}" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
-                        <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
+                        <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" View:ComboBoxUtil.IsNullable="True"
+
                            Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" DisplayMemberPath="InternalName">
                             <!--<ComboBox.ItemTemplate>

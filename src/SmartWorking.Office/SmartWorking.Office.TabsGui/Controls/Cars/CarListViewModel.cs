@@ -65,13 +65,23 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override bool OnDeleteItem()
+    protected override bool OnItemDeletedFlagChanged()
     {
-      if (base.OnDeleteItem())
+      if (base.OnItemDeletedFlagChanged())
       {
-        using (ICarsService service = ServiceFactory.GetCarsService())
+        if (EditingViewModel.Item != null)
         {
-          service.DeleteCar(EditingViewModel.Item.GetCarPrimitiveWithReference());
+          using (ICarsService service = ServiceFactory.GetCarsService())
+          {
+            if (EditingViewModel.Item.Car.IsDeleted)
+            {
+              service.UndeleteCar(EditingViewModel.Item.GetCarPrimitiveWithReference());
+            }
+            else
+            {
+              service.DeleteCar(EditingViewModel.Item.GetCarPrimitiveWithReference());
+            }
+          }
         }
         Refresh();
         return true;

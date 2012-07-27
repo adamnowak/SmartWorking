@@ -61,5 +61,18 @@ namespace SmartWorking.Office.Services.Interfaces
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     void DeleteDriver(DriverPrimitive driver);
+
+    /// <summary>
+    /// Deletes the recipe.
+    /// </summary>
+    /// <param name="driver">The driver which will be deleted.</param>
+    /// <remarks>
+    /// Only driver which is not used can be deleted.
+    /// </remarks>
+    [OperationContract]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/UndeleteDriver",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void UndeleteDriver(DriverPrimitive driver);
   }
 }

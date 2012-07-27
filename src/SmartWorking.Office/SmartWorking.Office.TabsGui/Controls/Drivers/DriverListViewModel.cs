@@ -84,13 +84,23 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override bool OnDeleteItem()
+    protected override bool OnItemDeletedFlagChanged()
     { 
-      if (base.OnDeleteItem())
+      if (base.OnItemDeletedFlagChanged())
       {
-        using (IDriversService service = ServiceFactory.GetDriversService())
+        if (EditingViewModel.Item != null && EditingViewModel.Item.Driver != null)
         {
-          service.DeleteDriver(EditingViewModel.Item.Driver);
+          using (IDriversService service = ServiceFactory.GetDriversService())
+          {
+            if (EditingViewModel.Item.Driver.IsDeleted)
+            {
+              service.UndeleteDriver(EditingViewModel.Item.Driver);
+            }
+            else
+            {
+              service.DeleteDriver(EditingViewModel.Item.Driver);
+            }
+          }
         }
         Refresh();
         return true;

@@ -131,7 +131,41 @@ namespace SmartWorking.Office.TabsGui
     public SaleGroupViewModel SaleGroupViewModel { get; private set; }
 
     public AdministrationGroupViewModel AdministrationGroupViewModel { get; private set; }
-    
+
+    #region StatusText
+    /// <summary>
+    /// The <see cref="StatusText" /> property's name.
+    /// </summary>
+    public const string StatusTextPropertyName = "StatusText";
+
+    private string _statusText;
+
+    /// <summary>
+    /// Gets the StatusText property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public string StatusText
+    {
+      get
+      {
+        return _statusText;
+      }
+
+      set
+      {
+        if (_statusText == value)
+        {
+          return;
+        }
+        _statusText = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(StatusTextPropertyName);
+      }
+    }
+    #endregion //StatusText
+
     /// <summary>
     /// Gets the name of control.
     /// </summary>
