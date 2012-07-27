@@ -46,7 +46,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      ClientAndClientBuildingsPackage clone = Items.SelectedItem;
+      ClientAndClientBuildingsPackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {
         clone.Client.Id = 0;        

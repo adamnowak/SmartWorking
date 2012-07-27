@@ -38,10 +38,10 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--Debug only-->
-                <DataGridTextColumn Header="str_Id" Binding="{Binding Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                <DataGridTextColumn Header="str_Id" Binding="{Binding Order.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
-                <DataGridTextColumn Header="str_Symbol" Binding="{Binding InternalName}" />
+                <DataGridTextColumn Header="str_Symbol" Binding="{Binding ClientBuildingPackage.Building.InternalName}" />
                 <DataGridTextColumn Header="str_Nazwa" Binding="{Binding Client.Name}" />
 
                 <DataGridTextColumn Header="str_Ulica" Binding="{Binding Street}" />

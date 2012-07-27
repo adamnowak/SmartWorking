@@ -40,13 +40,13 @@
             <DataGrid.Columns>
            
                 <!--Debug only-->
-                <DataGridTextColumn Header="str_Id" Binding="{Binding Item.ClientBuilding.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                <DataGridTextColumn Header="str_Id" Binding="{Binding ClientBuilding.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
-                <DataGridTextColumn Header="str_Id" Binding="{Binding Item.Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                <DataGridTextColumn Header="str_Id" Binding="{Binding Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
-                <DataGridTextColumn Header="str_Symbol" Binding="{Binding Item.Building.InternalName}" />
-                <DataGridTextColumn Header="str_Miasto" Binding="{Binding Item.Building.City}" />
+                <DataGridTextColumn Header="str_Symbol" Binding="{Binding Building.InternalName}" />
+                <DataGridTextColumn Header="str_Miasto" Binding="{Binding Building.City}" />
                 <DataGridTextColumn Header="str_Ulica" Binding="{Binding Building.Street}" />
                 <DataGridTextColumn Header="str_Numer domu" Binding="{Binding Building.HouseNo}" />
                 <DataGridTextColumn Header="str_Telefon" Binding="{Binding Building.ContactPersonPhone}" />

@@ -138,7 +138,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      OrderPackage clone = Items.SelectedItem;
+      OrderPackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {
         clone.Order.Id = 0;        

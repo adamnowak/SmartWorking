@@ -50,7 +50,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      ContractorPrimitive clone = Items.SelectedItem;
+      ContractorPrimitive clone = Items.SelectedItem.GetPrimitiveCopy();
       if (clone != null)
       {
         clone.Id = 0;        

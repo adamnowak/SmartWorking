@@ -8,6 +8,20 @@ namespace SmartWorking.Office.Entities
 {
   public static class GetPackageHelper
   {
+    public static ClientBuildingAndBuildingPackage GetClientBuildingAndBuildingPackage(this ClientBuilding clientBuilding)
+    {
+      ClientBuildingAndBuildingPackage result = new ClientBuildingAndBuildingPackage();
+      if (clientBuilding != null)
+      {
+        result.ClientBuilding = clientBuilding.GetPrimitive();
+        if (clientBuilding.Building != null)
+        {
+          result.Building = clientBuilding.Building.GetPrimitive();
+        }
+      }
+      return result;
+    }
+
     public static ClientAndClientBuildingsPackage GetClientAndBuildingsPackage(this Client client)
     {
       ClientAndClientBuildingsPackage result = new ClientAndClientBuildingsPackage();
@@ -19,7 +33,7 @@ namespace SmartWorking.Office.Entities
           foreach (ClientBuilding clientBuilding in client.ClientBuildings)
           {
             if (clientBuilding != null && clientBuilding.Building != null)
-              result.ClientBuildings.Add(new ClientBuildingAndBuildingPackage() { ClientBuilding = clientBuilding, Building = clientBuilding.Building });
+              result.ClientBuildings.Add(clientBuilding.GetClientBuildingAndBuildingPackage());
           }
         }
       }
@@ -108,13 +122,15 @@ namespace SmartWorking.Office.Entities
           result.ClientBuildingPackage.ClientBuilding = order.ClientBuilding.GetPrimitive();
           if (order.ClientBuilding.Building != null)
           {
-            result.ClientBuildingPackage.Building = order.ClientBuilding.Building;
+            result.ClientBuildingPackage.Building = order.ClientBuilding.Building.GetPrimitive();
           }
-          //if (order.ClientBuilding.Client != null)
-          //{
-          //  result.ClientBuildingPackage.Client = order.ClientBuilding.Client;
-          //}
+          if (order.ClientBuilding.Client != null)
+          {
+            result.Client = order.ClientBuilding.Client.GetPrimitive();
+          }
         }
+
+        
       }
       return result;
     }

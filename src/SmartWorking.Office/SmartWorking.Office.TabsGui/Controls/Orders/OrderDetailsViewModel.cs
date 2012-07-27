@@ -107,7 +107,10 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     protected override bool OnSaveItem()
     {
       Item.ClientBuildingPackage = ClientBuildingDetailsViewModel.Item;
-      Item.Recipe = RecipeDetailsViewModel.Item.Recipe;
+      if (RecipeDetailsViewModel.Item != null)
+      {
+        Item.Recipe = RecipeDetailsViewModel.Item.Recipe;
+      }
       if (base.OnSaveItem())
       {
         using (IOrdersService service = ServiceFactory.GetOrdersService())

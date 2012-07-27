@@ -14,7 +14,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
     public ContractorDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      Contractors = new SelectableViewModelBase<ContractorPrimitive>();
+      
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
       return false;
     }
 
-    public SelectableViewModelBase<ContractorPrimitive> Contractors { get; private set; }
+
 
 
 

@@ -46,7 +46,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      BuildingPrimitive clone = Items.SelectedItem;
+      BuildingPrimitive clone = Items.SelectedItem.GetPrimitiveCopy();
       if (clone != null)
       {
         clone.Id = 0;        

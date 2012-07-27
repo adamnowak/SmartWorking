@@ -19,7 +19,7 @@ namespace SmartWorking.Office.PrimitiveEntities
     public static DriverAndCarsPackage GetPackageCopy(this DriverAndCarsPackage source)
     {
       DriverAndCarsPackage package = new DriverAndCarsPackage();
-      package.Driver = source.Driver;
+      package.Driver = source.Driver.GetPrimitiveCopy();
 
       foreach (CarPrimitive carPrimitive in source.Cars)
       {
@@ -93,10 +93,25 @@ namespace SmartWorking.Office.PrimitiveEntities
 
     public static OrderPackage GetPackageCopy(this OrderPackage source)
     {
+      if (source == null || source.Order == null)
+        return null;
       OrderPackage package = new OrderPackage();
+
       package.Order = source.Order.GetPrimitiveCopy();
-      package.Recipe = source.Recipe.GetPrimitiveCopy();
-      package.ClientBuildingPackage = source.ClientBuildingPackage.GetPackageCopy();
+      if (source.Recipe != null)
+      {
+        package.Recipe = source.Recipe.GetPrimitiveCopy();
+      }
+
+      if (source.ClientBuildingPackage != null)
+      {
+        package.ClientBuildingPackage = source.ClientBuildingPackage.GetPackageCopy();
+      }
+
+      if (source.Client != null)
+      {
+        package.Client = source.Client.GetPrimitiveCopy();
+      }
       return package;
     }
   }
