@@ -35,8 +35,8 @@
                 <!--End Debug only-->
                 <TextBox Text="{Binding Item.Order.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--Debug only-->
-                
-                <DatePicker Grid.Row="1" Grid.Column="1" IsEnabled="{Binding IsReadOnly}"/>
+
+                <DatePicker Grid.Row="1" Grid.Column="1" IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
                 <TextBox Text="{Binding Item.Order.Amount}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 <CheckBox Grid.Row="3" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Order.Pump}" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>

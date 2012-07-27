@@ -89,16 +89,16 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }    
     }
 
-   
 
-    public void CreateOrUpdateOrderPackage(OrderPackage item)
+
+    public void CreateOrUpdateOrder(OrderPrimitive orderPrimitive)
     {
       try
       {
         using (SmartWorkingEntities context = new SmartWorkingEntities())
         {
-          Order order = item.Order.GetEntity();// orderPrimitive.GetEntity();
 
+          Order order = orderPrimitive.GetEntity();
           Order existingObject = context.Orders.Where(x => x.Id == order.Id).FirstOrDefault();
 
           //no record of this item in the DB, item being passed in has a PK

@@ -104,6 +104,7 @@ namespace SmartWorking.Office.Entities
         }
         if (order.ClientBuilding != null)
         {
+          result.ClientBuildingPackage = new ClientBuildingAndBuildingPackage();
           result.ClientBuildingPackage.ClientBuilding = order.ClientBuilding.GetPrimitive();
           if (order.ClientBuilding.Building != null)
           {

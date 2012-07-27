@@ -46,7 +46,7 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "POST", UriTemplate = "/CreateOrUpdateOrderPackage",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void CreateOrUpdateOrderPackage(OrderPackage item);
+    void CreateOrUpdateOrder(OrderPrimitive item);
 
     /// <summary>
     /// Deletes the <see cref="Order"/>.

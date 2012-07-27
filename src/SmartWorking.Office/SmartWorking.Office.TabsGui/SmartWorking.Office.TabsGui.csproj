@@ -111,6 +111,10 @@
       <DependentUpon>BuildingListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Buildings\BuildingListViewModel.cs" />
+    <Compile Include="Controls\Clients\ClientBuildingDetailsViewModel.cs" />
+    <Compile Include="Controls\Clients\ClientBuildingDetailsControl.xaml.cs">
+      <DependentUpon>ClientBuildingDetailsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Clients\ClientBuildingListControl.xaml.cs">
       <DependentUpon>ClientBuildingListControl.xaml</DependentUpon>
     </Compile>
@@ -260,6 +264,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Buildings\BuildingListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Clients\ClientBuildingDetailsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

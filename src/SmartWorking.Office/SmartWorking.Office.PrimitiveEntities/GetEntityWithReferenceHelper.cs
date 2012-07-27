@@ -97,10 +97,26 @@ namespace SmartWorking.Office.PrimitiveEntities
       if (orderPackage == null || orderPackage.Order == null)
         return null;
       OrderPrimitive result = orderPackage.Order;
+      
       if (orderPackage.Recipe != null)
       {
         result.Recipe_Id = orderPackage.Recipe.Id;
       }
+      else
+      {
+        result.Recipe_Id = null;
+      }
+
+      if (orderPackage.ClientBuildingPackage != null && orderPackage.ClientBuildingPackage.ClientBuilding != null)
+      {
+        result.ClientBuilding_Id = orderPackage.ClientBuildingPackage.ClientBuilding.Id;
+      }
+      else
+      {
+        result.ClientBuilding_Id = null;
+      }
+
+
       return result;
     }
 

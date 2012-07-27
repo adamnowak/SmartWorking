@@ -52,7 +52,7 @@
                             </GroupBox>
                             <GroupBox Header="str_Wybrana budowa" Grid.Column="1">
                                 <Grid>
-                                    <Buildings:BuildingDetailsControl  DataContext="{Binding OrderDetailsViewModel.BuildingListViewModel.EditingViewModel}"/>
+                                    <Clients:ClientBuildingDetailsControl  DataContext="{Binding OrderDetailsViewModel.ClientBuildingListViewModel.EditingViewModel}"/>
                                 </Grid>
                             </GroupBox>
                             <Grid  Grid.Column="2">
@@ -108,7 +108,7 @@
                                         </MultiBinding.Bindings>
                                     </MultiBinding>
                                 </GroupBox.Visibility>
-                                <Grid DataContext="{Binding OrderDetailsViewModel.BuildingListViewModel}">
+                                <Grid DataContext="{Binding OrderDetailsViewModel.ClientBuildingListViewModel}">
                                     <Clients:ClientBuildingListControl  />
                                 </Grid>
                             </GroupBox>

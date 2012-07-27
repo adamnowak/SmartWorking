@@ -24,8 +24,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
 
       ClientListViewModel.Items.SelectedItemChanged += new System.EventHandler<SelectedItemChangedEventArgs<ClientAndClientBuildingsPackage>>(Items_SelectedItemChanged);
 
-      BuildingDetailsViewModel = new BuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      BuildingListViewModel = new BuildingListViewModel(MainViewModel, BuildingDetailsViewModel, ModalDialogService, ServiceFactory);
+      ClientBuildingDetailsViewModel = new ClientBuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      ClientBuildingListViewModel = new ClientBuildingListViewModel(MainViewModel, ClientBuildingDetailsViewModel, ModalDialogService, ServiceFactory);
 
       RecipeDetailsViewModel = new RecipeDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
       RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogService, ServiceFactory);
@@ -42,11 +42,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     {
       if (e.NewValue != null)
       {
-        //BuildingListViewModel.Items.LoadItems(e.NewValue.ClientBuildings);
+        ClientBuildingListViewModel.Items.LoadItems(e.NewValue.ClientBuildings);
       }
       else
       {
-        BuildingListViewModel.Items.LoadItems(null);
+        ClientBuildingListViewModel.Items.LoadItems(null);
       }
     }
 
@@ -63,12 +63,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     /// <summary>
     /// Gets the driver list view model.
     /// </summary>
-    public BuildingListViewModel BuildingListViewModel { get; private set; }
+    public ClientBuildingListViewModel ClientBuildingListViewModel { get; private set; }
 
     /// <summary>
     /// Gets the driver details view model.
     /// </summary>
-    public BuildingDetailsViewModel BuildingDetailsViewModel { get; private set; }
+    public ClientBuildingDetailsViewModel ClientBuildingDetailsViewModel { get; private set; }
 
     /// <summary>
     /// Gets the driver list view model.
@@ -106,11 +106,13 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
 
     protected override bool OnSaveItem()
     {
+      Item.ClientBuildingPackage = ClientBuildingDetailsViewModel.Item;
+      Item.Recipe = RecipeDetailsViewModel.Item.Recipe;
       if (base.OnSaveItem())
       {
         using (IOrdersService service = ServiceFactory.GetOrdersService())
         {
-          service.CreateOrUpdateOrderPackage(Item);
+          service.CreateOrUpdateOrder(Item.GetOrderPrimitiveWithReference());
         }
         return true;
       }
