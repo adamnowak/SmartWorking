@@ -223,7 +223,7 @@
                                             </MultiBinding>
                                         </Button.Visibility>
                                     </Button>
-                                    <Button Command="{Binding OrderListViewModel.DeleteItemCommand}" Content="str_Delete">
+                                    <Button Command="{Binding OrderListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}" >
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
@@ -232,7 +232,16 @@
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
+                                        <Button.Content>
+                                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                <Binding Path="OrderDetailsViewModel.Item.Order.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                <Binding Source="{StaticResource StaticFalse}"/>
+                                                <Binding Source="{StaticResource StaticStringUndelete}"/>
+                                                <Binding Source="{StaticResource StaticStringDelete}"/>
+                                            </MultiBinding>
+                                        </Button.Content>
                                     </Button>
+                              
                                 </StackPanel>
                             </Grid>
                             

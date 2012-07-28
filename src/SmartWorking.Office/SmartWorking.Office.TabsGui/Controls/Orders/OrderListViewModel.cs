@@ -155,9 +155,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     {      
       if (base.OnItemDeletedFlagChanged())
       {
-        using (IContractorsService service = ServiceFactory.GetContractorsService())
+        using (IOrdersService service = ServiceFactory.GetOrdersService())
         {
-          //service.DeleteContractor(EditingViewModel.Item.);
+          service.CanceledOrder(EditingViewModel.Item.Order);
         }
         Refresh();
         return true;

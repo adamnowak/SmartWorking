@@ -144,9 +144,14 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     /// <param name="oldItem">The old item.</param>
     protected override void OnItemChanged(OrderPackage oldItem)
     {
-      //if (Item != null && Item.ClientBuildingPackage != null && Item.ClientBuildingPackage.Client != null)
+
+      if (Item != null)
       {
-        //ClientListViewModel.Items.SelectedItem = ClientListViewModel.Items.Items.Where(x => x.Client.Id == Item.ClientBuildingPackage.Client.Id).FirstOrDefault();
+        if (Item.Client != null)
+        {
+          ClientListViewModel.Items.SelectedItem = ClientListViewModel.Items.Items.Where(x => x.Client.Id == Item.Client.Id).FirstOrDefault();
+        }
+        //ClientListViewModel.EditingViewModel.Item = Item.ClientBuildingPackage;
       }
       //else
       {
