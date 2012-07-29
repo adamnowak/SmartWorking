@@ -346,7 +346,7 @@
     <comment>RadioButton.Content</comment>
   </data>
   <data name="BuildingListControl_City" xml:space="preserve">
-    <value>City</value>
+    <value>Miasto</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_Filter" xml:space="preserve">
@@ -354,7 +354,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingListControl_HouseNo" xml:space="preserve">
-    <value>HouseNo</value>
+    <value>Numer domu</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_IncludeDeactive" xml:space="preserve">

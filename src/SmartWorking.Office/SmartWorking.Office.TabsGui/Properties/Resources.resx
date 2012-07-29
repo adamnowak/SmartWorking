@@ -1273,4 +1273,8 @@
     <value>RentTransport</value>
     <comment>TransportTypes.Enum</comment>
   </data>
+  <data name="BuildingListControl_Id" xml:space="preserve">
+    <value>Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
 </root>

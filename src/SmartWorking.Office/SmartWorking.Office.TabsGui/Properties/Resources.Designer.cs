@@ -601,6 +601,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string BuildingListControl_Id {
+            get {
+                return ResourceManager.GetString("BuildingListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IncludeDeactive.
         /// </summary>
         public static string BuildingListControl_IncludeDeactive {
