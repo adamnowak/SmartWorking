@@ -26,16 +26,16 @@
                 </Grid.RowDefinitions>
 
                 <!--Debug only-->
-                <TextBlock Text="str_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBlock Text="BuildingDetailsControl_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
-                <TextBlock Text="str_Symbol:" Grid.Row="1" />
-                <TextBlock Text="str_Miasto:" Grid.Row="2" />
-                <TextBlock Text="str_Kod pocztowy:" Grid.Row="3" />
-                <TextBlock Text="str_Ulica:" Grid.Row="4" />
-                <TextBlock Text="str_Numer domu:" Grid.Row="5" />
-                <TextBlock Text="str_Telefon na budowę:" Grid.Row="6" />
-                <TextBlock Text="str_Osoba prowadząca:" Grid.Row="7" />
-                <TextBlock Text="str_Kontakt z osoba prowadzącą:" Grid.Row="8" />
+                <TextBlock Text="BuildingDetailsControl_InternalName:" Grid.Row="1" />
+                <TextBlock Text="BuildingDetailsControl_City:" Grid.Row="2" />
+                <TextBlock Text="BuildingDetailsControl_ZIPCode:" Grid.Row="3" />
+                <TextBlock Text="BuildingDetailsControl_Street:" Grid.Row="4" />
+                <TextBlock Text="BuildingDetailsControl_HouseNo:" Grid.Row="5" />
+                <TextBlock Text="BuildingDetailsControl_Phone:" Grid.Row="6" />
+                <TextBlock Text="BuildingDetailsControl_ContactPerson:" Grid.Row="7" />
+                <TextBlock Text="BuildingDetailsControl_ContactPersonPhone:" Grid.Row="8" />
                 <!--<TextBlock Text="Odległość:" Grid.Row="9" />-->
 
                 <!--End Debug only-->
@@ -51,7 +51,7 @@
                 <TextBox Text="{Binding Item.ContactPersonPhone}" Grid.Row="8" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
                 <!--<TextBox Text="{Binding RouteDistance, Mode=OneWay, ElementName=Map}" Grid.Row="9" Grid.Column="1" IsReadOnly="True" />-->
 
-                <TextBlock Text="str_IsActive:" Grid.Row="9" />
+                <TextBlock Text="BuildingDetailsControl_IsActive:" Grid.Row="9" />
                 <CheckBox Grid.Row="9" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>

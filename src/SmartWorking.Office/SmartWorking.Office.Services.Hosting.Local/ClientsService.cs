@@ -129,20 +129,26 @@ namespace SmartWorking.Office.Services.Hosting.Local
           {
             List<ClientBuildingPrimitive> existingClientBuildings = existingObject.ClientBuildings.Select(x => x.GetPrimitive()).ToList();
             List<ClientBuildingPrimitive> newClientBuildings = clientAndBuildingsPackage.GetClientBuildingListWithReference().ToList();
-            List<ClientBuildingPrimitive> theSameElements = newClientBuildings.Intersect(existingClientBuildings).ToList();
+            List<ClientBuildingPrimitive> theSameElements = newClientBuildings.Where(x => existingClientBuildings.Select(y => y.Building_Id).Contains(x.Building_Id)).ToList();
 
             existingClientBuildings.RemoveAll(x => theSameElements.Select(y => y.Building_Id).Contains(x.Building_Id));
             newClientBuildings.RemoveAll(x => theSameElements.Select(y => y.Building_Id).Contains(x.Building_Id));
 
-            List<int> existingClientBuildingIds = existingClientBuildings.Select(x => x.Id).ToList();
-            List<ClientBuilding> clientBuildingListToDelete =
-              context.ClientBuildings.Where(x => existingClientBuildingIds.Contains(x.Id)).ToList();
-           // foreach (ClientBuildingPrimitive clientBuldingToDelete in existingClientBuildings)
-            foreach (ClientBuilding clientBuldingToDelete in clientBuildingListToDelete)
+            //remove 
+            if (existingClientBuildings.Count() > 0)
             {
-              //context.ClientBuildings.Where(x => x.Id == clientBuldingToDelete)
-              context.ClientBuildings.DeleteObject(clientBuldingToDelete);
+              List<int> existingClientBuildingIds = existingClientBuildings.Select(x => x.Id).ToList();
+              List<ClientBuilding> clientBuildingListToDelete =
+                context.ClientBuildings.Where(x => existingClientBuildingIds.Contains(x.Id)).ToList();
+              
+              foreach (ClientBuilding clientBuldingToDelete in clientBuildingListToDelete)
+              {
+                //context.ClientBuildings.Where(x => x.Id == clientBuldingToDelete)
+                context.ClientBuildings.DeleteObject(clientBuldingToDelete);
+              }
             }
+
+            //add
             foreach (ClientBuildingPrimitive clientBuildingPrimitive in newClientBuildings)
             {
               context.ClientBuildings.AddObject(clientBuildingPrimitive.GetEntity());
