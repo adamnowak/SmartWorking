@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using SmartWorking.Office.TabsGui.Properties;
 
 namespace SmartWorking.Office.TabsGui.Controls.Cars
 {
@@ -35,9 +36,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 
     private void LoadItems()
     {
-      Items.Add(new TransportType { Id = 1, Description = "str_Transport własny" });
-      Items.Add(new TransportType { Id = 2, Description = "str_Transport wynajęty" });
-      Items.Add(new TransportType { Id = 3, Description = "str_Odbiór własny" });
+      Items.Add(new TransportType { Id = 1, Description = Resources.TransportTypes_Own });
+      Items.Add(new TransportType { Id = 2, Description = Resources.TransportTypes_Rent });
+      Items.Add(new TransportType { Id = 3, Description = Resources.TransportTypes_Client });
     }
   }
 }

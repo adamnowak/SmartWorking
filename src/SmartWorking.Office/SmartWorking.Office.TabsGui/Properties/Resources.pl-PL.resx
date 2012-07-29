@@ -117,96 +117,280 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdministrationGroupControl_Cars" xml:space="preserve">
+    <value>Cars</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Cars_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Cars_AddClone" xml:space="preserve">
+    <value>AddClone</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Cars_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Cars_CarList" xml:space="preserve">
+    <value>CarList</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Cars_CarsDetails" xml:space="preserve">
+    <value>CarsDetails</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Cars_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Cars_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Contractors" xml:space="preserve">
+    <value>Contractors</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Contractors_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Contractors_AddClone" xml:space="preserve">
+    <value>AddClone</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Contractors_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Contractors_ContractorDetails" xml:space="preserve">
+    <value>ContractorDetails</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Contractors_ContractorList" xml:space="preserve">
+    <value>ContractorList</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Contractors_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Contractors_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Drivers" xml:space="preserve">
+    <value>Drivers</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Drivers_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Drivers_AddClone" xml:space="preserve">
+    <value>AddClone</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Drivers_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Drivers_DriverList" xml:space="preserve">
+    <value>DriverList</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Drivers_DriversDetails" xml:space="preserve">
+    <value>DriversDetails</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Drivers_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Drivers_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_EditingMode" xml:space="preserve">
+    <value>EditingMode:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="AdministrationGroupControl_Materials" xml:space="preserve">
+    <value>Materials</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Materials_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Materials_AddClone" xml:space="preserve">
+    <value>AddClone</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Materials_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Materials_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Materials_MaterialDetails" xml:space="preserve">
+    <value>MaterialDetails</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Materials_MaterialList" xml:space="preserve">
+    <value>MaterialList</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Materials_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes" xml:space="preserve">
+    <value>Recipes</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_AddClone" xml:space="preserve">
+    <value>AddClone</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_AllMaterials" xml:space="preserve">
+    <value>AllMaterials</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_MaterialInRecipe" xml:space="preserve">
+    <value>MaterialInRecipe</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_MaterialsInRecipe" xml:space="preserve">
+    <value>MaterialsInRecipe</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_RecipeCompnents" xml:space="preserve">
+    <value>RecipeCompnents</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_RecipeDetails" xml:space="preserve">
+    <value>RecipeDetails</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_RecipeList" xml:space="preserve">
+    <value>RecipeList</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="AdministrationGroupControl_Recipes_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="AdministrationGroupControl_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="BuildingDetailsControl_City" xml:space="preserve">
+    <value>City:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_ContactPerson" xml:space="preserve">
+    <value>ContactPerson:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_ContactPersonPhone" xml:space="preserve">
+    <value>ContactPersonPhone:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_HouseNo" xml:space="preserve">
+    <value>HouseNo:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
   <data name="BuildingDetailsControl_Id" xml:space="preserve">
     <value>Id:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_InternalName" xml:space="preserve">
-    <value>Symbol:</value>
-    <comment>TextBlock.Text</comment>
-  </data>
-  <data name="BuildingDetailsControl_City" xml:space="preserve">
-    <value>Miasto:</value>
-    <comment>TextBlock.Text</comment>
-  </data>
-  <data name="BuildingDetailsControl_ZIPCode" xml:space="preserve">
-    <value>Kod pocztowy:</value>
-    <comment>TextBlock.Text</comment>
-  </data>
-  <data name="BuildingDetailsControl_Street" xml:space="preserve">
-    <value>Ulica:</value>
-    <comment>TextBlock.Text</comment>
-  </data>
-  <data name="BuildingDetailsControl_HouseNo" xml:space="preserve">
-    <value>Numer domu:</value>
-    <comment>TextBlock.Text</comment>
-  </data>
-  <data name="BuildingDetailsControl_Phone" xml:space="preserve">
-    <value>Telefon na budowę:</value>
-    <comment>TextBlock.Text</comment>
-  </data>
-  <data name="BuildingDetailsControl_ContactPerson" xml:space="preserve">
-    <value>Kontakt:</value>
-    <comment>TextBlock.Text</comment>
-  </data>
-  <data name="BuildingDetailsControl_ContactPersonPhone" xml:space="preserve">
-    <value>Telefon kontaktu:</value>
+    <value>InternalName:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_IsActive" xml:space="preserve">
-    <value>Aktywny:</value>
+    <value>IsActive:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_Phone" xml:space="preserve">
+    <value>Phone:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_Street" xml:space="preserve">
+    <value>Street:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_ZIPCode" xml:space="preserve">
+    <value>ZIPCode:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingListControl_All" xml:space="preserve">
-    <value>Wszystkie</value>
+    <value>All</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="BuildingListControl_City" xml:space="preserve">
-    <value>Miasto</value>
+    <value>City</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filter</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingListControl_HouseNo" xml:space="preserve">
-    <value>Numer domu</value>
+    <value>HouseNo</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_IncludeDeactive" xml:space="preserve">
-    <value>Również nieaktywne</value>
+    <value>IncludeDeactive</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="BuildingListControl_InternalName" xml:space="preserve">
-    <value>Symbol</value>
+    <value>InternalName</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_OnlyActivate" xml:space="preserve">
-    <value>Tylko aktywne</value>
+    <value>OnlyActivate</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="BuildingListControl_Phone" xml:space="preserve">
-    <value>Telefon</value>
+    <value>Phone</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_Search" xml:space="preserve">
-    <value>Szukaj</value>
+    <value>Search</value>
     <comment>Button.Content</comment>
   </data>
   <data name="BuildingListControl_Street" xml:space="preserve">
-    <value>Ulica</value>
+    <value>Street</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarDetailsControl_Capacity" xml:space="preserve">
-    <value>Ładowność:</value>
+    <value>Capacity:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_CarType" xml:space="preserve">
-    <value>Typ samochodu:</value>
+    <value>CarType:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver" xml:space="preserve">
-    <value>Kierowca</value>
+    <value>Driver</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="CarDetailsControl_Driver_Id" xml:space="preserve">
@@ -214,19 +398,19 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver_InternalName" xml:space="preserve">
-    <value>Symbol:</value>
+    <value>InternalName:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver_Name" xml:space="preserve">
-    <value>Imię:</value>
+    <value>Name:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver_Phone" xml:space="preserve">
-    <value>Telefon:</value>
+    <value>Phone:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver_Surname" xml:space="preserve">
-    <value>Nazwisko:</value>
+    <value>Surname:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Id" xml:space="preserve">
@@ -234,19 +418,19 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_InternalName" xml:space="preserve">
-    <value>Symbol:</value>
+    <value>InternalName:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_IsActive" xml:space="preserve">
-    <value>Aktywny:</value>
+    <value>IsActive:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_RegistrationNumber" xml:space="preserve">
-    <value>Rejestracja:</value>
+    <value>RegistrationNumber:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_TransportType" xml:space="preserve">
-    <value>Typ transportu:</value>
+    <value>TransportType:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarListControl_All" xml:space="preserve">
@@ -296,6 +480,22 @@
   <data name="CarListControl_TransportType" xml:space="preserve">
     <value>TransportType</value>
     <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="CarTypes_Betonomieszarka" xml:space="preserve">
+    <value>Betonomieszarka</value>
+    <comment>CarTypes.Enum</comment>
+  </data>
+  <data name="CarTypes_Inny" xml:space="preserve">
+    <value>Inny</value>
+    <comment>CarTypes.Enum</comment>
+  </data>
+  <data name="CarTypes_Pompogruszka" xml:space="preserve">
+    <value>Pompogruszka</value>
+    <comment>CarTypes.Enum</comment>
+  </data>
+  <data name="CarTypes_Wywrotka" xml:space="preserve">
+    <value>Wywrotka</value>
+    <comment>CarTypes.Enum</comment>
   </data>
   <data name="ClientBuildingDetailsControl_City" xml:space="preserve">
     <value>City:</value>
@@ -390,7 +590,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_CompanyNameNameSurname" xml:space="preserve">
-    <value>CompanyName/NameSurname:</value>
+    <value>CompanyNameNameSurname:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_HouseNo" xml:space="preserve">
@@ -928,5 +1128,149 @@
   <data name="RecipeListControl_Search" xml:space="preserve">
     <value>Search</value>
     <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Buildings" xml:space="preserve">
+    <value>Buildings</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Buildings_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Buildings_AddClone" xml:space="preserve">
+    <value>AddClone</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Buildings_BuildingDetails" xml:space="preserve">
+    <value>BuildingDetails</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Buildings_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Buildings_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Buildings_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Clients" xml:space="preserve">
+    <value>Clients</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Clients_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Clients_AddClone" xml:space="preserve">
+    <value>AddClone</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Clients_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Clients_ClientBuildings" xml:space="preserve">
+    <value>ClientBuildings</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Clients_ClientDetails" xml:space="preserve">
+    <value>ClientDetails</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Clients_ClientList" xml:space="preserve">
+    <value>ClientList</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Clients_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Clients_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_EditingMode" xml:space="preserve">
+    <value>EditingMode:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="SaleGroupControl_Orders" xml:space="preserve">
+    <value>Orders</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_AddClone" xml:space="preserve">
+    <value>AddClone</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_Back" xml:space="preserve">
+    <value>Back</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_OrderDetails" xml:space="preserve">
+    <value>OrderDetails</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_PrepareDeliver" xml:space="preserve">
+    <value>PrepareDeliver</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_SelectBuilding" xml:space="preserve">
+    <value>SelectBuilding</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_SelectClient" xml:space="preserve">
+    <value>SelectClient</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_SelectedBuilding" xml:space="preserve">
+    <value>SelectedBuilding</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_SelectedClient" xml:space="preserve">
+    <value>SelectedClient</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_SelectedRecipe" xml:space="preserve">
+    <value>SelectedRecipe</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Orders_SelectRecipe" xml:space="preserve">
+    <value>SelectRecipe</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="TransportTypes_Client" xml:space="preserve">
+    <value>ClientTransport</value>
+    <comment>TransportTypes.Enum</comment>
+  </data>
+  <data name="TransportTypes_Own" xml:space="preserve">
+    <value>OwnTransport</value>
+    <comment>TransportTypes.Enum</comment>
+  </data>
+  <data name="TransportTypes_Rent" xml:space="preserve">
+    <value>RentTransport</value>
+    <comment>TransportTypes.Enum</comment>
   </data>
 </root>

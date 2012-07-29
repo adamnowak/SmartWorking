@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using SmartWorking.Office.TabsGui.Properties;
 
 namespace SmartWorking.Office.TabsGui.Controls.Cars
 {
@@ -41,10 +42,10 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 
     private void LoadItems()
     {
-      Items.Add(new CarType { Id = 1, Description = "str_Betonomieszarka" });
-      Items.Add(new CarType { Id = 2, Description = "str_Pompogruszka" });
-      Items.Add(new CarType { Id = 3, Description = "str_Wywrotka" });
-      Items.Add(new CarType { Id = 4, Description = "str_Inny" });
+      Items.Add(new CarType { Id = 1, Description = Resources.CarTypes_Betonomieszarka });
+      Items.Add(new CarType { Id = 2, Description = Resources.CarTypes_Pompogruszka });
+      Items.Add(new CarType { Id = 3, Description = Resources.CarTypes_Wywrotka });
+      Items.Add(new CarType { Id = 4, Description = Resources.CarTypes_Inny });
     }
   }
 }

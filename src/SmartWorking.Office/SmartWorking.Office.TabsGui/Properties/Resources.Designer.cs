@@ -286,15 +286,6 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Editing \{0\}.
-        /// </summary>
-        public static string AdministrationGroupControl_EditingMode_StringFormat {
-            get {
-                return ResourceManager.GetString("AdministrationGroupControl_EditingMode_StringFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Materials.
         /// </summary>
         public static string AdministrationGroupControl_Materials {
@@ -889,6 +880,42 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Betonomieszarka.
+        /// </summary>
+        public static string CarTypes_Betonomieszarka {
+            get {
+                return ResourceManager.GetString("CarTypes_Betonomieszarka", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inny.
+        /// </summary>
+        public static string CarTypes_Inny {
+            get {
+                return ResourceManager.GetString("CarTypes_Inny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pompogruszka.
+        /// </summary>
+        public static string CarTypes_Pompogruszka {
+            get {
+                return ResourceManager.GetString("CarTypes_Pompogruszka", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wywrotka.
+        /// </summary>
+        public static string CarTypes_Wywrotka {
+            get {
+                return ResourceManager.GetString("CarTypes_Wywrotka", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City:.
         /// </summary>
         public static string ClientBuildingDetailsControl_City {
@@ -1096,7 +1123,7 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CompanyName/NameSurname:.
+        ///   Looks up a localized string similar to CompanyNameNameSurname:.
         /// </summary>
         public static string ClientDetailsControl_CompanyNameNameSurname {
             get {
@@ -2604,6 +2631,33 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string SaleGroupControl_Refresh {
             get {
                 return ResourceManager.GetString("SaleGroupControl_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ClientTransport.
+        /// </summary>
+        public static string TransportTypes_Client {
+            get {
+                return ResourceManager.GetString("TransportTypes_Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OwnTransport.
+        /// </summary>
+        public static string TransportTypes_Own {
+            get {
+                return ResourceManager.GetString("TransportTypes_Own", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RentTransport.
+        /// </summary>
+        public static string TransportTypes_Rent {
+            get {
+                return ResourceManager.GetString("TransportTypes_Rent", resourceCulture);
             }
         }
     }

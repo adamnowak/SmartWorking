@@ -394,7 +394,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_CompanyNameNameSurname" xml:space="preserve">
-    <value>CompanyName/NameSurname:</value>
+    <value>CompanyNameNameSurname:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_NIP" xml:space="preserve">
@@ -1109,10 +1109,6 @@
     <value>AllMaterials</value>
     <comment>GroupBox.Header</comment>
   </data>
-  <data name="AdministrationGroupControl_EditingMode_StringFormat" xml:space="preserve">
-    <value>Editing \{0\}</value>
-    <comment>TextBlock.Text</comment>
-  </data>
   <data name="SaleGroupControl_EditingMode" xml:space="preserve">
     <value>EditingMode:</value>
     <comment>TextBlock.Text</comment>
@@ -1248,5 +1244,33 @@
   <data name="AdministrationGroupControl_EditingMode" xml:space="preserve">
     <value>EditingMode:</value>
     <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarTypes_Betonomieszarka" xml:space="preserve">
+    <value>Betonomieszarka</value>
+    <comment>CarTypes.Enum</comment>
+  </data>
+  <data name="CarTypes_Inny" xml:space="preserve">
+    <value>Inny</value>
+    <comment>CarTypes.Enum</comment>
+  </data>
+  <data name="CarTypes_Pompogruszka" xml:space="preserve">
+    <value>Pompogruszka</value>
+    <comment>CarTypes.Enum</comment>
+  </data>
+  <data name="CarTypes_Wywrotka" xml:space="preserve">
+    <value>Wywrotka</value>
+    <comment>CarTypes.Enum</comment>
+  </data>
+  <data name="TransportTypes_Client" xml:space="preserve">
+    <value>ClientTransport</value>
+    <comment>TransportTypes.Enum</comment>
+  </data>
+  <data name="TransportTypes_Own" xml:space="preserve">
+    <value>OwnTransport</value>
+    <comment>TransportTypes.Enum</comment>
+  </data>
+  <data name="TransportTypes_Rent" xml:space="preserve">
+    <value>RentTransport</value>
+    <comment>TransportTypes.Enum</comment>
   </data>
 </root>
