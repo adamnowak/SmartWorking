@@ -4,7 +4,7 @@
      xmlns:Clients="clr-namespace:SmartWorking.Office.TabsGui.Controls.Clients" xmlns:Materials="clr-namespace:SmartWorking.Office.TabsGui.Controls.Materials"
      xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:Recipes="clr-namespace:SmartWorking.Office.TabsGui.Controls.Recipes"
      xmlns:Orders="clr-namespace:SmartWorking.Office.TabsGui.Controls.Orders" xmlns:Buildings="clr-namespace:SmartWorking.Office.TabsGui.Controls.Buildings"
-     mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
+     mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension" xmlns:DeliveryNotes="clr-namespace:SmartWorking.Office.TabsGui.Controls.DeliveryNotes">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -79,16 +79,17 @@
                                     </Grid>
                                 </GroupBox>
                             </Grid>
-                            <Orders:OrderListControl Grid.ColumnSpan="3" Grid.Row="1" DataContext="{Binding OrderListViewModel}">
-                                <Orders:OrderListControl.Visibility>
+                            <GroupBox Header="OrderList" Grid.ColumnSpan="3" Grid.Row="1" DataContext="{Binding OrderListViewModel}">
+                                <GroupBox.Visibility>
                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                         <MultiBinding.Bindings>
                                             <Binding Path="EditingViewModel.IsReadOnly" />
                                             <Binding Path="IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                         </MultiBinding.Bindings>
                                     </MultiBinding>
-                                </Orders:OrderListControl.Visibility>
-                            </Orders:OrderListControl>
+                                </GroupBox.Visibility>
+                                <Orders:OrderListControl />
+                            </GroupBox>
                             <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_SelectClient}"
                                  Grid.Row="1">
                                 <GroupBox.Visibility>
@@ -135,6 +136,37 @@
                                     <Recipes:RecipeListControl />
                                 </Grid>
                             </GroupBox>
+
+
+                            <GroupBox Header="DeliveryNoteList"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+                                <GroupBox.Visibility>
+                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="OrderListViewModel.EditingViewModel.IsReadOnly" />
+                                            <Binding Path="OrderListViewModel.IsPreparingDelivery" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </GroupBox.Visibility>
+                                <Grid>
+                                    <DeliveryNotes:DeliveryNoteListControl DataContext="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel}"/>
+                                    
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="DeliveryNoteDetails" Grid.Row="1" Grid.Column="2">
+                                <GroupBox.Visibility>
+                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding Path="OrderListViewModel.EditingViewModel.IsReadOnly" />
+                                            <Binding Path="OrderListViewModel.IsPreparingDelivery" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </GroupBox.Visibility>
+                                <Grid>
+                                    <DeliveryNotes:DeliveryNoteDetailsControl DataContext="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel}" />
+                                </Grid>
+                            </GroupBox>
+                            
+                            
                             <Grid Grid.Row="2" Grid.ColumnSpan="3">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -167,60 +199,50 @@
                                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button Command="{Binding OrderListViewModel.AddItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_Add}">
                                         <Button.Visibility>
-                                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
-                                                    <Binding Source="{StaticResource StaticTrue}" />
-                                                    <Binding Source="{x:Static Visibility.Visible}" />
-                                                    <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />                                                   
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
                                     </Button>
                                     <Button Command="{Binding OrderListViewModel.AddCloneItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_AddClone}">
                                         <Button.Visibility>
-                                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
-                                                    <Binding Source="{StaticResource StaticTrue}" />
-                                                    <Binding Source="{x:Static Visibility.Visible}" />
-                                                    <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />                                        
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
                                     </Button>
                                     <Button Command="{Binding OrderDetailsViewModel.EditItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_Edit}">
                                         <Button.Visibility>
-                                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
-                                                    <Binding Source="{StaticResource StaticTrue}" />
-                                                    <Binding Source="{x:Static Visibility.Visible}" />
-                                                    <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />                                                    
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
                                     </Button>
                                     <Button Command="{Binding OrderDetailsViewModel.SaveItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_Save}">
                                         <Button.Visibility>
-                                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
-                                                    <Binding Source="{StaticResource StaticFalse}" />
-                                                    <Binding Source="{x:Static Visibility.Visible}" />
-                                                    <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />                                            
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
                                     </Button>
                                     <Button Command="{Binding OrderDetailsViewModel.CancelChangesCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_Cancel}">
                                         <Button.Visibility>
-                                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
-                                                    <Binding Source="{StaticResource StaticFalse}" />
-                                                    <Binding Source="{x:Static Visibility.Visible}" />
-                                                    <Binding Source="{x:Static Visibility.Collapsed}" />
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>                               
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
@@ -229,6 +251,7 @@
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
                                                          ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                     <Binding Path="OrderDetailsViewModel.IsReadOnly" />
@@ -237,10 +260,93 @@
                                         </Button.Visibility>
                                         <Button.Content>
                                             <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+
                                                 <Binding Path="OrderDetailsViewModel.Item.Order.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                 <Binding Source="{StaticResource StaticFalse}" />
                                                 <Binding Source="{StaticResource StaticStringUndelete}" />
                                                 <Binding Source="{StaticResource StaticStringDelete}" />
+                                            </MultiBinding>
+                                        </Button.Content>
+                                    </Button>
+                                </StackPanel>
+
+
+                                
+                                
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.AddItemCommand}" Content="Add">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                    </Button>
+                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.AddCloneItemCommand}" Content="AddClone">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery"  />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                    </Button>
+                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.EditItemCommand}" Content="Edit">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery"  />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                    </Button>
+                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.SaveItemCommand}" Content="Save">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />                           
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                    </Button>
+                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.CancelChangesCommand}" Content="Cancel">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery"  />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>                                                    
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                    </Button>
+                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery"  />
+                                                    <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                         ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                        <Button.Content>
+                                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+
+                                                <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.Item.DeliveryNote.IsDeleted"  />
+                                                <Binding Source="{StaticResource StaticFalse}" />
+                                                <Binding Source="{StaticResource StaticStringUndelete}" />
+                                                <Binding Source="{StaticResource StaticStringDelete}" />
+
                                             </MultiBinding>
                                         </Button.Content>
                                     </Button>

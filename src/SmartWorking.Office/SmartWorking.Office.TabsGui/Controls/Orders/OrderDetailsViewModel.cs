@@ -145,19 +145,36 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     protected override void OnItemChanged(OrderPackage oldItem)
     {
 
+      ClientListViewModel.Items.SelectedItem = null;
+      ClientBuildingListViewModel.Items.SelectedItem = null;
+      RecipeListViewModel.Items.SelectedItem = null;
+      DeliveryNoteListViewModel.Items.SelectedItem = null;
+
       if (Item != null)
       {
         if (Item.Client != null)
         {
           ClientListViewModel.Items.SelectedItem = ClientListViewModel.Items.Items.Where(x => x.Client.Id == Item.Client.Id).FirstOrDefault();
         }
-        //ClientListViewModel.EditingViewModel.Item = Item.ClientBuildingPackage;
-      }
-      //else
-      {
-      //  ClientListViewModel.Items.SelectedItem = null;
-      }
 
+        if (Item.ClientBuildingPackage != null && Item.ClientBuildingPackage.ClientBuilding != null)
+        {
+          ClientBuildingListViewModel.Items.SelectedItem = ClientBuildingListViewModel.Items.Items.Where(x => x.ClientBuilding.Id == Item.ClientBuildingPackage.ClientBuilding.Id).FirstOrDefault();
+        }
+
+        if (Item.Recipe != null)
+        {
+          RecipeListViewModel.Items.SelectedItem = RecipeListViewModel.Items.Items.Where(x => x.Recipe.Id == Item.Recipe.Id).FirstOrDefault();
+        }
+
+        if (Item.DeliveryNotePackageList != null)
+        {
+          DeliveryNoteListViewModel.Items.LoadItems(Item.DeliveryNotePackageList);
+        }
+      }
+      
+
+      
 
       //if (Producers.Items != null && Item != null && Item.Deliverer != null)
       //{

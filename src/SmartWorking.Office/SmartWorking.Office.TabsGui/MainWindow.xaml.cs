@@ -23,5 +23,7 @@ namespace SmartWorking.Office.TabsGui
       InitializeComponent();
       //this.WindowState = WindowState.Maximized;
     }
+
+    
   }
 }

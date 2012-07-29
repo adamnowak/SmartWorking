@@ -114,5 +114,19 @@ namespace SmartWorking.Office.PrimitiveEntities
       }
       return package;
     }
+
+    public static DeliveryNotePackage GetPackageCopy(this DeliveryNotePackage source)
+    {
+      if (source == null || source.DeliveryNote == null)
+        return null;
+
+      DeliveryNotePackage package = new DeliveryNotePackage();
+      package.DeliveryNote = source.DeliveryNote;
+
+      package.Car = source.Car;
+      package.Driver = source.Driver;
+      
+      return package;
+    }
   }
 }

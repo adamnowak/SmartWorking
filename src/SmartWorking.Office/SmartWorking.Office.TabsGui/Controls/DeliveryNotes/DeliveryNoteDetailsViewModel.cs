@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
@@ -10,17 +11,17 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
   /// <summary>
   /// Car details view model implementation.
   /// </summary>
-  public class DeliveryNoteDetailsViewModel : EditableControlViewModelBase<MaterialAndContractorsPackage>
+  public class DeliveryNoteDetailsViewModel : EditableControlViewModelBase<DeliveryNotePackage>
   {
     public DeliveryNoteDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      Deliverers = new SelectableViewModelBase<ContractorPrimitive>();
-      Producers = new SelectableViewModelBase<ContractorPrimitive>();
+      Cars = new SelectableViewModelBase<CarPrimitive>();
+      Drivers = new SelectableViewModelBase<DriverPrimitive>();
     }
 
-    public SelectableViewModelBase<ContractorPrimitive> Deliverers { get; private set; }
-    public SelectableViewModelBase<ContractorPrimitive> Producers { get; private set; }
+    public SelectableViewModelBase<CarPrimitive> Cars { get; private set; }
+    public SelectableViewModelBase<DriverPrimitive> Drivers { get; private set; }
 
     /// <summary>
     /// Gets the name of editing control.
@@ -32,8 +33,9 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 
     protected override void EditItemCommandExecute()
     {
-      LoadContractors();
-      Item = Item.GetPackageCopy();
+      LoadCars();
+      LoadDrivers();
+      //Item = Item.GetPackageCopy();
       base.EditItemCommandExecute();
     }
 
@@ -41,16 +43,16 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     {
       if (Item != null)
       {
-        Item.Producer = Producers.SelectedItem;
-        Item.Deliverer = Deliverers.SelectedItem;
-        if (base.OnSaveItem())
-        {
-          using (IMaterialsService service = ServiceFactory.GetMaterialsService())
-          {
-            service.CreateOrUpdateMaterial(Item.GetMaterialPrimitiveWithReference());
-          }
-          return true;
-        }
+        //Item.Producer = Producers.SelectedItem;
+        //Item.Deliverer = Deliverers.SelectedItem;
+        //if (base.OnSaveItem())
+        //{
+        //  using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+        //  {
+        //    service.CreateOrUpdateMaterial(Item.GetMaterialPrimitiveWithReference());
+        //  }
+        //  return true;
+        //}
       }
       return false;
     }
@@ -59,17 +61,26 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 
     protected override bool OnRefresh()
     {
-      LoadContractors();
+      LoadCars();
+      LoadDrivers();
       return base.OnRefresh(); 
     }
 
-    private void LoadContractors()
+    private void LoadDrivers()
     {
-      using (IContractorsService service = ServiceFactory.GetContractorsService())
+      using (IDriversService service = ServiceFactory.GetDriversService())
       {
-        List<ContractorPrimitive> contractors = service.GetContractors(string.Empty, ListItemsFilterValues.OnlyActive);
-        Producers.LoadItems(contractors);
-        Deliverers.LoadItems(contractors);
+        List<DriverPrimitive> drivers = service.GetDrivers(string.Empty, ListItemsFilterValues.OnlyActive);
+        Drivers.LoadItems(drivers);
+      }
+    }
+
+    private void LoadCars()
+    {
+      using (ICarsService service = ServiceFactory.GetCarsService())
+      {
+        List<CarPrimitive> cars = service.GetCars(string.Empty, ListItemsFilterValues.OnlyActive);
+        Cars.LoadItems(cars);
       }
     }
 
@@ -77,35 +88,35 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
      //Called when [item changed].
      //</summary>
      //<param name="oldItem">The old item.</param>
-    protected override void OnItemChanged(MaterialAndContractorsPackage oldItem)
+    protected override void OnItemChanged(DeliveryNotePackage oldItem)
     {
-      if (Item != null)
-      {
-        if (Producers.Items != null && Item.Producer != null)
-        {
-          Producers.SelectedItem = Producers.Items.Where(x => x.Id == Item.Producer.Id).FirstOrDefault();
-          Item.Producer = Producers.SelectedItem;
-        }
-        else
-        {
-          Producers.SelectedItem = null;
-        }
+      //if (Item != null)
+      //{
+      //  if (Producers.Items != null && Item.Producer != null)
+      //  {
+      //    Producers.SelectedItem = Producers.Items.Where(x => x.Id == Item.Producer.Id).FirstOrDefault();
+      //    Item.Producer = Producers.SelectedItem;
+      //  }
+      //  else
+      //  {
+      //    Producers.SelectedItem = null;
+      //  }
 
-        if (Deliverers.Items != null && Item.Deliverer != null)
-        {
-          Deliverers.SelectedItem = Deliverers.Items.Where(x => x.Id == Item.Deliverer.Id).FirstOrDefault();
-          Item.Deliverer = Deliverers.SelectedItem;
-        }
-        else
-        {
-          Deliverers.SelectedItem = null;
-        } 
-      }
-      else
-      {
-        Producers.SelectedItem = null;
-        Deliverers.SelectedItem = null;
-      }
+      //  if (Deliverers.Items != null && Item.Deliverer != null)
+      //  {
+      //    Deliverers.SelectedItem = Deliverers.Items.Where(x => x.Id == Item.Deliverer.Id).FirstOrDefault();
+      //    Item.Deliverer = Deliverers.SelectedItem;
+      //  }
+      //  else
+      //  {
+      //    Deliverers.SelectedItem = null;
+      //  } 
+      //}
+      //else
+      //{
+      //  Producers.SelectedItem = null;
+      //  Deliverers.SelectedItem = null;
+      //}
       
 
     }

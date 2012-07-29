@@ -481,19 +481,19 @@
     <value>TransportType</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
-  <data name="CarTypes_Betonomieszarka" xml:space="preserve">
+  <data name="CarTypes_ConcreteTruckMixer" xml:space="preserve">
     <value>Betonomieszarka</value>
     <comment>CarTypes.Enum</comment>
   </data>
-  <data name="CarTypes_Inny" xml:space="preserve">
+  <data name="CarTypes_Another" xml:space="preserve">
     <value>Inny</value>
     <comment>CarTypes.Enum</comment>
   </data>
-  <data name="CarTypes_Pompogruszka" xml:space="preserve">
+  <data name="CarTypes_ConcreteTruckMixerWithPump" xml:space="preserve">
     <value>Pompogruszka</value>
     <comment>CarTypes.Enum</comment>
   </data>
-  <data name="CarTypes_Wywrotka" xml:space="preserve">
+  <data name="CarTypes_DumpTruck" xml:space="preserve">
     <value>Wywrotka</value>
     <comment>CarTypes.Enum</comment>
   </data>

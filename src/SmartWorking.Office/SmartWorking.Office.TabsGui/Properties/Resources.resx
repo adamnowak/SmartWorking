@@ -1245,20 +1245,20 @@
     <value>EditingMode:</value>
     <comment>TextBlock.Text</comment>
   </data>
-  <data name="CarTypes_Betonomieszarka" xml:space="preserve">
-    <value>Betonomieszarka</value>
+  <data name="CarTypes_ConcreteTruckMixer" xml:space="preserve">
+    <value>ConcreteTruckMixer</value>
     <comment>CarTypes.Enum</comment>
   </data>
-  <data name="CarTypes_Inny" xml:space="preserve">
-    <value>Inny</value>
+  <data name="CarTypes_Another" xml:space="preserve">
+    <value>Another</value>
     <comment>CarTypes.Enum</comment>
   </data>
-  <data name="CarTypes_Pompogruszka" xml:space="preserve">
-    <value>Pompogruszka</value>
+  <data name="CarTypes_ConcreteTruckMixerWithPump" xml:space="preserve">
+    <value>ConcreteTruckMixerWithPump</value>
     <comment>CarTypes.Enum</comment>
   </data>
-  <data name="CarTypes_Wywrotka" xml:space="preserve">
-    <value>Wywrotka</value>
+  <data name="CarTypes_DumpTruck" xml:space="preserve">
+    <value>DumpTruck</value>
     <comment>CarTypes.Enum</comment>
   </data>
   <data name="TransportTypes_Client" xml:space="preserve">

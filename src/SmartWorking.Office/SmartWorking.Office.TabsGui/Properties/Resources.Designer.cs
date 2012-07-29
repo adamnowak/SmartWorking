@@ -889,38 +889,38 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Betonomieszarka.
+        ///   Looks up a localized string similar to Another.
         /// </summary>
-        public static string CarTypes_Betonomieszarka {
+        public static string CarTypes_Another {
             get {
-                return ResourceManager.GetString("CarTypes_Betonomieszarka", resourceCulture);
+                return ResourceManager.GetString("CarTypes_Another", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inny.
+        ///   Looks up a localized string similar to ConcreteTruckMixer.
         /// </summary>
-        public static string CarTypes_Inny {
+        public static string CarTypes_ConcreteTruckMixer {
             get {
-                return ResourceManager.GetString("CarTypes_Inny", resourceCulture);
+                return ResourceManager.GetString("CarTypes_ConcreteTruckMixer", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pompogruszka.
+        ///   Looks up a localized string similar to ConcreteTruckMixerWithPump.
         /// </summary>
-        public static string CarTypes_Pompogruszka {
+        public static string CarTypes_ConcreteTruckMixerWithPump {
             get {
-                return ResourceManager.GetString("CarTypes_Pompogruszka", resourceCulture);
+                return ResourceManager.GetString("CarTypes_ConcreteTruckMixerWithPump", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wywrotka.
+        ///   Looks up a localized string similar to DumpTruck.
         /// </summary>
-        public static string CarTypes_Wywrotka {
+        public static string CarTypes_DumpTruck {
             get {
-                return ResourceManager.GetString("CarTypes_Wywrotka", resourceCulture);
+                return ResourceManager.GetString("CarTypes_DumpTruck", resourceCulture);
             }
         }
         

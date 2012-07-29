@@ -6,29 +6,29 @@ using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
 namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 {
-  public class DeliveryNoteListViewModel : ListingEditableControlViewModel<MaterialAndContractorsPackage>
+  public class DeliveryNoteListViewModel : ListingEditableControlViewModel<DeliveryNotePackage>
   {
-    public DeliveryNoteListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<MaterialAndContractorsPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public DeliveryNoteListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<DeliveryNotePackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
     }
 
     public override string Name
     {
-      get { return "str_MaterialList"; }
+      get { return "str_DeliveryNoteList"; }
     }
 
     protected override void  OnLoadItems()
     {
-      MaterialAndContractorsPackage selectedItem = Items.SelectedItem;
-      using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+      DeliveryNotePackage selectedItem = Items.SelectedItem;
+      using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
       {
-        Items.LoadItems(service.GetMaterialAndContractorsPackageList(Filter, ListItemsFilter));
+        Items.LoadItems(service.GetDeliveryNotePackageList(Filter, ListItemsFilter));
       }
-      if (selectedItem != null)
+      if (selectedItem != null && selectedItem.DeliveryNote != null)
       {
-        MaterialAndContractorsPackage selectionFromItems =
-          Items.Items.Where(x => x.Material.Id == selectedItem.Material.Id).FirstOrDefault();
+        DeliveryNotePackage selectionFromItems =
+          Items.Items.Where(x => x.DeliveryNote.Id == selectedItem.DeliveryNote.Id).FirstOrDefault();
         if (selectionFromItems != null)
           Items.SelectedItem = selectionFromItems;
       }
@@ -37,7 +37,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     protected override void AddItemCommandExecute()
     {
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new MaterialAndContractorsPackage() { Material = new MaterialPrimitive() };      
+      EditingViewModel.Item = new DeliveryNotePackage() { DeliveryNote = new DeliveryNotePrimitive() };      
       EditingViewModel.EditingMode = EditingMode.New;
       EditingMode = EditingMode.Display;
     }
@@ -45,14 +45,14 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     protected override void AddCloneItemCommandExecute()
     {
       base.AddCloneItemCommandExecute();
-      MaterialAndContractorsPackage clone = Items.SelectedItem.GetPackageCopy();
+      DeliveryNotePackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {
-        clone.Material.Id = 0;        
+        clone.DeliveryNote.Id = 0;        
       }
       else
       {
-        clone = new MaterialAndContractorsPackage() { Material = new MaterialPrimitive() };
+        clone = new DeliveryNotePackage() { DeliveryNote = new DeliveryNotePrimitive() };
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;
@@ -62,9 +62,9 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     { 
       if (base.OnItemDeletedFlagChanged())
       {
-        using (IMaterialsService service = ServiceFactory.GetMaterialsService())
+        using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
         {
-          service.DeleteMaterial(EditingViewModel.Item.GetMaterialPrimitiveWithReference());
+          service.CanceledDeliveryNote(EditingViewModel.Item.DeliveryNote);
         }
         Refresh();
         return true;

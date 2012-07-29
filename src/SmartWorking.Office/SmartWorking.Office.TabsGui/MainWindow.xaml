@@ -6,7 +6,6 @@
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
-        xmlns:MainGroups="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups" 
         xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:SaleGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup">
     <Window.DataContext>
         <TabsGui:MainWindowViewModel  />
@@ -23,8 +22,8 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
 
-            <TabItem Header="{Binding Name}" DataContext="{Binding SaleGroupViewModel}" >
-                <SaleGroup:SaleGroupControl/>
+            <TabItem Header="{Binding Name}" DataContext="{Binding SaleGroupViewModel}"  >
+                <SaleGroup:SaleGroupControl  />
             </TabItem>
 
             <TabItem Header="str_Reports">

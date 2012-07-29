@@ -13,20 +13,20 @@ namespace SmartWorking.Office.PrimitiveEntities
     public ClientPrimitive Client { get; set; }
     public ClientBuildingAndBuildingPackage ClientBuildingPackage { get; set; }
     public RecipePrimitive Recipe { get; set; }
-    private ICollection<DeliveryNotePrimitive> _deliveryNotes;
-    public ICollection<DeliveryNotePrimitive> DeliveryNotes
+    private ICollection<DeliveryNotePackage> _deliveryNotePackageList;
+    public ICollection<DeliveryNotePackage> DeliveryNotePackageList
     {
       get
       {
-        if (_deliveryNotes == null)
+        if (_deliveryNotePackageList == null)
         {
-          _deliveryNotes = new ObservableCollection<DeliveryNotePrimitive>();
+          _deliveryNotePackageList = new ObservableCollection<DeliveryNotePackage>();
         }
-        return _deliveryNotes;
+        return _deliveryNotePackageList;
       }
       set
       {
-        _deliveryNotes = value;
+        _deliveryNotePackageList = value;
       }
     }
   }
