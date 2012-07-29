@@ -1,13 +1,11 @@
 ﻿<View:DetailsUserControl x:Class="SmartWorking.Office.TabsGui.Controls.Buildings.BuildingDetailsControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid >
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel"
+     mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
+    <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-            <Grid  >
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
@@ -24,36 +22,43 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
                 <!--Debug only-->
-                <TextBlock Text="BuildingDetailsControl_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_Id}"
+                     Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <TextBlock Text="BuildingDetailsControl_InternalName:" Grid.Row="1" />
-                <TextBlock Text="BuildingDetailsControl_City:" Grid.Row="2" />
-                <TextBlock Text="BuildingDetailsControl_ZIPCode:" Grid.Row="3" />
-                <TextBlock Text="BuildingDetailsControl_Street:" Grid.Row="4" />
-                <TextBlock Text="BuildingDetailsControl_HouseNo:" Grid.Row="5" />
-                <TextBlock Text="BuildingDetailsControl_Phone:" Grid.Row="6" />
-                <TextBlock Text="BuildingDetailsControl_ContactPerson:" Grid.Row="7" />
-                <TextBlock Text="BuildingDetailsControl_ContactPersonPhone:" Grid.Row="8" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_InternalName}"
+                     Grid.Row="1" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_City}"
+                     Grid.Row="2" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_ZIPCode}"
+                     Grid.Row="3" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_Street}"
+                     Grid.Row="4" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_HouseNo}"
+                     Grid.Row="5" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_Phone}"
+                     Grid.Row="6" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_ContactPerson}"
+                     Grid.Row="7" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_ContactPersonPhone}"
+                     Grid.Row="8" />
                 <!--<TextBlock Text="Odległość:" Grid.Row="9" />-->
-
                 <!--End Debug only-->
-                <TextBox Text="{Binding Item.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBox Text="{Binding Item.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--Debug only-->
-                <TextBox Text="{Binding Item.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.City}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.ZIPCode}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.Street}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.HouseNo}" Grid.Row="5" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.Phone}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.ContactPerson}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.ContactPersonPhone}" Grid.Row="8" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.City}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.ZIPCode}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Street}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.HouseNo}" Grid.Row="5" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Phone}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.ContactPerson}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.ContactPersonPhone}" Grid.Row="8" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <!--<TextBox Text="{Binding RouteDistance, Mode=OneWay, ElementName=Map}" Grid.Row="9" Grid.Column="1" IsReadOnly="True" />-->
-
-                <TextBlock Text="BuildingDetailsControl_IsActive:" Grid.Row="9" />
-                <CheckBox Grid.Row="9" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
-                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_IsActive}"
+                     Grid.Row="9" />
+                <CheckBox Grid.Row="9" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}"
+                     IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" />
             </Grid>
         </ScrollViewer>
     </Grid>

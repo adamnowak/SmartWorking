@@ -16,9 +16,9 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="strFilter:"/>
+            <TextBlock Grid.Column="0" Text="Filter:"/>
             <TextBox Grid.Column="1" Text="{Binding Filter}" />
-            <Button Grid.Column="2" Content="strApply" Command="{Binding ApplyFilterCommand}" />
+            <Button Grid.Column="2" Content="Search" Command="{Binding ApplyFilterCommand}" />
         </Grid>
 
 
@@ -39,11 +39,11 @@
             <DataGrid.Columns>
                 
                 <!--Debug only-->
-                <DataGridTextColumn Header="str_Id" Binding="{Binding Material.Id}"
+                <DataGridTextColumn Header="Id" Binding="{Binding Material.Id}"
                     Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <DataGridTextColumn Header="str_Symbol" Binding="{Binding Material.InternalName}" />
+                <DataGridTextColumn Header="InternalName" Binding="{Binding Material.InternalName}" />
                 <DataGridTextColumn Header="str_Nazwa" Binding="{Binding Material.Name}" />
                 <DataGridTextColumn Header="str_Producent_Id" Binding="{Binding Producer.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
@@ -63,9 +63,9 @@
                 </MultiBinding>
             </GroupBox.Visibility>            
             <StackPanel Orientation="Horizontal" >
-                <RadioButton Content="strOnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
-                <RadioButton Content="strIncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
-                <RadioButton Content="strAll" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
+                <RadioButton Content="OnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
+                <RadioButton Content="IncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
+                <RadioButton Content="All" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
                          Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
             </StackPanel>
         </GroupBox>

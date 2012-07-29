@@ -25,17 +25,17 @@
                 </Grid.RowDefinitions>
 
                     <!--Debug only-->
-                <TextBlock Text="str_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                     <!--End Debug only-->
-                <TextBlock Text="str_Symbol:" Grid.Row="1" />
+                <TextBlock Text="InternalName:" Grid.Row="1" />
                 <TextBlock Text="str_Nazwa:" Grid.Row="2" />
 
 
-                <TextBlock Text="str_Ulica:" Grid.Row="3" />
-                <TextBlock Text="str_Numer domu:" Grid.Row="4" />
-                <TextBlock Text="str_Miasto:" Grid.Row="5" />
-                <TextBlock Text="str_Kod pocztowy:" Grid.Row="6" />
-                <TextBlock Text="str_Telefon:" Grid.Row="7" />
+                <TextBlock Text="Street:" Grid.Row="3" />
+                <TextBlock Text="HouseNo:" Grid.Row="4" />
+                <TextBlock Text="City:" Grid.Row="5" />
+                <TextBlock Text="ZIPCode:" Grid.Row="6" />
+                <TextBlock Text="Phone:" Grid.Row="7" />
 
                     <!--End Debug only-->
                 <TextBox Text="{Binding Item.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
@@ -50,7 +50,7 @@
 
                     <TextBox Text="{Binding Item.Phone}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
 
-                <TextBlock Text="str_IsActive:" Grid.Row="8" />
+                <TextBlock Text="IsActive:" Grid.Row="8" />
                 <CheckBox Grid.Row="8" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>

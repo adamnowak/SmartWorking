@@ -22,7 +22,7 @@
                 </Grid.RowDefinitions>
 
                 <!--Debug only-->
-                <TextBlock Text="str_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
                 <TextBlock Text="str_Planowany termin dostawy:" Grid.Row="1" />
                 <TextBlock Text="str_Ilość w [m3]:" Grid.Row="2" />
@@ -42,7 +42,7 @@
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
                 <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" Text="{Binding Item.Order.Notice}"/>
 
-                <TextBlock Text="str_IsActive:" Grid.Row="5" />
+                <TextBlock Text="IsActive:" Grid.Row="5" />
                 <CheckBox Grid.Row="5" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Order.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>

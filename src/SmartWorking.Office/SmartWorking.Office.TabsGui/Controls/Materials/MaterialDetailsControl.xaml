@@ -23,9 +23,9 @@
                 </Grid.RowDefinitions>
 
                 <!--Debug only-->
-                <TextBlock Text="str_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
-                <TextBlock Text="str_Symbol:" Grid.Row="1" />
+                <TextBlock Text="InternalName:" Grid.Row="1" />
                 <TextBlock Text="str_Nazwa:" Grid.Row="2" />
 
                 <!--End Debug only-->
@@ -48,9 +48,9 @@
                         </Grid.RowDefinitions>
 
                         <!--Debug only-->
-                        <TextBlock Text="str_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <!--End Debug only-->
-                        <TextBlock Text="str_Symbol:" Grid.Row="1" />
+                        <TextBlock Text="InternalName:" Grid.Row="1" />
                         <TextBlock Text="str_Nazwa:" Grid.Row="2" />
 
 
@@ -77,9 +77,9 @@
                         </Grid.RowDefinitions>
 
                         <!--Debug only-->
-                        <TextBlock Text="str_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <!--End Debug only-->
-                        <TextBlock Text="str_Symbol:" Grid.Row="1" />
+                        <TextBlock Text="InternalName:" Grid.Row="1" />
                         <TextBlock Text="str_Nazwa:" Grid.Row="2" />
 
 
@@ -93,7 +93,7 @@
                     </Grid>
                 </GroupBox>
                 
-                <TextBlock Text="str_IsActive:" Grid.Row="5" />
+                <TextBlock Text="IsActive:" Grid.Row="5" />
                 <CheckBox Grid.Row="5" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Material.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>

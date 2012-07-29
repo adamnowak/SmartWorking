@@ -23,7 +23,7 @@
                 </Grid.RowDefinitions>
 
                 <!--Debug only-->
-                <TextBlock Text="str_Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
                 <TextBlock Text="str_Numer recepty:" Grid.Row="1" />
                 <TextBlock Text="str_Kod recepty:" Grid.Row="2" />
@@ -42,7 +42,7 @@
                 <TextBox Text="{Binding Item.Recipe.Granulation}" Grid.Row="4" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
                 <TextBox Text="{Binding Item.Recipe.Consistency}" Grid.Row="5" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
 
-                <TextBlock Text="str_IsActive:" Grid.Row="6" />
+                <TextBlock Text="IsActive:" Grid.Row="6" />
                 <CheckBox Grid.Row="6" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Recipe.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>

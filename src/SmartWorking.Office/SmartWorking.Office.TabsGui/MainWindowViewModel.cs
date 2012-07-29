@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -20,6 +21,7 @@ using SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup;
 using SmartWorking.Office.TabsGui.Shared.View;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
+using WPFLocalizeExtension.Engine;
 
 namespace SmartWorking.Office.TabsGui
 {
@@ -56,7 +58,7 @@ namespace SmartWorking.Office.TabsGui
       AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
       MainViewModel = this;
       IsDebugMode = false;
-
+      LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
     }
     
 
@@ -122,6 +124,15 @@ namespace SmartWorking.Office.TabsGui
           return;
         }
         _isDebugMode = value;
+        if (_isDebugMode)
+        {
+          LocalizeDictionary.Instance.Culture = new CultureInfo("en-US");
+        }
+        else
+        {
+          LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
+        }
+
         // Update bindings, no broadcast
         RaisePropertyChanged(IsDebugModePropertyName);
       }

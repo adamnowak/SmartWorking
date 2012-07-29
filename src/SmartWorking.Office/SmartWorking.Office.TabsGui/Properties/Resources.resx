@@ -117,4 +117,348 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BuildingDetailsControl_Id" xml:space="preserve">
+    <value>Id:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_InternalName" xml:space="preserve">
+    <value>InternalName:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_City" xml:space="preserve">
+    <value>City:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_ZIPCode" xml:space="preserve">
+    <value>ZIPCode:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_Street" xml:space="preserve">
+    <value>Street:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_HouseNo" xml:space="preserve">
+    <value>HouseNo:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_Phone" xml:space="preserve">
+    <value>Phone:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_ContactPerson" xml:space="preserve">
+    <value>ContactPerson:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_ContactPersonPhone" xml:space="preserve">
+    <value>ContactPersonPhone:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingDetailsControl_IsActive" xml:space="preserve">
+    <value>IsActive:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingListControl_Filter" xml:space="preserve">
+    <value>Filter</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingListControl_InternalName" xml:space="preserve">
+    <value>InternalName</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="BuildingListControl_City" xml:space="preserve">
+    <value>City</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="BuildingListControl_Street" xml:space="preserve">
+    <value>Street</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="BuildingListControl_HouseNo" xml:space="preserve">
+    <value>HouseNo</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="BuildingListControl_Phone" xml:space="preserve">
+    <value>Phone</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="BuildingListControl_OnlyActivate" xml:space="preserve">
+    <value>OnlyActivate</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="BuildingListControl_IncludeDeactive" xml:space="preserve">
+    <value>IncludeDeactive</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="BuildingListControl_All" xml:space="preserve">
+    <value>All</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="BuildingListControl_Search" xml:space="preserve">
+    <value>Search</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="CarDetailsControl_Id" xml:space="preserve">
+    <value>Id:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_InternalName" xml:space="preserve">
+    <value>InternalName:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_RegistrationNumber" xml:space="preserve">
+    <value>RegistrationNumber:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_CarType" xml:space="preserve">
+    <value>CarType:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_Capacity" xml:space="preserve">
+    <value>Capacity:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_TransportType" xml:space="preserve">
+    <value>TransportType:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_Driver" xml:space="preserve">
+    <value>Driver</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="CarDetailsControl_Driver_Id" xml:space="preserve">
+    <value>Id:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_Driver_InternalName" xml:space="preserve">
+    <value>InternalName:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_Driver_Name" xml:space="preserve">
+    <value>Name:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_Driver_Surname" xml:space="preserve">
+    <value>Surname:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_Driver_Phone" xml:space="preserve">
+    <value>Phone:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarDetailsControl_IsActive" xml:space="preserve">
+    <value>IsActive:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarListControl_Filter" xml:space="preserve">
+    <value>Filter:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="CarListControl_Search" xml:space="preserve">
+    <value>Search</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="CarListControl_Id" xml:space="preserve">
+    <value>Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="CarListControl_InternalName" xml:space="preserve">
+    <value>InternalName</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="CarListControl_RegistrationNumber" xml:space="preserve">
+    <value>RegistrationNumber</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="CarListControl_CarType" xml:space="preserve">
+    <value>CarType</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="CarListControl_Capacity" xml:space="preserve">
+    <value>Capacity</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="CarListControl_TransportType" xml:space="preserve">
+    <value>TransportType</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="CarListControl_DriverNameSurname" xml:space="preserve">
+    <value>DriverNameSurname</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="CarListControl_OnlyActivate" xml:space="preserve">
+    <value>OnlyActivate</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="CarListControl_IncludeDeactive" xml:space="preserve">
+    <value>IncludeDeactive</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="CarListControl_All" xml:space="preserve">
+    <value>All</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_Id" xml:space="preserve">
+    <value>Id:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_InternalName" xml:space="preserve">
+    <value>InternalName:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_City" xml:space="preserve">
+    <value>City:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_ZIPCode" xml:space="preserve">
+    <value>ZIPCode:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_Street" xml:space="preserve">
+    <value>Street:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_HouseNo" xml:space="preserve">
+    <value>HouseNo:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_Phone" xml:space="preserve">
+    <value>Phone:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_ContactPerson" xml:space="preserve">
+    <value>ContactPerson:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_ContactPersonPhone" xml:space="preserve">
+    <value>ContactPersonPhone:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingDetailsControl_IsActive" xml:space="preserve">
+    <value>IsActive:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingListControl_Filter" xml:space="preserve">
+    <value>Filter:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientBuildingListControl_Search" xml:space="preserve">
+    <value>Search</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="ClientBuildingListControl_Id" xml:space="preserve">
+    <value>Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientBuildingListControl_BuildingId" xml:space="preserve">
+    <value>Building_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientBuildingListControl_BuildingInternalName" xml:space="preserve">
+    <value>Building_InternalName</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientBuildingListControl_BuildingCity" xml:space="preserve">
+    <value>Building_City</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientBuildingListControl_BuildingStreet" xml:space="preserve">
+    <value>Building_Street</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientBuildingListControl_BuildingHouseNo" xml:space="preserve">
+    <value>Building_HouseNo</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientBuildingListControl_BuildingContactPersonPhone" xml:space="preserve">
+    <value>Building_ContactPersonPhone</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientBuildingListControl_OnlyActivate" xml:space="preserve">
+    <value>OnlyActivate</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="ClientBuildingListControl_IncludeDeactive" xml:space="preserve">
+    <value>IncludeDeactive</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="ClientBuildingListControl_All" xml:space="preserve">
+    <value>All</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="ClientDetailsControl_Id" xml:space="preserve">
+    <value>Id:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientDetailsControl_InternalName" xml:space="preserve">
+    <value>InternalName:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientDetailsControl_CompanyNameNameSurname" xml:space="preserve">
+    <value>CompanyName/NameSurname:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientDetailsControl_NIP" xml:space="preserve">
+    <value>NIP:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientDetailsControl_City" xml:space="preserve">
+    <value>City:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientDetailsControl_ZIPCode" xml:space="preserve">
+    <value>ZIPCode:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientDetailsControl_Street" xml:space="preserve">
+    <value>Street:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientDetailsControl_HouseNo" xml:space="preserve">
+    <value>HouseNo:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientDetailsControl_Phone" xml:space="preserve">
+    <value>Phone:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientDetailsControl_IsActive" xml:space="preserve">
+    <value>IsActive:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientListControl_Filter" xml:space="preserve">
+    <value>Filter:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ClientListControl_Search" xml:space="preserve">
+    <value>Search</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="ClientListControl_Id" xml:space="preserve">
+    <value>Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientListControl_InternalName" xml:space="preserve">
+    <value>InternalName</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientListControl_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientListControl_Phone" xml:space="preserve">
+    <value>Phone</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientListControl_OnlyActivate" xml:space="preserve">
+    <value>OnlyActivate</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="ClientListControl_IncludeDeactive" xml:space="preserve">
+    <value>IncludeDeactive</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="ClientListControl_All" xml:space="preserve">
+    <value>All</value>
+    <comment>RadioButton.Content</comment>
+  </data>
 </root>

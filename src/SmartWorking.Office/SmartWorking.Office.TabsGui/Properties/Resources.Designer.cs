@@ -59,5 +59,779 @@ namespace SmartWorking.Office.TabsGui.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City:.
+        /// </summary>
+        public static string BuildingDetailsControl_City {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContactPerson:.
+        /// </summary>
+        public static string BuildingDetailsControl_ContactPerson {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_ContactPerson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContactPersonPhone:.
+        /// </summary>
+        public static string BuildingDetailsControl_ContactPersonPhone {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_ContactPersonPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HouseNo:.
+        /// </summary>
+        public static string BuildingDetailsControl_HouseNo {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_HouseNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string BuildingDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string BuildingDetailsControl_InternalName {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive:.
+        /// </summary>
+        public static string BuildingDetailsControl_IsActive {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone:.
+        /// </summary>
+        public static string BuildingDetailsControl_Phone {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street:.
+        /// </summary>
+        public static string BuildingDetailsControl_Street {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ZIPCode:.
+        /// </summary>
+        public static string BuildingDetailsControl_ZIPCode {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_ZIPCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string BuildingListControl_All {
+            get {
+                return ResourceManager.GetString("BuildingListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string BuildingListControl_City {
+            get {
+                return ResourceManager.GetString("BuildingListControl_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string BuildingListControl_Filter {
+            get {
+                return ResourceManager.GetString("BuildingListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HouseNo.
+        /// </summary>
+        public static string BuildingListControl_HouseNo {
+            get {
+                return ResourceManager.GetString("BuildingListControl_HouseNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string BuildingListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("BuildingListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName.
+        /// </summary>
+        public static string BuildingListControl_InternalName {
+            get {
+                return ResourceManager.GetString("BuildingListControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string BuildingListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("BuildingListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string BuildingListControl_Phone {
+            get {
+                return ResourceManager.GetString("BuildingListControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string BuildingListControl_Search {
+            get {
+                return ResourceManager.GetString("BuildingListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street.
+        /// </summary>
+        public static string BuildingListControl_Street {
+            get {
+                return ResourceManager.GetString("BuildingListControl_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capacity:.
+        /// </summary>
+        public static string CarDetailsControl_Capacity {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_Capacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CarType:.
+        /// </summary>
+        public static string CarDetailsControl_CarType {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_CarType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver.
+        /// </summary>
+        public static string CarDetailsControl_Driver {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_Driver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string CarDetailsControl_Driver_Id {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_Driver_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string CarDetailsControl_Driver_InternalName {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_Driver_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string CarDetailsControl_Driver_Name {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_Driver_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone:.
+        /// </summary>
+        public static string CarDetailsControl_Driver_Phone {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_Driver_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surname:.
+        /// </summary>
+        public static string CarDetailsControl_Driver_Surname {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_Driver_Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string CarDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string CarDetailsControl_InternalName {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive:.
+        /// </summary>
+        public static string CarDetailsControl_IsActive {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RegistrationNumber:.
+        /// </summary>
+        public static string CarDetailsControl_RegistrationNumber {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_RegistrationNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TransportType:.
+        /// </summary>
+        public static string CarDetailsControl_TransportType {
+            get {
+                return ResourceManager.GetString("CarDetailsControl_TransportType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string CarListControl_All {
+            get {
+                return ResourceManager.GetString("CarListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capacity.
+        /// </summary>
+        public static string CarListControl_Capacity {
+            get {
+                return ResourceManager.GetString("CarListControl_Capacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CarType.
+        /// </summary>
+        public static string CarListControl_CarType {
+            get {
+                return ResourceManager.GetString("CarListControl_CarType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DriverNameSurname.
+        /// </summary>
+        public static string CarListControl_DriverNameSurname {
+            get {
+                return ResourceManager.GetString("CarListControl_DriverNameSurname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string CarListControl_Filter {
+            get {
+                return ResourceManager.GetString("CarListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string CarListControl_Id {
+            get {
+                return ResourceManager.GetString("CarListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string CarListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("CarListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName.
+        /// </summary>
+        public static string CarListControl_InternalName {
+            get {
+                return ResourceManager.GetString("CarListControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string CarListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("CarListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RegistrationNumber.
+        /// </summary>
+        public static string CarListControl_RegistrationNumber {
+            get {
+                return ResourceManager.GetString("CarListControl_RegistrationNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string CarListControl_Search {
+            get {
+                return ResourceManager.GetString("CarListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TransportType.
+        /// </summary>
+        public static string CarListControl_TransportType {
+            get {
+                return ResourceManager.GetString("CarListControl_TransportType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_City {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContactPerson:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_ContactPerson {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_ContactPerson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContactPersonPhone:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_ContactPersonPhone {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_ContactPersonPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HouseNo:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_HouseNo {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_HouseNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_InternalName {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_IsActive {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_Phone {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_Street {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ZIPCode:.
+        /// </summary>
+        public static string ClientBuildingDetailsControl_ZIPCode {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsControl_ZIPCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string ClientBuildingListControl_All {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building_City.
+        /// </summary>
+        public static string ClientBuildingListControl_BuildingCity {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_BuildingCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building_ContactPersonPhone.
+        /// </summary>
+        public static string ClientBuildingListControl_BuildingContactPersonPhone {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_BuildingContactPersonPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building_HouseNo.
+        /// </summary>
+        public static string ClientBuildingListControl_BuildingHouseNo {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_BuildingHouseNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building_Id.
+        /// </summary>
+        public static string ClientBuildingListControl_BuildingId {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_BuildingId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building_InternalName.
+        /// </summary>
+        public static string ClientBuildingListControl_BuildingInternalName {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_BuildingInternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building_Street.
+        /// </summary>
+        public static string ClientBuildingListControl_BuildingStreet {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_BuildingStreet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string ClientBuildingListControl_Filter {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string ClientBuildingListControl_Id {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string ClientBuildingListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string ClientBuildingListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string ClientBuildingListControl_Search {
+            get {
+                return ResourceManager.GetString("ClientBuildingListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City:.
+        /// </summary>
+        public static string ClientDetailsControl_City {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CompanyName/NameSurname:.
+        /// </summary>
+        public static string ClientDetailsControl_CompanyNameNameSurname {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_CompanyNameNameSurname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HouseNo:.
+        /// </summary>
+        public static string ClientDetailsControl_HouseNo {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_HouseNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string ClientDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string ClientDetailsControl_InternalName {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive:.
+        /// </summary>
+        public static string ClientDetailsControl_IsActive {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NIP:.
+        /// </summary>
+        public static string ClientDetailsControl_NIP {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_NIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone:.
+        /// </summary>
+        public static string ClientDetailsControl_Phone {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street:.
+        /// </summary>
+        public static string ClientDetailsControl_Street {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ZIPCode:.
+        /// </summary>
+        public static string ClientDetailsControl_ZIPCode {
+            get {
+                return ResourceManager.GetString("ClientDetailsControl_ZIPCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string ClientListControl_All {
+            get {
+                return ResourceManager.GetString("ClientListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string ClientListControl_Filter {
+            get {
+                return ResourceManager.GetString("ClientListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string ClientListControl_Id {
+            get {
+                return ResourceManager.GetString("ClientListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string ClientListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("ClientListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName.
+        /// </summary>
+        public static string ClientListControl_InternalName {
+            get {
+                return ResourceManager.GetString("ClientListControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string ClientListControl_Name {
+            get {
+                return ResourceManager.GetString("ClientListControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string ClientListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("ClientListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string ClientListControl_Phone {
+            get {
+                return ResourceManager.GetString("ClientListControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string ClientListControl_Search {
+            get {
+                return ResourceManager.GetString("ClientListControl_Search", resourceCulture);
+            }
+        }
     }
 }
