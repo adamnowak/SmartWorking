@@ -57,8 +57,8 @@ namespace SmartWorking.Office.TabsGui
       AdministrationGroupViewModel = new AdministrationGroupViewModel(this, ModalDialogService, ServiceFactory);
       AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
       MainViewModel = this;
-      IsDebugMode = false;
-      LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
+      IsDebugMode = true;
+      //LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
     }
     
 

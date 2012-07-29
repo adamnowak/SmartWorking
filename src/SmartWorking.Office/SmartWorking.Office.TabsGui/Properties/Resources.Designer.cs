@@ -61,6 +61,429 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cars.
+        /// </summary>
+        public static string AdministrationGroupControl_Cars {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Cars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AdministrationGroupControl_Cars_Add {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Cars_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddClone.
+        /// </summary>
+        public static string AdministrationGroupControl_Cars_AddClone {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Cars_AddClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string AdministrationGroupControl_Cars_Cancel {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Cars_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CarList.
+        /// </summary>
+        public static string AdministrationGroupControl_Cars_CarList {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Cars_CarList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CarsDetails.
+        /// </summary>
+        public static string AdministrationGroupControl_Cars_CarsDetails {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Cars_CarsDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string AdministrationGroupControl_Cars_Edit {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Cars_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string AdministrationGroupControl_Cars_Save {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Cars_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contractors.
+        /// </summary>
+        public static string AdministrationGroupControl_Contractors {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Contractors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AdministrationGroupControl_Contractors_Add {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Contractors_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddClone.
+        /// </summary>
+        public static string AdministrationGroupControl_Contractors_AddClone {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Contractors_AddClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string AdministrationGroupControl_Contractors_Cancel {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Contractors_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContractorDetails.
+        /// </summary>
+        public static string AdministrationGroupControl_Contractors_ContractorDetails {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Contractors_ContractorDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContractorList.
+        /// </summary>
+        public static string AdministrationGroupControl_Contractors_ContractorList {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Contractors_ContractorList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string AdministrationGroupControl_Contractors_Edit {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Contractors_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string AdministrationGroupControl_Contractors_Save {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Contractors_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drivers.
+        /// </summary>
+        public static string AdministrationGroupControl_Drivers {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Drivers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AdministrationGroupControl_Drivers_Add {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Drivers_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddClone.
+        /// </summary>
+        public static string AdministrationGroupControl_Drivers_AddClone {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Drivers_AddClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string AdministrationGroupControl_Drivers_Cancel {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Drivers_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DriverList.
+        /// </summary>
+        public static string AdministrationGroupControl_Drivers_DriverList {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Drivers_DriverList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DriversDetails.
+        /// </summary>
+        public static string AdministrationGroupControl_Drivers_DriversDetails {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Drivers_DriversDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string AdministrationGroupControl_Drivers_Edit {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Drivers_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string AdministrationGroupControl_Drivers_Save {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Drivers_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EditingMode:.
+        /// </summary>
+        public static string AdministrationGroupControl_EditingMode {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_EditingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editing \{0\}.
+        /// </summary>
+        public static string AdministrationGroupControl_EditingMode_StringFormat {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_EditingMode_StringFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Materials.
+        /// </summary>
+        public static string AdministrationGroupControl_Materials {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Materials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AdministrationGroupControl_Materials_Add {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Materials_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddClone.
+        /// </summary>
+        public static string AdministrationGroupControl_Materials_AddClone {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Materials_AddClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string AdministrationGroupControl_Materials_Cancel {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Materials_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string AdministrationGroupControl_Materials_Edit {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Materials_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MaterialDetails.
+        /// </summary>
+        public static string AdministrationGroupControl_Materials_MaterialDetails {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Materials_MaterialDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MaterialList.
+        /// </summary>
+        public static string AdministrationGroupControl_Materials_MaterialList {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Materials_MaterialList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string AdministrationGroupControl_Materials_Save {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Materials_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipes.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_Add {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddClone.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_AddClone {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_AddClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AllMaterials.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_AllMaterials {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_AllMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_Cancel {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_Edit {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MaterialInRecipe.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_MaterialInRecipe {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_MaterialInRecipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MaterialsInRecipe.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_MaterialsInRecipe {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_MaterialsInRecipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RecipeCompnents.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_RecipeCompnents {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_RecipeCompnents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RecipeDetails.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_RecipeDetails {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_RecipeDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RecipeList.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_RecipeList {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_RecipeList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string AdministrationGroupControl_Recipes_Save {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Recipes_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string AdministrationGroupControl_Refresh {
+            get {
+                return ResourceManager.GetString("AdministrationGroupControl_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City:.
         /// </summary>
         public static string BuildingDetailsControl_City {
@@ -831,6 +1254,1356 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string ClientListControl_Search {
             get {
                 return ResourceManager.GetString("ClientListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City:.
+        /// </summary>
+        public static string ContractorDetailsControl_City {
+            get {
+                return ResourceManager.GetString("ContractorDetailsControl_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HouseNo:.
+        /// </summary>
+        public static string ContractorDetailsControl_HouseNo {
+            get {
+                return ResourceManager.GetString("ContractorDetailsControl_HouseNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string ContractorDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("ContractorDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string ContractorDetailsControl_InternalName {
+            get {
+                return ResourceManager.GetString("ContractorDetailsControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive:.
+        /// </summary>
+        public static string ContractorDetailsControl_IsActive {
+            get {
+                return ResourceManager.GetString("ContractorDetailsControl_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string ContractorDetailsControl_Name {
+            get {
+                return ResourceManager.GetString("ContractorDetailsControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone:.
+        /// </summary>
+        public static string ContractorDetailsControl_Phone {
+            get {
+                return ResourceManager.GetString("ContractorDetailsControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street:.
+        /// </summary>
+        public static string ContractorDetailsControl_Street {
+            get {
+                return ResourceManager.GetString("ContractorDetailsControl_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ZIPCode:.
+        /// </summary>
+        public static string ContractorDetailsControl_ZIPCode {
+            get {
+                return ResourceManager.GetString("ContractorDetailsControl_ZIPCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string ContractorListControl_All {
+            get {
+                return ResourceManager.GetString("ContractorListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string ContractorListControl_City {
+            get {
+                return ResourceManager.GetString("ContractorListControl_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string ContractorListControl_Filter {
+            get {
+                return ResourceManager.GetString("ContractorListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HouseNo.
+        /// </summary>
+        public static string ContractorListControl_HouseNo {
+            get {
+                return ResourceManager.GetString("ContractorListControl_HouseNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string ContractorListControl_Id {
+            get {
+                return ResourceManager.GetString("ContractorListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string ContractorListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("ContractorListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName.
+        /// </summary>
+        public static string ContractorListControl_InternalName {
+            get {
+                return ResourceManager.GetString("ContractorListControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string ContractorListControl_Name {
+            get {
+                return ResourceManager.GetString("ContractorListControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string ContractorListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("ContractorListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string ContractorListControl_Phone {
+            get {
+                return ResourceManager.GetString("ContractorListControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string ContractorListControl_Search {
+            get {
+                return ResourceManager.GetString("ContractorListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street.
+        /// </summary>
+        public static string ContractorListControl_Street {
+            get {
+                return ResourceManager.GetString("ContractorListControl_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ZIPCode.
+        /// </summary>
+        public static string ContractorListControl_ZIPCode {
+            get {
+                return ResourceManager.GetString("ContractorListControl_ZIPCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deliverer.
+        /// </summary>
+        public static string Deliverer {
+            get {
+                return ResourceManager.GetString("Deliverer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CarProtected.
+        /// </summary>
+        public static string DriverDetailsControl_CarProtected {
+            get {
+                return ResourceManager.GetString("DriverDetailsControl_CarProtected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string DriverDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("DriverDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string DriverDetailsControl_InternalName {
+            get {
+                return ResourceManager.GetString("DriverDetailsControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive:.
+        /// </summary>
+        public static string DriverDetailsControl_IsActive {
+            get {
+                return ResourceManager.GetString("DriverDetailsControl_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string DriverDetailsControl_Name {
+            get {
+                return ResourceManager.GetString("DriverDetailsControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone:.
+        /// </summary>
+        public static string DriverDetailsControl_Phone {
+            get {
+                return ResourceManager.GetString("DriverDetailsControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surname:.
+        /// </summary>
+        public static string DriverDetailsControl_Surname {
+            get {
+                return ResourceManager.GetString("DriverDetailsControl_Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string DriverListControl_All {
+            get {
+                return ResourceManager.GetString("DriverListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string DriverListControl_Filter {
+            get {
+                return ResourceManager.GetString("DriverListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string DriverListControl_Id {
+            get {
+                return ResourceManager.GetString("DriverListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string DriverListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("DriverListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName.
+        /// </summary>
+        public static string DriverListControl_InternalName {
+            get {
+                return ResourceManager.GetString("DriverListControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string DriverListControl_Name {
+            get {
+                return ResourceManager.GetString("DriverListControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string DriverListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("DriverListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string DriverListControl_Phone {
+            get {
+                return ResourceManager.GetString("DriverListControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string DriverListControl_Search {
+            get {
+                return ResourceManager.GetString("DriverListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surname.
+        /// </summary>
+        public static string DriverListControl_Surname {
+            get {
+                return ResourceManager.GetString("DriverListControl_Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive:.
+        /// </summary>
+        public static string IsActive {
+            get {
+                return ResourceManager.GetString("IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string MaterialDetailsControl_Deliverer_Id {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_Deliverer_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string MaterialDetailsControl_Deliverer_InternalName {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_Deliverer_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string MaterialDetailsControl_Deliverer_Name {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_Deliverer_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string MaterialDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string MaterialDetailsControl_InternalName {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string MaterialDetailsControl_Name {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Producer.
+        /// </summary>
+        public static string MaterialDetailsControl_Producer {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_Producer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string MaterialDetailsControl_Producer_Id {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_Producer_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string MaterialDetailsControl_Producer_InternalName {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_Producer_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string MaterialDetailsControl_Producer_Name {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_Producer_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string MaterialListControl_All {
+            get {
+                return ResourceManager.GetString("MaterialListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DelivererId.
+        /// </summary>
+        public static string MaterialListControl_DelivererId {
+            get {
+                return ResourceManager.GetString("MaterialListControl_DelivererId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DelivererInternalName.
+        /// </summary>
+        public static string MaterialListControl_DelivererInternalName {
+            get {
+                return ResourceManager.GetString("MaterialListControl_DelivererInternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string MaterialListControl_Filter {
+            get {
+                return ResourceManager.GetString("MaterialListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string MaterialListControl_Id {
+            get {
+                return ResourceManager.GetString("MaterialListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string MaterialListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("MaterialListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName.
+        /// </summary>
+        public static string MaterialListControl_InternalName {
+            get {
+                return ResourceManager.GetString("MaterialListControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string MaterialListControl_Name {
+            get {
+                return ResourceManager.GetString("MaterialListControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string MaterialListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("MaterialListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProducerId.
+        /// </summary>
+        public static string MaterialListControl_ProducerId {
+            get {
+                return ResourceManager.GetString("MaterialListControl_ProducerId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProducerInternalName.
+        /// </summary>
+        public static string MaterialListControl_ProducerInternalName {
+            get {
+                return ResourceManager.GetString("MaterialListControl_ProducerInternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string MaterialListControl_Search {
+            get {
+                return ResourceManager.GetString("MaterialListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount:.
+        /// </summary>
+        public static string OrderDetailsControl_Amount {
+            get {
+                return ResourceManager.GetString("OrderDetailsControl_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string OrderDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("OrderDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive:.
+        /// </summary>
+        public static string OrderDetailsControl_IsActive {
+            get {
+                return ResourceManager.GetString("OrderDetailsControl_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes:.
+        /// </summary>
+        public static string OrderDetailsControl_Notes {
+            get {
+                return ResourceManager.GetString("OrderDetailsControl_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PlanedDeliveryTime:.
+        /// </summary>
+        public static string OrderDetailsControl_PlanedDeliveryTime {
+            get {
+                return ResourceManager.GetString("OrderDetailsControl_PlanedDeliveryTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pump:.
+        /// </summary>
+        public static string OrderDetailsControl_Pump {
+            get {
+                return ResourceManager.GetString("OrderDetailsControl_Pump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string OrderListControl_All {
+            get {
+                return ResourceManager.GetString("OrderListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string OrderListControl_City {
+            get {
+                return ResourceManager.GetString("OrderListControl_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string OrderListControl_Filter {
+            get {
+                return ResourceManager.GetString("OrderListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HouseNo.
+        /// </summary>
+        public static string OrderListControl_HouseNo {
+            get {
+                return ResourceManager.GetString("OrderListControl_HouseNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string OrderListControl_Id {
+            get {
+                return ResourceManager.GetString("OrderListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string OrderListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("OrderListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName.
+        /// </summary>
+        public static string OrderListControl_InternalName {
+            get {
+                return ResourceManager.GetString("OrderListControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string OrderListControl_Name {
+            get {
+                return ResourceManager.GetString("OrderListControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string OrderListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("OrderListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string OrderListControl_Phone {
+            get {
+                return ResourceManager.GetString("OrderListControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string OrderListControl_Search {
+            get {
+                return ResourceManager.GetString("OrderListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Street.
+        /// </summary>
+        public static string OrderListControl_Street {
+            get {
+                return ResourceManager.GetString("OrderListControl_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ZIPCode.
+        /// </summary>
+        public static string OrderListControl_ZIPCode {
+            get {
+                return ResourceManager.GetString("OrderListControl_ZIPCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount:.
+        /// </summary>
+        public static string RecipeComponentDetailsControl_Amount {
+            get {
+                return ResourceManager.GetString("RecipeComponentDetailsControl_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DelivererInternalName:.
+        /// </summary>
+        public static string RecipeComponentDetailsControl_DelivererInternalName {
+            get {
+                return ResourceManager.GetString("RecipeComponentDetailsControl_DelivererInternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DelivererName:.
+        /// </summary>
+        public static string RecipeComponentDetailsControl_DelivererName {
+            get {
+                return ResourceManager.GetString("RecipeComponentDetailsControl_DelivererName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string RecipeComponentDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("RecipeComponentDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string RecipeComponentDetailsControl_InternalName {
+            get {
+                return ResourceManager.GetString("RecipeComponentDetailsControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string RecipeComponentDetailsControl_Name {
+            get {
+                return ResourceManager.GetString("RecipeComponentDetailsControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProducerInternalName:.
+        /// </summary>
+        public static string RecipeComponentDetailsControl_ProducerInternalName {
+            get {
+                return ResourceManager.GetString("RecipeComponentDetailsControl_ProducerInternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProducerName:.
+        /// </summary>
+        public static string RecipeComponentDetailsControl_ProducerName {
+            get {
+                return ResourceManager.GetString("RecipeComponentDetailsControl_ProducerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string RecipeComponentListControl_All {
+            get {
+                return ResourceManager.GetString("RecipeComponentListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string RecipeComponentListControl_Amount {
+            get {
+                return ResourceManager.GetString("RecipeComponentListControl_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string RecipeComponentListControl_Filter {
+            get {
+                return ResourceManager.GetString("RecipeComponentListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string RecipeComponentListControl_Id {
+            get {
+                return ResourceManager.GetString("RecipeComponentListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string RecipeComponentListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("RecipeComponentListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MaterialId.
+        /// </summary>
+        public static string RecipeComponentListControl_MaterialId {
+            get {
+                return ResourceManager.GetString("RecipeComponentListControl_MaterialId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MaterialName.
+        /// </summary>
+        public static string RecipeComponentListControl_MaterialName {
+            get {
+                return ResourceManager.GetString("RecipeComponentListControl_MaterialName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string RecipeComponentListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("RecipeComponentListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string RecipeComponentListControl_Search {
+            get {
+                return ResourceManager.GetString("RecipeComponentListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ConcreteClass:.
+        /// </summary>
+        public static string RecipeDetailsControl_ConcreteClass {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_ConcreteClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consistency:.
+        /// </summary>
+        public static string RecipeDetailsControl_Consistency {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_Consistency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Granulation:.
+        /// </summary>
+        public static string RecipeDetailsControl_Granulation {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_Granulation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string RecipeDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName:.
+        /// </summary>
+        public static string RecipeDetailsControl_InternalName {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IsActive:.
+        /// </summary>
+        public static string RecipeDetailsControl_IsActive1 {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_IsActive1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string RecipeDetailsControl_Name {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string RecipeListControl_All {
+            get {
+                return ResourceManager.GetString("RecipeListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ConcreteClass.
+        /// </summary>
+        public static string RecipeListControl_ConcreteClass {
+            get {
+                return ResourceManager.GetString("RecipeListControl_ConcreteClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consistency.
+        /// </summary>
+        public static string RecipeListControl_Consistency {
+            get {
+                return ResourceManager.GetString("RecipeListControl_Consistency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string RecipeListControl_Filter {
+            get {
+                return ResourceManager.GetString("RecipeListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Granulation.
+        /// </summary>
+        public static string RecipeListControl_Granulation {
+            get {
+                return ResourceManager.GetString("RecipeListControl_Granulation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string RecipeListControl_Id {
+            get {
+                return ResourceManager.GetString("RecipeListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string RecipeListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("RecipeListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalName.
+        /// </summary>
+        public static string RecipeListControl_InternalName {
+            get {
+                return ResourceManager.GetString("RecipeListControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string RecipeListControl_Name {
+            get {
+                return ResourceManager.GetString("RecipeListControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string RecipeListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("RecipeListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string RecipeListControl_Search {
+            get {
+                return ResourceManager.GetString("RecipeListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buildings.
+        /// </summary>
+        public static string SaleGroupControl_Buildings {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Buildings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string SaleGroupControl_Buildings_Add {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Buildings_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddClone.
+        /// </summary>
+        public static string SaleGroupControl_Buildings_AddClone {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Buildings_AddClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BuildingDetails.
+        /// </summary>
+        public static string SaleGroupControl_Buildings_BuildingDetails {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Buildings_BuildingDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SaleGroupControl_Buildings_Cancel {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Buildings_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string SaleGroupControl_Buildings_Edit {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Buildings_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaleGroupControl_Buildings_Save {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Buildings_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clients.
+        /// </summary>
+        public static string SaleGroupControl_Clients {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Clients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string SaleGroupControl_Clients_Add {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Clients_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddClone.
+        /// </summary>
+        public static string SaleGroupControl_Clients_AddClone {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Clients_AddClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SaleGroupControl_Clients_Cancel {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Clients_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ClientBuildings.
+        /// </summary>
+        public static string SaleGroupControl_Clients_ClientBuildings {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Clients_ClientBuildings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ClientDetails.
+        /// </summary>
+        public static string SaleGroupControl_Clients_ClientDetails {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Clients_ClientDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ClientList.
+        /// </summary>
+        public static string SaleGroupControl_Clients_ClientList {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Clients_ClientList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string SaleGroupControl_Clients_Edit {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Clients_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaleGroupControl_Clients_Save {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Clients_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EditingMode:.
+        /// </summary>
+        public static string SaleGroupControl_EditingMode {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_EditingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orders.
+        /// </summary>
+        public static string SaleGroupControl_Orders {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string SaleGroupControl_Orders_Add {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddClone.
+        /// </summary>
+        public static string SaleGroupControl_Orders_AddClone {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_AddClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string SaleGroupControl_Orders_Back {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SaleGroupControl_Orders_Cancel {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string SaleGroupControl_Orders_Edit {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OrderDetails.
+        /// </summary>
+        public static string SaleGroupControl_Orders_OrderDetails {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_OrderDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PrepareDeliver.
+        /// </summary>
+        public static string SaleGroupControl_Orders_PrepareDeliver {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_PrepareDeliver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaleGroupControl_Orders_Save {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SelectBuilding.
+        /// </summary>
+        public static string SaleGroupControl_Orders_SelectBuilding {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_SelectBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SelectClient.
+        /// </summary>
+        public static string SaleGroupControl_Orders_SelectClient {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_SelectClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SelectedBuilding.
+        /// </summary>
+        public static string SaleGroupControl_Orders_SelectedBuilding {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_SelectedBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SelectedClient.
+        /// </summary>
+        public static string SaleGroupControl_Orders_SelectedClient {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_SelectedClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SelectedRecipe.
+        /// </summary>
+        public static string SaleGroupControl_Orders_SelectedRecipe {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_SelectedRecipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SelectRecipe.
+        /// </summary>
+        public static string SaleGroupControl_Orders_SelectRecipe {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Orders_SelectRecipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string SaleGroupControl_Refresh {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Refresh", resourceCulture);
             }
         }
     }

@@ -1,13 +1,12 @@
 ﻿<View:DetailsUserControl x:Class="SmartWorking.Office.TabsGui.Controls.Drivers.DriverDetailsControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="400">
-    <Grid >
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters"
+     xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel"
+     mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="400" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
+    <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-            <Grid >
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
@@ -18,40 +17,40 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition  />
+                    <RowDefinition />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
                 <!--Debug only-->
-                <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverDetailsControl_Id}"
+                     Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <TextBlock Text="InternalName:" Grid.Row="1" />
-                <TextBlock Text="str_Imię:" Grid.Row="2" />
-                <TextBlock Text="str_Nazwisko:" Grid.Row="3" />
-                <TextBlock Text="str_Numer Telefonu:" Grid.Row="4" />
-                <TextBlock Text="IsActive:" Grid.Row="6" />
-
-
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverDetailsControl_InternalName}"
+                     Grid.Row="1" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverDetailsControl_Name}"
+                     Grid.Row="2" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverDetailsControl_Surname}"
+                     Grid.Row="3" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverDetailsControl_Phone}"
+                     Grid.Row="4" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverDetailsControl_IsActive}"
+                     Grid.Row="6" />
                 <!--End Debug only-->
-                <TextBox Text="{Binding Item.Driver.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBox Text="{Binding Item.Driver.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"
+                     Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--Debug only-->
-                <TextBox Text="{Binding Item.Driver.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.Driver.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.Driver.Surname}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.Driver.Phone}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}"/>
-
-                <GroupBox Header="str_Samochody pod opieką" Grid.Row="5" Grid.ColumnSpan="2">
+                <TextBox Text="{Binding Item.Driver.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Driver.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Driver.Surname}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Driver.Phone}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverDetailsControl_CarProtected}"
+                     Grid.Row="5" Grid.ColumnSpan="2">
                     <Grid>
                         <Cars:CarListControl FiltersVisibility="Collapsed" DataContext="{Binding CarListProtectedViewModel}" />
                     </Grid>
                 </GroupBox>
-
-                <CheckBox Grid.Row="6" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Driver.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
-                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
-
+                <CheckBox Grid.Row="6" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Driver.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}"
+                     IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" />
             </Grid>
-
-
         </ScrollViewer>
     </Grid>
 </View:DetailsUserControl>

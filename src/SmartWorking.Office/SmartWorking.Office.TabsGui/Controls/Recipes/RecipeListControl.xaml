@@ -1,9 +1,9 @@
 ﻿<View:ListUserControl x:Class="SmartWorking.Office.TabsGui.Controls.Recipes.RecipeListControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Interfaces="clr-namespace:SmartWorking.Office.Services.Interfaces;assembly=SmartWorking.Office.Services.Interfaces" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:Interfaces="clr-namespace:SmartWorking.Office.Services.Interfaces;assembly=SmartWorking.Office.Services.Interfaces"
+     xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View"
+     mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -14,46 +14,54 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Filter:"/>
+            <TextBlock Grid.Column="0" Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_Filter}" />
             <TextBox Grid.Column="1" Text="{Binding Filter}" />
-            <Button Grid.Column="2" Content="Search" Command="{Binding ApplyFilterCommand}" />
+            <Button Grid.Column="2" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_Search}"
+                 Command="{Binding ApplyFilterCommand}" />
         </Grid>
-
-
-        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
+        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
+             ItemsSource="{Binding Items}">
             <DataGrid.Resources>
                 <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
                 <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Recipe.IsDeactive}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}"/>
+                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Recipe.IsDeleted}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}"/>
+                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <!--Debug only-->
-                <DataGridTextColumn Header="Id" Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
-                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_Id}"
+                     Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <DataGridTextColumn Header="str_Numer recepty" Binding="{Binding Recipe.InternalName}" />
-                <DataGridTextColumn Header="str_Kod recepty" Binding="{Binding Recipe.Name}" />
-                <DataGridTextColumn Header="str_Klasa betonu" Binding="{Binding Recipe.ConcreteClass}" />
-                <DataGridTextColumn Header="str_Ziarno" Binding="{Binding Recipe.Granulation}" />
-                <DataGridTextColumn Header="str_Konsystencja" Binding="{Binding Recipe.Consistency}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_InternalName}"
+                     Binding="{Binding Recipe.InternalName}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_Name}"
+                     Binding="{Binding Recipe.Name}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_ConcreteClass}"
+                     Binding="{Binding Recipe.ConcreteClass}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_Granulation}"
+                     Binding="{Binding Recipe.Granulation}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_Consistency}"
+                     Binding="{Binding Recipe.Consistency}" />
             </DataGrid.Columns>
         </DataGrid>
         <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
-            <StackPanel Orientation="Horizontal" >
-                <RadioButton GroupName="RecipeListItemsFilterGroupName" Content="OnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
-                <RadioButton GroupName="RecipeListItemsFilterGroupName" Content="IncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
-                <RadioButton GroupName="RecipeListItemsFilterGroupName" Content="All" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
-                        Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
+            <StackPanel Orientation="Horizontal">
+                <RadioButton GroupName="RecipeListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_OnlyActivate}"
+                     IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}" />
+                <RadioButton GroupName="RecipeListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_IncludeDeactive}"
+                     IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}" />
+                <RadioButton GroupName="RecipeListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_All}"
+                     IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
+                     Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
             </StackPanel>
         </GroupBox>
     </Grid>

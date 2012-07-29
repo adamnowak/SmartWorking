@@ -44,7 +44,7 @@
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
                 <DataGridTextColumn Header="InternalName" Binding="{Binding Material.InternalName}" />
-                <DataGridTextColumn Header="str_Nazwa" Binding="{Binding Material.Name}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Material.Name}" />
                 <DataGridTextColumn Header="str_Producent_Id" Binding="{Binding Producer.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <DataGridTextColumn Header="str_Producent" Binding="{Binding Producer.InternalName}" />

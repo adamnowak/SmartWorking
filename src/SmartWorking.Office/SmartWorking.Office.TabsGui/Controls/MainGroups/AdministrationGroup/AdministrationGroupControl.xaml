@@ -1,9 +1,14 @@
 ﻿<UserControl x:Class="SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup.AdministrationGroupControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"  xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters" xmlns:Drivers="clr-namespace:SmartWorking.Office.TabsGui.Controls.Drivers" xmlns:Materials="clr-namespace:SmartWorking.Office.TabsGui.Controls.Materials" xmlns:Contractors="clr-namespace:SmartWorking.Office.TabsGui.Controls.Contractors" xmlns:Recipes="clr-namespace:SmartWorking.Office.TabsGui.Controls.Recipes" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:DeliveryNotes="clr-namespace:SmartWorking.Office.TabsGui.Controls.DeliveryNotes" mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+     xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+     xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Converters="clr-namespace:SmartWorking.Office.TabsGui.Converters"
+     xmlns:Drivers="clr-namespace:SmartWorking.Office.TabsGui.Controls.Drivers" xmlns:Materials="clr-namespace:SmartWorking.Office.TabsGui.Controls.Materials"
+     xmlns:Contractors="clr-namespace:SmartWorking.Office.TabsGui.Controls.Contractors"
+     xmlns:Recipes="clr-namespace:SmartWorking.Office.TabsGui.Controls.Recipes" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel"
+     xmlns:DeliveryNotes="clr-namespace:SmartWorking.Office.TabsGui.Controls.DeliveryNotes"
+     mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -12,21 +17,25 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition  Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Margin="7">
-                <TextBlock Text="{Binding SelectedItem.Header, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}}"></TextBlock>
-                <TextBlock Margin="10,0,0,0" Text="{Binding SelectedItem.Header, ElementName=administrationTabControl}"></TextBlock>
+                <TextBlock Text="{Binding SelectedItem.Header, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}}">
+                </TextBlock>
+                <TextBlock Margin="10,0,0,0" Text="{Binding SelectedItem.Header, ElementName=administrationTabControl}">
+                </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="7" Grid.Column="1">
-                <TextBlock Text="{Binding MainViewModel.EditingMode, StringFormat=str_Editing \{0\}}" />
-                <Button Content="strRefresh" Command="{Binding SelectedTab.DataContext.RefreshCommand}" />                
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_EditingMode}" />
+                <TextBlock Text="{Binding MainViewModel.EditingMode}" />
+                <Button Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Refresh}"
+                     Command="{Binding SelectedTab.DataContext.RefreshCommand}" />
             </StackPanel>
         </Grid>
-        <TabControl Grid.Row="1" Style="{StaticResource verticalTabControl}"  TabStripPlacement="Left" 
-                    x:Name="administrationTabControl" SelectedItem="{Binding SelectedTab}" IsSynchronizedWithCurrentItem="True">
+        <TabControl Grid.Row="1" Style="{StaticResource verticalTabControl}" TabStripPlacement="Left"
+             x:Name="administrationTabControl" SelectedItem="{Binding SelectedTab}" IsSynchronizedWithCurrentItem="True">
             <i:Interaction.Triggers>
-                <i:EventTrigger  EventName="SelectionChanged">
+                <i:EventTrigger EventName="SelectionChanged">
                     <cmd:EventToCommand Command="{Binding TabChangedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
@@ -35,26 +44,27 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
-                    </Grid.RowDefinitions>                    
+                    </Grid.RowDefinitions>
                     <!--Drivers-->
-                    <GroupBox Header="str_Drivers" Grid.Row="0">
-                        <Grid >
-
+                    <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Drivers}"
+                         Grid.Row="0">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            
                             <!--DriversDetails-->
-                            <GroupBox Header="str_DriversDetails" Grid.Column="0" >
-                                <Grid >
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Drivers_DriversDetails}"
+                                 Grid.Column="0">
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Drivers:DriverDetailsControl DataContext="{Binding DriverDetailsViewModel}"/>
+                                    <Drivers:DriverDetailsControl DataContext="{Binding DriverDetailsViewModel}" />
                                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                        <Button Command="{Binding DriverListViewModel.AddItemCommand}" Content="str_Add" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding DriverListViewModel.AddItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Drivers_Add}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -63,7 +73,8 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding DriverListViewModel.AddCloneItemCommand}" Content="str_AddClone" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding DriverListViewModel.AddCloneItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Drivers_AddClone}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -72,7 +83,8 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding DriverDetailsViewModel.EditItemCommand}" Content="str_Edit" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding DriverDetailsViewModel.EditItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Drivers_Edit}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -81,39 +93,40 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding DriverDetailsViewModel.SaveItemCommand}" Content="str_Save">
+                                        <Button Command="{Binding DriverDetailsViewModel.SaveItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Drivers_Save}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="DriverDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="DriverDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding DriverDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
+                                        <Button Command="{Binding DriverDetailsViewModel.CancelChangesCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Drivers_Cancel}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="DriverDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="DriverDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding DriverListViewModel.ChangeItemDeletedFlagCommand}"  IsEnabled="{Binding IsReadOnly}">                                            
+                                        <Button Command="{Binding DriverListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
-                                                    <MultiBinding.Bindings>                                                                                                                
-                                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                             ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                         <Binding Path="DriverDetailsViewModel.IsReadOnly" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                             <Button.Content>
                                                 <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <Binding Path="DriverDetailsViewModel.Item.Driver.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
-                                                    <Binding Source="{StaticResource StaticFalse}"/>
-                                                    <Binding Source="{StaticResource StaticStringUndelete}"/>
-                                                    <Binding Source="{StaticResource StaticStringDelete}"/>                                                    
+                                                    <Binding Path="DriverDetailsViewModel.Item.Driver.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Source="{StaticResource StaticFalse}" />
+                                                    <Binding Source="{StaticResource StaticStringUndelete}" />
+                                                    <Binding Source="{StaticResource StaticStringDelete}" />
                                                 </MultiBinding>
                                             </Button.Content>
                                         </Button>
@@ -121,36 +134,38 @@
                                 </Grid>
                             </GroupBox>
                             <!--DriverList-->
-                            <GroupBox Header="str_DriverList" Grid.Column="1"  DataContext="{Binding DriverListViewModel}" >
-                                <Grid >
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Drivers_DriverList}"
+                                 Grid.Column="1" DataContext="{Binding DriverListViewModel}">
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Drivers:DriverListControl/>
-                                    
+                                    <Drivers:DriverListControl />
                                 </Grid>
                             </GroupBox>
                         </Grid>
                     </GroupBox>
                     <!--Cars-->
-                    <GroupBox Header="str_Cars" Grid.Row="1">
-                        <Grid >
-
+                    <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Cars}"
+                         Grid.Row="1">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <!--CarsDetails-->
-                            <GroupBox Header="str_CarsDetails" Grid.Column="0" >
-                                <Grid >
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Cars_CarsDetails}"
+                                 Grid.Column="0">
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Cars:CarDetailsControl DataContext="{Binding CarDetailsViewModel}"/>
+                                    <Cars:CarDetailsControl DataContext="{Binding CarDetailsViewModel}" />
                                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                        <Button Command="{Binding CarListViewModel.AddItemCommand}" Content="str_Add" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding CarListViewModel.AddItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Cars_Add}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -159,8 +174,8 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-
-                                        <Button Command="{Binding CarListViewModel.AddCloneItemCommand}" Content="str_AddClone" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding CarListViewModel.AddCloneItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Cars_AddClone}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -169,7 +184,8 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding CarDetailsViewModel.EditItemCommand}" Content="str_Edit" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding CarDetailsViewModel.EditItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Cars_Edit}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -178,7 +194,7 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding CarDetailsViewModel.SaveItemCommand}" Content="str_Save">                                            
+                                        <Button Command="{Binding CarDetailsViewModel.SaveItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Cars_Save}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -187,12 +203,11 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding CarDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
+                                        <Button Command="{Binding CarDetailsViewModel.CancelChangesCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Cars_Cancel}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="CarDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
-
+                                                        <Binding Path="CarDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
@@ -201,36 +216,36 @@
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                             ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                         <Binding Path="CarDetailsViewModel.IsReadOnly" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                             <Button.Content>
                                                 <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <Binding Path="CarDetailsViewModel.Item.Car.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
-                                                    <Binding Source="{StaticResource StaticFalse}"/>
-                                                    <Binding Source="{StaticResource StaticStringUndelete}"/>
-                                                    <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                    <Binding Path="CarDetailsViewModel.Item.Car.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Source="{StaticResource StaticFalse}" />
+                                                    <Binding Source="{StaticResource StaticStringUndelete}" />
+                                                    <Binding Source="{StaticResource StaticStringDelete}" />
                                                 </MultiBinding>
                                             </Button.Content>
                                         </Button>
-                                        
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>
                             <!--CarsList-->
-                            <GroupBox Header="str_CarList" Grid.Column="1"   >
-                                <Grid >
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Cars_CarList}"
+                                 Grid.Column="1">
+                                <Grid>
                                     <!--IsEnabled="{Binding EditingViewModel.IsReadOnly}"-->
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Cars:CarListControl DataContext="{Binding CarListViewModel}"/>
+                                    <Cars:CarListControl DataContext="{Binding CarListViewModel}" />
                                 </Grid>
                             </GroupBox>
-                            
                         </Grid>
                     </GroupBox>
                 </Grid>
@@ -242,24 +257,25 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <!--Materials-->
-                    <GroupBox Header="str_Materials" Grid.Row="0">
-                        <Grid >
-
+                    <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Materials}"
+                         Grid.Row="0">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-
                             <!--MaterialsDetails-->
-                            <GroupBox Header="str_MaterialDetails" Grid.Column="0" >
-                                <Grid >
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Materials_MaterialDetails}"
+                                 Grid.Column="0">
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Materials:MaterialDetailsControl DataContext="{Binding MaterialDetailsViewModel}"/>
+                                    <Materials:MaterialDetailsControl DataContext="{Binding MaterialDetailsViewModel}" />
                                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                        <Button Command="{Binding MaterialListViewModel.AddItemCommand}" Content="str_Add" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding MaterialListViewModel.AddItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Materials_Add}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -268,7 +284,8 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding MaterialListViewModel.AddCloneItemCommand}" Content="str_AddClone" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding MaterialListViewModel.AddCloneItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Materials_AddClone}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -277,7 +294,8 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding MaterialDetailsViewModel.EditItemCommand}" Content="str_Edit" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding MaterialDetailsViewModel.EditItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Materials_Edit}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -286,20 +304,20 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding MaterialDetailsViewModel.SaveItemCommand}" Content="str_Save">
+                                        <Button Command="{Binding MaterialDetailsViewModel.SaveItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Materials_Save}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="MaterialDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="MaterialDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding MaterialDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
+                                        <Button Command="{Binding MaterialDetailsViewModel.CancelChangesCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Materials_Cancel}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="MaterialDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="MaterialDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
@@ -308,55 +326,57 @@
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                             ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                         <Binding Path="MaterialDetailsViewModel.IsReadOnly" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                             <Button.Content>
                                                 <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <Binding Path="MaterialDetailsViewModel.Item.Material.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
-                                                    <Binding Source="{StaticResource StaticFalse}"/>
-                                                    <Binding Source="{StaticResource StaticStringUndelete}"/>
-                                                    <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                    <Binding Path="MaterialDetailsViewModel.Item.Material.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Source="{StaticResource StaticFalse}" />
+                                                    <Binding Source="{StaticResource StaticStringUndelete}" />
+                                                    <Binding Source="{StaticResource StaticStringDelete}" />
                                                 </MultiBinding>
                                             </Button.Content>
                                         </Button>
-                                        
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>
                             <!--MaterialList-->
-                            <GroupBox Header="str_MaterialList" Grid.Column="1"  DataContext="{Binding MaterialListViewModel}" >
-                                <Grid >
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Materials_MaterialList}"
+                                 Grid.Column="1" DataContext="{Binding MaterialListViewModel}">
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Materials:MaterialListControl/>
-
+                                    <Materials:MaterialListControl />
                                 </Grid>
                             </GroupBox>
                         </Grid>
                     </GroupBox>
                     <!--Contractors-->
-                    <GroupBox Header="str_Contractors" Grid.Row="1">
-                        <Grid >
-
+                    <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Contractors}"
+                         Grid.Row="1">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <!--ContractorsDetails-->
-                            <GroupBox Header="str_ContractorDetails" Grid.Column="0" >
-                                <Grid >
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Contractors_ContractorDetails}"
+                                 Grid.Column="0">
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Contractors:ContractorDetailsControl DataContext="{Binding ContractorDetailsViewModel}"/>
+                                    <Contractors:ContractorDetailsControl DataContext="{Binding ContractorDetailsViewModel}" />
                                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                        <Button Command="{Binding ContractorListViewModel.AddItemCommand}" Content="str_Add" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding ContractorListViewModel.AddItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Contractors_Add}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -365,7 +385,8 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding ContractorListViewModel.AddCloneItemCommand}" Content="str_AddClone" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding ContractorListViewModel.AddCloneItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Contractors_AddClone}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -374,7 +395,8 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding ContractorDetailsViewModel.EditItemCommand}" Content="str_Edit" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding ContractorDetailsViewModel.EditItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Contractors_Edit}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -383,20 +405,20 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding ContractorDetailsViewModel.SaveItemCommand}" Content="str_Save">
+                                        <Button Command="{Binding ContractorDetailsViewModel.SaveItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Contractors_Save}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="ContractorDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="ContractorDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding ContractorDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
+                                        <Button Command="{Binding ContractorDetailsViewModel.CancelChangesCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Contractors_Cancel}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="ContractorDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="ContractorDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
@@ -405,17 +427,18 @@
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                             ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                         <Binding Path="ContractorDetailsViewModel.IsReadOnly" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                             <Button.Content>
                                                 <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                    <Binding Path="ContractorDetailsViewModel.Item.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
-                                                    <Binding Source="{StaticResource StaticFalse}"/>
-                                                    <Binding Source="{StaticResource StaticStringUndelete}"/>
-                                                    <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                    <Binding Path="ContractorDetailsViewModel.Item.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Source="{StaticResource StaticFalse}" />
+                                                    <Binding Source="{StaticResource StaticStringUndelete}" />
+                                                    <Binding Source="{StaticResource StaticStringDelete}" />
                                                 </MultiBinding>
                                             </Button.Content>
                                         </Button>
@@ -423,28 +446,27 @@
                                 </Grid>
                             </GroupBox>
                             <!--ContractorsList-->
-                            <GroupBox Header="str_ContractorList" Grid.Column="1"   >
-                                <Grid >
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Contractors_ContractorList}"
+                                 Grid.Column="1">
+                                <Grid>
                                     <!--IsEnabled="{Binding EditingViewModel.IsReadOnly}"-->
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Contractors:ContractorListControl DataContext="{Binding ContractorListViewModel}"/>
+                                    <Contractors:ContractorListControl DataContext="{Binding ContractorListViewModel}" />
                                 </Grid>
                             </GroupBox>
-
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="{Binding Name}" DataContext="{Binding RecipesTabItemViewModel}">
                 <Grid>
-                    
                     <!--Recipes-->
-                    <GroupBox Header="str_Recipes" Grid.Row="0">
-                        <Grid >
-
+                    <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes}"
+                         Grid.Row="0">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -454,44 +476,45 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <!--RecipesDetails-->
-                            <GroupBox Header="str_RecipeDetails" Grid.Column="0" >
-                                <Grid >
-                                    <Recipes:RecipeDetailsControl DataContext="{Binding RecipeDetailsViewModel}"/>
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_RecipeDetails}"
+                                 Grid.Column="0">
+                                <Grid>
+                                    <Recipes:RecipeDetailsControl DataContext="{Binding RecipeDetailsViewModel}" />
                                 </Grid>
                             </GroupBox>
                             <!--RecipeList-->
-                            <GroupBox Header="str_RecipeList" Grid.Column="1"  DataContext="{Binding RecipeListViewModel}" >
-                                <Grid >
+                            <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_RecipeList}"
+                                 Grid.Column="1" DataContext="{Binding RecipeListViewModel}">
+                                <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Recipes:RecipeListControl/>
-
+                                    <Recipes:RecipeListControl />
                                 </Grid>
                             </GroupBox>
                             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="5*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
-                                <GroupBox Header="str_RecipeCompnents"    >
-                                    <Grid >
+                                <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_RecipeCompnents}">
+                                    <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />                                            
                                             <ColumnDefinition />
-                                                                        
+                                            <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition />
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
-                                        <GroupBox Header="str_MaterialInRecipe" >
-                                        <Recipes:RecipeComponentDetailsControl  DataContext="{Binding RecipeDetailsViewModel.RecipeComponentDetailsViewModel}"/>
+                                        <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_MaterialInRecipe}">
+                                            <Recipes:RecipeComponentDetailsControl DataContext="{Binding RecipeDetailsViewModel.RecipeComponentDetailsViewModel}" />
                                         </GroupBox>
-                                        <StackPanel Grid.Row="1"  Orientation="Horizontal">
-                                            <Button Command="{Binding RecipeListViewModel.AddItemCommand}" Content="str_Add" IsEnabled="{Binding IsReadOnly}">
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <Button Command="{Binding RecipeListViewModel.AddItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_Add}"
+                                                 IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
@@ -500,7 +523,8 @@
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding RecipeListViewModel.AddCloneItemCommand}" Content="str_AddClone" IsEnabled="{Binding IsReadOnly}">
+                                            <Button Command="{Binding RecipeListViewModel.AddCloneItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_AddClone}"
+                                                 IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
@@ -509,7 +533,8 @@
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding RecipeDetailsViewModel.EditItemCommand}" Content="str_Edit" IsEnabled="{Binding IsReadOnly}">
+                                            <Button Command="{Binding RecipeDetailsViewModel.EditItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_Edit}"
+                                                 IsEnabled="{Binding IsReadOnly}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
@@ -518,20 +543,20 @@
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding RecipeDetailsViewModel.SaveItemCommand}" Content="str_Save">
+                                            <Button Command="{Binding RecipeDetailsViewModel.SaveItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_Save}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="RecipeDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                            <Binding Path="RecipeDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                             </Button>
-                                            <Button Command="{Binding RecipeDetailsViewModel.CancelChangesCommand}" Content="str_Cancel">
+                                            <Button Command="{Binding RecipeDetailsViewModel.CancelChangesCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_Cancel}">
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="RecipeDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                            <Binding Path="RecipeDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
@@ -540,40 +565,40 @@
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
-                                                            <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                            <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                                 ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                             <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
                                                 </Button.Visibility>
                                                 <Button.Content>
                                                     <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                        <Binding Path="RecipeDetailsViewModel.Item.Recipe.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}"/>
-                                                        <Binding Source="{StaticResource StaticFalse}"/>
-                                                        <Binding Source="{StaticResource StaticStringUndelete}"/>
-                                                        <Binding Source="{StaticResource StaticStringDelete}"/>
+                                                        <Binding Path="RecipeDetailsViewModel.Item.Recipe.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                        <Binding Source="{StaticResource StaticFalse}" />
+                                                        <Binding Source="{StaticResource StaticStringUndelete}" />
+                                                        <Binding Source="{StaticResource StaticStringDelete}" />
                                                     </MultiBinding>
                                                 </Button.Content>
-                                            </Button>                                            
+                                            </Button>
                                         </StackPanel>
-
-                                        <GroupBox Header="str_MaterialsInRecipe" Grid.Column="2" Grid.RowSpan="2">
-                                            <Recipes:RecipeComponentListControl  FiltersVisibility="Collapsed"  DataContext="{Binding RecipeDetailsViewModel.RecipeComponentListViewModel}"/>
+                                        <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_MaterialsInRecipe}"
+                                             Grid.Column="2" Grid.RowSpan="2">
+                                            <Recipes:RecipeComponentListControl FiltersVisibility="Collapsed" DataContext="{Binding RecipeDetailsViewModel.RecipeComponentListViewModel}" />
                                         </GroupBox>
-                                        
-
                                     </Grid>
                                 </GroupBox>
                                 <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
-                                    <Button Content="&lt;&lt;"  Command="{Binding RecipeDetailsViewModel.AddMaterialCommand}"/>
-                                    <Button Content=">>"  Command="{Binding RecipeDetailsViewModel.RemoveMaterialCommand}"/>                                    
+                                    <Button Content="&lt;&lt;" Command="{Binding RecipeDetailsViewModel.AddMaterialCommand}" />
+                                    <Button Content="&gt;&gt;" Command="{Binding RecipeDetailsViewModel.RemoveMaterialCommand}" />
                                 </StackPanel>
-                                <GroupBox Header="str_AllMaterials" Grid.Column="2">
-                                    <Materials:MaterialListControl DataContext="{Binding RecipeDetailsViewModel.MaterialListToAddViewModel}" ListItemsFilterVisibility="Collapsed" />
+                                <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_AllMaterials}"
+                                     Grid.Column="2">
+                                    <Materials:MaterialListControl DataContext="{Binding RecipeDetailsViewModel.MaterialListToAddViewModel}"
+                                         ListItemsFilterVisibility="Collapsed" />
                                 </GroupBox>
                             </Grid>
                         </Grid>
                     </GroupBox>
-                    
                 </Grid>
             </TabItem>
         </TabControl>
