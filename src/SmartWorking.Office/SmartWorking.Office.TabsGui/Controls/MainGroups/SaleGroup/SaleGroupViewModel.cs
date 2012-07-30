@@ -3,6 +3,7 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
+using WPFLocalizeExtension.Engine;
 
 namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
 {
@@ -22,6 +23,8 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
       ClientsAndBuildingsTabItemViewModel = new ClientsAndBuildingsTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
       OrdersTabItemViewModel = new OrdersTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
       DeliveryNotesTabItemViewModel = new DeliveryNotesTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
+
+      
     }
 
     /// <summary>

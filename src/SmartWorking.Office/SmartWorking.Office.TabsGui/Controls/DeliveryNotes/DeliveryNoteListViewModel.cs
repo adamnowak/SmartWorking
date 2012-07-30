@@ -9,9 +9,13 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 {
   public class DeliveryNoteListViewModel : ListingEditableControlViewModel<DeliveryNotePackage>
   {
-    public DeliveryNoteListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<DeliveryNotePackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public IEditableControlViewModel<OrderPackage> OrderDetailsControlViewModel { get; private set; }
+
+    public DeliveryNoteListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<DeliveryNotePackage> editingViewModel, IEditableControlViewModel<OrderPackage> orderDetailsControlViewModel,
+      IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
+      OrderDetailsControlViewModel = orderDetailsControlViewModel;
     }
 
     public override string Name
@@ -37,8 +41,16 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 
     protected override void AddItemCommandExecute()
     {
+      
       base.AddItemCommandExecute();
-      EditingViewModel.Item = new DeliveryNotePackage() { DeliveryNote = new DeliveryNotePrimitive() };      
+      EditingViewModel.Item = new DeliveryNotePackage()
+                                {
+                                  DeliveryNote = new DeliveryNotePrimitive(),
+                                  Order =
+                                    (OrderDetailsControlViewModel != null && OrderDetailsControlViewModel.Item != null)
+                                      ? OrderDetailsControlViewModel.Item.Order
+                                      : null 
+                                };      
       EditingViewModel.EditingMode = EditingMode.New;
       EditingMode = EditingMode.Display;
     }
@@ -53,7 +65,14 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       }
       else
       {
-        clone = new DeliveryNotePackage() { DeliveryNote = new DeliveryNotePrimitive() };
+        clone = new DeliveryNotePackage()
+        {
+          DeliveryNote = new DeliveryNotePrimitive(),
+          Order =
+            (OrderDetailsControlViewModel != null && OrderDetailsControlViewModel.Item != null)
+              ? OrderDetailsControlViewModel.Item.Order
+              : null
+        };     
       }
       EditingViewModel.Item = clone;
       EditingViewModel.EditingMode = EditingMode.New;

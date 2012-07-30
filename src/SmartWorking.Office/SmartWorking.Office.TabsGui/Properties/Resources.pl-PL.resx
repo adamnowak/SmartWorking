@@ -118,203 +118,203 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdministrationGroupControl_Cars" xml:space="preserve">
-    <value>Cars</value>
+    <value>Samochody</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Cars_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Cars_AddClone" xml:space="preserve">
-    <value>AddClone</value>
+    <value>Duplikuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Cars_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Cars_CarList" xml:space="preserve">
-    <value>CarList</value>
+    <value>Lista samochodów</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Cars_CarsDetails" xml:space="preserve">
-    <value>CarsDetails</value>
+    <value>Szczegóły samochodu</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Cars_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Edytuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Cars_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors" xml:space="preserve">
-    <value>Contractors</value>
+    <value>Dostawcy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_AddClone" xml:space="preserve">
-    <value>AddClone</value>
+    <value>Duplikuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_ContractorDetails" xml:space="preserve">
-    <value>ContractorDetails</value>
+    <value>Szczególy dostawcy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_ContractorList" xml:space="preserve">
-    <value>ContractorList</value>
+    <value>Lista dostawców</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Edytuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers" xml:space="preserve">
-    <value>Drivers</value>
+    <value>Kierowcy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_AddClone" xml:space="preserve">
-    <value>AddClone</value>
+    <value>Duplikuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_DriverList" xml:space="preserve">
-    <value>DriverList</value>
+    <value>Lista kierowców</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_DriversDetails" xml:space="preserve">
-    <value>DriversDetails</value>
+    <value>Szegóły kierowcy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Edytuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_EditingMode" xml:space="preserve">
-    <value>EditingMode:</value>
+    <value>Tryb edycji:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="AdministrationGroupControl_Materials" xml:space="preserve">
-    <value>Materials</value>
+    <value>Materiały</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Materials_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Materials_AddClone" xml:space="preserve">
-    <value>AddClone</value>
+    <value>Duplikuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Materials_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Materials_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Edytuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Materials_MaterialDetails" xml:space="preserve">
-    <value>MaterialDetails</value>
+    <value>Szczegóły materiału</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Materials_MaterialList" xml:space="preserve">
-    <value>MaterialList</value>
+    <value>Lista materiałów</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Materials_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes" xml:space="preserve">
-    <value>Recipes</value>
+    <value>Receptury</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_AddClone" xml:space="preserve">
-    <value>AddClone</value>
+    <value>Duplikuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_AllMaterials" xml:space="preserve">
-    <value>AllMaterials</value>
+    <value>Wszystkie materiały</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Edytuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_MaterialInRecipe" xml:space="preserve">
-    <value>MaterialInRecipe</value>
+    <value>Materiał w recepturze</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_MaterialsInRecipe" xml:space="preserve">
-    <value>MaterialsInRecipe</value>
+    <value>Materiały w recepturze</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_RecipeCompnents" xml:space="preserve">
-    <value>RecipeCompnents</value>
+    <value>Elementy receptury</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_RecipeDetails" xml:space="preserve">
-    <value>RecipeDetails</value>
+    <value>Szczegóły receptury</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_RecipeList" xml:space="preserve">
-    <value>RecipeList</value>
+    <value>Lista receptur</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Odśwież</value>
     <comment>Button.Content</comment>
   </data>
   <data name="BuildingDetailsControl_City" xml:space="preserve">
-    <value>City:</value>
+    <value>Miasto:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_ContactPerson" xml:space="preserve">
-    <value>ContactPerson:</value>
+    <value>Kontakt:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_ContactPersonPhone" xml:space="preserve">
-    <value>ContactPersonPhone:</value>
+    <value>Telefon do kontaktu:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_HouseNo" xml:space="preserve">
-    <value>HouseNo:</value>
+    <value>Numer domu:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_Id" xml:space="preserve">
@@ -322,27 +322,27 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_IsActive" xml:space="preserve">
-    <value>IsActive:</value>
+    <value>Aktywny?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_Phone" xml:space="preserve">
-    <value>Phone:</value>
+    <value>Telefon:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_Street" xml:space="preserve">
-    <value>Street:</value>
+    <value>Ulica:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_ZIPCode" xml:space="preserve">
-    <value>ZIPCode:</value>
+    <value>Kod pocztowy:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="BuildingListControl_City" xml:space="preserve">
@@ -350,7 +350,7 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_Filter" xml:space="preserve">
-    <value>Filter</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingListControl_HouseNo" xml:space="preserve">
@@ -358,39 +358,39 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="BuildingListControl_InternalName" xml:space="preserve">
-    <value>InternalName</value>
+    <value>Symbol</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="BuildingListControl_Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Telefon</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="BuildingListControl_Street" xml:space="preserve">
-    <value>Street</value>
+    <value>Ulica</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarDetailsControl_Capacity" xml:space="preserve">
-    <value>Capacity:</value>
+    <value>Ładowność</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_CarType" xml:space="preserve">
-    <value>CarType:</value>
+    <value>Typ samochodu:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver" xml:space="preserve">
-    <value>Driver</value>
+    <value>Kierowca</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="CarDetailsControl_Driver_Id" xml:space="preserve">
@@ -398,19 +398,19 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver_Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nazwa:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver_Phone" xml:space="preserve">
-    <value>Phone:</value>
+    <value>Telefon:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Driver_Surname" xml:space="preserve">
-    <value>Surname:</value>
+    <value>Nazwisko:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_Id" xml:space="preserve">
@@ -418,39 +418,39 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_IsActive" xml:space="preserve">
-    <value>IsActive:</value>
+    <value>Aktywny?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_RegistrationNumber" xml:space="preserve">
-    <value>RegistrationNumber:</value>
+    <value>Numer rejestracyjny:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_TransportType" xml:space="preserve">
-    <value>TransportType:</value>
+    <value>Rodzaj transportu:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="CarListControl_Capacity" xml:space="preserve">
-    <value>Capacity</value>
+    <value>Ładowność</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarListControl_CarType" xml:space="preserve">
-    <value>CarType</value>
+    <value>Rodzaj samochodu</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarListControl_DriverNameSurname" xml:space="preserve">
-    <value>DriverNameSurname</value>
+    <value>Kierowca</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarListControl_Id" xml:space="preserve">
@@ -458,27 +458,27 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="CarListControl_InternalName" xml:space="preserve">
-    <value>InternalName</value>
+    <value>Symbol</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="CarListControl_RegistrationNumber" xml:space="preserve">
-    <value>RegistrationNumber</value>
+    <value>Numer rejestracyjny</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="CarListControl_TransportType" xml:space="preserve">
-    <value>TransportType</value>
+    <value>Rodzaj transportu</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarTypes_ConcreteTruckMixer" xml:space="preserve">
@@ -498,19 +498,19 @@
     <comment>CarTypes.Enum</comment>
   </data>
   <data name="ClientBuildingDetailsControl_City" xml:space="preserve">
-    <value>City:</value>
+    <value>Miasto:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_ContactPerson" xml:space="preserve">
-    <value>ContactPerson:</value>
+    <value>Kontakt:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_ContactPersonPhone" xml:space="preserve">
-    <value>ContactPersonPhone:</value>
+    <value>Telefon do kontaktu:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_HouseNo" xml:space="preserve">
-    <value>HouseNo:</value>
+    <value>Numer domu:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_Id" xml:space="preserve">
@@ -518,39 +518,39 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_IsActive" xml:space="preserve">
-    <value>IsActive:</value>
+    <value>Aktywny?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_Phone" xml:space="preserve">
-    <value>Phone:</value>
+    <value>Telefon:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_Street" xml:space="preserve">
-    <value>Street:</value>
+    <value>Ulica:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_ZIPCode" xml:space="preserve">
-    <value>ZIPCode:</value>
+    <value>Kod pocztowy:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingCity" xml:space="preserve">
-    <value>Building_City</value>
+    <value>Miasto budowy</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingContactPersonPhone" xml:space="preserve">
-    <value>Building_ContactPersonPhone</value>
+    <value>Kontakt na budowę</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingHouseNo" xml:space="preserve">
-    <value>Building_HouseNo</value>
+    <value>Numer domu budowy</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingId" xml:space="preserve">
@@ -558,15 +558,15 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingInternalName" xml:space="preserve">
-    <value>Building_InternalName</value>
+    <value>Symbol budowy</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingStreet" xml:space="preserve">
-    <value>Building_Street</value>
+    <value>Ulica budowy</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingListControl_Id" xml:space="preserve">
@@ -574,27 +574,27 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ClientBuildingListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ClientBuildingListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="ClientDetailsControl_City" xml:space="preserve">
-    <value>City:</value>
+    <value>Miasto:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_CompanyNameNameSurname" xml:space="preserve">
-    <value>CompanyNameNameSurname:</value>
+    <value>Nazwa/Imię i nazwisko</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_HouseNo" xml:space="preserve">
-    <value>HouseNo:</value>
+    <value>Numer domu:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_Id" xml:space="preserve">
@@ -602,11 +602,11 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_IsActive" xml:space="preserve">
-    <value>IsActive:</value>
+    <value>Aktywny?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_NIP" xml:space="preserve">
@@ -614,23 +614,23 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_Phone" xml:space="preserve">
-    <value>Phone:</value>
+    <value>Telefon:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_Street" xml:space="preserve">
-    <value>Street:</value>
+    <value>Ulica:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_ZIPCode" xml:space="preserve">
-    <value>ZIPCode:</value>
+    <value>Kod pocztowy:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ClientListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientListControl_Id" xml:space="preserve">
@@ -638,35 +638,35 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ClientListControl_InternalName" xml:space="preserve">
-    <value>InternalName</value>
+    <value>Symbol</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientListControl_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nazwa</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ClientListControl_Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Telefon</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="ContractorDetailsControl_City" xml:space="preserve">
-    <value>City:</value>
+    <value>Miasto:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_HouseNo" xml:space="preserve">
-    <value>HouseNo:</value>
+    <value>Numer domu:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_Id" xml:space="preserve">
@@ -674,43 +674,43 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_IsActive" xml:space="preserve">
-    <value>IsActive:</value>
+    <value>Aktywny?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nazwa:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_Phone" xml:space="preserve">
-    <value>Phone:</value>
+    <value>Telefon:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_Street" xml:space="preserve">
-    <value>Street:</value>
+    <value>Ulica:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_ZIPCode" xml:space="preserve">
-    <value>ZIPCode:</value>
+    <value>Kod pocztowy:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ContractorListControl_City" xml:space="preserve">
-    <value>City</value>
+    <value>Miasto</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ContractorListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorListControl_HouseNo" xml:space="preserve">
-    <value>HouseNo</value>
+    <value>Numer domu</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ContractorListControl_Id" xml:space="preserve">
@@ -718,43 +718,43 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ContractorListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ContractorListControl_InternalName" xml:space="preserve">
-    <value>InternalName</value>
+    <value>Symbol</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ContractorListControl_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nazwa</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ContractorListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ContractorListControl_Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Telefon</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ContractorListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="ContractorListControl_Street" xml:space="preserve">
-    <value>Street</value>
+    <value>Ulica</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ContractorListControl_ZIPCode" xml:space="preserve">
-    <value>ZIPCode</value>
+    <value>Kod pocztowy</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="Deliverer" xml:space="preserve">
-    <value>Deliverer</value>
+    <value>Dostawca</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="DriverDetailsControl_CarProtected" xml:space="preserve">
-    <value>CarProtected</value>
+    <value>Samochody pod opieką</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="DriverDetailsControl_Id" xml:space="preserve">
@@ -762,31 +762,31 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="DriverDetailsControl_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="DriverDetailsControl_IsActive" xml:space="preserve">
-    <value>IsActive:</value>
+    <value>Aktywny?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="DriverDetailsControl_Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nazwa:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="DriverDetailsControl_Phone" xml:space="preserve">
-    <value>Phone:</value>
+    <value>Telefon:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="DriverDetailsControl_Surname" xml:space="preserve">
-    <value>Surname:</value>
+    <value>Nazwisko:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="DriverListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="DriverListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="DriverListControl_Id" xml:space="preserve">
@@ -794,11 +794,11 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="DriverListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="DriverListControl_InternalName" xml:space="preserve">
-    <value>InternalName</value>
+    <value>Symbol</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="DriverListControl_Name" xml:space="preserve">
@@ -806,15 +806,15 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="DriverListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="DriverListControl_Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Telefon</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="DriverListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="DriverListControl_Surname" xml:space="preserve">
@@ -822,7 +822,7 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="IsActive" xml:space="preserve">
-    <value>IsActive:</value>
+    <value>Aktywny?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_Deliverer_Id" xml:space="preserve">
@@ -830,11 +830,11 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_Deliverer_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_Deliverer_Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nazwa:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_Id" xml:space="preserve">
@@ -842,15 +842,15 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nazwa:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_Producer" xml:space="preserve">
-    <value>Producer</value>
+    <value>Producent</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="MaterialDetailsControl_Producer_Id" xml:space="preserve">
@@ -858,15 +858,15 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_Producer_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_Producer_Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nazwa:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="MaterialListControl_DelivererId" xml:space="preserve">
@@ -874,11 +874,11 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="MaterialListControl_DelivererInternalName" xml:space="preserve">
-    <value>DelivererInternalName</value>
+    <value>Symbol dostawcy</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="MaterialListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialListControl_Id" xml:space="preserve">
@@ -886,19 +886,19 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="MaterialListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="MaterialListControl_InternalName" xml:space="preserve">
-    <value>InternalName</value>
+    <value>Symbol</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="MaterialListControl_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nazwa</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="MaterialListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="MaterialListControl_ProducerId" xml:space="preserve">
@@ -906,15 +906,15 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="MaterialListControl_ProducerInternalName" xml:space="preserve">
-    <value>ProducerInternalName</value>
+    <value>Symbol producenta</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="MaterialListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="OrderDetailsControl_Amount" xml:space="preserve">
-    <value>Amount:</value>
+    <value>Ilość [m³]:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderDetailsControl_Id" xml:space="preserve">
@@ -922,23 +922,23 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderDetailsControl_IsActive" xml:space="preserve">
-    <value>IsActive:</value>
+    <value>Aktywny?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderDetailsControl_Notes" xml:space="preserve">
-    <value>Notes:</value>
+    <value>Uwagi:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderDetailsControl_PlanedDeliveryTime" xml:space="preserve">
-    <value>PlanedDeliveryTime:</value>
+    <value>Planowany czas dostawy:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderDetailsControl_Pump" xml:space="preserve">
-    <value>Pump:</value>
+    <value>Pompa?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="OrderListControl_City" xml:space="preserve">
@@ -946,7 +946,7 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderListControl_HouseNo" xml:space="preserve">
@@ -958,11 +958,11 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="OrderListControl_InternalName" xml:space="preserve">
-    <value>InternalName</value>
+    <value>Symbol</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_Name" xml:space="preserve">
@@ -970,19 +970,19 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="OrderListControl_Phone" xml:space="preserve">
-    <value>Phone</value>
+    <value>Telefon</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="OrderListControl_Street" xml:space="preserve">
-    <value>Street</value>
+    <value>Ulica</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_ZIPCode" xml:space="preserve">
@@ -990,15 +990,15 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeComponentDetailsControl_Amount" xml:space="preserve">
-    <value>Amount:</value>
+    <value>Ilość [m³]:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentDetailsControl_DelivererInternalName" xml:space="preserve">
-    <value>DelivererInternalName:</value>
+    <value>Symbol dostawcy:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentDetailsControl_DelivererName" xml:space="preserve">
-    <value>DelivererName:</value>
+    <value>Nazwa dostawcy:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentDetailsControl_Id" xml:space="preserve">
@@ -1006,31 +1006,31 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentDetailsControl_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentDetailsControl_Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nazwa:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentDetailsControl_ProducerInternalName" xml:space="preserve">
-    <value>ProducerInternalName:</value>
+    <value>Symbol Producenta:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentDetailsControl_ProducerName" xml:space="preserve">
-    <value>ProducerName:</value>
+    <value>Nazwa producenta:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="RecipeComponentListControl_Amount" xml:space="preserve">
-    <value>Amount</value>
+    <value>Ilość [m³]</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeComponentListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentListControl_Id" xml:space="preserve">
@@ -1038,7 +1038,7 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeComponentListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="RecipeComponentListControl_MaterialId" xml:space="preserve">
@@ -1046,27 +1046,27 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeComponentListControl_MaterialName" xml:space="preserve">
-    <value>MaterialName</value>
+    <value>Nazwa materiału</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeComponentListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="RecipeComponentListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="RecipeDetailsControl_ConcreteClass" xml:space="preserve">
-    <value>ConcreteClass:</value>
+    <value>Klasa betonu:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_Consistency" xml:space="preserve">
-    <value>Consistency:</value>
+    <value>Konsystencja:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_Granulation" xml:space="preserve">
-    <value>Granulation:</value>
+    <value>Ziarnistość:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_Id" xml:space="preserve">
@@ -1074,35 +1074,35 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_InternalName" xml:space="preserve">
-    <value>InternalName:</value>
+    <value>Symbol:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_IsActive1" xml:space="preserve">
-    <value>IsActive:</value>
+    <value>Aktywny?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Nazwa:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeListControl_All" xml:space="preserve">
-    <value>All</value>
+    <value>Wszystkie</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="RecipeListControl_ConcreteClass" xml:space="preserve">
-    <value>ConcreteClass</value>
+    <value>Klasa betonu</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeListControl_Consistency" xml:space="preserve">
-    <value>Consistency</value>
+    <value>Konsystencja</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeListControl_Filter" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Filtr:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeListControl_Granulation" xml:space="preserve">
-    <value>Granulation</value>
+    <value>Ziarnistość</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeListControl_Id" xml:space="preserve">
@@ -1110,167 +1110,167 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeListControl_IncludeDeactive" xml:space="preserve">
-    <value>IncludeDeactive</value>
+    <value>Pokaż również nieaktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="RecipeListControl_InternalName" xml:space="preserve">
-    <value>InternalName</value>
+    <value>Symbol</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeListControl_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nazwa</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeListControl_OnlyActivate" xml:space="preserve">
-    <value>OnlyActivate</value>
+    <value>Tylko aktywne</value>
     <comment>RadioButton.Content</comment>
   </data>
   <data name="RecipeListControl_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Buildings" xml:space="preserve">
-    <value>Buildings</value>
+    <value>Budowle</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Buildings_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Buildings_AddClone" xml:space="preserve">
-    <value>AddClone</value>
+    <value>Duplikuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Buildings_BuildingDetails" xml:space="preserve">
-    <value>BuildingDetails</value>
+    <value>Szczegóły budowli</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Buildings_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Buildings_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Edytuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Buildings_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Clients" xml:space="preserve">
-    <value>Clients</value>
+    <value>Klienci</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Clients_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Clients_AddClone" xml:space="preserve">
-    <value>AddClone</value>
+    <value>Duplikuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Clients_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Clients_ClientBuildings" xml:space="preserve">
-    <value>ClientBuildings</value>
+    <value>Budowle klienta</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Clients_ClientDetails" xml:space="preserve">
-    <value>ClientDetails</value>
+    <value>Szczegóły klienta</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Clients_ClientList" xml:space="preserve">
-    <value>ClientList</value>
+    <value>Lista klientów</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Clients_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Edytuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Clients_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_EditingMode" xml:space="preserve">
-    <value>EditingMode:</value>
+    <value>Tryb edycji:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="SaleGroupControl_Orders" xml:space="preserve">
-    <value>Orders</value>
+    <value>Zamówienia</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Orders_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Dodaj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Orders_AddClone" xml:space="preserve">
-    <value>AddClone</value>
+    <value>Duplikuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Orders_Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Powróć</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Orders_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anuluj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Orders_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Edytuj</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Orders_OrderDetails" xml:space="preserve">
-    <value>OrderDetails</value>
+    <value>Szczegóły zamówienia</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Orders_PrepareDeliver" xml:space="preserve">
-    <value>PrepareDeliver</value>
+    <value>Dostawa</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Orders_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Orders_SelectBuilding" xml:space="preserve">
-    <value>SelectBuilding</value>
+    <value>Wybierz budowę</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Orders_SelectClient" xml:space="preserve">
-    <value>SelectClient</value>
+    <value>Wybierz klienta</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Orders_SelectedBuilding" xml:space="preserve">
-    <value>SelectedBuilding</value>
+    <value>Wybrana budowa</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Orders_SelectedClient" xml:space="preserve">
-    <value>SelectedClient</value>
+    <value>Wybrany klient</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Orders_SelectedRecipe" xml:space="preserve">
-    <value>SelectedRecipe</value>
+    <value>Wybrana receptura</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Orders_SelectRecipe" xml:space="preserve">
-    <value>SelectRecipe</value>
+    <value>Wybierz recepturę</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Refresh" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Odśwież</value>
     <comment>Button.Content</comment>
   </data>
   <data name="TransportTypes_Client" xml:space="preserve">
-    <value>ClientTransport</value>
+    <value>Odbiór własny przez klienta</value>
     <comment>TransportTypes.Enum</comment>
   </data>
   <data name="TransportTypes_Own" xml:space="preserve">
-    <value>OwnTransport</value>
+    <value>Transport własny</value>
     <comment>TransportTypes.Enum</comment>
   </data>
   <data name="TransportTypes_Rent" xml:space="preserve">
-    <value>RentTransport</value>
+    <value>Transport wynajęty</value>
     <comment>TransportTypes.Enum</comment>
   </data>
   <data name="BuildingListControl_Id" xml:space="preserve">
@@ -1279,135 +1279,121 @@
   </data>
   <data name="BuildingDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Szczegóły budowli</value>
   </data>
   <data name="BuildingListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Lista budowli</value>
   </data>
   <data name="CarDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Szczegóły samochodu</value>
   </data>
   <data name="CarListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Lista samochodów</value>
   </data>
   <data name="ClientBuildingDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Szczegóły budowli clienta</value>
   </data>
   <data name="ClientBuildingListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Lista budowli clienta</value>
   </data>
   <data name="ClientDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Szczegóły klienta</value>
   </data>
   <data name="ClientListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Lista klientów</value>
   </data>
   <data name="ContractorDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Szczegóły dostawcy</value>
   </data>
   <data name="ContractorListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Lista dostawców</value>
   </data>
   <data name="DeliveryNoteDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Szczegóły WZ'tki</value>
   </data>
   <data name="DeliveryNoteListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value></value>
+    <value>Lista WZ'tek</value>
   </data>
   <data name="DriverDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Szczegóły kierowcy</value>
   </data>
   <data name="DriverListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Lista kierowców</value>
   </data>
   <data name="AdministrationGroupViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Administracja</value>
   </data>
   <data name="DriversAndCarsTabItemViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Kierowcy i samochody</value>
   </data>
   <data name="MaterialsAndContractorsTabItemViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Materiały i dostawcy</value>
   </data>
   <data name="RecipesTabItemViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Receptury</value>
   </data>
   <data name="ClientsAndBuildingsTabItemViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Klienci i budowle</value>
   </data>
   <data name="DeliveryNotesTabItemViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>WZ'tki</value>
   </data>
   <data name="OrdersTabItemViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Zamówienia</value>
   </data>
   <data name="SaleGroupViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Sprzedaż</value>
   </data>
   <data name="MaterialDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Szczegóły materiału</value>
   </data>
   <data name="MaterialListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Lista materiałów</value>
   </data>
   <data name="OrderDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Szczegóły zamówienia</value>
   </data>
   <data name="OrderListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Lista zamówień</value>
   </data>
   <data name="RecipeComponentDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Szczegóły elementu receptury</value>
   </data>
   <data name="RecipeComponentListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Lista elementów receptury</value>
   </data>
   <data name="RecipeDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>
-    </value>
+    <value>Szczegóły receptury</value>
+  </data>
+  <data name="RecipeListViewModel_Name" xml:space="preserve">
+    <value>Lista receptur</value>
   </data>
 </root>

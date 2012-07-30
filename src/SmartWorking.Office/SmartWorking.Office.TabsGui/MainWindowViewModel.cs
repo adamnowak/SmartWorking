@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
@@ -58,9 +59,9 @@ namespace SmartWorking.Office.TabsGui
       AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
       MainViewModel = this;
       
-      IsDebugMode = true;
+      IsDebugMode = false;
 
-      //LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
+      LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
     }
     
 
@@ -128,11 +129,19 @@ namespace SmartWorking.Office.TabsGui
         _isDebugMode = value;
         if (_isDebugMode)
         {
-          LocalizeDictionary.Instance.Culture = new CultureInfo("en-US");
+          var ci = new CultureInfo("en-US");
+          LocalizeDictionary.Instance.Culture = ci;
+
+          Thread.CurrentThread.CurrentCulture = ci;
+          Thread.CurrentThread.CurrentUICulture = ci;
         }
         else
         {
-          LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
+          var ci = new CultureInfo("pl-PL");
+          LocalizeDictionary.Instance.Culture = ci;          
+
+          Thread.CurrentThread.CurrentCulture = ci;
+          Thread.CurrentThread.CurrentUICulture = ci;
         }
 
         // Update bindings, no broadcast

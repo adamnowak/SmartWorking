@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows;
+using WPFLocalizeExtension.Engine;
 
 namespace SmartWorking.Office.TabsGui
 {
@@ -12,5 +15,14 @@ namespace SmartWorking.Office.TabsGui
   /// </summary>
   public partial class App : Application
   {
+    public App()
+    {
+      var ci = new CultureInfo("pl-PL");
+      LocalizeDictionary.Instance.Culture = ci;
+
+      Thread.CurrentThread.CurrentCulture = ci;
+      Thread.CurrentThread.CurrentUICulture = ci;
+      LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
+    }
   }
 }

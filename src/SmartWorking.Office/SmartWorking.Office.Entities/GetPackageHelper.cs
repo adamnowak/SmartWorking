@@ -84,10 +84,10 @@ namespace SmartWorking.Office.Entities
         {
           result.Driver = deliveryNote.Driver.GetPrimitive();
         }
-        //if (deliveryNote.Recipe != null)
-        //{
-        //  result.Recipe = deliveryNote.Recipe.GetPrimitive();
-        //}
+        if (deliveryNote.Order != null)
+        {
+          result.Order = deliveryNote.Order.GetPrimitive();
+        }
         //if (deliveryNote.Building != null)
         //{
         //  result.BuildingAndContractor = deliveryNote.Building.GetBuildingAndContractorPackage();
@@ -135,6 +135,14 @@ namespace SmartWorking.Office.Entities
           }
         }
 
+        if (order.DeliveryNotes != null)
+        {
+          foreach (DeliveryNote deliveryNote in order.DeliveryNotes)
+          {
+            result.DeliveryNotePackageList.Add(deliveryNote.GetDeliveryNotePackage());  
+          }
+          
+        }
         
       }
       return result;

@@ -16,6 +16,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     public OrderListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<OrderPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
+
     }
 
     public override string Name

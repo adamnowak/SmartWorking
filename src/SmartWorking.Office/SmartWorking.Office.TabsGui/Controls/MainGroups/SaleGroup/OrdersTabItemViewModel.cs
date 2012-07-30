@@ -24,7 +24,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
       OrderDetailsViewModel = new OrderDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      OrderListViewModel = new OrderListViewModel(MainViewModel, OrderDetailsViewModel, ModalDialogService, ServiceFactory);     
+      OrderListViewModel = new OrderListViewModel(MainViewModel, OrderDetailsViewModel, ModalDialogService, ServiceFactory);
+
+      OrderDetailsViewModel.DeliveryNoteDetailsViewModel.ItemSaved += new System.EventHandler(DeliveryNoteDetailsViewModel_ItemSaved);
+    }
+
+    void DeliveryNoteDetailsViewModel_ItemSaved(object sender, System.EventArgs e)
+    {
+      Refresh();
     }
 
     /// <summary>

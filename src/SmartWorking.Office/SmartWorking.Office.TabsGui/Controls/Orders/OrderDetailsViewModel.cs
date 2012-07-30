@@ -32,9 +32,15 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogService, ServiceFactory);
 
       DeliveryNoteDetailsViewModel = new DeliveryNoteDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      DeliveryNoteListViewModel = new DeliveryNoteListViewModel(MainViewModel, DeliveryNoteDetailsViewModel,
+      DeliveryNoteListViewModel = new DeliveryNoteListViewModel(MainViewModel, DeliveryNoteDetailsViewModel, this,
                                                                 ModalDialogService, ServiceFactory);
+
+      
+
+      
     }
+
+   
 
     
 

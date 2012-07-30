@@ -24,6 +24,10 @@ namespace SmartWorking.Office.PrimitiveEntities
         {
           result.Driver_Id = deliveryNote.Driver.Id;
         }
+        if (deliveryNote.Order != null)
+        {
+          result.Order_Id = deliveryNote.Order.Id;
+        }
         //if (deliveryNote.Recipe != null)
         //{
         //  result.Recipe_Id = deliveryNote.Recipe.Id;

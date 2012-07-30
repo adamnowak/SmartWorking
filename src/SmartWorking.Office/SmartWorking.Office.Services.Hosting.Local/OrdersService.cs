@@ -71,16 +71,16 @@ namespace SmartWorking.Office.Services.Hosting.Local
           List<Order> result =
             (string.IsNullOrWhiteSpace(filter))
               ? (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").ToList()
+                  ? ctx.Orders.Include("DeliveryNotes").Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                      ? ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue).ToList()
-                      : ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
+                      ? ctx.Orders.Include("DeliveryNotes").Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue).ToList()
+                      : ctx.Orders.Include("DeliveryNotes").Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList()
+                  ? ctx.Orders.Include("DeliveryNotes").Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                      ? ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList()
-                      : ctx.Orders.Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList();
-          return result.Select(x => x.GetOrderPackage()).ToList(); ;
+                      ? ctx.Orders.Include("DeliveryNotes").Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList()
+                      : ctx.Orders.Include("DeliveryNotes").Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList();
+          return result.Select(x => x.GetOrderPackage()).ToList(); 
         }
       }
       catch (Exception e)
