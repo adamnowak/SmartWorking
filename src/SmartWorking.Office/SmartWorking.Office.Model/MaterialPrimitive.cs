@@ -38,6 +38,11 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public Nullable<int> MaterialType
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }

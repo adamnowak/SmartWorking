@@ -39,18 +39,20 @@
             <DataGrid.Columns>
                 
                 <!--Debug only-->
-                <DataGridTextColumn Header="Id" Binding="{Binding Material.Id}"
+                <DataGridTextColumn Header="Id" Binding="{Binding DeliveryNote.Id}"
                     Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <DataGridTextColumn Header="InternalName" Binding="{Binding Material.InternalName}" />
-                <DataGridTextColumn Header="Name" Binding="{Binding Material.Name}" />
-                <DataGridTextColumn Header="str_Producent_Id" Binding="{Binding Producer.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                <DataGridTextColumn Header="Number" Binding="{Binding DeliveryNote.Number}" />
+                <DataGridTextColumn Header="Amount" Binding="{Binding DeliveryNote.Amount}" />
+                <DataGridTextColumn Header="DateOfArrival" Binding="{Binding DeliveryNote.DateOfArrival}" />
+
+                <DataGridTextColumn Header="Driver_Id" Binding="{Binding Driver.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
-                <DataGridTextColumn Header="str_Producent" Binding="{Binding Producer.InternalName}" />
-                <DataGridTextColumn Header="str_Dostawca_Id" Binding="{Binding Deliverer.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                <DataGridTextColumn Header="DriverName" Binding="{Binding Driver.InternalName}" />
+                <DataGridTextColumn Header="Car_Id" Binding="{Binding Car.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
-                <DataGridTextColumn Header="str_Dostawca" Binding="{Binding Deliverer.InternalName}" />
+                <DataGridTextColumn Header="CarRegistrationNumber" Binding="{Binding Car.RegistrationNumber}" />
             </DataGrid.Columns>
         </DataGrid>
         <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">

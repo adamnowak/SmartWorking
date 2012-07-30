@@ -174,6 +174,8 @@ namespace SmartWorking.Office.Entities
         		
         		result.Deactivated = primitive.Deactivated;
         		
+        		result.Number = primitive.Number;
+        		
         		return result;
         }
         
@@ -215,6 +217,8 @@ namespace SmartWorking.Office.Entities
         		result.Deleted = primitive.Deleted;
         		
         		result.Deactivated = primitive.Deactivated;
+        		
+        		result.MaterialType = primitive.MaterialType;
         		
         		return result;
         }
@@ -259,6 +263,8 @@ namespace SmartWorking.Office.Entities
         		result.Pump = primitive.Pump;
         		
         		result.Notice = primitive.Notice;
+        		
+        		result.PlannedDeliveryTime = primitive.PlannedDeliveryTime;
         		
         		return result;
         }

@@ -26,7 +26,7 @@ namespace SmartWorking.Office.Gui.ViewModel
       {
         throw new SmartWorkingException("Contractor is not defined.");
       }
-      if (deliveryNotePackage.Car == null)
+      if (deliveryNotePackage.CarAndDriver == null)
       {
         throw new SmartWorkingException("Car is not defined.");
       }
@@ -133,12 +133,12 @@ namespace SmartWorking.Office.Gui.ViewModel
 
       //Car
       PrintSection(gfx, "Samochód: ",
-                   ((string.IsNullOrEmpty(deliveryNotePackage.Car.Name))
+                   ((string.IsNullOrEmpty(deliveryNotePackage.CarAndDriver.Name))
                       ? string.Empty
-                      : deliveryNotePackage.Car.Name + Environment.NewLine) +
-                   ((string.IsNullOrEmpty(deliveryNotePackage.Car.RegistrationNumber))
+                      : deliveryNotePackage.CarAndDriver.Name + Environment.NewLine) +
+                   ((string.IsNullOrEmpty(deliveryNotePackage.CarAndDriver.RegistrationNumber))
                       ? string.Empty
-                      : deliveryNotePackage.Car.RegistrationNumber + Environment.NewLine),
+                      : deliveryNotePackage.CarAndDriver.RegistrationNumber + Environment.NewLine),
                    new XPoint(30, 270 + shiftY));
 
       //Driver

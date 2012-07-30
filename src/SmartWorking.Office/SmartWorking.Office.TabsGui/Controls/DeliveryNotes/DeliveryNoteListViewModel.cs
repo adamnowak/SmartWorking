@@ -72,6 +72,15 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       return false;
       
     }
+
+    protected override bool OnRefresh()
+    {
+      if (base.OnRefresh())
+      {
+        return true;
+      }
+      return false;
+    }
   }
 
   

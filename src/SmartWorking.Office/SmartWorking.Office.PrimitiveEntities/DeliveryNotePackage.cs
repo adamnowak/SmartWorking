@@ -9,9 +9,9 @@ namespace SmartWorking.Office.PrimitiveEntities
 {
   public class DeliveryNotePackage
   {
-    //public OrderPackage OrderPackage { get; set; }
+    public OrderPrimitive Order { get; set; }
     public DeliveryNotePrimitive DeliveryNote { get; set; }
-    public CarPrimitive Car { get; set; }
+    public CarAndDriverPackage CarAndDriver { get; set; }
     public DriverPrimitive Driver { get; set; }
   }
 }

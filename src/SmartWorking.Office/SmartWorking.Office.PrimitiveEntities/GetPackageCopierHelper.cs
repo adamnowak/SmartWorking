@@ -123,7 +123,7 @@ namespace SmartWorking.Office.PrimitiveEntities
       DeliveryNotePackage package = new DeliveryNotePackage();
       package.DeliveryNote = source.DeliveryNote;
 
-      package.Car = source.Car;
+      package.CarAndDriver = source.CarAndDriver;
       package.Driver = source.Driver;
       
       return package;

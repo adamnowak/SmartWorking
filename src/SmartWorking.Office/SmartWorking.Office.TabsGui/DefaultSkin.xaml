@@ -24,6 +24,7 @@
     <Converters:VisibilitisANDBinaryConverter x:Key="visibilitisANDBinaryConverter" />
     <Converters:EnumVisibilityConverter x:Key="enumVisibilityConverter" />
     <Converters:NotSetToBoolConverter x:Key="notSetToBoolConverter" />
+    <Converters:DeliveryNotePackageListToAmountDeliveryConverter x:Key="deliveryNotePackageListToAmountDeliveryConverter" />
     
     <Style TargetType="{x:Type Button}">
         <Setter Property="Width" Value="70"/>

@@ -15,10 +15,10 @@ namespace SmartWorking.Office.PrimitiveEntities
       DeliveryNotePrimitive result = deliveryNote.DeliveryNote;
 
       if (result != null)
-      {        
-        if (deliveryNote.Car != null)
+      {
+        if (deliveryNote.CarAndDriver != null && deliveryNote.CarAndDriver.Car != null)
         {
-          result.Car_Id = deliveryNote.Car.Id;
+          result.Car_Id = deliveryNote.CarAndDriver.Car.Id;
         }
         if (deliveryNote.Driver != null)
         {

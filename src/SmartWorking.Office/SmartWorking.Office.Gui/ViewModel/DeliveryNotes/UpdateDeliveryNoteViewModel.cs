@@ -194,7 +194,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       return DeliveryNotePackage.BuildingAndContractor != null &&
              DeliveryNotePackage.BuildingAndContractor.Building != null &&
              DeliveryNotePackage.BuildingAndContractor.Client != null &&
-             DeliveryNotePackage.Car != null && DeliveryNotePackage.Driver != null && DeliveryNotePackage.Recipe != null;
+             DeliveryNotePackage.CarAndDriver != null && DeliveryNotePackage.Driver != null && DeliveryNotePackage.Recipe != null;
     }
 
     private void CreateAndPrintDeliveryNote()
@@ -210,7 +210,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
         {
           throw new SmartWorkingException("Building and contractor is not defined.");
         }
-        if (DeliveryNotePackage.Car == null)
+        if (DeliveryNotePackage.CarAndDriver == null)
         {
           throw new SmartWorkingException("Car is not defined.");
         }
@@ -272,9 +272,9 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       {
         CarAndDriverPackage carAndDriverPackage = ModalDialogService.SelectDriver(ModalDialogService, ServiceFactory);
         DeliveryNotePackage.Driver = carAndDriverPackage.Driver;
-        if (DeliveryNotePackage.Car == null)
+        if (DeliveryNotePackage.CarAndDriver == null)
         {
-          DeliveryNotePackage.Car = carAndDriverPackage.Car;
+          DeliveryNotePackage.CarAndDriver = carAndDriverPackage.Car;
         }
         RaisePropertyChanged("DeliveryNotePackage");
       }
@@ -314,7 +314,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       string errorCaption = "Wybranie samochodu!";
       try
       {
-        DeliveryNotePackage.Car = ModalDialogService.SelectCar(ModalDialogService, ServiceFactory);
+        DeliveryNotePackage.CarAndDriver = ModalDialogService.SelectCar(ModalDialogService, ServiceFactory);
         RaisePropertyChanged("DeliveryNotePackage");
       }
       catch (FaultException<ExceptionDetail> f)

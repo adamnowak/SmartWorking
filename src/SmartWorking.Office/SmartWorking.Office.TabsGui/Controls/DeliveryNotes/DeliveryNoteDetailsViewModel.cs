@@ -16,11 +16,11 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     public DeliveryNoteDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      Cars = new SelectableViewModelBase<CarPrimitive>();
+      Cars = new SelectableViewModelBase<CarAndDriverPackage>();
       Drivers = new SelectableViewModelBase<DriverPrimitive>();
     }
 
-    public SelectableViewModelBase<CarPrimitive> Cars { get; private set; }
+    public SelectableViewModelBase<CarAndDriverPackage> Cars { get; private set; }
     public SelectableViewModelBase<DriverPrimitive> Drivers { get; private set; }
 
     /// <summary>
@@ -43,16 +43,18 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     {
       if (Item != null)
       {
-        //Item.Producer = Producers.SelectedItem;
-        //Item.Deliverer = Deliverers.SelectedItem;
-        //if (base.OnSaveItem())
-        //{
-        //  using (IMaterialsService service = ServiceFactory.GetMaterialsService())
-        //  {
-        //    service.CreateOrUpdateMaterial(Item.GetMaterialPrimitiveWithReference());
-        //  }
-        //  return true;
-        //}
+        if (base.OnSaveItem())
+        {          
+          Item.CarAndDriver = Cars.SelectedItem;
+          Item.Driver = Drivers.SelectedItem;
+          Item.DeliveryNote.DateDrawing = DateTime.Now;
+          
+          using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
+          {
+            service.CreateOrUpdateDeliveryNote(Item.GetDeliveryNotePrimitiveWithReference());
+          }
+          return true;
+        }
       }
       return false;
     }
@@ -79,7 +81,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     {
       using (ICarsService service = ServiceFactory.GetCarsService())
       {
-        List<CarPrimitive> cars = service.GetCars(string.Empty, ListItemsFilterValues.OnlyActive);
+        List<CarAndDriverPackage> cars = service.GetCarAndDriverPackageList(string.Empty, ListItemsFilterValues.OnlyActive);
         Cars.LoadItems(cars);
       }
     }

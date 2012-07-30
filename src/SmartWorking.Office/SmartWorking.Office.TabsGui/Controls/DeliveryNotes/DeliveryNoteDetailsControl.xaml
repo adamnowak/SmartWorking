@@ -25,17 +25,17 @@
                 <!--Debug only-->
                 <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--End Debug only-->
-                <TextBlock Text="InternalName:" Grid.Row="1" />
-                <TextBlock Text="Name:" Grid.Row="2" />
+                <TextBlock Text="Number:" Grid.Row="1" />
+                <TextBlock Text="Amount:" Grid.Row="2" />
 
                 <!--End Debug only-->
-                <TextBox Text="{Binding Item.Material.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBox Text="{Binding Item.DeliveryNote.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <!--Debug only-->
 
-                <TextBox Text="{Binding Item.Material.InternalName}" Grid.Row="1" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
-                <TextBox Text="{Binding Item.Material.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.DeliveryNote.Number}" Grid.Row="1" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.DeliveryNote.Amount}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
 
-                <GroupBox Header="str_Producent" Grid.Row="3" Grid.ColumnSpan="2" >
+                <GroupBox Header="Car" Grid.Row="3" Grid.ColumnSpan="2" >
                     <Grid  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -48,23 +48,23 @@
                         </Grid.RowDefinitions>
 
                         <!--Debug only-->
-                        <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBlock Text="CarId:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <!--End Debug only-->
-                        <TextBlock Text="InternalName:" Grid.Row="1" />
-                        <TextBlock Text="Name:" Grid.Row="2" />
+                        <TextBlock Text="Car:" Grid.Row="1" />
+                        <TextBlock Text="Capacity:" Grid.Row="2" />
 
 
                         <!--End Debug only-->
-                        <TextBox Text="{Binding Producers.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBox Text="{Binding Cars.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <!--Debug only-->
-                        <ComboBox SelectedItem="{Binding Producers.SelectedItem}"  ItemsSource="{Binding Producers.Items}" 
+                        <ComboBox SelectedItem="{Binding Cars.SelectedItem}"  ItemsSource="{Binding Cars.Items}" 
                               DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
                               IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
 
-                        <TextBox Text="{Binding Producers.SelectedItem.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                        <TextBox Text="{Binding Cars.SelectedItem.Capacity}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="str_Dostawca" Grid.Row="4" Grid.ColumnSpan="2" >
+                <GroupBox Header="Driver" Grid.Row="4" Grid.ColumnSpan="2" >
                     <Grid  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -73,23 +73,23 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                           
                         </Grid.RowDefinitions>
 
                         <!--Debug only-->
-                        <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBlock Text="DriverId:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <!--End Debug only-->
-                        <TextBlock Text="InternalName:" Grid.Row="1" />
-                        <TextBlock Text="Name:" Grid.Row="2" />
+                        <TextBlock Text="Driver:" Grid.Row="1" />
+                        
 
 
                         <!--End Debug only-->
-                        <TextBox Text="{Binding Deliverers.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBox Text="{Binding Drivers.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <!--Debug only-->
-                        <ComboBox SelectedItem="{Binding Deliverers.SelectedItem}"  ItemsSource="{Binding Deliverers.Items}" 
+                        <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
                               DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
                               IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
-                        <TextBox Text="{Binding Deliverers.SelectedItem.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                        
                     </Grid>
                 </GroupBox>
 

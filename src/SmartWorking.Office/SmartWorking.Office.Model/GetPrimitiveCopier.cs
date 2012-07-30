@@ -185,6 +185,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
+        		primitive.Number = primitiveToCopy.Number;
+        		
         		return primitive;
         }
         
@@ -230,6 +232,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Deleted = primitiveToCopy.Deleted;
         		
         		primitive.Deactivated = primitiveToCopy.Deactivated;
+        		
+        		primitive.MaterialType = primitiveToCopy.MaterialType;
         		
         		return primitive;
         }
@@ -278,6 +282,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Pump = primitiveToCopy.Pump;
         		
         		primitive.Notice = primitiveToCopy.Notice;
+        		
+        		primitive.PlannedDeliveryTime = primitiveToCopy.PlannedDeliveryTime;
         		
         		return primitive;
         }

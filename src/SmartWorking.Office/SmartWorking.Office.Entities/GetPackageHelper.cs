@@ -73,7 +73,12 @@ namespace SmartWorking.Office.Entities
         result.DeliveryNote = deliveryNote.GetPrimitive();
         if (deliveryNote.Car != null)
         {
-          result.Car = deliveryNote.Car.GetPrimitive();
+          result.CarAndDriver = new CarAndDriverPackage();
+          result.CarAndDriver.Car = deliveryNote.Car.GetPrimitive();
+          if (deliveryNote.Car.Driver != null)
+          {
+            result.CarAndDriver.Driver = deliveryNote.Car.Driver.GetPrimitive();
+          }
         }
         if (deliveryNote.Driver != null)
         {

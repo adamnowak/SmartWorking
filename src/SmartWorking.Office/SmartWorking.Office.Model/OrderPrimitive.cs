@@ -53,6 +53,11 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public Nullable<System.DateTime> PlannedDeliveryTime
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }
