@@ -2,6 +2,7 @@
 using System.Linq;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -27,7 +28,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
     /// </summary>
     public override string Name
     {
-      get { return "str_CarDetails"; }
+      get { return Resources.MaterialDetailsViewModel_Name; }
     }
 
     protected override void EditItemCommandExecute()

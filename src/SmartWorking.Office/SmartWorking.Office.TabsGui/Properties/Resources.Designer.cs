@@ -475,6 +475,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AdministrationGroup.
+        /// </summary>
+        public static string AdministrationGroupViewModel_Name {
+            get {
+                return ResourceManager.GetString("AdministrationGroupViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City:.
         /// </summary>
         public static string BuildingDetailsControl_City {
@@ -561,6 +570,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string BuildingDetailsControl_ZIPCode {
             get {
                 return ResourceManager.GetString("BuildingDetailsControl_ZIPCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BuildingDetails.
+        /// </summary>
+        public static string BuildingDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("BuildingDetailsViewModel_Name", resourceCulture);
             }
         }
         
@@ -660,6 +678,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string BuildingListControl_Street {
             get {
                 return ResourceManager.GetString("BuildingListControl_Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BuildingList.
+        /// </summary>
+        public static string BuildingListViewModel_Name {
+            get {
+                return ResourceManager.GetString("BuildingListViewModel_Name", resourceCulture);
             }
         }
         
@@ -781,6 +808,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CarDetails.
+        /// </summary>
+        public static string CarDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("CarDetailsViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string CarListControl_All {
@@ -885,6 +921,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string CarListControl_TransportType {
             get {
                 return ResourceManager.GetString("CarListControl_TransportType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CarList.
+        /// </summary>
+        public static string CarListViewModel_Name {
+            get {
+                return ResourceManager.GetString("CarListViewModel_Name", resourceCulture);
             }
         }
         
@@ -1015,6 +1060,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ClietnBuildingDetails.
+        /// </summary>
+        public static string ClientBuildingDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("ClientBuildingDetailsViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string ClientBuildingListControl_All {
@@ -1123,6 +1177,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ClientBuildingList.
+        /// </summary>
+        public static string ClientBuildingListViewModel_Name {
+            get {
+                return ResourceManager.GetString("ClientBuildingListViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City:.
         /// </summary>
         public static string ClientDetailsControl_City {
@@ -1213,6 +1276,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ClientDetails.
+        /// </summary>
+        public static string ClientDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("ClientDetailsViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string ClientListControl_All {
@@ -1294,6 +1366,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ClientList.
+        /// </summary>
+        public static string ClientListViewModel_Name {
+            get {
+                return ResourceManager.GetString("ClientListViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ClientsAndBuildings.
+        /// </summary>
+        public static string ClientsAndBuildingsTabItemViewModel_Name {
+            get {
+                return ResourceManager.GetString("ClientsAndBuildingsTabItemViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City:.
         /// </summary>
         public static string ContractorDetailsControl_City {
@@ -1371,6 +1461,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string ContractorDetailsControl_ZIPCode {
             get {
                 return ResourceManager.GetString("ContractorDetailsControl_ZIPCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContractorDetails.
+        /// </summary>
+        public static string ContractorDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("ContractorDetailsViewModel_Name", resourceCulture);
             }
         }
         
@@ -1492,11 +1591,47 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ContractorList.
+        /// </summary>
+        public static string ContractorListViewModel_Name {
+            get {
+                return ResourceManager.GetString("ContractorListViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deliverer.
         /// </summary>
         public static string Deliverer {
             get {
                 return ResourceManager.GetString("Deliverer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNoteDetails.
+        /// </summary>
+        public static string DeliveryNoteDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNoteList.
+        /// </summary>
+        public static string DeliveryNoteListViewModel_Name {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNotes.
+        /// </summary>
+        public static string DeliveryNotesTabItemViewModel_Name {
+            get {
+                return ResourceManager.GetString("DeliveryNotesTabItemViewModel_Name", resourceCulture);
             }
         }
         
@@ -1560,6 +1695,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string DriverDetailsControl_Surname {
             get {
                 return ResourceManager.GetString("DriverDetailsControl_Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DriverDetails.
+        /// </summary>
+        public static string DriverDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("DriverDetailsViewModel_Name", resourceCulture);
             }
         }
         
@@ -1650,6 +1794,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string DriverListControl_Surname {
             get {
                 return ResourceManager.GetString("DriverListControl_Surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DriverList.
+        /// </summary>
+        public static string DriverListViewModel_Name {
+            get {
+                return ResourceManager.GetString("DriverListViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DriversAndCars.
+        /// </summary>
+        public static string DriversAndCarsTabItemViewModel_Name {
+            get {
+                return ResourceManager.GetString("DriversAndCarsTabItemViewModel_Name", resourceCulture);
             }
         }
         
@@ -1749,6 +1911,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string MaterialDetailsControl_Producer_Name {
             get {
                 return ResourceManager.GetString("MaterialDetailsControl_Producer_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MaterialDetails.
+        /// </summary>
+        public static string MaterialDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("MaterialDetailsViewModel_Name", resourceCulture);
             }
         }
         
@@ -1861,6 +2032,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MaterialList.
+        /// </summary>
+        public static string MaterialListViewModel_Name {
+            get {
+                return ResourceManager.GetString("MaterialListViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MaterialsAndContractors.
+        /// </summary>
+        public static string MaterialsAndContractorsTabItemViewModel_Name {
+            get {
+                return ResourceManager.GetString("MaterialsAndContractorsTabItemViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount:.
         /// </summary>
         public static string OrderDetailsControl_Amount {
@@ -1911,6 +2100,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string OrderDetailsControl_Pump {
             get {
                 return ResourceManager.GetString("OrderDetailsControl_Pump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OrderDetails.
+        /// </summary>
+        public static string OrderDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("OrderDetailsViewModel_Name", resourceCulture);
             }
         }
         
@@ -2032,6 +2230,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OrderList.
+        /// </summary>
+        public static string OrderListViewModel_Name {
+            get {
+                return ResourceManager.GetString("OrderListViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orders.
+        /// </summary>
+        public static string OrdersTabItemViewModel_Name {
+            get {
+                return ResourceManager.GetString("OrdersTabItemViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount:.
         /// </summary>
         public static string RecipeComponentDetailsControl_Amount {
@@ -2100,6 +2316,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string RecipeComponentDetailsControl_ProducerName {
             get {
                 return ResourceManager.GetString("RecipeComponentDetailsControl_ProducerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RecipeComponentDetails.
+        /// </summary>
+        public static string RecipeComponentDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("RecipeComponentDetailsViewModel_Name", resourceCulture);
             }
         }
         
@@ -2185,6 +2410,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RecipeComponentList.
+        /// </summary>
+        public static string RecipeComponentListViewModel_Name {
+            get {
+                return ResourceManager.GetString("RecipeComponentListViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ConcreteClass:.
         /// </summary>
         public static string RecipeDetailsControl_ConcreteClass {
@@ -2244,6 +2478,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string RecipeDetailsControl_Name {
             get {
                 return ResourceManager.GetString("RecipeDetailsControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RecipeDetails.
+        /// </summary>
+        public static string RecipeDetailsViewModel_Name {
+            get {
+                return ResourceManager.GetString("RecipeDetailsViewModel_Name", resourceCulture);
             }
         }
         
@@ -2343,6 +2586,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string RecipeListControl_Search {
             get {
                 return ResourceManager.GetString("RecipeListControl_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RecipeList.
+        /// </summary>
+        public static string RecipeListViewModel_Name {
+            get {
+                return ResourceManager.GetString("RecipeListViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipes.
+        /// </summary>
+        public static string RecipesTabItemViewModel_Name {
+            get {
+                return ResourceManager.GetString("RecipesTabItemViewModel_Name", resourceCulture);
             }
         }
         
@@ -2640,6 +2901,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string SaleGroupControl_Refresh {
             get {
                 return ResourceManager.GetString("SaleGroupControl_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SaleGroup.
+        /// </summary>
+        public static string SaleGroupViewModel_Name {
+            get {
+                return ResourceManager.GetString("SaleGroupViewModel_Name", resourceCulture);
             }
         }
         

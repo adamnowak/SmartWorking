@@ -9,6 +9,7 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Buildings;
 using SmartWorking.Office.TabsGui.Controls.Materials;
 using SmartWorking.Office.TabsGui.Controls.Recipes;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -35,7 +36,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
     /// </summary>
     public override string Name
     {
-      get { return "str_ClientDetails"; }
+      get { return Resources.ClientDetailsViewModel_Name; }
     }
 
     protected override void EditItemCommandExecute()

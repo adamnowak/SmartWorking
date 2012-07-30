@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -15,7 +16,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
 
     public override string Name
     {
-      get { return "str_ClientList"; }
+      get { return Resources.ClientListViewModel_Name; }
     }
 
     protected override void  OnLoadItems()

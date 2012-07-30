@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -28,7 +29,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     /// </summary>
     public override string Name
     {
-      get { return "str_CarDetails"; }
+      get { return Resources.DeliveryNoteDetailsViewModel_Name; }
     }
 
     protected override void EditItemCommandExecute()

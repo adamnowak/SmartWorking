@@ -26,17 +26,17 @@
                 <SaleGroup:SaleGroupControl  />
             </TabItem>
 
-            <TabItem Header="str_Reports">
+            <!--<TabItem Header="str_Reports">
                 <ReportsGroup:ReportsGroupControl/>    
-            </TabItem>
+            </TabItem>-->
 
             <TabItem Header="{Binding Name}" DataContext="{Binding AdministrationGroupViewModel}">
                 <AdministrationGroup:AdministrationGroupControl /> 
             </TabItem>
 
-            <TabItem Header="str_Settings" Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}">
+            <!--<TabItem Header="str_Settings" Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}">
                 <SettingsGroup:SettingsGroupControl/>
-            </TabItem>
+            </TabItem>-->
         </TabControl>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

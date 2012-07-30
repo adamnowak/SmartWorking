@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -32,7 +33,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// </summary>
     public override string Name
     {
-      get { return "str_DriverList"; }
+      get { return Resources.DriverListViewModel_Name; }
     }
 
 

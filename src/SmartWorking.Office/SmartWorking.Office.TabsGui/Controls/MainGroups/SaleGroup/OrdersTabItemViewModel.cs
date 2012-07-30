@@ -4,6 +4,7 @@ using SmartWorking.Office.TabsGui.Controls.Clients;
 using SmartWorking.Office.TabsGui.Controls.Drivers;
 using SmartWorking.Office.TabsGui.Controls.Orders;
 using SmartWorking.Office.TabsGui.Controls.Recipes;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -43,7 +44,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// </summary>
     public override string Name
     {
-      get { return "str_OrdersTabItem"; }
+      get { return Resources.OrdersTabItemViewModel_Name; }
     }
 
     /// <summary>

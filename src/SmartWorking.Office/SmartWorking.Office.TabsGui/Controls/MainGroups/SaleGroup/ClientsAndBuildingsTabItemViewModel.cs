@@ -2,6 +2,7 @@
 using SmartWorking.Office.TabsGui.Controls.Buildings;
 using SmartWorking.Office.TabsGui.Controls.Clients;
 using SmartWorking.Office.TabsGui.Controls.Recipes;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -58,7 +59,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// </summary>
     public override string Name
     {
-      get { return "str_ClientsAndBuildings"; }
+      get { return Resources.ClientsAndBuildingsTabItemViewModel_Name; }
     }
 
     /// <summary>

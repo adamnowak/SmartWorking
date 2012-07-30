@@ -3,6 +3,7 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Contractors;
 using SmartWorking.Office.TabsGui.Controls.Materials;
 using SmartWorking.Office.TabsGui.Controls.Recipes;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -54,7 +55,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// </summary>
     public override string Name
     {
-      get { return "str_RecipeTabItem"; }
+      get { return Resources.RecipesTabItemViewModel_Name; }
     }
 
     /// <summary>

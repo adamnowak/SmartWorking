@@ -6,6 +6,7 @@ using SmartWorking.Office.TabsGui.Controls.Buildings;
 using SmartWorking.Office.TabsGui.Controls.Clients;
 using SmartWorking.Office.TabsGui.Controls.DeliveryNotes;
 using SmartWorking.Office.TabsGui.Controls.Recipes;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -95,7 +96,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     /// </summary>
     public override string Name
     {
-      get { return "str_OrderDetails"; }
+      get { return Resources.OrderDetailsViewModel_Name; }
     }
 
     protected override void EditItemCommandExecute()

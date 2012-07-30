@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -43,7 +44,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// </summary>
     public override string Name
     {
-      get { return "str_SaleGroup"; }
+      get { return Resources.SaleGroupViewModel_Name; }
     }
 
     

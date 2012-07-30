@@ -5,6 +5,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
+using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
 
@@ -19,7 +20,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
 
     public override string Name
     {
-      get { return "str_OrderList"; }
+      get { return Resources.OrderListViewModel_Name; }
     }
 
     protected override void  OnLoadItems()
