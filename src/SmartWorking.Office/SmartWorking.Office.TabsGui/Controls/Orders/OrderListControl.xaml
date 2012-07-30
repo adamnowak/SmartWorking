@@ -39,7 +39,7 @@
             <DataGrid.Columns>
                 <!--Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Id}"
-                     Binding="{Binding Order.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Order.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
                 <DataGridTextColumn Header="PlannedDeliveryTime"
                      Binding="{Binding Order.PlannedDeliveryTime}" />
@@ -49,14 +49,14 @@
                      Binding="{Binding DeliveryNotePackageList, Converter={StaticResource deliveryNotePackageListToAmountDeliveryConverter}}" />
 
                 <DataGridTextColumn Header="Client_Id"
-                     Binding="{Binding Client.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Client.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="InternalName"
                      Binding="{Binding Client.InternalName}" />
                 <DataGridTextColumn Header="Name"
                      Binding="{Binding Client.Name}" />
 
                 <DataGridTextColumn Header="Building_Id"
-                     Binding="{Binding ClientBuildingPackage.Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding ClientBuildingPackage.Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
                      Binding="{Binding ClientBuildingPackage.Building.InternalName}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Name}"
@@ -69,7 +69,7 @@
                      Binding="{Binding ClientBuildingPackage.Building.City}" />
 
                 <DataGridTextColumn Header="Recipe_Id"
-                     Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} ,  Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
                      Binding="{Binding ClientBuildingPackage.Building.InternalName}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Name}"

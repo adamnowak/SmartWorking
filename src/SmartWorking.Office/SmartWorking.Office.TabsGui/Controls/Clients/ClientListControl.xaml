@@ -39,7 +39,7 @@
             <DataGrid.Columns>
                 <!--Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientListControl_Id}"
-                     Binding="{Binding Client.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Client.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientListControl_InternalName}"
                      Binding="{Binding Client.InternalName}" />

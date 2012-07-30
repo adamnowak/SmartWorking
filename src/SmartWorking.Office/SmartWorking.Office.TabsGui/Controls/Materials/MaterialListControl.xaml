@@ -40,18 +40,18 @@
             <DataGrid.Columns>
                 <!--Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:MaterialListControl_Id}"
-                     Binding="{Binding Material.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Material.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} ,Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:MaterialListControl_InternalName}"
                      Binding="{Binding Material.InternalName}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:MaterialListControl_Name}"
                      Binding="{Binding Material.Name}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:MaterialListControl_ProducerId}"
-                     Binding="{Binding Producer.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Producer.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy}, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:MaterialListControl_ProducerInternalName}"
                      Binding="{Binding Producer.InternalName}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:MaterialListControl_DelivererId}"
-                     Binding="{Binding Deliverer.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Deliverer.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy}, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:MaterialListControl_DelivererInternalName}"
                      Binding="{Binding Producer.InternalName}" />
             </DataGrid.Columns>

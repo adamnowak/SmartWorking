@@ -39,9 +39,9 @@
             <DataGrid.Columns>
                 <!--Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingListControl_Id}"
-                     Binding="{Binding ClientBuilding.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding ClientBuilding.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} ,Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingListControl_BuildingId}"
-                     Binding="{Binding Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingListControl_BuildingInternalName}"
                      Binding="{Binding Building.InternalName}" />

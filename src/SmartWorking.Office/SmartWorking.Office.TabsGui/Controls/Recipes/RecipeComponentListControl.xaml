@@ -39,10 +39,10 @@
             <DataGrid.Columns>
                 <!--Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeComponentListControl_Id}"
-                     Binding="{Binding RecipeComponent.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding RecipeComponent.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeComponentListControl_MaterialId}"
-                     Binding="{Binding MaterialAndContractors.Material.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding MaterialAndContractors.Material.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeComponentListControl_MaterialName}"
                      Binding="{Binding MaterialAndContractors.Material.Name}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeComponentListControl_Amount}"
