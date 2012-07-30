@@ -47,12 +47,14 @@
                 <DataGridTextColumn Header="Amount" Binding="{Binding DeliveryNote.Amount}" />
                 <DataGridTextColumn Header="DateOfArrival" Binding="{Binding DeliveryNote.DateOfArrival}" />
 
+                <DataGridTextColumn Header="Car_Id" Binding="{Binding CarAndDriver.Car.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
+                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <DataGridTextColumn Header="CarRegistrationNumber" Binding="{Binding CarAndDriver.Car.RegistrationNumber}" />
+                
                 <DataGridTextColumn Header="Driver_Id" Binding="{Binding Driver.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
                                     Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                 <DataGridTextColumn Header="DriverName" Binding="{Binding Driver.InternalName}" />
-                <DataGridTextColumn Header="Car_Id" Binding="{Binding Car.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
-                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
-                <DataGridTextColumn Header="CarRegistrationNumber" Binding="{Binding Car.RegistrationNumber}" />
+                
             </DataGrid.Columns>
         </DataGrid>
         <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">

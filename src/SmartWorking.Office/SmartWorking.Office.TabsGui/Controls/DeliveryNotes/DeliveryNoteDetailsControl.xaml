@@ -55,13 +55,13 @@
 
 
                         <!--End Debug only-->
-                        <TextBox Text="{Binding Cars.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBox Text="{Binding Cars.SelectedItem.Car.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
                         <!--Debug only-->
                         <ComboBox SelectedItem="{Binding Cars.SelectedItem}"  ItemsSource="{Binding Cars.Items}" 
-                              DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
+                              DisplayMemberPath="Car.InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
                               IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
 
-                        <TextBox Text="{Binding Cars.SelectedItem.Capacity}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                        <TextBox Text="{Binding Cars.SelectedItem.Car.Capacity}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="Driver" Grid.Row="4" Grid.ColumnSpan="2" >
@@ -94,7 +94,7 @@
                 </GroupBox>
 
                 <TextBlock Text="IsActive:" Grid.Row="5" />
-                <CheckBox Grid.Row="5" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.D.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
+                <CheckBox Grid.Row="5" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
                           IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>
 

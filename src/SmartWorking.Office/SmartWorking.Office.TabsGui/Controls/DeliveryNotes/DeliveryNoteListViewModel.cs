@@ -16,6 +16,18 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
       OrderDetailsControlViewModel = orderDetailsControlViewModel;
+      if (EditingViewModel != null)
+      {
+        EditingViewModel.ItemSaved += new System.EventHandler(EditingViewModel_ItemSaved);
+      }
+    }
+
+    void EditingViewModel_ItemSaved(object sender, System.EventArgs e)
+    {
+      if (EditingViewModel.Item  != null)
+      {
+        
+      }
     }
 
     public override string Name
