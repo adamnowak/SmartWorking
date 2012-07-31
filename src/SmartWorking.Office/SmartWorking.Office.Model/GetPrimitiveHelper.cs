@@ -293,6 +293,12 @@ namespace SmartWorking.Office.Entities
         		
         		primitive.Deactivated = entity.Deactivated;
         		
+        		primitive.WaterToCement = entity.WaterToCement;
+        		
+        		primitive.StrengthClass = entity.StrengthClass;
+        		
+        		primitive.StrengthProgress = entity.StrengthProgress;
+        		
         		return primitive;
         }
         

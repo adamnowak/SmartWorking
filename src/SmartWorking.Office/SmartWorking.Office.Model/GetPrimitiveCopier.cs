@@ -314,6 +314,12 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
+        		primitive.WaterToCement = primitiveToCopy.WaterToCement;
+        		
+        		primitive.StrengthClass = primitiveToCopy.StrengthClass;
+        		
+        		primitive.StrengthProgress = primitiveToCopy.StrengthProgress;
+        		
         		return primitive;
         }
         

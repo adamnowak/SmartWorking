@@ -2302,6 +2302,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Water.
+        /// </summary>
+        public static string MaterialTypes_LoadItems_Water {
+            get {
+                return ResourceManager.GetString("MaterialTypes_LoadItems_Water", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount:.
         /// </summary>
         public static string OrderDetailsControl_Amount {

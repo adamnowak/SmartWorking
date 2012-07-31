@@ -48,6 +48,21 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
+    		public string WaterToCement
+    		{
+            get;
+            set;
+    		}
+    		public string StrengthClass
+    		{
+            get;
+            set;
+    		}
+    		public Nullable<int> StrengthProgress
+    		{
+            get;
+            set;
+    		}
 
         #endregion
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.PrimitiveEntities;
@@ -24,8 +25,21 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
       BuildingListToAddViewModel = buildingListViewModel;
-
+      EditingModeChanged += new EventHandler(ClientDetailsViewModel_EditingModeChanged);
       ClientBuildingListViewModel = new ClientBuildingListViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
+    }
+
+    void ClientDetailsViewModel_EditingModeChanged(object sender, EventArgs e)
+    {
+      if (EditingMode == EditingMode.New)
+      {
+        if (BuildingListToAddViewModel != null && BuildingListToAddViewModel.EditingViewModel != null)
+        {
+          BuildingListToAddViewModel.EditingViewModel.EditingMode = EditingMode.New;
+          BuildingListToAddViewModel.EditingViewModel.Item = new BuildingPrimitive();
+        }
+      }
+      
     }
 
     public IListingEditableControlViewModel<BuildingPrimitive> BuildingListToAddViewModel { get; private set; }
@@ -41,15 +55,32 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
 
     protected override void EditItemCommandExecute()
     {
-     
+      
       Item = Item.GetPackageCopy();
       base.EditItemCommandExecute();
     }
 
     protected override bool OnSaveItem()
     {
+      if (BuildingListToAddViewModel != null && BuildingListToAddViewModel.EditingViewModel != null)
+      {
+        if (BuildingListToAddViewModel.EditingViewModel.EditingMode == EditingMode.New)
+        {
+          if (ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, MessageBoxImage.Question,
+                                                "A co z budową?",
+                                                "Chcesz najpierw zapisac budowę?\n Jeśli nie informacje o budowie znikną!",
+                                                MessageBoxButton.YesNo, string.Empty) == MessageBoxResult.Yes)
+          {
+            return false;
+          }
+        }
+        BuildingListToAddViewModel.EditingViewModel.Item = null;
+        BuildingListToAddViewModel.EditingViewModel.EditingMode = EditingMode.Display;
+      }
+
       if (base.OnSaveItem())
       {
+
         using (IClientsService service = ServiceFactory.GetClientsService())
         {
           service.CreateOrUpdateClient(Item);

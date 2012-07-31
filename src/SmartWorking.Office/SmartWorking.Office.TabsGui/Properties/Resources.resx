@@ -1532,4 +1532,7 @@
     <value>All</value>
     <comment>RadioButton.Content</comment>
   </data>
+	<data name="MaterialTypes_LoadItems_Water">
+		<value xml:space="preserve">Water</value>
+	</data>
 </root>

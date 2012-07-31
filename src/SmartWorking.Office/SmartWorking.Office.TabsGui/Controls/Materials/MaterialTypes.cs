@@ -4,9 +4,6 @@ using SmartWorking.Office.TabsGui.Shared.ViewModel;
 
 namespace SmartWorking.Office.TabsGui.Controls.Materials
 {
-  
-
-
   public class MaterialTypes  
   {
     private MaterialTypes()
@@ -37,6 +34,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
       Items.Add(new DescriptionIndexted { Id = 2, Description = Resources.MaterialTypes_LoadItems_Aggregate });
       Items.Add(new DescriptionIndexted { Id = 3, Description = Resources.MaterialTypes_LoadItems_Supplement });
       Items.Add(new DescriptionIndexted { Id = 4, Description = Resources.MaterialTypes_LoadItems_Admixture });
+      Items.Add(new DescriptionIndexted { Id = 5, Description = Resources.MaterialTypes_LoadItems_Water });
     }
   }
 }

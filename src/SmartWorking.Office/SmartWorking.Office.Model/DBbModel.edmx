@@ -140,7 +140,7 @@
           <Property Name="Street" Type="nvarchar" MaxLength="70" />
           <Property Name="HouseNo" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="datetime" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
           <Property Name="Deactivated" Type="datetime" />
         </EntityType>
         <EntityType Name="DeliveryNotes">
@@ -230,12 +230,15 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="70" />
           <Property Name="InternalName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Number" Type="nvarchar" MaxLength="10" />
-          <Property Name="Granulation" Type="nvarchar" MaxLength="10" />
-          <Property Name="Consistency" Type="nvarchar" MaxLength="10" />
-          <Property Name="ConcreteClass" Type="nchar" MaxLength="10" />
+          <Property Name="Number" Type="nvarchar" MaxLength="20" />
+          <Property Name="Granulation" Type="nvarchar" MaxLength="20" />
+          <Property Name="Consistency" Type="nvarchar" MaxLength="20" />
+          <Property Name="ConcreteClass" Type="nvarchar" MaxLength="20" />
           <Property Name="Deleted" Type="datetime" />
           <Property Name="Deactivated" Type="datetime" />
+          <Property Name="WaterToCement" Type="nvarchar" MaxLength="20" />
+          <Property Name="StrengthClass" Type="nvarchar" MaxLength="20" />
+          <Property Name="StrengthProgress" Type="int" />
         </EntityType>
         <Association Name="FK_Cars_Drivers">
           <End Role="Drivers" Type="SmartWorkingModel.Store.Drivers" Multiplicity="0..1" />
@@ -536,6 +539,9 @@
           <NavigationProperty Name="RecipeComponents" Relationship="SmartWorkingModel.FK_RecipeComponents_Recipes" FromRole="Recipe" ToRole="RecipeComponent" />
           <Property Type="DateTime" Name="Deactivated" />
           <NavigationProperty Name="Orders" Relationship="SmartWorkingModel.FK_Orders_Recipes" FromRole="Recipe" ToRole="Order" />
+          <Property Type="String" Name="WaterToCement" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StrengthClass" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StrengthProgress" />
         </EntityType>
         <Association Name="FK_MaterialsDeliverer_Contractors">
           <End Type="SmartWorkingModel.Contractor" Role="Contractor" Multiplicity="0..1" />
@@ -873,6 +879,9 @@
           <EntitySetMapping Name="Recipes">
             <EntityTypeMapping TypeName="SmartWorkingModel.Recipe">
               <MappingFragment StoreEntitySet="Recipes">
+                <ScalarProperty Name="StrengthProgress" ColumnName="StrengthProgress" />
+                <ScalarProperty Name="StrengthClass" ColumnName="StrengthClass" />
+                <ScalarProperty Name="WaterToCement" ColumnName="WaterToCement" />
                 <ScalarProperty Name="Deactivated" ColumnName="Deactivated" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="ConcreteClass" ColumnName="ConcreteClass" />
@@ -1017,20 +1026,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="DBbModel">
-        <EntityTypeShape EntityType="SmartWorkingModel.Contractor" Width="1.5" PointX="2.625" PointY="7.75" Height="3.3263964843749978" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Contractor" Width="1.5" PointX="2.5" PointY="7.75" Height="3.3263964843749978" />
         <EntityTypeShape EntityType="SmartWorkingModel.Material" Width="1.5" PointX="0.75" PointY="3.5" Height="3.1340950520833317" />
         <EntityTypeShape EntityType="SmartWorkingModel.MaterialStock" Width="1.5" PointX="0.75" PointY="7.375" Height="2.1725878906249996" />
         <EntityTypeShape EntityType="SmartWorkingModel.RecipeComponent" Width="1.5" PointX="1" PointY="0.5" Height="2.5571907552083339" />
         <EntityTypeShape EntityType="SmartWorkingModel.Recipe" Width="1.5" PointX="3.375" PointY="0.5" Height="3.1340950520833331" />
         <AssociationConnector Association="SmartWorkingModel.FK_MaterialsDeliverer_Contractors" ManuallyRouted="false" >
-          <ConnectorPoint PointX="3.07031375" PointY="7.75" />
-          <ConnectorPoint PointX="3.07031375" PointY="5.3373482552083331" />
-          <ConnectorPoint PointX="2.25" PointY="5.3373482552083331" />
+          <ConnectorPoint PointX="2.90625" PointY="7.75" />
+          <ConnectorPoint PointX="2.90625" PointY="5.5499479166666656" />
+          <ConnectorPoint PointX="2.25" PointY="5.5499479166666656" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_MaterialsProducer_Contractors" ManuallyRouted="false" >
-          <ConnectorPoint PointX="3.7436235614726479" PointY="7.75" />
-          <ConnectorPoint PointX="3.7436235614726479" PointY="4.4544701536458327" />
-          <ConnectorPoint PointX="2.25" PointY="4.4544701536458327" />
+          <ConnectorPoint PointX="2.6718725" PointY="7.75" />
+          <ConnectorPoint PointX="2.6718725" PointY="6.2194247005208334" />
+          <ConnectorPoint PointX="2.25" PointY="6.2194247005208334" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_MaterialStocks_Materails" >
           <ConnectorPoint PointX="1.4687475" PointY="6.6340950520833317" />
@@ -1051,26 +1060,27 @@
           <ConnectorPoint PointX="8.75" PointY="1.87474609375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SmartWorkingModel.Building" Width="1.5" PointX="8.75" PointY="4" Height="3.3263964843749996" />
-        <EntityTypeShape EntityType="SmartWorkingModel.ClientBuilding" Width="1.5" PointX="4.5" PointY="8.5" Height="2.5571907552083335" />
+        <EntityTypeShape EntityType="SmartWorkingModel.ClientBuilding" Width="1.5" PointX="6.125" PointY="8.5" Height="2.5571907552083335" />
         <EntityTypeShape EntityType="SmartWorkingModel.Client" Width="1.5" PointX="8.75" PointY="7.625" Height="3.3263964843749996" />
         <AssociationConnector Association="SmartWorkingModel.FK_ClientBuildings_Buildings" >
           <ConnectorPoint PointX="8.75" PointY="7.326396484375" />
           <ConnectorPoint PointX="8.375" PointY="7.701396484375" />
-          <ConnectorPoint PointX="8.375" PointY="8.97930107250548" />
-          <ConnectorPoint PointX="6" PointY="8.97930107250548" />
+          <ConnectorPoint PointX="8.375" PointY="8.5857132444519912" />
+          <ConnectorPoint PointX="7.625" PointY="8.5857132444519912" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_ClientBuildings_Clients" >
-          <ConnectorPoint PointX="8.75" PointY="9.9207637202632313" />
-          <ConnectorPoint PointX="6" PointY="9.9207637202632313" />
+          <ConnectorPoint PointX="8.75" PointY="9.0767976888020829" />
+          <ConnectorPoint PointX="7.625" PointY="9.0767976888020829" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SmartWorkingModel.Order" Width="1.5" PointX="4.375" PointY="4.125" Height="3.7109993489583326" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Order" Width="1.5" PointX="4.25" PointY="4.875" Height="3.7109993489583326" />
         <AssociationConnector Association="SmartWorkingModel.FK_Orders_ClientBuildings" >
-          <ConnectorPoint PointX="5.1875" PointY="8.5" />
-          <ConnectorPoint PointX="5.1875" PointY="7.8359993489583326" />
+          <ConnectorPoint PointX="6.125" PointY="9.7785953776041659" />
+          <ConnectorPoint PointX="5" PointY="9.7785953776041659" />
+          <ConnectorPoint PointX="5" PointY="8.5859993489583317" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_Orders_Recipes" >
-          <ConnectorPoint PointX="4.625" PointY="3.6340950520833331" />
-          <ConnectorPoint PointX="4.625" PointY="4.125" />
+          <ConnectorPoint PointX="4.5625" PointY="4.2109993489583326" />
+          <ConnectorPoint PointX="4.5625" PointY="4.875" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SmartWorkingModel.DeliveryNote" Width="1.5" PointX="6.375" PointY="3.75" Height="4.0956022135416674" />
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Cars" >
@@ -1083,8 +1093,8 @@
           <ConnectorPoint PointX="6.9375" PointY="3.75" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Orders" >
-          <ConnectorPoint PointX="5.875" PointY="5.9804996744791659" />
-          <ConnectorPoint PointX="6.375" PointY="5.9804996744791659" />
+          <ConnectorPoint PointX="5.75" PointY="6.3603011067708337" />
+          <ConnectorPoint PointX="6.375" PointY="6.3603011067708337" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>
