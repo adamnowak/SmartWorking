@@ -1609,11 +1609,218 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount:.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Amount {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capacity:.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Capacity {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Capacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Car {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Car", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CarId:.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Car_Id {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Car_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car:.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Car_Name {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Car_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Driver {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Driver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DriverId:.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Driver_Id {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Driver_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver:.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Driver_Name {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Driver_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Id {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number:.
+        /// </summary>
+        public static string DeliveryNoteDetailsControl_Number {
+            get {
+                return ResourceManager.GetString("DeliveryNoteDetailsControl_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DeliveryNoteDetails.
         /// </summary>
         public static string DeliveryNoteDetailsViewModel_Name {
             get {
                 return ResourceManager.GetString("DeliveryNoteDetailsViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string DeliveryNoteListControl_All {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string DeliveryNoteListControl_Amount {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car_Id.
+        /// </summary>
+        public static string DeliveryNoteListControl_CarId {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_CarId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CarRegistrationNumber.
+        /// </summary>
+        public static string DeliveryNoteListControl_CarRegistrationNumber {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_CarRegistrationNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DateOfArrival.
+        /// </summary>
+        public static string DeliveryNoteListControl_DateOfArrival {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_DateOfArrival", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver_Id.
+        /// </summary>
+        public static string DeliveryNoteListControl_DriverId {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_DriverId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DriverName.
+        /// </summary>
+        public static string DeliveryNoteListControl_DriverName {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_DriverName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string DeliveryNoteListControl_Filter {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string DeliveryNoteListControl_Id {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IncludeDeactive.
+        /// </summary>
+        public static string DeliveryNoteListControl_IncludeDeactive {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_IncludeDeactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number.
+        /// </summary>
+        public static string DeliveryNoteListControl_Number {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OnlyActivate.
+        /// </summary>
+        public static string DeliveryNoteListControl_OnlyActivate {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_OnlyActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string DeliveryNoteListControl_Search {
+            get {
+                return ResourceManager.GetString("DeliveryNoteListControl_Search", resourceCulture);
             }
         }
         
@@ -1870,6 +2077,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MaterialType:.
+        /// </summary>
+        public static string MaterialDetailsControl_MaterialType {
+            get {
+                return ResourceManager.GetString("MaterialDetailsControl_MaterialType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
         public static string MaterialDetailsControl_Name {
@@ -2050,6 +2266,42 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admixture.
+        /// </summary>
+        public static string MaterialTypes_LoadItems_Admixture {
+            get {
+                return ResourceManager.GetString("MaterialTypes_LoadItems_Admixture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aggregate.
+        /// </summary>
+        public static string MaterialTypes_LoadItems_Aggregate {
+            get {
+                return ResourceManager.GetString("MaterialTypes_LoadItems_Aggregate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Concrete.
+        /// </summary>
+        public static string MaterialTypes_LoadItems_Concrete {
+            get {
+                return ResourceManager.GetString("MaterialTypes_LoadItems_Concrete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplement.
+        /// </summary>
+        public static string MaterialTypes_LoadItems_Supplement {
+            get {
+                return ResourceManager.GetString("MaterialTypes_LoadItems_Supplement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount:.
         /// </summary>
         public static string OrderDetailsControl_Amount {
@@ -2122,11 +2374,47 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string OrderListControl_Amount {
+            get {
+                return ResourceManager.GetString("OrderListControl_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AmountDelivered.
+        /// </summary>
+        public static string OrderListControl_AmountDelivered {
+            get {
+                return ResourceManager.GetString("OrderListControl_AmountDelivered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building_Id.
+        /// </summary>
+        public static string OrderListControl_BuildingId {
+            get {
+                return ResourceManager.GetString("OrderListControl_BuildingId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string OrderListControl_City {
             get {
                 return ResourceManager.GetString("OrderListControl_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client_Id.
+        /// </summary>
+        public static string OrderListControl_ClientId {
+            get {
+                return ResourceManager.GetString("OrderListControl_ClientId", resourceCulture);
             }
         }
         
@@ -2199,6 +2487,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string OrderListControl_Phone {
             get {
                 return ResourceManager.GetString("OrderListControl_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PlannedDeliveryTime.
+        /// </summary>
+        public static string OrderListControl_PlannedDeliveryTime {
+            get {
+                return ResourceManager.GetString("OrderListControl_PlannedDeliveryTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipe_Id.
+        /// </summary>
+        public static string OrderListControl_RecipeId {
+            get {
+                return ResourceManager.GetString("OrderListControl_RecipeId", resourceCulture);
             }
         }
         

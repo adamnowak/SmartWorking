@@ -58,7 +58,12 @@ namespace SmartWorking.Office.PrimitiveEntities
     			get;
     			set;
     		}
-    		public string Number
+    		public Nullable<int> Number
+    		{
+            get;
+            set;
+    		}
+    		public Nullable<int> Year
     		{
             get;
             set;

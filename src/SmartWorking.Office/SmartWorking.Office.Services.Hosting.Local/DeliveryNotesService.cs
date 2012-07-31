@@ -114,6 +114,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
         {
           DeliveryNote deliveryNote = deliveryNotePrimitive.GetEntity();
 
+
+
           DeliveryNote existingObject = context.DeliveryNotes.Where(x => x.Id == deliveryNote.Id).FirstOrDefault();
 
           //no record of this item in the DB, item being passed in has a PK
@@ -126,7 +128,10 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //Item has no PK value, must be new);
           if (deliveryNote.Id <= 0)
           {
+            deliveryNote.DateDrawing = DateTime.Now;
+            deliveryNote.Number = context.DeliveryNotes.Where(x => x.Year == DateTime.Now.Year).Max(x => x.Number) + 1; 
             context.DeliveryNotes.AddObject(deliveryNote);
+
           }
           //Item was retrieved, and the item passed has a valid ID, do an update
           else

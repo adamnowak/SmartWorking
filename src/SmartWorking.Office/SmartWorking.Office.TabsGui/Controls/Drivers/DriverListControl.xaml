@@ -4,7 +4,7 @@
      xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:Interfaces="clr-namespace:SmartWorking.Office.Services.Interfaces;assembly=SmartWorking.Office.Services.Interfaces"
      xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" mc:Ignorable="d"
      d:DesignHeight="300" d:DesignWidth="300" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
-    <Grid>
+    <Grid>        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />

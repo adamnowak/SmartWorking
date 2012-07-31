@@ -1,9 +1,10 @@
 ﻿<View:ListUserControl x:Class="SmartWorking.Office.TabsGui.Controls.DeliveryNotes.DeliveryNoteListControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Interfaces="clr-namespace:SmartWorking.Office.Services.Interfaces;assembly=SmartWorking.Office.Services.Interfaces" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:Materials="clr-namespace:SmartWorking.Office.TabsGui.Controls.Materials" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:Interfaces="clr-namespace:SmartWorking.Office.Services.Interfaces;assembly=SmartWorking.Office.Services.Interfaces"
+     xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:Materials="clr-namespace:SmartWorking.Office.TabsGui.Controls.Materials"
+     xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" mc:Ignorable="d"
+     d:DesignHeight="300" d:DesignWidth="300" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -14,55 +15,65 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Filter:"/>
+            <TextBlock Grid.Column="0" Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Filter}" />
             <TextBox Grid.Column="1" Text="{Binding Filter}" />
-            <Button Grid.Column="2" Content="Search" Command="{Binding ApplyFilterCommand}" />
+            <Button Grid.Column="2" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Search}"
+                 Command="{Binding ApplyFilterCommand}" />
         </Grid>
-
-
-        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" ItemsSource="{Binding Items}"  >
+        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
+             ItemsSource="{Binding Items}">
             <DataGrid.Resources>
                 <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
                 <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Car.IsDeactive}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}"/>
+                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Car.IsDeleted}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}"/>
+                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                
+                <!-- TODOTERAZ Liczba porządkowa
+                godzina zaladunku
+                numer wz'tki
+                numer rejestracyjny
+                imie i nazwisko kierowcy
+                ile
+                pompa-->
                 <!--Debug only-->
-                <DataGridTextColumn Header="Id" Binding="{Binding DeliveryNote.Id}"
-                    Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
-                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Id}"
+                     Binding="{Binding DeliveryNote.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <DataGridTextColumn Header="Number" Binding="{Binding DeliveryNote.Number}" />
-                <DataGridTextColumn Header="Amount" Binding="{Binding DeliveryNote.Amount}" />
-                <DataGridTextColumn Header="DateOfArrival" Binding="{Binding DeliveryNote.DateOfArrival}" />
-
-                <DataGridTextColumn Header="Car_Id" Binding="{Binding CarAndDriver.Car.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
-                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
-                <DataGridTextColumn Header="CarRegistrationNumber" Binding="{Binding CarAndDriver.Car.RegistrationNumber}" />
-                
-                <DataGridTextColumn Header="Driver_Id" Binding="{Binding Driver.Id}"  Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},
-                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
-                <DataGridTextColumn Header="DriverName" Binding="{Binding Driver.InternalName}" />
-                
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Number}"
+                     Binding="{Binding DeliveryNote.Number}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Amount}"
+                     Binding="{Binding DeliveryNote.Amount}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_DateOfArrival}"
+                     Binding="{Binding DeliveryNote.DateOfArrival}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_CarId}"
+                     Binding="{Binding CarAndDriver.Car.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_CarRegistrationNumber}"
+                     Binding="{Binding CarAndDriver.Car.RegistrationNumber}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_DriverId}"
+                     Binding="{Binding Driver.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_DriverName}"
+                     Binding="{Binding Driver.InternalName}" />
             </DataGrid.Columns>
         </DataGrid>
         <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
-            <StackPanel Orientation="Horizontal" >
-                <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="OnlyActivate" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}"/>
-                <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="IncludeDeactive" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}"/>
-                <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="All" IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
-                         Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
+            <StackPanel Orientation="Horizontal">
+                <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_OnlyActivate}"
+                     IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}" />
+                <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_IncludeDeactive}"
+                     IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}" />
+                <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_All}"
+                     IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
+                     Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
             </StackPanel>
         </GroupBox>
     </Grid>

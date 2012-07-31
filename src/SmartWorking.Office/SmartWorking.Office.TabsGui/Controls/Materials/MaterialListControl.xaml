@@ -54,6 +54,16 @@
                      Binding="{Binding Deliverer.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy}, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:MaterialListControl_DelivererInternalName}"
                      Binding="{Binding Producer.InternalName}" />
+
+                <DataGridTextColumn Header="MaterialType">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource descriptionIndexedConverter}">
+                            <Binding Path="Material.MaterialType" />
+                            <Binding Source="{x:Static Materials:MaterialTypes.Instance}" Path="Items" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
         <GroupBox Grid.Row="2">

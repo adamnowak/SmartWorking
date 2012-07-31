@@ -1,17 +1,14 @@
 ﻿<View:DetailsUserControl x:Class="SmartWorking.Office.TabsGui.Controls.DeliveryNotes.DeliveryNoteDetailsControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid >
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel"
+     mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
+    <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-            <Grid >
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
-
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -21,22 +18,23 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
                 <!--Debug only-->
-                <TextBlock Text="Id:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Id}"
+                     Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <TextBlock Text="Number:" Grid.Row="1" />
-                <TextBlock Text="Amount:" Grid.Row="2" />
-
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Number}"
+                     Grid.Row="1" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Amount}"
+                     Grid.Row="2" />
                 <!--End Debug only-->
-                <TextBox Text="{Binding Item.DeliveryNote.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                <TextBox Text="{Binding Item.DeliveryNote.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"
+                     Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--Debug only-->
-
-                <TextBox Text="{Binding Item.DeliveryNote.Number}" Grid.Row="1" Grid.Column="1"  IsReadOnly="{Binding IsReadOnly}"/>
+                <TextBox Text="{Binding Item.DeliveryNote.Number}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <TextBox Text="{Binding Item.DeliveryNote.Amount}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-
-                <GroupBox Header="Car" Grid.Row="3" Grid.ColumnSpan="2" >
-                    <Grid  >
+                <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Car}"
+                     Grid.Row="3" Grid.ColumnSpan="2">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
@@ -46,26 +44,28 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-
                         <!--Debug only-->
-                        <TextBlock Text="CarId:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Car_Id}"
+                             Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                         <!--End Debug only-->
-                        <TextBlock Text="Car:" Grid.Row="1" />
-                        <TextBlock Text="Capacity:" Grid.Row="2" />
-
-
+                        <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Car_Name}"
+                             Grid.Row="1" />
+                        <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Capacity}"
+                             Grid.Row="2" />
                         <!--End Debug only-->
-                        <TextBox Text="{Binding Cars.SelectedItem.Car.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBox Text="{Binding Cars.SelectedItem.Car.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"
+                             Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                         <!--Debug only-->
-                        <ComboBox SelectedItem="{Binding Cars.SelectedItem}"  ItemsSource="{Binding Cars.Items}" 
-                              DisplayMemberPath="Car.InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
-                              IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
-
-                        <TextBox Text="{Binding Cars.SelectedItem.Car.Capacity}" Grid.Row="2" Grid.Column="1" IsReadOnly="True" />
+                        <ComboBox SelectedItem="{Binding Cars.SelectedItem}" ItemsSource="{Binding Cars.Items}"
+                             DisplayMemberPath="Car.InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True"
+                             IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" />
+                        <TextBox Text="{Binding Cars.SelectedItem.Car.Capacity}" Grid.Row="2" Grid.Column="1"
+                             IsReadOnly="True" />
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Driver" Grid.Row="4" Grid.ColumnSpan="2" >
-                    <Grid  >
+                <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Driver}"
+                     Grid.Row="4" Grid.ColumnSpan="2">
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
@@ -73,31 +73,22 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                           
                         </Grid.RowDefinitions>
-
                         <!--Debug only-->
-                        <TextBlock Text="DriverId:" Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Driver_Id}"
+                             Grid.Row="0" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                         <!--End Debug only-->
-                        <TextBlock Text="Driver:" Grid.Row="1" />
-                        
-
-
+                        <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Driver_Name}"
+                             Grid.Row="1" />
                         <!--End Debug only-->
-                        <TextBox Text="{Binding Drivers.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"/>
+                        <TextBox Text="{Binding Drivers.SelectedItem.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"
+                             Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                         <!--Debug only-->
-                        <ComboBox SelectedItem="{Binding Drivers.SelectedItem}"  ItemsSource="{Binding Drivers.Items}" 
-                              DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" 
-                              IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
-                        
+                        <ComboBox SelectedItem="{Binding Drivers.SelectedItem}" ItemsSource="{Binding Drivers.Items}"
+                             DisplayMemberPath="InternalName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" />
                     </Grid>
                 </GroupBox>
-
-                <TextBlock Text="IsActive:" Grid.Row="5" />
-                <CheckBox Grid.Row="5" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}" 
-                          IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}"/>
             </Grid>
-
         </ScrollViewer>
     </Grid>
 </View:DetailsUserControl>

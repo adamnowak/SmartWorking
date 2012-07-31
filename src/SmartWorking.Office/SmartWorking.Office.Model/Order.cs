@@ -88,6 +88,21 @@ namespace SmartWorking.Office.Entities
         }
         private ClientBuilding _clientBuilding;
     
+        public Recipe Recipe
+        {
+            get { return _recipe; }
+            set
+            {
+                if (!ReferenceEquals(_recipe, value))
+                {
+                    var previousValue = _recipe;
+                    _recipe = value;
+                    FixupRecipe(previousValue);
+                }
+            }
+        }
+        private Recipe _recipe;
+    
         public ICollection<DeliveryNote> DeliveryNotes
         {
             get
@@ -119,21 +134,6 @@ namespace SmartWorking.Office.Entities
             }
         }
         private ICollection<DeliveryNote> _deliveryNotes;
-    
-        public Recipe Recipe
-        {
-            get { return _recipe; }
-            set
-            {
-                if (!ReferenceEquals(_recipe, value))
-                {
-                    var previousValue = _recipe;
-                    _recipe = value;
-                    FixupRecipe(previousValue);
-                }
-            }
-        }
-        private Recipe _recipe;
 
         #endregion
         #region Association Fixup

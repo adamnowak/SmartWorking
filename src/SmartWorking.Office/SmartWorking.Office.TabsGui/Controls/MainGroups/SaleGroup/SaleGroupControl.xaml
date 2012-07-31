@@ -296,17 +296,7 @@
                                             </MultiBinding>
                                         </Button.Visibility>
                                     </Button>
-                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.EditItemCommand}" Content="Edit">
-                                        <Button.Visibility>
-                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
-                                                <MultiBinding.Bindings>
-                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery"  />
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
-                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
-                                                </MultiBinding.Bindings>
-                                            </MultiBinding>
-                                        </Button.Visibility>
-                                    </Button>
+                                    
                                     <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.SaveItemCommand}" Content="Save">
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">

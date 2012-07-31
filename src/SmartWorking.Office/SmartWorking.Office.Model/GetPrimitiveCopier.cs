@@ -187,6 +187,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Number = primitiveToCopy.Number;
         		
+        		primitive.Year = primitiveToCopy.Year;
+        		
         		return primitive;
         }
         

@@ -176,6 +176,8 @@ namespace SmartWorking.Office.Entities
         		
         		primitive.Number = entity.Number;
         		
+        		primitive.Year = entity.Year;
+        		
         		return primitive;
         }
         

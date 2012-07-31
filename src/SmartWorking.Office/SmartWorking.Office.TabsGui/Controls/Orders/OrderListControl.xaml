@@ -5,6 +5,15 @@
      xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View"
      mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="800" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
     <Grid>
+        <!-- TODOTERAZ Planowany czas dostawy
+        Nazwa klienta
+        Nazwa budowy
+        zamowiono
+        dostarczono
+        pozostalo do dostarczenia
+        nr. recepty
+        pompa
+        uwagi-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -41,21 +50,19 @@
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Id}"
                      Binding="{Binding Order.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <DataGridTextColumn Header="PlannedDeliveryTime"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_PlannedDeliveryTime}"
                      Binding="{Binding Order.PlannedDeliveryTime}" />
-                <DataGridTextColumn Header="Amount"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Amount}"
                      Binding="{Binding Order.Amount}" />
-                <DataGridTextColumn Header="AmountDelivered"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_AmountDelivered}"
                      Binding="{Binding DeliveryNotePackageList, Converter={StaticResource deliveryNotePackageListToAmountDeliveryConverter}}" />
-
-                <DataGridTextColumn Header="Client_Id"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_ClientId}"
                      Binding="{Binding Client.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <DataGridTextColumn Header="InternalName"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
                      Binding="{Binding Client.InternalName}" />
-                <DataGridTextColumn Header="Name"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Name}"
                      Binding="{Binding Client.Name}" />
-
-                <DataGridTextColumn Header="Building_Id"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_BuildingId}"
                      Binding="{Binding ClientBuildingPackage.Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
                      Binding="{Binding ClientBuildingPackage.Building.InternalName}" />
@@ -67,8 +74,7 @@
                      Binding="{Binding ClientBuildingPackage.Building.HouseNo}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_City}"
                      Binding="{Binding ClientBuildingPackage.Building.City}" />
-
-                <DataGridTextColumn Header="Recipe_Id"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_RecipeId}"
                      Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} ,  Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
                      Binding="{Binding ClientBuildingPackage.Building.InternalName}" />

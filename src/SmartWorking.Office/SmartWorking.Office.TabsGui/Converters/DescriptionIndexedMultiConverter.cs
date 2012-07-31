@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 using SmartWorking.Office.TabsGui.Controls.Cars;
+using SmartWorking.Office.TabsGui.Shared.ViewModel;
 
 namespace SmartWorking.Office.TabsGui.Converters
 {

@@ -103,17 +103,17 @@ namespace SmartWorking.Office.Entities
         }
         private ObjectSet<Client> _clients;
     
-        public ObjectSet<DeliveryNote> DeliveryNotes
-        {
-            get { return _deliveryNotes  ?? (_deliveryNotes = CreateObjectSet<DeliveryNote>("DeliveryNotes")); }
-        }
-        private ObjectSet<DeliveryNote> _deliveryNotes;
-    
         public ObjectSet<Order> Orders
         {
             get { return _orders  ?? (_orders = CreateObjectSet<Order>("Orders")); }
         }
         private ObjectSet<Order> _orders;
+    
+        public ObjectSet<DeliveryNote> DeliveryNotes
+        {
+            get { return _deliveryNotes  ?? (_deliveryNotes = CreateObjectSet<DeliveryNote>("DeliveryNotes")); }
+        }
+        private ObjectSet<DeliveryNote> _deliveryNotes;
 
         #endregion
     }

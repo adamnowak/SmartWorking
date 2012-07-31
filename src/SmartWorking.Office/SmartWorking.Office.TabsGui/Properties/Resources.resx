@@ -1277,123 +1277,259 @@
     <value>Id</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
-  <data name="BuildingDetailsViewModel_Name">
-    <value xml:space="preserve">BuildingDetails</value>
+  <data name="BuildingDetailsViewModel_Name" xml:space="preserve">
+    <value>BuildingDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="BuildingListViewModel_Name">
-    <value xml:space="preserve">BuildingList</value>
+  <data name="BuildingListViewModel_Name" xml:space="preserve">
+    <value>BuildingList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="CarDetailsViewModel_Name">
-    <value xml:space="preserve">CarDetails</value>
+  <data name="CarDetailsViewModel_Name" xml:space="preserve">
+    <value>CarDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="CarListViewModel_Name">
-    <value xml:space="preserve">CarList</value>
+  <data name="CarListViewModel_Name" xml:space="preserve">
+    <value>CarList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="ClientBuildingDetailsViewModel_Name">
-    <value xml:space="preserve">ClietnBuildingDetails</value>
+  <data name="ClientBuildingDetailsViewModel_Name" xml:space="preserve">
+    <value>ClietnBuildingDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="ClientBuildingListViewModel_Name">
-    <value xml:space="preserve">ClientBuildingList</value>
+  <data name="ClientBuildingListViewModel_Name" xml:space="preserve">
+    <value>ClientBuildingList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="ClientDetailsViewModel_Name">
-    <value xml:space="preserve">ClientDetails</value>
+  <data name="ClientDetailsViewModel_Name" xml:space="preserve">
+    <value>ClientDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="ClientListViewModel_Name">
-    <value xml:space="preserve">ClientList</value>
+  <data name="ClientListViewModel_Name" xml:space="preserve">
+    <value>ClientList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="ContractorDetailsViewModel_Name">
-    <value xml:space="preserve">ContractorDetails</value>
+  <data name="ContractorDetailsViewModel_Name" xml:space="preserve">
+    <value>ContractorDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="ContractorListViewModel_Name">
-    <value xml:space="preserve">ContractorList</value>
+  <data name="ContractorListViewModel_Name" xml:space="preserve">
+    <value>ContractorList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="DeliveryNoteDetailsViewModel_Name">
-    <value xml:space="preserve">DeliveryNoteDetails</value>
+  <data name="DeliveryNoteDetailsViewModel_Name" xml:space="preserve">
+    <value>DeliveryNoteDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="DeliveryNoteListViewModel_Name">
-    <value xml:space="preserve">DeliveryNoteList</value>
+  <data name="DeliveryNoteListViewModel_Name" xml:space="preserve">
+    <value>DeliveryNoteList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="DriverDetailsViewModel_Name">
-    <value xml:space="preserve">DriverDetails</value>
+  <data name="DriverDetailsViewModel_Name" xml:space="preserve">
+    <value>DriverDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="DriverListViewModel_Name">
-    <value xml:space="preserve">DriverList</value>
+  <data name="DriverListViewModel_Name" xml:space="preserve">
+    <value>DriverList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="AdministrationGroupViewModel_Name">
-    <value xml:space="preserve">AdministrationGroup</value>
+  <data name="AdministrationGroupViewModel_Name" xml:space="preserve">
+    <value>AdministrationGroup</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="DriversAndCarsTabItemViewModel_Name">
-    <value xml:space="preserve">DriversAndCars</value>
+  <data name="DriversAndCarsTabItemViewModel_Name" xml:space="preserve">
+    <value>DriversAndCars</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="MaterialsAndContractorsTabItemViewModel_Name">
-    <value xml:space="preserve">MaterialsAndContractors</value>
+  <data name="MaterialsAndContractorsTabItemViewModel_Name" xml:space="preserve">
+    <value>MaterialsAndContractors</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="RecipesTabItemViewModel_Name">
-    <value xml:space="preserve">Recipes</value>
+  <data name="RecipesTabItemViewModel_Name" xml:space="preserve">
+    <value>Recipes</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="ClientsAndBuildingsTabItemViewModel_Name">
-    <value xml:space="preserve">ClientsAndBuildings</value>
+  <data name="ClientsAndBuildingsTabItemViewModel_Name" xml:space="preserve">
+    <value>ClientsAndBuildings</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="DeliveryNotesTabItemViewModel_Name">
-    <value xml:space="preserve">DeliveryNotes</value>
+  <data name="DeliveryNotesTabItemViewModel_Name" xml:space="preserve">
+    <value>DeliveryNotes</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="OrdersTabItemViewModel_Name">
-    <value xml:space="preserve">Orders</value>
+  <data name="OrdersTabItemViewModel_Name" xml:space="preserve">
+    <value>Orders</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="SaleGroupViewModel_Name">
-    <value xml:space="preserve">SaleGroup</value>
+  <data name="SaleGroupViewModel_Name" xml:space="preserve">
+    <value>SaleGroup</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="MaterialDetailsViewModel_Name">
-    <value xml:space="preserve">MaterialDetails</value>
+  <data name="MaterialDetailsViewModel_Name" xml:space="preserve">
+    <value>MaterialDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="MaterialListViewModel_Name">
-    <value xml:space="preserve">MaterialList</value>
+  <data name="MaterialListViewModel_Name" xml:space="preserve">
+    <value>MaterialList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="OrderDetailsViewModel_Name">
-    <value xml:space="preserve">OrderDetails</value>
+  <data name="OrderDetailsViewModel_Name" xml:space="preserve">
+    <value>OrderDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="OrderListViewModel_Name">
-    <value xml:space="preserve">OrderList</value>
+  <data name="OrderListViewModel_Name" xml:space="preserve">
+    <value>OrderList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="RecipeComponentDetailsViewModel_Name">
-    <value xml:space="preserve">RecipeComponentDetails</value>
+  <data name="RecipeComponentDetailsViewModel_Name" xml:space="preserve">
+    <value>RecipeComponentDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="RecipeComponentListViewModel_Name">
-    <value xml:space="preserve">RecipeComponentList</value>
+  <data name="RecipeComponentListViewModel_Name" xml:space="preserve">
+    <value>RecipeComponentList</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="RecipeDetailsViewModel_Name">
-    <value xml:space="preserve">RecipeDetails</value>
+  <data name="RecipeDetailsViewModel_Name" xml:space="preserve">
+    <value>RecipeDetails</value>
     <comment>ViewModel.Name</comment>
   </data>
-  <data name="RecipeListViewModel_Name">
-    <value xml:space="preserve">RecipeList</value>
+  <data name="RecipeListViewModel_Name" xml:space="preserve">
+    <value>RecipeList</value>
+  </data>
+  <data name="MaterialTypes_LoadItems_Concrete" xml:space="preserve">
+    <value>Concrete</value>
+    <comment>MaterialTypes.Enum</comment>
+  </data>
+  <data name="MaterialTypes_LoadItems_Aggregate" xml:space="preserve">
+    <value>Aggregate</value>
+    <comment>MaterialTypes.Enum</comment>
+  </data>
+  <data name="MaterialTypes_LoadItems_Supplement" xml:space="preserve">
+    <value>Supplement</value>
+    <comment>MaterialTypes.Enum</comment>
+  </data>
+  <data name="MaterialTypes_LoadItems_Admixture" xml:space="preserve">
+    <value>Admixture</value>
+    <comment>MaterialTypes.Enum</comment>
+  </data>
+  <data name="MaterialDetailsControl_MaterialType" xml:space="preserve">
+    <value>MaterialType:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="OrderListControl_PlannedDeliveryTime" xml:space="preserve">
+    <value>PlannedDeliveryTime</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_Amount" xml:space="preserve">
+    <value>Amount</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_AmountDelivered" xml:space="preserve">
+    <value>AmountDelivered</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_ClientId" xml:space="preserve">
+    <value>Client_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_BuildingId" xml:space="preserve">
+    <value>Building_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_RecipeId" xml:space="preserve">
+    <value>Recipe_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Id" xml:space="preserve">
+    <value>Id:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Number" xml:space="preserve">
+    <value>Number:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Amount" xml:space="preserve">
+    <value>Amount:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Car" xml:space="preserve">
+    <value>Car</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Car_Id" xml:space="preserve">
+    <value>CarId:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Car_Name" xml:space="preserve">
+    <value>Car:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Capacity" xml:space="preserve">
+    <value>Capacity:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Driver" xml:space="preserve">
+    <value>Driver</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Driver_Id" xml:space="preserve">
+    <value>DriverId:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Driver_Name" xml:space="preserve">
+    <value>Driver:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteListControl_Filter" xml:space="preserve">
+    <value>Filter:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteListControl_Search" xml:space="preserve">
+    <value>Search</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="DeliveryNoteListControl_Id" xml:space="preserve">
+    <value>Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteListControl_Number" xml:space="preserve">
+    <value>Number</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteListControl_Amount" xml:space="preserve">
+    <value>Amount</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteListControl_DateOfArrival" xml:space="preserve">
+    <value>DateOfArrival</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteListControl_CarId" xml:space="preserve">
+    <value>Car_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteListControl_CarRegistrationNumber" xml:space="preserve">
+    <value>CarRegistrationNumber</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteListControl_DriverId" xml:space="preserve">
+    <value>Driver_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteListControl_DriverName" xml:space="preserve">
+    <value>DriverName</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteListControl_OnlyActivate" xml:space="preserve">
+    <value>OnlyActivate</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="DeliveryNoteListControl_IncludeDeactive" xml:space="preserve">
+    <value>IncludeDeactive</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="DeliveryNoteListControl_All" xml:space="preserve">
+    <value>All</value>
+    <comment>RadioButton.Content</comment>
   </data>
 </root>

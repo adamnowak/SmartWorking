@@ -158,7 +158,8 @@
           <Property Name="Order_Id" Type="int" />
           <Property Name="Deleted" Type="datetime" />
           <Property Name="Deactivated" Type="datetime" />
-          <Property Name="Number" Type="nvarchar" MaxLength="20" />
+          <Property Name="Number" Type="int" />
+          <Property Name="Year" Type="int" />
         </EntityType>
         <EntityType Name="Drivers">
           <Key>
@@ -439,6 +440,15 @@
             <End Role="Client" EntitySet="Clients" />
             <End Role="ClientBuilding" EntitySet="ClientBuildings" />
           </AssociationSet>
+          <EntitySet Name="Orders" EntityType="SmartWorkingModel.Order" />
+          <AssociationSet Name="FK_Orders_ClientBuildings" Association="SmartWorkingModel.FK_Orders_ClientBuildings">
+            <End Role="ClientBuilding" EntitySet="ClientBuildings" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Recipes" Association="SmartWorkingModel.FK_Orders_Recipes">
+            <End Role="Recipe" EntitySet="Recipes" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
           <EntitySet Name="DeliveryNotes" EntityType="SmartWorkingModel.DeliveryNote" />
           <AssociationSet Name="FK_DeliveryNotes_Cars" Association="SmartWorkingModel.FK_DeliveryNotes_Cars">
             <End Role="Car" EntitySet="Cars" />
@@ -448,18 +458,9 @@
             <End Role="Driver" EntitySet="Drivers" />
             <End Role="DeliveryNote" EntitySet="DeliveryNotes" />
           </AssociationSet>
-          <EntitySet Name="Orders" EntityType="SmartWorkingModel.Order" />
-          <AssociationSet Name="FK_Orders_ClientBuildings" Association="SmartWorkingModel.FK_Orders_ClientBuildings">
-            <End Role="ClientBuilding" EntitySet="ClientBuildings" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="FK_DeliveryNotes_Orders" Association="SmartWorkingModel.FK_DeliveryNotes_Orders">
             <End Role="Order" EntitySet="Orders" />
             <End Role="DeliveryNote" EntitySet="DeliveryNotes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_Recipes" Association="SmartWorkingModel.FK_Orders_Recipes">
-            <End Role="Recipe" EntitySet="Recipes" />
-            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Contractor">
@@ -710,6 +711,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Recipe_Id" />
+          <Property Type="Int32" Name="ClientBuilding_Id" />
+          <Property Type="Double" Name="Amount" />
+          <Property Type="DateTime" Name="DateOfOrder" />
+          <Property Type="DateTime" Name="Deleted" />
+          <Property Type="DateTime" Name="Deactivated" />
+          <Property Type="DateTime" Name="Canceled" />
+          <Property Type="Int32" Name="Pump" />
+          <Property Type="String" Name="Notice" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClientBuilding" Relationship="SmartWorkingModel.FK_Orders_ClientBuildings" FromRole="Order" ToRole="ClientBuilding" />
+          <NavigationProperty Name="Recipe" Relationship="SmartWorkingModel.FK_Orders_Recipes" FromRole="Order" ToRole="Recipe" />
+          <Property Type="DateTime" Name="PlannedDeliveryTime" />
+          <NavigationProperty Name="DeliveryNotes" Relationship="SmartWorkingModel.FK_DeliveryNotes_Orders" FromRole="Order" ToRole="DeliveryNote" />
+        </EntityType>
+        <Association Name="FK_Orders_ClientBuildings">
+          <End Type="SmartWorkingModel.ClientBuilding" Role="ClientBuilding" Multiplicity="0..1" />
+          <End Type="SmartWorkingModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientBuilding">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ClientBuilding_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Recipes">
+          <End Type="SmartWorkingModel.Recipe" Role="Recipe" Multiplicity="0..1" />
+          <End Type="SmartWorkingModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Recipe_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="DeliveryNote">
           <Key>
             <PropertyRef Name="Id" />
@@ -725,10 +769,11 @@
           <Property Type="Int32" Name="Order_Id" />
           <Property Type="DateTime" Name="Deleted" />
           <Property Type="DateTime" Name="Deactivated" />
+          <Property Type="Int32" Name="Number" />
+          <Property Type="Int32" Name="Year" />
           <NavigationProperty Name="Car" Relationship="SmartWorkingModel.FK_DeliveryNotes_Cars" FromRole="DeliveryNote" ToRole="Car" />
           <NavigationProperty Name="Driver" Relationship="SmartWorkingModel.FK_DeliveryNotes_Drivers" FromRole="DeliveryNote" ToRole="Driver" />
           <NavigationProperty Name="Order" Relationship="SmartWorkingModel.FK_DeliveryNotes_Orders" FromRole="DeliveryNote" ToRole="Order" />
-          <Property Type="String" Name="Number" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_DeliveryNotes_Cars">
           <End Type="SmartWorkingModel.Car" Role="Car" Multiplicity="0..1" />
@@ -754,37 +799,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Recipe_Id" />
-          <Property Type="Int32" Name="ClientBuilding_Id" />
-          <Property Type="Double" Name="Amount" />
-          <Property Type="DateTime" Name="DateOfOrder" />
-          <Property Type="DateTime" Name="Deleted" />
-          <Property Type="DateTime" Name="Deactivated" />
-          <Property Type="DateTime" Name="Canceled" />
-          <Property Type="Int32" Name="Pump" />
-          <Property Type="String" Name="Notice" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ClientBuilding" Relationship="SmartWorkingModel.FK_Orders_ClientBuildings" FromRole="Order" ToRole="ClientBuilding" />
-          <NavigationProperty Name="DeliveryNotes" Relationship="SmartWorkingModel.FK_DeliveryNotes_Orders" FromRole="Order" ToRole="DeliveryNote" />
-          <NavigationProperty Name="Recipe" Relationship="SmartWorkingModel.FK_Orders_Recipes" FromRole="Order" ToRole="Recipe" />
-          <Property Type="DateTime" Name="PlannedDeliveryTime" />
-        </EntityType>
-        <Association Name="FK_Orders_ClientBuildings">
-          <End Type="SmartWorkingModel.ClientBuilding" Role="ClientBuilding" Multiplicity="0..1" />
-          <End Type="SmartWorkingModel.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ClientBuilding">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="ClientBuilding_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DeliveryNotes_Orders">
           <End Type="SmartWorkingModel.Order" Role="Order" Multiplicity="0..1" />
           <End Type="SmartWorkingModel.DeliveryNote" Role="DeliveryNote" Multiplicity="*" />
@@ -794,18 +808,6 @@
             </Principal>
             <Dependent Role="DeliveryNote">
               <PropertyRef Name="Order_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Orders_Recipes">
-          <End Type="SmartWorkingModel.Recipe" Role="Recipe" Multiplicity="0..1" />
-          <End Type="SmartWorkingModel.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipe">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="Recipe_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -957,24 +959,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DeliveryNotes">
-            <EntityTypeMapping TypeName="SmartWorkingModel.DeliveryNote">
-              <MappingFragment StoreEntitySet="DeliveryNotes">
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Deactivated" ColumnName="Deactivated" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Car_Id" ColumnName="Car_Id" />
-                <ScalarProperty Name="Drawer" ColumnName="Drawer" />
-                <ScalarProperty Name="Canceled" ColumnName="Canceled" />
-                <ScalarProperty Name="DateOfArrival" ColumnName="DateOfArrival" />
-                <ScalarProperty Name="DateDrawing" ColumnName="DateDrawing" />
-                <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="SmartWorkingModel.Order">
               <MappingFragment StoreEntitySet="Orders">
@@ -988,6 +972,25 @@
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ClientBuilding_Id" ColumnName="ClientBuilding_Id" />
                 <ScalarProperty Name="Recipe_Id" ColumnName="Recipe_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryNotes">
+            <EntityTypeMapping TypeName="SmartWorkingModel.DeliveryNote">
+              <MappingFragment StoreEntitySet="DeliveryNotes">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Deactivated" ColumnName="Deactivated" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Car_Id" ColumnName="Car_Id" />
+                <ScalarProperty Name="Drawer" ColumnName="Drawer" />
+                <ScalarProperty Name="Canceled" ColumnName="Canceled" />
+                <ScalarProperty Name="DateOfArrival" ColumnName="DateOfArrival" />
+                <ScalarProperty Name="DateDrawing" ColumnName="DateDrawing" />
+                <ScalarProperty Name="Driver_Id" ColumnName="Driver_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1020,14 +1023,14 @@
         <EntityTypeShape EntityType="SmartWorkingModel.RecipeComponent" Width="1.5" PointX="1" PointY="0.5" Height="2.5571907552083339" />
         <EntityTypeShape EntityType="SmartWorkingModel.Recipe" Width="1.5" PointX="3.375" PointY="0.5" Height="3.1340950520833331" />
         <AssociationConnector Association="SmartWorkingModel.FK_MaterialsDeliverer_Contractors" ManuallyRouted="false" >
-          <ConnectorPoint PointX="3.17187625" PointY="7.75" />
-          <ConnectorPoint PointX="3.17187625" PointY="4.7892094205729165" />
-          <ConnectorPoint PointX="2.25" PointY="4.7892094205729165" />
+          <ConnectorPoint PointX="3.07031375" PointY="7.75" />
+          <ConnectorPoint PointX="3.07031375" PointY="5.3373482552083331" />
+          <ConnectorPoint PointX="2.25" PointY="5.3373482552083331" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_MaterialsProducer_Contractors" ManuallyRouted="false" >
-          <ConnectorPoint PointX="2.7656225" PointY="7.75" />
-          <ConnectorPoint PointX="2.7656225" PointY="3.8483000260416675" />
-          <ConnectorPoint PointX="2.25" PointY="3.8483000260416675" />
+          <ConnectorPoint PointX="3.7436235614726479" PointY="7.75" />
+          <ConnectorPoint PointX="3.7436235614726479" PointY="4.4544701536458327" />
+          <ConnectorPoint PointX="2.25" PointY="4.4544701536458327" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_MaterialStocks_Materails" >
           <ConnectorPoint PointX="1.4687475" PointY="6.6340950520833317" />
@@ -1044,43 +1047,44 @@
         <EntityTypeShape EntityType="SmartWorkingModel.Car" Width="1.5" PointX="8.75" PointY="0.5" Height="3.326396484375" />
         <EntityTypeShape EntityType="SmartWorkingModel.Driver" Width="1.5" PointX="6" PointY="0.5" Height="2.7494921875" />
         <AssociationConnector Association="SmartWorkingModel.FK_Cars_Drivers" >
-          <ConnectorPoint PointX="7.5" PointY="1.8747460937500002" />
-          <ConnectorPoint PointX="8.75" PointY="1.8747460937500002" />
+          <ConnectorPoint PointX="7.5" PointY="1.87474609375" />
+          <ConnectorPoint PointX="8.75" PointY="1.87474609375" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SmartWorkingModel.Building" Width="1.5" PointX="9.25" PointY="4.5" Height="3.3263964843749996" />
-        <EntityTypeShape EntityType="SmartWorkingModel.ClientBuilding" Width="1.5" PointX="5" PointY="8.375" Height="2.5571907552083335" />
-        <EntityTypeShape EntityType="SmartWorkingModel.Client" Width="1.5" PointX="8.125" PointY="8.125" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Building" Width="1.5" PointX="8.75" PointY="4" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="SmartWorkingModel.ClientBuilding" Width="1.5" PointX="4.5" PointY="8.5" Height="2.5571907552083335" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Client" Width="1.5" PointX="8.75" PointY="7.625" Height="3.3263964843749996" />
         <AssociationConnector Association="SmartWorkingModel.FK_ClientBuildings_Buildings" >
-          <ConnectorPoint PointX="9.25" PointY="7.7710986328125" />
-          <ConnectorPoint PointX="6.0625" PointY="7.7710986328125" />
-          <ConnectorPoint PointX="6.0625" PointY="8.375" />
+          <ConnectorPoint PointX="8.75" PointY="7.326396484375" />
+          <ConnectorPoint PointX="8.375" PointY="7.701396484375" />
+          <ConnectorPoint PointX="8.375" PointY="8.97930107250548" />
+          <ConnectorPoint PointX="6" PointY="8.97930107250548" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_ClientBuildings_Clients" >
-          <ConnectorPoint PointX="8.125" PointY="9.6535953776041659" />
-          <ConnectorPoint PointX="6.5" PointY="9.6535953776041659" />
+          <ConnectorPoint PointX="8.75" PointY="9.9207637202632313" />
+          <ConnectorPoint PointX="6" PointY="9.9207637202632313" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SmartWorkingModel.DeliveryNote" Width="1.5" PointX="6.375" PointY="3.75" Height="3.9033007812499996" />
+        <EntityTypeShape EntityType="SmartWorkingModel.Order" Width="1.5" PointX="4.375" PointY="4.125" Height="3.7109993489583326" />
+        <AssociationConnector Association="SmartWorkingModel.FK_Orders_ClientBuildings" >
+          <ConnectorPoint PointX="5.1875" PointY="8.5" />
+          <ConnectorPoint PointX="5.1875" PointY="7.8359993489583326" />
+        </AssociationConnector>
+        <AssociationConnector Association="SmartWorkingModel.FK_Orders_Recipes" >
+          <ConnectorPoint PointX="4.625" PointY="3.6340950520833331" />
+          <ConnectorPoint PointX="4.625" PointY="4.125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SmartWorkingModel.DeliveryNote" Width="1.5" PointX="6.375" PointY="3.75" Height="4.0956022135416674" />
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Cars" >
-          <ConnectorPoint PointX="8.96875" PointY="3.826396484375" />
-          <ConnectorPoint PointX="8.96875" PointY="4.1319487421875" />
-          <ConnectorPoint PointX="7.875" PointY="4.1319487421875" />
+          <ConnectorPoint PointX="8.75" PointY="2.8436250468750006" />
+          <ConnectorPoint PointX="7.7418108397621825" PointY="2.8436250468750006" />
+          <ConnectorPoint PointX="7.7418108397621825" PointY="3.75" />
         </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Drivers" >
           <ConnectorPoint PointX="6.9375" PointY="3.2494921875" />
           <ConnectorPoint PointX="6.9375" PointY="3.75" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SmartWorkingModel.Order" Width="1.5" PointX="4.25" PointY="3.875" Height="3.5186979166666674" />
-        <AssociationConnector Association="SmartWorkingModel.FK_Orders_ClientBuildings" >
-          <ConnectorPoint PointX="5.375" PointY="8.375" />
-          <ConnectorPoint PointX="5.375" PointY="7.3936979166666674" />
-        </AssociationConnector>
         <AssociationConnector Association="SmartWorkingModel.FK_DeliveryNotes_Orders" >
-          <ConnectorPoint PointX="5.75" PointY="5.7304996744791659" />
-          <ConnectorPoint PointX="6.375" PointY="5.7304996744791659" />
-        </AssociationConnector>
-        <AssociationConnector Association="SmartWorkingModel.FK_Orders_Recipes" >
-          <ConnectorPoint PointX="4.5625" PointY="3.6340950520833331" />
-          <ConnectorPoint PointX="4.5625" PointY="3.875" />
+          <ConnectorPoint PointX="5.875" PointY="5.9804996744791659" />
+          <ConnectorPoint PointX="6.375" PointY="5.9804996744791659" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

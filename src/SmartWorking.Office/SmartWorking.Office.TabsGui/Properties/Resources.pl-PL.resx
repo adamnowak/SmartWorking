@@ -1396,4 +1396,140 @@
   <data name="RecipeListViewModel_Name" xml:space="preserve">
     <value>Lista receptur</value>
   </data>
+  <data name="MaterialTypes_LoadItems_Concrete" xml:space="preserve">
+    <comment>MaterialTypes.Enum</comment>
+    <value>Cement</value>
+  </data>
+  <data name="MaterialTypes_LoadItems_Aggregate" xml:space="preserve">
+    <comment>MaterialTypes.Enum</comment>
+    <value>Kruszywo</value>
+  </data>
+  <data name="MaterialTypes_LoadItems_Supplement" xml:space="preserve">
+    <comment>MaterialTypes.Enum</comment>
+    <value>Dodatek</value>
+  </data>
+  <data name="MaterialTypes_LoadItems_Admixture" xml:space="preserve">
+    <comment>MaterialTypes.Enum</comment>
+    <value>Domieszka</value>
+  </data>
+  <data name="MaterialDetailsControl_MaterialType" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Typ materiału:</value>
+  </data>
+  <data name="OrderListControl_PlannedDeliveryTime" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Planowany czas dostawy</value>
+  </data>
+  <data name="OrderListControl_Amount" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Ilość [m³]</value>
+  </data>
+  <data name="OrderListControl_AmountDelivered" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Ilość dostarczona</value>
+  </data>
+  <data name="OrderListControl_ClientId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Client_Id</value>
+  </data>
+  <data name="OrderListControl_BuildingId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Building_Id</value>
+  </data>
+  <data name="OrderListControl_RecipeId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Recipe_Id</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Id" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Id:</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Number" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Numer:</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Amount" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Ilość [m³]:</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Car" xml:space="preserve">
+    <comment>GroupBox.Header</comment>
+    <value>Samochód</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Car_Id" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>CarId:</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Car_Name" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Samochód:</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Capacity" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Ładowność:</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Driver" xml:space="preserve">
+    <comment>GroupBox.Header</comment>
+    <value>Kierowca</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Driver_Id" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>DriverId:</value>
+  </data>
+  <data name="DeliveryNoteDetailsControl_Driver_Name" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Kierowca:</value>
+  </data>
+  <data name="DeliveryNoteListControl_Filter" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Filtr:</value>
+  </data>
+  <data name="DeliveryNoteListControl_Search" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>Wyszukaj</value>
+  </data>
+  <data name="DeliveryNoteListControl_Id" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Id</value>
+  </data>
+  <data name="DeliveryNoteListControl_Number" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Numer</value>
+  </data>
+  <data name="DeliveryNoteListControl_Amount" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Ilość [m³]</value>
+  </data>
+  <data name="DeliveryNoteListControl_DateOfArrival" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Data dostarczenia</value>
+  </data>
+  <data name="DeliveryNoteListControl_CarId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Car_Id</value>
+  </data>
+  <data name="DeliveryNoteListControl_CarRegistrationNumber" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Numer rejestracyjny</value>
+  </data>
+  <data name="DeliveryNoteListControl_DriverId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Driver_Id</value>
+  </data>
+  <data name="DeliveryNoteListControl_DriverName" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Kierowca</value>
+  </data>
+  <data name="DeliveryNoteListControl_OnlyActivate" xml:space="preserve">
+    <comment>RadioButton.Content</comment>
+    <value>Tylko aktywne</value>
+  </data>
+  <data name="DeliveryNoteListControl_IncludeDeactive" xml:space="preserve">
+    <comment>RadioButton.Content</comment>
+    <value>Pokaż również nieaktywne</value>
+  </data>
+  <data name="DeliveryNoteListControl_All" xml:space="preserve">
+    <comment>RadioButton.Content</comment>
+    <value>Wszystkie</value>
+  </data>
 </root>

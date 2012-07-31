@@ -19,6 +19,17 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     {
       Cars = new SelectableViewModelBase<CarAndDriverPackage>();
       Drivers = new SelectableViewModelBase<DriverPrimitive>();
+      Cars.SelectedItemChanged += new EventHandler<SelectedItemChangedEventArgs<CarAndDriverPackage>>(Cars_SelectedItemChanged);
+    }
+
+    void Cars_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<CarAndDriverPackage> e)
+    {
+      if (//Drivers.SelectedItem == null && 
+        !IsReadOnly && Cars.SelectedItem != null && Cars.SelectedItem.Driver != null)
+      {
+        Drivers.SelectedItem = Drivers.Items.Where(x => x.Id == Cars.SelectedItem.Driver.Id).FirstOrDefault();
+      }
+      
     }
 
     public SelectableViewModelBase<CarAndDriverPackage> Cars { get; private set; }
@@ -76,6 +87,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
         List<DriverPrimitive> drivers = service.GetDrivers(string.Empty, ListItemsFilterValues.OnlyActive);
         Drivers.LoadItems(drivers);
       }
+      Drivers.SelectedItem = null;
     }
 
     private void LoadCars()
@@ -85,6 +97,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
         List<CarAndDriverPackage> cars = service.GetCarAndDriverPackageList(string.Empty, ListItemsFilterValues.OnlyActive);
         Cars.LoadItems(cars);
       }
+      Cars.SelectedItem = null;
     }
 
      //<summary>
@@ -93,33 +106,33 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
      //<param name="oldItem">The old item.</param>
     protected override void OnItemChanged(DeliveryNotePackage oldItem)
     {
-      //if (Item != null)
-      //{
-      //  if (Producers.Items != null && Item.Producer != null)
-      //  {
-      //    Producers.SelectedItem = Producers.Items.Where(x => x.Id == Item.Producer.Id).FirstOrDefault();
-      //    Item.Producer = Producers.SelectedItem;
-      //  }
-      //  else
-      //  {
-      //    Producers.SelectedItem = null;
-      //  }
+      if (Item != null)
+      {
+        if (Cars.Items != null && Item.CarAndDriver != null && Item.CarAndDriver.Car != null)
+        {
+          Cars.SelectedItem = Cars.Items.Where(x => x.Car.Id == Item.CarAndDriver.Car.Id).FirstOrDefault();
+          
+        }
+        else
+        {
+          Cars.SelectedItem = null;
+        }
 
-      //  if (Deliverers.Items != null && Item.Deliverer != null)
-      //  {
-      //    Deliverers.SelectedItem = Deliverers.Items.Where(x => x.Id == Item.Deliverer.Id).FirstOrDefault();
-      //    Item.Deliverer = Deliverers.SelectedItem;
-      //  }
-      //  else
-      //  {
-      //    Deliverers.SelectedItem = null;
-      //  } 
-      //}
-      //else
-      //{
-      //  Producers.SelectedItem = null;
-      //  Deliverers.SelectedItem = null;
-      //}
+        if (Drivers.Items != null && Item.Driver != null )
+        {
+          Drivers.SelectedItem = Drivers.Items.Where(x => x.Id == Item.Driver.Id).FirstOrDefault();
+          //Item.Deliverer = Deliverers.SelectedItem;
+        }
+        else
+        {
+          Drivers.SelectedItem = null;
+        }
+      }
+      else
+      {
+        Cars.SelectedItem = null;
+        Drivers.SelectedItem = null;
+      }
       
 
     }
