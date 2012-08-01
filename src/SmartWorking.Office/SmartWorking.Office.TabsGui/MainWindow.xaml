@@ -8,7 +8,7 @@
         xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
         xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:SaleGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup"
         xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension" 
-        Engine:LocalizeDictionary.DesignCulture="en-US">
+        Engine:LocalizeDictionary.DesignCulture="en">
     <Window.DataContext>
         <TabsGui:MainWindowViewModel  />
     </Window.DataContext>
@@ -36,9 +36,9 @@
                 <AdministrationGroup:AdministrationGroupControl /> 
             </TabItem>
 
-            <!--<TabItem Header="str_Settings" Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}">
+            <TabItem Header="{Binding Name}" DataContext="{Binding SettingsGroupViewModel}" >
                 <SettingsGroup:SettingsGroupControl/>
-            </TabItem>-->
+            </TabItem>
         </TabControl>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

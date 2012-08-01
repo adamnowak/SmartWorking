@@ -149,7 +149,7 @@
                                 </GroupBox.Visibility>
                                 <Grid>
                                     <DeliveryNotes:DeliveryNoteListControl DataContext="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel}"/>
-                                    
+
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="DeliveryNoteDetails" Grid.Row="1" Grid.Column="2">
@@ -165,8 +165,8 @@
                                     <DeliveryNotes:DeliveryNoteDetailsControl DataContext="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel}" />
                                 </Grid>
                             </GroupBox>
-                            
-                            
+
+
                             <Grid Grid.Row="2" Grid.ColumnSpan="3">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -202,7 +202,7 @@
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
                                                     <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />                                                   
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
@@ -212,7 +212,7 @@
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
                                                     <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />                                        
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
@@ -222,7 +222,7 @@
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
                                                     <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />                                                    
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
@@ -232,7 +232,7 @@
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
                                                     <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />                                            
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
@@ -242,7 +242,7 @@
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
                                                     <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
-                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>                               
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
@@ -271,8 +271,8 @@
                                 </StackPanel>
 
 
-                                
-                                
+
+
                                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.AddItemCommand}" Content="Add">
                                         <Button.Visibility>
@@ -296,13 +296,13 @@
                                             </MultiBinding>
                                         </Button.Visibility>
                                     </Button>
-                                    
+
                                     <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.SaveItemCommand}" Content="Save">
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
                                                     <Binding Path="OrderListViewModel.IsPreparingDelivery" />
-                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />                           
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
@@ -312,7 +312,7 @@
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
                                                     <Binding Path="OrderListViewModel.IsPreparingDelivery"  />
-                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>                                                    
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
                                         </Button.Visibility>
@@ -346,6 +346,10 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
+
+
+
+
             <TabItem Header="{Binding Name}" DataContext="{Binding ClientsAndBuildingsTabItemViewModel}">
                 <Grid>
                     <!--Clients-->

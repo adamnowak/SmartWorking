@@ -1,0 +1,5 @@
+﻿Autor: adamus79@gmail.com
+
+Komponenty wykorzystane w programi:
+MVVM Light Toolkit - http://mvvmlight.codeplex.com/  (licencja - http://mvvmlight.codeplex.com/license)
+WPF Localization Extension - http://wpflocalizeextension.codeplex.com/ (licencja - http://wpflocalizeextension.codeplex.com/license)

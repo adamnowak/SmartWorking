@@ -86,7 +86,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocalSylwek|x86'">
     <OutputPath>..\..\..\bin\TabGui\DebugLocalSylwek\</OutputPath>
-    <DefineConstants>CONFIG_NAME_DebugLocalSylwek</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CONFIG_NAME_DebugLocalSylwek</DefineConstants>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4, Version=3.0.0.19993, Culture=neutral, PublicKeyToken=1673db7d5906b0ad, processorArchitecture=MSIL">
@@ -198,6 +199,9 @@
     <Compile Include="Controls\MainGroups\ReportsGroup\ReportsGroupControl.xaml.cs">
       <DependentUpon>ReportsGroupControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainGroups\SettingsGroup\UsersViewModel.cs" />
+    <Compile Include="Controls\MainGroups\SettingsGroup\GeneralViewModel.cs" />
+    <Compile Include="Controls\MainGroups\SettingsGroup\SettingsGroupViewModel.cs" />
     <Compile Include="Controls\MainGroups\SettingsGroup\SettingsGroupControl.xaml.cs">
       <DependentUpon>SettingsGroupControl.xaml</DependentUpon>
     </Compile>
@@ -525,6 +529,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />
