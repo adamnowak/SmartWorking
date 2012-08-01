@@ -149,6 +149,19 @@ namespace SmartWorking.Office.PrimitiveEntities
       }
       return result;
     }
+
+    public static List<RecipeComponentPrimitive> GetRecipeComponentListWithReference(this RecipePackage recipePackage)
+    {
+      List<RecipeComponentPrimitive> result = recipePackage.RecipeComponentAndMaterialList.Select(x => x.GetRecipeComponentPrimitiveWithReference()).ToList();
+      if (recipePackage.Recipe != null)
+      {
+        foreach (RecipeComponentPrimitive item in result)
+        {
+          item.Recipe_Id = recipePackage.Recipe.Id;
+        }
+      }
+      return result;
+    }
     //public static ClientBuildingPrimitive GetClientBuildingPrimitiveWithReference(this ClientBuildingPackage clientAndBuildingsPackage)
     //{
     //  if (clientAndBuildingsPackage == null || clientAndBuildingsPackage.ClientBuilding == null)

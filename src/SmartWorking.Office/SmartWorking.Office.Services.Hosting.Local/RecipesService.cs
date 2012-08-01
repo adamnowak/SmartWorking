@@ -95,7 +95,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
         {
           using (SmartWorkingEntities context = new SmartWorkingEntities())
           {
-            Recipe existingObject = context.Recipes.Where(x => x.Id == recipePackage.Recipe.Id).FirstOrDefault();
+            Recipe existingObject = context.Recipes.Include("RecipeComponents").Where(x => x.Id == recipePackage.Recipe.Id).FirstOrDefault();
 
             //no record of this item in the DB, item being passed in has a PK
             if (existingObject == null && recipePackage.Recipe.Id > 0)
@@ -105,29 +105,78 @@ namespace SmartWorking.Office.Services.Hosting.Local
             }
             //Item has no PK value, must be new
 
-
-            if (recipePackage.Recipe.Id > 0)
+            //Item has no PK value, must be new);
+            if (recipePackage.Recipe.Id <= 0)
             {
-              existingObject.Deleted = DateTime.Now;
-              context.Recipes.ApplyCurrentValues(existingObject);
-
+              Recipe recipe = recipePackage.Recipe.GetEntity();
+              context.Recipes.AddObject(recipe);
+              foreach (RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage in recipePackage.RecipeComponentAndMaterialList)
+              {                
+                  RecipeComponentPrimitive recipeComponentPrimitive =
+                    recipeComponentAndMaterialPackage.GetRecipeComponentPrimitiveWithReference();
+                  if (recipeComponentPrimitive != null)
+                  {
+                    recipeComponentPrimitive.Id = 0;
+                    RecipeComponent recipeComponent= recipeComponentPrimitive.GetEntity();
+                    recipeComponent.Recipe = recipe;
+                    context.RecipeComponents.AddObject(recipeComponent);
+                  }
+              }
             }
-
-            Recipe recipe = recipePackage.Recipe.GetEntity();
-            recipe.Id = 0;
-            context.Recipes.AddObject(recipe);
-            foreach (
-              RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage in
-                recipePackage.RecipeComponentAndMaterialList)
+            //Item was retrieved, and the item passed has a valid ID, do an update
+            else
             {
-              recipeComponentAndMaterialPackage.RecipeComponent.Id = 0;
-              RecipeComponent recipeComponent =
-                recipeComponentAndMaterialPackage.GetRecipeComponentPrimitiveWithReference().GetEntity();
-              recipeComponent.Recipe = recipe;
-              context.RecipeComponents.AddObject(recipeComponent);
+              List<RecipeComponentPrimitive> existingRecipeComponents = existingObject.RecipeComponents.Select(x => x.GetPrimitive()).ToList();
+              List<RecipeComponentPrimitive> newRecipeComponents = recipePackage.GetRecipeComponentListWithReference().ToList();
+              List<RecipeComponentPrimitive> theSameElements = newRecipeComponents.Where(x => existingRecipeComponents.Select(y => y.Id).Contains(x.Id)).ToList();
+
+              existingRecipeComponents.RemoveAll(x => theSameElements.Select(y => y.Id).Contains(x.Id));
+              newRecipeComponents.RemoveAll(x => theSameElements.Select(y => y.Id).Contains(x.Id));
+
+              //remove 
+              if (existingRecipeComponents.Count() > 0)
+              {
+                List<int> existingRecipeComponentIds = existingRecipeComponents.Select(x => x.Id).ToList();
+                List<RecipeComponent> recipeComponentListToDelete =
+                  context.RecipeComponents.Where(x => existingRecipeComponentIds.Contains(x.Id)).ToList();
+
+                foreach (RecipeComponent recipeComponent in recipeComponentListToDelete)
+                {
+                  context.RecipeComponents.DeleteObject(recipeComponent);
+                }
+              }
+
+              //add
+              foreach (RecipeComponentPrimitive newRecipeComponent in newRecipeComponents)
+              {
+                context.RecipeComponents.AddObject(newRecipeComponent.GetEntity());
+              }
+
+              context.Recipes.ApplyCurrentValues(recipePackage.Recipe.GetEntity());
             }
 
             context.SaveChanges();
+
+            //TODO: FOR THE FUTURE
+            //if (recipePackage.Recipe.Id > 0)
+            //{
+            //  existingObject.Deleted = DateTime.Now;
+            //  context.Recipes.ApplyCurrentValues(existingObject);
+            //}            
+            //Recipe recipe = recipePackage.Recipe.GetEntity();
+            //recipe.Id = 0;
+            //context.Recipes.AddObject(recipe);
+            //foreach (
+            //  RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage in
+            //    recipePackage.RecipeComponentAndMaterialList)
+            //{
+            //  recipeComponentAndMaterialPackage.RecipeComponent.Id = 0;
+            //  RecipeComponent recipeComponent =
+            //    recipeComponentAndMaterialPackage.GetRecipeComponentPrimitiveWithReference().GetEntity();
+            //  recipeComponent.Recipe = recipe;
+            //  context.RecipeComponents.AddObject(recipeComponent);
+            //}
+            //context.SaveChanges();
           }
         }
         else

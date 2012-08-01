@@ -162,7 +162,12 @@
                                     </MultiBinding>
                                 </GroupBox.Visibility>
                                 <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
                                     <DeliveryNotes:DeliveryNoteDetailsControl DataContext="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel}" />
+                                    <Orders:OrderSumaryControl Grid.Row="1" DataContext="{Binding OrderDetailsViewModel.OrderSumaryViewModel}" />
                                 </Grid>
                             </GroupBox>
 

@@ -35,12 +35,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       DeliveryNoteListViewModel = new DeliveryNoteListViewModel(MainViewModel, DeliveryNoteDetailsViewModel, this,
                                                                 ModalDialogService, ServiceFactory);
 
-      
 
+      OrderSumaryViewModel = new OrderSumaryViewModel(MainViewModel, ModalDialogService, ServiceFactory); 
       
     }
 
-   
+    public OrderSumaryViewModel OrderSumaryViewModel { get; private set; }
 
     
 
@@ -179,7 +179,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
         {
           DeliveryNoteListViewModel.Items.LoadItems(Item.DeliveryNotePackageList);
         }
+
+        
       }
+
+      OrderSumaryViewModel.Item = Item;
       
 
       
