@@ -6,7 +6,9 @@
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
-        xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:SaleGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup">
+        xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:SaleGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup"
+        xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension" 
+        Engine:LocalizeDictionary.DesignCulture="en-US">
     <Window.DataContext>
         <TabsGui:MainWindowViewModel  />
     </Window.DataContext>
@@ -45,6 +47,13 @@
             </Grid.ColumnDefinitions> 
             <TextBlock Height="20" Text="{Binding StatusText}" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" Background="Yellow" >
+                <StackPanel.Visibility>
+                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding Path="IsBlockedAccessLevel" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </StackPanel.Visibility>
                 <RadioButton GroupName="Roles" Content="Admin"  IsChecked="{Binding AccessLevel, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
                 <RadioButton GroupName="Roles" Content="WOS"   IsChecked="{Binding AccessLevel, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.WOSLevel}}" />
                 <RadioButton GroupName="Roles" Content="Operator" IsChecked="{Binding AccessLevel, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.OperatorLevel}}" />

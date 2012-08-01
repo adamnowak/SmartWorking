@@ -71,6 +71,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\SmartWorking.Office.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocalSylwek|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />

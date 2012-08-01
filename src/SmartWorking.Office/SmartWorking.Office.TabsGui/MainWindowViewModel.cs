@@ -56,14 +56,28 @@ namespace SmartWorking.Office.TabsGui
     {
       SaleGroupViewModel = new SaleGroupViewModel(this, ModalDialogService, ServiceFactory);
       AdministrationGroupViewModel = new AdministrationGroupViewModel(this, ModalDialogService, ServiceFactory);
-      AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
-      MainViewModel = this;
-      
-      IsDebugMode = false;
 
+      IsBlockedAccessLevel = false; 
+      MainViewModel = this;
+      AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
+      IsDebugMode = false;
       LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
+
+#if CONFIG_NAME_DebugLocalSylwek
+      AccessLevel = AccessLevels.OperatorLevel;
+      IsDebugMode = false;
+      IsBlockedAccessLevel = true;
+#endif
     }
-    
+
+
+    /// <summary>
+    /// Gets a value indicating whether this instance is blocked access level.
+    /// </summary>
+    /// <value>
+    /// 	<c>true</c> if this instance is blocked access level; otherwise, <c>false</c>.
+    /// </value>
+    public bool IsBlockedAccessLevel { get; private set; }
 
     #region AccessLevel
     /// <summary>

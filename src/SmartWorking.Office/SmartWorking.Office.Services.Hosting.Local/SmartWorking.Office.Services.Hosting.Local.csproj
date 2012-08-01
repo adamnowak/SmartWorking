@@ -67,6 +67,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\SmartWorking.Office.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLocalSylwek|AnyCPU'">
+    <OutputPath>bin\DebugLocalSylwek\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
