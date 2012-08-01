@@ -9,6 +9,7 @@ namespace SmartWorking.Office.PrimitiveEntities
 {
   public class OrderPackage
   {
+    public int LastDeliveryNoteNumber { get; set; }
     public OrderPrimitive Order { get; set; }
     public ClientPrimitive Client { get; set; }
     public ClientBuildingAndBuildingPackage ClientBuildingPackage { get; set; }

@@ -86,6 +86,7 @@
           <Property Name="HouseNo" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="datetime" />
           <Property Name="Deactivated" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Cars">
           <Key>
@@ -239,6 +240,7 @@
           <Property Name="WaterToCement" Type="nvarchar" MaxLength="20" />
           <Property Name="StrengthClass" Type="nvarchar" MaxLength="20" />
           <Property Name="StrengthProgress" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK_Cars_Drivers">
           <End Role="Drivers" Type="SmartWorkingModel.Store.Drivers" Multiplicity="0..1" />
@@ -542,6 +544,7 @@
           <Property Type="String" Name="WaterToCement" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="StrengthClass" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="StrengthProgress" />
+          <Property Type="String" Name="Code" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_MaterialsDeliverer_Contractors">
           <End Type="SmartWorkingModel.Contractor" Role="Contractor" Multiplicity="0..1" />
@@ -662,6 +665,7 @@
           <Property Type="DateTime" Name="Deleted" />
           <NavigationProperty Name="ClientBuildings" Relationship="SmartWorkingModel.FK_ClientBuildings_Buildings" FromRole="Building" ToRole="ClientBuilding" />
           <Property Type="DateTime" Name="Deactivated" />
+          <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ClientBuilding">
           <Key>
@@ -879,6 +883,7 @@
           <EntitySetMapping Name="Recipes">
             <EntityTypeMapping TypeName="SmartWorkingModel.Recipe">
               <MappingFragment StoreEntitySet="Recipes">
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="StrengthProgress" ColumnName="StrengthProgress" />
                 <ScalarProperty Name="StrengthClass" ColumnName="StrengthClass" />
                 <ScalarProperty Name="WaterToCement" ColumnName="WaterToCement" />
@@ -926,6 +931,7 @@
           <EntitySetMapping Name="Buildings">
             <EntityTypeMapping TypeName="SmartWorkingModel.Building">
               <MappingFragment StoreEntitySet="Buildings">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Deactivated" ColumnName="Deactivated" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="HouseNo" ColumnName="HouseNo" />

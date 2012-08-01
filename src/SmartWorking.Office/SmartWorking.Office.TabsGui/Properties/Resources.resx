@@ -1532,7 +1532,19 @@
     <value>All</value>
     <comment>RadioButton.Content</comment>
   </data>
-	<data name="MaterialTypes_LoadItems_Water">
-		<value xml:space="preserve">Water</value>
-	</data>
+  <data name="MaterialTypes_LoadItems_Water" xml:space="preserve">
+    <value>Water</value>
+  </data>
+  <data name="OrderSumaryControl_Amount" xml:space="preserve">
+    <value>Amount</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="OrderSumaryControl_AmountDelivered" xml:space="preserve">
+    <value>AmountDelivered</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="OrderSumaryControl_RemainToDeliver" xml:space="preserve">
+    <value>RemainToDeliver</value>
+    <comment>TextBlock.Text</comment>
+  </data>
 </root>

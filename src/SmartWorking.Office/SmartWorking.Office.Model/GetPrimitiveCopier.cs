@@ -46,6 +46,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.Deactivated = primitiveToCopy.Deactivated;
         		
+        		primitive.Name = primitiveToCopy.Name;
+        		
         		return primitive;
         }
         
@@ -319,6 +321,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.StrengthClass = primitiveToCopy.StrengthClass;
         		
         		primitive.StrengthProgress = primitiveToCopy.StrengthProgress;
+        		
+        		primitive.Code = primitiveToCopy.Code;
         		
         		return primitive;
         }

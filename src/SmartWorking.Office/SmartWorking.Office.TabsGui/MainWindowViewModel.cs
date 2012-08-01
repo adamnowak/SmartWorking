@@ -5,8 +5,10 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Markup;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 #if IIS_USED
@@ -152,6 +154,10 @@ namespace SmartWorking.Office.TabsGui
 
           Thread.CurrentThread.CurrentCulture = ci;
           Thread.CurrentThread.CurrentUICulture = ci;
+          //FrameworkElement.LanguageProperty.OverrideMetadata(
+          //     typeof(FrameworkElement),
+          //     new FrameworkPropertyMetadata(
+          //         XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
         else
         {
@@ -160,6 +166,10 @@ namespace SmartWorking.Office.TabsGui
 
           Thread.CurrentThread.CurrentCulture = ci;
           Thread.CurrentThread.CurrentUICulture = ci;
+          //FrameworkElement.LanguageProperty.OverrideMetadata(
+          //     typeof(FrameworkElement),
+          //     new FrameworkPropertyMetadata(
+          //         XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
 
         // Update bindings, no broadcast

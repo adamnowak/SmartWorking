@@ -45,6 +45,8 @@ namespace SmartWorking.Office.Entities
         		
         		primitive.Deactivated = entity.Deactivated;
         		
+        		primitive.Name = entity.Name;
+        		
         		return primitive;
         }
         
@@ -298,6 +300,8 @@ namespace SmartWorking.Office.Entities
         		primitive.StrengthClass = entity.StrengthClass;
         		
         		primitive.StrengthProgress = entity.StrengthProgress;
+        		
+        		primitive.Code = entity.Code;
         		
         		return primitive;
         }

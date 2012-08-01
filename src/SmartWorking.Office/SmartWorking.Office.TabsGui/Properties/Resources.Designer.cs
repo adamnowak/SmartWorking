@@ -2563,6 +2563,33 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string OrderSumaryControl_Amount {
+            get {
+                return ResourceManager.GetString("OrderSumaryControl_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AmountDelivered.
+        /// </summary>
+        public static string OrderSumaryControl_AmountDelivered {
+            get {
+                return ResourceManager.GetString("OrderSumaryControl_AmountDelivered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RemainToDeliver.
+        /// </summary>
+        public static string OrderSumaryControl_RemainToDeliver {
+            get {
+                return ResourceManager.GetString("OrderSumaryControl_RemainToDeliver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount:.
         /// </summary>
         public static string RecipeComponentDetailsControl_Amount {

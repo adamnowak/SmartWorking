@@ -14,20 +14,16 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-
                 </Grid.RowDefinitions>
-
-                <TextBlock Text="Amount"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderSumaryControl_Amount}"
                      Grid.Row="0" />
-                <TextBlock Text="AmountDelivered"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderSumaryControl_AmountDelivered}"
                      Grid.Row="1" />
-                <TextBlock Text="RemainToDeliver"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderSumaryControl_RemainToDeliver}"
                      Grid.Row="2" />
-
                 <TextBox Text="{Binding Item.Order.Amount}" Grid.Row="0" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <TextBox Text="{Binding AmountDelivered}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <TextBox Text="{Binding RemainToDeliver}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                
             </Grid>
         </ScrollViewer>
     </Grid>

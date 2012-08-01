@@ -21,6 +21,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <!--Debug only-->
                 <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeDetailsControl_Id}"
@@ -30,36 +31,39 @@
                      Grid.Row="1" />
                 <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeDetailsControl_Name}"
                      Grid.Row="2" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeDetailsControl_ConcreteClass}"
+                <TextBlock Text="Code"
                      Grid.Row="3" />
-                <TextBlock Text="StrengthClass"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeDetailsControl_ConcreteClass}"
                      Grid.Row="4" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeDetailsControl_Granulation}"
-                     Grid.Row="5" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeDetailsControl_Consistency}"
-                     Grid.Row="6" />
-                <TextBlock Text="WaterToCement"
-                     Grid.Row="7" />
                 <TextBlock Text="StrengthClass"
+                     Grid.Row="5" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeDetailsControl_Granulation}"
+                     Grid.Row="6" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeDetailsControl_Consistency}"
+                     Grid.Row="7" />
+                <TextBlock Text="WaterToCement"
                      Grid.Row="8" />
+                <TextBlock Text="StrengthClass"
+                     Grid.Row="9" />
                 <!--End Debug only-->
                 <TextBox Text="{Binding Item.Recipe.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"
                      Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--Debug only-->
                 <TextBox Text="{Binding Item.Recipe.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <TextBox Text="{Binding Item.Recipe.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Recipe.ConcreteClass}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Recipe.StrengthClass}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Recipe.Granulation}" Grid.Row="5" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Recipe.Consistency}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Recipe.WaterToCement}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Recipe.Code}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Recipe.ConcreteClass}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Recipe.StrengthClass}" Grid.Row="5" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Recipe.Granulation}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Recipe.Consistency}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Recipe.WaterToCement}" Grid.Row="8" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <ComboBox ItemsSource="{Binding Source={x:Static Recipes:StrengthClassTypes.Instance}, Path=Items}"
                      SelectedValue="{Binding Item.Car.StrengthClass}" SelectedValuePath="Id" DisplayMemberPath="Description"
-                     Grid.Row="8" Grid.Column="1" IsReadOnly="True" IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" />
+                     Grid.Row="9" Grid.Column="1" IsReadOnly="True" IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" />
                 
                 <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeDetailsControl_IsActive1}"
-                     Grid.Row="9" />
-                <CheckBox Grid.Row="9" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Recipe.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}"
+                     Grid.Row="10" />
+                <CheckBox Grid.Row="10" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Recipe.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}"
                      IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" />
             </Grid>
         </ScrollViewer>

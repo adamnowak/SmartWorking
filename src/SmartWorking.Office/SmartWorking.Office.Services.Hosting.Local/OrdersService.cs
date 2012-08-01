@@ -80,6 +80,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
                       ? ctx.Orders.Include("DeliveryNotes.Car").Include("DeliveryNotes.Driver").Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList()
                       : ctx.Orders.Include("DeliveryNotes.Car").Include("DeliveryNotes.Driver").Include("Recipe").Include("ClientBuilding.Client").Include("ClientBuilding.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.ClientBuilding != null && x.ClientBuilding.Client != null && x.ClientBuilding.Client.Name.StartsWith(filter)).ToList();
+          int? maxDeliveryNumberRead = ctx.DeliveryNotes.Where(x => x.Year == DateTime.Now.Year).Max(x => x.Number);
+          int maxDeliveryNumber = maxDeliveryNumberRead.HasValue ? maxDeliveryNumberRead.Value : 1;
           return result.Select(x => x.GetOrderPackage()).ToList(); 
         }
       }
