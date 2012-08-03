@@ -20,6 +20,7 @@ using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Cars;
 using SmartWorking.Office.TabsGui.Controls.MainGroups;
 using SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup;
+using SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup;
 using SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup;
 using SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup;
 using SmartWorking.Office.TabsGui.Shared.View;
@@ -59,8 +60,8 @@ namespace SmartWorking.Office.TabsGui
     {
       SaleGroupViewModel = new SaleGroupViewModel(this, ModalDialogService, ServiceFactory);
       AdministrationGroupViewModel = new AdministrationGroupViewModel(this, ModalDialogService, ServiceFactory);
-      SettingsGroupViewModel = new SettingsGroupViewModel(this, ModalDialogService, ServiceFactory); 
-
+      SettingsGroupViewModel = new SettingsGroupViewModel(this, ModalDialogService, ServiceFactory);
+      ReportsGroupViewModel = new ReportsGroupViewModel(this, ModalDialogService, ServiceFactory);
       IsBlockedAccessLevel = false; 
       MainViewModel = this;
       AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
@@ -74,7 +75,7 @@ namespace SmartWorking.Office.TabsGui
 #endif
     }
 
-    
+   
 
 
     /// <summary>
@@ -183,6 +184,8 @@ namespace SmartWorking.Office.TabsGui
     public AdministrationGroupViewModel AdministrationGroupViewModel { get; private set; }
 
     public SettingsGroupViewModel SettingsGroupViewModel { get; private set; }
+
+    public ReportsGroupViewModel ReportsGroupViewModel { get; private set; }
 
     #region StatusText
     /// <summary>

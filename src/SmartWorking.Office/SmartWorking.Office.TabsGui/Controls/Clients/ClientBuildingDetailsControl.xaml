@@ -21,6 +21,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <!--Debug only-->
                 <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_Id}"
@@ -28,20 +29,22 @@
                 <!--End Debug only-->
                 <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_InternalName}"
                      Grid.Row="1" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_City}"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_InternalName}"
                      Grid.Row="2" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_ZIPCode}"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_City}"
                      Grid.Row="3" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_Street}"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_ZIPCode}"
                      Grid.Row="4" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_HouseNo}"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_Street}"
                      Grid.Row="5" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_Phone}"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_HouseNo}"
                      Grid.Row="6" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_ContactPerson}"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_Phone}"
                      Grid.Row="7" />
-                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_ContactPersonPhone}"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_ContactPerson}"
                      Grid.Row="8" />
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_ContactPersonPhone}"
+                     Grid.Row="9" />
                 <!--<TextBlock Text="Odległość:" Grid.Row="9" />-->
                 <!--End Debug only-->
                 <TextBox Text="{Binding Item.Building.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"
@@ -49,19 +52,20 @@
                 <!--Debug only-->
                 <TextBox Text="{Binding Item.Building.InternalName}" Grid.Row="1" Grid.Column="1"
                      IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Building.City}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Building.ZIPCode}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Building.Street}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Building.HouseNo}" Grid.Row="5" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Building.Phone}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Building.ContactPerson}" Grid.Row="7" Grid.Column="1"
+                <TextBox Text="{Binding Item.Building.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Building.City}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Building.ZIPCode}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Building.Street}" Grid.Row="5" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Building.HouseNo}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Building.Phone}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Building.ContactPerson}" Grid.Row="8" Grid.Column="1"
                      IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Building.ContactPersonPhone}" Grid.Row="8" Grid.Column="1"
+                <TextBox Text="{Binding Item.Building.ContactPersonPhone}" Grid.Row="9" Grid.Column="1"
                      IsReadOnly="{Binding IsReadOnly}" />
                 <!--<TextBox Text="{Binding RouteDistance, Mode=OneWay, ElementName=Map}" Grid.Row="9" Grid.Column="1" IsReadOnly="True" />-->
                 <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingDetailsControl_IsActive}"
-                     Grid.Row="9" />
-                <CheckBox Grid.Row="9" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Building.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}"
+                     Grid.Row="10" />
+                <CheckBox Grid.Row="10" Grid.Column="1" IsThreeState="False" IsChecked="{Binding Item.Building.Deactivated, Converter={StaticResource deactivatedToIsActiveConverter}}"
                      IsEnabled="{Binding IsReadOnly, Converter={StaticResource boolToOppositeBoolConverter}}" />
             </Grid>
         </ScrollViewer>

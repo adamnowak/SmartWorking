@@ -30,8 +30,17 @@
                 <TextBox Text="{Binding Item.DeliveryNote.Id}" Grid.Row="0" Grid.Column="1" IsReadOnly="True"
                      Visibility="{Binding Path=MainViewModel.IsDebugMode, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--Debug only-->
-                <TextBox Text="{Binding Item.DeliveryNote.Number}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.DeliveryNote.Amount}" View:TextBoxMasking.Mask="^\d+\.?\d{0,2}$" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" /> <!--\d{0,9}(\.\d{0,2})?-->
+                <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" >
+                    <TextBox.Text>
+                        <MultiBinding StringFormat="{}{0}/{1}" >
+                            <Binding Path="Item.DeliveryNote.Number" />
+                            <Binding Path="Item.DeliveryNote.Year" />
+                     
+                        </MultiBinding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Text="{Binding Item.DeliveryNote.Amount, Converter={StaticResource textToDoubleConverter}}" View:TextBoxMasking.Mask="^\d+[\.,\,]?\d{0,2}$" 
+                         Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" /> <!--\d{0,9}(\.\d{0,2})?-->
                 <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteDetailsControl_Car}"
                      Grid.Row="3" Grid.ColumnSpan="2">
                     <Grid>

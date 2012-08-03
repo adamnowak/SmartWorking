@@ -59,9 +59,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// <summary>
     /// Adds the item command execute.
     /// </summary>
-    protected override void AddItemCommandExecute()
+    protected override void OnAddItem()
     {
-      base.AddItemCommandExecute();
+      base.OnAddItem();
       EditingViewModel.Item = new DriverAndCarsPackage() { Driver = new DriverPrimitive() };
       EditingViewModel.EditingMode = EditingMode.New;
     }
@@ -69,9 +69,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// <summary>
     /// Adds the clone item command execute.
     /// </summary>
-    protected override void AddCloneItemCommandExecute()
+    protected override void OnAddCloneItem()
     {
-      base.AddCloneItemCommandExecute();
+      base.OnAddCloneItem();
       DriverAndCarsPackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {

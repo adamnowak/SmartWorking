@@ -96,6 +96,45 @@ namespace SmartWorking.Office.Entities
       return result;
     }
 
+    public static DeliveryNoteReportPackage GetDeliveryNoteReportPackage(this DeliveryNote deliveryNote)
+    {
+      DeliveryNoteReportPackage result = new DeliveryNoteReportPackage();
+
+      if (deliveryNote != null)
+      {
+        result.DeliveryNote = deliveryNote.GetPrimitive();
+        if (deliveryNote.Car != null)
+        {
+          result.Car = deliveryNote.Car.GetPrimitive();
+        }
+        if (deliveryNote.Driver != null)
+        {
+          result.Driver = deliveryNote.Driver.GetPrimitive();
+        }
+        if (deliveryNote.Order != null)
+        {
+          result.Order = deliveryNote.Order.GetPrimitive();
+          if (deliveryNote.Order.ClientBuilding != null)
+          {
+            if (deliveryNote.Order.ClientBuilding.Client != null)
+            {
+              result.Client = deliveryNote.Order.ClientBuilding.Client.GetPrimitive();
+            }
+            if (deliveryNote.Order.ClientBuilding.Building != null)
+            {
+              result.Building = deliveryNote.Order.ClientBuilding.Building.GetPrimitive();
+            }
+          }
+          if (deliveryNote.Order.Recipe != null)
+          {
+            result.Recipe = deliveryNote.Order.Recipe.GetPrimitive();
+          }
+        }
+        
+      }
+      return result;
+    }
+
     public static ClientBuildingAndBuildingPackage GetBuildingAndContractorPackage(this Building building)
     {
       ClientBuildingAndBuildingPackage result = new ClientBuildingAndBuildingPackage();

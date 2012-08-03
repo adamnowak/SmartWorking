@@ -166,7 +166,7 @@
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_ContractorDetails" xml:space="preserve">
-    <value>Szczególy dostawcy</value>
+    <value>Szczegóły dostawcy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_ContractorList" xml:space="preserve">
@@ -202,7 +202,7 @@
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_DriversDetails" xml:space="preserve">
-    <value>Szegóły kierowcy</value>
+    <value>Szczegóły kierowcy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_Edit" xml:space="preserve">
@@ -1066,7 +1066,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_Granulation" xml:space="preserve">
-    <value>Ziarnistość:</value>
+    <value>Ziarno</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_Id" xml:space="preserve">
@@ -1102,7 +1102,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeListControl_Granulation" xml:space="preserve">
-    <value>Ziarnistość</value>
+    <value>Ziarno</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeListControl_Id" xml:space="preserve">
@@ -1262,7 +1262,7 @@
     <comment>Button.Content</comment>
   </data>
   <data name="TransportTypes_Client" xml:space="preserve">
-    <value>Odbiór własny przez klienta</value>
+    <value>Odbiór własny</value>
     <comment>TransportTypes.Enum</comment>
   </data>
   <data name="TransportTypes_Own" xml:space="preserve">
@@ -1279,11 +1279,11 @@
   </data>
   <data name="BuildingDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły budowli</value>
+    <value>Szczegóły budowy</value>
   </data>
   <data name="BuildingListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Lista budowli</value>
+    <value>Lista budowów</value>
   </data>
   <data name="CarDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1295,11 +1295,11 @@
   </data>
   <data name="ClientBuildingDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły budowli clienta</value>
+    <value>Szczegóły budowy klienta</value>
   </data>
   <data name="ClientBuildingListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Lista budowli clienta</value>
+    <value>Lista budów klienta</value>
   </data>
   <data name="ClientDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1347,11 +1347,11 @@
   </data>
   <data name="RecipesTabItemViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Receptury</value>
+    <value>Recepty</value>
   </data>
   <data name="ClientsAndBuildingsTabItemViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Klienci i budowle</value>
+    <value>Klienci i budowy</value>
   </data>
   <data name="DeliveryNotesTabItemViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1531,5 +1531,24 @@
   <data name="DeliveryNoteListControl_All" xml:space="preserve">
     <comment>RadioButton.Content</comment>
     <value>Wszystkie</value>
+  </data>
+  <data name="MaterialTypes_LoadItems_Water" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Woda</value>
+  </data>
+  <data name="OrderSumaryControl_Amount" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>
+    </value>
+  </data>
+  <data name="OrderSumaryControl_AmountDelivered" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>
+    </value>
+  </data>
+  <data name="OrderSumaryControl_RemainToDeliver" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>
+    </value>
   </data>
 </root>

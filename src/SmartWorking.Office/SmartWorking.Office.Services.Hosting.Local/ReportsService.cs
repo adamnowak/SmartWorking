@@ -83,6 +83,50 @@ namespace SmartWorking.Office.Services.Hosting.Local
 
     }
 
+    public List<DeliveryNoteReportPackage> GetDeliveryNoteReportPackageList()
+    {
+      return GetDeliveryNoteReportPackageListData(null, null);
+    }
+
+    public List<DeliveryNoteReportPackage> GetDeliveryNoteReportPackageListByDateTime(DateTime startTime, DateTime endTime)
+    {
+      return GetDeliveryNoteReportPackageListData(startTime, endTime);
+    }
+
+    private List<DeliveryNoteReportPackage> GetDeliveryNoteReportPackageListData(DateTime? startTime, DateTime? endTime)
+    {
+      try
+      {
+        using (var ctx = new SmartWorkingEntities())
+        {
+          List<DeliveryNoteReportPackage> result = new List<DeliveryNoteReportPackage>();
+          IQueryable<DeliveryNote> allDeliveryNotesQuery =
+            ctx.DeliveryNotes.Include("Car").Include("Driver").Include("Order.Recipe").Include(
+              "Order.ClientBuilding.Building").Include("Order.ClientBuilding.Client");
+            
+          
+          if (startTime.HasValue)
+            allDeliveryNotesQuery = allDeliveryNotesQuery.Where(x => x.DateDrawing >= startTime.Value);
+          
+          if (endTime.HasValue)
+            allDeliveryNotesQuery = allDeliveryNotesQuery.Where(x => x.DateDrawing <= endTime.Value);
+
+          List<DeliveryNote> allDeliveryNotes = allDeliveryNotesQuery.ToList();
+
+
+          foreach (DeliveryNote deliveryNote in allDeliveryNotes)
+          {
+            result.Add(deliveryNote.GetDeliveryNoteReportPackage());
+          }
+          return result;
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
     /// </summary>

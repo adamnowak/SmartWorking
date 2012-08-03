@@ -1834,6 +1834,150 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Building_Id.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_BuildingId {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_BuildingId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building_InternalName.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_BuildingInternalName {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_BuildingInternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car_Id.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_CarId {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_CarId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car_RegistrationNumber.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_CarRegistrationNumber {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_CarRegistrationNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car_TransportType.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_CarTransportType {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_CarTransportType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client_Id.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_ClientId {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_ClientId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client_InternalName.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_ClientInternalName {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_ClientInternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNote_Amount.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_DeliveryNoteAmount {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_DeliveryNoteAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNote_DateOfArrival.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_DeliveryNoteDateOfArrival {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_DeliveryNoteDateOfArrival", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNote_Id.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_DeliveryNoteId {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_DeliveryNoteId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNote_NumberYear.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_DeliveryNoteNumberYear {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_DeliveryNoteNumberYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver_Id.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_DriverId {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_DriverId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver_NameSurname.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_DriverNameSurname {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_DriverNameSurname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order_Pump.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_OrderPump {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_OrderPump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipe_Code.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_RecipeCode {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_RecipeCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipe_Id.
+        /// </summary>
+        public static string DeliveryNoteReportListControl_RecipeId {
+            get {
+                return ResourceManager.GetString("DeliveryNoteReportListControl_RecipeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DeliveryNotes.
         /// </summary>
         public static string DeliveryNotesTabItemViewModel_Name {

@@ -19,9 +19,23 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <param name="filter">The recipes filter.</param>
     /// <returns>List of Recipe filtered by <paramref name="filter"/>. Recipe contains list of Material contains to this Recipe.</returns>
     [OperationContract]
-    [WebInvoke(Method = "POST", UriTemplate = "/GetDriversCarsDataReport/?startTime={startTime}#endTime={endTime}",
+    [WebInvoke(Method = "GET", UriTemplate = "/GetDriversCarsDataReport/?startTime={startTime}#endTime={endTime}",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
           BodyStyle = WebMessageBodyStyle.Wrapped)]
-    DriversCarsReportPackage GetDriversCarsDataReport(DateTime startTime, DateTime endTime); 
+    DriversCarsReportPackage GetDriversCarsDataReport(DateTime startTime, DateTime endTime);
+
+    [OperationContract]
+    [WebInvoke(Method = "GET", UriTemplate = "/GetDeliveryNoteReportPackageList",
+      RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    List<DeliveryNoteReportPackage> GetDeliveryNoteReportPackageList();
+
+    [OperationContract]
+    [WebInvoke(Method = "GET",
+      UriTemplate = "/GetDeliveryNoteReportPackageListByDateTime/?startTime={startTime}#endTime={endTime}",
+      RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    List<DeliveryNoteReportPackage> GetDeliveryNoteReportPackageListByDateTime(DateTime startTime,
+                                                                                      DateTime endTime);
   }
 }

@@ -1534,6 +1534,7 @@
   </data>
   <data name="MaterialTypes_LoadItems_Water" xml:space="preserve">
     <value>Water</value>
+    <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderSumaryControl_Amount" xml:space="preserve">
     <value>Amount</value>
@@ -1546,5 +1547,69 @@
   <data name="OrderSumaryControl_RemainToDeliver" xml:space="preserve">
     <value>RemainToDeliver</value>
     <comment>TextBlock.Text</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_DeliveryNoteId" xml:space="preserve">
+    <value>DeliveryNote_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_DeliveryNoteDateOfArrival" xml:space="preserve">
+    <value>DeliveryNote_DateOfArrival</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_DeliveryNoteNumberYear" xml:space="preserve">
+    <value>DeliveryNote_NumberYear</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_ClientId" xml:space="preserve">
+    <value>Client_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_ClientInternalName" xml:space="preserve">
+    <value>Client_InternalName</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_BuildingId" xml:space="preserve">
+    <value>Building_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_BuildingInternalName" xml:space="preserve">
+    <value>Building_InternalName</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_RecipeId" xml:space="preserve">
+    <value>Recipe_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_RecipeCode" xml:space="preserve">
+    <value>Recipe_Code</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_DeliveryNoteAmount" xml:space="preserve">
+    <value>DeliveryNote_Amount</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_OrderPump" xml:space="preserve">
+    <value>Order_Pump</value>
+    <comment>DataGridCheckBoxColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_CarId" xml:space="preserve">
+    <value>Car_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_CarRegistrationNumber" xml:space="preserve">
+    <value>Car_RegistrationNumber</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_DriverId" xml:space="preserve">
+    <value>Driver_Id</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_DriverNameSurname" xml:space="preserve">
+    <value>Driver_NameSurname</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNoteReportListControl_CarTransportType" xml:space="preserve">
+    <value>Car_TransportType</value>
+    <comment>DataGridTextColumn.Header</comment>
   </data>
 </root>

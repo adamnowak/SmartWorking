@@ -37,16 +37,16 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
 
     
 
-    protected override void AddItemCommandExecute()
+    protected override void OnAddItem()
     {
-      base.AddItemCommandExecute();
+      base.OnAddItem();
       EditingViewModel.Item = new BuildingPrimitive();
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void AddCloneItemCommandExecute()
+    protected override void OnAddCloneItem()
     {
-      base.AddCloneItemCommandExecute();
+      base.OnAddCloneItem();
       BuildingPrimitive clone = Items.SelectedItem.GetPrimitiveCopy();
       if (clone != null)
       {

@@ -166,6 +166,9 @@
     </Compile>
     <Compile Include="Controls\Contractors\ContractorDetailsViewModel.cs" />
     <Compile Include="Controls\Contractors\ContractorListViewModel.cs" />
+    <Compile Include="Controls\DeliveryNotes\DeliveryNoteReportListControl.xaml.cs">
+      <DependentUpon>DeliveryNoteReportListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DeliveryNotes\DeliveryNoteDetailsControl.xaml.cs">
       <DependentUpon>DeliveryNoteDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,11 @@
       <DependentUpon>AdministrationGroupControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupViewModel.cs" />
+    <Compile Include="Controls\MainGroups\ReportsGroup\RaportTypes.cs" />
+    <Compile Include="Controls\MainGroups\ReportsGroup\MonthTypes.cs" />
+    <Compile Include="Controls\MainGroups\ReportsGroup\PeriodTypes.cs" />
+    <Compile Include="Controls\MainGroups\ReportsGroup\ReportsGroupViewModel.cs" />
+    <Compile Include="Controls\DeliveryNotes\DeliveryNoteReportListViewModel.cs" />
     <Compile Include="Controls\MainGroups\SaleGroup\SaleGroupViewModel.cs" />
     <Compile Include="Controls\MainGroups\SaleGroup\OrdersTabItemViewModel.cs" />
     <Compile Include="Controls\MainGroups\SaleGroup\DeliveryNotesTabItemViewModel.cs" />
@@ -245,6 +253,7 @@
     <Compile Include="Controls\Recipes\RecipeListViewModel.cs" />
     <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
     <Compile Include="Converters\ComparingMultiConverter.cs" />
+    <Compile Include="Converters\TextToDoubleConverter.cs" />
     <Compile Include="Converters\DeliveryNotePackageListToAmountDeliveryConverter.cs" />
     <Compile Include="Converters\NotSetToBoolConverter.cs" />
     <Compile Include="Converters\EnumVisibilityConverter.cs" />
@@ -335,6 +344,10 @@
     <Page Include="Controls\Contractors\ContractorListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DeliveryNotes\DeliveryNoteReportListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\DeliveryNotes\DeliveryNoteDetailsControl.xaml">
       <Generator>MSBuild:Compile</Generator>

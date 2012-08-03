@@ -38,6 +38,11 @@ namespace SmartWorking.Office.Services.Interfaces
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
     List<DeliveryNotePackage> GetDeliveryNotePackageList(string filter, ListItemsFilterValues listItemsFilterValue);
 
+    [OperationContract]
+    [WebInvoke(Method = "GET", UriTemplate = "/GetNextDeliveryNumber",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    int GetNextDeliveryNumber();
+
     /// <summary>
     /// Updates the <see cref="DeliveryNote"/>.
     /// </summary>

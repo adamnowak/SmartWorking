@@ -1,8 +1,13 @@
 ﻿namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 {
-  public interface IDescriptionIndexted
+  public interface IDescriptionIndexted<T>
   {
-    int Id { get; }
+    T Id { get; }
     string Description { get; }
+  }
+
+  public interface IDescriptionIndexted : IDescriptionIndexted<int>
+  {
+
   }
 }

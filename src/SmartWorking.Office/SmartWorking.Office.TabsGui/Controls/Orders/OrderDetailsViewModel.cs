@@ -141,6 +141,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       RecipeListViewModel.Refresh();
 
       DeliveryNoteDetailsViewModel.Refresh();
+      
       return base.OnRefresh(); 
     }
 

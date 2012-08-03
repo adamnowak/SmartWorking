@@ -24,6 +24,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       get { return Resources.OrderListViewModel_Name; }
     }
 
+   
     protected override void  OnLoadItems()
     {
 
@@ -31,6 +32,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       using (IOrdersService service = ServiceFactory.GetOrdersService())
       {
         Items.LoadItems(service.GetOrderPackageList(Filter, ListItemsFilter));
+        
       }
       if (selectedItem != null)
       {
@@ -130,16 +132,16 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     }
     #endregion //PrepareDeliverCommand
 
-    protected override void AddItemCommandExecute()
+    protected override void OnAddItem()
     {
-      base.AddItemCommandExecute();
+      base.OnAddItem();
       EditingViewModel.Item = new OrderPackage() {Order = new OrderPrimitive()};
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void AddCloneItemCommandExecute()
+    protected override void OnAddCloneItem()
     {
-      base.AddCloneItemCommandExecute();
+      base.OnAddCloneItem();
       OrderPackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {

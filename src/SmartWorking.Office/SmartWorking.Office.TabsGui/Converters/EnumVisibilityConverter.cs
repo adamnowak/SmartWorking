@@ -24,7 +24,7 @@ namespace SmartWorking.Office.TabsGui.Converters
     /// </returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-      return (value.Equals(parameter)) ? Visibility.Visible : Visibility.Collapsed;
+      return (value != null && value.Equals(parameter)) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     /// <summary>

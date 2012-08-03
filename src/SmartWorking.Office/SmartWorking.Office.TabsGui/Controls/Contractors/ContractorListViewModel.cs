@@ -41,16 +41,16 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
 
     
 
-    protected override void AddItemCommandExecute()
+    protected override void OnAddItem()
     {
-      base.AddItemCommandExecute();
+      base.OnAddItem();
       EditingViewModel.Item = new ContractorPrimitive();
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void AddCloneItemCommandExecute()
+    protected override void OnAddCloneItem()
     {
-      base.AddCloneItemCommandExecute();
+      base.OnAddCloneItem();
       ContractorPrimitive clone = Items.SelectedItem.GetPrimitiveCopy();
       if (clone != null)
       {

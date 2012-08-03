@@ -45,6 +45,8 @@
                      Binding="{Binding Recipe.InternalName}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_Name}"
                      Binding="{Binding Recipe.Name}" />
+                <DataGridTextColumn Header="Code"
+                     Binding="{Binding Recipe.Code}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_ConcreteClass}"
                      Binding="{Binding Recipe.ConcreteClass}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:RecipeListControl_Granulation}"

@@ -28,9 +28,9 @@
                 <SaleGroup:SaleGroupControl  />
             </TabItem>
 
-            <!--<TabItem Header="str_Reports">
+            <TabItem Header="{Binding Name}" DataContext="{Binding ReportsGroupViewModel}">
                 <ReportsGroup:ReportsGroupControl/>    
-            </TabItem>-->
+            </TabItem>
 
             <TabItem Header="{Binding Name}" DataContext="{Binding AdministrationGroupViewModel}">
                 <AdministrationGroup:AdministrationGroupControl /> 

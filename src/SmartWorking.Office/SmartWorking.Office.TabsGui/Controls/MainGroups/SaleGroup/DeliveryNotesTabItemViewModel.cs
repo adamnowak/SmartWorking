@@ -1,5 +1,6 @@
 ﻿using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Contractors;
+using SmartWorking.Office.TabsGui.Controls.DeliveryNotes;
 using SmartWorking.Office.TabsGui.Controls.Materials;
 using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
@@ -20,31 +21,10 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     public DeliveryNotesTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
-      MaterialDetailsViewModel = new MaterialDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      MaterialListViewModel = new MaterialListViewModel(MainViewModel, MaterialDetailsViewModel, ModalDialogService, ServiceFactory);
-      ContractorDetailsViewModel = new ContractorDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      ContractorListViewModel = new ContractorListViewModel(MainViewModel, ContractorDetailsViewModel, ModalDialogService, ServiceFactory);
+      DeliveryNoteReportListViewModel = new DeliveryNoteReportListViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
     }
 
-    /// <summary>
-    /// Gets the car list view model.
-    /// </summary>
-    public MaterialListViewModel MaterialListViewModel { get; private set; }
-
-    /// <summary>
-    /// Gets the car details view model.
-    /// </summary>
-    public MaterialDetailsViewModel MaterialDetailsViewModel { get; private set; }
-
-    /// <summary>
-    /// Gets the driver list view model.
-    /// </summary>
-    public ContractorListViewModel ContractorListViewModel { get; private set; }
-
-    /// <summary>
-    /// Gets the driver details view model.
-    /// </summary>
-    public ContractorDetailsViewModel ContractorDetailsViewModel { get; private set; }
+    public DeliveryNoteReportListViewModel DeliveryNoteReportListViewModel { get; private set; }
 
     /// <summary>
     /// Gets the name of editing control.
@@ -54,28 +34,16 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
       get { return Resources.DeliveryNotesTabItemViewModel_Name; }
     }
 
-    /// <summary>
-    /// Refreshes control context.
-    /// </summary>
-    protected override bool OnRefresh()
+    protected override bool  OnRefresh()
     {
-      MaterialListViewModel.Refresh();
-      MaterialDetailsViewModel.Refresh();
-      ContractorListViewModel.Refresh();
-      ContractorDetailsViewModel.Refresh();
-      return true;
+ 	     if (base.OnRefresh())
+ 	     {
+         DeliveryNoteReportListViewModel.Refresh();
+ 	       return true;
+ 	     }
+      return false;
     }
+    
 
-    public override bool IsReadOnly
-    {
-      get
-      {
-        return base.IsReadOnly &&
-               (MaterialListViewModel != null ? MaterialListViewModel.IsReadOnly : true) &&
-               (MaterialDetailsViewModel != null ? MaterialDetailsViewModel.IsReadOnly : true) &&
-               (ContractorListViewModel != null ? ContractorListViewModel.IsReadOnly : true) &&
-               (ContractorDetailsViewModel != null ? ContractorDetailsViewModel.IsReadOnly : true);
-      }
-    }
   }
 }

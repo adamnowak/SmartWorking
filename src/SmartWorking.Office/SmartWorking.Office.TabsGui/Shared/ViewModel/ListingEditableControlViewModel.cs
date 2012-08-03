@@ -236,6 +236,27 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
+    private void AddItemCommandExecute()
+    {
+      string errorCaption = "str_AddItem" + Name;
+      try
+      {
+        OnAddItem();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+      }
+    }
+
     /// <summary>
     /// Determines whether add command can be execute.
     /// </summary>
@@ -250,7 +271,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Execute add command.
     /// </summary>
-    protected virtual void AddItemCommandExecute()
+    protected virtual void OnAddItem()
     {}
     #endregion
 
@@ -269,6 +290,27 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       }
     }
 
+    private void AddCloneItemCommandExecute()
+    {
+      string errorCaption = "str_AddCloneItem" + Name;
+      try
+      {
+        OnAddCloneItem();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+      }
+    }
+
     /// <summary>
     /// Determines whether addClone command can be execute.
     /// </summary>
@@ -283,7 +325,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Execute addClone command.
     /// </summary>
-    protected virtual void AddCloneItemCommandExecute()
+    protected virtual void OnAddCloneItem()
     { }
     #endregion
 

@@ -41,16 +41,16 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
 
     
 
-    protected override void AddItemCommandExecute()
+    protected override void OnAddItem()
     {
-      base.AddItemCommandExecute();
+      base.OnAddItem();
       EditingViewModel.Item = new MaterialAndContractorsPackage() { Material = new MaterialPrimitive() };      
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void AddCloneItemCommandExecute()
+    protected override void OnAddCloneItem()
     {
-      base.AddCloneItemCommandExecute();
+      base.OnAddCloneItem();
       MaterialAndContractorsPackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {

@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="ClientAndClientBuildingsPackage.cs" />
     <Compile Include="ClientBuildingAndBuildingPackage.cs" />
+    <Compile Include="DeliveryNoteReportPackage.cs" />
     <Compile Include="DriverAndCarsPackage.cs" />
     <Compile Include="GetPackageCopierHelper.cs" />
     <Compile Include="OrderPackage.cs" />

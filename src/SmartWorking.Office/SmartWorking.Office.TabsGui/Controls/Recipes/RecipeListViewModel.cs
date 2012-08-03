@@ -37,16 +37,16 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
 
     
 
-    protected override void AddItemCommandExecute()
+    protected override void OnAddItem()
     {
-      base.AddItemCommandExecute();
+      base.OnAddItem();
       EditingViewModel.Item = new RecipePackage() {Recipe = new RecipePrimitive()};
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void AddCloneItemCommandExecute()
+    protected override void OnAddCloneItem()
     {
-      base.AddCloneItemCommandExecute();
+      base.OnAddCloneItem();
       RecipePackage clone = null;
       if (Items.SelectedItem != null)
       {

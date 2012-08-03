@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Properties;
@@ -51,13 +52,16 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       }
     }
 
-    protected override void AddItemCommandExecute()
+    protected override void OnAddItem()
     {
-      
-      base.AddItemCommandExecute();
+      using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
+      {
+        NextDeliveryNoteNumber = service.GetNextDeliveryNumber();
+      }
+      base.OnAddItem();
       EditingViewModel.Item = new DeliveryNotePackage()
                                 {
-                                  DeliveryNote = new DeliveryNotePrimitive(),
+                                  DeliveryNote = new DeliveryNotePrimitive() { Number = NextDeliveryNoteNumber, Year = DateTime.Now.Year },
                                   Order =
                                     (OrderDetailsControlViewModel != null && OrderDetailsControlViewModel.Item != null)
                                       ? OrderDetailsControlViewModel.Item.Order
@@ -67,9 +71,13 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       EditingMode = EditingMode.Display;
     }
 
-    protected override void AddCloneItemCommandExecute()
+    protected override void OnAddCloneItem()
     {
-      base.AddCloneItemCommandExecute();
+      using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
+      {
+        NextDeliveryNoteNumber = service.GetNextDeliveryNumber();
+      }
+      base.OnAddCloneItem();
       DeliveryNotePackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {
@@ -79,7 +87,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       {
         clone = new DeliveryNotePackage()
         {
-          DeliveryNote = new DeliveryNotePrimitive(),
+          DeliveryNote = new DeliveryNotePrimitive() { Number = NextDeliveryNoteNumber, Year = DateTime.Now.Year },
           Order =
             (OrderDetailsControlViewModel != null && OrderDetailsControlViewModel.Item != null)
               ? OrderDetailsControlViewModel.Item.Order
@@ -109,9 +117,15 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     {
       if (base.OnRefresh())
       {
+        
         return true;
       }
       return false;
+    }
+
+    protected int NextDeliveryNoteNumber
+    {
+      get; private set;
     }
   }
 

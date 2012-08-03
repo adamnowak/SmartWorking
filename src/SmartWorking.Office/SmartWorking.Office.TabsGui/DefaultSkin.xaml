@@ -25,6 +25,8 @@
     <Converters:EnumVisibilityConverter x:Key="enumVisibilityConverter" />
     <Converters:NotSetToBoolConverter x:Key="notSetToBoolConverter" />
     <Converters:DeliveryNotePackageListToAmountDeliveryConverter x:Key="deliveryNotePackageListToAmountDeliveryConverter" />
+    <Converters:TextToDoubleConverter x:Key="textToDoubleConverter" />
+
     
     <Style TargetType="{x:Type Button}">
         <Setter Property="Width" Value="70"/>

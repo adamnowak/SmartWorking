@@ -102,6 +102,22 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
+    public int GetNextDeliveryNumber()
+    {
+      try
+      {
+        using (var ctx = new SmartWorkingEntities())
+        {
+          int? maxDeliveryNumberRead = ctx.DeliveryNotes.Where(x => x.Year == DateTime.Now.Year).Max(x => x.Number);
+          return maxDeliveryNumberRead.HasValue ? maxDeliveryNumberRead.Value + 1 : 1;
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
     /// <summary>
     /// Updates the <see cref="DeliveryNote"/>.
     /// </summary>
@@ -129,7 +145,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           if (deliveryNote.Id <= 0)
           {
             deliveryNote.DateDrawing = DateTime.Now;
-            deliveryNote.Number = context.DeliveryNotes.Where(x => x.Year == DateTime.Now.Year).Max(x => x.Number) + 1; 
+            deliveryNote.Number = GetNextDeliveryNumber(); 
             context.DeliveryNotes.AddObject(deliveryNote);
 
           }

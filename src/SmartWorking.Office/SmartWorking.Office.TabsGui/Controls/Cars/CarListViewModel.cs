@@ -41,18 +41,18 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 
     
 
-    protected override void AddItemCommandExecute()
+    protected override void OnAddItem()
     {
-      base.AddItemCommandExecute();
+      base.OnAddItem();
 
       EditingViewModel.Item = new CarAndDriverPackage() {Car = new CarPrimitive()};
        
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override void AddCloneItemCommandExecute()
+    protected override void OnAddCloneItem()
     {
-      base.AddCloneItemCommandExecute();
+      base.OnAddCloneItem();
       CarAndDriverPackage clone = Items.SelectedItem.GetPackageCopy();
       if (clone != null)
       {

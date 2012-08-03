@@ -1,0 +1,107 @@
+﻿<View:ListUserControl x:Class="SmartWorking.Office.TabsGui.Controls.DeliveryNotes.DeliveryNoteReportListControl"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:Interfaces="clr-namespace:SmartWorking.Office.Services.Interfaces;assembly=SmartWorking.Office.Services.Interfaces"
+     xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:Materials="clr-namespace:SmartWorking.Office.TabsGui.Controls.Materials"
+     xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" mc:Ignorable="d"
+     d:DesignHeight="300" d:DesignWidth="300" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
+     xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Filter}" />
+            <TextBox Grid.Column="1" Text="{Binding Filter}" />
+            <Button Grid.Column="2" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Search}"
+                 Command="{Binding ApplyFilterCommand}" />
+        </Grid>
+        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
+             ItemsSource="{Binding Items}">
+            <DataGrid.Resources>
+                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DeliveryNote.IsDeactive}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding DeliveryNote.IsDeleted}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteId}"
+                     Binding="{Binding DeliveryNote.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                <!--End Debug only-->
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteDateOfArrival}"
+                     Binding="{Binding DeliveryNote.DateOfArrival}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteNumberYear}">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0}/{1}">
+                            <Binding Path="DeliveryNote.Number" />
+                            <Binding Path="DeliveryNote.Year" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_ClientId}"
+                     Binding="{Binding Client.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_ClientInternalName}"
+                     Binding="{Binding Client.InternalName}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_BuildingId}"
+                     Binding="{Binding Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_BuildingInternalName}"
+                     Binding="{Binding Building.InternalName}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_RecipeId}"
+                     Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_RecipeCode}"
+                     Binding="{Binding Recipe.Code}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteAmount}"
+                     Binding="{Binding DeliveryNote.Amount}" />
+                <DataGridCheckBoxColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_OrderPump}"
+                     Binding="{Binding Order.Pump}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_CarId}"
+                     Binding="{Binding Car.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_CarRegistrationNumber}"
+                     Binding="{Binding Car.RegistrationNumber}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DriverId}"
+                     Binding="{Binding Driver.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DriverNameSurname}">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0}/{1}">
+                            <Binding Path="Driver.Name" />
+                            <Binding Path="Driver.Surname" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_CarTransportType}">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource descriptionIndexedConverter}">
+                            <Binding Path="Car.TransportType" />
+                            <Binding Source="{x:Static Cars:TransportTypes.Instance}" Path="Items" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_OnlyActivate}"
+                     IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.OnlyActive}}" />
+                <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_IncludeDeactive}"
+                     IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.IncludeDeactive}}" />
+                <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_All}"
+                     IsChecked="{Binding ListItemsFilter, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static Interfaces:ListItemsFilterValues.All}}"
+                     Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}" />
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</View:ListUserControl>
