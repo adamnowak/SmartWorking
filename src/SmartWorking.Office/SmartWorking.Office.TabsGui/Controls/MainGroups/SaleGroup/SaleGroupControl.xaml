@@ -253,6 +253,16 @@
                                             </MultiBinding>
                                         </Button.Visibility>
                                     </Button>
+                                    <Button Command="{Binding OrderListViewModel.DeactiveOrderCommand}" Content="DeactiveOrder">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                    </Button>
                                     <Button Command="{Binding OrderListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">

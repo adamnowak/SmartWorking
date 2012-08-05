@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.PrimitiveEntities;
@@ -13,10 +15,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
 {
   public class OrderListViewModel : ListingEditableControlViewModel<OrderPackage>
   {
+    private bool wasCleared = false;
     public OrderListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<OrderPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
     {
-
+      
     }
 
     public override string Name
@@ -32,7 +35,15 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       using (IOrdersService service = ServiceFactory.GetOrdersService())
       {
         Items.LoadItems(service.GetOrderPackageList(Filter, ListItemsFilter));
-        
+        if (!wasCleared)
+        {
+          bool shouuldRefresh = ClearList();
+          wasCleared = true;
+          if (shouuldRefresh)
+          {
+            Refresh();
+          }
+        }
       }
       if (selectedItem != null)
       {
@@ -41,6 +52,54 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
         if (selectionFromItems != null)
           Items.SelectedItem = selectionFromItems;
       }
+    }
+
+    private bool ClearList()
+    {
+      bool result = false;
+      try
+      {
+          
+      
+        DateTime deactiveBefore = DateTime.Now.Date;
+        List<OrderPackage> olderOrderPackageList =
+          Items.Items.Where(
+            x =>
+            x.Order != null && !x.Order.Deactivated.HasValue &&
+            (!x.Order.DateOfOrder.HasValue || (x.Order.DateOfOrder.HasValue && x.Order.DateOfOrder.Value < deactiveBefore)))
+            .ToList();
+        if (olderOrderPackageList.Count > 0)
+        {
+          string info = "Liczba starych zamówień: " + olderOrderPackageList.Count + "\n";
+
+          info += olderOrderPackageList.Select(x => new
+                                              {
+                                                DateOfOrder = (x.Order != null && x.Order.DateOfOrder != null) ? x.Order.DateOfOrder.ToString() : string.Empty,
+                                                Client = (x.Client != null && !string.IsNullOrEmpty(x.Client.InternalName)) ? x.Client.InternalName : string.Empty,
+                                                Building = (x.ClientBuildingPackage != null && x.ClientBuildingPackage.Building != null && !string.IsNullOrEmpty(x.ClientBuildingPackage.Building.InternalName)) ? x.ClientBuildingPackage.Building.InternalName : string.Empty
+                                              })
+                                              .Select(y => y.DateOfOrder.ToString() + ", " + y.Client.ToString() + ", " + y.Building.ToString())
+                                              .Aggregate((current, next) => current + "\n" + next);
+          if (MessageBoxResult.Yes == 
+            ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, MessageBoxImage.Question, 
+              "Ukryć starsze zamówienia?", "Czy ukryć zamówienia z dni poprzednich?", MessageBoxButton.YesNo, info))
+          {
+            using (IOrdersService service = ServiceFactory.GetOrdersService())
+            {
+              foreach (OrderPackage orderPackage in olderOrderPackageList)
+              {
+                service.DeactiveOrder(orderPackage.Order);
+                result = true;
+              } 
+            }
+          }
+        }
+      }
+      catch (Exception exception)
+      {
+        ShowError("Błąd przy ukrywaniu starszych zamówień", exception);
+      }
+      return result;
     }
 
     #region IsPreparingDelivery
@@ -104,7 +163,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     /// </returns>
     private bool CanPrepareDeliver()
     {
-      return true;
+      return Items.SelectedItem != null;
     }
 
     /// <summary>
@@ -161,7 +220,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       {
         using (IOrdersService service = ServiceFactory.GetOrdersService())
         {
-          service.CanceledOrder(EditingViewModel.Item.Order);
+          service.DeleteOrder(EditingViewModel.Item.Order);
         }
         Refresh();
         return true;
@@ -169,5 +228,67 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       return false;
     }
 
+
+    #region DeactiveOrderCommand
+    private ICommand _deactiveOrderCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand DeactiveOrderCommand
+    {
+      get
+      {
+        if (_deactiveOrderCommand == null)
+          _deactiveOrderCommand = new RelayCommand(DeactiveOrder, CanDeactiveOrder);
+        return _deactiveOrderCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanDeactiveOrder()
+    {
+      return Items.SelectedItem != null;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void DeactiveOrder()
+    {
+      string errorCaption = "TODO!";
+      try
+      {
+        using (IOrdersService service = ServiceFactory.GetOrdersService())
+        {
+          service.DeactiveOrder(Items.SelectedItem.Order);
+        }
+        Refresh();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+    #endregion //DeactiveOrderCommand
   }
 }

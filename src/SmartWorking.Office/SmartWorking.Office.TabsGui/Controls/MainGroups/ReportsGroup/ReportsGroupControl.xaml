@@ -2,13 +2,22 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <!--<Grid.Resources>
+            <Style TargetType="Calendar">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=PeriodType}" Value="ReportsGroup:PeriodTypeValues.Monthly">
+                        <Setter Property="Calendar.DisplayMode" Value="Year" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>-->
         <GroupBox Header="ReportParameter">
             <!--<StackPanel>-->
             <Grid>
@@ -19,53 +28,55 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" >Wybierz okres:</TextBlock>
+                <TextBlock Grid.Row="0" Text="PeriodType:" />
                 <ComboBox Grid.Row="1" ItemsSource="{Binding Source={x:Static ReportsGroup:PeriodTypes.Instance}, Path=Items}"
                      SelectedValue="{Binding PeriodType}" SelectedValuePath="Id" DisplayMemberPath="Description"
                        IsReadOnly="True" />
-
-                <TextBlock Grid.Row="2" Text="ChoseDay" Visibility="{Binding Path=PeriodType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ReportsGroup:PeriodTypeValues.Daily}}" />
-                <DatePicker Grid.Row="3" SelectedDate="{Binding DailyDateTime}"  Visibility="{Binding Path=PeriodType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ReportsGroup:PeriodTypeValues.Daily}}"/>
-                <TextBlock Grid.Row="4" Text="ChoseMonth" Visibility="{Binding Path=PeriodType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ReportsGroup:PeriodTypeValues.Monthly}}"/>
-                <!--<ComboBox ItemsSource="{Binding Source={x:Static ReportsGroup:MonthTypes.Instance}, Path=Items}"
-                     SelectedValue="{Binding Month}" SelectedValuePath="Id" DisplayMemberPath="Description"
-                     Grid.Row="3" Grid.Column="1" IsReadOnly="True"  Visibility="{Binding Path=PeriodType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ReportsGroup:PeriodTypeValues.Monthly}}"/>-->
-
-                <Grid Grid.Row="5">
-              
-                    <Calendar x:Name="CalendarControl"
-
-HorizontalAlignment="Center"
-
-VerticalAlignment="Center"
-
-SelectionMode="MultipleRange"
-
-DisplayMode="Month">
-                     
-                    </Calendar>
-
-                </Grid>
-                <Calendar Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"
-                          SelectedDate="{Binding MonthlyDateTime}" DisplayMode="Year" Visibility="{Binding Path=PeriodType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ReportsGroup:PeriodTypeValues.Monthly}}"/>
                 
-                <TextBlock Text="Wybierz dzień początkowy:" Visibility="{Binding Path=PeriodType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ReportsGroup:PeriodTypeValues.Custom}}"/>
-                <DatePicker Visibility="{Binding Path=PeriodType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ReportsGroup:PeriodTypeValues.Custom}}"/>
-                <TextBlock Text="Wybierz dzień końcowy:" Visibility="{Binding Path=PeriodType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ReportsGroup:PeriodTypeValues.Custom}}"/>
-                <DatePicker Visibility="{Binding Path=PeriodType, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ReportsGroup:PeriodTypeValues.Custom}}"/>
-                <GroupBox >
+                <TextBlock Grid.Row="2" Text="Period:" />
+
+
+                <Calendar x:Name="calendar" Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                           SelectedDate="{Binding StartDateTime}"
+                            
+                           >
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectedDatesChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectedDatesChangedCommand}" CommandParameter="{Binding SelectedDates, ElementName=calendar}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Calendar.SelectionMode>
+                        <MultiBinding Converter="{StaticResource comparingMultiExConverter}">                                                        
+                            <Binding Path="PeriodType" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ReportsGroup:PeriodTypeValues.Custom}" />
+                            <Binding Source="{x:Static CalendarSelectionMode.SingleRange}" />
+                            <Binding Source="{x:Static CalendarSelectionMode.SingleDate}" />
+                        </MultiBinding>
+                    </Calendar.SelectionMode>
+                    <Calendar.DisplayMode>
+                        <MultiBinding Converter="{StaticResource comparingMultiExConverter}" Mode="OneWay">
+                            <Binding Path="PeriodType" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ReportsGroup:PeriodTypeValues.Monthly}" />
+                            <Binding Source="{x:Static CalendarMode.Year}" />
+                            <Binding Source="{x:Static CalendarMode.Month}" />
+                        </MultiBinding>
+                    </Calendar.DisplayMode>
+                </Calendar>
+
+                
+                
+                <GroupBox Grid.Row="4">
                     <StackPanel >
                         <RadioButton GroupName="ReportsGroupControlReportType" Content="Production"
-                     IsChecked="{Binding ReportType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ReportsGroup:ReportTypesValues.Production}}" />
+                     IsChecked="{Binding ReportType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ReportsGroup:ReportTypeValues.Production}}" />
                         <RadioButton GroupName="ReportsGroupControlReportType" Content="Test"
-                     IsChecked="{Binding ReportType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ReportsGroup:ReportTypesValues.Test}}" />
+                     IsChecked="{Binding ReportType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ReportsGroup:ReportTypeValues.Test}}" />
 
                     </StackPanel>
                 </GroupBox>
-                <Button Content="Generate" Command="{Binding GenerateReportCommand}" />
+                <Button Grid.Row="5" Content="Generate" Command="{Binding GenerateReportCommand}" />
             </Grid>
             <!--</StackPanel>-->
         </GroupBox>

@@ -253,6 +253,7 @@
     <Compile Include="Controls\Recipes\RecipeListViewModel.cs" />
     <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
     <Compile Include="Converters\ComparingMultiConverter.cs" />
+    <Compile Include="Converters\ComparingMultiExConverter.cs" />
     <Compile Include="Converters\TextToDoubleConverter.cs" />
     <Compile Include="Converters\DeliveryNotePackageListToAmountDeliveryConverter.cs" />
     <Compile Include="Converters\NotSetToBoolConverter.cs" />

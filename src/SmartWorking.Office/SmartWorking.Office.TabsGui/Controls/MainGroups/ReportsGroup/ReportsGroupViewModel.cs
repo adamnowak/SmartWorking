@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
@@ -24,9 +29,8 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
       : base(mainViewModel, modalDialogService, serviceFactory)
     {
       PeriodType = PeriodTypeValues.Daily;
-      ReportType = ReportTypesValues.Production;
-      DayliDateTime = DateTime.Now;
-      MonthlyDateTime = DateTime.Now;
+      ReportType = ReportTypeValues.Production;
+      StartDateTime = DateTime.Now;
     }
 
     #region PeriodType
@@ -69,7 +73,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
     /// </summary>
     public const string ReportTypePropertyName = "ReportType";
 
-    private ReportTypesValues _reportTypes;
+    private ReportTypeValues _reportType;
 
     /// <summary>
     /// Gets the ReportType property.
@@ -77,20 +81,20 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public ReportTypesValues ReportType
+    public ReportTypeValues ReportType
     {
       get
       {
-        return _reportTypes;
+        return _reportType;
       }
 
       set
       {
-        if (_reportTypes == value)
+        if (_reportType == value)
         {
           return;
         }
-        _reportTypes = value;
+        _reportType = value;
         // Update bindings, no broadcast
         RaisePropertyChanged(ReportTypePropertyName);
       }
@@ -135,9 +139,21 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
       string errorCaption = "TODO!";
       try
       {
-        DateTime startDateTime = DayliDateTime.Date;
-        DateTime endDateTime = startDateTime.AddDays(1).AddMilliseconds(-1);
-        //startDateTime = DayliDateTime.
+        DateTime startDateTime = StartDateTime.Date;
+        DateTime endDateTime = EndDateTime.Date.AddDays(1).AddMilliseconds(-1);
+        using (IReportsService service = ServiceFactory.GetReportsService())
+        {
+          List<DeliveryNoteReportPackage> deliveryNoteReportPackageList = service.GetDeliveryNoteReportPackageList();
+          var c = deliveryNoteReportPackageList.GroupBy(x => (x.Recipe != null) ? x.Recipe.Id : 0).AsEnumerable();
+          foreach(var i in c)
+          {
+            Debug.WriteLine(i.Key + ", "+ i.Count());
+            foreach (var j in i)
+            {
+              Debug.WriteLine("  " + j.DeliveryNote.Id);
+            }
+          }
+        }
       }
       catch (FaultException<ExceptionDetail> f)
       {
@@ -158,73 +174,110 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
     #endregion //GenerateReportCommand
 
 
-    #region DayliDateTime
+    #region StartDateTime
     /// <summary>
-    /// The <see cref="DayliDateTime" /> property's name.
+    /// The <see cref="StartDateTime" /> property's name.
     /// </summary>
-    public const string DayliDateTimePropertyName = "DayliDateTime";
+    public const string StartDateTimePropertyName = "StartDateTime";
 
-    private DateTime _dayliDateTime;
+    private DateTime _startDateTime;
 
     /// <summary>
-    /// Gets the DayliDateTime property.
+    /// Gets the StartDateTime property.
     /// TODO Update documentation:
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public DateTime DayliDateTime
+    public DateTime StartDateTime
     {
       get
       {
-        return _dayliDateTime;
+        return _startDateTime;
       }
 
       set
       {
-        if (_dayliDateTime == value)
+        if (_startDateTime == value)
         {
           return;
         }
-        _dayliDateTime = value;
+        _startDateTime = value;
         // Update bindings, no broadcast
-        RaisePropertyChanged(DayliDateTimePropertyName);
+        RaisePropertyChanged(StartDateTimePropertyName);
       }
     }
-    #endregion //DayliDateTime
+    #endregion //StartDateTime
 
-    #region MonthlyDateTime
+
+    #region EndDateTime
     /// <summary>
-    /// The <see cref="MonthlyDateTime" /> property's name.
+    /// The <see cref="EndDateTime" /> property's name.
     /// </summary>
-    public const string MonthlyDateTimePropertyName = "MonthlyDateTime";
+    public const string EndDateTimePropertyName = "EndDateTime";
 
-    private DateTime _monthlyDateTime;
+    private DateTime _endDateTime;
 
     /// <summary>
-    /// Gets the MonthlyDateTime property.
+    /// Gets the EndDateTime property.
     /// TODO Update documentation:
     /// Changes to that property's value raise the PropertyChanged event. 
     /// This property's value is broadcasted by the Messenger's default instance when it changes.
     /// </summary>
-    public DateTime MonthlyDateTime
+    public DateTime EndDateTime
     {
       get
       {
-        return _monthlyDateTime;
+        return _endDateTime;
       }
 
       set
       {
-        if (_monthlyDateTime == value)
+        if (_endDateTime == value)
         {
           return;
         }
-        _monthlyDateTime = value;
+        _endDateTime = value;
         // Update bindings, no broadcast
-        RaisePropertyChanged(MonthlyDateTimePropertyName);
+        RaisePropertyChanged(EndDateTimePropertyName);
       }
     }
-    #endregion //MonthlyDateTime
+    #endregion //EndDateTime
+
+    #region SelectedDatesChangedCommand
+    private ICommand _selectedDatesChangedCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand SelectedDatesChangedCommand
+    {
+      get
+      {
+        if (_selectedDatesChangedCommand == null)
+          _selectedDatesChangedCommand = new RelayCommand<object>(SelectedDatesChanged);
+        return _selectedDatesChangedCommand;
+      }
+    }
+
+  
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void SelectedDatesChanged(object o)
+    {
+      SelectedDatesCollection selectedDatesCollection = o as SelectedDatesCollection;
+      if (selectedDatesCollection != null && selectedDatesCollection.Count > 0)
+      {
+        StartDateTime = new DateTime(selectedDatesCollection.Min(x => x.Ticks));
+        EndDateTime = new DateTime(selectedDatesCollection.Max(x => x.Ticks));
+      }
+    }
+    #endregion //SelectedDatesChangedCommand
+
     /// <summary>
     /// Gets the name of control.
     /// </summary>

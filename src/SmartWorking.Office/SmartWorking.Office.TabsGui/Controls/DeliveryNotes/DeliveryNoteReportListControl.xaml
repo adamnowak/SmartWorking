@@ -4,7 +4,7 @@
      xmlns:Interfaces="clr-namespace:SmartWorking.Office.Services.Interfaces;assembly=SmartWorking.Office.Services.Interfaces"
      xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:Materials="clr-namespace:SmartWorking.Office.TabsGui.Controls.Materials"
      xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" mc:Ignorable="d"
-     d:DesignHeight="300" d:DesignWidth="300" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
+     d:DesignHeight="300" d:DesignWidth="1000" xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
      xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
     <Grid>
         <Grid.RowDefinitions>
@@ -42,9 +42,10 @@
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteId}"
                      Binding="{Binding DeliveryNote.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteDateOfArrival}"
-                     Binding="{Binding DeliveryNote.DateOfArrival}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteNumberYear}">
+                <DataGridTextColumn Header="DateDrawing"
+                     Binding="{Binding DeliveryNote.DateDrawing}" />
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteNumberYear}"
+                                    SortMemberPath="DeliveryNote.Number" >
                     <DataGridTextColumn.Binding>
                         <MultiBinding StringFormat="{}{0}/{1}">
                             <Binding Path="DeliveryNote.Number" />
@@ -64,8 +65,12 @@
                      Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_RecipeCode}"
                      Binding="{Binding Recipe.Code}" />
+                <DataGridTextColumn Header="ConcreteClass"
+                     Binding="{Binding Recipe.ConcreteClass}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteAmount}"
-                     Binding="{Binding DeliveryNote.Amount}" />
+                     Binding="{Binding DeliveryNote.Amount, StringFormat={}{0:N2}}" CellStyle="{StaticResource rightAlignment}" />
+                <DataGridTextColumn Header="OrderId"
+                     Binding="{Binding Order.Id}" />
                 <DataGridCheckBoxColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_OrderPump}"
                      Binding="{Binding Order.Pump}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_CarId}"
@@ -74,9 +79,11 @@
                      Binding="{Binding Car.RegistrationNumber}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DriverId}"
                      Binding="{Binding Driver.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DriverNameSurname}">
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DriverNameSurname}"
+                                   SortMemberPath="Driver.Name" >
                     <DataGridTextColumn.Binding>
-                        <MultiBinding StringFormat="{}{0}/{1}">
+                
+                        <MultiBinding StringFormat="{}{0} {1}">
                             <Binding Path="Driver.Name" />
                             <Binding Path="Driver.Surname" />
                         </MultiBinding>

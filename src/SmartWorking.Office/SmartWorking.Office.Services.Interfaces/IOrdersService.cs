@@ -58,11 +58,26 @@ namespace SmartWorking.Office.Services.Interfaces
     /// <see cref="Order"/> cannot be deleted.
     /// </remarks>
     [OperationContract]
-    [WebInvoke(Method = "POST", UriTemplate = "/CanceledOrder",
+    [WebInvoke(Method = "POST", UriTemplate = "/DeactiveOrder",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void CanceledOrder(OrderPrimitive order);
+    void DeactiveOrder(OrderPrimitive order);
 
-    
+    /// <summary>
+    /// Deletes the recipe.
+    /// </summary>
+    /// <param name="recipe">The recipe which will be deleted.</param>
+    /// <remarks>Only recipe which is not used can be deleted.</remarks>
+    [OperationContract]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/DeleteOrder",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void DeleteOrder(OrderPrimitive recipe);
+
+    [OperationContract]
+    [WebInvoke(Method = "DELETE", UriTemplate = "/UndeleteOrder",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void UndeleteOrder(OrderPrimitive car);
   }
 }

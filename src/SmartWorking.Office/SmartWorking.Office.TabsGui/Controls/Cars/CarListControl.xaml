@@ -64,7 +64,8 @@
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_DriverNameSurname}">
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_DriverNameSurname}"
+                                    SortMemberPath="Driver.Name">
                     <DataGridTextColumn.Binding>
                         <MultiBinding StringFormat="{}{0} {1}">
                             <!--Converter="{StaticResource stringConcatenationMultiConverter}" >-->

@@ -19,6 +19,7 @@
     <Converters:DescriptionIndexedMultiConverter x:Key="descriptionIndexedConverter" />
     <Converters:BoolToOppositeBoolConverter x:Key="boolToOppositeBoolConverter" />
     <Converters:ComparingMultiConverter x:Key="comparingMultiConverter" />
+    <Converters:ComparingMultiExConverter x:Key="comparingMultiExConverter" />
     <Converters:DeactivatedToIsActiveConverter x:Key="deactivatedToIsActiveConverter" />
     <Converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
     <Converters:VisibilitisANDBinaryConverter x:Key="visibilitisANDBinaryConverter" />
@@ -26,6 +27,7 @@
     <Converters:NotSetToBoolConverter x:Key="notSetToBoolConverter" />
     <Converters:DeliveryNotePackageListToAmountDeliveryConverter x:Key="deliveryNotePackageListToAmountDeliveryConverter" />
     <Converters:TextToDoubleConverter x:Key="textToDoubleConverter" />
+ 
 
     
     <Style TargetType="{x:Type Button}">
@@ -33,6 +35,14 @@
         <Setter Property="Margin" Value="2"/>
     </Style>
 
+    <Style x:Key="rightAlignment">
+        <Setter Property="FrameworkElement.HorizontalAlignment" Value="Right"/>
+    </Style>
+    
+    <Style x:Key="centerAlignment">
+        <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center"/>
+    </Style>
+    
     <Style x:Key="mainWindow" TargetType="Window">
         <Setter Property="Title" Value="SmartWorking.Office (Tabs layout)" />
         <Setter Property="WindowState" Value="Maximized" />
@@ -66,6 +76,8 @@
         
     </Style>
 
+    
+    
     <Style TargetType="TextBox">
         <Setter Property="Margin" Value="1" />
         <Setter Property="Padding" Value="1" />

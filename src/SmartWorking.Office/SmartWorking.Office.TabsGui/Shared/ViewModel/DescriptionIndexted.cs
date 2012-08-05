@@ -7,7 +7,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     public string Description { get; set; }
   }
 
-  public class DescriptionIndexted : DescriptionIndexted<int>
+  public class DescriptionIndexted : DescriptionIndexted<int>, IDescriptionIndexted
   {
   }
 }

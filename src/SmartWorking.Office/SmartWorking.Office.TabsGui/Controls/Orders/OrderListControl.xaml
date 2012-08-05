@@ -41,15 +41,7 @@
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Id}"
                      Binding="{Binding Order.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--End Debug only-->
-                <!-- TODOTERAZ Planowany czas dostawy
-        Nazwa klienta
-        Nazwa budowy
-        zamowiono
-        dostarczono
-        pozostalo do dostarczenia
-        nr. recepty
-        pompa
-        uwagi-->
+
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_PlannedDeliveryTime}"
                      Binding="{Binding Order.PlannedDeliveryTime}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_ClientId}"

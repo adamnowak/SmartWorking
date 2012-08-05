@@ -26,10 +26,10 @@ namespace SmartWorking.Office.TabsGui
       Thread.CurrentThread.CurrentUICulture = ci;
 
 
-      //FrameworkElement.LanguageProperty.OverrideMetadata(
-      //          typeof(FrameworkElement),
-      //          new FrameworkPropertyMetadata(
-      //              XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+      FrameworkElement.LanguageProperty.OverrideMetadata(
+                typeof(FrameworkElement),
+                new FrameworkPropertyMetadata(
+                    XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
       
     }
   }

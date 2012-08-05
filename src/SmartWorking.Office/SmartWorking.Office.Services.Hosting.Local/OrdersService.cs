@@ -113,6 +113,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //Item has no PK value, must be new);
           if (order.Id <= 0)
           {
+            order.DateOfOrder = DateTime.Now;
             context.Orders.AddObject(order);
           }
           //Item was retrieved, and the item passed has a valid ID, do an update
@@ -131,11 +132,19 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
-    /// <summary>
-    /// Deletes the <see cref="Order"/>.
-    /// </summary>
-    /// <param name="order">The delivery note which will be canceled.</param>
-    public void CanceledOrder(OrderPrimitive orderPrimitive)
+
+    public void DeleteOrder(OrderPrimitive recipe)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void UndeleteOrder(OrderPrimitive car)
+    {
+      throw new NotImplementedException();
+    }
+
+    
+    public void DeactiveOrder(OrderPrimitive orderPrimitive)
     {
       try
       {
@@ -151,7 +160,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
             throw new Exception("Only exists delivery note can be canceled.");
           }
 
-          order.Canceled = DateTime.Now;
+          order.Deactivated = DateTime.Now;
           context.Orders.ApplyCurrentValues(order);          
 
           context.SaveChanges();          
