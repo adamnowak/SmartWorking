@@ -5,9 +5,10 @@ using System.Linq;
 using System.ServiceModel;
 using System.Transactions;
 using SmartWorking.Office.Entities;
-
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Enums;
 using SmartWorking.Office.Services.Interfaces;
+
 
 namespace SmartWorking.Office.Services.Hosting.Local
 {
@@ -39,11 +40,19 @@ namespace SmartWorking.Office.Services.Hosting.Local
                       ? ctx.Recipes.Where(x => !x.Deleted.HasValue).ToList()
                       : ctx.Recipes.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Recipes.Where(x => x.Name.StartsWith(filter)).ToList()
+                  ? ctx.Recipes.Where(x => (x.Code.StartsWith(filter))).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                      ? ctx.Recipes.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
-                      : ctx.Recipes.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
+                      ? ctx.Recipes.Where(x => !x.Deleted.HasValue && (x.Code.StartsWith(filter))).ToList()
+                      : ctx.Recipes.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && (x.Code.StartsWith(filter))).ToList();
           return result.Select(x => x.GetPrimitive()).ToList();
+
+
+          //todo po symbolu cemnetu
+          //ctx.Recipes.Where(x => (x.Code.Contains(filter) || 
+          //          x.RecipeComponents.Where(
+          //          y => ((y.Material.MaterialType.HasValue && y.Material.MaterialType.Value == (int)MaterialTypeEnum.Concrete) && 
+          //            (y.Material.InternalName.Contains(filter)))).Count() > 0
+          //            )).ToList()
         }
       }
       catch (Exception e)
@@ -73,10 +82,10 @@ namespace SmartWorking.Office.Services.Hosting.Local
                       ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue).ToList()
                       : ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => x.Name.StartsWith(filter)).ToList()
+                  ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => (x.Code.StartsWith(filter))).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                      ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
-                      : ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
+                      ? ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue && (x.Code.StartsWith(filter))).ToList()
+                      : ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && (x.Code.StartsWith(filter))).ToList();
           
           return result.Select(x => x.GetRecipesPackage()).ToList();
         }

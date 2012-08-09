@@ -538,10 +538,12 @@
                                                 <Button.Visibility>
                                                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                         <MultiBinding.Bindings>
+                                                            <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                                 ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                             <Binding Path="RecipeDetailsViewModel.IsReadOnly" />
                                                         </MultiBinding.Bindings>
                                                     </MultiBinding>
-                                                </Button.Visibility>
+                                                </Button.Visibility>                                                
                                             </Button>
                                             <Button Command="{Binding RecipeDetailsViewModel.SaveItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Recipes_Save}">
                                                 <Button.Visibility>

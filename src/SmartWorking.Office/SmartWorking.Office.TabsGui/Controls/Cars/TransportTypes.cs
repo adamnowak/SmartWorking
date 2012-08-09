@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Enums;
 using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 
@@ -33,9 +35,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
 
     private void LoadItems()
     {
-      Items.Add(new DescriptionIndexted { Id = 1, Description = Resources.TransportTypes_Own });
-      Items.Add(new DescriptionIndexted { Id = 2, Description = Resources.TransportTypes_Rent });
-      Items.Add(new DescriptionIndexted { Id = 3, Description = Resources.TransportTypes_Client });
+      Items.Add(new DescriptionIndexted { Id = (int)TransportTypeEnum.Own, Description = Resources.TransportTypes_Own });
+      Items.Add(new DescriptionIndexted { Id = (int)TransportTypeEnum.Rent, Description = Resources.TransportTypes_Rent });
+      Items.Add(new DescriptionIndexted { Id = (int)TransportTypeEnum.Client, Description = Resources.TransportTypes_Client });
     }
   }
 }

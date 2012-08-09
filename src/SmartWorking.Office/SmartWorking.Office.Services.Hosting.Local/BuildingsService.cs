@@ -30,10 +30,10 @@ namespace SmartWorking.Office.Services.Hosting.Local
                       ? ctx.Buildings.Where(x => !x.Deleted.HasValue).ToList()
                       : ctx.Buildings.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Buildings.Where(x => x.ContactPerson.StartsWith(filter)).ToList()
+                  ? ctx.Buildings.Where(x => (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                      ? ctx.Buildings.Where(x => !x.Deleted.HasValue && x.ContactPerson.StartsWith(filter)).ToList()
-                      : ctx.Buildings.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.ContactPerson.StartsWith(filter)).ToList();
+                      ? ctx.Buildings.Where(x => !x.Deleted.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
+                      : ctx.Buildings.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList();
           return result.Select(x => x.GetPrimitive()).ToList(); ;
         }
       }

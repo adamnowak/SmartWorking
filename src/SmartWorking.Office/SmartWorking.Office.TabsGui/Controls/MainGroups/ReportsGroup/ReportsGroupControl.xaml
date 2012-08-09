@@ -40,9 +40,7 @@
                 <Calendar x:Name="calendar" Grid.Row="3"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                           SelectedDate="{Binding StartDateTime}"
-                            
-                           >
+                           SelectedDate="{Binding StartDateTime}" PreviewMouseUp="calendar_PreviewMouseUp">
 
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectedDatesChanged">
@@ -50,7 +48,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Calendar.SelectionMode>
-                        <MultiBinding Converter="{StaticResource comparingMultiExConverter}">                                                        
+                        <MultiBinding Converter="{StaticResource comparingMultiExConverter}" Mode="OneWay">                                                        
                             <Binding Path="PeriodType" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static ReportsGroup:PeriodTypeValues.Custom}" />
                             <Binding Source="{x:Static CalendarSelectionMode.SingleRange}" />
                             <Binding Source="{x:Static CalendarSelectionMode.SingleDate}" />
@@ -81,7 +79,8 @@
             <!--</StackPanel>-->
         </GroupBox>
         <GroupBox Header="Raport" Grid.Column="1">
-            
+            <DocumentViewer   Document="{Binding DocumentPaginatorSource}" />
+
         </GroupBox>
     </Grid>
 </UserControl>

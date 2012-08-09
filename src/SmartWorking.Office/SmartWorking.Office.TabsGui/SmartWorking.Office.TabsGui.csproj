@@ -192,6 +192,9 @@
       <DependentUpon>AdministrationGroupControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainGroups\AdministrationGroup\AdministrationGroupViewModel.cs" />
+    <Compile Include="Controls\MainGroups\ReportsGroup\ProductionReport.cs" />
+    <Compile Include="Controls\MainGroups\ReportsGroup\ReportBase.cs" />
+    <Compile Include="Controls\MainGroups\ReportsGroup\IReport.cs" />
     <Compile Include="Controls\MainGroups\ReportsGroup\RaportTypes.cs" />
     <Compile Include="Controls\MainGroups\ReportsGroup\MonthTypes.cs" />
     <Compile Include="Controls\MainGroups\ReportsGroup\PeriodTypes.cs" />
@@ -263,7 +266,9 @@
     <Compile Include="Converters\DeactivatedToIsActiveConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Shared\ViewModel\AccessLevel.cs" />
+    <Compile Include="Shared\ViewModel\SmartWorkingConfiguration.cs" />
     <Compile Include="Shared\ViewModel\DescriptionIndexted.cs" />
+    <Compile Include="Shared\ViewModel\DocumentPaginatorWrapper.cs" />
     <Compile Include="Shared\ViewModel\IDescriptionIndexted.cs" />
     <Compile Include="Shared\ViewModel\TabItemViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\ITabItemViewModel.cs" />
@@ -438,6 +443,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Content Include="XPSTemplates\DeliveryNotesReportTemplate.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XPSTemplates\DeliveryNoteTemplate.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XPSTemplates\ProductionReportTemplate.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\Cars\CarDetailsControl.xaml.cs">

@@ -37,10 +37,10 @@ namespace SmartWorking.Office.Services.Hosting.Local
                       ? ctx.Clients.Where(x => !x.Deleted.HasValue).ToList()
                       : ctx.Clients.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Clients.Where(x => x.Name.StartsWith(filter)).ToList()
+                  ? ctx.Clients.Where(x => (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                      ? ctx.Clients.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
-                      : ctx.Clients.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
+                      ? ctx.Clients.Where(x => !x.Deleted.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
+                      : ctx.Clients.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList();
 
           return result.Select(x => x.GetPrimitive()).ToList();
         }
@@ -72,10 +72,10 @@ namespace SmartWorking.Office.Services.Hosting.Local
                      ? ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue).ToList()
                      : ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
              : (listItemsFilterValue == ListItemsFilterValues.All)
-                 ? ctx.Clients.Include("ClientBuildings.Building").Where(x => x.Name.StartsWith(filter)).ToList()
+                 ? ctx.Clients.Include("ClientBuildings.Building").Where(x => (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                     ? ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
-                     : ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
+                     ? ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
+                     : ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList();
           return result.Select(x => x.GetClientAndBuildingsPackage()).ToList();
         }
       }

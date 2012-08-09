@@ -36,11 +36,11 @@ namespace SmartWorking.Office.Services.Hosting.Local
                       ? ctx.Drivers.Where(x => !x.Deleted.HasValue).ToList()
                       : ctx.Drivers.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Drivers.ToList()
+                  ? ctx.Drivers.Where(x => (x.InternalName.Contains(filter) || x.Name.Contains(filter) || x.Surname.Contains(filter))).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                      ? ctx.Drivers.Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+                      ? ctx.Drivers.Where(x => !x.Deleted.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter) || x.Surname.Contains(filter))).ToList()
                       : ctx.Drivers.Where(
-                        x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();        
+                        x => !x.Deleted.HasValue && !x.Deactivated.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter) || x.Surname.Contains(filter))).ToList();        
           return result.Select(x => x.GetPrimitive()).ToList(); 
         }
       }
@@ -64,11 +64,11 @@ namespace SmartWorking.Office.Services.Hosting.Local
                       ? ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue).ToList()
                       : ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
               : (listItemsFilterValue == ListItemsFilterValues.All)
-                  ? ctx.Drivers.Include("Cars").ToList()
+                  ? ctx.Drivers.Include("Cars").Where(x => (x.InternalName.Contains(filter) || x.Name.Contains(filter) || x.Surname.Contains(filter))).ToList()
                   : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                      ? ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue && x.Name.StartsWith(filter)).ToList()
+                      ? ctx.Drivers.Include("Cars").Where(x => !x.Deleted.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter) || x.Surname.Contains(filter))).ToList()
                       : ctx.Drivers.Include("Cars").Where(
-                        x => !x.Deleted.HasValue && !x.Deactivated.HasValue && x.Name.StartsWith(filter)).ToList();
+                        x => !x.Deleted.HasValue && !x.Deactivated.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter) || x.Surname.Contains(filter))).ToList();
           return result.Select(x => x.GetDriverAndCarsPackage()).ToList();
         }
       }

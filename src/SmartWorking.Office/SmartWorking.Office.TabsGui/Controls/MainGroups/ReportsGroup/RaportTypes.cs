@@ -6,7 +6,8 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
 {
   public enum ReportTypeValues
   {
-    Production,
-    Test
+    Production = 1,
+    DeliveryNotes = 2,
+    Test =  10
   }
 }

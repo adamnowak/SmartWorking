@@ -42,8 +42,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
 
     public OrderSumaryViewModel OrderSumaryViewModel { get; private set; }
 
-    
 
+    
 
     void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<ClientAndClientBuildingsPackage> e)
     {

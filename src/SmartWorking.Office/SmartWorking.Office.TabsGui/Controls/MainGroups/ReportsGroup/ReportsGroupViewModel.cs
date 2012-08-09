@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -31,7 +32,11 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
       PeriodType = PeriodTypeValues.Daily;
       ReportType = ReportTypeValues.Production;
       StartDateTime = DateTime.Now;
+      ProductionReport = new ProductionReport(MainViewModel, ModalDialogService, ServiceFactory);
+
     }
+
+    public ProductionReport ProductionReport { get; private set; }
 
     #region PeriodType
     /// <summary>
@@ -101,6 +106,40 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
     }
     #endregion //ReportType
 
+    #region DocumentPaginatorSource
+    /// <summary>
+    /// The <see cref="DocumentPaginatorSource" /> property's name.
+    /// </summary>
+    public const string DocumentPaginatorSourcePropertyName = "DocumentPaginatorSource";
+
+    private IDocumentPaginatorSource _documentPaginatorSource;
+
+    /// <summary>
+    /// Gets the DocumentPaginatorSource property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public IDocumentPaginatorSource DocumentPaginatorSource
+    {
+      get
+      {
+        return _documentPaginatorSource;
+      }
+
+      set
+      {
+        if (_documentPaginatorSource == value)
+        {
+          return;
+        }
+        _documentPaginatorSource = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(DocumentPaginatorSourcePropertyName);
+      }
+    }
+    #endregion //DocumentPaginatorSource
+
     #region GenerateReportCommand
     private ICommand _generateReportCommand;
 
@@ -139,20 +178,26 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
       string errorCaption = "TODO!";
       try
       {
+        FlowDocument flowDocument = null;
         DateTime startDateTime = StartDateTime.Date;
         DateTime endDateTime = EndDateTime.Date.AddDays(1).AddMilliseconds(-1);
-        using (IReportsService service = ServiceFactory.GetReportsService())
+        if (ReportType == ReportTypeValues.Production)
         {
-          List<DeliveryNoteReportPackage> deliveryNoteReportPackageList = service.GetDeliveryNoteReportPackageList();
-          var c = deliveryNoteReportPackageList.GroupBy(x => (x.Recipe != null) ? x.Recipe.Id : 0).AsEnumerable();
-          foreach(var i in c)
-          {
-            Debug.WriteLine(i.Key + ", "+ i.Count());
-            foreach (var j in i)
-            {
-              Debug.WriteLine("  " + j.DeliveryNote.Id);
-            }
-          }
+          endDateTime = StartDateTime.Date.AddDays(1).AddMilliseconds(-1);
+          flowDocument = ProductionReport.GenerateReport(startDateTime, endDateTime, PeriodType);
+        }
+        else if (ReportType == ReportTypeValues.DeliveryNotes)
+        {
+          
+        }
+
+
+        if (flowDocument != null)
+        {
+          DocumentPaginatorSource = XPSCreator.ConvertToFixedDocument( //FlowDocumentViewModel.DocumentPaginatorSource.DocumentPaginator);
+            new DocumentPaginatorWrapper(
+              ((IDocumentPaginatorSource)flowDocument).DocumentPaginator,
+              new Size(768, 676), new Size(48, 48)));
         }
       }
       catch (FaultException<ExceptionDetail> f)
@@ -172,7 +217,6 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
       }
     }
     #endregion //GenerateReportCommand
-
 
     #region StartDateTime
     /// <summary>
@@ -207,7 +251,6 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
       }
     }
     #endregion //StartDateTime
-
 
     #region EndDateTime
     /// <summary>

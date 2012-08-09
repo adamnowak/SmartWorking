@@ -36,6 +36,6 @@ namespace SmartWorking.Office.Services.Interfaces
       RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     List<DeliveryNoteReportPackage> GetDeliveryNoteReportPackageListByDateTime(DateTime startTime,
-                                                                                      DateTime endTime);
+                                                                                      DateTime endTime);    
   }
 }

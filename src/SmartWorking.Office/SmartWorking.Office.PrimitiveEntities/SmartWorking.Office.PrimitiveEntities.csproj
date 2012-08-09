@@ -107,11 +107,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Enums\CarTypeEnum.cs" />
     <Compile Include="ClientAndClientBuildingsPackage.cs" />
     <Compile Include="ClientBuildingAndBuildingPackage.cs" />
     <Compile Include="DeliveryNoteReportPackage.cs" />
     <Compile Include="DriverAndCarsPackage.cs" />
     <Compile Include="GetPackageCopierHelper.cs" />
+    <Compile Include="Enums\MaterialTypeEnum.cs" />
     <Compile Include="OrderPackage.cs" />
     <Compile Include="MaterialAndContractorsPackage.cs" />
     <Compile Include="CarAndDriverPackage.cs" />
@@ -124,6 +126,8 @@
     <Compile Include="Reports\DriversCarsReportPackage.cs" />
     <Compile Include="Reports\ReportRow.cs" />
     <Compile Include="Reports\ReportValue.cs" />
+    <Compile Include="Enums\StrengthClassTypeEnum.cs" />
+    <Compile Include="Enums\TransportTypeEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\SmartWorking.Office.Model\GetPrimitiveCopier.tt">

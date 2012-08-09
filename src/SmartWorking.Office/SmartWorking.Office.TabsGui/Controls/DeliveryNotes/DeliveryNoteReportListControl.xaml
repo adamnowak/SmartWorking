@@ -58,27 +58,34 @@
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_ClientInternalName}"
                      Binding="{Binding Client.InternalName}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_BuildingId}"
-                     Binding="{Binding Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                         
+                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_BuildingInternalName}"
                      Binding="{Binding Building.InternalName}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_RecipeId}"
-                     Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},      
+                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_RecipeCode}"
                      Binding="{Binding Recipe.Code}" />
                 <DataGridTextColumn Header="ConcreteClass"
                      Binding="{Binding Recipe.ConcreteClass}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DeliveryNoteAmount}"
                      Binding="{Binding DeliveryNote.Amount, StringFormat={}{0:N2}}" CellStyle="{StaticResource rightAlignment}" />
-                <DataGridTextColumn Header="OrderId"
+                <DataGridTextColumn Header="OrderId" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                           
+                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}"
                      Binding="{Binding Order.Id}" />
+                <DataGridTextColumn Header="Amount"
+                     Binding="{Binding Order.Amount}" />
                 <DataGridCheckBoxColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_OrderPump}"
                      Binding="{Binding Order.Pump}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_CarId}"
-                     Binding="{Binding Car.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Car.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                          
+                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_CarRegistrationNumber}"
                      Binding="{Binding Car.RegistrationNumber}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DriverId}"
-                     Binding="{Binding Driver.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
+                     Binding="{Binding Driver.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},                           
+                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_DriverNameSurname}"
                                    SortMemberPath="Driver.Name" >
                     <DataGridTextColumn.Binding>
@@ -89,7 +96,8 @@
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_CarTransportType}">
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteReportListControl_CarTransportType}"
+                                    SortMemberPath="Car.TransportType">
                     <DataGridTextColumn.Binding>
                         <MultiBinding Converter="{StaticResource descriptionIndexedConverter}">
                             <Binding Path="Car.TransportType" />

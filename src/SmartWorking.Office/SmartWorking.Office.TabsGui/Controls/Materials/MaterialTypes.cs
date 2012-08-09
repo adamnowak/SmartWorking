@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using SmartWorking.Office.PrimitiveEntities.Enums;
 using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 
@@ -30,11 +31,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
 
     private void LoadItems()
     {
-      Items.Add(new DescriptionIndexted { Id = 1, Description = Resources.MaterialTypes_LoadItems_Concrete });
-      Items.Add(new DescriptionIndexted { Id = 2, Description = Resources.MaterialTypes_LoadItems_Aggregate });
-      Items.Add(new DescriptionIndexted { Id = 3, Description = Resources.MaterialTypes_LoadItems_Supplement });
-      Items.Add(new DescriptionIndexted { Id = 4, Description = Resources.MaterialTypes_LoadItems_Admixture });
-      Items.Add(new DescriptionIndexted { Id = 5, Description = Resources.MaterialTypes_LoadItems_Water });
+      Items.Add(new DescriptionIndexted { Id = (int)MaterialTypeEnum.Concrete, Description = Resources.MaterialTypes_LoadItems_Concrete });
+      Items.Add(new DescriptionIndexted { Id = (int)MaterialTypeEnum.Aggregate, Description = Resources.MaterialTypes_LoadItems_Aggregate });
+      Items.Add(new DescriptionIndexted { Id = (int)MaterialTypeEnum.Supplement, Description = Resources.MaterialTypes_LoadItems_Supplement });
+      Items.Add(new DescriptionIndexted { Id = (int)MaterialTypeEnum.Admixture, Description = Resources.MaterialTypes_LoadItems_Admixture });
+      Items.Add(new DescriptionIndexted { Id = (int)MaterialTypeEnum.Water, Description = Resources.MaterialTypes_LoadItems_Water });
     }
   }
 }

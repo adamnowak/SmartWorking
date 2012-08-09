@@ -55,7 +55,7 @@
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:MaterialListControl_DelivererInternalName}"
                      Binding="{Binding Producer.InternalName}" />
 
-                <DataGridTextColumn Header="MaterialType">
+                <DataGridTextColumn Header="MaterialType" SortMemberPath="Material.MaterialType">
                     <DataGridTextColumn.Binding>
                         <MultiBinding Converter="{StaticResource descriptionIndexedConverter}">
                             <Binding Path="Material.MaterialType" />

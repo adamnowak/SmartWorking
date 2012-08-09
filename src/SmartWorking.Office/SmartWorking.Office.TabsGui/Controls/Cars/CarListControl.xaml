@@ -46,7 +46,8 @@
                      Binding="{Binding Car.InternalName}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_RegistrationNumber}"
                      Binding="{Binding Car.RegistrationNumber}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_CarType}">
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_CarType}"
+                                    SortMemberPath="Car.CarType">
                     <DataGridTextColumn.Binding>
                         <MultiBinding Converter="{StaticResource descriptionIndexedConverter}">
                             <Binding Path="Car.CarType" />

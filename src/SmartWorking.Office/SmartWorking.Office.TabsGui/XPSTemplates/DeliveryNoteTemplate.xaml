@@ -1,0 +1,46 @@
+﻿<FixedDocument
+  
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xml:lang="pl-PL">
+    <!--<Pages>-->
+    <PageContent>
+        <FixedPage Width="37.94cm" Height="21.59cm" >
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="TextWrapping" Value="Wrap"/>
+                        <Setter Property="Padding" Value="0.1" />
+                    </Style>
+                </StackPanel.Resources>
+                <StackPanel Margin="1cm,4cm,0,0" Orientation="Horizontal">
+                    <TextBlock Width="10.4cm" Height="2.2cm" Text="{Binding Client}" />
+                    <TextBlock Width="8.3cm" Height="2.2cm" Text="{Binding Building}" />
+                    <TextBlock Width="3.56cm" Height="2.2cm" Text="{Binding DeliveryNoteNumber}" />
+                    <TextBlock Width="3.56cm" Height="2.2cm" Text="{Binding Date}"  />
+                </StackPanel>
+                <StackPanel Margin="1cm,1cm,0,0" Orientation="Horizontal">
+                    <TextBlock Width="2.2cm" Height="0.85cm" Text="{Binding Amount}" />
+                    <TextBlock Width="3.85cm" Height="0.85cm" Text="{Binding RecipeNumber}"/>
+                    <TextBlock Width="2.43cm" Height="0.85cm" Text="{Binding ConcreteClass}"/>
+                    <TextBlock Width="1.73cm" Height="0.85cm" Text="{Binding DurabilityClass}"/>
+                    <TextBlock Width="1.49cm" Height="0.85cm" Text="{Binding Granulation}"/>
+                </StackPanel>
+                <StackPanel Margin="1cm,1.27cm,0,0" Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Width="7.45cm" Height="0.90cm" Text="{Binding Client}"/>
+                        <TextBlock Margin="0,0.25cm,0,0" Width="7.45cm" Height="0.90cm" Text="{Binding Building}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Width="7.45cm" Height="2.05cm" Text="{Binding Building}"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Width="7.45cm" Height="2.05cm" Text="COTOCOTO"/>
+                </StackPanel>
+            </StackPanel>
+
+        </FixedPage>
+    </PageContent>
+    <!--</Pages>-->
+</FixedDocument>

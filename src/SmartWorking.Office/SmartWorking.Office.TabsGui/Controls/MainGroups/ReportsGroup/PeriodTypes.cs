@@ -10,8 +10,25 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
     Monthly = 2,
     Custom = 3
   }
+
   public class PeriodTypes  
   {
+
+    public static string GetString(PeriodTypeValues periodTypeValues)
+    {
+      switch (periodTypeValues)
+      {
+        case PeriodTypeValues.Daily:
+          return "Dzienny";
+
+        case PeriodTypeValues.Monthly:
+          return "Miesięczny";
+        case PeriodTypeValues.Custom:
+          return "Okresowy";
+          
+      }
+      return "NotDefined";
+    }
 
     private PeriodTypes()
     {
