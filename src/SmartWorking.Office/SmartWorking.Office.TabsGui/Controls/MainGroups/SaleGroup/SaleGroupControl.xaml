@@ -42,7 +42,7 @@
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                 <MultiBinding.Bindings>
-                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsDeliveryNotePreview" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                    <Binding Path="OrderDetailsViewModel.IsDeliveryNotePreview" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                 </MultiBinding.Bindings>
                             </MultiBinding>
                         </GroupBox.Visibility>
@@ -198,11 +198,12 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding OrderListViewModel.PrepareDeliverCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_Back}">
+                                        <Button Command="{Binding OrderListViewModel.PrepareDeliverCommand}" 
+                                                Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_Back}"
+                                                IsEnabled="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="OrderListViewModel.EditingViewModel.IsReadOnly" />
                                                         <Binding Path="OrderListViewModel.IsPreparingDelivery" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
@@ -324,11 +325,23 @@
                                             </Button.Visibility>
                                         </Button>
 
-                                        <Button Command="{Binding OrderDetailsViewModel.PreviewDeliveryNoteItemCommand}" Content="Save">
+                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.SaveItemCommand}" Content="Save">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
                                                         <Binding Path="OrderListViewModel.IsPreparingDelivery" />
+                                                        <Binding Path="MainViewModel.Configuration.PreviewDeliveryNote" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </Button.Visibility>
+                                        </Button>
+                                        <Button Command="{Binding OrderDetailsViewModel.PreviewDeliveryNoteItemCommand}" Content="Preview">
+                                            <Button.Visibility>
+                                                <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding Path="OrderListViewModel.IsPreparingDelivery" />
+                                                        <Binding Path="MainViewModel.Configuration.PreviewDeliveryNote" />
                                                         <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
@@ -376,7 +389,7 @@
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                 <MultiBinding.Bindings>
-                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsDeliveryNotePreview" />
+                                    <Binding Path="OrderDetailsViewModel.IsDeliveryNotePreview" />
                                 </MultiBinding.Bindings>
                             </MultiBinding>
                         </GroupBox.Visibility>
@@ -385,10 +398,10 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <DocumentViewer   Document="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.DocumentPaginatorSource}" />
+                            <DocumentViewer   Document="{Binding OrderDetailsViewModel.DocumentPaginatorSource}" />
                             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.PrintItemCommand}" Content="Print" />
-                                <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.CancelPringintItemCommand}" Content="Cancel" />
+                                <Button Command="{Binding OrderDetailsViewModel.CancelPringintItemCommand}" Content="Cancel" />
                             </StackPanel>
                         </Grid>
                     </GroupBox>

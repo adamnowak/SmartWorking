@@ -39,39 +39,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     public SelectableViewModelBase<CarAndDriverPackage> Cars { get; private set; }
     public SelectableViewModelBase<DriverPrimitive> Drivers { get; private set; }
 
-    #region IsDeliveryNotePreview
-    /// <summary>
-    /// The <see cref="IsDeliveryNotePreview" /> property's name.
-    /// </summary>
-    public const string IsDeliveryNotePreviewPropertyName = "IsDeliveryNotePreview";
-
-    private bool _isDeliveryNotePreview = false;
-
-    /// <summary>
-    /// Gets the IsDeliveryNotePreview property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
-    /// </summary>
-    public bool IsDeliveryNotePreview
-    {
-      get
-      {
-        return _isDeliveryNotePreview;
-      }
-
-      set
-      {
-        if (_isDeliveryNotePreview == value)
-        {
-          return;
-        }
-        _isDeliveryNotePreview = value;
-        // Update bindings, no broadcast
-        RaisePropertyChanged(IsDeliveryNotePreviewPropertyName);
-      }
-    }
-    #endregion //IsDeliveryNotePreview
+    
 
     /// <summary>
     /// Gets the name of editing control.
@@ -93,14 +61,19 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     {
       if (Item != null)
       {
-        if (SmartWorkingConfiguration.Instance.PreviewDeliveryNote)
+        if (base.OnSaveItem())
         {
-          SetDocumentPaginatorSource();
-          IsDeliveryNotePreview = true;
-        }
-        else
-        {
-          SaveDeliveryNote();  
+          Item.CarAndDriver = Cars.SelectedItem;
+          Item.Driver = Drivers.SelectedItem;
+          Item.DeliveryNote.DateDrawing = DateTime.Now;
+
+          using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
+          {
+            Item.DeliveryNote = service.CreateOrUpdateDeliveryNote(Item.GetDeliveryNotePrimitiveWithReference());
+          }
+
+          
+          
         }
         
         return true;
@@ -108,87 +81,10 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       return false;
     }
 
-    private void SetDocumentPaginatorSource()
-    {
-      if (DocumentPaginatorSource == null)
-      {
-        DocumentPaginatorSource = (FixedDocument)XPSCreator.LoadTemplate("XPSTemplates\\DeliveryNoteTemplate.xaml");
-      }
-      XPSCreator.InjectData(DocumentPaginatorSource, Item);
-    }
+    
 
-    private void SaveDeliveryNote()
-    {
-      if (base.OnSaveItem())
-      {          
-        Item.CarAndDriver = Cars.SelectedItem;
-        Item.Driver = Drivers.SelectedItem;
-        Item.DeliveryNote.DateDrawing = DateTime.Now;
-          
-        using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
-        {
-          service.CreateOrUpdateDeliveryNote(Item.GetDeliveryNotePrimitiveWithReference());
-        }        
-      }
-    }
 
-    #region CancelPringintItemCommand
-    private ICommand _cancelPringintItemCommand;
-
-    /// <summary>
-    /// Gets the //TODO: command.
-    /// </summary>
-    /// <remarks>
-    /// Opens dialog to //TODO:.
-    /// </remarks>
-    public ICommand CancelPringintItemCommand
-    {
-      get
-      {
-        if (_cancelPringintItemCommand == null)
-          _cancelPringintItemCommand = new RelayCommand(CancelPringintItem, CanCancelPringintItem);
-        return _cancelPringintItemCommand;
-      }
-    }
-
-    /// <summary>
-    /// Determines whether this instance an //TODO:.
-    /// </summary>
-    /// <returns>
-    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
-    /// </returns>
-    private bool CanCancelPringintItem()
-    {
-      return true;
-    }
-
-    /// <summary>
-    /// //TODO:.
-    /// </summary>
-    private void CancelPringintItem()
-    {
-      string errorCaption = "TODO!";
-      try
-      {
-        IsDeliveryNotePreview = false;
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-    #endregion //CancelPringintItemCommand
+    
     
 
     protected override bool OnRefresh()
@@ -255,38 +151,63 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 
     }
 
-    #region DocumentPaginatorSource
-    /// <summary>
-    /// The <see cref="DocumentPaginatorSource" /> property's name.
-    /// </summary>
-    public const string DocumentPaginatorSourcePropertyName = "DocumentPaginatorSource";
-
-    private FixedDocument _documentPaginatorSource;
+    #region PrintItemCommand
+    private ICommand _printItemCommand;
 
     /// <summary>
-    /// Gets the DocumentPaginatorSource property.
-    /// TODO Update documentation:
-    /// Changes to that property's value raise the PropertyChanged event. 
-    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// Gets the //TODO: command.
     /// </summary>
-    public FixedDocument DocumentPaginatorSource
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand PrintItemCommand
     {
       get
       {
-        return _documentPaginatorSource;
-      }
-
-      set
-      {
-        if (_documentPaginatorSource == value)
-        {
-          return;
-        }
-        _documentPaginatorSource = value;
-        // Update bindings, no broadcast
-        RaisePropertyChanged(DocumentPaginatorSourcePropertyName);
+        if (_printItemCommand == null)
+          _printItemCommand = new RelayCommand(PrintItem, CanPrintItem);
+        return _printItemCommand;
       }
     }
-    #endregion //DocumentPaginatorSource
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanPrintItem()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void PrintItem()
+    {
+      string errorCaption = "TODO!";
+      try
+      {
+        Save();
+        
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+    #endregion //PrintItemCommand
   }
 }

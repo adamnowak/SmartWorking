@@ -67,7 +67,10 @@ namespace SmartWorking.Office.TabsGui
       AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
       IsDebugMode = false;
       LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
-      SmartWorkingConfiguration.Instance.PreviewDeliveryNote = true;
+      Configuration = new SmartWorkingConfiguration();
+      Configuration.PreviewDeliveryNote = true;
+      Configuration.PagesToPrint = 1;
+
 #if CONFIG_NAME_DebugLocalSylwek
       AccessLevel = AccessLevels.OperatorLevel;
       IsDebugMode = false;
@@ -228,6 +231,8 @@ namespace SmartWorking.Office.TabsGui
     {
       get { return "str_SmartWorking.Office"; }
     }
+
+    public SmartWorkingConfiguration Configuration { get; private set; }
 
 
 

@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.ServiceModel;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Buildings;
@@ -36,14 +41,55 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
                                                                 ModalDialogService, ServiceFactory);
 
 
-      OrderSumaryViewModel = new OrderSumaryViewModel(MainViewModel, ModalDialogService, ServiceFactory); 
-      
+      OrderSumaryViewModel = new OrderSumaryViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+
+      DeliveryNoteDetailsViewModel.ItemSaved += new EventHandler(DeliveryNoteDetailsViewModel_ItemSaved);
+    }
+
+    void DeliveryNoteDetailsViewModel_ItemSaved(object sender, EventArgs e)
+    {
+      if (MainViewModel.Configuration.PagesToPrint > 0)
+      {
+        var t = DeliveryNoteDetailsViewModel.Item;
+      }
     }
 
     public OrderSumaryViewModel OrderSumaryViewModel { get; private set; }
 
 
-    
+    #region IsDeliveryNotePreview
+    /// <summary>
+    /// The <see cref="IsDeliveryNotePreview" /> property's name.
+    /// </summary>
+    public const string IsDeliveryNotePreviewPropertyName = "IsDeliveryNotePreview";
+
+    private bool _isDeliveryNotePreview = false;
+
+    /// <summary>
+    /// Gets the IsDeliveryNotePreview property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public bool IsDeliveryNotePreview
+    {
+      get
+      {
+        return _isDeliveryNotePreview;
+      }
+
+      set
+      {
+        if (_isDeliveryNotePreview == value)
+        {
+          return;
+        }
+        _isDeliveryNotePreview = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(IsDeliveryNotePreviewPropertyName);
+      }
+    }
+    #endregion //IsDeliveryNotePreview
 
     void Items_SelectedItemChanged(object sender, SelectedItemChangedEventArgs<ClientAndClientBuildingsPackage> e)
     {
@@ -200,6 +246,174 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       //}
 
     }
+
+
+
+    #region PreviewDeliveryNoteItemCommand
+    private ICommand _previewDeliveryNoteItemCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand PreviewDeliveryNoteItemCommand
+    {
+      get
+      {
+        if (_previewDeliveryNoteItemCommand == null)
+          _previewDeliveryNoteItemCommand = new RelayCommand(PreviewDeliveryNoteItem, CanPreviewDeliveryNoteItem);
+        return _previewDeliveryNoteItemCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanPreviewDeliveryNoteItem()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void PreviewDeliveryNoteItem()
+    {
+      string errorCaption = "TODO!";
+      try
+      {
+        
+        SetDocumentPaginatorSource();
+        IsDeliveryNotePreview = true;
+        
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+    public class Test
+    {
+      public ImageSource BackImage { get; set; }
+    }
+    private void SetDocumentPaginatorSource()
+    {
+      if (DocumentPaginatorSource == null)
+      {
+        DocumentPaginatorSource = (FixedDocument)XPSCreator.LoadTemplate("XPSTemplates\\DeliveryNoteTemplate.xaml");
+      }
+
+      XPSCreator.InjectData(DocumentPaginatorSource, Item);
+    }
+    #endregion //PreviewDeliveryNoteItemCommand
+
+    #region DocumentPaginatorSource
+    /// <summary>
+    /// The <see cref="DocumentPaginatorSource" /> property's name.
+    /// </summary>
+    public const string DocumentPaginatorSourcePropertyName = "DocumentPaginatorSource";
+
+    private FixedDocument _documentPaginatorSource;
+
+    /// <summary>
+    /// Gets the DocumentPaginatorSource property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public FixedDocument DocumentPaginatorSource
+    {
+      get
+      {
+        return _documentPaginatorSource;
+      }
+
+      set
+      {
+        if (_documentPaginatorSource == value)
+        {
+          return;
+        }
+        _documentPaginatorSource = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(DocumentPaginatorSourcePropertyName);
+      }
+    }
+    #endregion //DocumentPaginatorSource
+
+    #region CancelPringintItemCommand
+    private ICommand _cancelPringintItemCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand CancelPringintItemCommand
+    {
+      get
+      {
+        if (_cancelPringintItemCommand == null)
+          _cancelPringintItemCommand = new RelayCommand(CancelPringintItem, CanCancelPringintItem);
+        return _cancelPringintItemCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanCancelPringintItem()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void CancelPringintItem()
+    {
+      string errorCaption = "TODO!";
+      try
+      {
+        IsDeliveryNotePreview = false;
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+    #endregion //CancelPringintItemCommand
   }
 
 }

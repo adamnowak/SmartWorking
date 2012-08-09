@@ -9,5 +9,6 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
   {
     AccessLevel AccessLevel { get;  }
     bool IsDebugMode { get; }
+    SmartWorkingConfiguration Configuration { get; }
   }
 }

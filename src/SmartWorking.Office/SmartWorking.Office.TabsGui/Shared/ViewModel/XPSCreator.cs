@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Packaging;
 using System.Linq;
@@ -33,7 +34,12 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       // get template from file system
       using (FileStream inputStream = File.OpenRead(absolutePath))
       {        
-        template = XamlReader.Load(inputStream);
+        var pc = new ParserContext
+        {
+         BaseUri = new Uri(directoryPath + "\\")
+        };
+
+        template = XamlReader.Load(inputStream, pc);
       }
 
       return template;

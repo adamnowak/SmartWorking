@@ -1,25 +1,18 @@
 ﻿
+using System;
+using GalaSoft.MvvmLight;
+
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 {
-  public class SmartWorkingConfiguration
+  public class SmartWorkingConfiguration : ViewModelBase
   {
-    private SmartWorkingConfiguration()
-    {
-    }
+    #region PreviewDeliveryNote
+    /// <summary>
+    /// The <see cref="PreviewDeliveryNote" /> property's name.
+    /// </summary>
+    public const string PreviewDeliveryNotePropertyName = "PreviewDeliveryNote";
 
-    private static SmartWorkingConfiguration _instance;
-
-    public static SmartWorkingConfiguration Instance
-    {
-      get
-      {
-        if (_instance == null)
-        {
-          _instance = new SmartWorkingConfiguration();          
-        }
-        return _instance;
-      }
-    }
+    private bool _previewDeliveryNote = false;
 
     /// <summary>
     /// Gets or sets a value indicating whether delivery note will be shown on preview dialog before save and printing.
@@ -27,6 +20,62 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <value>
     ///   <c>true</c> if [preview delivery note]; otherwise, <c>false</c>.
     /// </value>
-    public bool PreviewDeliveryNote { get; set; }
+    public bool PreviewDeliveryNote
+    {
+      get
+      {
+        return _previewDeliveryNote;
+      }
+
+      set
+      {
+        if (_previewDeliveryNote == value)
+        {
+          return;
+        }
+        _previewDeliveryNote = value;
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged(PreviewDeliveryNotePropertyName);
+      }
+    }
+    #endregion //PreviewDeliveryNote
+
+
+    #region PagesToPrint
+    /// <summary>
+    /// The <see cref="PagesToPrint" /> property's name.
+    /// </summary>
+    public const string PagesToPrintPropertyName = "PagesToPrint";
+
+    private int _PagesToPrint;
+
+    /// <summary>
+    /// Gets the PagesToPrint property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public int PagesToPrint
+    {
+      get
+      {
+        return _PagesToPrint;
+      }
+
+      set
+      {
+        if (_PagesToPrint == value)
+        {
+          return;
+        }
+        _PagesToPrint = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(PagesToPrintPropertyName);
+      }
+    }
+    #endregion //PagesToPrint
+
+    
   }
 }

@@ -122,7 +122,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Updates the <see cref="DeliveryNote"/>.
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be updated.</param>
-    public void CreateOrUpdateDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
+    public DeliveryNotePrimitive CreateOrUpdateDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
     {
       try
       {
@@ -156,6 +156,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
           }
 
           context.SaveChanges();
+
+          return deliveryNote;
         }
       }
       catch (Exception e)
