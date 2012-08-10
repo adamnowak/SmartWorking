@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Printing;
 using System.ServiceModel;
+using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -51,6 +53,30 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       if (MainViewModel.Configuration.PagesToPrint > 0)
       {
         var t = DeliveryNoteDetailsViewModel.Item;
+
+        PrintQueue printQueue = null;
+        bool UseDefaultPrinter = true;
+
+        if (UseDefaultPrinter)
+        {
+          printQueue = new LocalPrintServer().DefaultPrintQueue;
+        }
+        else
+        {
+          PrintDialog printDialog = XPSCreator.GetPrintDialog();
+          printDialog.PrintTicket = printDialog.PrintQueue.DefaultPrintTicket;          
+          if (printDialog == null)
+            return;
+          printQueue = printDialog.PrintQueue;
+        }
+
+        if (printQueue != null)
+        { 
+          FixedDocument fixedDocumentToPrint = (FixedDocument)XPSCreator.LoadTemplate("XPSTemplates\\DeliveryNoteTemplate.xaml");
+          XPSCreator.InjectData(fixedDocumentToPrint, Item);
+          XPSCreator.PrintFlowDocument(printQueue, fixedDocumentToPrint.DocumentPaginator);
+        }
+
       }
     }
 
@@ -316,7 +342,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     {
       if (DocumentPaginatorSource == null)
       {
-        DocumentPaginatorSource = (FixedDocument)XPSCreator.LoadTemplate("XPSTemplates\\DeliveryNoteTemplate.xaml");
+        DocumentPaginatorSource = (FixedDocument)XPSCreator.LoadTemplate("XPSTemplates\\DeliveryNotePreviewTemplate.xaml");
       }
 
       XPSCreator.InjectData(DocumentPaginatorSource, Item);

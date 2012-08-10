@@ -69,7 +69,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 
           using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
           {
-            Item.DeliveryNote = service.CreateOrUpdateDeliveryNote(Item.GetDeliveryNotePrimitiveWithReference());
+            //Item.DeliveryNote = service.CreateOrUpdateDeliveryNote(Item.GetDeliveryNotePrimitiveWithReference());
           }
 
           

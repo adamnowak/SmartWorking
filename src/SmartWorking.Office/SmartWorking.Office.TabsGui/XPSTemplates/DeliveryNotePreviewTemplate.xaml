@@ -2,9 +2,10 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <PageContent >
-        <FixedPage  Height="1060.24" Width="793.92" xml:lang="pl-PL" >
-            
-
+        <FixedPage  Width="1056" Height="816" xml:lang="pl-PL" >
+            <FixedPage.Background>
+                <ImageBrush ImageSource="d:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.TabsGui\XPSTemplates\DeliveryNoteSketch.jpg"  />
+            </FixedPage.Background>
             <FixedPage.Resources>
                 <Style x:Key="notCalledBorder" TargetType="{x:Type Border}">
                     <Setter Property="BorderThickness" Value="1" />
@@ -14,20 +15,13 @@
                 <Style TargetType="TextBlock">
                     <Setter Property="TextWrapping" Value="Wrap"/>
                     <Setter Property="Padding" Value="0.1" />
-
+                   
                     <Setter Property="Opacity" Value="0.5" />
                     <Setter Property="FontSize" Value="20"/>
                 </Style>
             </FixedPage.Resources>
 
-
             <StackPanel>
-                <StackPanel.RenderTransform>
-                    <TransformGroup>
-                        <RotateTransform  Angle="90" />
-                        <TranslateTransform X="793.92"  />
-                    </TransformGroup>
-                </StackPanel.RenderTransform>
                 <StackPanel Margin="1.1cm,4.5cm,0,0" Orientation="Horizontal">
                     <Border Style="{StaticResource notCalledBorder}">
                         <TextBlock Width="10.7cm" Height="2.5cm" Text="q_Client_q" />
