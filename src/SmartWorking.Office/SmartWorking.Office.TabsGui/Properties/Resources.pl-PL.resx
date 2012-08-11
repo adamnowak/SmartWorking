@@ -138,7 +138,7 @@
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Cars_CarsDetails" xml:space="preserve">
-    <value>Szczegóły samochodu</value>
+    <value>Dane samochodu</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Cars_Edit" xml:space="preserve">
@@ -166,7 +166,7 @@
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_ContractorDetails" xml:space="preserve">
-    <value>Szczegóły dostawcy</value>
+    <value>Dane dostawcy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Contractors_ContractorList" xml:space="preserve">
@@ -202,7 +202,7 @@
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_DriversDetails" xml:space="preserve">
-    <value>Szczegóły kierowcy</value>
+    <value>Dane kierowcy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Drivers_Edit" xml:space="preserve">
@@ -238,7 +238,7 @@
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Materials_MaterialDetails" xml:space="preserve">
-    <value>Szczegóły materiału</value>
+    <value>Dane materiału</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Materials_MaterialList" xml:space="preserve">
@@ -250,7 +250,7 @@
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes" xml:space="preserve">
-    <value>Receptury</value>
+    <value>Recepty</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_Add" xml:space="preserve">
@@ -274,23 +274,23 @@
     <comment>Button.Content</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_MaterialInRecipe" xml:space="preserve">
-    <value>Materiał w recepturze</value>
+    <value>Składnik recepty</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_MaterialsInRecipe" xml:space="preserve">
-    <value>Materiały w recepturze</value>
+    <value>Składniki w recepcie</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_RecipeCompnents" xml:space="preserve">
-    <value>Elementy receptury</value>
+    <value>Elementy recepty</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_RecipeDetails" xml:space="preserve">
-    <value>Szczegóły receptury</value>
+    <value>Szczegóły recepty</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_RecipeList" xml:space="preserve">
-    <value>Lista receptur</value>
+    <value>Lista recept</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="AdministrationGroupControl_Recipes_Save" xml:space="preserve">
@@ -326,7 +326,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_IsActive" xml:space="preserve">
-    <value>Aktywny?:</value>
+    <value>Aktywny ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingDetailsControl_Phone" xml:space="preserve">
@@ -354,7 +354,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="BuildingListControl_HouseNo" xml:space="preserve">
-    <value>Numer domu</value>
+    <value>Numer</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="BuildingListControl_IncludeDeactive" xml:space="preserve">
@@ -382,7 +382,7 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="CarDetailsControl_Capacity" xml:space="preserve">
-    <value>Ładowność</value>
+    <value>Ładowność:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_CarType" xml:space="preserve">
@@ -422,7 +422,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_IsActive" xml:space="preserve">
-    <value>Aktywny?:</value>
+    <value>Aktywny ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="CarDetailsControl_RegistrationNumber" xml:space="preserve">
@@ -522,7 +522,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_IsActive" xml:space="preserve">
-    <value>Aktywny?:</value>
+    <value>Aktywny ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientBuildingDetailsControl_Phone" xml:space="preserve">
@@ -542,15 +542,15 @@
     <comment>RadioButton.Content</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingCity" xml:space="preserve">
-    <value>Miasto budowy</value>
+    <value>Miasto</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingContactPersonPhone" xml:space="preserve">
-    <value>Kontakt na budowę</value>
+    <value>Kontakt</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingHouseNo" xml:space="preserve">
-    <value>Numer domu budowy</value>
+    <value>Numer</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingId" xml:space="preserve">
@@ -558,11 +558,11 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingInternalName" xml:space="preserve">
-    <value>Symbol budowy</value>
+    <value>Symbol</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_BuildingStreet" xml:space="preserve">
-    <value>Ulica budowy</value>
+    <value>Ulica</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ClientBuildingListControl_Filter" xml:space="preserve">
@@ -606,7 +606,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_IsActive" xml:space="preserve">
-    <value>Aktywny?:</value>
+    <value>Aktywny ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ClientDetailsControl_NIP" xml:space="preserve">
@@ -678,7 +678,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_IsActive" xml:space="preserve">
-    <value>Aktywny?:</value>
+    <value>Aktywny ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorDetailsControl_Name" xml:space="preserve">
@@ -710,7 +710,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="ContractorListControl_HouseNo" xml:space="preserve">
-    <value>Numer domu</value>
+    <value>Numer</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="ContractorListControl_Id" xml:space="preserve">
@@ -766,7 +766,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="DriverDetailsControl_IsActive" xml:space="preserve">
-    <value>Aktywny?:</value>
+    <value>Aktywny ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="DriverDetailsControl_Name" xml:space="preserve">
@@ -802,7 +802,7 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="DriverListControl_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Imię</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="DriverListControl_OnlyActivate" xml:space="preserve">
@@ -818,11 +818,11 @@
     <comment>Button.Content</comment>
   </data>
   <data name="DriverListControl_Surname" xml:space="preserve">
-    <value>Surname</value>
+    <value>Nazwisko</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="IsActive" xml:space="preserve">
-    <value>Aktywny?:</value>
+    <value>Aktywny ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="MaterialDetailsControl_Deliverer_Id" xml:space="preserve">
@@ -922,7 +922,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderDetailsControl_IsActive" xml:space="preserve">
-    <value>Aktywny?:</value>
+    <value>Aktywny ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderDetailsControl_Notes" xml:space="preserve">
@@ -930,11 +930,11 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderDetailsControl_PlanedDeliveryTime" xml:space="preserve">
-    <value>Planowany czas dostawy:</value>
+    <value>Planowana godz. dostawy:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderDetailsControl_Pump" xml:space="preserve">
-    <value>Pompa?:</value>
+    <value>Pompa ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderListControl_All" xml:space="preserve">
@@ -942,7 +942,7 @@
     <comment>RadioButton.Content</comment>
   </data>
   <data name="OrderListControl_City" xml:space="preserve">
-    <value>City</value>
+    <value>Miasto</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_Filter" xml:space="preserve">
@@ -950,7 +950,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="OrderListControl_HouseNo" xml:space="preserve">
-    <value>HouseNo</value>
+    <value>Nr</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_Id" xml:space="preserve">
@@ -966,7 +966,7 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Nazwa</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_OnlyActivate" xml:space="preserve">
@@ -986,7 +986,7 @@
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="OrderListControl_ZIPCode" xml:space="preserve">
-    <value>ZIPCode</value>
+    <value>Kod pocztowy</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
   <data name="RecipeComponentDetailsControl_Amount" xml:space="preserve">
@@ -1014,7 +1014,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentDetailsControl_ProducerInternalName" xml:space="preserve">
-    <value>Symbol Producenta:</value>
+    <value>Symbol producenta:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeComponentDetailsControl_ProducerName" xml:space="preserve">
@@ -1078,7 +1078,7 @@
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_IsActive1" xml:space="preserve">
-    <value>Aktywny?:</value>
+    <value>Aktywny ?:</value>
     <comment>TextBlock.Text</comment>
   </data>
   <data name="RecipeDetailsControl_Name" xml:space="preserve">
@@ -1130,7 +1130,7 @@
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Buildings" xml:space="preserve">
-    <value>Budowle</value>
+    <value>Budowy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Buildings_Add" xml:space="preserve">
@@ -1142,7 +1142,7 @@
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Buildings_BuildingDetails" xml:space="preserve">
-    <value>Szczegóły budowli</value>
+    <value>Dane budowy</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Buildings_Cancel" xml:space="preserve">
@@ -1174,11 +1174,11 @@
     <comment>Button.Content</comment>
   </data>
   <data name="SaleGroupControl_Clients_ClientBuildings" xml:space="preserve">
-    <value>Budowle klienta</value>
+    <value>Budowy klienta</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Clients_ClientDetails" xml:space="preserve">
-    <value>Szczegóły klienta</value>
+    <value>Dane klienta</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Clients_ClientList" xml:space="preserve">
@@ -1250,7 +1250,7 @@
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Orders_SelectedRecipe" xml:space="preserve">
-    <value>Wybrana receptura</value>
+    <value>Wybrana recepta</value>
     <comment>GroupBox.Header</comment>
   </data>
   <data name="SaleGroupControl_Orders_SelectRecipe" xml:space="preserve">
@@ -1283,11 +1283,11 @@
   </data>
   <data name="BuildingListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Lista budowów</value>
+    <value>Lista budów</value>
   </data>
   <data name="CarDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły samochodu</value>
+    <value>Dane samochodu</value>
   </data>
   <data name="CarListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1303,7 +1303,7 @@
   </data>
   <data name="ClientDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły klienta</value>
+    <value>Dane klienta</value>
   </data>
   <data name="ClientListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1311,7 +1311,7 @@
   </data>
   <data name="ContractorDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły dostawcy</value>
+    <value>Dane dostawcy</value>
   </data>
   <data name="ContractorListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1319,7 +1319,7 @@
   </data>
   <data name="DeliveryNoteDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły WZ'tki</value>
+    <value>Dane WZ'tki</value>
   </data>
   <data name="DeliveryNoteListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1327,7 +1327,7 @@
   </data>
   <data name="DriverDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły kierowcy</value>
+    <value>Dane kierowcy</value>
   </data>
   <data name="DriverListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1367,7 +1367,7 @@
   </data>
   <data name="MaterialDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły materiału</value>
+    <value>Dane materiału</value>
   </data>
   <data name="MaterialListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1375,7 +1375,7 @@
   </data>
   <data name="OrderDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły zamówienia</value>
+    <value>Dane zamówienia</value>
   </data>
   <data name="OrderListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
@@ -1383,15 +1383,15 @@
   </data>
   <data name="RecipeComponentDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły elementu receptury</value>
+    <value>Szczegóły składnika recepty</value>
   </data>
   <data name="RecipeComponentListViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Lista elementów receptury</value>
+    <value>Lista składników recepty</value>
   </data>
   <data name="RecipeDetailsViewModel_Name" xml:space="preserve">
     <comment>ViewModel.Name</comment>
-    <value>Szczegóły receptury</value>
+    <value>Dane recepty</value>
   </data>
   <data name="RecipeListViewModel_Name" xml:space="preserve">
     <value>Lista receptur</value>
@@ -1418,7 +1418,7 @@
   </data>
   <data name="OrderListControl_PlannedDeliveryTime" xml:space="preserve">
     <comment>DataGridTextColumn.Header</comment>
-    <value>Planowany czas dostawy</value>
+    <value>Planowana godz. dostawy</value>
   </data>
   <data name="OrderListControl_Amount" xml:space="preserve">
     <comment>DataGridTextColumn.Header</comment>
@@ -1426,7 +1426,7 @@
   </data>
   <data name="OrderListControl_AmountDelivered" xml:space="preserve">
     <comment>DataGridTextColumn.Header</comment>
-    <value>Ilość dostarczona</value>
+    <value>Dostarczono</value>
   </data>
   <data name="OrderListControl_ClientId" xml:space="preserve">
     <comment>DataGridTextColumn.Header</comment>
@@ -1466,7 +1466,7 @@
   </data>
   <data name="DeliveryNoteDetailsControl_Capacity" xml:space="preserve">
     <comment>TextBlock.Text</comment>
-    <value>Ładowność:</value>
+    <value>Max ładowność:</value>
   </data>
   <data name="DeliveryNoteDetailsControl_Driver" xml:space="preserve">
     <comment>GroupBox.Header</comment>
@@ -1538,7 +1538,7 @@
   </data>
   <data name="OrderSumaryControl_Amount" xml:space="preserve">
     <comment>TextBlock.Text</comment>
-    <value>Do dostarczenia [m³]</value>
+    <value>Zamówiono [m³]</value>
   </data>
   <data name="OrderSumaryControl_AmountDelivered" xml:space="preserve">
     <comment>TextBlock.Text</comment>
@@ -1610,7 +1610,7 @@
   </data>
   <data name="DeliveryNoteReportListControl_CarTransportType" xml:space="preserve">
     <comment>DataGridTextColumn.Header</comment>
-    <value>Typ transportu</value>
+    <value>Rodzaj Transportu</value>
   </data>
   <data name="SaleGroupControl_OrderList" xml:space="preserve">
     <comment>GroupBox.Header</comment>
@@ -1694,8 +1694,7 @@
   </data>
   <data name="ReportsGroupControl_ReportParameter" xml:space="preserve">
     <comment>GroupBox.Header</comment>
-    <value>
-    </value>
+    <value>Parametry raportu</value>
   </data>
   <data name="ReportsGroupControl_PeriodType" xml:space="preserve">
     <comment>TextBlock.Text</comment>
@@ -1709,27 +1708,23 @@
   </data>
   <data name="ReportsGroupControl_Production" xml:space="preserve">
     <comment>RadioButton.Content</comment>
-    <value>
-    </value>
+    <value>Produkcja</value>
   </data>
   <data name="ReportsGroupControl_Test" xml:space="preserve">
     <comment>RadioButton.Content</comment>
-    <value>
-    </value>
+    <value>Test</value>
   </data>
   <data name="ReportsGroupControl_Generate" xml:space="preserve">
     <comment>Button.Content</comment>
-    <value>
-    </value>
+    <value>Utwórz</value>
   </data>
   <data name="ReportsGroupControl_Raport" xml:space="preserve">
     <comment>GroupBox.Header</comment>
-    <value>
-    </value>
+    <value>Raport</value>
   </data>
   <data name="MaterialListControl_MaterialType" xml:space="preserve">
     <comment>DataGridTextColumn.Header</comment>
-    <value>Typ materiału</value>
+    <value>Rodzaj materiału</value>
   </data>
   <data name="OrderListControl_ClientName" xml:space="preserve">
     <comment>DataGridTextColumn.Header</comment>
@@ -1769,8 +1764,7 @@
   </data>
   <data name="RecipeDetailsControl_StrengthProgress" xml:space="preserve">
     <comment>TextBlock.Text</comment>
-    <value>
-    </value>
+    <value>Przyrost wytrzymałości</value>
   </data>
   <data name="StrengthProgressTypes_LoadItems_Slow" xml:space="preserve">
     <comment>
