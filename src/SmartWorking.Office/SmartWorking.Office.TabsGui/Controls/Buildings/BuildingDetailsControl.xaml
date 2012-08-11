@@ -29,7 +29,7 @@
                 <!--End Debug only-->
                 <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_InternalName}"
                      Grid.Row="1" />
-                <TextBlock Text="Name"
+                <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_Name}"
                      Grid.Row="2" />
                 <TextBlock Text="{lex:LocText SmartWorking.Office.TabsGui:Resources:BuildingDetailsControl_City}"
                      Grid.Row="3" />

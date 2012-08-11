@@ -1538,16 +1538,265 @@
   </data>
   <data name="OrderSumaryControl_Amount" xml:space="preserve">
     <comment>TextBlock.Text</comment>
-    <value>
-    </value>
+    <value>Do dostarczenia [m³]</value>
   </data>
   <data name="OrderSumaryControl_AmountDelivered" xml:space="preserve">
     <comment>TextBlock.Text</comment>
-    <value>
-    </value>
+    <value>Dostarczono [m³]</value>
   </data>
   <data name="OrderSumaryControl_RemainToDeliver" xml:space="preserve">
     <comment>TextBlock.Text</comment>
+    <value>Pozostało [m³]</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_DeliveryNoteId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>DeliveryNote_Id</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_DeliveryNoteDateOfArrival" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Data dostarczenia</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_DeliveryNoteNumberYear" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Numer WZ'tki</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_ClientId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Client_Id</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_ClientInternalName" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Symbol</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_BuildingId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Building_Id</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_BuildingInternalName" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Symbol</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_RecipeId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Recipe_Id</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_RecipeCode" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Kod recepty</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_DeliveryNoteAmount" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Ilość [m³]</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_OrderPump" xml:space="preserve">
+    <comment>DataGridCheckBoxColumn.Header</comment>
+    <value>Pompa</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_CarId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Car_Id</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_CarRegistrationNumber" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Numer rejestracyjny</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_DriverId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Driver_Id</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_DriverNameSurname" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Imie i Nazwisko</value>
+  </data>
+  <data name="DeliveryNoteReportListControl_CarTransportType" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Typ transportu</value>
+  </data>
+  <data name="SaleGroupControl_OrderList" xml:space="preserve">
+    <comment>GroupBox.Header</comment>
+    <value>Lista zamówień</value>
+  </data>
+  <data name="SaleGroupControl_DeliveryNoteList" xml:space="preserve">
+    <comment>GroupBox.Header</comment>
+    <value>Lista WZ'etek</value>
+  </data>
+  <data name="SaleGroupControl_DeliveryNoteDetails" xml:space="preserve">
+    <comment>GroupBox.Header</comment>
+    <value>Szczegóły WZ'tki</value>
+  </data>
+  <data name="SaleGroupControl_DeactiveOrder" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>Ukryj zamówienie</value>
+  </data>
+  <data name="SaleGroupControl_Add" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>Dodaj</value>
+  </data>
+  <data name="SaleGroupControl_AddClone" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>Duplikuj</value>
+  </data>
+  <data name="SaleGroupControl_Save" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>Zapisz</value>
+  </data>
+  <data name="SaleGroupControl_Preview" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>Podgląd</value>
+  </data>
+  <data name="SaleGroupControl_Cancel" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>Anuluj</value>
+  </data>
+  <data name="SaleGroupControl_DeliveryNotePreview" xml:space="preserve">
+    <comment>GroupBox.Header</comment>
+    <value>Podgląd WZ'tki</value>
+  </data>
+  <data name="SaleGroupControl_Print" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>Drukuj</value>
+  </data>
+  <data name="SaleGroupControl_CancelPrinting" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>Anuluj</value>
+  </data>
+  <data name="SaleGroupControl_DeliveryNotes" xml:space="preserve">
+    <comment>GroupBox.Header</comment>
+    <value>WZ'tki</value>
+  </data>
+  <data name="BuildingDetailsControl_Name" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Nazwa</value>
+  </data>
+  <data name="BuildingListControl_Name" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Nazwa</value>
+  </data>
+  <data name="ClientBuildingListConrol_Name" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Nazwa</value>
+  </data>
+  <data name="DeliveryNotereportListControl_DateDrawing" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Data wydruku</value>
+  </data>
+  <data name="DeliveryNotereportListControl_ConcreteClass" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Klasa betonu</value>
+  </data>
+  <data name="DeliveryNotereportListControl_OrderId" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>OrderId</value>
+  </data>
+  <data name="DeliveryNotereportListControl_Amount" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Ilość [m³]</value>
+  </data>
+  <data name="ReportsGroupControl_ReportParameter" xml:space="preserve">
+    <comment>GroupBox.Header</comment>
+    <value>
+    </value>
+  </data>
+  <data name="ReportsGroupControl_PeriodType" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>
+    </value>
+  </data>
+  <data name="ReportsGroupControl_Period" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>
+    </value>
+  </data>
+  <data name="ReportsGroupControl_Production" xml:space="preserve">
+    <comment>RadioButton.Content</comment>
+    <value>
+    </value>
+  </data>
+  <data name="ReportsGroupControl_Test" xml:space="preserve">
+    <comment>RadioButton.Content</comment>
+    <value>
+    </value>
+  </data>
+  <data name="ReportsGroupControl_Generate" xml:space="preserve">
+    <comment>Button.Content</comment>
+    <value>
+    </value>
+  </data>
+  <data name="ReportsGroupControl_Raport" xml:space="preserve">
+    <comment>GroupBox.Header</comment>
+    <value>
+    </value>
+  </data>
+  <data name="MaterialListControl_MaterialType" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Typ materiału</value>
+  </data>
+  <data name="OrderListControl_ClientName" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Nazwa klienta</value>
+  </data>
+  <data name="OrderListControl_BuildingName" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Nazwa budowy</value>
+  </data>
+  <data name="OrderListControl_RecipeCode" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Kod recepty</value>
+  </data>
+  <data name="OrderListControl_Pump" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Pompa</value>
+  </data>
+  <data name="OrderListControl_Notes" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Notatki</value>
+  </data>
+  <data name="RecipeDetailsControl_Code" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Kod recepty</value>
+  </data>
+  <data name="RecipeDetailsControl_StrengthClass" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>Klasa wytrzymałości</value>
+  </data>
+  <data name="RecipeDetailsControl_WaterToCement" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>W/C</value>
+  </data>
+  <data name="RecipeListControl_Code" xml:space="preserve">
+    <comment>DataGridTextColumn.Header</comment>
+    <value>Kod recepty</value>
+  </data>
+  <data name="RecipeDetailsControl_StrengthProgress" xml:space="preserve">
+    <comment>TextBlock.Text</comment>
+    <value>
+    </value>
+  </data>
+  <data name="StrengthProgressTypes_LoadItems_Slow" xml:space="preserve">
+    <comment>
+			StrengthClassTypeEnum
+		</comment>
+    <value>
+    </value>
+  </data>
+  <data name="StrengthProgressTypes_LoadItems_Moderate" xml:space="preserve">
+    <comment>
+			StrengthClassTypeEnum
+		</comment>
+    <value>
+    </value>
+  </data>
+  <data name="StrengthProgressTypes_LoadItems_Fast" xml:space="preserve">
+    <comment>
+			StrengthClassTypeEnum
+		</comment>
+    <value>
+    </value>
+  </data>
+  <data name="StrengthProgressTypes_LoadItems_Another" xml:space="preserve">
+    <comment>
+			StrengthClassTypeEnum
+		</comment>
     <value>
     </value>
   </data>

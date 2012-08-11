@@ -547,6 +547,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string BuildingDetailsControl_Name {
+            get {
+                return ResourceManager.GetString("BuildingDetailsControl_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone:.
         /// </summary>
         public static string BuildingDetailsControl_Phone {
@@ -642,6 +651,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string BuildingListControl_InternalName {
             get {
                 return ResourceManager.GetString("BuildingListControl_InternalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string BuildingListControl_Name {
+            get {
+                return ResourceManager.GetString("BuildingListControl_Name", resourceCulture);
             }
         }
         
@@ -1065,6 +1083,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string ClientBuildingDetailsViewModel_Name {
             get {
                 return ResourceManager.GetString("ClientBuildingDetailsViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string ClientBuildingListConrol_Name {
+            get {
+                return ResourceManager.GetString("ClientBuildingListConrol_Name", resourceCulture);
             }
         }
         
@@ -1834,6 +1861,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string DeliveryNotereportListControl_Amount {
+            get {
+                return ResourceManager.GetString("DeliveryNotereportListControl_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Building_Id.
         /// </summary>
         public static string DeliveryNoteReportListControl_BuildingId {
@@ -1897,6 +1933,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ConcreteClass.
+        /// </summary>
+        public static string DeliveryNotereportListControl_ConcreteClass {
+            get {
+                return ResourceManager.GetString("DeliveryNotereportListControl_ConcreteClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DateDrawing.
+        /// </summary>
+        public static string DeliveryNotereportListControl_DateDrawing {
+            get {
+                return ResourceManager.GetString("DeliveryNotereportListControl_DateDrawing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DeliveryNote_Amount.
         /// </summary>
         public static string DeliveryNoteReportListControl_DeliveryNoteAmount {
@@ -1947,6 +2001,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string DeliveryNoteReportListControl_DriverNameSurname {
             get {
                 return ResourceManager.GetString("DeliveryNoteReportListControl_DriverNameSurname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OrderId.
+        /// </summary>
+        public static string DeliveryNotereportListControl_OrderId {
+            get {
+                return ResourceManager.GetString("DeliveryNotereportListControl_OrderId", resourceCulture);
             }
         }
         
@@ -2347,6 +2410,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MaterialType.
+        /// </summary>
+        public static string MaterialListControl_MaterialType {
+            get {
+                return ResourceManager.GetString("MaterialListControl_MaterialType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string MaterialListControl_Name {
@@ -2554,6 +2626,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Building_Name.
+        /// </summary>
+        public static string OrderListControl_BuildingName {
+            get {
+                return ResourceManager.GetString("OrderListControl_BuildingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string OrderListControl_City {
@@ -2568,6 +2649,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string OrderListControl_ClientId {
             get {
                 return ResourceManager.GetString("OrderListControl_ClientId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client_Name.
+        /// </summary>
+        public static string OrderListControl_ClientName {
+            get {
+                return ResourceManager.GetString("OrderListControl_ClientName", resourceCulture);
             }
         }
         
@@ -2626,6 +2716,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string OrderListControl_Notes {
+            get {
+                return ResourceManager.GetString("OrderListControl_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OnlyActivate.
         /// </summary>
         public static string OrderListControl_OnlyActivate {
@@ -2649,6 +2748,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string OrderListControl_PlannedDeliveryTime {
             get {
                 return ResourceManager.GetString("OrderListControl_PlannedDeliveryTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pump.
+        /// </summary>
+        public static string OrderListControl_Pump {
+            get {
+                return ResourceManager.GetString("OrderListControl_Pump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recipe_Code.
+        /// </summary>
+        public static string OrderListControl_RecipeCode {
+            get {
+                return ResourceManager.GetString("OrderListControl_RecipeCode", resourceCulture);
             }
         }
         
@@ -2905,6 +3022,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string RecipeDetailsControl_Code {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ConcreteClass:.
         /// </summary>
         public static string RecipeDetailsControl_ConcreteClass {
@@ -2968,6 +3094,33 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to StrengthClass.
+        /// </summary>
+        public static string RecipeDetailsControl_StrengthClass {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_StrengthClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to StrengthProgress.
+        /// </summary>
+        public static string RecipeDetailsControl_StrengthProgress {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_StrengthProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WaterToCement.
+        /// </summary>
+        public static string RecipeDetailsControl_WaterToCement {
+            get {
+                return ResourceManager.GetString("RecipeDetailsControl_WaterToCement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RecipeDetails.
         /// </summary>
         public static string RecipeDetailsViewModel_Name {
@@ -2982,6 +3135,15 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string RecipeListControl_All {
             get {
                 return ResourceManager.GetString("RecipeListControl_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string RecipeListControl_Code {
+            get {
+                return ResourceManager.GetString("RecipeListControl_Code", resourceCulture);
             }
         }
         
@@ -3094,6 +3256,87 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        public static string ReportsGroupControl_Generate {
+            get {
+                return ResourceManager.GetString("ReportsGroupControl_Generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period:.
+        /// </summary>
+        public static string ReportsGroupControl_Period {
+            get {
+                return ResourceManager.GetString("ReportsGroupControl_Period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PeriodType:.
+        /// </summary>
+        public static string ReportsGroupControl_PeriodType {
+            get {
+                return ResourceManager.GetString("ReportsGroupControl_PeriodType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Production.
+        /// </summary>
+        public static string ReportsGroupControl_Production {
+            get {
+                return ResourceManager.GetString("ReportsGroupControl_Production", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Raport.
+        /// </summary>
+        public static string ReportsGroupControl_Raport {
+            get {
+                return ResourceManager.GetString("ReportsGroupControl_Raport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ReportParameter.
+        /// </summary>
+        public static string ReportsGroupControl_ReportParameter {
+            get {
+                return ResourceManager.GetString("ReportsGroupControl_ReportParameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test.
+        /// </summary>
+        public static string ReportsGroupControl_Test {
+            get {
+                return ResourceManager.GetString("ReportsGroupControl_Test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string SaleGroupControl_Add {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddClone.
+        /// </summary>
+        public static string SaleGroupControl_AddClone {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_AddClone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Buildings.
         /// </summary>
         public static string SaleGroupControl_Buildings {
@@ -3153,6 +3396,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         public static string SaleGroupControl_Buildings_Save {
             get {
                 return ResourceManager.GetString("SaleGroupControl_Buildings_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SaleGroupControl_Cancel {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SaleGroupControl_CancelPrinting {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_CancelPrinting", resourceCulture);
             }
         }
         
@@ -3238,11 +3499,65 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DeactiveOrder.
+        /// </summary>
+        public static string SaleGroupControl_DeactiveOrder {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_DeactiveOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNoteDetails.
+        /// </summary>
+        public static string SaleGroupControl_DeliveryNoteDetails {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_DeliveryNoteDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNoteList.
+        /// </summary>
+        public static string SaleGroupControl_DeliveryNoteList {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_DeliveryNoteList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNotePreview.
+        /// </summary>
+        public static string SaleGroupControl_DeliveryNotePreview {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_DeliveryNotePreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeliveryNotes.
+        /// </summary>
+        public static string SaleGroupControl_DeliveryNotes {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_DeliveryNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EditingMode:.
         /// </summary>
         public static string SaleGroupControl_EditingMode {
             get {
                 return ResourceManager.GetString("SaleGroupControl_EditingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OrderList.
+        /// </summary>
+        public static string SaleGroupControl_OrderList {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_OrderList", resourceCulture);
             }
         }
         
@@ -3382,6 +3697,24 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string SaleGroupControl_Preview {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        public static string SaleGroupControl_Print {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string SaleGroupControl_Refresh {
@@ -3391,11 +3724,56 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaleGroupControl_Save {
+            get {
+                return ResourceManager.GetString("SaleGroupControl_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SaleGroup.
         /// </summary>
         public static string SaleGroupViewModel_Name {
             get {
                 return ResourceManager.GetString("SaleGroupViewModel_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Another.
+        /// </summary>
+        public static string StrengthProgressTypes_LoadItems_Another {
+            get {
+                return ResourceManager.GetString("StrengthProgressTypes_LoadItems_Another", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fast.
+        /// </summary>
+        public static string StrengthProgressTypes_LoadItems_Fast {
+            get {
+                return ResourceManager.GetString("StrengthProgressTypes_LoadItems_Fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderate.
+        /// </summary>
+        public static string StrengthProgressTypes_LoadItems_Moderate {
+            get {
+                return ResourceManager.GetString("StrengthProgressTypes_LoadItems_Moderate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slow.
+        /// </summary>
+        public static string StrengthProgressTypes_LoadItems_Slow {
+            get {
+                return ResourceManager.GetString("StrengthProgressTypes_LoadItems_Slow", resourceCulture);
             }
         }
         

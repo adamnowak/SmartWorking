@@ -73,7 +73,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
         if (printQueue != null)
         { 
           FixedDocument fixedDocumentToPrint = (FixedDocument)XPSCreator.LoadTemplate("XPSTemplates\\DeliveryNoteTemplate.xaml");
-          XPSCreator.InjectData(fixedDocumentToPrint, Item);
+          XPSCreator.InjectData(fixedDocumentToPrint, GetOrderDetailsDataContextForDocument(Item));
           XPSCreator.PrintFlowDocument(printQueue, fixedDocumentToPrint.DocumentPaginator);
         }
 
@@ -345,8 +345,21 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
         DocumentPaginatorSource = (FixedDocument)XPSCreator.LoadTemplate("XPSTemplates\\DeliveryNotePreviewTemplate.xaml");
       }
 
-      XPSCreator.InjectData(DocumentPaginatorSource, Item);
+      XPSCreator.InjectData(DocumentPaginatorSource, GetOrderDetailsDataContextForDocument(Item));
     }
+
+    private OrderDetailsDataContextForDocument GetOrderDetailsDataContextForDocument(OrderPackage item)
+    {
+      if (item == null)
+        return null;
+      OrderDetailsDataContextForDocument result = new OrderDetailsDataContextForDocument();
+      if (item.Client != null)
+      {
+        result.Client = item.Client.Name;
+      }
+      return result;
+    }
+
     #endregion //PreviewDeliveryNoteItemCommand
 
     #region DocumentPaginatorSource
@@ -442,4 +455,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     #endregion //CancelPringintItemCommand
   }
 
+  public class OrderDetailsDataContextForDocument
+  {
+    public string Client { get; set; }
+    public string Building { get; set; }
+  }
 }

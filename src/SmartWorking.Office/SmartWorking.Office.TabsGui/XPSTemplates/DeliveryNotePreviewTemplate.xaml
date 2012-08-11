@@ -4,7 +4,7 @@
     <PageContent >
         <FixedPage  Width="1056" Height="816" xml:lang="pl-PL" >
             <FixedPage.Background>
-                <ImageBrush ImageSource="d:\adamnowak\private\Sylwek\SmartWorking\src\SmartWorking.Office\SmartWorking.Office.TabsGui\XPSTemplates\DeliveryNoteSketch.jpg"  />
+                <ImageBrush ImageSource="DeliveryNoteSketch.jpg"  />
             </FixedPage.Background>
             <FixedPage.Resources>
                 <Style x:Key="notCalledBorder" TargetType="{x:Type Border}">
@@ -24,7 +24,7 @@
             <StackPanel>
                 <StackPanel Margin="1.1cm,4.5cm,0,0" Orientation="Horizontal">
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="10.7cm" Height="2.5cm" Text="q_Client_q" />
+                        <TextBlock Width="10.7cm" Height="2.5cm" Text="{Binding Client}" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
                         <TextBlock Width="8.55cm" Height="2.5cm" Text="q_Buildin_q" />

@@ -191,7 +191,7 @@
     </LinearGradientBrush>
 
     
-    <Style x:Key="{x:Type DocumentViewer}" TargetType="DocumentViewer">
+    <Style x:Key="DocumentViewerPreview" TargetType="DocumentViewer">
         <Setter Property="Foreground"
           Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
         <Setter Property="Background"
@@ -212,15 +212,15 @@
                                 <RowDefinition Height="*"/>
                                 <!-- RowDefinition Height="Auto"/ -->
                             </Grid.RowDefinitions>
-                            <ToolBar 
+                            <!--<ToolBar 
               ToolBarTray.IsLocked="True" 
               KeyboardNavigation.TabNavigation="Continue">
                                 <Button Command="ApplicationCommands.Print" 
                 CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                 Content="Print"/>
-                                <!-- Button Command="ApplicationCommands.Copy" 
+                                 Button Command="ApplicationCommands.Copy" 
                 CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                Content="Copy"/ -->
+                Content="Copy"/>
                                 <Separator />
                                 <Button Command="NavigationCommands.IncreaseZoom" 
                 CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
@@ -247,7 +247,7 @@
                 CommandParameter="2" 
                 Content="Two Pages"/>
 
-                            </ToolBar>
+                            </ToolBar>-->
 
                             <ScrollViewer Grid.Row="1"
               CanContentScroll="true"

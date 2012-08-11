@@ -1612,4 +1612,180 @@
     <value>Car_TransportType</value>
     <comment>DataGridTextColumn.Header</comment>
   </data>
+  <data name="SaleGroupControl_OrderList" xml:space="preserve">
+    <value>OrderList</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_DeliveryNoteList" xml:space="preserve">
+    <value>DeliveryNoteList</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_DeliveryNoteDetails" xml:space="preserve">
+    <value>DeliveryNoteDetails</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_DeactiveOrder" xml:space="preserve">
+    <value>DeactiveOrder</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_AddClone" xml:space="preserve">
+    <value>AddClone</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Preview" xml:space="preserve">
+    <value>Preview</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_DeliveryNotePreview" xml:space="preserve">
+    <value>DeliveryNotePreview</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="SaleGroupControl_Print" xml:space="preserve">
+    <value>Print</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_CancelPrinting" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="SaleGroupControl_DeliveryNotes" xml:space="preserve">
+    <value>DeliveryNotes</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="BuildingDetailsControl_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="BuildingListControl_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ClientBuildingListConrol_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNotereportListControl_DateDrawing" xml:space="preserve">
+    <value>DateDrawing</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNotereportListControl_ConcreteClass" xml:space="preserve">
+    <value>ConcreteClass</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNotereportListControl_OrderId" xml:space="preserve">
+    <value>OrderId</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="DeliveryNotereportListControl_Amount" xml:space="preserve">
+    <value>Amount</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="ReportsGroupControl_ReportParameter" xml:space="preserve">
+    <value>ReportParameter</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="ReportsGroupControl_PeriodType" xml:space="preserve">
+    <value>PeriodType:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ReportsGroupControl_Period" xml:space="preserve">
+    <value>Period:</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="ReportsGroupControl_Production" xml:space="preserve">
+    <value>Production</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="ReportsGroupControl_Test" xml:space="preserve">
+    <value>Test</value>
+    <comment>RadioButton.Content</comment>
+  </data>
+  <data name="ReportsGroupControl_Generate" xml:space="preserve">
+    <value>Generate</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="ReportsGroupControl_Raport" xml:space="preserve">
+    <value>Raport</value>
+    <comment>GroupBox.Header</comment>
+  </data>
+  <data name="MaterialListControl_MaterialType" xml:space="preserve">
+    <value>MaterialType</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_ClientName" xml:space="preserve">
+    <value>Client_Name</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_BuildingName" xml:space="preserve">
+    <value>Building_Name</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_RecipeCode" xml:space="preserve">
+    <value>Recipe_Code</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_Pump" xml:space="preserve">
+    <value>Pump</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="OrderListControl_Notes" xml:space="preserve">
+    <value>Notes</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="RecipeDetailsControl_Code" xml:space="preserve">
+    <value>Code</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="RecipeDetailsControl_StrengthClass" xml:space="preserve">
+    <value>StrengthClass</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="RecipeDetailsControl_WaterToCement" xml:space="preserve">
+    <value>WaterToCement</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="RecipeListControl_Code" xml:space="preserve">
+    <value>Code</value>
+    <comment>DataGridTextColumn.Header</comment>
+  </data>
+  <data name="RecipeDetailsControl_StrengthProgress" xml:space="preserve">
+    <value>StrengthProgress</value>
+    <comment>TextBlock.Text</comment>
+  </data>
+  <data name="StrengthProgressTypes_LoadItems_Slow">
+    <value xml:space="preserve">Slow</value>
+    <comment>
+			StrengthClassTypeEnum
+		</comment>
+  </data>
+  <data name="StrengthProgressTypes_LoadItems_Moderate">
+    <value xml:space="preserve">Moderate</value>
+    <comment>
+			StrengthClassTypeEnum
+		</comment>
+  </data>
+  <data name="StrengthProgressTypes_LoadItems_Fast">
+    <value xml:space="preserve">Fast</value>
+    <comment>
+			StrengthClassTypeEnum
+		</comment>
+  </data>
+  <data name="StrengthProgressTypes_LoadItems_Another">
+    <value xml:space="preserve">Another</value>
+    <comment>
+			StrengthClassTypeEnum
+		</comment>
+  </data>
 </root>

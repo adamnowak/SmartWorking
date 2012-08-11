@@ -4,7 +4,8 @@
      xmlns:Clients="clr-namespace:SmartWorking.Office.TabsGui.Controls.Clients" xmlns:Materials="clr-namespace:SmartWorking.Office.TabsGui.Controls.Materials"
      xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:Recipes="clr-namespace:SmartWorking.Office.TabsGui.Controls.Recipes"
      xmlns:Orders="clr-namespace:SmartWorking.Office.TabsGui.Controls.Orders" xmlns:Buildings="clr-namespace:SmartWorking.Office.TabsGui.Controls.Buildings"
-     mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension" xmlns:DeliveryNotes="clr-namespace:SmartWorking.Office.TabsGui.Controls.DeliveryNotes">
+     mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800" xmlns:DeliveryNotes="clr-namespace:SmartWorking.Office.TabsGui.Controls.DeliveryNotes"
+     xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -38,7 +39,7 @@
             </TabItem>-->
             <TabItem Header="{Binding Name}" DataContext="{Binding OrdersTabItemViewModel}">
                 <Grid>
-                    <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders}" >
+                    <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders}">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                 <MultiBinding.Bindings>
@@ -46,8 +47,6 @@
                                 </MultiBinding.Bindings>
                             </MultiBinding>
                         </GroupBox.Visibility>
-                        
-                       
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -66,7 +65,7 @@
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_SelectedBuilding}"
-                                 Grid.Column="1">
+                                     Grid.Column="1">
                                     <Grid>
                                         <Clients:ClientBuildingDetailsControl DataContext="{Binding OrderDetailsViewModel.ClientBuildingListViewModel.EditingViewModel}" />
                                     </Grid>
@@ -77,19 +76,20 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_SelectedRecipe}"
-                                     DataContext="{Binding OrderDetailsViewModel.RecipeListViewModel.EditingViewModel}">
+                                         DataContext="{Binding OrderDetailsViewModel.RecipeListViewModel.EditingViewModel}">
                                         <Grid>
                                             <Recipes:RecipeDetailsControl />
                                         </Grid>
                                     </GroupBox>
                                     <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_OrderDetails}"
-                                     Grid.Row="1" DataContext="{Binding OrderDetailsViewModel}">
+                                         Grid.Row="1" DataContext="{Binding OrderDetailsViewModel}">
                                         <Grid>
                                             <Orders:OrderDetailsControl />
                                         </Grid>
                                     </GroupBox>
                                 </Grid>
-                                <GroupBox Header="OrderList" Grid.ColumnSpan="3" Grid.Row="1" DataContext="{Binding OrderListViewModel}">
+                                <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_OrderList}"
+                                     Grid.ColumnSpan="3" Grid.Row="1" DataContext="{Binding OrderListViewModel}">
                                     <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                             <MultiBinding.Bindings>
@@ -101,7 +101,7 @@
                                     <Orders:OrderListControl />
                                 </GroupBox>
                                 <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_SelectClient}"
-                                 Grid.Row="1">
+                                     Grid.Row="1">
                                     <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                             <MultiBinding.Bindings>
@@ -115,7 +115,7 @@
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_SelectBuilding}"
-                                 Grid.Column="1" Grid.Row="1">
+                                     Grid.Column="1" Grid.Row="1">
                                     <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                             <MultiBinding.Bindings>
@@ -129,7 +129,7 @@
                                     </Grid>
                                 </GroupBox>
                                 <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_SelectRecipe}"
-                                 Grid.Column="2" Grid.Row="1">
+                                     Grid.Column="2" Grid.Row="1">
                                     <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                             <MultiBinding.Bindings>
@@ -146,9 +146,8 @@
                                         <Recipes:RecipeListControl />
                                     </Grid>
                                 </GroupBox>
-
-
-                                <GroupBox Header="DeliveryNoteList"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+                                <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_DeliveryNoteList}"
+                                     Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                                     <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                             <MultiBinding.Bindings>
@@ -158,11 +157,11 @@
                                         </MultiBinding>
                                     </GroupBox.Visibility>
                                     <Grid>
-                                        <DeliveryNotes:DeliveryNoteListControl DataContext="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel}"/>
-
+                                        <DeliveryNotes:DeliveryNoteListControl DataContext="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel}" />
                                     </Grid>
                                 </GroupBox>
-                                <GroupBox Header="DeliveryNoteDetails" Grid.Row="1" Grid.Column="2">
+                                <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_DeliveryNoteDetails}"
+                                     Grid.Row="1" Grid.Column="2">
                                     <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                             <MultiBinding.Bindings>
@@ -173,15 +172,13 @@
                                     </GroupBox.Visibility>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto" />
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
                                         <DeliveryNotes:DeliveryNoteDetailsControl DataContext="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel}" />
                                         <Orders:OrderSumaryControl Grid.Row="1" DataContext="{Binding OrderDetailsViewModel.OrderSumaryViewModel}" />
                                     </Grid>
                                 </GroupBox>
-
-
                                 <Grid Grid.Row="2" Grid.ColumnSpan="3">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -198,9 +195,8 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding OrderListViewModel.PrepareDeliverCommand}" 
-                                                Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_Back}"
-                                                IsEnabled="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly}">
+                                        <Button Command="{Binding OrderListViewModel.PrepareDeliverCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_Back}"
+                                             IsEnabled="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -219,7 +215,6 @@
                                                     <MultiBinding.Bindings>
                                                         <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                         <Binding Path="OrderDetailsViewModel.IsReadOnly" />
-                                                        
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
@@ -244,7 +239,6 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-
                                         <Button Command="{Binding OrderDetailsViewModel.SaveItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Orders_Save}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
@@ -260,12 +254,12 @@
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
                                                         <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
-                                                        <Binding Path="OrderDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="OrderDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding OrderListViewModel.DeactiveOrderCommand}" Content="DeactiveOrder">
+                                        <Button Command="{Binding OrderListViewModel.DeactiveOrderCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_DeactiveOrder}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -281,14 +275,13 @@
                                                     <MultiBinding.Bindings>
                                                         <Binding Path="OrderListViewModel.IsPreparingDelivery" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                         <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
-                                                         ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                             ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                         <Binding Path="OrderDetailsViewModel.IsReadOnly" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                             <Button.Content>
                                                 <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-
                                                     <Binding Path="OrderDetailsViewModel.Item.Order.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     <Binding Source="{StaticResource StaticFalse}" />
                                                     <Binding Source="{StaticResource StaticStringUndelete}" />
@@ -297,12 +290,9 @@
                                             </Button.Content>
                                         </Button>
                                     </StackPanel>
-
-
-
-
                                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.AddItemCommand}" Content="Add">
+                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.AddItemCommand}"
+                                             Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Add}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -313,30 +303,31 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.AddCloneItemCommand}" Content="AddClone">
+                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.AddCloneItemCommand}"
+                                             Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_AddClone}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="OrderListViewModel.IsPreparingDelivery"  />
+                                                        <Binding Path="OrderListViewModel.IsPreparingDelivery" />
                                                         <Binding Path="OrderDetailsViewModel.IsReadOnly" />
                                                         <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-
-                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.SaveItemCommand}" Content="Save">
+                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.SaveItemCommand}"
+                                             Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Save}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
                                                         <Binding Path="OrderListViewModel.IsPreparingDelivery" />
-                                                        <Binding Path="MainViewModel.Configuration.PreviewDeliveryNote" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="MainViewModel.Configuration.PreviewDeliveryNote" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                         <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding OrderDetailsViewModel.PreviewDeliveryNoteItemCommand}" Content="Preview">
+                                        <Button Command="{Binding OrderDetailsViewModel.PreviewDeliveryNoteItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Preview}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
@@ -347,23 +338,25 @@
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.CancelChangesCommand}" Content="Cancel">
+                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.CancelChangesCommand}"
+                                             Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Cancel}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="OrderListViewModel.IsPreparingDelivery"  />
-                                                        <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}"/>
+                                                        <Binding Path="OrderListViewModel.IsPreparingDelivery" />
+                                                        <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
                                         </Button>
-                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
+                                        <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.ChangeItemDeletedFlagCommand}"
+                                             IsEnabled="{Binding IsReadOnly}">
                                             <Button.Visibility>
                                                 <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                     <MultiBinding.Bindings>
-                                                        <Binding Path="OrderListViewModel.IsPreparingDelivery"  />
+                                                        <Binding Path="OrderListViewModel.IsPreparingDelivery" />
                                                         <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
-                                                         ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                             ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                         <Binding Path="OrderDetailsViewModel.IsReadOnly" />
                                                         <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
                                                     </MultiBinding.Bindings>
@@ -371,12 +364,10 @@
                                             </Button.Visibility>
                                             <Button.Content>
                                                 <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-
-                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.Item.DeliveryNote.IsDeleted"  />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.Item.DeliveryNote.IsDeleted" />
                                                     <Binding Source="{StaticResource StaticFalse}" />
                                                     <Binding Source="{StaticResource StaticStringUndelete}" />
                                                     <Binding Source="{StaticResource StaticStringDelete}" />
-
                                                 </MultiBinding>
                                             </Button.Content>
                                         </Button>
@@ -385,7 +376,7 @@
                             </Grid>
                         </ScrollViewer>
                     </GroupBox>
-                    <GroupBox Header="DeliveryNotePreview" >
+                    <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_DeliveryNotePreview}">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                 <MultiBinding.Bindings>
@@ -398,16 +389,16 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <DocumentViewer   Document="{Binding OrderDetailsViewModel.DocumentPaginatorSource}" />
+                            <DocumentViewer Style="{StaticResource DocumentViewerPreview}" Document="{Binding OrderDetailsViewModel.DocumentPaginatorSource}" />
                             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.PrintItemCommand}" Content="Print" />
-                                <Button Command="{Binding OrderDetailsViewModel.CancelPringintItemCommand}" Content="Cancel" />
+                                <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteDetailsViewModel.PrintItemCommand}"
+                                     Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Print}" />
+                                <Button Command="{Binding OrderDetailsViewModel.CancelPringintItemCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_CancelPrinting}" />
                             </StackPanel>
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
-
             <TabItem Header="{Binding Name}" DataContext="{Binding ClientsAndBuildingsTabItemViewModel}">
                 <Grid>
                     <!--Clients-->
@@ -621,12 +612,12 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-
             <TabItem Header="{Binding Name}" DataContext="{Binding DeliveryNotesTabItemViewModel}">
                 <Grid>
-                    <GroupBox Header="DeliveryNotes"
+                    <GroupBox Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_DeliveryNotes}"
                          Grid.Row="0">
-                        <DeliveryNotes:DeliveryNoteReportListControl DataContext="{Binding DeliveryNoteReportListViewModel}" FiltersVisibility="Collapsed" />
+                        <DeliveryNotes:DeliveryNoteReportListControl DataContext="{Binding DeliveryNoteReportListViewModel}"
+                             FiltersVisibility="Collapsed" />
                     </GroupBox>
                 </Grid>
             </TabItem>

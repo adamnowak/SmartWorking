@@ -48,22 +48,22 @@
                      Binding="{Binding Client.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--<DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
                      Binding="{Binding Client.InternalName}" />-->
-                <DataGridTextColumn Header="Client_Name"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_ClientName}"
                      Binding="{Binding Client.Name}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_BuildingId}"
                      Binding="{Binding ClientBuildingPackage.Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
                 <!--<DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
                      Binding="{Binding ClientBuildingPackage.Building.InternalName}" />-->
-                <DataGridTextColumn Header="Building_Name"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_BuildingName}"
                      Binding="{Binding ClientBuildingPackage.Building.Name}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_RecipeId}"
                      Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} ,  Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <DataGridTextColumn Header="Recipe_Code"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_RecipeCode}"
                      Binding="{Binding Recipe.Code}" />
                 
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Amount}"
                      Binding="{Binding Order.Amount}" />
-                <DataGridTextColumn Header="Pump"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Pump}"
                      Binding="{Binding Order.Pump}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_AmountDelivered}"
                      Binding="{Binding DeliveryNotePackageList, Converter={StaticResource deliveryNotePackageListToAmountDeliveryConverter}}" />
@@ -77,7 +77,7 @@
                      Binding="{Binding ClientBuildingPackage.Building.City}" />-->
                 
                 
-                <DataGridTextColumn Header="Notes"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Notes}"
                      Binding="{Binding Order.Notes}" />
             </DataGrid.Columns>
         </DataGrid>

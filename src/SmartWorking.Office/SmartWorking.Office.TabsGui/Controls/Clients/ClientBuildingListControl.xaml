@@ -45,7 +45,7 @@
                 <!--End Debug only-->
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingListControl_BuildingInternalName}"
                      Binding="{Binding Building.InternalName}" />
-                <DataGridTextColumn Header="Name"
+                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingListConrol_Name}"
                      Binding="{Binding Building.Name}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ClientBuildingListControl_BuildingCity}"
                      Binding="{Binding Building.City}" />

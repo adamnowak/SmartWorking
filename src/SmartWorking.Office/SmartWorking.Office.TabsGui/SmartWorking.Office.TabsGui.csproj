@@ -237,7 +237,7 @@
       <DependentUpon>OrderListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Orders\OrderListViewModel.cs" />
-    <Compile Include="Controls\Recipes\StrengthClassTypes.cs" />
+    <Compile Include="Controls\Recipes\StrengthProgressTypes.cs" />
     <Compile Include="Controls\Recipes\RecipeComponentDetailsControl.xaml.cs">
       <DependentUpon>RecipeComponentDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -455,6 +455,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="XPSTemplates\ProductionReportTemplate.xaml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XPSTemplates\DeliveryNotePreviewTemplate.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

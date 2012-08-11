@@ -30,7 +30,7 @@
                 </StackPanel.RenderTransform>
                 <StackPanel Margin="1.1cm,4.5cm,0,0" Orientation="Horizontal">
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="10.7cm" Height="2.5cm" Text="q_Client_q" />
+                        <TextBlock Width="10.7cm" Height="2.5cm" Text="{Binding Client}" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
                         <TextBlock Width="8.55cm" Height="2.5cm" Text="q_Buildin_q" />
