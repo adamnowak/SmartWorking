@@ -15,93 +15,155 @@
                 <Style TargetType="TextBlock">
                     <Setter Property="TextWrapping" Value="Wrap"/>
                     <Setter Property="Padding" Value="0.1" />
-                   
+
                     <Setter Property="Opacity" Value="0.5" />
                     <Setter Property="FontSize" Value="20"/>
                 </Style>
             </FixedPage.Resources>
 
-            <StackPanel>
-                <StackPanel Margin="1.1cm,4.5cm,0,0" Orientation="Horizontal">
+            <StackPanel Margin="1.02cm,4.02cm,0,0">
+                <StackPanel Orientation="Horizontal">
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="10.7cm" Height="2.5cm" Text="{Binding Client}" />
+                        <TextBlock Width="10.5cm" Height="3.04cm" Text="{Binding Client}" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="8.55cm" Height="2.5cm" Text="q_Buildin_q" />
+                        <TextBlock Width="7.38cm" Height="2.5cm" Text="q_Buildin_q" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="3.67cm" Height="2.5cm" Text="q_DeliveryNoteNumber_q" />
+                        <TextBlock Width="4.77cm" Height="2.5cm" Text="q_DeliveryNoteNumber_q" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="3.56cm" Height="2.5cm" Text="q_Date_q"  />
+                        <TextBlock Width="3.2cm" Height="2.5cm" Text="q_Date_q"  />
                     </Border>
 
                 </StackPanel>
-                <StackPanel Margin="1.1cm,0.9cm,0,0" Orientation="Horizontal">
+                <StackPanel Margin="0,0.45cm,0,0" Orientation="Horizontal">
 
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="2.15cm" Height="0.95cm" Text="q_Amount_q" />
+                        <TextBlock Width="2.18cm" Height="0.95cm" Text="q_Amount_q" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="3.9cm" Height="0.95cm" Text="q_RecipeNumber_q"/>
+                        <TextBlock Width="3.7cm" Height="0.95cm" Text="q_RecipeNumber_q"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="2.4cm" Height="0.95cm" Text="q_ConcreteClass_q"/>
+                        <TextBlock Width="2.18cm" Height="0.95cm" Text="q_ConcreteClass_q"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="2.85cm" Height="0.95cm" Text="q_DurabilityClass_q"/>
+                        <TextBlock Width="2.80cm" Height="0.95cm" Text="q_DurabilityClass_q"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="1.75cm" Height="0.95cm" Text="q_Granulation_q"/>
+                        <TextBlock Width="1.85cm" Height="0.95cm" Text="q_Granulation_q"/>
+                    </Border>
+                    <Border Style="{StaticResource notCalledBorder}">
+                        <TextBlock Width="1.85cm" Height="0.95cm" Text="q_Konsystencja_q" />
+                    </Border>
+                    <Border Style="{StaticResource notCalledBorder}">
+                        <TextBlock Width="1.4cm" Height="0.95cm" Text="q_WC_q"/>
+                    </Border>
+                    <Border Style="{StaticResource notCalledBorder}">
+                        <TextBlock Width="1.5cm" Height="0.95cm" Text="q_Woda_q"/>
+                    </Border>
+                    <Border Style="{StaticResource notCalledBorder}">
+                        <TextBlock Width="2.80cm" Height="0.95cm" Text="q_RozwojWytrzymalosci_q"/>
+                    </Border>
+                    <Border Style="{StaticResource notCalledBorder}">
+                        <TextBlock Width="3.2cm" Height="0.95cm" Text="q_KlasaEkspozycji_q"/>
+                    </Border>
+                    <Border Style="{StaticResource notCalledBorder}">
+                        <TextBlock Width="1.96cm" Height="0.95cm" Text="q_Pompa_q"/>
                     </Border>
                 </StackPanel>
-                <StackPanel Margin="1.1cm,0.35cm,0,0" Orientation="Horizontal">
+                <StackPanel Margin="0,0.41cm,0,0" Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
 
-                        <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="7.65cm" Height="0.90cm" Text="q_Client_q"/>
-                        </Border>
-                        <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Margin="0,0.4cm,0,0" Width="7.65cm" Height="0.90cm" Text="q_Building_q"/>
-                        </Border>
+                                <Border Style="{StaticResource notCalledBorder}">
+                                    <TextBlock Width="7.42cm" Height="0.90cm" Text="q_Client_q"/>
+                                </Border>
 
+                                <Border Style="{StaticResource notCalledBorder}" Margin="0,0.4cm,0,0">
+                                    <TextBlock  Width="7.42cm" Height="0.86cm" Text="q_Dotatki_q"/>
+                                </Border>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+
+                                <Border Style="{StaticResource notCalledBorder}">
+                                    <TextBlock Width="7.4cm" Height="2.22cm" Text="q_Domieszki_q"/>
+                                </Border>
+
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="0,0.5cm,0,0" >
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                                <Border Style="{StaticResource notCalledBorder}">
+                                    <TextBlock Width="14.8cm" Height="4.05cm" Text="q_Notes_q"/>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Margin="1.4cm,0,0,0">
 
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="7.45cm" Height="2.05cm" Text="q_Building_q"/>
+                            <TextBlock Width="4.4cm" Height="0.9cm" Text="q_Cement_q"/>
                         </Border>
+
+                        <Border Style="{StaticResource notCalledBorder}">
+                            <TextBlock Width="4.4cm" Height="0.9cm" Text="q_Dodatki_q"/>
+                        </Border>
+
+                        <Border Style="{StaticResource notCalledBorder}">
+                            <TextBlock Width="4.4cm" Height="1.5cm" Text="q_Domieszki_q"/>
+                        </Border>
+
 
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Margin="1.1cm,0.45cm,0,0" >
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                        <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="15.3cm" Height="4.05cm" Text="q_Notes_q"/>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="1.1cm,0.30cm,0,0" >
+
+                <StackPanel Margin="0,0.45cm,0,0" >
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="4.1cm" Height="0.9cm" Text="q_Date_q"/>
+                            <TextBlock Width="4cm" Height="0.8cm" Text="q_Pojazd_q"/>
                         </Border>
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Margin="16.95cm,0,0,0" Width="2.8cm" Height="0.9cm" Text="q_Dostarczono_q"/>
+                            <TextBlock Margin="7.96cm,0,0,0" Width="2.85cm" Height="0.8cm" Text="q_Kierowca_q"/>
                         </Border>
-                        <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="2.75cm" Height="0.9cm" Text="q_Pozsotalo_q"/>
+
+                        <Border Style="{StaticResource notCalledBorder}" Margin="2.9cm,0,0,0">
+                            <TextBlock Width="2.9cm" Height="0.8cm" Text="q_Zamowiono_q"/>
+                        </Border>
+
+                        <Border Style="{StaticResource notCalledBorder}" >
+                            <TextBlock Width="2.57cm" Height="0.8cm" Text="q_Dostarczono_q"/>
+                        </Border>
+                        <Border Style="{StaticResource notCalledBorder}" >
+                            <TextBlock Width="2.56cm" Height="0.8cm" Text="q_Reszta_q"/>
                         </Border>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Margin="1.1cm,0.45cm,0,0" >
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                <StackPanel Margin="0,0.49cm,0,0" Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
                         <Border Style="{StaticResource notCalledBorder}">
                             <TextBlock Width="2.65cm" Height="1cm" Text="q_Date_q"/>
                         </Border>
+                        <Border Style="{StaticResource notCalledBorder}">
+                            <TextBlock Width="2.65cm" Height="1cm" Text="q_PrzyjazdNaBudowe_q"/>
+                        </Border>
+                        <Border Style="{StaticResource notCalledBorder}">
+                            <TextBlock Width="2.5cm" Height="1cm" Text="q_PoczatekRozladunku_q"/>
+                        </Border>
+                        <Border Style="{StaticResource notCalledBorder}">
+                            <TextBlock Width="2.55cm" Height="1cm" Text="q_KoniecRozladunku_q"/>
+                        </Border>
+                        <Border Style="{StaticResource notCalledBorder}">
+                            <TextBlock Width="2.7cm" Height="1cm" Text="q_CzasOczekiwania_q"/>
+                        </Border>
                     </StackPanel>
+
                 </StackPanel>
             </StackPanel>
         </FixedPage>
     </PageContent >
 </FixedDocument>
+
