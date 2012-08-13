@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.ServiceModel;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -13,7 +17,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
   /// <summary>
   /// Base view model for editing control.
   /// </summary>
-  public abstract class EditableControlViewModelBase<T> : ControlViewModelBase, IEditableControlViewModel<T>
+  public abstract class EditableControlViewModelBase<T> : ControlViewModelBase, IEditableControlViewModel<T>, ICustomNotifyDataErrorInfo
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="EditableControlViewModelBase&lt;T&gt;"/> class.
@@ -133,7 +137,12 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </returns>
     protected virtual bool CanSaveItemCommandExecute()
     {
-      return !IsReadOnly && Item != null;
+      if (!IsReadOnly && Item != null)
+      {
+        Validate();
+        return !HasErrors;
+      }
+      return false;
     }
 
     /// <summary>
@@ -173,8 +182,13 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <returns></returns>
     protected virtual bool OnSaveItem()
     {
-      EditingMode = EditingMode.Display;
-      return true;
+      Validate();
+      if (!HasErrors)
+      {
+        EditingMode = EditingMode.Display;
+        return true;
+      }
+      return false;
     }
 
     /// <summary>
@@ -249,5 +263,38 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     }
 
     #endregion
+
+    public bool HasErrors
+    {
+      get { return errors != null && errors.Count > 0; }
+    }
+
+    private IList<ValidationResult> errors = new List<ValidationResult>();
+    public IList<ValidationResult> Errors
+    {
+      get { return errors; }
+      protected set
+      {
+        errors = value;
+
+        if (HasErrors)
+        {
+          MainViewModel.StatusText = errors[0].ErrorMessage;
+          MainViewModel.StatusTextColor = Colors.Red;
+        }
+        else
+        {
+          MainViewModel.StatusText = string.Empty;
+        }
+        // Update bindings, no broadcast
+        RaisePropertyChanged("Errors");
+        RaisePropertyChanged("HasErrors");
+      }
+    }
+
+    public virtual void Validate()
+    {
+
+    }
   }
 }

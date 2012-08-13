@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-
-
-namespace SmartWorking.Office.PrimitiveEntities
+﻿namespace SmartWorking.Office.PrimitiveEntities.Packages
 {
   public class RecipeComponentAndMaterialPackage
   {

@@ -7,6 +7,7 @@ using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
 using SmartWorking.Office.Gui.ViewModel.DeliveryNotes;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 
 namespace SmartWorking.Office.Gui.ViewModel
 {

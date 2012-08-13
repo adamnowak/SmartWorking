@@ -1,7 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.ServiceModel;
+using System.Threading;
+using System.Windows.Media;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.MetaDates;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
@@ -35,17 +43,28 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
       base.EditItemCommandExecute();
     }
 
+    
+
+    public override void Validate()
+    {
+      Errors = Item.Car.ValidateClientSide();
+    }
+
     protected override bool OnSaveItem()
     {
       Item.Driver = Drivers.SelectedItem;
+      
       if (base.OnSaveItem())
       {
+
         using (ICarsService service = ServiceFactory.GetCarsService())
         {
           service.CreateOrUpdateCar(Item.GetCarPrimitiveWithReference());
         }
         return true;
+
       }
+   
       return false;
     }
 
@@ -93,5 +112,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
       }
 
     }
+
+    
+    
   }
 }

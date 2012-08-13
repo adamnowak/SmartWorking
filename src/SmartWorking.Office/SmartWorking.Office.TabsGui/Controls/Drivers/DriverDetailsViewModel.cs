@@ -2,6 +2,7 @@
 using System.Linq;
 using System.ServiceModel;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Cars;
 using SmartWorking.Office.TabsGui.Properties;

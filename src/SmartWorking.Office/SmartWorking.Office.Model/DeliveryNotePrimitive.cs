@@ -12,9 +12,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
+using SmartWorking.Office.PrimitiveEntities.MetaDates;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
+    [MetadataType(typeof(DeliveryNoteMetaData))]
     public partial class DeliveryNotePrimitive : PrimitiveBase
     {
         #region Primitive Properties

@@ -73,6 +73,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity">
       <Private>True</Private>
@@ -98,6 +99,7 @@
     <Compile Include="CarsService.cs" />
     <Compile Include="ClientsService.cs" />
     <Compile Include="BuildingsService.cs" />
+    <Compile Include="EntityValidatorHelper.cs" />
     <Compile Include="OrdersService.cs" />
     <Compile Include="ReportsService.cs" />
     <Compile Include="DeliveryNotesService.cs" />

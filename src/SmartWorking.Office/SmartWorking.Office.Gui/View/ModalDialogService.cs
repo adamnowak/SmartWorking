@@ -22,6 +22,7 @@ using SmartWorking.Office.Gui.ViewModel.Recipes;
 using SmartWorking.Office.Gui.ViewModel.Reports;
 using SmartWorking.Office.Gui.ViewModel.Shared.MessageBox;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 using MessageBox = SmartWorking.Office.Gui.View.Shared.MessageBox.MessageBox;
 

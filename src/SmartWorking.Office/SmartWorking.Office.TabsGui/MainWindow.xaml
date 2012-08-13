@@ -44,8 +44,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" /> <!--TODO: should be removed-->
-            </Grid.ColumnDefinitions> 
-            <TextBlock Height="20" Text="{Binding StatusText}" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Height="20" Text="{Binding StatusText}" Foreground="{Binding StatusTextColor}" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" Background="Yellow" >
                 <StackPanel.Visibility>
                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">

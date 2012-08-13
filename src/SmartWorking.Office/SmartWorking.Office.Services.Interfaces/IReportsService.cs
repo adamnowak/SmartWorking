@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.PrimitiveEntities.Reports;
 
 namespace SmartWorking.Office.Services.Interfaces

@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Gui.View.Clients;
 using SmartWorking.Office.Gui.ViewModel.Clients;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Clients

@@ -9,15 +9,15 @@
             <FixedPage.Resources>
                 <Style x:Key="notCalledBorder" TargetType="{x:Type Border}">
                     <Setter Property="BorderThickness" Value="1" />
-                    <Setter Property="BorderBrush" Value="Black" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
                 </Style>
 
                 <Style TargetType="TextBlock">
                     <Setter Property="TextWrapping" Value="Wrap"/>
                     <Setter Property="Padding" Value="0.1" />
 
-                    <Setter Property="Opacity" Value="0.5" />
-                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="Opacity" Value="2" />
+                    <Setter Property="FontSize" Value="16"/>
                 </Style>
             </FixedPage.Resources>
 
@@ -27,50 +27,51 @@
                         <TextBlock Width="10.5cm" Height="3.04cm" Text="{Binding Client}" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="7.38cm" Height="2.5cm" Text="q_Buildin_q" />
+                        <TextBlock Width="7.38cm" Height="2.5cm" Text="{Binding Building}" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="4.77cm" Height="2.5cm" Text="q_DeliveryNoteNumber_q" />
+                        <TextBlock Width="4.77cm" Height="2.5cm" Text="{Binding DeliveryNoteNumber}" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="3.2cm" Height="2.5cm" Text="q_Date_q"  />
+                        <TextBlock Width="3.2cm" Height="2.5cm" Text="{Binding DeliveryNoteDateDrawing}"  />
                     </Border>
 
                 </StackPanel>
                 <StackPanel Margin="0,0.45cm,0,0" Orientation="Horizontal">
 
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="2.18cm" Height="0.95cm" Text="q_Amount_q" />
+                        <TextBlock Width="2.18cm" Height="0.95cm" Text="{Binding DeliveryNoteAmount}" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="3.7cm" Height="0.95cm" Text="q_RecipeNumber_q"/>
+                        <TextBlock Width="3.7cm" Height="0.95cm" Text="{Binding RecipeCode}"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="2.18cm" Height="0.95cm" Text="q_ConcreteClass_q"/>
+                        <TextBlock Width="2.18cm" Height="0.95cm" Text="{Binding RecipeConcreteClass}"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="2.80cm" Height="0.95cm" Text="q_DurabilityClass_q"/>
+                        <TextBlock Width="2.80cm" Height="0.95cm" Text="{Binding RecipeStrengthClass}"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="1.85cm" Height="0.95cm" Text="q_Granulation_q"/>
+                        <TextBlock Width="1.85cm" Height="0.95cm" Text="{Binding RecipeGranulation}"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="1.85cm" Height="0.95cm" Text="q_Konsystencja_q" />
+                        <TextBlock Width="1.85cm" Height="0.95cm" Text="{Binding RecipeConsistency}" />
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="1.4cm" Height="0.95cm" Text="q_WC_q"/>
+                        <TextBlock Width="1.4cm" Height="0.95cm" Text="{Binding RecipeWaterToCement}"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="1.5cm" Height="0.95cm" Text="q_Woda_q"/>
+                        <TextBlock Width="1.5cm" Height="0.95cm" Text="{Binding RecipeWater}"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="2.80cm" Height="0.95cm" Text="q_RozwojWytrzymalosci_q"/>
+                        <TextBlock Width="2.80cm" Height="0.95cm" Text="{Binding RecipeStrengthProgress}"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="3.2cm" Height="0.95cm" Text="q_KlasaEkspozycji_q"/>
+                        <TextBlock Width="3.2cm" Height="0.95cm" Text=""/>
+                        <!-- Klasa ekspozycji -->
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="1.96cm" Height="0.95cm" Text="q_Pompa_q"/>
+                        <TextBlock Width="1.96cm" Height="0.95cm" Text="{Binding DeliveryNotePump}"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Margin="0,0.41cm,0,0" Orientation="Horizontal">
@@ -79,18 +80,18 @@
                             <StackPanel Orientation="Vertical">
 
                                 <Border Style="{StaticResource notCalledBorder}">
-                                    <TextBlock Width="7.42cm" Height="0.90cm" Text="q_Client_q"/>
+                                    <TextBlock Width="7.42cm" Height="0.90cm" Text="{Binding RecipeConcreteKgToM3}"/>
                                 </Border>
 
                                 <Border Style="{StaticResource notCalledBorder}" Margin="0,0.4cm,0,0">
-                                    <TextBlock  Width="7.42cm" Height="0.86cm" Text="q_Dotatki_q"/>
+                                    <TextBlock  Width="7.42cm" Height="0.86cm" Text="{Binding RecipeSuplementKgToM3}"/>
                                 </Border>
 
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
 
                                 <Border Style="{StaticResource notCalledBorder}">
-                                    <TextBlock Width="7.4cm" Height="2.22cm" Text="q_Domieszki_q"/>
+                                    <TextBlock Width="7.4cm" Height="2.22cm" Text="{Binding RecipeAdmixtureKgToM3}"/>
                                 </Border>
 
                             </StackPanel>
@@ -98,7 +99,7 @@
                         <StackPanel Margin="0,0.5cm,0,0" >
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                                 <Border Style="{StaticResource notCalledBorder}">
-                                    <TextBlock Width="14.8cm" Height="4.05cm" Text="q_Notes_q"/>
+                                    <TextBlock Width="14.8cm" Height="4.05cm" Text="{Binding OrderNotice}"/>
                                 </Border>
                             </StackPanel>
                         </StackPanel>
@@ -106,15 +107,15 @@
                     <StackPanel Orientation="Vertical" Margin="1.4cm,0,0,0">
 
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="4.4cm" Height="0.9cm" Text="q_Cement_q"/>
+                            <TextBlock Width="4.4cm" Height="0.9cm" Text="{Binding RecipeConcreteProducer}"/>
                         </Border>
 
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="4.4cm" Height="0.9cm" Text="q_Dodatki_q"/>
+                            <TextBlock Width="4.4cm" Height="0.9cm" Text="{Binding RecipeSuplementProducer}"/>
                         </Border>
 
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="4.4cm" Height="1.5cm" Text="q_Domieszki_q"/>
+                            <TextBlock Width="4.4cm" Height="1.5cm" Text="{Binding RecipeAdmixtureProducer}"/>
                         </Border>
 
 
@@ -124,40 +125,40 @@
                 <StackPanel Margin="0,0.45cm,0,0" >
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="4cm" Height="0.8cm" Text="q_Pojazd_q"/>
+                            <TextBlock Width="4cm" Height="0.8cm" Text="{Binding DeliveryNoteCar}"/>
                         </Border>
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Margin="7.96cm,0,0,0" Width="2.85cm" Height="0.8cm" Text="q_Kierowca_q"/>
+                            <TextBlock Margin="7.96cm,0,0,0" Width="2.85cm" Height="0.8cm" Text="{Binding DeliveryNoteDriver}"/>
                         </Border>
 
                         <Border Style="{StaticResource notCalledBorder}" Margin="2.9cm,0,0,0">
-                            <TextBlock Width="2.9cm" Height="0.8cm" Text="q_Zamowiono_q"/>
+                            <TextBlock Width="2.9cm" Height="0.8cm" Text="{Binding OrderAmount}"/>
                         </Border>
 
                         <Border Style="{StaticResource notCalledBorder}" >
-                            <TextBlock Width="2.57cm" Height="0.8cm" Text="q_Dostarczono_q"/>
+                            <TextBlock Width="2.57cm" Height="0.8cm" Text="{Binding OrderSumaryDelivered}"/>
                         </Border>
                         <Border Style="{StaticResource notCalledBorder}" >
-                            <TextBlock Width="2.56cm" Height="0.8cm" Text="q_Reszta_q"/>
+                            <TextBlock Width="2.56cm" Height="0.8cm" Text="{Binding OrderSumaryRemainToDeliver}"/>
                         </Border>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="0,0.49cm,0,0" Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal">
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="2.65cm" Height="1cm" Text="q_Date_q"/>
+                            <TextBlock Width="2.65cm" Height="1cm" Text="{Binding DeliveryNoteLoadingDate}"/>
                         </Border>
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="2.65cm" Height="1cm" Text="q_PrzyjazdNaBudowe_q"/>
+                            <TextBlock Width="2.65cm" Height="1cm" Text=""/>
                         </Border>
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="2.5cm" Height="1cm" Text="q_PoczatekRozladunku_q"/>
+                            <TextBlock Width="2.5cm" Height="1cm" Text=""/>
                         </Border>
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="2.55cm" Height="1cm" Text="q_KoniecRozladunku_q"/>
+                            <TextBlock Width="2.55cm" Height="1cm" Text=""/>
                         </Border>
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="2.7cm" Height="1cm" Text="q_CzasOczekiwania_q"/>
+                            <TextBlock Width="2.7cm" Height="1cm" Text=""/>
                         </Border>
                     </StackPanel>
 

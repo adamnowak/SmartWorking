@@ -53,7 +53,7 @@
                 <TextBox Text="{Binding Item.Recipe.InternalName}" Grid.Row="1" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <TextBox Text="{Binding Item.Recipe.Name}" Grid.Row="2" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <TextBox Text="{Binding Item.Recipe.Code}" Grid.Row="3" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
-                <TextBox Text="{Binding Item.Recipe.ConcreteClass}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
+                <TextBox Text="{Binding Item.Recipe.ConcreteClass,ValidatesOnDataErrors=True,NotifyOnValidationError=True}" Grid.Row="4" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <TextBox Text="{Binding Item.Recipe.StrengthClass}" Grid.Row="5" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <TextBox Text="{Binding Item.Recipe.Granulation}" Grid.Row="6" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />
                 <TextBox Text="{Binding Item.Recipe.Consistency}" Grid.Row="7" Grid.Column="1" IsReadOnly="{Binding IsReadOnly}" />

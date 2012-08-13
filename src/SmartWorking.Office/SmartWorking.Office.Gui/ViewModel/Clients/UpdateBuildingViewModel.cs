@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.Gui.View.Contractors;
 using SmartWorking.Office.Gui.ViewModel.Shared;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Gui.ViewModel.Clients

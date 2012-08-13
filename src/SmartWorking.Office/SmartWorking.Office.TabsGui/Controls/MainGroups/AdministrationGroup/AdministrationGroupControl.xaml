@@ -101,6 +101,7 @@
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
                                             </Button.Visibility>
+                                            
                                         </Button>
                                         <Button Command="{Binding DriverDetailsViewModel.CancelChangesCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Drivers_Cancel}">
                                             <Button.Visibility>
@@ -201,7 +202,7 @@
                                                         <Binding Path="CarDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
                                                     </MultiBinding.Bindings>
                                                 </MultiBinding>
-                                            </Button.Visibility>
+                                            </Button.Visibility>                                            
                                         </Button>
                                         <Button Command="{Binding CarDetailsViewModel.CancelChangesCommand}" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:AdministrationGroupControl_Cars_Cancel}">
                                             <Button.Visibility>

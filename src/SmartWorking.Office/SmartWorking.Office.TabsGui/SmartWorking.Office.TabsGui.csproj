@@ -100,6 +100,7 @@
     </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Printing" />
@@ -142,6 +143,7 @@
       <DependentUpon>BuildingListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Buildings\BuildingListViewModel.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\ICustomNotifyDataErrorInfo.cs" />
     <Compile Include="Controls\Clients\ClientBuildingDetailsViewModel.cs" />
     <Compile Include="Controls\Clients\ClientBuildingDetailsControl.xaml.cs">
       <DependentUpon>ClientBuildingDetailsControl.xaml</DependentUpon>
@@ -225,6 +227,7 @@
     <Compile Include="Controls\Materials\MaterialListControl.xaml.cs">
       <DependentUpon>MaterialListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Orders\OrderDetailsDataContextForDocument.cs" />
     <Compile Include="Controls\Orders\OrderSumaryViewModel.cs" />
     <Compile Include="Controls\Orders\OrderSumaryControl.xaml.cs">
       <DependentUpon>OrderSumaryControl.xaml</DependentUpon>
@@ -572,10 +575,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DeliveryNoteTemplate.xaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="license.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

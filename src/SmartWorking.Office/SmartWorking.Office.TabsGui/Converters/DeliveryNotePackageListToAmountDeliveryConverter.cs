@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Data;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 
 namespace SmartWorking.Office.TabsGui.Converters
 {

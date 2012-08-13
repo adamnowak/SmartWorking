@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.ServiceModel;
 using SmartWorking.Office.Entities;
 
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.MetaDates;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 
 namespace SmartWorking.Office.Services.Hosting.Local
@@ -85,6 +88,12 @@ namespace SmartWorking.Office.Services.Hosting.Local
     {
       try
       {
+        List<ValidationResult> validationResults = carPrimitive.ValidateClientSide();
+        if (validationResults != null && validationResults.Count > 0)
+        {
+          throw new FaultException<List<ValidationResult>>(validationResults, "Walidacja obiektu się nie powiodła.");
+        }
+
         using (SmartWorkingEntities context = new SmartWorkingEntities())
         {
           Car car = carPrimitive.GetEntity();
@@ -94,21 +103,34 @@ namespace SmartWorking.Office.Services.Hosting.Local
           if (existingObject == null && car.Id > 0)
           {
             throw new FaultException<ExceptionDetail>(new ExceptionDetail(new Exception("Błąd zapisu do bazy")),
-                                                        "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
+                                                      "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
-          //Item has no PK value, must be new
+            //Item has no PK value, must be new
           else if (car.Id <= 0)
           {
-            context.Cars.AddObject(car);
+            if (car.ValidateForNewEntity(validationResults, context))
+            {
+              context.Cars.AddObject(car);
+            }
           }
-          //Item was retrieved, and the item passed has a valid ID, do an update
+            //Item was retrieved, and the item passed has a valid ID, do an update
           else
           {
-            context.Cars.ApplyCurrentValues(car);
+            if (car.ValidateForExistingEntity(validationResults, context))
+            {
+              context.Cars.ApplyCurrentValues(car);
+            }
           }
-
+          if (validationResults != null && validationResults.Count > 0)
+          {
+            throw new FaultException<List<ValidationResult>>(validationResults, "Walidacja obiektu się nie powiodła.");
+          }
           context.SaveChanges();
         }
+      }
+      catch(FaultException<List<ValidationResult>>)
+      {
+        throw;
       }
       catch (Exception e)
       {

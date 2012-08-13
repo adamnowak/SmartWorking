@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
@@ -9,11 +11,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
+using System.Windows.Media;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 #if IIS_USED
 using SmartWorking.Office.Services.Factory.IIS;
 #else
+using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.MetaDates;
 using SmartWorking.Office.Services.Factory.Local;
 #endif
 using SmartWorking.Office.Services.Interfaces;
@@ -223,6 +228,40 @@ namespace SmartWorking.Office.TabsGui
       }
     }
     #endregion //StatusText
+
+    #region StatusTextColor
+    /// <summary>
+    /// The <see cref="StatusTextColor" /> property's name.
+    /// </summary>
+    public const string StatusTextColorPropertyName = "StatusTextColor";
+
+    private Color _statusTextColor;
+
+    /// <summary>
+    /// Gets the StatusTextColor property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public Color StatusTextColor
+    {
+      get
+      {
+        return _statusTextColor;
+      }
+
+      set
+      {
+        if (_statusTextColor == value)
+        {
+          return;
+        }
+        _statusTextColor = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(StatusTextColorPropertyName);
+      }
+    }
+    #endregion //StatusTextColor
 
     /// <summary>
     /// Gets the name of control.

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.ServiceModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Materials;
 using SmartWorking.Office.TabsGui.Properties;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
+
 
 namespace SmartWorking.Office.TabsGui.Controls.Recipes
 {
@@ -76,6 +79,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
     {
       if (base.OnSaveItem())
       {
+        List<ValidationResult> res = new List<ValidationResult>();
+        bool valid = Validator.TryValidateObject(Item.Recipe, new ValidationContext(Item.Recipe, null, null), res, true);
+
         RecipeComponentDetailsViewModel.EditingMode = EditingMode.Display;
         Item.RecipeComponentAndMaterialList.Clear();
         foreach (RecipeComponentAndMaterialPackage recipeComponentAndMaterialPackage in RecipeComponentListViewModel.Items.Items)

@@ -12,9 +12,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
+using SmartWorking.Office.PrimitiveEntities.MetaDates;
 
 namespace SmartWorking.Office.PrimitiveEntities
 {
+    [MetadataType(typeof(ContractorMetaData))]
     public partial class ContractorPrimitive : PrimitiveBase
     {
         #region Primitive Properties

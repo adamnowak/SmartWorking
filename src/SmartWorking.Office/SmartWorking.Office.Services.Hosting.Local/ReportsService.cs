@@ -5,6 +5,7 @@ using System.ServiceModel;
 using SmartWorking.Office.Entities;
 
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.PrimitiveEntities.Reports;
 using SmartWorking.Office.Services.Interfaces;
 

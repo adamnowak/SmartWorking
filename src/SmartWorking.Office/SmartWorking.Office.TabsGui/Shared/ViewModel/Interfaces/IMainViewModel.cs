@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 
 namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
 {
@@ -10,5 +11,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     AccessLevel AccessLevel { get;  }
     bool IsDebugMode { get; }
     SmartWorkingConfiguration Configuration { get; }
+    string StatusText { get; set; }
+    Color StatusTextColor { get; set; }
   }
 }

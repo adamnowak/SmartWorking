@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SmartWorking.Office.PrimitiveEntities;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Controls.Buildings;
 using SmartWorking.Office.TabsGui.Controls.Clients;
