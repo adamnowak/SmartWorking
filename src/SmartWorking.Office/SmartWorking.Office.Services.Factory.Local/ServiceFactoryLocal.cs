@@ -115,6 +115,11 @@ namespace SmartWorking.Office.Services.Factory.Local
       return new BuildingsService();
     }
 
+    public IDBService GetDBService()
+    {
+      return new DBService();
+    }
+
     #endregion
   }
 }

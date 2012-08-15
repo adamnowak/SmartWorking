@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -25,6 +26,21 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     protected virtual void ViewModelProvider_ChildrenViewModelIsReadOnlyChanged(object sender, ViewModelProviderActionEventArgs e)
     {
       RaisePropertyChanged(IsReadOnlyPropertyName);
+    }
+
+    
+    protected void ShowError(string caption, FaultException<List<ValidationResult>> faultException)
+    {
+      if (faultException != null)
+      {
+        ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, MessageBoxImage.Error, caption,
+                                          faultException.Message,
+                                          MessageBoxButton.OK,
+                                          (faultException.Detail != null && faultException.Detail != null)
+                                            ? 
+                                            faultException.Detail.Select(x => x.ErrorMessage).Aggregate((i, j) => i + "\n" + j)
+                                            : string.Empty);
+      }
     }
 
     /// <summary>

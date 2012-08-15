@@ -22,62 +22,66 @@
             <Button Grid.Column="2" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_Search}"
                  Command="{Binding ApplyFilterCommand}" />
         </Grid>
-        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid>
+                <DataGrid SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
              ItemsSource="{Binding Items}">
-            <DataGrid.Resources>
-                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
-                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Car.IsDeactive}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Car.IsDeleted}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <!--Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_Id}"
+                    <DataGrid.Resources>
+                        <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Car.IsDeactive}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Car.IsDeleted}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <!--Debug only-->
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_Id}"
                      Binding="{Binding Car.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} ,  Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <!--End Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_InternalName}"
+                        <!--End Debug only-->
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_InternalName}"
                      Binding="{Binding Car.InternalName}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_RegistrationNumber}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_RegistrationNumber}"
                      Binding="{Binding Car.RegistrationNumber}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_CarType}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_CarType}"
                                     SortMemberPath="Car.CarType">
-                    <DataGridTextColumn.Binding>
-                        <MultiBinding Converter="{StaticResource descriptionIndexedConverter}">
-                            <Binding Path="Car.CarType" />
-                            <Binding Source="{x:Static Cars:CarTypes.Instance}" Path="Items" />
-                        </MultiBinding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_Capacity}"
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding Converter="{StaticResource descriptionIndexedConverter}">
+                                    <Binding Path="Car.CarType" />
+                                    <Binding Source="{x:Static Cars:CarTypes.Instance}" Path="Items" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_Capacity}"
                      Binding="{Binding Car.Capacity}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_TransportType}">
-                    <DataGridTextColumn.Binding>
-                        <MultiBinding Converter="{StaticResource descriptionIndexedConverter}">
-                            <Binding Path="Car.TransportType" />
-                            <Binding Source="{x:Static Cars:TransportTypes.Instance}" Path="Items" />
-                        </MultiBinding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_DriverNameSurname}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_TransportType}">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding Converter="{StaticResource descriptionIndexedConverter}">
+                                    <Binding Path="Car.TransportType" />
+                                    <Binding Source="{x:Static Cars:TransportTypes.Instance}" Path="Items" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_DriverNameSurname}"
                                     SortMemberPath="Driver.Name">
-                    <DataGridTextColumn.Binding>
-                        <MultiBinding StringFormat="{}{0} {1}">
-                            <!--Converter="{StaticResource stringConcatenationMultiConverter}" >-->
-                            <Binding Path="Driver.Name" />
-                            <Binding Path="Driver.Surname" />
-                        </MultiBinding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-                <!--Binding="{Binding Driver.Name}" />-->
-            </DataGrid.Columns>
-        </DataGrid>
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <!--Converter="{StaticResource stringConcatenationMultiConverter}" >-->
+                                    <Binding Path="Driver.Name" />
+                                    <Binding Path="Driver.Surname" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <!--Binding="{Binding Driver.Name}" />-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
         <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
             <StackPanel Orientation="Horizontal">
                 <RadioButton Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:CarListControl_OnlyActivate}"

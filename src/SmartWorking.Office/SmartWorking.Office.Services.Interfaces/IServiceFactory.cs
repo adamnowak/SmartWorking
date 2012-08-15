@@ -61,5 +61,7 @@
     IReportsService GetReportsService();
 
     IBuildingsService GetBuildingsService();
+
+    IDBService GetDBService();
   }
 }

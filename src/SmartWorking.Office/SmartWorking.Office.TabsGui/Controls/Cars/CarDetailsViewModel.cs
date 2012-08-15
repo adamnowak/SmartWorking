@@ -50,11 +50,11 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
       Errors = Item.Car.ValidateClientSide();
     }
 
-    protected override bool OnSaveItem()
+    protected override bool OnSavingItem()
     {
       Item.Driver = Drivers.SelectedItem;
       
-      if (base.OnSaveItem())
+      if (base.OnSavingItem())
       {
 
         using (ICarsService service = ServiceFactory.GetCarsService())

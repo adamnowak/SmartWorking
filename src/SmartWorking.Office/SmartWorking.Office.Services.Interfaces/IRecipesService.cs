@@ -35,6 +35,16 @@ namespace SmartWorking.Office.Services.Interfaces
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
     List<RecipePackage> GetRecipePackageList(string filter, ListItemsFilterValues listItemsFilterValue);
 
+    /// <summary>
+    /// Gets the recipe package according <paramref name="recipeId"/>.
+    /// </summary>
+    /// <param name="recipeId">The recipe id.</param>
+    /// <returns><see cref="RecipePackage"/> for recipe with <paramref name="recipeId"/>.</returns>
+    [OperationContract]
+    [WebInvoke(Method = "GET", UriTemplate = "/GetRecipePackage/?Id={recipeId}",
+      RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+    RecipePackage GetRecipePackage(int recipeId);
+
     [OperationContract]
     [WebInvoke(Method = "POST", UriTemplate = "/CreateOrUpdateRecipePackage",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,

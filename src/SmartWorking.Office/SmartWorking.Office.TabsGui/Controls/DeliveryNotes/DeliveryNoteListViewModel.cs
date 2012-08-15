@@ -24,12 +24,11 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       }
     }
 
-    void EditingViewModel_ItemSaved(object sender, System.EventArgs e)
+    
+
+    protected override void EditingViewModel_ItemSaved(object sender, System.EventArgs e)
     {
-      if (EditingViewModel.Item  != null)
-      {
-        
-      }
+      //Refresh();
     }
 
     public override string Name
@@ -60,9 +59,12 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
         NextDeliveryNoteNumber = service.GetNextDeliveryNumber();
       }
       base.OnAddItem();
+      
       EditingViewModel.Item = new DeliveryNotePackage()
                                 {
-                                  DeliveryNote = new DeliveryNotePrimitive() { Number = NextDeliveryNoteNumber, Year = DateTime.Now.Year },
+                                 
+                                  DeliveryNote = new DeliveryNotePrimitive() { Number = NextDeliveryNoteNumber, Year = DateTime.Now.Year, DateDrawing  = DateTime.Now },
+                                  
                                   Order =
                                     (OrderDetailsControlViewModel != null && OrderDetailsControlViewModel.Item != null)
                                       ? OrderDetailsControlViewModel.Item.Order
@@ -88,7 +90,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       {
         clone = new DeliveryNotePackage()
         {
-          DeliveryNote = new DeliveryNotePrimitive() { Number = NextDeliveryNoteNumber, Year = DateTime.Now.Year },
+          DeliveryNote = new DeliveryNotePrimitive() { Number = NextDeliveryNoteNumber, Year = DateTime.Now.Year, DateDrawing = DateTime.Now },
           Order =
             (OrderDetailsControlViewModel != null && OrderDetailsControlViewModel.Item != null)
               ? OrderDetailsControlViewModel.Item.Order

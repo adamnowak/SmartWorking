@@ -46,15 +46,22 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
 
       OrderSumaryViewModel = new OrderSumaryViewModel(MainViewModel, ModalDialogService, ServiceFactory);
 
-      DeliveryNoteDetailsViewModel.ItemSaved += new EventHandler(DeliveryNoteDetailsViewModel_ItemSaved);
+      DeliveryNoteDetailsViewModel.ItemReadyToPrint += new EventHandler(DeliveryNoteDetailsViewModel_ItemReadyToPrint);
+      DeliveryNoteDetailsViewModel.ItemFinishedPrinting += new EventHandler(DeliveryNoteDetailsViewModel_ItemFinishedPrinting);
     }
 
-    void DeliveryNoteDetailsViewModel_ItemSaved(object sender, EventArgs e)
+    void DeliveryNoteDetailsViewModel_ItemFinishedPrinting(object sender, EventArgs e)
     {
+      IsDeliveryNotePreview = false;
+     // DeliveryNoteListViewModel.Refresh();
+    }
+
+    private DeliveryNotePackageForDocument deliveryNotePackageForDocument;
+    void DeliveryNoteDetailsViewModel_ItemReadyToPrint(object sender, EventArgs e)
+    {
+
       if (MainViewModel.Configuration.PagesToPrint > 0)
       {
-        var t = DeliveryNoteDetailsViewModel.Item;
-
         PrintQueue printQueue = null;
         bool UseDefaultPrinter = true;
 
@@ -72,10 +79,21 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
         }
 
         if (printQueue != null)
-        { 
+        {           
+          if (deliveryNotePackageForDocument == null)
+          {
+            deliveryNotePackageForDocument = GetDeliveryNotePackageForDocument();
+          }
+          else if (deliveryNotePackageForDocument.DeliveryNote == null || 
+            DeliveryNoteDetailsViewModel.Item == null || 
+            DeliveryNoteDetailsViewModel.Item.DeliveryNote == null || 
+            deliveryNotePackageForDocument.DeliveryNote.Id != DeliveryNoteDetailsViewModel.Item.DeliveryNote.Id)
+          {
+            deliveryNotePackageForDocument = GetDeliveryNotePackageForDocument();
+          }
           FixedDocument fixedDocumentToPrint = (FixedDocument)XPSCreator.LoadTemplate("XPSTemplates\\DeliveryNoteTemplate.xaml");
           XPSCreator.InjectData(fixedDocumentToPrint, 
-            OrderDetailsDataContextForDocument.Load(Item, (DeliveryNoteDetailsViewModel != null) ? DeliveryNoteDetailsViewModel.Item : null));
+            DeliveryNoteDataContextForDocument.Load(deliveryNotePackageForDocument));
           XPSCreator.PrintFlowDocument(printQueue, fixedDocumentToPrint.DocumentPaginator);
         }
 
@@ -185,14 +203,19 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       base.EditItemCommandExecute();
     }
 
-    protected override bool OnSaveItem()
+    public override void BeforeSavingItem()
     {
       Item.ClientBuildingPackage = ClientBuildingDetailsViewModel.Item;
       if (RecipeDetailsViewModel.Item != null)
       {
         Item.Recipe = RecipeDetailsViewModel.Item.Recipe;
       }
-      if (base.OnSaveItem())
+    }
+
+    protected override bool OnSavingItem()
+    {
+      
+      if (base.OnSavingItem())
       {
         using (IOrdersService service = ServiceFactory.GetOrdersService())
         {
@@ -315,7 +338,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
       string errorCaption = "TODO!";
       try
       {
-        
+        DeliveryNoteDetailsViewModel.BeforeSavingItem();
         SetDocumentPaginatorSource();
         IsDeliveryNotePreview = true;
         
@@ -340,18 +363,43 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     {
       public ImageSource BackImage { get; set; }
     }
+
+    private DeliveryNotePackageForDocument GetDeliveryNotePackageForDocument()
+    {
+      DeliveryNotePackageForDocument result = new DeliveryNotePackageForDocument();
+      result.Client = Item.Client;
+      if (Item.ClientBuildingPackage != null)
+      {
+        result.Building = Item.ClientBuildingPackage.Building;
+      }
+      if (DeliveryNoteDetailsViewModel.Item.CarAndDriver != null)
+      {
+        result.Car = DeliveryNoteDetailsViewModel.Item.CarAndDriver.Car;
+      }
+      result.Driver = DeliveryNoteDetailsViewModel.Item.Driver;
+      result.DeliveryNote = DeliveryNoteDetailsViewModel.Item.DeliveryNote;
+      result.DeliveryNotePackageList = Item.DeliveryNotePackageList;
+      result.Order = Item.Order;
+
+      using (IRecipesService recipesService = ServiceFactory.GetRecipesService())
+      {
+        result.RecipePackage = recipesService.GetRecipePackage(Item.Recipe.Id);
+        
+      }
+
+
+      return result;
+    }
+
     private void SetDocumentPaginatorSource()
     {
       if (DocumentPaginatorSource == null)
       {
         DocumentPaginatorSource = (FixedDocument)XPSCreator.LoadTemplate("XPSTemplates\\DeliveryNotePreviewTemplate.xaml");
       }
-
-      XPSCreator.InjectData(DocumentPaginatorSource, 
-        OrderDetailsDataContextForDocument.Load(Item, (DeliveryNoteDetailsViewModel != null) ? DeliveryNoteDetailsViewModel.Item : null));
+      XPSCreator.InjectData(DocumentPaginatorSource,
+                            DeliveryNoteDataContextForDocument.Load(GetDeliveryNotePackageForDocument()));
     }
-
-    
 
     #endregion //PreviewDeliveryNoteItemCommand
 
@@ -389,62 +437,6 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     }
     #endregion //DocumentPaginatorSource
 
-    #region CancelPringintItemCommand
-    private ICommand _cancelPringintItemCommand;
-
-    /// <summary>
-    /// Gets the //TODO: command.
-    /// </summary>
-    /// <remarks>
-    /// Opens dialog to //TODO:.
-    /// </remarks>
-    public ICommand CancelPringintItemCommand
-    {
-      get
-      {
-        if (_cancelPringintItemCommand == null)
-          _cancelPringintItemCommand = new RelayCommand(CancelPringintItem, CanCancelPringintItem);
-        return _cancelPringintItemCommand;
-      }
-    }
-
-    /// <summary>
-    /// Determines whether this instance an //TODO:.
-    /// </summary>
-    /// <returns>
-    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
-    /// </returns>
-    private bool CanCancelPringintItem()
-    {
-      return true;
-    }
-
-    /// <summary>
-    /// //TODO:.
-    /// </summary>
-    private void CancelPringintItem()
-    {
-      string errorCaption = "TODO!";
-      try
-      {
-        IsDeliveryNotePreview = false;
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-    #endregion //CancelPringintItemCommand
+    
   }
 }

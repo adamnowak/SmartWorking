@@ -21,42 +21,46 @@
             <Button Grid.Column="2" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_Search}"
                  Command="{Binding ApplyFilterCommand}" />
         </Grid>
-        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid>
+                <DataGrid SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
              ItemsSource="{Binding Items}">
-            <DataGrid.Resources>
-                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
-                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsDeactive}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsDeleted}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <!--Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_Id}"
+                    <DataGrid.Resources>
+                        <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsDeactive}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsDeleted}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <!--Debug only-->
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_Id}"
                      Binding="{Binding Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <!--End Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_InternalName}"
+                        <!--End Debug only-->
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_InternalName}"
                      Binding="{Binding InternalName}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_Name}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_Name}"
                      Binding="{Binding Name}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_Street}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_Street}"
                      Binding="{Binding Street}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_HouseNo}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_HouseNo}"
                      Binding="{Binding HouseNo}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_City}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_City}"
                      Binding="{Binding City}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_ZIPCode}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_ZIPCode}"
                      Binding="{Binding ZIPCode}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_Phone}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_Phone}"
                      Binding="{Binding Phone}" />
-            </DataGrid.Columns>
-        </DataGrid>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
         <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
             <StackPanel Orientation="Horizontal">
                 <RadioButton GroupName="ContractorListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:ContractorListControl_OnlyActivate}"

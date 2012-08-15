@@ -21,66 +21,70 @@
             <Button Grid.Column="2" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Search}"
                  Command="{Binding ApplyFilterCommand}" />
         </Grid>
-        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid>
+                <DataGrid SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}" 
              ItemsSource="{Binding Items}">
-            <DataGrid.Resources>
-                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
-                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsDeactive}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsDeleted}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <!--Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Id}"
+                <DataGrid.Resources>
+                    <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                    <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsDeactive}" Value="True">
+                                <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsDeleted}" Value="True">
+                                <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <!--Debug only-->
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Id}"
                      Binding="{Binding Order.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <!--End Debug only-->
+                    <!--End Debug only-->
 
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_PlannedDeliveryTime}"
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_PlannedDeliveryTime}"
                      Binding="{Binding Order.PlannedDeliveryTime}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_ClientId}"
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_ClientId}"
                      Binding="{Binding Client.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <!--<DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
+                    <!--<DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
                      Binding="{Binding Client.InternalName}" />-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_ClientName}"
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_ClientName}"
                      Binding="{Binding Client.Name}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_BuildingId}"
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_BuildingId}"
                      Binding="{Binding ClientBuildingPackage.Building.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} , Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <!--<DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
+                    <!--<DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_InternalName}"
                      Binding="{Binding ClientBuildingPackage.Building.InternalName}" />-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_BuildingName}"
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_BuildingName}"
                      Binding="{Binding ClientBuildingPackage.Building.Name}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_RecipeId}"
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_RecipeId}"
                      Binding="{Binding Recipe.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy} ,  Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_RecipeCode}"
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_RecipeCode}"
                      Binding="{Binding Recipe.Code}" />
-                
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Amount}"
+
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Amount}"
                      Binding="{Binding Order.Amount}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Pump}"
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Pump}"
                      Binding="{Binding Order.Pump}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_AmountDelivered}"
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_AmountDelivered}"
                      Binding="{Binding DeliveryNotePackageList, Converter={StaticResource deliveryNotePackageListToAmountDeliveryConverter}}" />
-                
-                
-                <!--<DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Street}"
+
+
+                    <!--<DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Street}"
                      Binding="{Binding ClientBuildingPackage.Building.Street}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_HouseNo}"
                      Binding="{Binding ClientBuildingPackage.Building.HouseNo}" />
                 <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_City}"
                      Binding="{Binding ClientBuildingPackage.Building.City}" />-->
-                
-                
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Notes}"
+
+
+                    <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_Notes}"
                      Binding="{Binding Order.Notes}" />
-            </DataGrid.Columns>
-        </DataGrid>
+                </DataGrid.Columns>
+            </DataGrid>
+            </Grid>
+        </ScrollViewer>
         <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
             <StackPanel Orientation="Horizontal">
                 <RadioButton GroupName="OrderListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:OrderListControl_OnlyActivate}"

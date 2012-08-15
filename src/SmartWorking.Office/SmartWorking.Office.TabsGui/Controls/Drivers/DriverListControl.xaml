@@ -21,36 +21,40 @@
             <Button Grid.Column="2" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_Search}"
                  Command="{Binding ApplyFilterCommand}" />
         </Grid>
-        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid>
+                <DataGrid SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
              ItemsSource="{Binding Items}">
-            <DataGrid.Resources>
-                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
-                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Driver.IsDeactive}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Driver.IsDeleted}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <!--Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_Id}"
+                    <DataGrid.Resources>
+                        <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Driver.IsDeactive}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Driver.IsDeleted}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <!--Debug only-->
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_Id}"
                      Binding="{Binding Driver.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy}, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <!--End Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_InternalName}"
+                        <!--End Debug only-->
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_InternalName}"
                      Binding="{Binding Driver.InternalName}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_Name}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_Name}"
                      Binding="{Binding Driver.Name}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_Surname}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_Surname}"
                      Binding="{Binding Driver.Surname}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_Phone}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_Phone}"
                      Binding="{Binding Driver.Phone}" />
-            </DataGrid.Columns>
-        </DataGrid>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
         <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
             <StackPanel Orientation="Horizontal">
                 <RadioButton GroupName="DriverListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DriverListControl_OnlyActivate}"

@@ -22,49 +22,53 @@
             <Button Grid.Column="2" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Search}"
                  Command="{Binding ApplyFilterCommand}" />
         </Grid>
-        <DataGrid Grid.Row="1" SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid>
+                <DataGrid SelectedItem="{Binding SelectedItem}" DataContext="{Binding Items}"
              ItemsSource="{Binding Items}">
-            <DataGrid.Resources>
-                <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
-                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Car.IsDeactive}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Car.IsDeleted}" Value="True">
-                            <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <!-- TODOTERAZ Liczba porządkowa
+                    <DataGrid.Resources>
+                        <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Car.IsDeactive}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Car.IsDeleted}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <!-- TODOTERAZ Liczba porządkowa
                 godzina zaladunku
                 numer wz'tki
                 numer rejestracyjny
                 imie i nazwisko kierowcy
                 ile
                 pompa-->
-                <!--Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Id}"
+                        <!--Debug only-->
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Id}"
                      Binding="{Binding DeliveryNote.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <!--End Debug only-->
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Number}"
+                        <!--End Debug only-->
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Number}"
                      Binding="{Binding DeliveryNote.Number}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Amount}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_Amount}"
                      Binding="{Binding DeliveryNote.Amount}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_DateOfArrival}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_DateOfArrival}"
                      Binding="{Binding DeliveryNote.DateOfArrival}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_CarId}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_CarId}"
                      Binding="{Binding CarAndDriver.Car.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_CarRegistrationNumber}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_CarRegistrationNumber}"
                      Binding="{Binding CarAndDriver.Car.RegistrationNumber}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_DriverId}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_DriverId}"
                      Binding="{Binding Driver.Id}" Visibility="{Binding Path=Data.MainViewModel.IsDebugMode, Source={StaticResource proxy},&#xD;&#xA;                                    Converter={StaticResource enumVisibilityConverter}, ConverterParameter={StaticResource StaticTrue}}" />
-                <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_DriverName}"
+                        <DataGridTextColumn Header="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_DriverName}"
                      Binding="{Binding Driver.InternalName}" />
-            </DataGrid.Columns>
-        </DataGrid>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
         <GroupBox Grid.Row="2" Visibility="{Binding FiltersVisibility, RelativeSource={RelativeSource  FindAncestor, AncestorType={x:Type UserControl}}}">
             <StackPanel Orientation="Horizontal">
                 <RadioButton GroupName="DeliveryNoteListItemsFilterGroupName" Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:DeliveryNoteListControl_OnlyActivate}"

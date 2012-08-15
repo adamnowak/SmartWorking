@@ -32,9 +32,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
       base.EditItemCommandExecute();
     }
 
-    protected override bool OnSaveItem()
+    protected override bool OnSavingItem()
     {
-      if (base.OnSaveItem())
+      if (base.OnSavingItem())
       {
         using (IContractorsService service = ServiceFactory.GetContractorsService())
         {

@@ -75,9 +75,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
       base.EditItemCommandExecute();
     }
 
-    protected override bool OnSaveItem()
+    protected override bool OnSavingItem()
     {
-      if (base.OnSaveItem())
+      if (base.OnSavingItem())
       {
         List<ValidationResult> res = new List<ValidationResult>();
         bool valid = Validator.TryValidateObject(Item.Recipe, new ValidationContext(Item.Recipe, null, null), res, true);

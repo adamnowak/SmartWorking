@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.ServiceModel;
 using SmartWorking.Office.Entities;
@@ -29,6 +30,8 @@ namespace SmartWorking.Office.Services.Hosting.Local
       {
         using (var ctx = new SmartWorkingEntities())
         {
+          
+
           List<DeliveryNote> result;
           //if (string.IsNullOrWhiteSpace(filter))
           //{

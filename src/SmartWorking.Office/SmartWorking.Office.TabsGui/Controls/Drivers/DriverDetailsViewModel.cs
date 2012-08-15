@@ -50,9 +50,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// Called when save item.
     /// </summary>
     /// <returns></returns>
-    protected override bool OnSaveItem()
+    protected override bool OnSavingItem()
     {
-      if (base.OnSaveItem())
+      if (base.OnSavingItem())
       {
         using (IDriversService service = ServiceFactory.GetDriversService())
         {

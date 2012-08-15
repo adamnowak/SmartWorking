@@ -31,9 +31,9 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
       base.EditItemCommandExecute();
     }
 
-    protected override bool OnSaveItem()
+    protected override bool OnSavingItem()
     {
-      if (base.OnSaveItem())
+      if (base.OnSavingItem())
       {
         using (IBuildingsService service = ServiceFactory.GetBuildingsService())
         {

@@ -58,30 +58,41 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       base.EditItemCommandExecute();
     }
 
-    protected override bool OnSaveItem()
+    public virtual void BeforeSavingItem()
     {
       if (Item != null)
       {
-        if (base.OnSaveItem())
-        {
-          Item.CarAndDriver = Cars.SelectedItem;
-          Item.Driver = Drivers.SelectedItem;
-          Item.DeliveryNote.DateDrawing = DateTime.Now;
+        Item.CarAndDriver = Cars.SelectedItem;
+        Item.Driver = Drivers.SelectedItem;
+        Item.DeliveryNote.DateDrawing = DateTime.Now;
+      }
+    }
 
+    protected override bool OnSavingItem()
+    {
+      
+
+      if (Item != null)
+      {
+        if (base.OnSavingItem())
+        {
           using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
           {
             Item.DeliveryNote = service.CreateOrUpdateDeliveryNote(Item.GetDeliveryNotePrimitiveWithReference());
           }
-
-          
-          
-        }
-        
+        }        
         return true;
       }
       return false;
     }
 
+    protected override void OnSavedItem()
+    {
+      if (MainViewModel.Configuration.PagesToPrint <= 0)
+      {
+        base.OnSavedItem();
+      }
+    }
     
 
 
@@ -190,7 +201,15 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       string errorCaption = "TODO!";
       try
       {
-        Save();
+        //Special for delivery note (avoids saving during next printing).
+        if (Item.DeliveryNote != null && Item.DeliveryNote.Id <= 0)
+        {
+          Save();
+        }
+        if (ItemReadyToPrint != null)
+        {
+          ItemReadyToPrint(this, EventArgs.Empty);
+        }
         
       }
       catch (FaultException<ExceptionDetail> f)
@@ -209,6 +228,77 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
         Cancel();
       }
     }
+
+    /// <summary>
+    /// Occurs when item is ready to print.
+    /// </summary>
+    public event EventHandler ItemReadyToPrint;
     #endregion //PrintItemCommand
+
+    #region CancelPringintItemCommand
+    private ICommand _cancelPringintItemCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand CancelPringintItemCommand
+    {
+      get
+      {
+        if (_cancelPringintItemCommand == null)
+          _cancelPringintItemCommand = new RelayCommand(CancelPringintItem, CanCancelPringintItem);
+        return _cancelPringintItemCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanCancelPringintItem()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void CancelPringintItem()
+    {
+      string errorCaption = "TODO!";
+      try
+      {        
+        if (ItemFinishedPrinting != null)
+        {
+          ItemFinishedPrinting(this, EventArgs.Empty);
+        }
+        base.OnSavedItem();
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+    /// <summary>
+    /// Occurs when printing is finished.
+    /// </summary>
+    public event EventHandler ItemFinishedPrinting;
+    #endregion //CancelPringintItemCommand
   }
 }

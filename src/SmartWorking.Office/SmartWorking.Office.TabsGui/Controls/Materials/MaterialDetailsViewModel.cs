@@ -39,13 +39,13 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
       base.EditItemCommandExecute();
     }
 
-    protected override bool OnSaveItem()
+    protected override bool OnSavingItem()
     {
       if (Item != null)
       {
         Item.Producer = Producers.SelectedItem;
         Item.Deliverer = Deliverers.SelectedItem;
-        if (base.OnSaveItem())
+        if (base.OnSavingItem())
         {
           using (IMaterialsService service = ServiceFactory.GetMaterialsService())
           {

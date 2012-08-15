@@ -153,13 +153,20 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
       string errorCaption = "str_SaveItem" + Name;
       try
       {
-        if (OnSaveItem())
+        BeforeSavingItem();
+        if (OnSavingItem())
         {
           if (ItemSaved != null)
           {
             ItemSaved(this, EventArgs.Empty);
           }
+          OnSavedItem();
         }
+        
+      }
+      catch (FaultException<List<ValidationResult>> lvr)
+      {
+        ShowError(errorCaption, lvr);
       }
       catch (FaultException<ExceptionDetail> f)
       {
@@ -177,15 +184,30 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     }
 
     /// <summary>
+    /// Do everything what should be done before save operation (sets properties... )
+    /// </summary>
+    public virtual void BeforeSavingItem()
+    {
+      
+    }
+
+    /// <summary>
+    /// Called when item was saved correctly.
+    /// </summary>
+    protected virtual void OnSavedItem()
+    {
+      EditingMode = EditingMode.Display;
+    }
+
+    /// <summary>
     /// Called when [save item].
     /// </summary>
     /// <returns></returns>
-    protected virtual bool OnSaveItem()
+    protected virtual bool OnSavingItem()
     {
       Validate();
       if (!HasErrors)
       {
-        EditingMode = EditingMode.Display;
         return true;
       }
       return false;

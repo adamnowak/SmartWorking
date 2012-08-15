@@ -27,12 +27,28 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
       OrderListViewModel = new OrderListViewModel(MainViewModel, OrderDetailsViewModel, ModalDialogService, ServiceFactory);
 
       OrderDetailsViewModel.DeliveryNoteDetailsViewModel.ItemSaved += new System.EventHandler(DeliveryNoteDetailsViewModel_ItemSaved);
+      OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnlyChanged += new System.EventHandler(DeliveryNoteDetailsViewModel_IsReadOnlyChanged);
     }
+
+    void DeliveryNoteDetailsViewModel_IsReadOnlyChanged(object sender, System.EventArgs e)
+    {
+      if (OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly)
+      {
+        Refresh();
+      }
+    }
+
+    
 
     void DeliveryNoteDetailsViewModel_ItemSaved(object sender, System.EventArgs e)
     {
-      Refresh();
+      if (MainViewModel.Configuration.PagesToPrint <= 0)
+      {
+        Refresh();
+      }
     }
+
+    
 
     /// <summary>
     /// Gets the car list view model.

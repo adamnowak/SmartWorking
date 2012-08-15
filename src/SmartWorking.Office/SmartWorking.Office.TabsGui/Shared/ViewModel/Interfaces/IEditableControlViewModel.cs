@@ -16,6 +16,11 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     event EventHandler ItemEdited;
 
     /// <summary>
+    /// Do everything what should be done before save operation (sets properties... )
+    /// </summary>
+    void BeforeSavingItem();
+
+    /// <summary>
     /// Gets the save command - command which save editing item.
     /// </summary>
     ICommand SaveItemCommand { get; }

@@ -155,7 +155,7 @@
                 <StackPanel Margin="0,0.49cm,0,0" Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal">
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Width="2.85cm" Height="1cm" Text="{Binding DeliveryNoteLoadingDate}"/>
+                            <TextBlock Width="2.85cm" Height="1cm" FontSize="12" Text="{Binding DeliveryNoteLoadingDate}"/>
                         </Border>
                         <Border Style="{StaticResource notCalledBorder}">
                             <TextBlock Width="2.85cm" Height="1cm" Text=""/>

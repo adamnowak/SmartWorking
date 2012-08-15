@@ -19,6 +19,7 @@ using SmartWorking.Office.Services.Factory.IIS;
 #else
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.PrimitiveEntities.MetaDates;
+using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Factory.Local;
 #endif
 using SmartWorking.Office.Services.Interfaces;
@@ -83,7 +84,107 @@ namespace SmartWorking.Office.TabsGui
 #endif
     }
 
-   
+    private void CreateInsertBackup(DBBackUpPackage dbBackUpPackage, string fileName)
+    {
+      try
+      {
+        List<string> lines = new List<string>();
+
+        lines.Add("USE [SmartWorking]");
+        lines.Add("GO");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[Recipes] ON");
+        foreach (RecipePrimitive primitive in dbBackUpPackage.RecipeList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[Recipes] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[Drivers] ON");
+        foreach (DriverPrimitive primitive in dbBackUpPackage.DriverList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[Drivers] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[Buildings] ON");
+        foreach (BuildingPrimitive primitive in dbBackUpPackage.BuildingList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[Buildings] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[Contractors] ON");
+        foreach (ContractorPrimitive primitive in dbBackUpPackage.ContractorList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[Contractors] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[Clients] ON");
+        foreach (ClientPrimitive primitive in dbBackUpPackage.ClientList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[Clients] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[ClientBuildings] ON");
+        foreach (ClientBuildingPrimitive primitive in dbBackUpPackage.ClientBuildingList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[ClientBuildings] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[Cars] ON");
+        foreach (CarPrimitive primitive in dbBackUpPackage.CarList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[Cars] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[Materials] ON");
+        foreach (MaterialPrimitive primitive in dbBackUpPackage.MaterialList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[Materials] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[RecipeComponents] ON");
+        foreach (RecipeComponentPrimitive primitive in dbBackUpPackage.RecipeComponentList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[RecipeComponents] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[Orders] ON");
+        foreach (OrderPrimitive primitive in dbBackUpPackage.OrderList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[Orders] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[MaterialStocks] ON");
+        foreach (MaterialStockPrimitive primitive in dbBackUpPackage.MaterialStockList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[MaterialStocks] OFF");
+
+        lines.Add("SET IDENTITY_INSERT [dbo].[DeliveryNotes] ON");
+        foreach (DeliveryNotePrimitive primitive in dbBackUpPackage.DeliveryNoteList)
+        {
+          lines.Add(primitive.GetDBInsertQuery());
+        }
+        lines.Add("SET IDENTITY_INSERT [dbo].[DeliveryNotes] OFF");
+
+        System.IO.File.WriteAllLines(fileName, lines);
+      }
+      catch (Exception)
+      {
+        //TODO:
+      }
+      
+    }
 
 
     /// <summary>
@@ -273,7 +374,65 @@ namespace SmartWorking.Office.TabsGui
 
     public SmartWorkingConfiguration Configuration { get; private set; }
 
+    #region CreateDBDumpCommand
+    private ICommand _createDBDumpCommand;
 
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand CreateDBDumpCommand
+    {
+      get
+      {
+        if (_createDBDumpCommand == null)
+          _createDBDumpCommand = new RelayCommand(CreateDBDump, CanCreateDBDump);
+        return _createDBDumpCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanCreateDBDump()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void CreateDBDump()
+    {
+      string errorCaption = "TODO!";
+      try
+      {
+        IDBService dbService = ServiceFactory.GetDBService();
+        DBBackUpPackage test = dbService.GetBackUpData();
+        CreateInsertBackup(test, @"dump" + DateTime.Now.ToFileTime() + ".txt");
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+    #endregion //CreateDBDumpCommand
 
   }
 }

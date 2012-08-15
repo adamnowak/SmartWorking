@@ -61,7 +61,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
       base.EditItemCommandExecute();
     }
 
-    protected override bool OnSaveItem()
+    protected override bool OnSavingItem()
     {
       if (BuildingListToAddViewModel != null && BuildingListToAddViewModel.EditingViewModel != null)
       {
@@ -79,7 +79,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
         BuildingListToAddViewModel.EditingViewModel.EditingMode = EditingMode.Display;
       }
 
-      if (base.OnSaveItem())
+      if (base.OnSavingItem())
       {
 
         using (IClientsService service = ServiceFactory.GetClientsService())

@@ -51,7 +51,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    void EditingViewModel_ItemSaved(object sender, System.EventArgs e)
+    protected virtual void EditingViewModel_ItemSaved(object sender, System.EventArgs e)
     {
       Refresh();
     }

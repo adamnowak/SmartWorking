@@ -227,7 +227,7 @@
     <Compile Include="Controls\Materials\MaterialListControl.xaml.cs">
       <DependentUpon>MaterialListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Orders\OrderDetailsDataContextForDocument.cs" />
+    <Compile Include="Controls\DeliveryNotes\DeliveryNoteDataContextForDocument.cs" />
     <Compile Include="Controls\Orders\OrderSumaryViewModel.cs" />
     <Compile Include="Controls\Orders\OrderSumaryControl.xaml.cs">
       <DependentUpon>OrderSumaryControl.xaml</DependentUpon>

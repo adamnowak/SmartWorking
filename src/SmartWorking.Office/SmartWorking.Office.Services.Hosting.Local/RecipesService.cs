@@ -97,6 +97,25 @@ namespace SmartWorking.Office.Services.Hosting.Local
       }
     }
 
+    public RecipePackage GetRecipePackage(int recipeId)
+    {
+      try
+      {
+        using (var ctx = new SmartWorkingEntities())
+        {
+          Recipe result =
+            ctx.Recipes.Include("RecipeComponents.Material.Producer").Include("RecipeComponents.Material.Deliverer").
+              Where(x => x.Id == recipeId).FirstOrDefault();
+
+          return (result != null) ? result.GetRecipesPackage() : null;
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
     public void CreateOrUpdateRecipePackage(RecipePackage recipePackage)
     {
       try

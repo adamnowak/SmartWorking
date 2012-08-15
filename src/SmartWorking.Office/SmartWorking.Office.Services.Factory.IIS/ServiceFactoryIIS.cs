@@ -205,6 +205,11 @@ namespace SmartWorking.Office.Services.Factory.IIS
       return service;
     }
 
+    public IDBService GetDBService()
+    {
+      throw new NotImplementedException();
+    }
+
     #endregion
   }
 }
