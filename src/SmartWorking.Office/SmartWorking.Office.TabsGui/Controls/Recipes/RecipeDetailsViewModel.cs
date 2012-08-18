@@ -105,36 +105,19 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
       if (base.OnRefresh())
       {
         LoadAllMaterials();
-        SetMaterialsToAdd();
         return true;
       }
       return false;
     }
 
-    private void SetMaterialsToAdd()
-    {
-      if (AllMaterials != null)
-      {
-        if (RecipeComponentListViewModel.Items != null && RecipeComponentListViewModel.Items.Items != null)
-        {
-          MaterialListToAddViewModel.Items.LoadItems(
-            AllMaterials.Where(
-              x =>
-              !RecipeComponentListViewModel.Items.Items.Select(y => y.MaterialAndContractors.Material.Id).Contains(
-                x.Material.Id)));
-        }
-        else
-        {
-          MaterialListToAddViewModel.Items.LoadItems(AllMaterials);
-        }
-      }
-    }
+   
 
     private void LoadAllMaterials()
     {
       using (IMaterialsService service = ServiceFactory.GetMaterialsService())
       {
-        AllMaterials = service.GetMaterialAndContractorsPackageList(MaterialListToAddViewModel.Filter, MaterialListToAddViewModel.ListItemsFilter);
+        MaterialListToAddViewModel.Items.LoadItems(
+          service.GetMaterialAndContractorsPackageList(MaterialListToAddViewModel.Filter, MaterialListToAddViewModel.ListItemsFilter));
       }
     }
 
@@ -154,7 +137,6 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
       {
         RecipeComponentListViewModel.Items.LoadItems(null);
       }
-      SetMaterialsToAdd();
     }
 
     #region AddMaterialCommand
@@ -184,7 +166,10 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
     /// </returns>
     private bool CanAddMaterial()
     {
-      return !IsReadOnly && MaterialListToAddViewModel.Items.SelectedItem != null;
+      return !IsReadOnly && MaterialListToAddViewModel.Items.SelectedItem != null &&
+        MaterialListToAddViewModel.Items.SelectedItem.Material != null &&
+        !RecipeComponentListViewModel.Items.Items.Where(x => x.MaterialAndContractors != null && x.MaterialAndContractors.Material != null)
+          .Select(x => x.MaterialAndContractors.Material.Id).Contains(MaterialListToAddViewModel.Items.SelectedItem.Material.Id);
     }
 
     /// <summary>
@@ -204,7 +189,6 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
             };
           RecipeComponentListViewModel.Items.Items.Add(newRecipeComponentAndMaterialPackage);
           RecipeComponentListViewModel.Items.SelectedItem = newRecipeComponentAndMaterialPackage;
-          SetMaterialsToAdd();
         }
       }
       catch (FaultException<ExceptionDetail> f)
@@ -264,7 +248,6 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
       try
       {
         RecipeComponentListViewModel.Items.Items.Remove(RecipeComponentListViewModel.Items.SelectedItem);
-        SetMaterialsToAdd();
       }
       catch (FaultException<ExceptionDetail> f)
       {

@@ -30,10 +30,10 @@
                         <View:BindingProxy x:Key="proxy" Data="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
                         <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Car.IsDeactive}" Value="True">
+                                <DataTrigger Binding="{Binding DeliveryNote.IsDeactive}" Value="True">
                                     <Setter Property="Background" Value="{StaticResource dataGridDeactiveRowBackground}" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Car.IsDeleted}" Value="True">
+                                <DataTrigger Binding="{Binding DeliveryNote.IsDeleted}" Value="True">
                                     <Setter Property="Background" Value="{StaticResource dataGridDeletedRowBackground}" />
                                 </DataTrigger>
                             </Style.Triggers>

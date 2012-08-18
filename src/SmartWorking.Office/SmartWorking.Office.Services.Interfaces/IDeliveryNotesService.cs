@@ -54,17 +54,18 @@ namespace SmartWorking.Office.Services.Interfaces
       BodyStyle = WebMessageBodyStyle.Wrapped)]
     DeliveryNotePrimitive CreateOrUpdateDeliveryNote(DeliveryNotePrimitive deliveryNote);
 
-    /// <summary>
-    /// Deletes the <see cref="DeliveryNote"/>.
-    /// </summary>
-    /// <param name="deliveryNote">The delivery note which will be canceled.</param>
-    /// <remarks>
-    /// <see cref="DeliveryNote"/> cannot be deleted.
-    /// </remarks>
+
     [OperationContract]
-    [WebInvoke(Method = "POST", UriTemplate = "/CanceledDeliveryNote",
+    [WebInvoke(Method = "POST", UriTemplate = "/DeactiveDeliveryNote",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void CanceledDeliveryNote(DeliveryNotePrimitive deliveryNote);
+    void DeactiveDeliveryNote(DeliveryNotePrimitive deliveryNote);
+
+
+    [OperationContract]
+    [WebInvoke(Method = "POST", UriTemplate = "/ActiveDeliveryNote",
+          RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+      BodyStyle = WebMessageBodyStyle.Wrapped)]
+    void ActiveDeliveryNote(DeliveryNotePrimitive deliveryNote);
   }
 }

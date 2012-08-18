@@ -136,6 +136,12 @@
 
 
     <Style x:Key="horizontalMainTabControl" TargetType="{x:Type TabControl}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsActionExecuting}" Value="True">
+                <Setter Property="IsEnabled" Value="False" />
+                <Setter Property="Opacity" Value="0.5" />
+            </DataTrigger>
+        </Style.Triggers>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabControl">

@@ -326,6 +326,19 @@
                                     </Button>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Command="{Binding OrderDetailsViewModel.PrintAgainDeliveryNoteItemCommand}" Content="PrintAgain">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" />
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                    </Button>
+                                    
+                                    
                                     <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.AddItemCommand}"
                                              Content="{lex:LocText SmartWorking.Office.TabsGui:Resources:SaleGroupControl_Add}">
                                         <Button.Visibility>
@@ -384,8 +397,21 @@
                                             </MultiBinding>
                                         </Button.Visibility>
                                     </Button>
-                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.ChangeItemDeletedFlagCommand}"
-                                             IsEnabled="{Binding IsReadOnly}">
+                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.ChangeItemDeactivatedFlagCommand}"
+                                             IsEnabled="{Binding IsReadOnly}" Content="Dectivate">
+                                        <Button.Visibility>
+                                            <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding Path="OrderListViewModel.IsPreparingDelivery" />                                                   
+                                                    <Binding Path="OrderDetailsViewModel.IsReadOnly" />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.Item.DeliveryNote.IsDeactive" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </Button.Visibility>
+                                    </Button>
+                                    <Button Command="{Binding OrderDetailsViewModel.DeliveryNoteListViewModel.ChangeItemDeactivatedFlagCommand}"
+                                             IsEnabled="{Binding IsReadOnly}" Content="Activate">
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
                                                 <MultiBinding.Bindings>
@@ -394,17 +420,10 @@
                                                              ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
                                                     <Binding Path="OrderDetailsViewModel.IsReadOnly" />
                                                     <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly" />
+                                                    <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.Item.DeliveryNote.IsDeactive" />
                                                 </MultiBinding.Bindings>
                                             </MultiBinding>
-                                        </Button.Visibility>
-                                        <Button.Content>
-                                            <MultiBinding Converter="{StaticResource comparingMultiConverter}">
-                                                <Binding Path="OrderDetailsViewModel.DeliveryNoteDetailsViewModel.Item.DeliveryNote.IsDeleted" />
-                                                <Binding Source="{StaticResource StaticFalse}" />
-                                                <Binding Source="{StaticResource StaticStringUndelete}" />
-                                                <Binding Source="{StaticResource StaticStringDelete}" />
-                                            </MultiBinding>
-                                        </Button.Content>
+                                        </Button.Visibility>                                       
                                     </Button>
                                 </StackPanel>
                             </Grid>

@@ -70,8 +70,6 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 
     protected override bool OnSavingItem()
     {
-      
-
       if (Item != null)
       {
         if (base.OnSavingItem())
@@ -94,11 +92,6 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       }
     }
     
-
-
-    
-    
-
     protected override bool OnRefresh()
     {
       LoadCars();

@@ -15,7 +15,12 @@
         </StackPanel>
         <TabControl Grid.Row="1" Style="{StaticResource verticalTabControl}"  TabStripPlacement="Left" x:Name="settingsTabControl">
             <TabItem Header="{Binding Name}" DataContext="{Binding GeneralViewModel}">
-                Tutaj będą ustawienia ogólne
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Command="{Binding CreateDBDumpCommand}" Content="BackUp"  />
+                </Grid>
             </TabItem>
             <TabItem Header="{Binding Name}" DataContext="{Binding UsersViewModel}"
                      Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}">

@@ -143,6 +143,7 @@
       <DependentUpon>BuildingListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Buildings\BuildingListViewModel.cs" />
+    <Compile Include="Shared\ViewModel\AsyncDelegateCommand.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\ICustomNotifyDataErrorInfo.cs" />
     <Compile Include="Controls\Clients\ClientBuildingDetailsViewModel.cs" />
     <Compile Include="Controls\Clients\ClientBuildingDetailsControl.xaml.cs">

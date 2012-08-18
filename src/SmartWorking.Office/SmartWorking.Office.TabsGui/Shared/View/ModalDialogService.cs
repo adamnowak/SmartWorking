@@ -11,6 +11,8 @@ namespace SmartWorking.Office.TabsGui.Shared.View
 {
   public class ModalDialogService : IModalDialogService
   {
+    
+
     #region MessageBox
 
     /// <summary>
@@ -31,6 +33,8 @@ namespace SmartWorking.Office.TabsGui.Shared.View
       var viewModel = new MessageBoxViewModel(modalDialogService, serviceFactory, icon, caption, message, button, info);
       return MessageBoxHelper<MessageBoxClass>.ShowDialog(viewModel);
     }
+
+    public IMainViewModel MainViewModel { get;  set; }
 
     #endregion
   }

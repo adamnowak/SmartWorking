@@ -174,7 +174,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Deletes the <see cref="DeliveryNote"/>.
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be canceled.</param>
-    public void CanceledDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
+    public void ActiveDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
     {
       try
       {
@@ -190,7 +190,39 @@ namespace SmartWorking.Office.Services.Hosting.Local
             throw new Exception("Only exists delivery note can be canceled.");
           }
 
-          deliveryNote.Canceled = DateTime.Now;
+          deliveryNote.Deactivated = null;
+          context.DeliveryNotes.ApplyCurrentValues(deliveryNote);
+
+          context.SaveChanges();
+        }
+      }
+      catch (Exception e)
+      {
+        throw new FaultException<ExceptionDetail>(new ExceptionDetail(e), e.Message);
+      }
+    }
+
+    /// <summary>
+    /// Deletes the <see cref="DeliveryNote"/>.
+    /// </summary>
+    /// <param name="deliveryNote">The delivery note which will be canceled.</param>
+    public void DeactiveDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
+    {
+      try
+      {
+        using (SmartWorkingEntities context = new SmartWorkingEntities())
+        {
+          DeliveryNote deliveryNote = deliveryNotePrimitive.GetEntity();
+
+          DeliveryNote existingObject = context.DeliveryNotes.Where(x => x.Id == deliveryNote.Id).FirstOrDefault();
+
+          //no record of this item in the DB, item being passed in has a PK
+          if (existingObject == null)
+          {
+            throw new Exception("Only exists delivery note can be canceled.");
+          }
+
+          deliveryNote.Deactivated = DateTime.Now;
           context.DeliveryNotes.ApplyCurrentValues(deliveryNote);          
 
           context.SaveChanges();          

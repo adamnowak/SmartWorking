@@ -437,6 +437,63 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
     }
     #endregion //DocumentPaginatorSource
 
-    
+    #region PrintAgainDeliveryNoteItemCommand
+    private ICommand _printAgainDeliveryNoteItemCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand PrintAgainDeliveryNoteItemCommand
+    {
+      get
+      {
+        if (_printAgainDeliveryNoteItemCommand == null)
+          _printAgainDeliveryNoteItemCommand = new RelayCommand(PrintAgainDeliveryNoteItem, CanPrintAgainDeliveryNoteItem);
+        return _printAgainDeliveryNoteItemCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanPrintAgainDeliveryNoteItem()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void PrintAgainDeliveryNoteItem()
+    {
+      string errorCaption = "TODO!";
+      try
+      {
+        SetDocumentPaginatorSource();
+        IsDeliveryNotePreview = true;
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+    }
+    #endregion //PrintAgainDeliveryNoteItemCommand
   }
 }

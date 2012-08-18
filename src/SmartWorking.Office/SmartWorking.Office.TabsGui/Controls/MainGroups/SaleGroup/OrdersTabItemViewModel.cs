@@ -28,6 +28,15 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
 
       OrderDetailsViewModel.DeliveryNoteDetailsViewModel.ItemSaved += new System.EventHandler(DeliveryNoteDetailsViewModel_ItemSaved);
       OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnlyChanged += new System.EventHandler(DeliveryNoteDetailsViewModel_IsReadOnlyChanged);
+      OrderDetailsViewModel.DeliveryNoteListViewModel.ItemDeactivatedFlagChanged += new System.EventHandler(DeliveryNoteListViewModel_ItemDeactivatedFlagChanged);
+    }
+
+    void DeliveryNoteListViewModel_ItemDeactivatedFlagChanged(object sender, System.EventArgs e)
+    {
+      if (OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnly)
+      {
+        Refresh();
+      }
     }
 
     void DeliveryNoteDetailsViewModel_IsReadOnlyChanged(object sender, System.EventArgs e)

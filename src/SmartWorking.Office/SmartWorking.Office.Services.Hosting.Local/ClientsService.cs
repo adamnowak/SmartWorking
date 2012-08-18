@@ -65,18 +65,24 @@ namespace SmartWorking.Office.Services.Hosting.Local
       {
         using (var ctx = new SmartWorkingEntities())
         {
+          
           List<Client> result =
            (string.IsNullOrWhiteSpace(filter))
              ? (listItemsFilterValue == ListItemsFilterValues.All)
-                 ? ctx.Clients.Include("ClientBuildings.Building").ToList()
+                 ? ctx.Clients.ToList()
                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                     ? ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue).ToList()
-                     : ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
+                     ? ctx.Clients.Where(x => !x.Deleted.HasValue).ToList()
+                     : ctx.Clients.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue).ToList()
              : (listItemsFilterValue == ListItemsFilterValues.All)
-                 ? ctx.Clients.Include("ClientBuildings.Building").Where(x => (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
+                 ? ctx.Clients.Where(x => (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
                  : (listItemsFilterValue == ListItemsFilterValues.IncludeDeactive)
-                     ? ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
-                     : ctx.Clients.Include("ClientBuildings.Building").Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList();
+                     ? ctx.Clients.Where(x => !x.Deleted.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList()
+                     : ctx.Clients.Where(x => !x.Deleted.HasValue && !x.Deactivated.HasValue && (x.InternalName.Contains(filter) || x.Name.Contains(filter))).ToList();
+
+          List<int> clientIds = result.Select(x => x.Id).ToList();
+
+          List<ClientBuilding> clientBuildings =
+            ctx.ClientBuildings.Include("Building").Where(cb => clientIds.Contains(cb.Client.Id) && !cb.Deleted.HasValue && cb.Building != null && !cb.Building.Deleted.HasValue).ToList();
           return result.Select(x => x.GetClientAndBuildingsPackage()).ToList();
         }
       }
@@ -128,7 +134,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
           //Item was retrieved, and the item passed has a valid ID, do an update
           else
           {
-            List<ClientBuildingPrimitive> existingClientBuildings = existingObject.ClientBuildings.Select(x => x.GetPrimitive()).ToList();
+            List<ClientBuildingPrimitive> existingClientBuildings = existingObject.ClientBuildings.Where(x => !x.IsDeleted).Select(x => x.GetPrimitive()).ToList();
             List<ClientBuildingPrimitive> newClientBuildings = clientAndBuildingsPackage.GetClientBuildingListWithReference().ToList();
             List<ClientBuildingPrimitive> theSameElements = newClientBuildings.Where(x => existingClientBuildings.Select(y => y.Building_Id).Contains(x.Building_Id)).ToList();
 
@@ -144,8 +150,9 @@ namespace SmartWorking.Office.Services.Hosting.Local
               
               foreach (ClientBuilding clientBuldingToDelete in clientBuildingListToDelete)
               {
-                //context.ClientBuildings.Where(x => x.Id == clientBuldingToDelete)
-                context.ClientBuildings.DeleteObject(clientBuldingToDelete);
+
+                clientBuldingToDelete.Deleted = DateTime.Now;
+                //context.ClientBuildings.DeleteObject(clientBuldingToDelete);
               }
             }
 

@@ -64,12 +64,14 @@ namespace SmartWorking.Office.TabsGui
     public MainWindowViewModel(IModalDialogService modalDialogService, IServiceFactory serviceFactory)
       : base(null, modalDialogService, serviceFactory)
     {
-      SaleGroupViewModel = new SaleGroupViewModel(this, ModalDialogService, ServiceFactory);
-      AdministrationGroupViewModel = new AdministrationGroupViewModel(this, ModalDialogService, ServiceFactory);
-      SettingsGroupViewModel = new SettingsGroupViewModel(this, ModalDialogService, ServiceFactory);
-      ReportsGroupViewModel = new ReportsGroupViewModel(this, ModalDialogService, ServiceFactory);
-      IsBlockedAccessLevel = false; 
       MainViewModel = this;
+      ModalDialogService.MainViewModel = MainViewModel;
+      SaleGroupViewModel = new SaleGroupViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      AdministrationGroupViewModel = new AdministrationGroupViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      SettingsGroupViewModel = new SettingsGroupViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      ReportsGroupViewModel = new ReportsGroupViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      IsBlockedAccessLevel = false; 
+      
       AccessLevel = AccessLevels.AdministratorLevel;//.WOSLevel;
       IsDebugMode = false;
       LocalizeDictionary.Instance.Culture = new CultureInfo("pl-PL");
@@ -84,107 +86,7 @@ namespace SmartWorking.Office.TabsGui
 #endif
     }
 
-    private void CreateInsertBackup(DBBackUpPackage dbBackUpPackage, string fileName)
-    {
-      try
-      {
-        List<string> lines = new List<string>();
-
-        lines.Add("USE [SmartWorking]");
-        lines.Add("GO");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Recipes] ON");
-        foreach (RecipePrimitive primitive in dbBackUpPackage.RecipeList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Recipes] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Drivers] ON");
-        foreach (DriverPrimitive primitive in dbBackUpPackage.DriverList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Drivers] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Buildings] ON");
-        foreach (BuildingPrimitive primitive in dbBackUpPackage.BuildingList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Buildings] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Contractors] ON");
-        foreach (ContractorPrimitive primitive in dbBackUpPackage.ContractorList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Contractors] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Clients] ON");
-        foreach (ClientPrimitive primitive in dbBackUpPackage.ClientList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Clients] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[ClientBuildings] ON");
-        foreach (ClientBuildingPrimitive primitive in dbBackUpPackage.ClientBuildingList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[ClientBuildings] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Cars] ON");
-        foreach (CarPrimitive primitive in dbBackUpPackage.CarList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Cars] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Materials] ON");
-        foreach (MaterialPrimitive primitive in dbBackUpPackage.MaterialList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Materials] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[RecipeComponents] ON");
-        foreach (RecipeComponentPrimitive primitive in dbBackUpPackage.RecipeComponentList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[RecipeComponents] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Orders] ON");
-        foreach (OrderPrimitive primitive in dbBackUpPackage.OrderList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Orders] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[MaterialStocks] ON");
-        foreach (MaterialStockPrimitive primitive in dbBackUpPackage.MaterialStockList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[MaterialStocks] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[DeliveryNotes] ON");
-        foreach (DeliveryNotePrimitive primitive in dbBackUpPackage.DeliveryNoteList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[DeliveryNotes] OFF");
-
-        System.IO.File.WriteAllLines(fileName, lines);
-      }
-      catch (Exception)
-      {
-        //TODO:
-      }
-      
-    }
+    
 
 
     /// <summary>
@@ -362,6 +264,78 @@ namespace SmartWorking.Office.TabsGui
         RaisePropertyChanged(StatusTextColorPropertyName);
       }
     }
+
+   
+
+    #region ProgressText
+    /// <summary>
+    /// The <see cref="ProgressText" /> property's name.
+    /// </summary>
+    public const string ProgressTextPropertyName = "ProgressText";
+
+    private string _progressText;
+
+    /// <summary>
+    /// Gets the ProgressText property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public string ProgressText
+    {
+      get
+      {
+        return _progressText;
+      }
+
+      set
+      {
+        if (_progressText == value)
+        {
+          return;
+        }
+        _progressText = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(ProgressTextPropertyName);
+      }
+    }
+    #endregion //ProgressText
+
+
+    #region IsActionExecuting
+    /// <summary>
+    /// The <see cref="IsActionExecuting" /> property's name.
+    /// </summary>
+    public const string IsActionExecutingPropertyName = "IsActionExecuting";
+
+    private bool _isActionExecuting;
+
+    /// <summary>
+    /// Gets the IsActionExecuting property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public bool IsActionExecuting
+    {
+      get
+      {
+        return _isActionExecuting;
+      }
+
+      set
+      {
+        if (_isActionExecuting == value)
+        {
+          return;
+        }
+        _isActionExecuting = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(IsActionExecutingPropertyName);
+      }
+    }
+    #endregion //IsActionExecuting
+
     #endregion //StatusTextColor
 
     /// <summary>
@@ -374,65 +348,7 @@ namespace SmartWorking.Office.TabsGui
 
     public SmartWorkingConfiguration Configuration { get; private set; }
 
-    #region CreateDBDumpCommand
-    private ICommand _createDBDumpCommand;
-
-    /// <summary>
-    /// Gets the //TODO: command.
-    /// </summary>
-    /// <remarks>
-    /// Opens dialog to //TODO:.
-    /// </remarks>
-    public ICommand CreateDBDumpCommand
-    {
-      get
-      {
-        if (_createDBDumpCommand == null)
-          _createDBDumpCommand = new RelayCommand(CreateDBDump, CanCreateDBDump);
-        return _createDBDumpCommand;
-      }
-    }
-
-    /// <summary>
-    /// Determines whether this instance an //TODO:.
-    /// </summary>
-    /// <returns>
-    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
-    /// </returns>
-    private bool CanCreateDBDump()
-    {
-      return true;
-    }
-
-    /// <summary>
-    /// //TODO:.
-    /// </summary>
-    private void CreateDBDump()
-    {
-      string errorCaption = "TODO!";
-      try
-      {
-        IDBService dbService = ServiceFactory.GetDBService();
-        DBBackUpPackage test = dbService.GetBackUpData();
-        CreateInsertBackup(test, @"dump" + DateTime.Now.ToFileTime() + ".txt");
-      }
-      catch (FaultException<ExceptionDetail> f)
-      {
-        ShowError(errorCaption, f);
-        Cancel();
-      }
-      catch (CommunicationException c)
-      {
-        ShowError(errorCaption, c);
-        Cancel();
-      }
-      catch (Exception e)
-      {
-        ShowError(errorCaption, e);
-        Cancel();
-      }
-    }
-    #endregion //CreateDBDumpCommand
+    
 
   }
 }

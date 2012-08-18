@@ -5,6 +5,9 @@
         <FixedPage  Height="29.7cm" Width="21cm" xml:lang="pl-PL" >
 
 
+            <!--<FixedPage.Background>
+                <ImageBrush ImageSource="ToTest.jpg"  />
+            </FixedPage.Background>-->
 
             <FixedPage.Resources>
                 <Style x:Key="notCalledBorder" TargetType="{x:Type Border}">
@@ -14,15 +17,16 @@
 
                 <Style TargetType="TextBlock">
                     <Setter Property="TextWrapping" Value="Wrap"/>
-                    <Setter Property="Padding" Value="2" />
-
-                    <Setter Property="Opacity" Value="0.5" />
-                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Padding" Value="5" />
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="LineStackingStrategy" Value="MaxHeight" />
                 </Style>
             </FixedPage.Resources>
 
 
-            <StackPanel Margin="-4.02cm,1.08cm,0,0">
+            <StackPanel Margin="-4.22cm,1.38cm,0,0">
                 <StackPanel.RenderTransform>
                     <TransformGroup>
                         <RotateTransform  Angle="90" />
@@ -31,6 +35,7 @@
 
                     </TransformGroup>
                 </StackPanel.RenderTransform>
+
                 <StackPanel Orientation="Horizontal">
                     <Border Style="{StaticResource notCalledBorder}">
                         <TextBlock Width="11.25cm" Height="3.04cm" Text="{Binding Client}" />
@@ -55,7 +60,23 @@
                         <TextBlock Width="3.9cm" Height="0.95cm" Text="{Binding RecipeCode}"/>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="2.3cm" Height="0.95cm" Text="{Binding RecipeConcreteClass}"/>
+                        <TextBlock Width="2.3cm" Height="0.95cm" Text="{Binding RecipeConcreteClass}">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RecipeConcreteClassMoreSpace}" Value="True">
+                                            <Setter Property="TextBlock.Padding" Value="2"/>
+                                            <Setter Property="LineHeight" Value="16" />
+                                            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+                                        </DataTrigger>
+                                         <DataTrigger Binding="{Binding RecipeConcreteClassMoreSpace}" Value="False">
+                                            <Setter Property="TextBlock.Padding" Value="5"/>                                            
+                                            <Setter Property="LineStackingStrategy" Value="MaxHeight" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
                         <TextBlock Width="3.0cm" Height="0.95cm" Text="{Binding RecipeStrengthClass}"/>
@@ -77,10 +98,10 @@
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
                         <TextBlock Width="3.4cm" Height="0.95cm" Text=""/>
-			<!-- Klasa ekspozycji -->
+                        <!-- Klasa ekspozycji -->
                     </Border>
                     <Border Style="{StaticResource notCalledBorder}">
-                        <TextBlock Width="2cm" Height="0.95cm" Text="{Binding DeliveryNotePump}"/>
+                        <TextBlock Width="2cm" Height="0.95cm" Text="{Binding OrderPump}"/>
                     </Border>
                 </StackPanel>
                 <StackPanel Margin="0,0.41cm,0,0" Orientation="Horizontal">
@@ -137,7 +158,7 @@
                             <TextBlock Width="4.4cm" Height="0.8cm" Text="{Binding DeliveryNoteCar}"/>
                         </Border>
                         <Border Style="{StaticResource notCalledBorder}">
-                            <TextBlock Margin="8.6cm,0,0,0" Width="2.85cm" Height="0.8cm" Text="{Binding DeliveryNoteDriver}"/>
+                            <TextBlock Width="11.4cm" Height="0.8cm" Text="{Binding DeliveryNoteDriver}"/>
                         </Border>
 
                         <Border Style="{StaticResource notCalledBorder}" Margin="3.1cm,0,0,0">
@@ -152,7 +173,7 @@
                         </Border>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Margin="0,0.49cm,0,0" Orientation="Horizontal">
+                <StackPanel Margin="0,0.19cm,0,0" Orientation="Horizontal">
                     <StackPanel Orientation="Horizontal">
                         <Border Style="{StaticResource notCalledBorder}">
                             <TextBlock Width="2.85cm" Height="1cm" FontSize="12" Text="{Binding DeliveryNoteLoadingDate}"/>

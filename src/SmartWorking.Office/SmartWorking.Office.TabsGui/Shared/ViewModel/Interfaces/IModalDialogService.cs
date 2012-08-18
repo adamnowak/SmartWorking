@@ -26,5 +26,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
                                     string caption, string message, MessageBoxButton button, string info);
 
     #endregion
+
+    IMainViewModel MainViewModel { get; set; }
   }
 }

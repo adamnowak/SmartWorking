@@ -108,7 +108,7 @@ namespace SmartWorking.Office.Gui.ViewModel.DeliveryNotes
       {
         using (IDeliveryNotesService deliveryNotesService = ServiceFactory.GetDeliveryNotesService())
         {
-          deliveryNotesService.CanceledDeliveryNote(SelectableDeliveryNote.SelectedItem.DeliveryNote);
+          deliveryNotesService.DeactiveDeliveryNote(SelectableDeliveryNote.SelectedItem.DeliveryNote);
         }
         LoadDeliveryNotes(string.Empty, ShowCanceledDeliveryNotes);
       }

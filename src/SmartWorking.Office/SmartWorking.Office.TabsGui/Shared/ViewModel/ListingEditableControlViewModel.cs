@@ -329,6 +329,79 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     { }
     #endregion
 
+    #region ChangeItemDeactivatedFlagCommand
+    private ICommand _changeItemDeactivatedFlagCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand ChangeItemDeactivatedFlagCommand
+    {
+      get
+      {
+        if (_changeItemDeactivatedFlagCommand == null)
+          _changeItemDeactivatedFlagCommand = new RelayCommand(ChangeItemDeactivatedFlag, CanChangeItemDeactivatedFlag);
+        return _changeItemDeactivatedFlagCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanChangeItemDeactivatedFlag()
+    {
+      return EditingViewModel.IsReadOnly && Items.SelectedItem != null;
+    }
+
+    public event EventHandler ItemDeactivatedFlagChanged;
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void ChangeItemDeactivatedFlag()
+    {
+      string errorCaption = "TODO!";
+      try
+      {
+        if (OnItemDeactivatedFlagChanged())
+        {
+          if (ItemDeactivatedFlagChanged != null)
+          {
+            ItemDeactivatedFlagChanged(this, EventArgs.Empty);
+          }
+        }
+      }
+      catch (FaultException<ExceptionDetail> f)
+      {
+        ShowError(errorCaption, f);
+        Cancel();
+      }
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
+
+      
+    }
+
+    protected virtual bool OnItemDeactivatedFlagChanged()
+    {
+      return true;
+    }
+    #endregion //ChangeItemDeactivatedFlagCommand
+
     #region ChangeItemDeletedFlagCommand
     private ICommand _changeItemDeletedFlagCommand;
     /// <summary>

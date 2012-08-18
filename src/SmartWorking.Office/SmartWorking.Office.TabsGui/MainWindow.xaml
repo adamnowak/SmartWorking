@@ -12,12 +12,34 @@
     <Window.DataContext>
         <TabsGui:MainWindowViewModel  />
     </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="progressGrid" TargetType="{x:Type Grid}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActionExecuting}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />               
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsActionExecuting}" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid >
+        
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid Background="LightGreen" Style="{StaticResource progressGrid}">            
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ProgressBar IsIndeterminate="True" Height="50" Width="400" />
+                <TextBlock  Text="{Binding ProgressText}"/>
+                
+            </StackPanel>
+        </Grid>
         <TabControl Style="{StaticResource horizontalMainTabControl}" x:Name="mainTabControl" SelectedItem="{Binding SelectedTab}" IsSynchronizedWithCurrentItem="True">
+           
+        <!--<TabControl Style="{StaticResource horizontalMainTabControl}" x:Name="mainTabControl" SelectedItem="{Binding SelectedTab}" IsSynchronizedWithCurrentItem="True">-->
             <i:Interaction.Triggers>
                 <i:EventTrigger  EventName="SelectionChanged">
                     <cmd:EventToCommand Command="{Binding TabChangedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
