@@ -1,4 +1,8 @@
-﻿using SmartWorking.Office.PrimitiveEntities;
+﻿using System;
+using System.ServiceModel;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
@@ -23,13 +27,33 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
 
     protected override void OnLoadItems()
     {
-
       using (IReportsService service = ServiceFactory.GetReportsService())
       {
         Items.LoadItems(service.GetDeliveryNoteReportPackageList());
-
       }
-
     }
+
+    protected override bool OnItemDeactivatedFlagChanged()
+    {
+      if (Items != null && Items.SelectedItem != null && base.OnItemDeactivatedFlagChanged())
+      {
+        using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
+        {
+          if (Items.SelectedItem.DeliveryNote.IsDeactive)
+          {
+            service.ActiveDeliveryNote(Items.SelectedItem.DeliveryNote);
+          }
+          else
+          {
+            service.DeactiveDeliveryNote(Items.SelectedItem.DeliveryNote);
+          }
+        }
+        Refresh();
+        return true;
+      }
+      return false;
+    }
+
+    
   }
 }

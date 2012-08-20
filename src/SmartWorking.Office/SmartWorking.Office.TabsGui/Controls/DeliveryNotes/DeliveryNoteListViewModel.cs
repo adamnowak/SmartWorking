@@ -101,25 +101,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       EditingViewModel.EditingMode = EditingMode.New;
     }
 
-    protected override bool OnItemDeactivatedFlagChanged()
-    {
-      if (base.OnItemDeactivatedFlagChanged())
-      {
-        using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())
-        {
-          if (EditingViewModel.Item.DeliveryNote.IsDeactive)
-          {
-            service.ActiveDeliveryNote(EditingViewModel.Item.DeliveryNote);
-          }
-          else
-          {
-            service.DeactiveDeliveryNote(EditingViewModel.Item.DeliveryNote);
-          }
-        }        
-        return true;
-      }
-      return false;
-    }
+    
 
     protected override bool OnRefresh()
     {
