@@ -38,12 +38,18 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 
     public override void Save()
     {
-      EditingViewModel.Save();
+      if (EditingViewModel != null)
+      {
+        EditingViewModel.Save();
+      }
     }
 
     public override void Cancel()
     {
-      EditingViewModel.Cancel();
+      if (EditingViewModel != null)
+      {
+        EditingViewModel.Cancel();
+      }
     }
 
     /// <summary>
@@ -356,7 +362,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </returns>
     private bool CanChangeItemDeactivatedFlag()
     {
-      return EditingViewModel.IsReadOnly && Items.SelectedItem != null;
+      return ((EditingViewModel != null) ? EditingViewModel.IsReadOnly : true) && ((Items != null) ? Items.SelectedItem != null :true);
     }
 
     public event EventHandler ItemDeactivatedFlagChanged;
