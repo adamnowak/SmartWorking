@@ -12,8 +12,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Contractors
   /// </summary>
   public class ContractorDetailsViewModel : EditableControlViewModelBase<ContractorPrimitive>
   {
-    public ContractorDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public ContractorDetailsViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
       
     }

@@ -22,12 +22,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
   /// </summary>
   public class ClientDetailsViewModel : EditableControlViewModelBase<ClientAndClientBuildingsPackage>
   {
-    public ClientDetailsViewModel(IMainViewModel mainViewModel, IListingEditableControlViewModel<BuildingPrimitive> buildingListViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public ClientDetailsViewModel(IMainViewModel mainViewModel, IListingEditableControlViewModel<BuildingPrimitive> buildingListViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
       BuildingListToAddViewModel = buildingListViewModel;
       EditingModeChanged += new EventHandler(ClientDetailsViewModel_EditingModeChanged);
-      ClientBuildingListViewModel = new ClientBuildingListViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
+      ClientBuildingListViewModel = new ClientBuildingListViewModel(MainViewModel, null, ModalDialogProvider, ServiceFactory);
     }
 
     void ClientDetailsViewModel_EditingModeChanged(object sender, EventArgs e)
@@ -67,10 +67,10 @@ namespace SmartWorking.Office.TabsGui.Controls.Clients
       {
         if (BuildingListToAddViewModel.EditingViewModel.EditingMode == EditingMode.New)
         {
-          if (ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, MessageBoxImage.Question,
-                                                "A co z budową?",
-                                                "Chcesz najpierw zapisac budowę?\n Jeśli nie informacje o budowie znikną!",
-                                                MessageBoxButton.YesNo, string.Empty) == MessageBoxResult.Yes)
+          if (ModalDialogProvider.ShowMessageBox(ModalDialogProvider, ServiceFactory, MessageBoxImage.Question,
+                                            "A co z budową?",
+                                            "Chcesz najpierw zapisac budowę?\n Jeśli nie informacje o budowie znikną!",
+                                            MessageBoxButton.YesNo, string.Empty) == MessageBoxResult.Yes)
           {
             return false;
           }

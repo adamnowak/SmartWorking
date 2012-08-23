@@ -18,13 +18,13 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// <summary>
     /// Initializes a new instance of the <see cref="OrdersTabItemViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public OrdersTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public OrdersTabItemViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      OrderDetailsViewModel = new OrderDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      OrderListViewModel = new OrderListViewModel(MainViewModel, OrderDetailsViewModel, ModalDialogService, ServiceFactory);
+      OrderDetailsViewModel = new OrderDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      OrderListViewModel = new OrderListViewModel(MainViewModel, OrderDetailsViewModel, ModalDialogProvider, ServiceFactory);
 
       OrderDetailsViewModel.DeliveryNoteDetailsViewModel.ItemSaved += new System.EventHandler(DeliveryNoteDetailsViewModel_ItemSaved);
       OrderDetailsViewModel.DeliveryNoteDetailsViewModel.IsReadOnlyChanged += new System.EventHandler(DeliveryNoteDetailsViewModel_IsReadOnlyChanged);

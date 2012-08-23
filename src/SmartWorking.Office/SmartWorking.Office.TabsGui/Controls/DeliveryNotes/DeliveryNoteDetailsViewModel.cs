@@ -19,8 +19,8 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
   /// </summary>
   public class DeliveryNoteDetailsViewModel : EditableControlViewModelBase<DeliveryNotePackage>
   {
-    public DeliveryNoteDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public DeliveryNoteDetailsViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
       Cars = new SelectableViewModelBase<CarAndDriverPackage>();
       Drivers = new SelectableViewModelBase<DriverPrimitive>();
@@ -58,7 +58,7 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       base.EditItemCommandExecute();
     }
 
-    public virtual void BeforeSavingItem()
+    public override void BeforeSavingItem()
     {
       if (Item != null)
       {
@@ -66,6 +66,12 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
         Item.Driver = Drivers.SelectedItem;
         Item.DeliveryNote.DateDrawing = DateTime.Now;
       }
+    }
+
+    public override void Validate()
+    {
+      base.Validate();
+      Errors = Item.DeliveryNote.ValidateClientSide();
     }
 
     protected override bool OnSavingItem()

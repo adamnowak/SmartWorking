@@ -16,6 +16,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 
   public class AccessLevels
   {
+    public static AccessLevel None { get { return 0; } }
     public static AccessLevel OperatorLevel { get { return AccessLevel.Read | AccessLevel.Write; }}
     public static AccessLevel WOSLevel { get { return AccessLevel.Read | AccessLevel.Write; }}
     public static AccessLevel AdministratorLevel { get { return AccessLevel.Read | AccessLevel.Write | AccessLevel.Delete; }}

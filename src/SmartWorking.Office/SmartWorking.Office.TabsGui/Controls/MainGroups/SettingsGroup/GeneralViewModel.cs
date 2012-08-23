@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using GalaSoft.MvvmLight.Command;
 using SmartWorking.Office.PrimitiveEntities;
 using SmartWorking.Office.PrimitiveEntities.Packages;
 using SmartWorking.Office.Services.Interfaces;
 using SmartWorking.Office.TabsGui.Shared.ViewModel;
 using SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces;
+using SmartWorking.Office.TabsGui.Shared.ViewModel.ModalDialogs;
 
 namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup
 {
@@ -21,19 +24,10 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup
     /// </summary>
     /// <param name="modalDialogService">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public GeneralViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public GeneralViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-
-      
-
-      
     }
-
-
-
-
-
 
     /// <summary>
     /// Gets the name of control.
@@ -43,7 +37,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup
       get { return "General"; }
     }
 
-    #region CreateDBDumpCommand
+    #region CreateDbDumpCommand
     private ICommand _createDBDumpCommand;
 
     /// <summary>
@@ -52,24 +46,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup
     /// <remarks>
     /// Opens dialog to //TODO:.
     /// </remarks>
-    public ICommand CreateDBDumpCommand
+    public ICommand CreateDbDumpCommand
     {
       get
       {
         if (_createDBDumpCommand == null)
-          _createDBDumpCommand = new AsyncDelegateCommand(CreateDBDump, CanCreateDBDump, CompleteDBDump, ErrorDBDump);
+          _createDBDumpCommand = new RelayCommand(CreateDBDumpCommand, CanCreateDBDumpCommand);
         return _createDBDumpCommand;
       }
-    }
-
-    private void ErrorDBDump(Exception obj)
-    {
-      MainViewModel.IsActionExecuting = false;
-    }
-
-    private void CompleteDBDump(object obj)
-    {
-      MainViewModel.IsActionExecuting = false;
     }
 
     /// <summary>
@@ -78,7 +62,7 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup
     /// <returns>
     ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
     /// </returns>
-    private bool CanCreateDBDump()
+    private bool CanCreateDBDumpCommand()
     {
       return true;
     }
@@ -86,19 +70,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup
     /// <summary>
     /// //TODO:.
     /// </summary>
-    private void CreateDBDump()
+    private void CreateDBDumpCommand()
     {
-      string pathName = "dump" + DateTime.Now.ToFileTime() + ".txt";
-      string errorCaption = "CreateDBDump";
-      MainViewModel.IsActionExecuting = true;
-      MainViewModel.ProgressText = "CreateDBDump function...";
+      string errorCaption = "TODO!";
       try
       {
-        IDBService dbService = ServiceFactory.GetDBService();
-        DBBackUpPackage test = dbService.GetBackUpData();
-        CreateInsertBackup(test, pathName);
-        MainViewModel.StatusText = string.Format("Dump został zapisany do pliku '{0}'", pathName);
-        MainViewModel.StatusTextColor = Colors.Black;
+        string pathName = "dump" + DateTime.Now.ToFileTime() + ".txt";
+
+        ModalDialogProvider.ShowProgress(new DBDumpProgressActionViewModel(MainViewModel, ServiceFactory, pathName) { Text = "Tworzenie bakcup'u...." });
       }
       catch (FaultException<ExceptionDetail> f)
       {
@@ -116,108 +95,66 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup
         Cancel();
       }
     }
-    #endregion //CreateDBDumpCommand
+    #endregion //CreateDbDumpCommand
 
-    private void CreateInsertBackup(DBBackUpPackage dbBackUpPackage, string fileName)
+
+    #region TestCommand
+    private ICommand _testCommand;
+
+    /// <summary>
+    /// Gets the //TODO: command.
+    /// </summary>
+    /// <remarks>
+    /// Opens dialog to //TODO:.
+    /// </remarks>
+    public ICommand TestCommand
     {
+      get
+      {
+        if (_testCommand == null)
+          _testCommand = new RelayCommand(Test, CanTest);
+        return _testCommand;
+      }
+    }
+
+    /// <summary>
+    /// Determines whether this instance an //TODO:.
+    /// </summary>
+    /// <returns>
+    ///   <c/>true<c/> if this instance can //TODO:; otherwise, <c/>false<c/>.
+    /// </returns>
+    private bool CanTest()
+    {
+      return true;
+    }
+
+    /// <summary>
+    /// //TODO:.
+    /// </summary>
+    private void Test()
+    {
+      string errorCaption = "TODO!";
       try
       {
-        List<string> lines = new List<string>();
-
-        lines.Add("USE [SmartWorking]");
-        lines.Add("GO");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Recipes] ON");
-        foreach (RecipePrimitive primitive in dbBackUpPackage.RecipeList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Recipes] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Drivers] ON");
-        foreach (DriverPrimitive primitive in dbBackUpPackage.DriverList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Drivers] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Buildings] ON");
-        foreach (BuildingPrimitive primitive in dbBackUpPackage.BuildingList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Buildings] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Contractors] ON");
-        foreach (ContractorPrimitive primitive in dbBackUpPackage.ContractorList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Contractors] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Clients] ON");
-        foreach (ClientPrimitive primitive in dbBackUpPackage.ClientList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Clients] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[ClientBuildings] ON");
-        foreach (ClientBuildingPrimitive primitive in dbBackUpPackage.ClientBuildingList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[ClientBuildings] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Cars] ON");
-        foreach (CarPrimitive primitive in dbBackUpPackage.CarList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Cars] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Materials] ON");
-        foreach (MaterialPrimitive primitive in dbBackUpPackage.MaterialList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Materials] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[RecipeComponents] ON");
-        foreach (RecipeComponentPrimitive primitive in dbBackUpPackage.RecipeComponentList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[RecipeComponents] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[Orders] ON");
-        foreach (OrderPrimitive primitive in dbBackUpPackage.OrderList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[Orders] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[MaterialStocks] ON");
-        foreach (MaterialStockPrimitive primitive in dbBackUpPackage.MaterialStockList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[MaterialStocks] OFF");
-
-        lines.Add("SET IDENTITY_INSERT [dbo].[DeliveryNotes] ON");
-        foreach (DeliveryNotePrimitive primitive in dbBackUpPackage.DeliveryNoteList)
-        {
-          lines.Add(primitive.GetDBInsertQuery());
-        }
-        lines.Add("SET IDENTITY_INSERT [dbo].[DeliveryNotes] OFF");
-
-        System.IO.File.WriteAllLines(fileName, lines);
+        MessageBoxResult messageBoxResult = ModalDialogProvider.ShowMessageBox(ModalDialogProvider, ServiceFactory, MessageBoxImage.Question, "caption",
+                                           "message", MessageBoxButton.OKCancel, "info");
       }
-      catch (Exception)
+      catch (FaultException<ExceptionDetail> f)
       {
-        //TODO:
+        ShowError(errorCaption, f);
+        Cancel();
       }
-
+      catch (CommunicationException c)
+      {
+        ShowError(errorCaption, c);
+        Cancel();
+      }
+      catch (Exception e)
+      {
+        ShowError(errorCaption, e);
+        Cancel();
+      }
     }
+    #endregion //TestCommand
   }
 }

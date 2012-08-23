@@ -21,10 +21,10 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Initializes a new instance of the <see cref="TabControlViewModelBase"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public TabControlViewModelBase(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public TabControlViewModelBase(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
     }
 
@@ -179,8 +179,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
           IControlViewModel oldControlViewModel = GetControlViewModel(selectionChangedEventArgs);
           if (oldControlViewModel != null && !oldControlViewModel.IsReadOnly)
           {
-            if (ShowMessageBox(MessageBoxImage.Warning, "str_Niezapisane dane", "str_czy zapisac", MessageBoxButton.YesNo, oldControlViewModel.Name)
-              == MessageBoxResult.Yes)
+            if (ShowMessageBox(MessageBoxImage.Warning, "str_Niezapisane dane", "str_czy zapisac", MessageBoxButton.YesNo, oldControlViewModel.Name) == MessageBoxResult.Yes)
             {
               oldControlViewModel.Save();
             }

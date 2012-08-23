@@ -11,8 +11,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
   /// </summary>
   public class BuildingDetailsViewModel : EditableControlViewModelBase<BuildingPrimitive>
   {
-    public BuildingDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public BuildingDetailsViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
 
     }

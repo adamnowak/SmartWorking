@@ -17,15 +17,15 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// <summary>
     /// Initializes a new instance of the <see cref="ProducersAndMaterialsTabItemViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public RecipesTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public RecipesTabItemViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      RecipeDetailsViewModel = new RecipeDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogService, ServiceFactory);
-      RecipeComponentDetailsViewModel = new RecipeComponentDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      RecipeComponentListViewModel = new RecipeComponentListViewModel(MainViewModel, RecipeComponentDetailsViewModel, ModalDialogService, ServiceFactory);
+      RecipeDetailsViewModel = new RecipeDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogProvider, ServiceFactory);
+      RecipeComponentDetailsViewModel = new RecipeComponentDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      RecipeComponentListViewModel = new RecipeComponentListViewModel(MainViewModel, RecipeComponentDetailsViewModel, ModalDialogProvider, ServiceFactory);
     }
 
     /// <summary>

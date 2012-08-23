@@ -1764,28 +1764,48 @@
     <value>StrengthProgress</value>
     <comment>TextBlock.Text</comment>
   </data>
-  <data name="StrengthProgressTypes_LoadItems_Slow">
-    <value xml:space="preserve">Slow</value>
+  <data name="StrengthProgressTypes_LoadItems_Slow" xml:space="preserve">
+    <value>Slow</value>
     <comment>
 			StrengthClassTypeEnum
 		</comment>
   </data>
-  <data name="StrengthProgressTypes_LoadItems_Moderate">
-    <value xml:space="preserve">Moderate</value>
+  <data name="StrengthProgressTypes_LoadItems_Moderate" xml:space="preserve">
+    <value>Moderate</value>
     <comment>
 			StrengthClassTypeEnum
 		</comment>
   </data>
-  <data name="StrengthProgressTypes_LoadItems_Fast">
-    <value xml:space="preserve">Fast</value>
+  <data name="StrengthProgressTypes_LoadItems_Fast" xml:space="preserve">
+    <value>Fast</value>
     <comment>
 			StrengthClassTypeEnum
 		</comment>
   </data>
-  <data name="StrengthProgressTypes_LoadItems_Another">
-    <value xml:space="preserve">Another</value>
+  <data name="StrengthProgressTypes_LoadItems_Another" xml:space="preserve">
+    <value>Another</value>
     <comment>
 			StrengthClassTypeEnum
 		</comment>
+  </data>
+  <data name="MessageBoxControl_Ok" xml:space="preserve">
+    <value>Ok</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="MessageBoxControl_Yes" xml:space="preserve">
+    <value>Yes</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="MessageBoxControl_No" xml:space="preserve">
+    <value>No</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="MessageBoxControl_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button.Content</comment>
+  </data>
+  <data name="MessageBoxControl_AdditionalInfo" xml:space="preserve">
+    <value>AdditionalInfo</value>
+    <comment>Expander.Header</comment>
   </data>
 </root>

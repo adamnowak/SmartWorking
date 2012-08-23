@@ -9,8 +9,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Buildings
 {
   public class BuildingListViewModel : ListingEditableControlViewModel<BuildingPrimitive>
   {
-    public BuildingListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<BuildingPrimitive> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
+    public BuildingListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<BuildingPrimitive> editingViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, editingViewModel, modalDialogProvider, serviceFactory)
     {
     }
 

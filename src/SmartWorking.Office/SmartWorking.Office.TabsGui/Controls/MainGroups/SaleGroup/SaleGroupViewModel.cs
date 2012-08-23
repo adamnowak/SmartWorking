@@ -15,14 +15,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public SaleGroupViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public SaleGroupViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      ClientsAndBuildingsTabItemViewModel = new ClientsAndBuildingsTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
-      OrdersTabItemViewModel = new OrdersTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
-      DeliveryNotesTabItemViewModel = new DeliveryNotesTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
+      ClientsAndBuildingsTabItemViewModel = new ClientsAndBuildingsTabItemViewModel(mainViewModel, ModalDialogProvider, ServiceFactory);
+      OrdersTabItemViewModel = new OrdersTabItemViewModel(mainViewModel, ModalDialogProvider, ServiceFactory);
+      DeliveryNotesTabItemViewModel = new DeliveryNotesTabItemViewModel(mainViewModel, ModalDialogProvider, ServiceFactory);
 
       
     }

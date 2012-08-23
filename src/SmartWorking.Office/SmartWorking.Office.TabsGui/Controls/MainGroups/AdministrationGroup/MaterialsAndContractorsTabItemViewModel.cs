@@ -16,15 +16,15 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// <summary>
     /// Initializes a new instance of the <see cref="ProducersAndMaterialsTabItemViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public MaterialsAndContractorsTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public MaterialsAndContractorsTabItemViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      MaterialDetailsViewModel = new MaterialDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      MaterialListViewModel = new MaterialListViewModel(MainViewModel, MaterialDetailsViewModel, ModalDialogService, ServiceFactory);
-      ContractorDetailsViewModel = new ContractorDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      ContractorListViewModel = new ContractorListViewModel(MainViewModel, ContractorDetailsViewModel, ModalDialogService, ServiceFactory);
+      MaterialDetailsViewModel = new MaterialDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      MaterialListViewModel = new MaterialListViewModel(MainViewModel, MaterialDetailsViewModel, ModalDialogProvider, ServiceFactory);
+      ContractorDetailsViewModel = new ContractorDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      ContractorListViewModel = new ContractorListViewModel(MainViewModel, ContractorDetailsViewModel, ModalDialogProvider, ServiceFactory);
 
       ViewModelProvider.RegisterChildViewModel(MaterialDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged);
       ViewModelProvider.RegisterChildViewModel(ContractorDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.SaveInvoked);

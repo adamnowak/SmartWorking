@@ -14,8 +14,8 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
     public IEditableControlViewModel<OrderPackage> OrderDetailsControlViewModel { get; private set; }
 
     public DeliveryNoteListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<DeliveryNotePackage> editingViewModel, IEditableControlViewModel<OrderPackage> orderDetailsControlViewModel,
-      IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
+      IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, editingViewModel, modalDialogProvider, serviceFactory)
     {
       OrderDetailsControlViewModel = orderDetailsControlViewModel;
       if (EditingViewModel != null)

@@ -19,8 +19,8 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// </summary>
     /// <param name="editingViewModel">The editing view model.</param>
     public ListingEditableControlViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<T> editingViewModel,
-      IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+      IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
       ListItemsFilter = ListItemsFilterValues.OnlyActive;
       Items = new SelectableViewModelBase<T>();

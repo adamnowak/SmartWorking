@@ -17,8 +17,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
   public class OrderListViewModel : ListingEditableControlViewModel<OrderPackage>
   {
     private bool wasCleared = false;
-    public OrderListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<OrderPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
+    public OrderListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<OrderPackage> editingViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, editingViewModel, modalDialogProvider, serviceFactory)
     {
       
     }
@@ -82,7 +82,7 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
                                               .Select(y => y.DateOfOrder.ToString() + ", " + y.Client.ToString() + ", " + y.Building.ToString())
                                               .Aggregate((current, next) => current + "\n" + next);
           if (MessageBoxResult.Yes == 
-            ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, MessageBoxImage.Question, 
+            ModalDialogProvider.ShowMessageBox(ModalDialogProvider, ServiceFactory, MessageBoxImage.Question, 
               "Ukryć starsze zamówienia?", "Czy ukryć zamówienia z dni poprzednich?", MessageBoxButton.YesNo, info))
           {
             using (IOrdersService service = ServiceFactory.GetOrdersService())

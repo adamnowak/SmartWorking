@@ -14,8 +14,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Materials
 {
   public class MaterialListViewModel : ListingEditableControlViewModel<MaterialAndContractorsPackage>
   {
-    public MaterialListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<MaterialAndContractorsPackage> editingViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, editingViewModel, modalDialogService, serviceFactory)
+    public MaterialListViewModel(IMainViewModel mainViewModel, IEditableControlViewModel<MaterialAndContractorsPackage> editingViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, editingViewModel, modalDialogProvider, serviceFactory)
     {
     }
 

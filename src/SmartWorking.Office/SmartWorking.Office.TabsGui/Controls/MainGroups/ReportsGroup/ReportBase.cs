@@ -20,8 +20,8 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
 
   public abstract class ReportBase : ControlViewModelBase, IReport
   {
-    public ReportBase(string templateName, IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory) 
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public ReportBase(string templateName, IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory) 
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
       TemplateName = templateName;
     }

@@ -21,12 +21,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
   /// </summary>
   public class RecipeDetailsViewModel : EditableControlViewModelBase<RecipePackage>
   {
-    public RecipeDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public RecipeDetailsViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      MaterialListToAddViewModel = new MaterialListViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
-      RecipeComponentDetailsViewModel = new RecipeComponentDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      RecipeComponentListViewModel = new RecipeComponentListViewModel(MainViewModel, RecipeComponentDetailsViewModel, ModalDialogService, ServiceFactory);
+      MaterialListToAddViewModel = new MaterialListViewModel(MainViewModel, null, ModalDialogProvider, ServiceFactory);
+      RecipeComponentDetailsViewModel = new RecipeComponentDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      RecipeComponentListViewModel = new RecipeComponentListViewModel(MainViewModel, RecipeComponentDetailsViewModel, ModalDialogProvider, ServiceFactory);
       RecipeComponentListViewModel.Items.SelectedItemChanged += new EventHandler<SelectedItemChangedEventArgs<RecipeComponentAndMaterialPackage>>(Items_SelectedItemChanged);
     }
 

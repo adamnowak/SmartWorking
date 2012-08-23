@@ -22,8 +22,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Cars
   /// </summary>
   public class CarDetailsViewModel : EditableControlViewModelBase<CarAndDriverPackage>
   {
-    public CarDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public CarDetailsViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
       Drivers = new SelectableViewModelBase<DriverPrimitive>();
     }

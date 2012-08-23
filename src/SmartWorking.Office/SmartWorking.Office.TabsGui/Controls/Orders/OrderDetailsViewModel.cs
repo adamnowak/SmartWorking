@@ -25,26 +25,26 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
   /// </summary>
   public class OrderDetailsViewModel : EditableControlViewModelBase<OrderPackage>
   {
-    public OrderDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public OrderDetailsViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
-      ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogService, ServiceFactory);
+      ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, null, ModalDialogProvider, ServiceFactory);
+      ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogProvider, ServiceFactory);
 
       ClientListViewModel.Items.SelectedItemChanged += new System.EventHandler<SelectedItemChangedEventArgs<ClientAndClientBuildingsPackage>>(Items_SelectedItemChanged);
 
-      ClientBuildingDetailsViewModel = new ClientBuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      ClientBuildingListViewModel = new ClientBuildingListViewModel(MainViewModel, ClientBuildingDetailsViewModel, ModalDialogService, ServiceFactory);
+      ClientBuildingDetailsViewModel = new ClientBuildingDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      ClientBuildingListViewModel = new ClientBuildingListViewModel(MainViewModel, ClientBuildingDetailsViewModel, ModalDialogProvider, ServiceFactory);
 
-      RecipeDetailsViewModel = new RecipeDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogService, ServiceFactory);
+      RecipeDetailsViewModel = new RecipeDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      RecipeListViewModel = new RecipeListViewModel(MainViewModel, RecipeDetailsViewModel, ModalDialogProvider, ServiceFactory);
 
-      DeliveryNoteDetailsViewModel = new DeliveryNoteDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      DeliveryNoteDetailsViewModel = new DeliveryNoteDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
       DeliveryNoteListViewModel = new DeliveryNoteListViewModel(MainViewModel, DeliveryNoteDetailsViewModel, this,
-                                                                ModalDialogService, ServiceFactory);
+                                                                ModalDialogProvider, ServiceFactory);
 
 
-      OrderSumaryViewModel = new OrderSumaryViewModel(MainViewModel, ModalDialogService, ServiceFactory);
+      OrderSumaryViewModel = new OrderSumaryViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
 
       DeliveryNoteDetailsViewModel.ItemReadyToPrint += new EventHandler(DeliveryNoteDetailsViewModel_ItemReadyToPrint);
       DeliveryNoteDetailsViewModel.ItemFinishedPrinting += new EventHandler(DeliveryNoteDetailsViewModel_ItemFinishedPrinting);

@@ -16,14 +16,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public AdministrationGroupViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public AdministrationGroupViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      DriversAndCarsTabItemViewModel = new DriversAndCarsTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
-      MaterialsAndContractorsTabItemViewModel = new MaterialsAndContractorsTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
-      RecipesTabItemViewModel = new RecipesTabItemViewModel(mainViewModel, ModalDialogService, ServiceFactory);
+      DriversAndCarsTabItemViewModel = new DriversAndCarsTabItemViewModel(mainViewModel, ModalDialogProvider, ServiceFactory);
+      MaterialsAndContractorsTabItemViewModel = new MaterialsAndContractorsTabItemViewModel(mainViewModel, ModalDialogProvider, ServiceFactory);
+      RecipesTabItemViewModel = new RecipesTabItemViewModel(mainViewModel, ModalDialogProvider, ServiceFactory);
     }
 
     /// <summary>

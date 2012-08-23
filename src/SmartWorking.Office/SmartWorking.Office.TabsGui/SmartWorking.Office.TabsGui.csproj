@@ -143,6 +143,11 @@
       <DependentUpon>BuildingListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Buildings\BuildingListViewModel.cs" />
+    <Compile Include="Controls\MainGroups\SettingsGroup\GeneralViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\InputModalDialogViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\IProgressActionViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\ProgressActionStatusEnum.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\ProgressActionViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\AsyncDelegateCommand.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\ICustomNotifyDataErrorInfo.cs" />
     <Compile Include="Controls\Clients\ClientBuildingDetailsViewModel.cs" />
@@ -214,7 +219,7 @@
       <DependentUpon>ReportsGroupControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainGroups\SettingsGroup\UsersViewModel.cs" />
-    <Compile Include="Controls\MainGroups\SettingsGroup\GeneralViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\DBDumpProgressActionViewModel.cs" />
     <Compile Include="Controls\MainGroups\SettingsGroup\SettingsGroupViewModel.cs" />
     <Compile Include="Controls\MainGroups\SettingsGroup\SettingsGroupControl.xaml.cs">
       <DependentUpon>SettingsGroupControl.xaml</DependentUpon>
@@ -270,6 +275,10 @@
     <Compile Include="Converters\DeactivatedToIsActiveConverter.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Shared\ViewModel\AccessLevel.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\LogginModalDialogViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\PrintPreviewViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\ProgressBarViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\VisibleModalDialogEnum.cs" />
     <Compile Include="Shared\ViewModel\SmartWorkingConfiguration.cs" />
     <Compile Include="Shared\ViewModel\DescriptionIndexted.cs" />
     <Compile Include="Shared\ViewModel\DocumentPaginatorWrapper.cs" />
@@ -280,37 +289,38 @@
     <Compile Include="Shared\ViewModel\Interfaces\IMainViewModel.cs" />
     <Compile Include="Shared\ViewModel\TabControlViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\ITabControlViewModel.cs" />
-    <Compile Include="Shared\ViewModel\DialogViewModelBase.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\EditingMode.cs" />
     <Compile Include="Shared\ViewModel\EditableControlViewModelBase.cs" />
-    <Compile Include="Shared\ViewModel\Interfaces\IDialogViewModel.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\IModalDialogViewModel.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\IEditableControlViewModel.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\IListingEditableControlViewModel.cs" />
     <Compile Include="Shared\ViewModel\Interfaces\IControlViewModel.cs" />
-    <Compile Include="Shared\ViewModel\Interfaces\IModalDialogService.cs" />
+    <Compile Include="Shared\ViewModel\Interfaces\IModalDialogProvider.cs" />
     <Compile Include="Shared\ViewModel\ListingEditableControlViewModel.cs" />
-    <Compile Include="Shared\ViewModel\MessageBox\IMessageBoxViewModel.cs" />
-    <Compile Include="Shared\ViewModel\MessageBox\MessageBoxViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\MessageBoxDialogViewModel.cs" />
     <Compile Include="Shared\ViewModel\SelectableViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\SelectedItemChangedEventArgEventArgs.cs" />
     <Compile Include="Shared\ViewModel\ControlViewModelBase.cs" />
     <Compile Include="Shared\ViewModel\XPSCreator.cs" />
     <Compile Include="Shared\View\BindingProxy.cs" />
+    <Compile Include="Shared\View\MessageBox\InputControl.xaml.cs">
+      <DependentUpon>InputControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\View\PasswordBoxAssistant.cs" />
+    <Compile Include="Shared\View\MessageBox\LogginControl.xaml.cs">
+      <DependentUpon>LogginControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Shared\View\TextBoxMasking.cs" />
     <Compile Include="Shared\View\ComboBoxUtil.cs" />
     <Compile Include="Shared\View\DetailsUserControl.cs" />
     <Compile Include="Shared\View\ListUserControl.cs" />
-    <Compile Include="Shared\View\MessageBoxHelper.cs" />
     <Compile Include="Shared\View\MessageBox\InfoVisibilityConverter.cs" />
-    <Compile Include="Shared\View\MessageBox\MessageBox.xaml.cs">
-      <DependentUpon>MessageBox.xaml</DependentUpon>
+    <Compile Include="Shared\View\MessageBox\MessageBoxControl.xaml.cs">
+      <DependentUpon>MessageBoxControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Shared\View\MessageBox\MessageBoxHelper.cs" />
     <Compile Include="Shared\View\MessageBox\MessageBoxImageConverter.cs" />
-    <Compile Include="Shared\View\MessageBox\MessageBoxWindow.xaml.cs">
-      <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Shared\View\ModalDialogService.cs" />
+    <Compile Include="Shared\ViewModel\ModalDialogs\ModalDialogProvider.cs" />
     <Page Include="ComboBoxStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -439,11 +449,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Shared\View\MessageBox\MessageBox.xaml">
+    <Page Include="Shared\View\MessageBox\InputControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Shared\View\MessageBox\MessageBoxWindow.xaml">
+    <Page Include="Shared\View\MessageBox\LogginControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shared\View\MessageBox\MessageBoxControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -580,6 +594,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

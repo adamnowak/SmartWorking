@@ -21,12 +21,12 @@ namespace SmartWorking.Office.TabsGui.Controls.Drivers
     /// <summary>
     /// Initializes a new instance of the <see cref="DriverDetailsViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public DriverDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public DriverDetailsViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      CarListProtectedViewModel = new CarListViewModel(MainViewModel, null, ModalDialogService, ServiceFactory);
+      CarListProtectedViewModel = new CarListViewModel(MainViewModel, null, ModalDialogProvider, ServiceFactory);
     }
 
     /// <summary>

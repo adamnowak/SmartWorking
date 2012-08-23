@@ -12,8 +12,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Recipes
   /// </summary>
   public class RecipeComponentDetailsViewModel : EditableControlViewModelBase<RecipeComponentAndMaterialPackage>
   {
-    public RecipeComponentDetailsViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public RecipeComponentDetailsViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
       
     }

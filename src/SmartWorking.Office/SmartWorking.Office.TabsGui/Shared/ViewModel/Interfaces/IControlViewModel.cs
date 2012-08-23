@@ -31,7 +31,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel.Interfaces
     /// <summary>
     /// Gets the modal dialog service.
     /// </summary>
-    IModalDialogService ModalDialogService { get; }
+    IModalDialogProvider ModalDialogProvider { get; }
 
     /// <summary>
     /// Gets the service factory.

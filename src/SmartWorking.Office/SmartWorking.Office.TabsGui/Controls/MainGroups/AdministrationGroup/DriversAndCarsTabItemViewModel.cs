@@ -16,15 +16,15 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup
     /// <summary>
     /// Initializes a new instance of the <see cref="DriversAndCarsTabItemViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public DriversAndCarsTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public DriversAndCarsTabItemViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      CarDetailsViewModel = new CarDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      CarListViewModel = new CarListViewModel(MainViewModel, CarDetailsViewModel, ModalDialogService, ServiceFactory);
-      DriverDetailsViewModel = new DriverDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      DriverListViewModel = new DriverListViewModel(MainViewModel, DriverDetailsViewModel, ModalDialogService, ServiceFactory);
+      CarDetailsViewModel = new CarDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      CarListViewModel = new CarListViewModel(MainViewModel, CarDetailsViewModel, ModalDialogProvider, ServiceFactory);
+      DriverDetailsViewModel = new DriverDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      DriverListViewModel = new DriverListViewModel(MainViewModel, DriverDetailsViewModel, ModalDialogProvider, ServiceFactory);
 
       ViewModelProvider.RegisterChildViewModel(CarDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged |  ViewModelProviderAction.SaveInvoked);
       ViewModelProvider.RegisterChildViewModel(DriverDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged | ViewModelProviderAction.SaveInvoked);

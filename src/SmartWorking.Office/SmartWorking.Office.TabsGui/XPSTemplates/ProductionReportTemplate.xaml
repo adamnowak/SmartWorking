@@ -1,5 +1,11 @@
-﻿<FlowDocument  x:Name="flowDocument"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Language="pl-PL">
+﻿<FlowDocument  x:Name="flowDocument" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Language="pl-PL"
+                FontFamily="Century Gothic"
+    FontSize="12"
+    FontStretch="UltraExpanded"
+    FontStyle="Italic"
+    FontWeight="UltraBold"
+  >
 
     <FlowDocument.Resources>
         <Style x:Key="header" TargetType="Paragraph">
@@ -20,14 +26,16 @@
         </Style>
     </FlowDocument.Resources>
 
+   
+   
+        
     <Paragraph Style="{StaticResource header}">
-        <Run Text="Dzienny raport produkcji z dnia "/>
-        <Run Text="{Binding StartTime, StringFormat=d}" />
+        <Run Text="{Binding Header}" />
     </Paragraph>
 
-    
 
-    <Table x:Name="tableToReplace">
+
+    <Table x:Name="tableToReplace" >
         <Table.Columns>
             <TableColumn />
             <TableColumn />
@@ -65,24 +73,18 @@
                 </TableCell>
                 <TableCell>
                     <Paragraph>
-                        <Run Text="{Binding Amount, StringFormat=\{0\} m3}"/> 
+                        <Run Text="{Binding Amount, StringFormat=\{0\} m3}"/>
                     </Paragraph>
                 </TableCell>
 
             </TableRow>
         </TableRowGroup>
-    </Table>
-    <Table >
-        <Table.Columns>
-            <TableColumn />
-            <TableColumn />
-            <TableColumn />
-        </Table.Columns>
+
         <TableRowGroup Style="{StaticResource headerFooterRowStyle}">
             <TableRow >
                 <TableCell>
                     <Paragraph>
-                        
+
                     </Paragraph>
                 </TableCell>
                 <TableCell>

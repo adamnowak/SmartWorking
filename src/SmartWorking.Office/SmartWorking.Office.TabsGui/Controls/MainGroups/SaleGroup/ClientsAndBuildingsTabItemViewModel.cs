@@ -16,16 +16,16 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup
     /// <summary>
     /// Initializes a new instance of the <see cref="ProducersAndMaterialsTabItemViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public ClientsAndBuildingsTabItemViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public ClientsAndBuildingsTabItemViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
-      BuildingDetailsViewModel = new BuildingDetailsViewModel(MainViewModel, ModalDialogService, ServiceFactory);
-      BuildingListViewModel = new BuildingListViewModel(MainViewModel, BuildingDetailsViewModel, ModalDialogService, ServiceFactory);
+      BuildingDetailsViewModel = new BuildingDetailsViewModel(MainViewModel, ModalDialogProvider, ServiceFactory);
+      BuildingListViewModel = new BuildingListViewModel(MainViewModel, BuildingDetailsViewModel, ModalDialogProvider, ServiceFactory);
 
-      ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, BuildingListViewModel, ModalDialogService, ServiceFactory);
-      ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogService, ServiceFactory);
+      ClientDetailsViewModel = new ClientDetailsViewModel(MainViewModel, BuildingListViewModel, ModalDialogProvider, ServiceFactory);
+      ClientListViewModel = new ClientListViewModel(MainViewModel, ClientDetailsViewModel, ModalDialogProvider, ServiceFactory);
       
 
       ViewModelProvider.RegisterChildViewModel(ClientDetailsViewModel, ViewModelProviderAction.IsReadOnlyChanged);

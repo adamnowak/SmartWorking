@@ -13,14 +13,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public SettingsGroupViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public SettingsGroupViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
       
-      GeneralViewModel = new GeneralViewModel(mainViewModel, ModalDialogService, ServiceFactory);
-      UsersViewModel = new UsersViewModel(mainViewModel, ModalDialogService, ServiceFactory);
+      GeneralViewModel = new GeneralViewModel(mainViewModel, ModalDialogProvider, ServiceFactory);
+      UsersViewModel = new UsersViewModel(mainViewModel, ModalDialogProvider, ServiceFactory);
 
       
     }

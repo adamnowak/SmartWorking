@@ -677,6 +677,19 @@
                                 </MultiBinding>
                             </Button.Visibility>
                         </Button>
+                        <Button Command="{Binding DeliveryNoteReportListViewModel.ChangeReasonOfDeactivatedFlagCommand}"
+                                             IsEnabled="{Binding IsReadOnly}" Content="ChangeReason">
+                            <Button.Visibility>
+                                <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                             ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                        <Binding Path="DeliveryNoteReportListViewModel.IsReadOnly" />
+                                        <Binding Path="DeliveryNoteReportListViewModel.Items.SelectedItem.DeliveryNote.IsDeactive" />
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </Button.Visibility>
+                        </Button>
                     </StackPanel>
                 </Grid>
             </TabItem>

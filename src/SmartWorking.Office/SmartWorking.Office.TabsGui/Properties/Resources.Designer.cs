@@ -2527,6 +2527,51 @@ namespace SmartWorking.Office.TabsGui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AdditionalInfo.
+        /// </summary>
+        public static string MessageBoxControl_AdditionalInfo {
+            get {
+                return ResourceManager.GetString("MessageBoxControl_AdditionalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string MessageBoxControl_Cancel {
+            get {
+                return ResourceManager.GetString("MessageBoxControl_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string MessageBoxControl_No {
+            get {
+                return ResourceManager.GetString("MessageBoxControl_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string MessageBoxControl_Ok {
+            get {
+                return ResourceManager.GetString("MessageBoxControl_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string MessageBoxControl_Yes {
+            get {
+                return ResourceManager.GetString("MessageBoxControl_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount:.
         /// </summary>
         public static string OrderDetailsControl_Amount {

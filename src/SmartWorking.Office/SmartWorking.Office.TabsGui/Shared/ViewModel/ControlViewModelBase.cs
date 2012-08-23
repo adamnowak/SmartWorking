@@ -13,11 +13,12 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 {
   public abstract class ControlViewModelBase : ViewModelBase, IControlViewModel
   {
-    public ControlViewModelBase(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
+    public ControlViewModelBase(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
     {
-      MainViewModel = mainViewModel;
-      ModalDialogService = modalDialogService;
+      
+      ModalDialogProvider = modalDialogProvider;
       ServiceFactory = serviceFactory;
+      MainViewModel = mainViewModel;
       EditingMode = EditingMode.Display;
       ViewModelProvider = new ViewModelProvider(this);
       ViewModelProvider.ChildrenViewModelIsReadOnlyChanged += new EventHandler<ViewModelProviderActionEventArgs>(ViewModelProvider_ChildrenViewModelIsReadOnlyChanged);
@@ -33,7 +34,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     {
       if (faultException != null)
       {
-        ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, MessageBoxImage.Error, caption,
+        ModalDialogProvider.ShowMessageBox(ModalDialogProvider, ServiceFactory, MessageBoxImage.Error, caption,
                                           faultException.Message,
                                           MessageBoxButton.OK,
                                           (faultException.Detail != null && faultException.Detail != null)
@@ -52,7 +53,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     {
       if (faultException != null)
       {
-        ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, MessageBoxImage.Error, caption,
+        ModalDialogProvider.ShowMessageBox(ModalDialogProvider, ServiceFactory, MessageBoxImage.Error, caption,
                                           faultException.Message,
                                           MessageBoxButton.OK,
                                           (faultException.Detail != null && faultException.Detail.InnerException != null)
@@ -70,7 +71,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     {
       if (exception != null)
       {
-        ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, MessageBoxImage.Error, caption,
+        ModalDialogProvider.ShowMessageBox(ModalDialogProvider, ServiceFactory, MessageBoxImage.Error, caption,
                                           exception.Message,
                                           MessageBoxButton.OK,
                                           (exception.InnerException != null)
@@ -88,7 +89,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     {
       if (communicationException != null)
       {
-        ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, MessageBoxImage.Error, caption,
+        ModalDialogProvider.ShowMessageBox(ModalDialogProvider, ServiceFactory, MessageBoxImage.Error, caption,
                                           communicationException.Message,
                                           MessageBoxButton.OK,
                                           (communicationException.InnerException != null)
@@ -99,7 +100,7 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
 
     protected MessageBoxResult ShowMessageBox(MessageBoxImage icon, string caption, string message, MessageBoxButton button, string info)
     {
-      return ModalDialogService.ShowMessageBox(ModalDialogService, ServiceFactory, icon, caption, message, button, info); 
+      return ModalDialogProvider.ShowMessageBox(ModalDialogProvider, ServiceFactory, icon, caption, message, button, info);     
     }
 
     /// <summary>
@@ -149,12 +150,12 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     /// <summary>
     /// Gets the modal dialog service.
     /// </summary>
-    public IModalDialogService ModalDialogService { get; private set; }
+    public IModalDialogProvider ModalDialogProvider { get; protected set; }
 
     /// <summary>
     /// Gets the service factory.
     /// </summary>
-    public IServiceFactory ServiceFactory { get; private set; }
+    public IServiceFactory ServiceFactory { get; protected set; }
 
     public ViewModelProvider ViewModelProvider { get; private set; }
 

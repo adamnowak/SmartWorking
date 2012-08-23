@@ -59,7 +59,7 @@ namespace SmartWorking.Office.Services.Interfaces
     [WebInvoke(Method = "POST", UriTemplate = "/DeactiveDeliveryNote",
           RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
       BodyStyle = WebMessageBodyStyle.Wrapped)]
-    void DeactiveDeliveryNote(DeliveryNotePrimitive deliveryNote);
+    void DeactiveDeliveryNote(DeliveryNotePrimitive deliveryNote, string reason);
 
 
     [OperationContract]

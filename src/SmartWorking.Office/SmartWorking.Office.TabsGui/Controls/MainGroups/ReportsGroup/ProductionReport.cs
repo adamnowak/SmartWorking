@@ -37,8 +37,8 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
 
   public class ProductionReport : ReportBase
   {
-    public ProductionReport(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base("XPSTemplates\\ProductionReportTemplate.xaml", mainViewModel, modalDialogService, serviceFactory)
+    public ProductionReport(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base("XPSTemplates\\ProductionReportTemplate.xaml", mainViewModel, modalDialogProvider, serviceFactory)
     {
     }
 

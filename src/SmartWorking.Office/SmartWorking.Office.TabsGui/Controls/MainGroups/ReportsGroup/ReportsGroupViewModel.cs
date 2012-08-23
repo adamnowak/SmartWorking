@@ -24,15 +24,15 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
     /// </summary>
-    /// <param name="modalDialogService">The modal dialog service.</param>
+    /// <param name="modalDialogProvider">The modal dialog service.</param>
     /// <param name="serviceFactory">The service factory.</param>
-    public ReportsGroupViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public ReportsGroupViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
       PeriodType = PeriodTypeValues.Daily;
       ReportType = ReportTypeValues.Production;
       StartDateTime = DateTime.Now;
-      ProductionReport = new ProductionReport(MainViewModel, ModalDialogService, ServiceFactory);
+      ProductionReport = new ProductionReport(MainViewModel, ModalDialogProvider, ServiceFactory);
 
     }
 
@@ -194,10 +194,14 @@ namespace SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup
 
         if (flowDocument != null)
         {
+          double width = 793;
+          double horizmargin = 48;
+          flowDocument.ColumnGap = 0;
+          flowDocument.ColumnWidth = width - 2*horizmargin;
           DocumentPaginatorSource = XPSCreator.ConvertToFixedDocument( //FlowDocumentViewModel.DocumentPaginatorSource.DocumentPaginator);
             new DocumentPaginatorWrapper(
               ((IDocumentPaginatorSource)flowDocument).DocumentPaginator,
-              new Size(768, 676), new Size(48, 48)));
+              new Size(width, 1122), new Size(horizmargin, 48)));
         }
       }
       catch (FaultException<ExceptionDetail> f)

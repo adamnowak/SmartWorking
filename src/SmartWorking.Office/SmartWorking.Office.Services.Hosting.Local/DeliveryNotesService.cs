@@ -206,7 +206,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
     /// Deletes the <see cref="DeliveryNote"/>.
     /// </summary>
     /// <param name="deliveryNote">The delivery note which will be canceled.</param>
-    public void DeactiveDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive)
+    public void DeactiveDeliveryNote(DeliveryNotePrimitive deliveryNotePrimitive, string reason)
     {
       try
       {

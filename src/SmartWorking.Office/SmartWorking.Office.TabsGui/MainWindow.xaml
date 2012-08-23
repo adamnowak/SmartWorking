@@ -1,4 +1,5 @@
 ﻿<Window x:Class="SmartWorking.Office.TabsGui.MainWindow" Style="{StaticResource mainWindow}"
+        
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View" 
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
@@ -7,12 +8,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:Cars="clr-namespace:SmartWorking.Office.TabsGui.Controls.Cars"
         xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:SaleGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup"
-        xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension" 
-        Engine:LocalizeDictionary.DesignCulture="en">
+        xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension" xmlns:MessageBox="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel.MessageBox" xmlns:ViewMessageBox="clr-namespace:SmartWorking.Office.TabsGui.Shared.View.MessageBox" Engine:LocalizeDictionary.DesignCulture="en">
     <Window.DataContext>
         <TabsGui:MainWindowViewModel  />
     </Window.DataContext>
-    <Window.Resources>
+    <!--<Window.Resources>
         <Style x:Key="progressGrid" TargetType="{x:Type Grid}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActionExecuting}" Value="True">
@@ -23,23 +23,73 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-    </Window.Resources>
+    </Window.Resources>-->
     <Grid >
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <cmd:EventToCommand Command="{Binding LoadedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Background="LightGreen" Style="{StaticResource progressGrid}">            
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Background="LightGray" >
+            <Grid.Visibility>
+                <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding Path="ModalDialogProvider.VisibleModalDialog" Converter="{StaticResource enumBooleanConverter}" 
+                                 ConverterParameter="{x:Static View:VisibleModalDialogEnum.ProgressBarModalDialog}" />
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </Grid.Visibility>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding ModalDialogProvider.ProgressBarViewModel}">
                 <ProgressBar IsIndeterminate="True" Height="50" Width="400" />
-                <TextBlock  Text="{Binding ProgressText}"/>
-                
+                <TextBlock Margin="15" FontSize="16" TextWrapping="Wrap" Text="{Binding ProgressText}"/>                
             </StackPanel>
         </Grid>
+        <Grid Background="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Grid.Visibility>
+                <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding Path="ModalDialogProvider.VisibleModalDialog" Converter="{StaticResource enumBooleanConverter}" 
+                                 ConverterParameter="{x:Static View:VisibleModalDialogEnum.MessageBoxModalDialog}" />
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </Grid.Visibility>            
+            <ViewMessageBox:MessageBoxControl MaxHeight="450" Width="600"  DataContext="{Binding ModalDialogProvider.MessageBoxDialogViewModel}"/>
+        </Grid>
+        <Grid Background="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Grid.Visibility>
+                <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding Path="ModalDialogProvider.VisibleModalDialog" Converter="{StaticResource enumBooleanConverter}" 
+                                 ConverterParameter="{x:Static View:VisibleModalDialogEnum.LogginModalDialog}" />
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </Grid.Visibility>
+            <ViewMessageBox:LogginControl MaxHeight="450" Width="600"  DataContext="{Binding ModalDialogProvider.LogginModalDialogViewModel}"/>
+        </Grid>
+        <Grid Background="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Grid.Visibility>
+                <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding Path="ModalDialogProvider.VisibleModalDialog" Converter="{StaticResource enumBooleanConverter}" 
+                                 ConverterParameter="{x:Static View:VisibleModalDialogEnum.InputModalDialog}" />
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </Grid.Visibility>
+            <ViewMessageBox:InputControl MaxHeight="450" Width="600"  DataContext="{Binding ModalDialogProvider.InputModalDialogViewModel}"/>
+        </Grid>
         <TabControl Style="{StaticResource horizontalMainTabControl}" x:Name="mainTabControl" SelectedItem="{Binding SelectedTab}" IsSynchronizedWithCurrentItem="True">
-           
-        <!--<TabControl Style="{StaticResource horizontalMainTabControl}" x:Name="mainTabControl" SelectedItem="{Binding SelectedTab}" IsSynchronizedWithCurrentItem="True">-->
+            <TabControl.Visibility>
+                <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding Path="ModalDialogProvider.VisibleModalDialog" Converter="{StaticResource enumBooleanConverter}" ConverterParameter="{x:Static View:VisibleModalDialogEnum.NoneModalDialog}" />
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </TabControl.Visibility>
             <i:Interaction.Triggers>
                 <i:EventTrigger  EventName="SelectionChanged">
                     <cmd:EventToCommand Command="{Binding TabChangedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
@@ -66,8 +116,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" /> <!--TODO: should be removed-->
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Height="20" Text="{Binding StatusText}" Foreground="{Binding StatusTextColor}" />
+            <TextBlock Height="20" Text="{Binding StatusText}" Foreground="{Binding StatusTextColor}" />            
             <StackPanel Grid.Column="1" Orientation="Horizontal" Background="Yellow" >
                 <StackPanel.Visibility>
                     <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
@@ -80,6 +131,11 @@
                 <RadioButton GroupName="Roles" Content="WOS"   IsChecked="{Binding AccessLevel, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.WOSLevel}}" />
                 <RadioButton GroupName="Roles" Content="Operator" IsChecked="{Binding AccessLevel, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.OperatorLevel}}" />
                 <CheckBox Content="DebugMode" IsChecked="{Binding IsDebugMode}" /> 
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal"  >
+                
+                <Button Command="{Binding LoggoutCommand}" Content="Loggout" />
             </StackPanel>
         </Grid>
     </Grid>

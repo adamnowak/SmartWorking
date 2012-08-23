@@ -19,8 +19,8 @@ namespace SmartWorking.Office.TabsGui.Controls.Orders
   /// </summary>
   public class OrderSumaryViewModel : EditableControlViewModelBase<OrderPackage>
   {
-    public OrderSumaryViewModel(IMainViewModel mainViewModel, IModalDialogService modalDialogService, IServiceFactory serviceFactory)
-      : base(mainViewModel, modalDialogService, serviceFactory)
+    public OrderSumaryViewModel(IMainViewModel mainViewModel, IModalDialogProvider modalDialogProvider, IServiceFactory serviceFactory)
+      : base(mainViewModel, modalDialogProvider, serviceFactory)
     {
     }
 
