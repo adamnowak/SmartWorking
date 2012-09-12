@@ -144,6 +144,22 @@
     </Compile>
     <Compile Include="Controls\Buildings\BuildingListViewModel.cs" />
     <Compile Include="Controls\MainGroups\SettingsGroup\GeneralViewModel.cs" />
+    <Compile Include="Controls\Users\RoleDetailsControl.xaml.cs">
+      <DependentUpon>RoleDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Users\RoleDetailsViewModel.cs" />
+    <Compile Include="Controls\Users\RoleListControl.xaml.cs">
+      <DependentUpon>RoleListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Users\RoleListViewModel.cs" />
+    <Compile Include="Controls\Users\UserDetailsControl.xaml.cs">
+      <DependentUpon>UserDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Users\UserDetailsViewModel.cs" />
+    <Compile Include="Controls\Users\UserListControl.xaml.cs">
+      <DependentUpon>UserListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Users\UserListViewModel.cs" />
     <Compile Include="Shared\ViewModel\ModalDialogs\InputModalDialogViewModel.cs" />
     <Compile Include="Shared\ViewModel\ModalDialogs\IProgressActionViewModel.cs" />
     <Compile Include="Shared\ViewModel\ModalDialogs\ProgressActionStatusEnum.cs" />
@@ -434,6 +450,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Recipes\RecipeListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Users\RoleDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Users\RoleListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Users\UserDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Users\UserListControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

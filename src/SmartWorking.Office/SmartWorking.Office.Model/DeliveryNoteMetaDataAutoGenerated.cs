@@ -43,11 +43,6 @@ namespace SmartWorking.Office.PrimitiveEntities.MetaDates
             get;
             set;
         }
-        public virtual Nullable<System.DateTime> Canceled
-        {
-            get;
-            set;
-        }
     	
         [StringLength(50, ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "DeliveryNoteMetaData_Drawer_StringLength_50")]
         public virtual string Drawer
@@ -88,6 +83,13 @@ namespace SmartWorking.Office.PrimitiveEntities.MetaDates
             set;
         }
         public virtual Nullable<int> Year
+        {
+            get;
+            set;
+        }
+    	
+        [StringLength(250, ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "DeliveryNoteMetaData_DeactivationReason_StringLength_250")]
+        public virtual string DeactivationReason
         {
             get;
             set;

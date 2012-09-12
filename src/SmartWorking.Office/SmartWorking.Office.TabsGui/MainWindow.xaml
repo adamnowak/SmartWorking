@@ -10,7 +10,7 @@
         xmlns:AdministrationGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.AdministrationGroup" xmlns:ReportsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.ReportsGroup" xmlns:SettingsGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SettingsGroup" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:SaleGroup="clr-namespace:SmartWorking.Office.TabsGui.Controls.MainGroups.SaleGroup"
         xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension" xmlns:MessageBox="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel.MessageBox" xmlns:ViewMessageBox="clr-namespace:SmartWorking.Office.TabsGui.Shared.View.MessageBox" Engine:LocalizeDictionary.DesignCulture="en">
     <Window.DataContext>
-        <TabsGui:MainWindowViewModel  />
+        <TabsGui:MainWindowViewModel x:Name="MainViewModel" />
     </Window.DataContext>
     <!--<Window.Resources>
         <Style x:Key="progressGrid" TargetType="{x:Type Grid}">

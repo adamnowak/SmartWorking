@@ -107,10 +107,18 @@
       <Link>RecipeComponent.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\Role.cs">
+      <Link>Role.cs</Link>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="..\SmartWorking.Office.Model\SmartWorkingOfficeModel.cs">
       <Link>SmartWorkingOfficeModel.cs</Link>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\SmartWorking.Office.Model\User.cs">
+      <Link>User.cs</Link>
       <DependentUpon>SmartWorkingOfficeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GetPackageHelper.cs" />

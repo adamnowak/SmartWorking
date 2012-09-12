@@ -63,5 +63,7 @@
     IBuildingsService GetBuildingsService();
 
     IDBService GetDBService();
+
+    IUsersService GetUsersService();
   }
 }

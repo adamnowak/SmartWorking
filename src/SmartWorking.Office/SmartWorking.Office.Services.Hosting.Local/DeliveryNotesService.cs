@@ -145,17 +145,29 @@ namespace SmartWorking.Office.Services.Hosting.Local
                                                         "Obiekt nie istniał w bazie, a jego Id jest większe od 0.");
           }
 
-          //Item has no PK value, must be new);
+          DeliveryNote checkingNumber =
+            context.DeliveryNotes.Where(x => x.Number == deliveryNote.Number && x.Year == deliveryNote.Year).
+              FirstOrDefault();
+
+          //Item has no PK value, must be new);)
           if (deliveryNote.Id <= 0)
           {
             deliveryNote.DateDrawing = DateTime.Now;
-            deliveryNote.Number = GetNextDeliveryNumber(); 
+            //deliveryNote.Number = GetNextDeliveryNumber(); 
+            if (checkingNumber != null)
+            {
+              throw new Exception("Ten numer WZ'tki juz istnieje!");
+            }
             context.DeliveryNotes.AddObject(deliveryNote);
 
           }
           //Item was retrieved, and the item passed has a valid ID, do an update
           else
           {
+            if (checkingNumber != null && checkingNumber.Id != deliveryNote.Id)
+            {
+              throw new Exception("Ten numer WZ'tki juz istnieje!");
+            }
             context.DeliveryNotes.ApplyCurrentValues(deliveryNote);
           }
 
@@ -190,6 +202,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
             throw new Exception("Only exists delivery note can be canceled.");
           }
 
+          deliveryNote.DeactivationReason = string.Empty;
           deliveryNote.Deactivated = null;
           context.DeliveryNotes.ApplyCurrentValues(deliveryNote);
 
@@ -222,6 +235,7 @@ namespace SmartWorking.Office.Services.Hosting.Local
             throw new Exception("Only exists delivery note can be canceled.");
           }
 
+          deliveryNote.DeactivationReason = reason;
           deliveryNote.Deactivated = DateTime.Now;
           context.DeliveryNotes.ApplyCurrentValues(deliveryNote);          
 

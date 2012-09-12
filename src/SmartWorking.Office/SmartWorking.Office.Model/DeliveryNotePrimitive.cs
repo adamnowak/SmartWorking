@@ -36,11 +36,6 @@ namespace SmartWorking.Office.PrimitiveEntities
             get;
             set;
     		}
-    		public Nullable<System.DateTime> Canceled
-    		{
-            get;
-            set;
-    		}
     		public string Drawer
     		{
             get;
@@ -67,6 +62,11 @@ namespace SmartWorking.Office.PrimitiveEntities
             set;
     		}
     		public Nullable<int> Year
+    		{
+            get;
+            set;
+    		}
+    		public string DeactivationReason
     		{
             get;
             set;

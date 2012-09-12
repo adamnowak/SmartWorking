@@ -120,6 +120,11 @@ namespace SmartWorking.Office.Services.Factory.Local
       return new DBService();
     }
 
+    public IUsersService GetUsersService()
+    {
+      return new UsersService();
+    }
+
     #endregion
   }
 }

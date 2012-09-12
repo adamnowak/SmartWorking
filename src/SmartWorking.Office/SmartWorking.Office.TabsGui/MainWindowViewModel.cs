@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 #if IIS_USED
@@ -45,6 +46,7 @@ namespace SmartWorking.Office.TabsGui
   /// </summary>
   public class MainWindowViewModel : TabControlViewModelBase, IMainViewModel
   {
+    private bool wasUpdated = false;
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
     /// </summary>
@@ -79,11 +81,15 @@ namespace SmartWorking.Office.TabsGui
       IsBlockedAccessLevel = true;
 
 #if CONFIG_NAME_Debug
-      AccessLevel = AccessLevels.AdministratorLevel;
       IsDebugMode = true;
       IsBlockedAccessLevel = false;
-    
+      
 #endif
+      if (!IsBlockedAccessLevel)
+      {
+        AccessLevel = AccessLevels.AdministratorLevel;
+        UserName = "DebugAdmin";
+      }
     }
 
 
@@ -117,14 +123,27 @@ namespace SmartWorking.Office.TabsGui
       return true;
     }
 
+    public void DoEvents()
+    {
+      Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Background, new VoidHandler(() => { }));
+    }
+
+    private delegate void VoidHandler();
+
     /// <summary>
     /// //TODO:.
     /// </summary>
-    private void Loaded()
+    public void Loaded()
     {
-#if !CONFIG_NAME_Debug
-      ModalDialogProvider.ShowLogginDialog(this);
-#endif      
+//#if !CONFIG_NAME_Debug
+      if (IsBlockedAccessLevel && !wasUpdated)
+      {
+        DoEvents();
+        Thread.Sleep(1000);
+        ModalDialogProvider.ShowLogginDialog(this);
+        wasUpdated = true;
+      }
+//#endif      
     }
     #endregion //LoadedCommand
 
@@ -167,6 +186,7 @@ namespace SmartWorking.Office.TabsGui
       string errorCaption = "TODO!";
       try
       {
+        UserName = string.Empty;
         AccessLevel = AccessLevels.None;
       }
       catch (FaultException<ExceptionDetail> f)
@@ -234,6 +254,40 @@ namespace SmartWorking.Office.TabsGui
       }
     }
     #endregion //AccessLevel
+
+    #region UserName
+    /// <summary>
+    /// The <see cref="UserName" /> property's name.
+    /// </summary>
+    public const string UserNamePropertyName = "UserName";
+
+    private string _userName;
+
+    /// <summary>
+    /// Gets the UserName property.
+    /// TODO Update documentation:
+    /// Changes to that property's value raise the PropertyChanged event. 
+    /// This property's value is broadcasted by the Messenger's default instance when it changes.
+    /// </summary>
+    public string UserName
+    {
+      get
+      {
+        return _userName;
+      }
+
+      set
+      {
+        if (_userName == value)
+        {
+          return;
+        }
+        _userName = value;
+        // Update bindings, no broadcast
+        RaisePropertyChanged(UserNamePropertyName);
+      }
+    }
+    #endregion //UserName
 
     #region IsDebugMode
     /// <summary>
@@ -369,30 +423,60 @@ namespace SmartWorking.Office.TabsGui
       }
     }
 
-    public bool SetAccessByUserPassword(string userId, string password)
+    /// <summary>
+    /// Sets the access by user password.
+    /// </summary>
+    /// <param name="userId">The user id.</param>
+    /// <param name="password">The password.</param>
+    /// <returns></returns>
+    public bool SetAccessByUserPassword(string userName, string password)
     {
-      if (password == null || string.IsNullOrEmpty(userId))
+      if (password == null || string.IsNullOrEmpty(userName))
         return false;
-      if (password == "Belchatow12" && userId.ToLower() == "szef")
+
+      string errorCaption = "Loggowanie.";
+      try
       {
-        AccessLevel = AccessLevels.AdministratorLevel;
+        using (IUsersService usersService = ServiceFactory.GetUsersService())
+        {
+          UserAndRolesPackage userAndRolesPackage = usersService.ValidateUser(userName, password);
+          if (userAndRolesPackage != null)
+          {
+            UserName = userName;
+            AccessLevel = GetAccessLevel(userAndRolesPackage.Roles);
+            SelectedTab = null;
+            return true;
+          }
+        }
       }
-      else if (password == "PBasia" && userId.ToLower() == "basia")
+      catch (FaultException<ExceptionDetail> f)
       {
-        AccessLevel = AccessLevels.WOSLevel;
+        ShowError(errorCaption, f);
       }
-      else if (userId.ToLower() == "operator")
+      catch (CommunicationException c)
       {
-        AccessLevel = AccessLevels.OperatorLevel;
+        ShowError(errorCaption, c);
       }
-      else
+      catch (Exception e)
       {
-        return false;
+        ShowError(errorCaption, e);
       }
-      return true;
+      return false;
+
+      
     }
 
-
+    private AccessLevel GetAccessLevel(ICollection<RolePrimitive> roles)
+    {
+      if (roles.Count > 0)
+      {
+        if (roles.Any(x => x.Name == Roles.Administrator))
+          return AccessLevels.AdministratorLevel;
+        if (roles.Any(x => x.Name == Roles.WOS))
+          return AccessLevels.WOSLevel;
+      }
+      return AccessLevels.OperatorLevel;
+    }
 
     #endregion //StatusTextColor
 

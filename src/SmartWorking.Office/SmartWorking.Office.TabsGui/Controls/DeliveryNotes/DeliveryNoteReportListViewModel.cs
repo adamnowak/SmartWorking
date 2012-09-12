@@ -114,11 +114,9 @@ namespace SmartWorking.Office.TabsGui.Controls.DeliveryNotes
       {
         if (Items != null && Items.SelectedItem != null && base.OnItemDeactivatedFlagChanged())
         {
-
-          string reason = string.Empty;
-            //(Items.SelectedItem.DeliveryNote != null)
-            //                ? Items.SelectedItem.DeliveryNote.ReasonOfDeactivated
-            //                : string.Empty;
+          string reason = (Items.SelectedItem.DeliveryNote != null)
+                          ? Items.SelectedItem.DeliveryNote.DeactivationReason
+                          : string.Empty;
           if (ModalDialogProvider.ShowInputDialog("Wprowadz powód anulowania", "Powód:", ref reason, false))
           {
             using (IDeliveryNotesService service = ServiceFactory.GetDeliveryNotesService())

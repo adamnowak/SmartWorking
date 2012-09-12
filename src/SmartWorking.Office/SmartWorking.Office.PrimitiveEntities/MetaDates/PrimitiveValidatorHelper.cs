@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Generic; 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
@@ -98,11 +98,11 @@ namespace SmartWorking.Office.PrimitiveEntities.MetaDates
     private static bool ValidateClientSide(this DeliveryNotePrimitive primitiveToValidate, List<ValidationResult> validationResults, CultureInfo cultureInfo)
     {
       bool result = true;
-      //if (primitiveToValidate.InternalName == null || primitiveToValidate.InternalName.Trim().Length <= 0)
-      //{
-      //  validationResults.Add(new ValidationResult("Symbol musi być ustawiony."));
-      //  result = false;
-      //}
+      if (primitiveToValidate.Car_Id > 0)
+      {
+        validationResults.Add(new ValidationResult("Samochód musi być ustawiony."));
+        result = false;
+      }
       //if (primitiveToValidate.RegistrationNumber == null || primitiveToValidate.RegistrationNumber.Trim().Length <= 0)
       //{
       //  validationResults.Add(new ValidationResult("Numer rejestracyjny musi być ustawiony."));

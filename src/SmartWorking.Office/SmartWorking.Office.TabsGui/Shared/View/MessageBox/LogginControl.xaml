@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="SmartWorking.Office.TabsGui.Shared.View.MessageBox.LogginControl"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:MessageBox="clr-namespace:SmartWorking.Office.TabsGui.Shared.View.MessageBox"
+     mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="500" xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension" xmlns:View="clr-namespace:SmartWorking.Office.TabsGui.Shared.View">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50" />
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<TextBlock Text="Loggin to system." FontSize="20" /> 
+		
+		<!--Contractor grid-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>                
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Margin="5" Text="UserId:" />
+            <TextBlock Margin="5" Text="Password:" Grid.Row="1" />
+            <TextBox Margin="5" Text="{Binding UserId}" FontSize="12" Grid.Column="1"/>
+            <PasswordBox Margin="5" View:PasswordBoxAssistant.BindPassword="true"  View:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         PasswordChar="*" FontSize="12" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock Margin="5" Text="{Binding Status}" Grid.Column="1" Grid.Row="2" Visibility="{Binding IsStatusShown}" />
+        </Grid>
+
+		<!--Buttons-->
+		<StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+            <Button Content="Loggin" Command="{Binding LogginCommand}" />
+            <Button Content="Cancel"  Command="{Binding CancelCommand}" />
+		</StackPanel>
+        
+		
+	</Grid>
+</UserControl>

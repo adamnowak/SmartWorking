@@ -74,6 +74,14 @@ namespace SmartWorking.Office.Services.Factory.IIS
   {
   }
 
+  internal interface IDBServiceChannel : IDBService, IClientChannel
+  {
+  } 
+
+  internal interface IUsersServiceChannel : IUsersService, IClientChannel
+  {
+  }
+
   /// <summary>
   /// Service factory which are stored on IIS.
   /// </summary>
@@ -207,7 +215,16 @@ namespace SmartWorking.Office.Services.Factory.IIS
 
     public IDBService GetDBService()
     {
-      throw new NotImplementedException();
+      var channelFactory = new ChannelFactory<IDBServiceChannel>("*");
+      IDBServiceChannel service = channelFactory.CreateChannel();
+      return service;
+    }
+
+    public IUsersService GetUsersService()
+    {
+      var channelFactory = new ChannelFactory<IUsersServiceChannel>("*");
+      IUsersServiceChannel service = channelFactory.CreateChannel();
+      return service;
     }
 
     #endregion

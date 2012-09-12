@@ -272,9 +272,6 @@ namespace SmartWorking.Office.PrimitiveEntities
         		result += ", [DateOfArrival]";
         		values += string.Format(", {0}", GetDBValue(primitive.DateOfArrival));
         
-        		result += ", [Canceled]";
-        		values += string.Format(", {0}", GetDBValue(primitive.Canceled));
-        
         		result += ", [Drawer]";
         		values += string.Format(", {0}", GetDBValue(primitive.Drawer));
         
@@ -298,6 +295,9 @@ namespace SmartWorking.Office.PrimitiveEntities
         
         		result += ", [Year]";
         		values += string.Format(", {0}", GetDBValue(primitive.Year));
+        
+        		result += ", [DeactivationReason]";
+        		values += string.Format(", {0}", GetDBValue(primitive.DeactivationReason));
         
         
         		if (values.Length > 0)
@@ -514,6 +514,66 @@ namespace SmartWorking.Office.PrimitiveEntities
         
         		result += ", [Amount]";
         		values += string.Format(", {0}", GetDBValue(primitive.Amount));
+        
+        		result += ", [Deleted]";
+        		values += string.Format(", {0}", GetDBValue(primitive.Deleted));
+        
+        		result += ", [Deactivated]";
+        		values += string.Format(", {0}", GetDBValue(primitive.Deactivated));
+        
+        
+        		if (values.Length > 0)
+        			return result + ")" + values + ")";
+        		else 
+        			return string.Empty;
+        }
+        
+        public static string GetDBInsertQuery(this RolePrimitive primitive)
+        {
+        		if (primitive == null) return string.Empty;
+        		string values = " VALUES (";
+        		string result = "INSERT [dbo].[Roles] (";
+        				result += "[Id]";
+        		values += string.Format("{0}", GetDBValue(primitive.Id));
+        
+        		result += ", [Name]";
+        		values += string.Format(", {0}", GetDBValue(primitive.Name));
+        
+        		result += ", [Deleted]";
+        		values += string.Format(", {0}", GetDBValue(primitive.Deleted));
+        
+        		result += ", [Deactivated]";
+        		values += string.Format(", {0}", GetDBValue(primitive.Deactivated));
+        
+        
+        		if (values.Length > 0)
+        			return result + ")" + values + ")";
+        		else 
+        			return string.Empty;
+        }
+        
+        public static string GetDBInsertQuery(this UserPrimitive primitive)
+        {
+        		if (primitive == null) return string.Empty;
+        		string values = " VALUES (";
+        		string result = "INSERT [dbo].[Users] (";
+        				result += "[Id]";
+        		values += string.Format("{0}", GetDBValue(primitive.Id));
+        
+        		result += ", [Name]";
+        		values += string.Format(", {0}", GetDBValue(primitive.Name));
+        
+        		result += ", [Surname]";
+        		values += string.Format(", {0}", GetDBValue(primitive.Surname));
+        
+        		result += ", [Password]";
+        		values += string.Format(", {0}", GetDBValue(primitive.Password));
+        
+        		result += ", [PasswordSalz]";
+        		values += string.Format(", {0}", GetDBValue(primitive.PasswordSalz));
+        
+        		result += ", [Phone]";
+        		values += string.Format(", {0}", GetDBValue(primitive.Phone));
         
         		result += ", [Deleted]";
         		values += string.Format(", {0}", GetDBValue(primitive.Deleted));

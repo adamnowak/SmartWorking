@@ -173,8 +173,6 @@ namespace SmartWorking.Office.PrimitiveEntities
         		
         		primitive.DateOfArrival = primitiveToCopy.DateOfArrival;
         		
-        		primitive.Canceled = primitiveToCopy.Canceled;
-        		
         		primitive.Drawer = primitiveToCopy.Drawer;
         		
         		primitive.Car_Id = primitiveToCopy.Car_Id;
@@ -190,6 +188,8 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Number = primitiveToCopy.Number;
         		
         		primitive.Year = primitiveToCopy.Year;
+        		
+        		primitive.DeactivationReason = primitiveToCopy.DeactivationReason;
         		
         		return primitive;
         }
@@ -340,6 +340,48 @@ namespace SmartWorking.Office.PrimitiveEntities
         		primitive.Recipe_Id = primitiveToCopy.Recipe_Id;
         		
         		primitive.Amount = primitiveToCopy.Amount;
+        		
+        		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
+        		
+        		return primitive;
+        }
+        
+        public static RolePrimitive GetPrimitiveCopy(this RolePrimitive primitiveToCopy)
+        {
+        		if (primitiveToCopy == null) return null;
+        
+        		RolePrimitive primitive = new RolePrimitive(); 
+        
+        		primitive.Id = primitiveToCopy.Id;
+        		
+        		primitive.Name = primitiveToCopy.Name;
+        		
+        		primitive.Deleted = primitiveToCopy.Deleted;
+        		
+        		primitive.Deactivated = primitiveToCopy.Deactivated;
+        		
+        		return primitive;
+        }
+        
+        public static UserPrimitive GetPrimitiveCopy(this UserPrimitive primitiveToCopy)
+        {
+        		if (primitiveToCopy == null) return null;
+        
+        		UserPrimitive primitive = new UserPrimitive(); 
+        
+        		primitive.Id = primitiveToCopy.Id;
+        		
+        		primitive.Name = primitiveToCopy.Name;
+        		
+        		primitive.Surname = primitiveToCopy.Surname;
+        		
+        		primitive.Password = primitiveToCopy.Password;
+        		
+        		primitive.PasswordSalz = primitiveToCopy.PasswordSalz;
+        		
+        		primitive.Phone = primitiveToCopy.Phone;
         		
         		primitive.Deleted = primitiveToCopy.Deleted;
         		

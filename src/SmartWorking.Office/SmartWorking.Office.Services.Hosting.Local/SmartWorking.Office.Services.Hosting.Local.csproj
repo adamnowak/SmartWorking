@@ -99,6 +99,7 @@
     <Compile Include="CarsService.cs" />
     <Compile Include="ClientsService.cs" />
     <Compile Include="BuildingsService.cs" />
+    <Compile Include="UsersService.cs" />
     <Compile Include="DBService.cs" />
     <Compile Include="EntityValidatorHelper.cs" />
     <Compile Include="OrdersService.cs" />

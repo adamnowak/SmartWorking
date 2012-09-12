@@ -22,6 +22,12 @@ namespace SmartWorking.Office.TabsGui.Shared.ViewModel
     public static AccessLevel AdministratorLevel { get { return AccessLevel.Read | AccessLevel.Write | AccessLevel.Delete; }}
   }
   
+  public class Roles
+  {
+    public const string Administrator = "Administrator";
+    public const string WOS = "WOS";
+    public const string Operator = "Operator";
+  }
 
   //public class AccessLevel 
   //{

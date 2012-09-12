@@ -162,8 +162,6 @@ namespace SmartWorking.Office.Entities
         		
         		primitive.DateOfArrival = entity.DateOfArrival;
         		
-        		primitive.Canceled = entity.Canceled;
-        		
         		primitive.Drawer = entity.Drawer;
         		
         		primitive.Car_Id = entity.Car_Id;
@@ -179,6 +177,8 @@ namespace SmartWorking.Office.Entities
         		primitive.Number = entity.Number;
         		
         		primitive.Year = entity.Year;
+        		
+        		primitive.DeactivationReason = entity.DeactivationReason;
         		
         		return primitive;
         }
@@ -317,6 +317,44 @@ namespace SmartWorking.Office.Entities
         		primitive.Recipe_Id = entity.Recipe_Id;
         		
         		primitive.Amount = entity.Amount;
+        		
+        		primitive.Deleted = entity.Deleted;
+        		
+        		primitive.Deactivated = entity.Deactivated;
+        		
+        		return primitive;
+        }
+        
+        public static RolePrimitive GetPrimitive(this Role entity)
+        {
+        		RolePrimitive primitive = new RolePrimitive(); 
+        
+        		primitive.Id = entity.Id;
+        		
+        		primitive.Name = entity.Name;
+        		
+        		primitive.Deleted = entity.Deleted;
+        		
+        		primitive.Deactivated = entity.Deactivated;
+        		
+        		return primitive;
+        }
+        
+        public static UserPrimitive GetPrimitive(this User entity)
+        {
+        		UserPrimitive primitive = new UserPrimitive(); 
+        
+        		primitive.Id = entity.Id;
+        		
+        		primitive.Name = entity.Name;
+        		
+        		primitive.Surname = entity.Surname;
+        		
+        		primitive.Password = entity.Password;
+        		
+        		primitive.PasswordSalz = entity.PasswordSalz;
+        		
+        		primitive.Phone = entity.Phone;
         		
         		primitive.Deleted = entity.Deleted;
         		

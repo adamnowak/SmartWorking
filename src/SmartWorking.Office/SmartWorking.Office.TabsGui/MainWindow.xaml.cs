@@ -21,6 +21,15 @@ namespace SmartWorking.Office.TabsGui
     public MainWindow()
     {
       InitializeComponent();
+      
+      this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
+    }
+
+    void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+      this.WindowState = WindowState.Maximized;
+      MainViewModel.Loaded();
+      
     }
 
     

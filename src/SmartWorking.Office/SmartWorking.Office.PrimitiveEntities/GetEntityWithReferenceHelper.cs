@@ -181,5 +181,18 @@ namespace SmartWorking.Office.PrimitiveEntities
     //}
 
     //GetClientBuildingListWithReference
+
+    //public static List<RolePrimitive> GetRoleListWithReference(this UserAndRolesPackage userAndRolesPackage)
+    //{
+    //  List<RolePrimitive> result = userAndRolesPackage.Roles.Select(x => x.GetRecipeComponentPrimitiveWithReference()).ToList();
+    //  if (userAndRolesPackage.Roles != null)
+    //  {
+    //    foreach (RolePrimitive item in result)
+    //    {
+    //      item. = recipePackage.Recipe.Id;
+    //    }
+    //  }
+    //  return result;
+    //}
   }
 }

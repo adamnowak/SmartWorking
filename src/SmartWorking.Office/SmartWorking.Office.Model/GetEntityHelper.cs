@@ -162,8 +162,6 @@ namespace SmartWorking.Office.Entities
         		
         		result.DateOfArrival = primitive.DateOfArrival;
         		
-        		result.Canceled = primitive.Canceled;
-        		
         		result.Drawer = primitive.Drawer;
         		
         		result.Car_Id = primitive.Car_Id;
@@ -179,6 +177,8 @@ namespace SmartWorking.Office.Entities
         		result.Number = primitive.Number;
         		
         		result.Year = primitive.Year;
+        		
+        		result.DeactivationReason = primitive.DeactivationReason;
         		
         		return result;
         }
@@ -317,6 +317,44 @@ namespace SmartWorking.Office.Entities
         		result.Recipe_Id = primitive.Recipe_Id;
         		
         		result.Amount = primitive.Amount;
+        		
+        		result.Deleted = primitive.Deleted;
+        		
+        		result.Deactivated = primitive.Deactivated;
+        		
+        		return result;
+        }
+        
+        public static Role GetEntity(this RolePrimitive primitive)
+        {
+        		Role result = new Role(); 
+        
+        		result.Id = primitive.Id;
+        		
+        		result.Name = primitive.Name;
+        		
+        		result.Deleted = primitive.Deleted;
+        		
+        		result.Deactivated = primitive.Deactivated;
+        		
+        		return result;
+        }
+        
+        public static User GetEntity(this UserPrimitive primitive)
+        {
+        		User result = new User(); 
+        
+        		result.Id = primitive.Id;
+        		
+        		result.Name = primitive.Name;
+        		
+        		result.Surname = primitive.Surname;
+        		
+        		result.Password = primitive.Password;
+        		
+        		result.PasswordSalz = primitive.PasswordSalz;
+        		
+        		result.Phone = primitive.Phone;
         		
         		result.Deleted = primitive.Deleted;
         		

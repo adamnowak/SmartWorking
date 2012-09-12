@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ViewModel="clr-namespace:SmartWorking.Office.TabsGui.Shared.ViewModel" xmlns:Users="clr-namespace:SmartWorking.Office.TabsGui.Controls.Users" mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -26,7 +26,217 @@
             </TabItem>
             <TabItem Header="{Binding Name}" DataContext="{Binding UsersViewModel}"
                      Visibility="{Binding Path=MainViewModel.AccessLevel, Converter={StaticResource enumVisibilityConverter}, ConverterParameter={x:Static ViewModel:AccessLevels.AdministratorLevel}}">
-                t1
+                <Grid>
+                    <!--UsersAndRoles-->
+                    <GroupBox Header="UsersAndRoles"
+                         Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!--UserDetails-->
+                            <GroupBox Header="UserDetails"
+                                 Grid.Column="0">
+                                <Grid>
+                                    <Users:UserDetailsControl DataContext="{Binding UserDetailsViewModel}" />
+                                </Grid>
+                            </GroupBox>
+                            <!--UserList-->
+                            <GroupBox Header="Users"
+                                 Grid.Column="1" DataContext="{Binding UserListViewModel}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Users:UserListControl />
+                                </Grid>
+                            </GroupBox>
+                            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <GroupBox Header="UserInRoles">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Users:RoleListControl DataContext="{Binding UserDetailsViewModel.UserInRolesListViewModel}"
+                                             FiltersVisibility="Collapsed" />
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <Button Command="{Binding UserListViewModel.AddItemCommand}" Content="Add"
+                                                 IsEnabled="{Binding IsReadOnly}">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="UserDetailsViewModel.IsReadOnly" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding UserListViewModel.AddCloneItemCommand}" Content="AddClone"
+                                                 IsEnabled="{Binding IsReadOnly}">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="UserDetailsViewModel.IsReadOnly" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding UserDetailsViewModel.EditItemCommand}" Content="Edit"
+                                                 IsEnabled="{Binding IsReadOnly}">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="UserDetailsViewModel.IsReadOnly" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding UserDetailsViewModel.SaveItemCommand}" Content="Save">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="UserDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding UserDetailsViewModel.CancelChangesCommand}" Content="Cancel">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="UserDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding UserListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                                 ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                            <Binding Path="UserDetailsViewModel.IsReadOnly" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                                <Button.Content>
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <Binding Path="UserDetailsViewModel.Item.User.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                        <Binding Source="{StaticResource StaticFalse}" />
+                                                        <Binding Source="{StaticResource StaticStringUndelete}" />
+                                                        <Binding Source="{StaticResource StaticStringDelete}" />
+                                                    </MultiBinding>
+                                                </Button.Content>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </GroupBox>
+                                <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
+                                    <Button Content="&lt;&lt;" Command="{Binding UserDetailsViewModel.AddRoleCommand}" />
+                                    <Button Content="&gt;&gt;" Command="{Binding UserDetailsViewModel.RemoveRoleCommand}" />
+                                </StackPanel>
+                                <GroupBox Grid.Column="2" Grid.ColumnSpan="2" Header="RoleList">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Users:RoleListControl Grid.RowSpan="2" DataContext="{Binding RoleListViewModel}" FiltersVisibility="Collapsed" />
+                                        <GroupBox Header="RoleDetails"
+                                             Grid.Column="1" DataContext="{Binding RoleDetailsViewModel}">
+                                            <Users:RoleDetailsControl />
+                                        </GroupBox>
+                                        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Visibility="Collapsed">
+                                            <Button Command="{Binding RoleListViewModel.AddItemCommand}" Content="Add"
+                                                 IsEnabled="{Binding IsReadOnly}">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RoleDetailsViewModel.IsReadOnly" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RoleListViewModel.AddCloneItemCommand}" Content="AddClone"
+                                                 IsEnabled="{Binding IsReadOnly}">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RoleDetailsViewModel.IsReadOnly" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RoleDetailsViewModel.EditItemCommand}" Content="Edit"
+                                                 IsEnabled="{Binding IsReadOnly}">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RoleDetailsViewModel.IsReadOnly" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RoleDetailsViewModel.SaveItemCommand}" Content="Save">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RoleDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RoleDetailsViewModel.CancelChangesCommand}" Content="Cancel">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="RoleDetailsViewModel.IsReadOnly" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                            </Button>
+                                            <Button Command="{Binding RoleListViewModel.ChangeItemDeletedFlagCommand}" IsEnabled="{Binding IsReadOnly}">
+                                                <Button.Visibility>
+                                                    <MultiBinding Converter="{StaticResource visibilitisANDBinaryConverter}">
+                                                        <MultiBinding.Bindings>
+                                                            <Binding Path="MainViewModel.AccessLevel" Converter="{StaticResource enumBooleanConverter}"
+                                                                 ConverterParameter="{x:Static ViewModel:AccessLevels.AdministratorLevel}" />
+                                                            <Binding Path="RoleDetailsViewModel.IsReadOnly" />
+                                                        </MultiBinding.Bindings>
+                                                    </MultiBinding>
+                                                </Button.Visibility>
+                                                <Button.Content>
+                                                    <MultiBinding Converter="{StaticResource comparingMultiConverter}">
+                                                        <Binding Path="RoleDetailsViewModel.Item.IsDeleted" Converter="{StaticResource boolToOppositeBoolConverter}" />
+                                                        <Binding Source="{StaticResource StaticFalse}" />
+                                                        <Binding Source="{StaticResource StaticStringUndelete}" />
+                                                        <Binding Source="{StaticResource StaticStringDelete}" />
+                                                    </MultiBinding>
+                                                </Button.Content>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
             </TabItem>
             <TabItem Header="Licencje" >
                 <FlowDocumentReader Name="FlowDocReader" Document="{Binding LicenseDocument}"/>

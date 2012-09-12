@@ -114,6 +114,18 @@ namespace SmartWorking.Office.Entities
             get { return _deliveryNotes  ?? (_deliveryNotes = CreateObjectSet<DeliveryNote>("DeliveryNotes")); }
         }
         private ObjectSet<DeliveryNote> _deliveryNotes;
+    
+        public ObjectSet<Role> Roles
+        {
+            get { return _roles  ?? (_roles = CreateObjectSet<Role>("Roles")); }
+        }
+        private ObjectSet<Role> _roles;
+    
+        public ObjectSet<User> Users
+        {
+            get { return _users  ?? (_users = CreateObjectSet<User>("Users")); }
+        }
+        private ObjectSet<User> _users;
 
         #endregion
     }

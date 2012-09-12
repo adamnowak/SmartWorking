@@ -239,5 +239,22 @@ namespace SmartWorking.Office.Entities
       }
       return result;
     }
+
+    public static UserAndRolesPackage GetUserAndRolesPackage(this User user)
+    {
+      UserAndRolesPackage result = new UserAndRolesPackage();
+      if (user != null)
+      {
+        result.User = user.GetPrimitive();
+        if (user.Roles != null)
+        {
+          foreach (Role role in user.Roles)
+          {
+            result.Roles.Add(role.GetPrimitive());
+          }
+        }
+      }
+      return result;
+    }
   }
 }

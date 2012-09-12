@@ -129,5 +129,24 @@ namespace SmartWorking.Office.PrimitiveEntities
       
       return package;
     }
+
+
+
+    public static UserAndRolesPackage GetPackageCopy(this UserAndRolesPackage source)
+    {
+      UserAndRolesPackage result = new UserAndRolesPackage();
+      if (source != null)
+      {
+        if (source.User  != null)
+        {
+          result.User = source.User.GetPrimitiveCopy();
+          foreach (RolePrimitive role in source.Roles)
+          {
+            result.Roles.Add(role.GetPrimitiveCopy());
+          }
+        }
+      }
+      return result;
+    }
   }
 }
